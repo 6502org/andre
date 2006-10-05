@@ -1,0 +1,537 @@
+
+This is the description of the programmable PLAs/PROMs in the 
+CBM 8296 computer, i.e. in the 64/128k 40/80 cols motherboard.
+
+The information herein is derived from schematics and the readouts
+of the PLAs. Therefore there is ABSOLUTELY NO WARRANTY for this.
+
+This board can be set (jumpered) to either a (almost) standard 32k PET,
+or a 8296 PET, both with 40 or 80 columns display.
+
+Logic equations
+===============
+
+Those logic equations have been derived from a PLA readout with
+the Quine-McCluskey algorithm. Therefore they most probably do not
+present the original equations, however they are a minimal set
+to achieve the PLA contents.
+
+UC2 logic equations
+-------------------
+
+UC2 is the PROM used for timing.
+
+Interestingly the timing of the board is generated via a programmable
+TTL PROM (UC2). It has inputs for 8, 4, 2, and 1 MHz, and also for the
+/CASENAI line (that enables access to the first DRAM bank)
+
+Inputs:
+
+8M	 + +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+
+ 	 +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +
+
+4M	 +   +---+   +---+   +---+   +---+   +---+   +---+   +---+   +---+
+	 +---+   +---+   +---+   +---+   +---+   +---+   +---+   +---+   +
+
+2M	 +       +-------+       +-------+       +-------+       +-------+
+	 +-------+       +-------+       +-------+       +-------+       +
+
+1M	 +               +---------------+               +---------------+
+PHI0	 +---------------+               +---------------+               +
+
+CASENAI	 +                               +-------------------------------+
+	 +-------------------------------+                               +
+
+Outputs:
+
+CASII T	 +                     +-+-------+                     +-+-------+
+	 +-------+-------+-----+         +-------+-------+-----+         +
+
+RAS T	 +             +-+-+         +---+             +-+-+         +---+
+	 +-------+-----+   +-----+---+   +-------+-----+   +-----+---+   +
+
+CASI     +---+   +-+     +-------+-------+---+   +-+     +-----+         +
+	 +   +---+ +-----+                   +---+ +-----+     +-+-------+
+
+MUXA/	   +-----+-------+---+             +-----+-------+---+
+CRTCLK	 +-+                 +---+-------+-+                 +---+-------+
+
+DRAM	                     +---+---+                       +---+---+
+R/W T	 +-------+-------+---+       +---+-------+-------+---+       +---+
+
+CLKVLA	         +-----+                         +-----+
+	 +-------+     +-+-------+-------+-------+     +-+-------+-------+
+
+LOADSR	 +-------+---+ +-+-------+---+ +-+-------+---+ +-+-------+---+ +-+
+80	             +-+             +-+             +-+             +-+  
+
+LOADSR	 +-------+-------+-------+-+   +-+-------+-------+-------+-+   +-+
+40	                           +---+                           +---+
+
+The most interesting lines are RAS T and CASI (CAS DRAM bank 0).
+The former is used for all RAM chips. It loads the row address
+into the RAM chips. Then MUXA switches the address multiplexers from
+row address to column address. During the first half of Phi0 (Phi2)
+CASI loads the column address _twice_ into the RAMs, i.e. does
+_two_ reads. The first data read is set into latch UC6, the second
+data is then read into latch UC7. This way two character bytes are
+read during one cycle, thus allowing 80 columns display with 
+1MHz CPU clock - that has only 40 cycles per line available.
+
+UE5 logic equations
+-------------------
+
+UE5 is the FPLA that handles the expansion from 8032 to 8296.
+Only 4 of the 8 output values are used.
+The equations are written here with the inputs named appropriately
+"/" denotes the inverted signal. Sometimes a missing "/" indicates
+an inverted input signal. Comments are added to the lines after
+a "//".
+
+FYI, here is an explanation of the Control Register bits from
+the 8296 addendum:
+
+               Address $FFF0
+        ---------------------------------------------------
+         7      6      5      4      3      2      1      0
+        ---------------------------------------------------
+         |      |      |      |                    |      |
+         |      |      |      |                    |      |
+Enable --+      |      |      |                    |      +-- Write Protect
+                |      |      |                    |          $8000 - $BFFF
+                |      |      |                    |
+I/O peek through+      |      |      Select        +--------- Write Protect
+$E800-$EFFF            |      |       16K                     $C000 - $FFFF
+                       |      |      Block:  0 0:  2 and 0
+Screen peek through ---+      |              0 1:  2 and 1
+$8000-$8FFF                   |              1 0:  3 and 0
+                              |              1 1:  3 and 1
+Reserved ---------------------+
+
+
+Here are the logic equations for UE5:
+The comments contain the output of the decode program.
+
+// FA15 is the expansion RAM address A15
+
+FA15 (F7) = 
+
+	A15 & /CR7		// I7 & !I8
+				// expansion memory & addresses >= $8000
+
+	| /A12 & /A13 & /A14 & A15 & CR5
+				// !I4 & !I5 & !I6 & I7 & I10
+				// $8***, and screen peek through
+
+	| /A14 & A15 & CR2	// !I6 & I7 & I13
+				// $8*** - $B***, Block 1
+
+	| A14 & A15 & CR3	// I6 & I7 & I12
+				// $C*** - $F***, Block 3
+
+	| A11 & /A12 & A13 & A14 & A15 & CR6
+				// I3 & !I4 & I5 & I6 & I7 & I9
+				// $E800 - $EFFF and I/O peek through
+
+// CASENAII is the enable signal for the expansion DRAM column address
+
+CASENAII (F6) = 
+	CASENAI & Phi2 & A15 & CR7 & ( 
+				// I0 & I1 & I7 & I8
+				// expansion enabled, addr >= $8000, CPU access
+
+	  R/W & (		// I2
+	    			// the following lines enable the RAM if 
+				// not in the screen or IO area, and there
+				// only if CR5/CR6 allow it
+				// this is for read only
+				// note some address ranges are handled more than once
+
+	    /A13 & /CR5		// !I5 & !I10
+				// %1x0xxxxx = $8xxx, $9xxx, $cxxx, $dxxx
+				//    & no screen peek through
+	    
+	    | A12 		// I4
+				// %1xx1xxxx = $9xxx, $bxxx, $dxxx, $fxxx
+
+	    | /A13 & A14	// %110xxxxx = $cxxx, $dxxx
+				// !I5 & I6
+
+	    | /A14 & A13	// %101xxxxx = $axxx, $bxxx
+				// I5 & !I6
+
+	    | /A11 & A14	// %11xx0xxx = lower half of $cxxx, $dxxx, $exxx, $fxxx
+				// !I3 & I6
+			
+	    | A14 & /CR6	// %11xxxxxx = $cxxx, $dxxx, $exxx, $fxxx
+				//    & no I/O peek though
+				// I6 & !I9
+	  )
+				// These lines are for writing (actually read and write), 
+				// and implement expansion RAM write protection
+
+	  | A14 & /A11 & /CR1 	// %11xx0xxx, lower half of $cxxx, $dxxx, $exxx, $fxxx
+				//    & not write protect bank 1/3
+				// I6 & !I3 & !I14
+
+	  | A14 & A12 & /CR1	// %11x1xxxx, $dxxx, $fxxx
+				//    & not write protect bank 1/3
+				// I6 & I4 & !I14
+
+	  | A14 & /A13 & /CR1	// %110xxxxx, $cxxx, $dxxx
+				//    & not write protect bank 1/3
+				// I6 & !I5 & !I14
+
+	  | A14 & /CR6 & /CR1	// %11xxxxxx, $cxxx, $dxxx, $exxx, $fxxx
+				//    & no I/O peek through, no w/p. bank 1/3
+				// I6 & !I9 & !I14
+
+	  | /A14 & A12 & /CR0	// %10x1xxxx, $9xxx, $bxxx
+				//    & write protect bank 0/2
+				// !I6 & I4 & !I15
+
+	  | /A14 & A13 & /CR0	// %101xxxxx, $axxx, $bxxx
+				//    & write protect bank 0/2
+				// !I6 & I5 & !I15
+
+	  | /A14 & /CR5 & /CR0	// %10xxxxxx, $8xxx, $9xxx, $axxx, $bxxx
+				// no screen peek through, no w/p bank 0/2.
+				// !I6 & !I10 & !I15
+	)
+
+// NOSCREEN is active when the screen is not mapped into the CPU memory
+NOSCREEN (F5) = CR7 & /CR5	// Expansion enabled & no screen peek through
+				// I8 & !I10
+
+// ENDRA is the enable for the buffer between DRAM data lines and CPU data
+// lines
+ENDRA (/F4) = 
+	/CASENAI & Phi2		// !I0 & I1
+				// normal RAM, CPU access (Phi2 high)
+
+	| Phi2 & A15 & CR7 & (	// I1 & I7 & I8
+				// anything else: addr>=$8000, exp. enabled
+
+				// these lines are the same as for CASENAII
+
+	  R/W & (		// I2
+	    			// the following lines enable the RAM if 
+				// not in the screen or IO area, and there
+				// only if CR5/CR6 allow it
+				// this is for read only
+				// note some address ranges are handled more than once
+
+	    /A13 & /CR5		// !I5 & !I10
+				// %1x0xxxxx = $8xxx, $9xxx, $cxxx, $dxxx
+				//    & no screen peek through
+	    
+	    | A12 		// I4
+				// %1xx1xxxx = $9xxx, $bxxx, $dxxx, $fxxx
+
+	    | /A13 & A14	// %110xxxxx = $cxxx, $dxxx
+				// !I5 & I6
+
+	    | /A14 & A13	// %101xxxxx = $axxx, $bxxx
+				// I5 & !I6
+
+	    | /A11 & A14	// %11xx0xxx = lower half of $cxxx, $dxxx, $exxx, $fxxx
+				// !I3 & I6
+			
+	    | A14 & /CR6	// %11xxxxxx = $cxxx, $dxxx, $exxx, $fxxx
+				//    & no I/O peek though
+				// I6 & !I9
+	  )
+				// These lines are for writing (actually read and write), 
+				// and implement expansion RAM write protection
+
+	  | A14 & /A11 & /CR1 	// %11xx0xxx, lower half of $cxxx, $dxxx, $exxx, $fxxx
+				//    & not write protect bank 1/3
+				// I6 & !I3 & !I14
+
+	  | A14 & A12 & /CR1	// %11x1xxxx, $dxxx, $fxxx
+				//    & not write protect bank 1/3
+				// I6 & I4 & !I14
+
+	  | A14 & /A13 & /CR1	// %110xxxxx, $cxxx, $dxxx
+				//    & not write protect bank 1/3
+				// I6 & !I5 & !I14
+
+	  | A14 & /CR6 & /CR1	// %11xxxxxx, $cxxx, $dxxx, $exxx, $fxxx
+				//    & no I/O peek through, no w/p. bank 1/3
+				// I6 & !I9 & !I14
+
+	  | /A14 & A12 & /CR0	// %10x1xxxx, $9xxx, $bxxx
+				//    & write protect bank 0/2
+				// !I6 & I4 & !I15
+
+	  | /A14 & A13 & /CR0	// %101xxxxx, $axxx, $bxxx
+				//    & write protect bank 0/2
+				// !I6 & I5 & !I15
+
+	  | /A14 & /CR5 & /CR0	// %10xxxxxx, $8xxx, $9xxx, $axxx, $bxxx
+				// no screen peek through, no w/p bank 0/2.
+				// !I6 & !I10 & !I15
+	
+	)
+
+The output lines F0-F3 of UE5 are not connected, although they seem to contain some
+logic. I have not analyzed this part, though. You can see the equations in ue5.out though.
+
+
+UE6 logic equations
+-------------------
+
+UE6 is the FPLA that does all the address decoding.
+The /RAMON, /RAMSELA and /RAMSEL9 handling implements the RAM/ROM 
+switching descibed in the 8296 addendum to the 8032 manual.
+
+// write to the $ffxx area (for write access to control register)
+CSWFF (F0) = A8 & A9 & A10 & A11 & A12 & A13 & A14 & A15 & /R/W	
+				// = $ffxx and write access
+				// !I6 & I8 & I9 & I10 & I11 & I12 & I13 & I14 & I15
+
+
+// CS9 selects the $9*** ROM socket - no write protection
+CS9 (/F1) = A12 & !A13 & !A14 & A15 & /NOROM & /RAMON & /RAMSEL9
+				// $9xxx read/write
+				// I0 & I1 & I2 & I12 & !I13 & !I14 & I15
+
+
+// CSA selects the $A*** ROM socket - no write protection
+CSA (/F2) = !A12 & A13 & !A14 & A15  & /NOROM & /RAMON & /RAMSELA
+				// $axxx read/write
+				// I0 & I1 & I3 & !I12 & I13 & !I14 & I15
+
+
+// CSI/O selects the I/O area at $E8**
+CSI/O (/F3) = 
+	!A8 & !A9 & !A10 & A11 & !A12 & A13 & A14 & A15 & (
+				// = $e8xx
+
+		  /NOIO		// I4
+				// notIO must not be selected -> IO
+
+		  | /NOROM & /RAMON
+				// I0 & I1
+				// ROM is selected and not RAM
+
+		  | /NOROM & /RAMSELA
+				// I0 & I3
+				// ROM is selected and not RAM in $axxx
+	        )
+
+
+// CSE selects the editor ROM
+CSE (/F4) = 
+	R/W & !A12 & A13 & A14 & A15 & (
+				// I6 & !I12 & I13 & I14 & I15
+				// read at address range $exxx
+
+	  /NOROM & (		// ROM selected
+				// I0
+
+	    ( 
+				// note that in the next 4 lines $e8xx is _not_ selected
+		A8		// $e1xx, $e3xx, $e5xx, $e7xx, $e9xx, $ebxx, $edxx, $efxx
+		| A9 		// $e2xx, $e3xx, $e6xx, $e7xx, $eaxx, $ebxx, $eexx, $efxx
+		| A10 		// $e4xx, $e5xx, $e6xx, $e7xx, $ecxx, $edxx, $eexx, $efxx
+		| !A11 		// $e0xx, $e1xx, $e2xx, $e3xx, $e4xx, $e5xx, $e6xx, $e7xx
+	    )  &  (
+	        /RAMON 		// I1 
+				// RAM not selected
+	        | /RAMSEL9 & /RAMSELA 
+				// I2 & I3
+				// not RAMSEL9/A
+	    )
+	  ) 
+	  | NOROM & /NOIO & A11 & (
+				// !I0 & I4 & I11
+	    
+				// note that $e8xx is _not_ selected
+	    A8 			// $e9xx, $ebxx, $edxx, $efxx
+	    | A9 		// $eaxx, $ebxx, $eexx, $efxx
+	    | A10 		// $ecxx, $edxx, $eexx, $efxx
+	  ) 
+	)
+
+The first terms (with /NOROM) determine the "normal" behaviour and are consistent
+with the tables in the 8296 addendum on page 4. 
+The "NOROM" case is a "diagnostic" case (according to the addendum).
+
+
+// CSK+B selects the combined Kernel+Basic ROM
+CSK+B (/F5) = 
+	/NOROM & R/W & A15 & (	// I0 & I6 & I15
+				// read from >= $8xxx under normal (/NOROM) conditions
+
+	  /RAMON & !A13 & A14	// I1 & !I13 & I14
+				// not RAM selected and $cxxx, $dxxx
+
+	  | /RAMON & A12 & A13	// I1 & I12 & I13
+				// not RAM selected and $bxxx, $fxxx
+	
+	  | /RAMSELA & A12 & A13 & A14
+				// I3 & I12 & I13 & I14
+				// /RAMSELA high and $fxxx
+	)
+
+// FA12 is the highest address bit of the combined BASIC/KERNEL ROM
+/FA12 (/F6) = 
+	/NOROM & /RAMON & R/W & A15 & (
+				// I0 & I1 & I6 & I15
+				// read access to >= $8xxx, under "normal" conditions
+
+	  !A12 & !A13 & A14 	// $cxxx
+	  | A12 & A13 & !A14	// $bxxx
+	)
+
+// CASENAI is the select signal for "normal" RAM
+CASENAI (/F7) = 
+	Phi2 & (		// I7, CPU access
+	  /A15			// all 32k below $8000
+				// in the following I will leave out 
+				// addresses below $8000 
+				// $8*** if screen peek through
+
+	  | /NOSCREEN & /A12 & /A13 & /A14
+				// !I5 & !I12 & !I13 & !I14
+				// SCREEN & $8xxx
+
+	  | /NOROM & (		// I0, no diagnostics
+
+	    /A12 & /A13 & /A14	// $8***
+
+	    | RAMSEL9 & /A13 & /A14
+				// !I2 & !I13 & !I14
+				// $8*** & $9*** if RAMSEL9
+
+	    | RAMSELA & /A12 & /A14
+				// !I3 & !I12 & !I14
+				// $8*** & $A*** if RAMSELA
+
+	    | RAMON & (		// !I1
+				// standard mapping
+
+	      /A14		// $8000-$BFFF
+
+	      | /A13		// $8***, $9***, $C***, $D***
+
+				// the following terms address, when RAMSEL9 enabled 
+				// $8xxx, $axxx, $cxxx, $exxx without $x8xx
+	      | RAMSEL9 & A8 & /A12
+				// %1xx0xxx1
+	      | RAMSEL9 & A9 & /A12
+				// %1xx0xx1x
+	      | RAMSEL9 & A10 & /A12
+				// %1xx0x1xx
+	      | RAMSEL9 & /A11 & /A12
+				// %1xx00xxx
+
+  				// the following terms address, when RAMSELA enabled 
+				// $8xxx, $9xxx, $axxx, $bxxx, $cxxx, $dxxx, $exxx, $fxxx without $x8xx
+	      | RAMSELA & A8	// %1xxxxxx1
+	      | RAMSELA & A9	// %1xxxxx1x
+	      | RAMSELA & A10	// %1xxxx1xx
+	      | RAMSELA & /A11	// %1xxx0xxx
+
+	      | RAMSELA & A12	// %1xx1xxxx = $9xxx,$bxxx, $dxxx, $fxxx
+
+	      | RAMSELA & NOIO
+	    )
+				// now the write access - map through
+
+	    | /R/W & (		// !I6
+				// all except $E8** (I/O)
+	      /A14
+	      | /A13
+	      | A12
+	      | /A11
+	      | A10
+	      | A9
+	      | A8
+	    )
+	  )
+	)
+
+
+CR7 / NOROM issues
+------------------
+
+One might think that /NOROM is only the invers of CR7, but it is not.
+If CR7 is set - i.e. the expansion RAM is enabled - /NOROM is active,
+such that the ROMs are disabled in the UE6 address decoding. 
+But /NOROM can also be disabled from the expansion port or the 
+the CPU socket - where it has been used for the SuperPET expansion
+and the 8096 RAM expansion. By pulling /NOROM low (active), the 
+address where normally the ROMs reside is left open, to enable
+own expansions. CR7 is only the one way to disable the ROMs to 
+enable the 64k RAM expansion.
+
+
+Differences to the 8296 addendum
+================================
+
+The 8296 addendum to the 8032 manual states that when /NOROM is low, 
+CR7 low and CR6 high, the address range $E900-$EFFF is free. But the
+logic equations seem to say that in this area the editor ROM is
+enabled. Oh well, either they or I made a mistake...
+
+
+Setting the board to 32k
+========================
+
+If you want to set the board to a standard 32k PET, you can remove 
+quite some components:
+
+- UA1-UA8	64k Expansion RAM
+- UE4		8x96 control register "CR"
+- UE5		"FPLA II"
+-		probably more
+
+To remove the FPLA chip you have to replace its four used output pins.
+The schematics shows some jumpers that have to be set then:
+
+- JR5		CR7 to low
+- JR1		CASENAII to low
+- JR2		NOSCREEN to low
+- JR3		DRAM data latch enable to /CASENAI
+		(otherwise driven by /ENDRA (ENable DRAm))
+- JR4		replace FA15 with BA15 for the RAM address latch
+
+
+Setting the board to 40 columns instead of 80 columns
+=====================================================
+
+To set the board to 40 columns requires some heavier operations.
+
+- Move UB10 and UB11 to their new positions UB10A and UB11A on 
+  the motherboard (called UB10' and UB11' in the schematics):
+  Moves around the interpretation of CPU address lines to match the
+  Video address lines.
+
+- unset jumper JC5 and set JC6: video address Bit 0 is always 0 now
+
+- unset jumper JC1 and set JC2: video pixel clock set from 16 to 8MHz
+
+- unset jumper JC3 and set JC4: change the LOADSR (load character chift
+  register) timing from twice per cycle to once per cycle
+
+
+Other configurable options
+==========================
+
+- JV1 / JV2 = invert/do not invert video HSYNC output
+- JV3 / JV4 = invert/do not invert video VSYNC output
+- JV5 / JV6 = invert/do not invert video VIDEO output
+
+- JU1 : set /RAMSELA to GND (do not use JU1/JU3 together)
+- JU2 : set /RAMSEL9 to GND (do not use JU2/JU4 together)
+- JU3 : set /RAMSELA to Userport PA0 (do not use JU1/JU3 together)
+- JU4 : set /RAMSEL9 to Userport PA1 (do not use JU2/JU4 together)
+- JU5 : set /RAMON to Userport PA2
+- JU6 : set J4 expansion port pin /SELENP to /CSA ($A*** ROM)
+- JU7 : set J4 expansion port pin /SELENP to /CS9 ($9*** ROM)
+
+- JU8/JU9 : set JU8, unset JU9: do not use video MA12 for RAM addressing;
+	    unset JU8, set JU9: use video MA12 for RAM addressing.
+

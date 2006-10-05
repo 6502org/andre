@@ -1,0 +1,67 @@
+
+                PET index - Transfer files to the PET and back
+
+   [1]Text version
+
+   This page contains descriptions and links to projects that allow to transfer
+   files from the PC to the PET and from the PET to the PC.
+
+Disclaimer
+
+   Whatever you do with the information in these pages or on the linked pages,
+   I am not responsible for any damage you have for using this information. The
+   information herein is provided AS-IS and there is no warranty whatsoever!
+
+Transfer projects
+
+   This section contains projects for file transfer.
+
+   [2]C2N232
+          From the website: C2N232 is a Commodore C2N cassette drive
+          (datassette) emulator with an RS-232 interface. It was designed by
+          Marko MÃ¤kelÃ¤ (http://www.funet.fi/~msmakela/). The device allows
+          data transfers between all 8-bit Commodore computers that are
+          equipped with a cassette interface (PET series, VIC-20, C64, C128,
+          264 series, PET-II series) and any computer that has a 38400 bps
+          RS-232 interface. Supported protocols include pulse width modulation
+          (normal cassette LOAD/SAVE/OPEN, and any tape speeders that use at
+          most 3 different pulse widths), and a custom protocol whose transfer
+          speed exceeds 38400 bps already on a 1 MHz Commodore. The software is
+          work in progress. The preferred methods of using the C2N232 are
+          c2nload and cbmlink, the replacement of prlink.
+
+   [3]cbmlink
+          In the same location there is cbmlink. Whereas C2N232 uses a
+          microcontroller, cbmlink also works with a lot of different types of
+          cables between the PET and the PC. You find a list of supported
+          cables in the documentation.
+
+   [4]lptiec
+          Lptiec is a small (hardware) interface to the PC printer port. It
+          allows the PC to emulate an IEEE488 device, so that you can use the
+          PC as a harddisk for the PET. The PC software runs on Linux.
+
+   [5]par2ser
+          This is an experimental system that transforms the parallel IEEE488
+          into Commodore serial IEC. I.e. with this system the PET can use
+          normal serial bus floppy disks like the VC1541 and company.
+
+   [6]CBM-HD
+          In this project by Ruud Baltissen the PC can be used "to simulate
+          various IEEE drives". It uses a cable from the printerport, with only
+          a little additional logic. The PC software runs under DOS/WIN98-DOS.
+     _________________________________________________________________
+
+   Back to the [7]PET index
+
+   PET index V1.0 (c) 1998-2005 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/transfer.txt
+   2. http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/C2N232
+   3. http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/C2N232
+   4. http://www.6502.org/users/andre/ieee488
+   5. http://www.6502.org/users/andre/ieee488
+   6. http://www.baltissen.org/htm/cbmhd.htm
+   7. http://www.6502.org/users/andre/petindex/index.html

@@ -1,0 +1,31 @@
+
+
+Description for CS/A KEYEMU, version 1.0
+----------------------------------------
+
+whatsit : 6502 Emulation board
+I/O     : 2*256 byte `dual-ported' RAM at $c** and $d**
+Mem     : --
+
+This board provides two pages of 256 byte pseudo-dual-ported RAM.
+Two connectors provide (each) 8 address line inputs and 8 data line
+outputs. The connectors can only read the RAM. After providing
+the address the data lines become valid at least 2 CS/A65 bus cycles
+after that. 
+
+The onboard memory is time-shared between the CS/A CPU and the two 
+connectors (Phi2 high: CPU, Phi2 low: connectors). The data for one 
+of them is read the one cycle, the others connectors data in the next 
+cycle and so on.
+
+As long as no special keyboard scan routine is used, this board can 
+be used to simulate the keyboard of a C64, or of a PET.
+In case of the C64 the valid scan data must be put at addresses
+$fe, $fd, $fb, $f7, $ef, $df, $bf, $7f.
+For the PET the keyboard lines before the 4-to-10 decoder can be used
+and the valid codes can then be written to addresses $0-$9
+
+The pinout of the keyboard connectors is arbitrary. I have built a small
+keyboard adaptor for the C64 to attach a flat cable with 20 lines.
+The pinout of the connectors represents this cable pinout.
+

@@ -1,0 +1,338 @@
+
+                              PET index - pinouts
+
+   [1]Text version
+
+   Here is a description of some pinouts of the PET connectors. Most (i.e. all
+   so far!) are from the 8296 addendum in the petio text typed in by Olaf
+   Seibert (Many thanks!):
+
+   I have now gotten hold of a copy of the 8296 addendum and added some scans
+   of the original pages.
+
+Keyboards
+
+   For the layouts please see [2]keyboards.html
+
+  80xx separate keyboard 25 pin D-Sub connector
+
+          KEYBOARD
+          ========
+
+          [3]Arrangement of pins plug J13
+
+          +-----+--------+
+          | PIN | SIGNAL |
+          +-----+--------+
+          |  1  | KIN 0  |
+          |  2  | |   1  |  13                       1
+          |  3  | |   2  | +---------------------------+
+          |  4  | |   3  | | o o o o o o o o o o o o o |
+          |  5  | |   4  | \  o o o o o o o o o o o o /
+          |  6  | |   5  |  --------------------------
+          |  7  | |   6  |    25                    14
+          |  8  | V   7  |
+          |  9  | DEC 0  |
+          | 10  | |   1  |
+          | 11  | |   2  |
+          | 12  | |   3  |
+          | 13  | |   4  |
+          | 14  | |   5  |
+          | 15  | |   6  |
+          | 16  | |   7  |
+          | 17  | |   8  |
+          | 18  | V   9  |
+          | 19  | KEY    |
+          | 20  | GND    |
+          | 21  | N.C.   |
+          | 22  | N.C.   |
+          | 23  | N.C.   |
+          | 24  | N.C.   |
+          | 25  | N.C.   |
+          +-----+--------+
+
+I/O - IEEE488, Tape and Userport
+
+  8296 IEEE and Userport
+
+   As far as I know those connectors were the same for all the PETs, but you
+   never know...
+IEEE                                   USER - PORT
+====                                   ===========
+
+[4]Arrangement of pins  plug J1/J12       [5]Arrangement of pins  plug   J2
+
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+| PIN | SIGNAL      | PIN | SIGNAL |   | PIN | SIGNAL      | PIN | SIGNAL |
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+|  1  | DIO 1       |  A  | DIO 5  |   |  1  | GND         |  A  | GND    |
+|  2  | DIO 2       |  B  | DIO 6  |   |  2  | VIDEO       |  B  | CA1    |
+|  3  | DIO 3       |  C  | DIO 7  |   |  3  | /SRQ IN     |  C  | PA0    |
+|  4  | DIO 4       |  D  | DIO 8  |   |  4  | /EOI        |  D  |  |1    |
+|  5  | EOI         |  E  | REN    |   |  5  | DIAG        |  E  |  |2    |
+|  6  | DAV         |  F  | GND    |   |  6  | #2CASSREAD  |  F  |  |3    |
+|  7  | NRFD        |  H  |  |     |   |  7  | CASSWRITE   |  H  |  |4    |
+|  8  | NDAC        |  K  |  |     |   |  8  | #1CASSREAD  |  K  |  |5    |
+|  9  | IFC         |  K  |  |     |   |  9  | VERT DRIVE  |  K  |  |6    |
+| 10  | SRQ         |  L  |  |     |   | 10  | HORZ DRIVE  |  L  |  V7    |
+| 11  | ATN         |  M  |  V     |   | 11  | GRAPHIC     |  M  | CB2    |
+| 12  | CHASSIS GND |  N  | GND    |   | 12  | GND         |  N  | GND    |
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+
+[ All IEEE signals are active low ]
+
+    1  2  3  4  5  6  7  8  9 10 11 12
+ +--o--o--o--o--o--o--o--o--o--o--o--o--+
+ |                                      |  J1 / J2     [PCB edge connector]
+ +--o--o--o--o--o--o--o--o--o--o--o--o--+
+    A  B  C  D  E  F  H  J  K  L  M  N
+
+
+   1  2  3  4  5  6  7  8  9 10 11 12
+ +------------------------------------+
+ | o  o  o  o  o  o  o  o  o  o  o  o |
+ |                                    |    J12        [upright pins on PCB]
+ | o  o  o  o  o  o  o  o  o  o  o  o |
+ +------------------------------------+
+   A  B  C  D  E  F  H  J  K  L  M  N
+
+  8296 Tape
+
+   The same for the Tape connectors - supposed to be the same for all models
+CASSETTE 1                             CASSETTE 2
+==========                             ==========
+
+[6]Arrangement of pins  plug J3           Arrangement of pins  plug J6
+
++-----+-----+----------------------+   +-----+-----+----------------------+
+| PIN | PIN | SIGNAL               |   | PIN | PIN | SIGNAL               |
++-----+-----+----------------------+   +-----+-----+----------------------+
+|  1  |  A  | GND                  |   |  1  |  A  | GND                  |
+|  2  |  B  | +5V                  |   |  2  |  B  | +5V                  |
+|  3  |  C  | CASS MOTOR           |   |  3  |  C  | CASS MOTOR           |
+|  4  |  D  | CASS READ          #1|   |  4  |  D  | CASS READ          #2|
+|  5  |  E  | CASS WRITE           |   |  5  |  E  | CASS WRITE           |
+|  6  |  F  | CASS SWITCH        #1|   |  6  |  F  | CASS SWITCH        #2|
++-----+-----+----------------------+   +-----+-----+----------------------+
+
+
+    1  2  3  4  5  6
+ +--o--o--o--o--o--o--+
+ |                    |  J3 / J6                      [card edge connector]
+ +--o--o--o--o--o--o--+
+    A  B  C  D  E  F
+
+Misc.
+
+  8296 Memory expansion J4
+
+MEMORY - EXPANSION
+==================
+
+[7]Arrangement of pins  plug J4
+
++-----+-----------+-----+--------+
+| PIN | SIGNAL    | PIN | SIGNAL |     J4
++-----+-----------+-----+--------+
+|  1  | GND       | 26  | GND    | 25 o  o 50
+|  2  | BD0       | 27  |  |     |    o  o
+|  3  |   1       | 28  |  |     |    o  o
+|  4  |   2       | 29  |  |     |    o  o
+|  5  |   3       | 30  |  |     |    o  o
+|  6  |   4       | 31  |  |     |    o  o
+|  7  |   5       | 32  |  |     |    o  o
+|  8  |   6       | 33  |  |     |    o  o
+|  9  |   7       | 34  |  |     |    o  o
+| 10  | N.C.      | 35  |  |     |    o  o
+| 11  | N.C.      | 36  |  |     |    o  o
+| 12  | /RAMSEL 9 | 37  |  |     |    o  o
+| 13  | /RAMSEL A | 38  |  |     |    o  o
+| 14  | /RAMON    | 39  |  |     |    o  o
+| 15  | /SELEXP   | 40  |  |     |    o  o
+| 16  | N.C.      | 41  |  |     |    o  o
+| 17  | /CS 9     | 42  |  |     |    o  o
+| 18  | /CS A     | 43  |  |     |    o  o
+| 19  | /CS E     | 44  |  |     |    o  o
+| 20  | /NOROM    | 45  |  |     |    o  o
+| 21  | /PENSTRB  | 46  |  |     |    o  o
+| 22  | /RESET    | 47  |  |     |    o  o
+| 23  | READY     | 48  |  |     |    o  o
+| 24  | /NMI      | 49  |  V     |    o  o
+| 25  | GND       | 50  | GND    |  1 o  o 26
++-----+-----------+-----+--------+
+
+  8296 Memory expansion J9
+
+MEMORY - EXPANSION
+==================
+
+[8]Arrangement of pins  plug J9
+
++-----+-----------+-----+--------+
+| PIN | SIGNAL    | PIN | SIGNAL |     J9
++-----+-----------+-----+--------+
+|  1  | GND       | 26  | GND    | 25 o  o 50
+|  2  | BA 0      | 27  |  |     |    o  o
+|  3  |    1      | 28  |  |     |    o  o
+|  4  |    2      | 29  |  |     |    o  o
+|  5  |    3      | 30  |  |     |    o  o
+|  6  |    4      | 31  |  |     |    o  o
+|  7  |    5      | 32  |  |     |    o  o
+|  8  |    6      | 33  |  |     |    o  o
+|  9  |    7      | 34  |  |     |    o  o
+| 10  |    8      | 35  |  |     |    o  o
+| 11  |    9      | 36  |  |     |    o  o
+| 12  |   10      | 37  |  |     |    o  o
+| 13  |   11      | 38  |  |     |    o  o
+| 14  |   12      | 39  |  |     |    o  o
+| 15  |   13      | 40  |  |     |    o  o
+| 16  |   14      | 41  |  |     |    o  o
+| 17  |   15      | 42  |  |     |    o  o
+| 18  | SYNC      | 43  |  |     |    o  o
+| 19  | /IRQ      | 44  |  |     |    o  o
+| 20  | DIAG      | 45  |  |     |    o  o
+| 21  | PHI2      | 46  |  |     |    o  o
+| 22  | B R/W     | 47  |  |     |    o  o
+| 23  | /B R/W    | 48  |  |     |    o  o
+| 24  | N.C       | 49  |  V     |    o  o
+| 25  | GND       | 50  | GND    |  1 o  o 26
++-----+-----------+-----+--------+
+
+  8296 Power supplies/expansion? J10 and J11
+
+POWER EXP. AC                         POWER EXP. DC
+=============                         =============
+
+[9]Arrangement of pins  plugJ10          [10]Arrangement of pins  plugJ11
+
++-----+-----------+                   +-----+-----------+
+| PIN | SIGNAL    |                   | PIN | SIGNAL    |
++-----+-----------+   +---+           +-----+-----------+   +---+
+|  1  | AC  8V    |  1| o |           |  1  | +9V UNREG.|  1| o |
+|  2  | AC  8V    |  2| o |           |  2  | KEY       |  2|   |
+|  3  | GND       |  3| o |           |  3  | KEY       |  3|   |
+|  4  | KEY       |  4|   |           |  4  | +9V UNREG.|  4| o |
+|  5  | GND       |  5| o |           |  5  | GND       |  5| o |
+|  6  | AC  8V    |  6| o |           |  6  | +9V UNREG.|  6| o |
+|  7  | AC  8V    |  7| o |           |  7  | GND       |  7| o |
++-----+-----------+   +---+           +-----+-----------+   +---+
+
+  8296 Changes in arrangements of pins Memory Expansion J4
+
+   [11]This is the change from 8032 (old) to 8296 (new).
+J 4    Memory expansion
++-----------------------------------+
+| Pin        Signal                 |
+|       old            new          |
++-----------------+-----------------+
+| 12  /SEL 4      | /RAM SEL 9      |
+| 13  /SEL 5      | /RAM SEL A      |
+| 14  /SEL 6      | /RAM ON         |
+| 15  /SEL 7      | /SEL EXP        |
+| 16  /SEL 8      | N.C.            |
+| ...             |                 |
+| 19  /SEL B      | /CS E           |
++-----------------+-----------------+
+
+  8296 Power supply J8 changes from 8032
+
+J 8     Power supply
++-----------------+-----------------+
+|      8032       |      8096       |
+|                 |                 |
+| Pin  Signal     | Pin  Signal     |
++-----------------+-----------------+
+|  1   8V AC      |  1   AC         |
+|  2   +9V UNREG  |  2   GND        |
+|  3   GND        |  3   AC         |
+|  4   8V AC      |                 |
+|  5   8V AC      |                 |
+|  6   GND        |                 |
+|  7   KEY        |                 |
+|  8   14V AC     |                 |
+|  9   14V AC     |                 |
++-----------------+-----------------+
+
+  8296 Power supply for hardware expansion J10 changes from 8032
+
+J 10    Power supply for hardware expansion
++-----------------------------------+
+| Pin        Signal                 |
+|       old            new          |
++-----------------+-----------------+
+|  1    -9V UNREG |   AC 1          |
+|  2    -9V UNREG |   AC 1          |
+|  3    KEY       |   GND           |
+|  4    +16V UNREG|   KEY           |
+|  5    +16V UNREG|   GND           |
+|  6    GND       |   AC 2          |
+|  7    GND       |   AC 2          |
++-----------------+-----------------+
+
+  8296 keyboard connector on board J5
+
+KEYBOARD
+========
+
+[12]Arrangement of pins plug J5
+
++-----+--------+
+| PIN | SIGNAL |  J5
++-----+--------+ +---+
+|  A  | KIN 0  | | o |  A
+|  B  | |   1  | | o |  B
+|  C  | |   2  | | o |  C
+|  D  | |   3  | | o |  D
+|  E  | |   4  | | o |  E
+|  F  | |   5  | | o |  F
+|  H  | |   6  | | o |  H
+|  J  | V   7  | | o |  J
+|  1  | DEC 0  | | o |  1
+|  2  | |   1  | | o |  2
+|  3  | |   2  | | o |  3
+|  4  | |   3  | | o |  4
+|  5  | |   4  | | o |  5
+|  6  | |   5  | | o |  6
+|  7  | |   6  | | o |  7
+|  8  | |   7  | | o |  8
+|  9  | |   8  | | o |  9
+| 10  | V   9  | | o | 10
+| 11  | KEY    | |   | 11
+| 12  | GND    | | o | 12
++-----+--------+ +---+
+
+  8296 Reset switch
+
+          RESET
+          =====
+
+          [13]Arrangement of pins plug J14
+
+          +-----+--------+
+          | PIN | SIGNAL |
+          +-----+--------+  +---+
+          |  1  | RESET  | 1| o |
+          |  2  | GND    | 2| o |
+          +-----+--------+  +---+
+     _________________________________________________________________
+
+   Back to the [14]PET index
+
+   PET index V0.9 (c) 1998 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/pinouts.txt
+   2. http://www.6502.org/users/andre/petindex/keyboards.html
+   3. http://www.6502.org/users/andre/petindex/imgs/j13.gif
+   4. http://www.6502.org/users/andre/petindex/imgs/j1+j12.gif
+   5. http://www.6502.org/users/andre/petindex/imgs/j2.gif
+   6. http://www.6502.org/users/andre/petindex/imgs/j3+j6.gif
+   7. http://www.6502.org/users/andre/petindex/imgs/j4.gif
+   8. http://www.6502.org/users/andre/petindex/imgs/j9.gif
+   9. http://www.6502.org/users/andre/petindex/imgs/j10.gif
+  10. http://www.6502.org/users/andre/petindex/imgs/j11.gif
+  11. http://www.6502.org/users/andre/petindex/imgs/8296changes.gif
+  12. http://www.6502.org/users/andre/petindex/imgs/j5.gif
+  13. http://www.6502.org/users/andre/petindex/imgs/j14.gif
+  14. http://www.6502.org/users/andre/petindex/index.html

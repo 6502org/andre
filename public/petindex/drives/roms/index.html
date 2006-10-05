@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<LINK HREF="../../petindex.css" REL="stylesheet" TYPE="text/css">
+<LINK REV="made" HREF="mailto:afachat@gmx.de">
+<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/roms/index.html"-->
+<META NAME="author" CONTENT="Andr&eacute; Fachat">
+<TITLE>PET index - DOS ROMs</TITLE>
+</HEAD>
+<BODY>
+<H1>PET index - DOS ROMs</H1><P><A HREF="index.txt">Text version</A>
+<H2>Comparison</H2>
+<P>Here is a comparison table for the different DOS versions (Based on information from this <A HREF="../local/drive_info.txt">drive_info.txt</A> that comes with the <A HREF="http://www.viceteam.org">VICE</A> emulator
+</P>
+<TABLE BORDER="1">
+<TR><TH>Model</TH><TH>1541</TH><TH>2031/4031</TH><TH>2040/3040</TH><TH>4040</TH><TH>8050</TH><TH>8250/1001</TH></TR>
+<TR><TD>DOS version(s)</TD><TD>2.6</TD><TD>2.6</TD><TD>1.0/1.2</TD><TD>2.1/2.7</TD><TD>2.5/2.7</TD><TD>2.7</TD></TR>
+<TR><TD>Disk format(s)</TD><TD>'2A'</TD><TD>'2A'</TD><TD>'  '</TD><TD>'2A"/"2C"</TD><TD>"2C"</TD><TD>"2C"</TD></TR>
+<TR><TD>Drives</TD><TD>1</TD><TD>1</TD><TD>2</TD><TD>2</TD><TD>2</TD><TD>2</TD></TR>
+<TR><TD>Heads per drive</TD><TD>1</TD><TD>1</TD><TD>1</TD><TD>1</TD><TD>1</TD><TD>2</TD></TR>
+<TR><TD>Storage capacity</TD><TD>170k</TD><TD>170k</TD><TD>340k</TD><TD>340k</TD><TD>1.05M</TD><TD>2.12M</TD></TR>
+<TR><TD>Sequential files</TD><TD>168k</TD><TD>168k</TD><TD>168k</TD><TD>168k</TD><TD>521k</TD><TD>1.05M</TD></TR>
+<TR><TD>Relative files</TD><TD>167k</TD><TD>167k</TD><TD>n/a</TD><TD>167k</TD><TD>183k/518k</TD><TD>1.04M</TD></TR>
+<TR><TD>Buffer storage (kB)</TD><TD>2</TD><TD>2</TD><TD>4</TD><TD>4</TD><TD>4</TD><TD>4</TD></TR>
+<TR><TD>Tracks per drive</TD><TD>35</TD><TD>35</TD><TD>35</TD><TD>35</TD><TD>77</TD><TD>2*77</TD></TR>
+<TR><TD>Sectors per track</TD><TD>17-21</TD><TD>17-21</TD><TD>17-21</TD><TD>17-21</TD><TD>23-29</TD><TD>23-29</TD></TR>
+<TR><TD>Bytes per block</TD><TD>256</TD><TD>256</TD><TD>256</TD><TD>256</TD><TD>256</TD><TD>256</TD></TR>
+<TR><TD>Free blocks (single drive/all drives)</TD><TD>664</TD><TD>664</TD><TD>670/1340</TD><TD>664/1328</TD><TD>2052/4104</TD><TD>4133/8266</TD></TR>
+<TR><TD>Directory and BAM</TD><TD>18</TD><TD>18</TD><TD>18</TD><TD>18</TD><TD>38/39</TD><TD>38/39</TD></TR>
+<TR><TD>Directory entries/disk</TD><TD>144</TD><TD>144</TD><TD>144</TD><TD>144</TD><TD>224</TD><TD>224</TD></TR>
+<TR><TD>Transfer rate (internal, kB/s))</TD><TD>40</TD><TD>40</TD><TD>40</TD><TD>40</TD><TD>40</TD><TD>40</TD></TR>
+<TR><TD>Transfer rate (IEC/IEEE488, kB/s))</TD><TD>0.4</TD><TD>1.8</TD><TD>1.8</TD><TD>1.8</TD><TD>1.8</TD><TD>1.8</TD></TR>
+<TR><TD>Access time (ms) track to track</TD><TD>30</TD><TD>30</TD><TD>30</TD><TD>30</TD><TD>5</TD><TD>5</TD></TR>
+<TR><TD>Access time (ms) average</TD><TD>360</TD><TD>360</TD><TD>360</TD><TD>360</TD><TD>125</TD><TD>125</TD></TR>
+<TR><TD>Revolutions/minute</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD></TR>
+</TABLE>
+<P>The following table denotes the speed zones for the different formats:</P>
+<TABLE BORDER="1">
+<TR><TH COLSPAN="4">Number of sectors per track</TH></TR>
+<TR><TD>2040/3040 DOS1.x</TD><TD>1540/1541/4040</TD><TD>8050</TD><TD>8250</TD></TR>
+<TR>
+<TD VALIGN="top">
+  <TABLE>
+	<TR><TH>Tracks</TH><TH>#Sectors</TH></TR>
+	<TR><TD>1-17</TD><TD>21 (0-20)</TD></TR>
+	<TR><TD>18-24</TD><TD>20 (0-19)</TD></TR>
+	<TR><TD>25-30</TD><TD>18 (0-17)</TD></TR>
+	<TR><TD>31-35</TD><TD>17 (0-16)</TD></TR>
+  </TABLE>
+</TD><TD VALIGN="top"><TABLE>
+	<TR><TH>Tracks</TH><TH>#Sectors</TH></TR>
+	<TR><TD>1-17</TD><TD>21 (0-20)</TD></TR>
+	<TR><TD>18-24</TD><TD>19 (0-18)</TD></TR>
+	<TR><TD>25-30</TD><TD>18 (0-17)</TD></TR>
+	<TR><TD>31-35</TD><TD>17 (0-16)</TD></TR>
+  </TABLE>
+</TD><TD VALIGN="top">
+  <TABLE>
+	<TR><TH>Tracks</TH><TH>#Sectors</TH></TR>
+	<TR><TD>1-39</TD><TD>29 (0-28)</TD></TR>
+	<TR><TD>40-53</TD><TD>27 (0-26)</TD></TR>
+	<TR><TD>54-64</TD><TD>25 (0-24)</TD></TR>
+	<TR><TD>65-77</TD><TD>23 (0-22)</TD></TR>
+  </TABLE>
+</TD><TD VALIGN="top">
+  <TABLE>
+	<TR><TH>Tracks</TH><TH>#Sectors</TH></TR>
+	<TR><TD>1-39</TD><TD>29 (0-28)</TD></TR>
+	<TR><TD>40-53</TD><TD>27 (0-26)</TD></TR>
+	<TR><TD>54-64</TD><TD>25 (0-24)</TD></TR>
+	<TR><TD>65-77</TD><TD>23 (0-22)</TD></TR>
+	<TR><TD>78-116</TD><TD>29 (0-28)</TD></TR>
+	<TR><TD>117-130</TD><TD>27 (0-26)</TD></TR>
+	<TR><TD>131-141</TD><TD>25 (0-24)</TD></TR>
+	<TR><TD>142-154</TD><TD>23 (0-22)</TD></TR>
+  </TABLE>
+</TD></TR>
+</TABLE>
+<P>Note: the DOS2.7 4040 drive was a prototype.</P>
+<H2>DOS 1.x</H2>
+<P>The first DOS versions (1.0) were rushed out to get disk support for the
+PET machines. The first useable versions were the DOS&nbsp;1.2 2040/3040 
+drives. These versions still lacked relative file support.
+</P><P>
+As the drives have two CPUs, one 6502 for the DOS and the IEEE488
+and a 6504 for the disk controller (FDC), there are two ROM parts. The
+DOS ROM is 8&nbsp;kByte in size, the FDC ROM is only 1&nbsp;kByte, 
+located in the 6530 RIOT chip. The size is so small that only
+the most basic hardware-related code is stored there. To format
+a disk, some code had to be copied to the shared RAM by the DOS
+CPU and was executed by the FDC CPU. Therefore, there are three 
+ROM parts to discuss:
+</P>
+<P><UL>
+<LI><A HREF="dos1.html">DOS1 ROM disassembly</A> (<A HREF="dos1.hdr">recomment header file</A>, comments transferred from the original CBM DOS2 source)
+</LI><LI><A HREF="dos1fdc.html">DOS1 FDC ROM disassembly</A> (<A HREF="dos1fdc.hdr">recomment header file</A>, comments from the Commodore Inner Space Anthology)
+</LI><LI><A HREF="dos1fmt.html">DOS1 format code disassembly</A> (<A HREF="dos1fmt.hdr">recomment header file</A>, comments from the Commodore Inner Space Anthology)
+</LI></UL>
+<H2>DOS 2.0/2.1</H2>
+<P>The second DOS version added support for relative files, and changed
+the disk format from 670 blocks free to 664 blocks free.
+It was directly used in the 4040 drives, but many 2040/3040 drives have
+been upgraded to these ROMs, as the hardware was otherwise the same.
+</P>
+<P> The original Commodore DOS source code can be found in the CBM archive
+at <A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/drives/">the CBM archive</A>.</P>
+<H2>DOS 2.5</H2>
+<P>The DOS&nbsp;2.5 adds support for the large, quad density disk drives and is used in the 8050 disk drives.
+</P>
+<H2>DOS 2.6</H2>
+<P>DOS&nbsp;2.6 is a modification of the 2.x DOS where the FDC code is
+also executed by the same DOS CPU. It is used in the VC1541 and 4031/2031 
+disk drives.
+</P>
+<H2>DOS 2.7</H2>
+<P>DOS&nbsp;2.7 descends from 2.5, not 2.6. I.e. it still uses two 
+CPUs, with dual drive support etc. It 
+adds support for double sided disks, as well as super side 
+sector for relative files. There are versions 
+for the 8050 and the 8250 as well as the 1001 disk drives. A prototype
+version for the 4040 disk drive was never released.
+In fact the DOS2.7 probes the FDC and adjusts itself automatically to
+the 4040, 8050 or 8250 disk formats.
+</P>
+<P>A disassembly can be found in <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/8050/d/index.html">the CBM archive</A>.</P>
+<H2>8280 8" disk drive DOS</H2>
+<P>The 8" disk drives use a ROM that, according to <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/8280/index.html">the CBM archive</A>, are very similar to DOS&nbsp;2.7.
+<H2>Harddisk ROMs</H2>
+<P>The hard disks have their own ROM. The source code can be found in
+<A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/drives/">the CBM archive</A>.
+</P>
+<HR><P>
+Back to the <A HREF="../../index.html">PET index</A>
+<P>PET index V1.0 (c) 1998-2005 A. Fachat
+</BODY>
+</HTML>

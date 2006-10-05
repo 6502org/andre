@@ -1,0 +1,34 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>1999</yearstart>
+    <yearend>1999</yearend>
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords></keywords>
+  <metadesc></metadesc>
+  <overview>
+  </overview>
+  <news>
+    <item date="">
+    </item>
+  </news>
+  <itemlist name="">
+    <description>
+    </description>
+    <items>
+     <subitem name="" link=""></subitem>
+     <item name="">
+      <subitem name="" link=""></subitem>
+     </item>
+    </items>
+    <disclaimer name="">
+    </disclaimer>
+  </itemlist>
+  <disclaimer name="">
+  </disclaimer>
+  <closing>
+  </closing>
+</webpage>

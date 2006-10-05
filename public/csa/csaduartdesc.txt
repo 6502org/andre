@@ -1,0 +1,19 @@
+
+
+Description for CS/A DUART board, version 1.0
+---------------------------------------------
+
+whatsit	: two RS232 interfaces
+I/O	: 16550 UART at $850-$857, 16550 UART at $858-$85f
+Mem	: --
+
+The board is pretty straightforward. The '688 (IC8, 8 bit compare)
+determines the I/O address. Then IC7 ('138) provides the necessary
+separate read and write signals for the two chips. Any access
+needs the right I/O address (from IC8) and Phi2 high. Then 
+A3 determines the chip to use, and R/-W selects the /RD or the /WR
+input.
+
+This board can easily be expanded by moving A4 from the 8 bit compare
+(IC8) to A2 of IC7, and using /Q4-7 for two more UARTs.
+

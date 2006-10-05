@@ -1,0 +1,25 @@
+
+                           PET index - disk gallery
+
+   [1]Text version
+
+   (Images courtesy Bo Zimmermann, from his [2]CBM gallery.)
+
+   image of a 3040 drive The 2040, 3040 and 4040 drives all looked like this
+   The single-drive incarnation, the 4031 ... image of a 4031 drive
+   image of a 2031 low profile drive ... and its low-profile brother
+   The 8050 and 8205 drives don't look much different from the 4040 image of a
+   8050 drive
+   image of a 8250 low profile drive ... but the 8250LP certainly does!
+   And this 1001 almost looks like 1541... image of a SFD1001 drive
+   image of a 8280 drive The huge 8" disk drive 8280
+   Commodore even sold harddrives for the PET, the 9060 and 9090 image of a
+   9060 harddrive
+
+   [3]PET index V1.0 (c) 1998-2005 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/drives/gallery/index.txt
+   2. http://www.zimmers.net/cbmpics
+   3. http://www.6502.org/users/andre/petindex/index.html

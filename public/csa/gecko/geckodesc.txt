@@ -1,0 +1,54 @@
+
+Description for CS/A CPU65B/Gecko board, version 2.1
+----------------------------------------------------
+
+whatsit	: CPU + RAM + ROM
+I/O	: 6522 VIA at $c10 - $c1f, 16550A UART at $c00 - $c0f
+Mem	: RAM at $040000-$047fff, ROM or I/O at $048000-$04ffff
+
+The board is pretty straightforward. it is derived from the CPU65B/Plain
+board, and contains some additional I/O. Also it can be used with an 
+external CPU.
+
+General operation
+
+With a local CPU it maps the 8 or 32k static
+RAM (IC5) to the lower 32k addresses. The upper 32k addresses are
+divided between the I/O area ($e000-$efff or $e800-$efff, see J3) 
+and the ROM (rest). 
+
+The first half of IC2 selects the I/O area. The second half then 
+enables either the /IOSEL line or the ROM (depending on the output
+of the first half) as long as it is in the upper 32k addresses.
+
+I/O area
+
+The UART is used to implement a standard RS232 interface.
+It also controls a LED.
+
+The VIA handles a CBM serial IEC bus interface that can be enabled
+for slave mode (work as disk drive).
+In addition to that it has a 4 bit input + 4 bit output buffer
+which can be used to build a keyboard with up to 64 keys.
+
+The VIA PB7 is used to switch a 40kHz frequency generator
+(IC17, R6, C8 and part of IC18) on and off. 40 kHz is the
+frequency used in infrared control devices, for remote controlled
+CD-players for example :-)
+This switched signal is fed to some infrared LEDs that can drive
+my audio equipment nuts... :-O
+
+External CPU mode
+
+To use the board, i.e. the memory and the I/O chips from an external
+CPU, you have first to remove the 6502 from its socket on this board.
+Then J5 must be set to allow memory access to be controlled from the 
+/MEMSEL bus signal. With J6 it is possible to either make 
+the local I/O space (UART and VIA) visible to the external /IOSEL 
+signal (connect the CS/A bus /IOSEL with the /G input of IC9 (pin1))
+or to map the local I/O space to the local memory space that is
+accessed with the /MEMSEL signal (connect /G with /Q2 output of the
+second half of IC2 (pin10).
+For local CPU mode, connect all three lines from J6.
+
+

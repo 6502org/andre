@@ -1,0 +1,61 @@
+
+Parts list for VC-SCSI board, version 2.1C
+------------------------------------------
+
+The schematics is taken from two different schematics and has been
+heavily glued together. Nevertheless there are two distinguishable
+parts, that even kept their own chip numbering during the merge.
+That's why this parts list has two parts...
+
+CPU part
+--------
+
+IC	1		6502
+	2,8		74LS139
+	3		74LS00
+	4		74LS642
+	5		6264/62256
+	6		2764/27128/27256
+	7		2 MHz clock oscillator module
+	9		74LS541
+	10		74LS241
+	11		6526A	(2 MHz version)
+	12		74LS74
+	13		74LS14
+	14		74LS86
+
+R	1-7,12-15	4k7
+	8-11		1k
+	16		100k
+
+D	1		1N4148
+
+C	1		100uF
+
+PB	1		Reset pushbutton
+
+P	1		Power Supply
+	2		Commodore serial IEC, DIN 6 pin female 
+	3		Parallel Speeder Cable, 10 pin
+
+SCSI-part
+---------
+
+IC      2               74LS138
+        3               74LS08
+        4,7,8,10        74LS540
+        5               74LS75
+        6               74LS573
+        9               74LS74
+        11,12           74LS86
+        13              74LS125
+
+P       2               50 pin flat cable boxed male connector, standard pitch
+
+RP      1,3             9*220 Ohm       1)
+        2,4             9*330 Ohm       1)
+
+
+1) only if SCSI termination on board
+
+

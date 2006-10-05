@@ -1,0 +1,1185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://www.jps.net/foxnhare/petfaq.html -->
+<HTML><HEAD><TITLE>Commodore PET FAQ</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY><PRE>                          THE COMMODORE PET COMPUTER
+                 FREQUENTLY ASKED QUESTIONS FILE - VERSION 1.7
+                 -------------Updated 11/25/2000--------------
+
+                              BY LARRY ANDERSSON,
+                    COMMODORE COLLECTOR AND PET ENTHUSIAST
+                    --------------------------------------
+
+NOTE:  This FAQ is by no means complete, much of the information covered here
+deals with PETs and their peripherals that I have had experience with and
+reference materials on.  If you have stuff to add or revisions to current
+information please e-mail me at:
+
+ <A href="mailto:foxnhare@jps.net">foxnhare@jps.net</A>
+
+CONTENTS:
+========
+
+- WHAT MODELS OF THE PET ARE THERE?
+- MOTHERBOARD SERIES
+- WHAT VERSION OF ROMS DO I HAVE ON MY PET?
+- WHAT ARE THE DIFFERENCES AND/OR BUGS OF MY VERSION OF BASIC?
+- CAN I RUN VIC-20, 64, 128, PLUS/4, OR C-16 SOFTWARE ON MY PET?
+- WHAT ARE THE BASIC COMMANDS FOR MY PET?
+- HOW DO I GET 64 (VIC, PLUS/4, ETC.) BASIC PROGRAMS ON MY PET?
+- HOW CAN I GET PET PROGRAMS FROM DISK TO TAPE?
+- HOW CAN I GET PET TAPE PROGRAMS TO DISK?
+- HOW COME MY PET CAN'T READ A TAPE FROM MY PLUS/4 OR COMMODORE 16 OR
+  VISA-VERSA?
+- HOW DO I ACCESS THE PET's M/L MONITOR?
+- WHAT ARE THE COMMANDS FOR THE M/L MONITOR?
+- CAN I GET A BETTER M/L MONITOR FOR MY PET?
+- WHAT IS THE 'KILLER POKE' AND SHOULD I WORRY ABOUT IT?
+- WHERE CAN I GET SOFTWARE FOR MY PET?
+- WHAT KIND OF DRIVES CAN MY PET USE?
+- PRINTERS?
+- IS THERE A MODEM AVAILABLE FOR MY PET?
+- I NOTICED WHAT LOOKS LIKE AN IEEE-488 INTERFACE ON SOME ELECTRONIC DEVICES
+  CAN I HOOK THESE THINGS TO MY PET?
+- I GOT A PET AND IT DOES NOT WORK, BEFORE I LOOK FOR A REPAIR SHOP IS THERE
+   ANYTHING I CAN TRY TO REVIVE IT?
+- EVERYTHING SEEMS TO BE HOOKED UP OK BUT I CAN'T SEEM TO LOAD ANY PROGRAMS
+- I'M HAVING KEYBOARD PROBLEMS, WHAT CAN I DO?
+- HOW DO I ACCESS UPPER/LOWER CASE OR GRAPHICS CHARACTERS?
+- HOW CAN I HEAR SOUND ON MY PET?
+- HOW DO I MAKE SOUND ON MY PET?
+- I HAVE A PET PROGRAM THAT CAN USE JOYSTICKS, HOW DO I MAKE AN INTERFACE?
+- WHAT ARE THE PINOUTS SO I CAN BUILD AN IEEE-488 CABLE FOR MY PET TO MY DRIVE.
+- WHAT IS THE PINOUT FOR THE PET PARALLEL USER PORT
+- WHAT IS THE PINOUT FOR THE DATASETTE PORT
+- WHERE CAN I GET CONNECTORS THAT FIT THE EXPANSION/CASSETTE/USER/IEEE-488
+  PORTS?
+- HOW CAN I CONTACT TPUG (TORONTO PET USERS GROUP)?
+- WHERE CAN I BUY/FIND A PET COMPUTER?
+- WHAT IS THE 'BEST PET'?
+- ARE THERE ANY PET COMPUTER EMULATOR PROGRAMS AVAILABLE?
+
+....-....+....-....+....-....+....-....+....-....+....-....+....-....+....-....+
+
+WHAT MODELS OF THE PET ARE THERE?
+
+  The PET line was Commodore's first computer line after purchasing MOS
+  Technologies, the primary design of the computer (as well as its
+  microprocessor, the 6502) was by Chuck Peddle.  The line was labeled in
+  series' the first series, the 2001 series, the European 3000 series, and the
+  modern 4000 and 8000 series, and the final single unit 9000 series which is
+  the SuperPET.
+  I have just read from a C= 2001 series manual that the '3000 series' is the
+  "International Designation" of the 2000 series.
+
+9" display  units (40 column x 25 line character only display):
+  PET 2001 series:
+   Original PET:
+    - Steel case                - Internal 'datasette' cassette tape drive
+    - Blue on black 9" display  - Small 'calculator style' keyboard
+    - Small shipment with 4k, most with 8k RAM
+    - Original ROMs
+  Large Keyboard PETs (no more internal datasette drive):
+   PET 2001 xN  (x=8,16,or 32 depending on amount or RAM it was shipped with)
+    - Full-size key keyboard  w/PET graphic symbols imprinted on keys
+    - Upgrade ROMs
+    - Many steel cased, some w/molded plastic tops.
+    - many with clearer green on black displays
+    - Later versions had 4.0 ROMs installed
+   PET 2001 xB (labeled as CBM, Commodore Business Machine)
+    - Full size xx key keyboard (no graphics symbols printed on keys)
+    - Upgrade ROMs (powers up in upper/lower case mode)
+    - Later versions had 4.0 ROMs installed
+    - Many w/molded plastic tops some steel cased.
+   PET/CBM 40xx Series (PET= N keyboard/ROM, CBM= B keyboard/ROM, xx= RAM)
+    - 4.0 ROMs
+    - molded plastic top
+
+12" displays - updated video controller (prone to the 'killer poke')
+   - internal piezo speaker, audible startup, and right margin sound.
+   - 4.0 ROMs
+   PET/CBM 40xx (PET= N keyboard/ROM, CBM= B keyboard/ROM, xx= RAM)
+    - 40 x 25 display, upgradable to 80 columns
+    - lower case availabe by CHR$(14) which also changes line spacing.
+ 80 column series (can be set to 40 column mode via software.)
+   CBM 80xx
+    - 80 x 25 display, powers-up in upper/lower case.
+    - buisness xx key keyboard
+    - later versions had 64k &amp; 96k RAM expansion board options.
+    - 4.0 ROMs
+   PET SP9000 SuperPET (or Micro Mainframe)
+    - 80 x 25 display              - 6809 co-processor board
+    - 96k RAM                      - True RS-232 interface
+    - Multiple charactersets (for APL, etc.)
+    - Avalability of disk Based languages
+   CBM 200
+    - Same as an 80xx series CBM unit with rounded case, not sold in the US.
+   CBM 8296
+    - Same features of the 8000 series but with built-in 64k memory expension,
+      rounded case and detached keyboard.  This unit was not sold in the US.
+
+Teacher's PET
+   This unit was usually a 2001 series PET which was re-labeled with
+   "Teacher's PET, Donated by Commodore Business Machines" 
+
+   The story behind these in many US schools (at Least in California, where I
+   know of it) Commodore had a promotion where if schools bought 2 PETs the
+   third would be 'donated by Commodore.  This was a tax write-off and marketing
+   plan for the company similar to Apple's promotion of "an Apple for every
+   school".
+
+Educator 64/4064
+   This is actually a Commodore 64 in a PET case, thus beyond this FAQ.
+
+   Pic: Various PETs w/other Commodore computers (for size comparison)
+   (note bottom-rightmost three PETs with Calculator, business (B) and
+   graphics (N) keyboards)
+
+MOTHERBOARD SERIES
+
+ 2001 4k/8k (9" CRT)           2001, 3000 &amp; 4000 series  (9" CRT)
+            IEEE user tape #2             IEEE user tape #1
+     +------####-####--##-+        +------####-####--##-+
+     !                    #        !                   #!
+     !                    #        !                   #!
+     !                    # exp    !                   #! exp
+     !                    # bus    !        ROMS       #! bus
+     !                    #        !    F E D C A B 9  #!
+     !                    #        !                   #!
+     !                    !        !                    !
+     !       (2k) ROMS    !        !                    !
+     !      F F E D D C C !        !                    !
+     !      8 0 0 8 0 8 0 !        !                    !
+     !                    !        !                    !
+tape #       RAM MEMORY   !   tape #      RAM MEMORY    !
+ #1  #                    !    #2  #                    !
+     +--------------------+        +--------------------+
+
+ 4000/8000 series (12" CRT)
+            IEEE user tape #1
+     +------####-####--##-+
+     !                  # # tape
+     !                  # #  #2
+     !  R       exp bus # !     2000 Series
+     !  A                #!       circa 1977/78  Max RAM - 8k
+     !  M             9  #!       [daughterboard exp to 32k]
+     !                A  #!     
+     !  M          R  B   !     3000 &amp; 4000 Series
+     !  E          O  C   !       (3000 series is European version)
+     !  M          M  D   !       circa 1979/80  Max RAM - 32k
+     !  O          S  E   !
+     !  R             F   !     4000 &amp; 8000 Series
+     !  Y                 !       circa 1981     Max RAM - 32k*
+     !                spkr!       [daughterboard exp to 96k]
+     +--------------------+
+
+WHAT VERSION OF ROMS DO I HAVE ON MY PET?
+
+  The PET/CBM line had three major ROM revisions as well as a few minor ones,
+  you cannot reliably determine the ROMs by looking at the outside of the PET
+  (unless it has a large monitor).  Fortunately there is an easy way to
+  distinguish the three various versions by just turning on the computer.
+  Depending on how your start-up message looks you can determine the ROM
+  version:
+
+  *** COMMODORE BASIC ***  - Original ROMs sometimes referred to as 2.0* ROMs.
+                             (only found in the older calculator keyboard style
+                             PETs)  Occupy $C000-$FFFF
+
+  ### COMMODORE BASIC ###  - Commonly known as the 'Upgrade ROMs' sometimes
+                             referred to as 2.0 or 3.0 ROMs depending on who
+                             you ask. Occupy $C000-$FFFF
+
+  *** COMMODORE BASIC 4.0 *** - 4.0 ROMs  The only ROMs that will work on
+                                large-screen PETs.  Occupy $B000-$FFFF
+
+   * Some people contend that BASIC version 1.0 never made it out of beta
+     development and the PET line started with version 2.0 ROMs...  Commodore
+     on the other hand usually refers to the 'Upgraded ROMs' as V2, or 2.0.
+     For the sake of sanity in this FAQ I will refer to them as original and
+     upgrade ROMs.
+
+WHAT ARE THE DIFFERENCES AND/OR BUGS OF MY VERSION OF BASIC?
+
+ Original ROMs
+  Commodore had not yet implemented the IEEE-488 disk routines.  Arrays are
+  limited to 256 elements due to a bug in firmware.  There is no machine
+  language monitor nor could the PEEK command access locations above memory
+  location 49152.  The upper/lower case character set was inverted (SHIFT for
+  lower case), due to the way the accumulators were handled you could not have
+  a command  such as POKE address,PEEK(address) work reliably.
+  (note: reading my sources there are ALOT of bugs, will take a
+   while to compile them)
+
+ Upgrade ROMs
+  Most Original ROM bugs were squashed.  BASIC commands and capabilities very
+  much like the Commodore 64's.  Now includes a tiny ML monitor and IEEE-488
+  disk operability.  Easter Egg - enter WAIT 6502,x to see 'MICROSOFT!'
+  displayed on the screen x number of times.
+
+ 4.0 ROMs*
+  Addition of direct Disk operation commands DLOAD, DSAVE, COPY, HEADER, etc.
+  Ability to repeat cursor control characters by holding down keys.  Reserved
+  DOS error-channel variables: DS,DS$.  Added screen 'window' formatting control
+  characters in machines w/larger displays.
+
+  * The small screen-and large screen versions of these ROMs differ and
+  some software developed for the small-screen 4.0 ROMS crash on the large
+  screen units.  This is due to the necessary changes made for the newer video
+  controller of the 12" display PETs.
+
+CAN I RUN VIC-20, 64, 128, PLUS/4, OR C-16 SOFTWARE ON MY PET?
+
+  Maybe.  Any program that is all BASIC that does not use hi-res graphics or
+  sound and contains no POKES should work readily on a PET.  Of course if it
+  contains POKEs, sound commands, and Machine Language, conversion will be
+  nessasary.  If it relies on more than  one voice of sound, hi-res grpahics,
+  programmable character sets or color, it may not be worth converting because
+  those features aren't present on the PETs.
+
+  NOTE: Many early VIC, 64, Plus/4 (and IBM!) BASIC games and programs were
+        converted PET games.
+
+WHAT ARE THE BASIC COMMANDS FOR MY PET?
+
+  For the most part the BASIC on the 64 is identical to the upgrade ROM PETs and
+  it only varys by a few commands and features between original and 4.0 ROMs.
+  On the other hand the 'memory map', the locations you POKE numbers into, vary
+  quite a bit between ROM revisions.  Memory Maps are available for all the
+  versions...
+
+  Link: http://www.jps.net/foxnhare/petbasicqr.html PET BASIC Quick Reference
+  Link: http://www.jps.net/foxnhare/petwords.html PET BASIC Command Reference</A>
+
+  TPUG still has a few books ($5-$15) and Commodore manuals ($5) available,
+  with permission to reprint (!) the Commodore ones ($.10/page), and a nearly
+  complete 8 page PET/VIC/C64 BASIC command list ($2) with syntax,
+  descriptions, examples, printer codes, etc. (see end for TPUG info)
+
+HOW DO I GET 64 (VIC, PLUS/4, ETC.) BASIC PROGRAMS ON MY PET?
+
+  Unlike the later 8-bit Commodores,the PET always loads programs into the
+  memory address they were saved at  (i.e. no loading ,8 and ,8,1 as on the
+  later machines), which means BASIC programs saved on VICs, 64s, 128s, etc,
+  will not load in the right location on the PET to be seen by the BASIC
+  interpreter.  PET BASIC starts at location 1025 ($0401 in hex) and the later
+  Commodore machines have different, higher starting locations. (see table x)
+
+ There are a couple ways to get a BASIC program to load properly into memory, 
+
+ Disk Track/Sector Editors:
+  My preferred method of conversion is using a disk track/sector editing utility
+  to change the 'load address bytes' of the file directly on the disk.  This is
+  not an easy process to 'explain' and I hope to write it up at a later time.
+
+ BASIC Line Relocation Method:
+  Here is a way to get the BASIC editor to do it for you; of course you will
+  need to have an upgrade ROM or later PET (which has a ML monitor) or load in
+  a monitor for your original ROM PET first.  It involves 'linking' the higher
+  located BASIC program to a line starting in regular BASIC, when you delete
+  that line, the editor will move your program to where it belongs in memory.
+
+  1. Enter NEW to erase any programs already in memory.
+  2. Enter: 0 REM 
+  3. LOAD the program you want converted (i.e. LOAD"program name",1 for tape)
+  4. When loaded, enter the machine language monitor by entering SYS 1024
+  5. display the first part of the BASIC you first typed:
+     M 0401 0408
+  6. Change the line-link to the memory location of the program to be moved;
+     use cursor keys to move up and change the first two two-digit numbers to 
+     read:
+     :0401 01 08 00 00 8F 00 00 00
+           ^^ ^^   (for a program from a 64, otherwise, see table x)
+  7. Press return to change the bytes then enter X to exit the monitor.
+  8. Type LIST, you should see the 0 REM followed by the program.
+  9. Enter 0 to delete line 0 which will move the BASIC to its proper place.
+ 10. Save the program.
+
+  TABLE X - Load Addresses for BASIC files:
+
+       Saved under            Start of BASIC
+        Computer           load    load   change
+         Model/            addr.   addr.   bytes
+      configuration        dec.    hex.     to:
+      -------------        ----   -----    -----
+      PET/CBM              1025   $0401     N/A
+      VIC-20 unex.         4097   $1001    01 10
+      VIC-20 +3k           1025   $0401     N/A
+      VIC-20 8k+           4609   $1201    01 12
+      Commodore 64         2049   $0801    01 08
+      B-128                0003   $0003      *
+      Plus/4-C16           4097   $1001    01 10
+      Plus/4-C16**         8193   $2001    01 20
+      C128 mode            7169   $1C01    01 1C
+      C128 mode**         16385   $4001    01 40
+
+  * The BASIC RAM of the B128 is located in a separate bank of RAM memory,
+    which starts at a VERY low address and will be difficilt to convert without
+    a track/sector editor or saving it special on a B-128 itself.
+  **  When hi-res GRAPHICS mode space has been allocated.
+
+I GOT SOME PROGRAMS OFF THE INTERNET AND NEED TO GET THEM TO MY PET, HOW DO I DO THAT?
+
+  There are a few ways to do this. It mainly depends on what sort of hardware
+  you have at your disposal.
+
+  There are various file types as well, it may be easier to break this down a bit, first are the file types you would find on the internet:
+  filename.D64
+  filename.TAP
+  filename.P00
+  filename.PRG or filename.BIN
+  1!filename, 2!filename,3!filename,4!filename
+  ZIP, GZIP, ARC - These are compressed files 
+
+
+  D64
+HOW CAN I GET PET PROGRAMS FROM DISK TO TAPE?
+
+  You can just LOAD the program from tape and and SAVE them to disk one after
+  another, of course, if you are using a VIC/64/128, etc. the loading address
+  will get messed up.  Fortunately there is a wonderful fily copy utility
+  available for PET (4.0), VIC (12k+), and Commodore 64/128, called 'Unicopy'.
+  Unicopy (written by the famous Commodore enthusiast, Jim Butterfield) allows
+  you to copy from disk directly to tape.  This of course preserves the loading
+  address and makes things much easier.  (also it performs multiple file copies
+  instead of just one program at a time).
+
+HOW CAN I GET PET TAPE PROGRAMS TO DISK?
+
+  Again you can do LOAD and SAVE as I mentioned or use a handy little utility I
+  had discovered for the 64.  This program will automatically LOAD each file off
+  of tape and subsequently SAVE it to disk (device number 8) and continue until
+  you stop it (or a disk error occurs when it attempts to save a file with
+  the same name as one already on disk, disk full, or end of tape.)
+
+  Here is the listing (remember this is written for the Commodore 64):
+
+  5 rem tape2disk
+  10 for i=53181 to 53247:read a:poke i,a:next i
+  20 print "[clr][down][down][down]tape to disk transfer program!"
+  30 print"[down]insert formatted disk in drive 8."
+  40 print"[down]insert tape, rewind and then press play.[down]"
+  50 sys 53181
+  100 data 169,1,162,1,160,1,32,186,255,169,0,162,65,160,3,32,189,255
+  110 data 169,0,32,213,255,169,8,162,8,160,255,32,186,255,169,20,162
+  120 data 65,160,3,32,189,255,173,61,3,141,251,0,173,62,3,141,252,0
+  130 data 169,251,174,63,3,172,64,3,32,216,255,76,189,207
+
+  Type this in, SAVE it (don't want to type it in again, right?), put a blank
+  formatted disk in drive 8, type RUN.  If everything is working the messaage
+  will display and the computer will now ask you to press PLAY on tape, put in
+  a cassette, rewind if necessary, and press PLAY.  Let it run through the tape
+  (this could take an hour or more if it is a long tape).  Reset the computer
+  and load the disk directory.  You should now have the tape programs on the
+  disk, note that they are all padded with extra spaces, you will need to use a
+  disk or directory editor to "fix" the file names.
+
+HOW COME MY PET CAN'T READ A TAPE FROM MY PLUS/4 OR COMMODORE 16 OR VISA-VERSA?
+
+  You are quite a collector, aren't you?  When Commodore designed the Plus/4 and
+  Commodore 16 they broke alot of standards they had previously established for
+  their 8-bits (and fortunately went back to in the C128); besides the plug
+  designs, they changed the sound-frequency of the signals used to record on
+  tape.  Though the the format is identical to the PET and the other C= 8-bits,
+  the sound is only readable on the Plus/4 and Commodore 16.  My sggestion would
+  be to record the program on disk (1541) and then read it on a 4040 or 2031, or
+  copy them to tape using a 64, 128. or VIC-20.
+
+HOW DO I ACCESS THE PET's M/L MONITOR?
+
+  The 'Terminal Interface Monitor' (known as TIM to some tinymon to others.)
+  is available on all PETs but the original ROM version (which Commodore
+  offered to users on tape later on).  TIM is activated by executing a BRK
+  instruction by SYSing any memory location containing a zero (0), most people
+  enter SYS 1024, as it almost always contains a 0.
+
+WHAT ARE THE COMMANDS FOR THE M/L MONITOR?
+
+  G - Execute M/L:  G programaddress (i.e. G 033C)
+  L - Load:  L "filename",dev  (i.e. L "PACMAN",08)
+  S - Save:  S "filename",dev,startaddress,endaddress
+             (i.e. S "FLASH ATTACK",02,027A,2000)
+  R - Display Processor Registers
+  X - Exit Tiny Mon
+  M - Memory Display: M startaddress endaddress (i.e. M 0400 04A0)
+  : - Modify Memory (supplied in memory dumps using the M command)
+  ; - Modify Processor Registers (supplied in the processor register, P command)
+
+CAN I GET A BETTER M/L MONITOR FOR MY PET?
+
+  Yes, there are two that I know of that are readily avaiable.  The most popular
+  (and universal among the Commodore 8-bits) is Jim Butterfield's Supermon.
+  There are versions available for all ROM revisions including original ROM PETS
+  and offer a mini Assembler and Disassembler among other useful memory/ML
+  commands.  The other, similar to Supermon is called Extramon.  There are other
+  versions many of wich are commercial but I have little information on them.
+
+WHAT IS THE 'KILLER POKE' AND SHOULD I WORRY ABOUT IT?
+
+  This is THE POKE of computer lore, the command that WILL physically break a
+  computer!  Of course other commands and methods are known that can
+  potentially cause damage (usually to disks, hard drives or other mechanical
+  units), but this is the most notable mainly because it was a command somewhat
+  commonly used and it affects solid-state circuitry.
+
+  Lately debate has gone up about how leathal is this POKE to the circuitry,
+  some contend it will not cause damage, but so far no one has volunteered
+  their equipment for testing.
+
+ History of 'the killer poke'
+  When the first PETs (small 9" screen) models came out, the display wasn't all
+  that fast.
+
+  The old PETs were slow because the print character ROM routine 
+  waited for the interval between screen scans before updating the screen
+  memory.  This reduced conflicts over the screen RAM which would have resulted
+  in random pixels (snow) being illuminated on the screen.  There was an input
+  on one of the I/O chips which was hooked up to the video circuitry and told
+  the routine when to access the video RAM.
+
+  It wasn't too long before someone learned they could impove the
+  character display speed via a poke to location 59458; which would set the
+  video controller to update more readily.  It was a noticible improvement of
+  speed on programs using PRINT often, it was kind of like a free upgrade.
+  It was mentioned in a few publications and used in many programs that relied
+  on printing to the screen.  I had learned of the poke through Cursor
+  Magazine, a monthly tape-based publication.  They printed the command in one
+  of the 'newsletter' flyers included with an issue which you could insert
+  into their game "joust" to make it play faster.
+
+  Later on, when Commodore released the larger display (14") PETs, they had
+  improved the display controller which made that POKE unnecessary.  An
+  unfortunate side effect was that the POKE to 59458 affected a different
+  register which adjusts one of the newer screen display capabilities, which
+  could result in damaging the PETs video curcuitry when left running.  I
+  discovered it by accident after our school received some large-screen 4016s.
+  When active, the screen starts to warp after about the third line and the
+  display stops around the fifth, the keyboard is also unresponsive.  When a PET
+  is in this mode, the only solution is to turn it off, FAST!  Fortunately none
+  of the school's PETs were damaged due to this POKE.  Later Cursor Magazine
+  published a 'fix' that would allow older PETs to use the poke and keep the
+  large-screen units from frying.  Unfortunately there are still many programs
+  that do not have this fix.
+
+ Prevention
+  Make sure to check BASIC programs (especially games) when running them on a
+  large-screen PET and be ready with the power switch when you first run it.
+  I have usually found the 'killer poke' statement looking like this:
+
+  POKE 59458,PEEK(59458)OR 32.  It will always be a POKE to 59458, the
+  remainder of the POKE may vary.
+
+WHERE CAN I GET SOFTWARE FOR MY PET?
+
+  Unfortunately PET software is not too easy to come by as it is for 64
+  and VIC-20 collectors (though originally it was mainly converted PET
+  programs that first appeared for the VIC-20 and Commodore 64.)
+
+  There is one FTP location on the internet that has a good selection of PET
+  software for transferring, you can reach it via the web at:
+
+  http://www.zimmers.net/anonftp/pub/cbm/
+
+  I also have a small PET games archive on-line:
+  http://www.jps.net/foxnhare/archive.html
+
+  and run a BBS which has a section of PET software on-line,
+  the board's phone number is (209) 754-1363 (300-2400 baud, 24 hrs a day)
+
+  Other than that the next best way is through contacting other PET enthusiasts
+  and arranging purchasing or exchanging software.
+
+  TPUG added this:
+  TPUG has public domain PET and SuperPET software available on 4040 or 8050
+  format disks ($3 members/$6 nonmembers) or on cassettes ($5/$10).  I haven't
+  an accurate count handy, but it's 100 to 200 disks full.  Yes, SuperMon is
+  in there.  We also have 58 disks of educational programs developed jointly
+  by Commodore Canada and the Ontario Ministry of Education, and a dozen or so
+  commercial programs on cassette.   (see end for TPUG info)
+
+WHAT KIND OF DRIVES CAN MY PET USE?
+
+  Tape Drives
+    Tape Drives for the VIC, 64 and 128 work well on the PET.  In fact you can
+    hook up 2 tape drives on the PET (On non-original PETs the second connector
+    is inside the case, on the left edge of the motherboard.) and can be
+    accessed as device #2.
+  Commodore Models:
+    SANYO - First drives, power supply section cut out and modified for
+            PET datasette cable/plug.
+    C2N - Box look, black case.
+    C2N - Box Look, cream colored case (w/counter).
+    1530 - Rounded low-profile, distance counter &amp; 'save' indicator light.
+  Commodore IEEE-488 5.25" models
+    2020 - (first drive design, bugs will be present if old ROMs)
+    2040 - Updated ROMS, resembles a 1541 format &amp; readbable on 1541/71s
+    3040 - European 4040, like the 3000 series PETS?
+    4040 - Read/Write compatible with 1541/1571s.
+    2031 - Read/Write compatible with 1541/1571s.
+    2031LP - Same as above but in a 1541 style case.
+    8050 - Single Sided/Quad Density format, 512k per disk side.
+    8250 - Double Sided/Quad Density format, 1mb per disk
+    8250LP - Same as 8250 but with low profile grey plastic case like 1541.
+    SFD-1001 - Same as 8250, but single drive unit in a 1541 style case.
+   Commodore IEEE-488 8"
+    8280 - 1 MB or 512k per Drive (little info on this one... called a monster
+           for it's size and weight)
+   Commodore IEEE-488 Hard Disk Drives
+    9060 - Five Magabyte Hard Disk Unit
+    9090 - Seven and a Half Megabyte Hard Disk Unit
+   3rd party
+    MSD-SD1   ** The MSD SD1&amp;2 offer both IEEE-488 and
+    MSD-SD2   ** VIC/64/128/+4 Serial bus interfaces.
+    Modified 1541
+    Exatron Stringy Floppy - Kinda a cross between a tape drive (in connection
+     and file storage) and a disk drive (in speed accessibility and capacity),
+     more of a curiosity than in popular use.
+   Others - Of course there are other drives some of which use their own
+            proprietary OS and interfacing I have seen a couple ads in
+            in the past but have never received any detailed information.
+
+PRINTERS?
+
+  Commodore Model IEEE-488 Printers
+   2022 - Tractor - Metal Case
+   2023 - Friction - Metal Case
+   4022 - Tractor Feed - Plastic Case (Epson MX-70 mechanism)
+   6400 - Daisy Wheel Printer - TEC F-10 mechanism.
+   8023 - Tractor Feed - Wide carriage - Plastic case
+  Some companies produced printers with IEEE-488 interface options (Epson was
+  one)
+  Also available through some outfits were IEEE to Centronics/RS-232 Printer
+  interfaces which would plug into the PET and offer you use of common
+  centronics parallel or serial printers.
+
+IS THERE A MODEM AVAILABLE FOR MY PET?
+
+  I know of only one company that prosuced a modem and IEEE-488 interface, the
+  company is TNW, and I think they also built the Commoodre 8010, an acoustic
+  modem for the PET.  I have some notes on using the device but have never
+  actually seen one.
+
+I NOTICED WHAT LOOKS LIKE AN IEEE-488 INTERFACE ON SOME ELECTRONIC DEVICES
+CAN I HOOK THESE THINGS TO MY PET?
+
+  Some electronic devices DO have IEEE-488 interfaces built-in to talk
+  to computers, and the communications protocol is the same as on the PETs,
+  you will need to get the data on how to communicate with your device
+  though (like what device number it is, what commands it knows, etc.)
+  which should be available from the device's manufacturer.
+
+  IEEE-488 is also used on some Hewlett Packard computers and is referred to
+  as either the HP-GPIB, HPIB or just GPIB (for General Purpose Interface Bus).
+  Evwn though IEEE-488 is a standard it was not adhered to precisely by
+  Commodore so some 'tweaking' of your programs may be necessary in order to
+  get non-commodore equipment working. (I.E. convert commands to true ASCII)
+
+I GOT A PET AND IT DOES NOT WORK, BEFORE I LOOK FOR A REPAIR SHOP IS THERE ANYTHING I CAN TRY MYSELF TO REVIVE IT?
+
+  PETS are pretty hardy beasties and usually don't die outright, there are
+  times when all you need is just a little user intervention to get them
+  running again.
+
+  First check the fuse, which should be next to the power switch on the back,
+  this sometimes can be the culprint (and in the case of schools PETs,
+  sometimes it is missing).
+
+  Second, open the case and re-seat the socketed chips.  The PET computer chips
+  have a tendency to creep loose of their sockets, you might try (with the 
+  PET's power off and you grounded) to first push down on each of the socketed
+  chips (mind any pins sticking out, you don't want to bend them!) usually you
+  will hear a sound of them sinking in a tad more. once done, try the power
+  again.
+
+  If that doesn't work; you can pull each of the socketed chips and re-insert
+  them, this has also been proven to work in some cases.
+
+  Well, if those don't work, then unless you are an electronics technician,
+  it's off to the shop (also check with your local Commodore users group, they
+  may have some electonic whiz members).  Call around to local Computer and TV
+  repair shops and see if they have a technician that can diagnose and repair
+  older electronic equipment (some don't, they just swap cuircuit boards, which
+  would not be available in this case.)  Cross your fingers and hope it isn't
+  some long out of production chips.
+
+EVERYTHING SEEMS TO BE HOOKED UP OK BUT I CAN'T SEEM TO LOAD ANY PROGRAMS
+
+  One of the most common occurances is that you placed your devices (tape,
+  disk drive) to the left of your PET.  The monitor on the PET is not as
+  well shielded as modern monitors and puts out alot of interference where
+  the video flyback circutry is.  Try placing them to the right of the PET.
+
+  Other common TAPE problems:
+  - Your tape drive head needs demagnatizing or cleaning
+    (Radio shack seels tape head demagnatizers and cleaners)
+  - The belts/rollers in your tape may be getting old (will need to
+    disassemble the tape units and take the belts to a stereo/TV repair shop
+    to get the proper replacement.)
+  - The tape connector is grungy - clean the connector by first rubbing off
+    the dirt with a comon pencil eraser and then wipe off with a bit of
+    isopropyl alcohol on a towel or q-tip.
+  - Wrong tape port -  Make sure you are hooked up to the proper port for
+    the tape device number you are trying to access.
+
+  Disk Problems:
+  - If the disk drive flashes a number of flases repeatedly it is reporting
+    an internal hardware fault, here is a chart:
+
+    flashes:         4040                             8050
+       #   cause:      location:            cause       location
+       1  - Zero Page - 6532, C1, E1         Zero Page - 6532, C1, E1
+       2  - ROM       - H1                   ROM       - 2364, L1
+       3  - ROM       - L1                   ROM       - 2364, H1
+       4  - ROM       - J1                   N/A
+       5  - Zero Page - 6530, K3, 6504, H3   Zero Page - 6530, K3, 6504, H3
+       6  - N/A                              N/A
+       7  - RAM       - 2114, D4, D5         RAM       - 2114, D4, D5
+       8  - RAM       - 2114, E4, E5         RAM       - 2114, E4, E5
+       9  - RAM       - 2114, F4, F5         RAM       - 2114, F4, F5
+      10  - ROM       - 6530, K3, 6504, H3   ROM       - 6530, K3, 6504, H3
+
+  - Your drive head(s) could need cleaning.
+  - Try initializing the drive you are trying to use
+    disk command Ix (x=drive number, note: Initilize does not mean format
+    on commodore 8-bit drives.)
+  - Your drive(s) could be out of alignment  Fixing this one is beyond this
+    FAQ at the present time.
+  - The IEEE-488 connector may be grungy - clean the connector by first rubbing
+    off the dirt with a comon pencil eraser and then wipe off with a bit of
+    isopropyl alcohol on a towel or q-tip.
+  - Wrong port -  Make sure you are hooked up to the proper port, the IEEE-488
+    port is the port closest to the power switch, and that the connector is
+    right side up (on most Commodore cables, it is writing side up)
+  - The drive might be set for something other than device 8.
+
+I'M HAVING KEYBOARD PROBLEMS, WHAT CAN I DO?
+
+  There are two common keyboard problems on the PET, the most common is a
+  dirty keyboard, that is where some or many keys are not working or don't
+  work well.  The second my be a loose wire on the keyboard cable, where every
+  other, third or fourth key doesn't work.  Both jobs require a little skill
+  with a soldering iron and normal precautions to protect your computer from
+  static.  I am going to discuss just cleaning the keyboard; if you think you
+  have a loose connection, you may consider going though this process as it
+  will also give you easy access to the wires that may be broken, and let you
+  do your repairs long the way.
+
+  Cleaning the keyboard:
+   Cleaning the PET's keyboard is not a hard process but a tedious one.  Nor
+   is my process a standard or fool-proof; everyone has their own idea on how
+   to do this and I offer no gaurantee that it will fix or not damage your
+   computer, if you are uneasy with the steps presented, then you should
+   strongly consider letting an experienced electronics person do the job for
+   you.  In order to clean the contacts you will need to remove the keyboard
+   from the computer and partially dissassemble it, then re-assemble and test,
+   I have had to dissassemble and reassemble stubborn keyboards up to three
+   times to get all the keys working so don't be frustrated if it does not
+   work on the first or second time.
+
+  Tools you will need:
+  - Medium sized phillips screwdriver (for the case screws and the keyboard
+    mounting screws.)
+  - Small phillips and/or regular screw driver for the screws holding the
+    keyboard's PCB in place.
+  - Low wattage soldering iron for disconnecting and re-connecting the shift-
+    lock switch from the keyboard PCB.
+  - Can of compressed air
+  - clean pink-pearl or dust-free pencil eraser and a clean sheet of paper.
+  - paper towl or lint-free cloth
+  - denatured alcohol (isopropyl rubbing alcohol ok, but get it in the 90%
+    alcohol range)
+  -also good light and a clean workspace.
+
+  1. Open the PET cabinet.
+    - Under the white top of the PET cabinet, near the front on the left and
+      right sides there may be two phillips type screws holding the cabinet
+      shut, remove them.
+    - lift the wite top from the front, (*there is a hinge in the back),
+      careful not to lift too far to stress the keyboard or video connections.
+      Locate the wire 'hood prop' (either in the front base or under the hood
+      on the left side, undo from it's hook and place in (or next to) the
+      screw cavity where the case screw was.
+  2. Remove the keybord assembly.
+    - carefully work the keyboard connector loose from the main circuit board
+      (it's been a few years, dont force it too hard.)
+    - remove the large screws holding the keyboard assembly to the case and
+      take the keyboard to your clean work area, be careful of bending the
+      keyboard wires at the PCB, the older the PET the more brittle the
+      connections may be.
+  3. Diassassemble the keyboard PCB from the keyboard machanism.
+    - flip the keyboard upside down, you will see the PCB section of the
+      keyboard, along the center there are two wires that are soldered to two
+      pins, this is the shift-lock switch connection. (if you had a steel
+      plate under your keyboard assembly there probably is a square of sticky
+      foam covering those contacts) you will see about 20 or so tiny screws
+      holding the PCB onto the assembly.
+    - With the soldering iron, undo the wires connecting to the shift-lock
+      switch, do not linger on those contacts too long or use a high wattage
+      iron, it could damage the plastic workings of the switch.
+    - with the small screwdriver remove all the tiny screws, make sure the
+      driver has a snug fit, you don't want to strip the screwdriver holes.
+    - Remove the PCB from the keyboard assembly, note: On some boards, the
+      'little rubber cups' act as a contact and sometimes spring, don't
+      loose track of those, put them back in the recepticles they came out of.
+  4. Clean the PCB section.
+    - wipe the pcb section with the towel or cloth to remove any dust.
+    - with the eraser, 'erase' the 'gold fingers' of the key contacts, not to
+      hard else you remove the traces.
+    - wipe the PCB to remove eraser crumbs.
+    - dampen a towel or cloth with the alcohol and then wipe the contacts on
+      the board again (this will help dissolve crud you can't see), make sure
+      it's dry.
+  5. Clean the Assembly.
+    - If there is alot of crud underneath the keycaps (non-original PET kbds)
+      you may want to  blow the stuff out now with the compressed air,
+      if there is alot of gunk between keys, you may want to clean that too
+      (I recommend covering a pencil or pen tip with a towel or cloth, to get
+      in the tight places between keys real good)
+    - Bottom of assembly - you will see little dark rubbery or spongy 'feet'
+      below every key assembly these are carbon conductors which bridge the
+      contact of the PCB's 'fingers', they are somewhat fragile so we don't
+      want to punish them too hard.
+    - Blow out any dust with compressed air.
+    - with the eraser lightly wipe each foot, the eraser will pick up some of
+      the graphite, you will need to clean it (the eraser) off by 'erasing'
+      on the paper after every few 'feet'.
+    - blow out the assembly with the air once more.
+  6. Re-Assemble and test
+    - before we put everything all together you should do a partial
+      re-assembly and test that tll the keys work, some keys may need more
+      attention (or their 'feet' switched with less used keys)
+    - Fit the PCB back on the assembly and put in thoe 20 or so tiny screws
+      (don't overtighten or you will strip the plastic threading on the
+      assembly!)
+    - To reduce possible heat damage to the shift lock, do not re-connect yet.
+    - Plug in the keyboard connector into the computer's circuit board.
+    - Turn on PET and test keys.
+    - Note problem keys, if the dead keys are in a pattern (every other every
+      third, etc), you may have a broken wire on the keyboard connector.  If
+      it is just a couple keys, you will have to un-attach, re-open and
+      concentrate on those keys.
+  7. Keys clean, re-solder and re-assemble!
+    - Once all the keys are clean you can re-solder the shift-lock wires
+      (and replace the foam insulator if it had one)
+    - If you have a plastic cased PET, BE VERY CAREFUL fitting and tightening
+      those keyboard assembly screws, those posts can snap easier than you
+      think!
+    - Fit key keyboard assembly in the PET's case and partially screw in two
+      or three screws. then check the edge keys to make sure they are not
+      rubbing or stuck against the case, and shift the assembly as needed,
+      tighten screws and put in the rest.
+    - Plug back in the keyboard connector and re-test the keyboard.
+    - If all is well put the prop back in its hook, and close the hood and put
+      back in the hood screws.
+
+HOW DO I ACCESS UPPER/LOWER CASE OR GRAPHICS CHARACTER SETS?
+
+  In order to have graphic symbols to to draw simple charts and for games
+  as well as upper and lower case characters for word processing Commodore
+  gave the PET two 256 character sets, one with upper and lower case
+  characters for word processing and business applications and one with
+  upper case and graphics characters for charts, games, etc.  In order to
+  change the 'mode' of the PET you must direct the computer to 'look' at
+  one of two character sets via a POKE command. 
+
+  The PETs start up in one of two modes, upper case characters (pressing
+  shift types graphics symbols) or lower case characters (pressing shift
+  shift types upper case characters).
+
+  To direct the computer to uppercase/grpahics mode:
+    POKE 59468,12
+
+  To direct the computer to lower/uppercase mode:
+    POKE 59468,14
+
+   Note that when you change sets the characters on the screen change
+   immediately to the new image, you cannot hve characters from both
+   set on the screen at the same time without some specially timed
+   program to perform it.
+
+  Original ROM PET have reversed reversed upper/lower case characters:
+
+  Commodore had the upper/lower case characters reversed in the original
+  ROM models where both modes started with upper case characters and you
+  pressed SHIFT for lower case or graphics.  This is the reason for some
+  older software having reversed case text.  There are utilities available
+  that will adjust all your PRINT statements to the proper case for the
+  newer or older ROM machines.
+
+  12" 4000/8000 series:
+
+  The 12" 4000/8000 series PETs allow you to change case by printing
+  a control character:  CHR$(14) - Text Mode   CHR$(142)-Graphics Mode
+
+  When you issue a CHR$(14) on a 4000/800 series PET the newer display
+  controller will be adjusted so there is a pixel or two gap between
+  screen lines.  If you do not wish this gap in text mode just
+  POKE 59468,14 instead of printing CHR$(14)
+  (if you want the gap in character mode you can issue a ? CHR$(14)
+  and then POKE 59468,12 to produce the desired effect.)
+
+  Unlike the later Commmodore 8-Bits there is no way to edit the
+  characters on the screen in software alone.
+
+HOW CAN I HEAR SOUND ON MY PET?
+
+  Like many other microcomputers of the time the PET was not originally designed
+  to produce sound.  A few methods of sound generation have been developed but
+  the most popular employs the use of parallel user port pin M which is used
+  to generate a 'square wave' output by setting the 'handshake register' for
+  port B into a free-running mode.  Adjustments to the timing of the handshake
+  and the pattern of the 'wave' adjusts its sound and timbre.  You can achieve
+  approximately 3 octaves of notes and various noises with this one voice
+  output.
+
+  The latest 4000/8000 (large screen PET) motherboards have a built-in piezo
+  speaker and also have a bell sound accessible with a print: chr$(7)
+
+   Sound Interface Diagram (use mono-spaced font to view properly)
+
+   Parallel Port:
+                              1  1  1
+   1  2  3  4  5  6  7  8  9  0  1  2
+   =  =  =  =  =  =  =  =  =  =  =  = 
+  ### ######################### ######
+   =  =  =  =  =  =  =  =  =  =  =  =
+   A  B  C  D  E  F  H  J  K  L  M  N     Ground          +===========+
+                                 !  +---------------------!   AUDIO   !
+                             CB2 !      50-500K resistor  ! AMPLIFIER !
+                                 +-----/\/\/\-------------+===========+
+
+  You can get most of the parts (except the parallel port connector) at
+  Radio Shack, including a low-cost mini amplifier.  See below for a source
+  for 12/25 edgeboard connectors.
+
+HOW DO I MAKE SOUND ON MY PET?
+
+  This process sets the PET's shift register in a free-running  state where the
+  signal is used for sound generation.  By adjusting the pattern of the output
+  and the frequency you can produce a wide variety of sounds, and even music!
+
+  Three pokes are required to make sound:
+    POKE 59467,16 (turn on port for sound output use 0 to turn it off*)
+    POKE 59466,octave (octave number, see below)
+    POKE 59464,frequency (0 for no sound)
+
+  After setting 59467 you can adjust 59466 and 59464 to get any sort of sound,
+  but to get music you need to set them with specific values, here is a 
+  three-octave note table:
+
+  Note Table:
+
+         octave=15     octave=51     octave=85
+  Note  Oct.0 Oct.1 ! Oct.1 Oct.2 ! Oct.2 Oct.3
+  Freq  ------------+-------------+-------------- 
+   B     251   125  !  251   125  !  251   125
+   C     238   118  !  238   118  !  238   118
+   C#    224   110  !  224   110  !  224   110
+   D     210   104  !  210   104  !  210   104
+   D#    199    99  !  199    99  !  199    99
+   E     188    93  !  188    93  !  188    93
+   F     177    88  !  177    88  !  177    88
+   F#    168    83  !  168    83  !  168    83
+   G     158    78  !  158    78  !  158    78
+   G#    149    74  !  149    74  !  149    74
+   A     140    69  !  140    69  !  140    69
+   A#    133    65  !  133    65  !  133    65
+
+  Set 59466 with octave range desired and play notes by setting the frequency
+  in 59464.  To stop any sound use POKE 59464,0.
+
+  * Note, due to a hardware bug, leaving the shift register in free running
+    mode will cause problems when attempting to use the datasette so always
+    POKE 59467,0 before attempting to use any tape commands.
+
+  The process for using and playing sound can also be done on the 64/128 and
+  VIC-20 the same connector pins are involved but the POKEs are different:
+
+    Instead of 59467, 59466, and 59464 for the PET use these:
+      on the VIC-20:     37147, 37146, and 37144
+      on the 64 or 128:  56587, 56586, and 56584
+
+I HAVE A PET PROGRAM THAT CAN USE JOYSTICKS, HOW DO I MAKE AN INTERFACE?
+
+  The PET was not initially designed for joysticks but a determined user had
+  devised a dual-joystick interface employing the parallel port.  This interface
+  allows you to plug in standard Atari/Commodore compatible joysticks....
+
+  Interface Diagram  (use mono-spaced font to view properly)
+
+  Looking at back of user port         1  1  1
+            1  2  3  4  5  6  7  8  9  0  1  2
+            =  =  =  =  =  =  =  =  =  =  =  =
+           ### ######################### ######
+            =  =  =  =  =  =  =  =  =  =  =  =
+            A  B  C  D  E  F  H  J  K  L  M  N
+            !     !  !  !  !  !  !  !  !     !
+            !     !  !  !  !  !  !  !  !     !
+  port 1-&gt;  8     1  2  3  4  !  !  !  !     !
+                              !  !  !  !     !
+                   port 2-&gt;   1  2  3  4     8
+
+
+  Joystick pin diagram =&gt;  5  [4] [3] [2] [1]
+  looking at back of                    \ /
+  male connector             9  [8]  7  [6]
+
+  The 'fire' button (pin 6) is added by connecting joystick port pins 1 &amp; 2
+  to pin 6 with diodes, solder each diode from (already wired) pins 1 &amp; 2
+  to pin 6 (with the banded ends to pin 6).
+
+WHAT ARE THE PINOUTS SO I CAN BUILD AN IEEE-488 CABLE FOR MY PET TO MY DRIVE.
+
+  On the PET the pin arrangement for the IEEE-488 port is:
+
+                              1  1  1
+   1  2  3  4  5  6  7  8  9  0  1  2
+   =  =  =  =  =  =  =  =  =  =  =  =
+  ###### ################### #########
+   =  =  =  =  =  =  =  =  =  =  =  =
+   A  B  C  D  E  F  H  J  K  L  M  N
+
+   1 - DIO1       9 - IFC         E - REN
+   2 - DIO2      10 - SRQ         F - GND
+   3 - DIO3      11 - ATN         H - GND
+   4 - DIO4      12 - GND         J - GND
+   5 - EOI        A - DIO5        K - GND
+   6 - DAV        B - DIO6        L - GND
+   7 - NRFD       C - DIO7        M - GND
+   8 - NDAC       D - DIO8        N - GND
+
+  IEEE-488 Device Connector Pinout:
+
+   +-
+   ! ----       (NOTE:  The pin order may look backwards
+   !     ---+      but two references list it as such)
+   !  1  13 !
+   !  2  14 !
+   !  3  15 !      1 - DIO1       9 - IFC        17 - REN
+   !  4  16 !      2 - DIO2      10 - SRQ        18 - GND
+   !  5  17 !      3 - DIO3      11 - ATN        19 - GND
+   !  6  18 !      4 - DIO4      12 - GND        20 - GND
+   !  7  19 !      5 - EOI       13 - DIO5       21 - GND
+   !  8  20 !      6 - DAV       14 - DIO6       22 - GND
+   !  9  21 !      7 - NRFD      15 - DIO7       23 - GND
+   ! 10  22 !      8 - NDAC      16 - DIO8       24 - GND
+   ! 11  23 !
+   ! 12  24 !
+   !     ---+
+   ! ----
+   +-
+
+WHAT IS THE PINOUT FOR THE PET PARALLEL USER PORT
+
+                                 1  1  1
+      1  2  3  4  5  6  7  8  9  0  1  2
+      =  =  =  =  =  =  =  =  =  =  =  =
+     ### ######################### ######
+      =  =  =  =  =  =  =  =  =  =  =  =
+      A  B  C  D  E  F  H  J  K  L  M  N
+
+   1 - System Ground        A - GND
+   2 - TV Video             B - CA1
+   3 - IEEE-SRQ             C - PB0
+   4 - IEEE-EOI             D - PB1
+   5 - Diagnostic Sense     E - PB2
+   6 - Cass.1 Read          F - PB3
+   7 - Cass.2 Read          H - PB4
+   8 - Diag Tape Wrt.       J - PB5
+   9 - TV Vertical          K - PB6
+  10 - TV Horizontal        L - PB7
+  11 - GND                  M - PA2 (CB2)
+  12 - GND                  N - GND
+
+WHAT IS THE PINOUT FOR THE DATASETTE PORT
+
+      1  2  3  4  5  6
+      =  =  =  =  =  =
+     ###### ###########
+      =  =  =  =  =  =
+      A  B  C  D  E  F
+
+   A or 1 - GND
+   B or 2 - +5v
+   C or 3 - Motor (computer controlled +6v for datasette motor)
+   D or 4 - Read line from casette
+   E or 5 - Write line cassette
+   F or 6 - Cassette Switch Sense (monitors cassette play/ff/rew buttons)
+
+WHERE CAN I GET CONNECTORS THAT FIT THE EXPANSION/CASSETTE/USER/IEEE-488 PORTS?
+
+  An excellent source for PET compatible edgeboard connectors as, the 24pin
+  centronics connectors (not to mention just about any other component) is
+  DigiKey Corporation:
+
+   DigiKey Corporation
+   701 Brooks Ave. South
+   Thief River Falls, MN 56701-0677
+
+   (800) 344-4539   www:  http://www.digikey.com
+
+   Call or write and ask for a catalog!
+
+   The parallel and IEEE-488 ports both accept 12/24 edgeboard connectors with
+   .156" contact spacing, the datasette port accept 6/12 connector with .156"
+   contact spacing.
+
+  Side Note:  Digikey does not seem to have proper hoods (enclosures)
+   available for the edgeboard connectors, which can make it quite a struggle
+   to remove the buggers once connected.  I have found that using 1.25" long
+   by 6/32" machine screws fit snugly in the side mounting holes, with a
+   matching nut and lock washer it would make a good gripping surface away
+   from the sensitive contacts.  These parts can be easily/cheaply found at
+   most hardware stores.
+
+                    +---+ Washer &amp; Nut
+    Mounting Hole  !!   !!!--------+ 
+                   !!   !!!--------+ Screw
+                 +--+   !==
+  Edge Contacts  !      !==  Pins
+
+
+HOW CAN I CONTACT TPUG (TORONTO PET USERS GROUP)?
+
+  TPUG GAVE ME THIS LINK:  http://www.icomm.ca/tpug
+
+  OTHER NOTES FROM TPUG:
+
+   Thanks for the plug for TPUG Newsletter.  Over the years we've produced The
+   TORPET, TPUG NEWS, one more issue of The TORPET, TPUG Magazine, THE
+   NEWSLETTER, TPUG Newsletter, one TPUG News Update, and back to TPUG
+   Newsletter.  Most recent back issues are still available (singles free,
+   batches for the postage cost), and we can photocopy ($.10/page) most of the
+   earlier ones as needed.  I've put a couple on our web site and more will
+   follow.  Your readers might appreciate a link to us at:
+
+      http://www.icomm.ca/tpug
+
+   TPUG has a few cables available (CDN$50 = US$35 plus $5 shipping) for those
+   who don't want to roll their own.
+
+   TPUG also has a few drives (2040s and 3040s upgraded to 4040s, 8050s, 8250s,
+   2031LPs, etc, around $25) and even some PETs (free but you pay the
+   shipping), and occasionally PET printers, modems, serial and parallel
+   interfaces, LANs, ... which we'd rather find a good home for than store.  We
+   also have 4032 circuit diagrams ($5) and lots of information buried away.
+
+WHERE CAN I BUY/FIND A PET COMPUTER?
+
+  That is a tough one, in the United States the PETs were pretty popular for
+  schools, almost all of which have been deemed obsolete and have been given
+  away, sold or discardrd.
+
+  I bought a bunch through our county's school district auction, after that
+  I have received a couple from individual users, and have been fortunate
+  to locate a few used computer stores in the area that have had machines
+  (ones from a scool) left.
+
+  On-Line internet auctions (such as ebay.com ) regularly sell PETs but their
+  prices may climb way higher then you should expect to pay.  Also shipping
+  PETs is an expensive proposition (the lightest is about 35 pounds).  
+
+  A more direct approach would be to place an ad in your local paper or
+  advertiser on looking for old computers.  You may be surprised what you will
+  find.  Also there is the internet, and from time to time I see postings in
+  newsgroups like comp.sys.cbm or misc.forsale.computers.other.systems.
+
+  Also join your local users group and let them know you are a PET fan, there
+  may be a PET owner in the group or that contacts the group, looking to pass
+  their model into loving hands. I know from experience when you give support,
+  you will receive support back.
+
+WHAT IS THE 'BEST PET'?
+
+  That's a matter of opinion, compared to today's computers the PET is about
+  as featureless as you can get, it mainly depends on what you are looking for.
+  If you have specific programs to run then let the programs will dictate your
+  system, as it may be inpossible to find versions to other PET models.
+
+  I will give you these insights though.
+
+  * If you want a 'show model' the original PET gets more attention than the
+    later ones - especially if it is operational.  The other small screen units
+    look cool as well, and if you have a jazzy display the 4000/8000 has the
+    biggest/brightest screen of the lot.
+
+  * If you want to re-live your childhood playing games and such, the later
+    2000, 4000 models are good, the 8000s work well too with the 4032 software
+    to get them into 4000 mode.  Also the 4000 models have built-in speakers
+    which may be a factor.
+
+  * If you want to mess with programming/business software, the 8000 models may
+    be your best bet, though the 4000 models is up there too, the 4000/8000 has
+    a tad better speed then the older models.  Also the large screen models are
+    much more visible at a distance if you are running a demonstration display.
+
+  * For "power PET computing" it would be the SuperPET, it has all the features
+    of an 8000 as well as ability to run multiple languages.
+
+ Drives:
+  TAPE: Nothing is more common on the PET than tape drives, as back then disk
+  drives started at $500 and jumped to 1200 for a dual disk model, get a tape
+  drive, it's cheap and it will come in handy.  Of the tape drives experience
+  has shown reliability in this order:
+  - 1530 low-profile drive (rarely a problem, I always have one ready)
+  - Black Box C2N somewhat durable.
+  - Original SANYO deck (the one in the original PETs), except for the belts
+    mine still function.
+  - Cream Color Box C2N - not sure why but they have the most problems... :/
+  DISK:
+  - 4040/2031/MSD: like the 1541 is the defacto standard for disk drives on the
+    64, for the PET are the 4040, 2031, and MSD, as the 4040 was the most sold,
+    and of course the compatibility with the 1541 format does not hurt either.
+    Note the 4040 and other models are VERY large (as big of footprint as the
+    PETs!) if you are looking to save space look for the 2031, 2031 LP, or
+    MSD SD1 or 2, these are much smaller.
+  - 8050, 8250, SFD-1001, these drives were more in use by business users, some
+    software may only run on these drives.  Also for many years in the 1980s
+    these large capacity drives were long sought after by BBS sysops before
+    affordable hard drives became available.
+  - 9060, 9090, these hard disk drives would be a companion drive to a flaoppy
+    drive as there is no removalbe disk access, and as far as software support,
+    it is probably exclusive to business programs, as these drives sold for
+    multiple thousands of dollars at the time.
+  - 8280 This dual 8" drive would certainly be a show stopper, but as far as
+    software we are looking at even a smaller set of business titles that
+    support it.
+ Printers:
+  - The PET printers are not all that feature laden, the also are big, usually
+    quite noisy and slow.  When looking at printers some models are Tractor
+    Feed or Friction only, keep that in mind, some are daisy-wheel and
+    not dot-matrix, also a factor.  There are a handfull of PET to Parallel or
+    RS-232 printer interfaces out there which will allow you to print to a
+    generic dot matrix (at the expense of no graphics on most adapters) but
+    those may be hard to get as well.
+
+ARE THERE ANY PET COMPUTER EMULATOR PROGRAMS AVAILABLE?
+
+  There are only a few, the first popular one was produced by Commodore for
+  the Commodore 64, it is able to run many PET BASIC games with POKE commands
+  properly converted and a little M/L.  It's intent was to help those PET
+  owners who upgraded to a 64 back in the early 80s...
+  --------------------
+  For non-Commodore platforms there is VICE, Versatile Commodore Emulator,
+  which runs under Unix or MS-DOS/Windows 95 machines and can emulate:
+  -C128
+  -C64
+  -VIC20
+  -PET 2001
+  -PET/CBM 3032
+  -PET/CBM 4032
+  -CBM 8032
+  -CBM 8296
+  The older 0.11.0 version also emulated the C128's 80 column mode, but
+  because of lack of time in development it is not supported any longer
+  - i.e. not by the current development team.
+
+  The VICE Site (which includes an FTP section for downloading VICE)
+  is located at:
+   <A href="http://www.cs.cmu.edu/~dsladic/vice/vice.html">http://www.cs.cmu.edu/~dsladic/vice/vice.html</A>
+....-....+....-....+....-....+....-....+....-....+....-....+....-....+....-....+
+</PRE>
+<HR>
+<EM>Back to Table of 
+Contents.</EM> </BODY></HTML>

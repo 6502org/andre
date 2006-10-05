@@ -1,0 +1,2846 @@
+<html><head><title>LOS-96 Handbuch</title>
+<LINK HREF="../petindex.css" REL="stylesheet" TYPE="text/css">
+</head><body><p>
+This document has been slightly html-ized by A. Fachat</p><p>
+A postscript version that shows more text formatting is available in
+<a href="Los96-de.ps.gz">Los96-de.ps.gz</a></p><p>
+Tue Apr  7 10:50:13 MEST 1998
+</p><hr><pre>
+CBM 8096
+
+Commodore Computer 
+
+Users Manual
+
+e-Version 1.0, as of 20 Mar 1998
+
+
+
+This is the (german) electronic copy of the 8096 Users 
+Manual. It is in fact an addendum to the CBM 8032 Users 
+Manual, as the 8096 is an 8032 with an additional 64kByte 
+RAM on an extension board. It describes the Commodore 
+LOS-96 `operating system`, that is, in fact, an improved 
+BASIC. It loads into the normal 32k and uses the 64k of 
+the expansion board for BASIC program (32k) and variables 
+(32k). The appendices that describe the hardware 
+differences are missing, though.
+
+The document has been scanned and OCR's by A. Fachat in 
+march 1998, after receiving a copy from Olaf Seibert 
+(Thanks for that!). Proofreading by A. Fachat also.
+
+The rest of the document is german, so only one remark: 
+The printer that printed this document couldn't print the 
+"^" and the "&lt;". Also it couldn't print the "@" and the 
+"#" and replaces them with "&szlig;" and "&para;" resp.
+
+In addition to this document the Users Manual for the 
+8096 LOS-KIT is available. This Kit is an improved 
+programming environment for LOS-96.
+
+
+
+
+Dies ist das deutsche Bedienungshandbuch des Commodore 
+8096 Computers (in elektronischer Form). In der Tat ist 
+es nur ein Addendum zum CBM 8032 Handbuch, da der 8096 
+nur ein 8032 mit zus&auml;tzlichen 64kByte RAM auf einer 
+Erweiterungsplatine ist. Es beschreibt Commodores LOS-96 
+`Betriebssystem', das eigentlich nur ein verbessertes 
+BASIC ist. Es wird in die normalen 32k RAM geladen und 
+nutzt die 64k des Erweiterungsboards f&uuml;r Variablen (32k) 
+und BASIC Programm (32k). Die Anh&auml;nge die die Hardware 
+beschreiben fehlen leider.
+
+Das Dokument wurde von im M&auml;rz 1998 von A. Fachat 
+gescannt und OCR't, nachdem eine Kopie von Olaf Seibert 
+zur Verf&uuml;gung gestellt wurde (Vielen Dank!). Gegengelesen 
+wurde ebenfalls von A. Fachat.
+
+Der Drucker, der das Original gedruckt hat konnte kein 
+"^" und kein "&lt;" drucken. Au&szlig;erdem ersetzte er das "@" 
+durch ein "&szlig;" und das "#" durch ein "&para;".
+
+Zus&auml;tzlich zu diese Dokument gibt es das 
+Bedienungshandbuch zum 8096 LOS-KIT, einer verbesserten 
+Programmierumgebung f&uuml;r LOS-96
+
+
+
+20. Mar. 1998  A. Fachat<p><hr><p>
+<img src="../imgs/LosKit-de-title.gif" alt="[Titlepage Scan]">
+<p><hr><p>Inhaltsverzeichnis
+
+1. &Uuml;ersicht &uuml;ber Eigenschaften und &Auml;nderungen gegen&uuml;ber 
+BASIC-4
+
+2. Generelle Eigenschaften
+
+2.1 AUTO-Start
+2.2 LOAD , "prg"
+2.3 Aufteilung des Speicherplatzes
+2.4 Logische und physikalische Adressen 
+2.5 &Auml;nderung der Aufteilung des BASIC-Speicherbereiches
+2.6 BASIC-Stack 
+2.7 Programm&auml;nderungen ohne Variablenverlust / Overlay
+2.8 Neue Tasten-Funktionen durch ESC
+2.9 Automatische Zeilennummerierung
+2.10 Eingabe &uuml;berlanger Zeilen
+2.11 &Uuml;ber den Gebrauch von vielen Statements in einer 
+Programm-Zeile
+2.12 Fehlermeidungen
+2.13 Cassettenverwaltung und Floppy-Voreinstellung
+2.14 INPUT kann 255 Bytes lesen
+2.15 Zero-Page-Adressen / Tastaturpuffer
+2.16 ROM
+
+3. Ge&auml;nderte oder neue BASIC-Anweisungen
+
+3.1 LOAD
+3.2 SAVE
+3.3 VERIFY
+3.4 LIST
+3.5 DELETE
+3.6 FRE
+3.7 CLR
+3.8 REDIM
+3.9 RESTORE
+3.10 POKE / PEEK / SYS / WAIT
+3.11 Getstring
+3.12 Instring
+3.13 Midstring
+3.14 ASC / CHR$
+3.15 CATALOG$
+3.16 IF THEN ELSE
+3.17 ON ERROR GOTO / EL, EC, EO / RESUME
+3.18 DISPOSE
+3.19 INPUT / PRINT@(zeile,spalte)
+3.20 USING
+3.21 INPUT USING
+
+Anh&auml;nge:
+Einbau der Platine
+Eigenschaften der Hardware / Umschaltung der 32K-Pages
+Kurze Beschreibung des Disketteninhaltes<p><hr><p>1. &Uuml;bersicht &uuml;ber Eigenschaften von LOS-96 und &Auml;nderungen 
+gegen&uuml;ber BASIC-4
+
+Alle Eigenschaften von BASIC-4 bzw. des CBM 8032 werden 
+als bekannt vorausgesetzt. Dieses Handbuch ist eine 
+Erg&auml;nzung zum CBM 8032 Handbuch, keinesfalls ein Ersatz 
+daf&uuml;r!
+
+LOS-96 (Loadable Operating System for 96K Machine) ist 
+ein BASIC-4 kompatibles BASIC/Betriebssystem f&uuml;r CBM 8096 
+(CBM 8032 mit 64K-Erweiterungsplatine von Commodore).
+
+LOS-96 wird auf Tastendruck von Diskette in den RAM 
+geladen und stellt f&uuml;r BASIC 64K Arbeitsspeicher zur 
+Verf&uuml;gung, unterteilt in 32K f&uuml;r Programm und 32K f&uuml;r 
+Variable.
+
+Die folgenden Stichpunkte sollen eine schnelle &Uuml;bersicht 
+geben. Ausf&uuml;hrliche Informationen dar&uuml;ber finden sich 
+anschlie&szlig;end.
+
+BASIC-Stack (unbegrenzte FOR / GOSUB Tiefe)
+Programm&auml;nderung ohne Variablenveriust
+vereinfachtes OVERLAY
+ESC-Tastenfunktionen f&uuml;r ASCII-CTL-Codes und Screen 
+Editor
+Automatische Zeilennumerierung
+l&ouml;schen von Zeilenbereichen
+BASIC-Zeilen bis zu 250 Bytes L&auml;nge
+Fehlermeldung mit Angabe der Fehlerstelle
+keine Rekorderverwaltung mehr
+Voreinstellung 8 f&uuml;r Ger&auml;t bei LOAD / SAVE / VERIFY
+INPUT kann 255 Zeichen lesen
+CALL bzw FUNC f&uuml;r zus&auml;tzlich ladbare Maschinen-Routinen
+
+erweiterte und neue BASIC-Anweisungen siehe 
+Inhaltsverzeichnis<p><hr><p>2. Generelle Eigenschaften
+
+2.1 Auto-Start
+
+Wenn LOS-96 die erste Datei auf Diskette ist, kann nach 
+dem Einschalten der Anlage LOS-96 mit SHIFT/RUN geladen 
+und gestartet werden.
+
+Anderenfalls wird LOS-96 aus BASIC-4 durch DLOAD "LOS*" 
+geladen und mit RUN gestartet.
+
+In jedem Fall versucht LOS-96 nach seinem Start das 
+Programm "START*" von einer der beiden Disketten von 
+Ger&auml;t 8 zu laden und zu starten. Dadurch kann das 8096-
+System nach dem Einschalten durch einen Tastendruck bis 
+auf Anwenderprogrammebene gebracht werden.
+
+Ist das Programm "START*" nicht vorhanden, wird mit FILE 
+NOT FOUND ERROR abgebrochen. Diese Meldung hat f&uuml;r 
+Rechner und Floppy keine weiteren Konsequenzen; der 
+Rechner wartet im Direktmodus auf Anweisungen.
+
+Durch READY (ohne Punkt) k&ouml;nnen Sie sehen, da&szlig; der 
+Rechner nicht unter BASIC-4 (READY.) arbeitet.
+
+2.2 BASIC-4-Programme laden
+
+BASIC-4 Programme laufen unter LOS-96, sofern 
+ausschlie&szlig;lich in BASIC programmiert wurde. Da aber 
+BASIC-4 Programme ab Adresse 1025 geladen werden und LOS-
+96-Programme normalerweise ab 65537, mu&szlig; durch ein Komma 
+unmittelbar nach LOAD erzwungen werden, da&szlig; das Programm 
+an den aktuellen Anfang des BASIC-Programmbereiches 
+geladen wird:
+
+load , "altes programm"
+
+ACHTUNG:
+
+Wenn 'alte' BASIC-Programme durch load ohne Komma geladen 
+werden, st&uuml;rzt LOS-96 ab, da das BASIC-Programm ins 
+Betriebssystem geladen wird!<p><hr><p>2.3 Aufteilung des Speicherplatzes
+
+
+                                              physik.   logisch
+128K   ------------------------------------    65536     131072
+       -------
+                     Vektoren und 
+                     Umschalter
+                      ---------------------    65520     131056
+                      ---
+                      ---------------------   (52/53)
+                      ---
+                     Strings
+                     ---------------------    (48/49)
+                     ---
+      Variablenspe-  ---------------------    (46/47)
+      icher          ---
+                     Indizierte Variable 
+                     (Felder)
+                     ---------------------    (44/45)
+                     ---
+                     Einfache Variable        (42/43)
+96K    ------------------------------------    32768     98304
+       -------
+96K    ------------------------------------    65536     98304
+       -------
+                     Vektoren und 
+                     Umschalter
+                     ---------------------     65520     98288
+                     ---
+                     ---------------------   (241/242)
+                     ---
+      Programmspe-   BASIC - Stack
+      icher
+                     ---------------------   (239/240)
+                     ---
+                     ---------------------   (248/249)
+                     ---
+                     BASIC - Programm
+                     ---------------------    (40/41)
+                     ---
+64K    ------------------------------------    32768     65536
+       -------
+64K    ------------------------------------    65536     65536
+       -------
+      ROM - Bereich (ungenutzt) / E-A-
+      Ports / Bildschirm (wie 8032)
+32K    ------------------------------------    32768     32768
+       -------
+                     Verl&auml;ngerung f&uuml;r 
+                     BASIC-PRG oder 
+                     Variable oder eigene 
+                     Maschinenprog. oder 
+                     System-Erweiterungen
+                     ---------------------  (1252/1253)
+                     ---
+                     Betriebssystem
+      Betriebssystem ---------------------     1024
+                     ---
+                     BS-Arbeitsbereich
+                     ---------------------      768
+                     ---
+                     Input-Puffer
+                     ---------------------      512
+                     ---
+                     Prozessor-Stack
+                     ---------------------      256
+                     ---
+                     Zeropage
+0      ------------------------------------                0
+       -------
+<p><hr><p>2.4   Logische und physikalische Adressen
+
+Da der Prozessor 6502 nur 64K adressieren kann, mu&szlig; der 
+logische Adressraum von 128K durch Umschalten (Paging) 
+von Speicherbereichen auf den physikalischen Adressraum 
+von 64K abgebildet werden. Eine kleine Skizze soll die 
+Anordnung der Speicherb&auml;nke veranschaulichen:
+
+
+
+    32 - 64    64 - 96   96 - 128
+64K--------- ---------- ----------
+      ROM   :    PRG   :   VAR
+32K-------------------------------
+     B E T R I E B S S Y S T E M
+0  -------------------------------
+
+
+Der gesamte logische Adressraum kann durch die BASIC-
+Befehle POKE, PEEK, SYS und WAIT erreicht werden. Die 
+erforderlichen Umschaltungen werden automatisch 
+vorgenommen.
+
+Dagegen enthalten alle Zeiger (z.B. 52/53) physikalische 
+Adressen! Diese Diskrepanz ist unbedingt zu beachten, 
+wenn durch Zeiger die Aufteilung des Arbeitsspeichers 
+manipuliert werden soll.
+
+
+2.5 &Auml;nderung der Aufteilung des BASIC-Speicherbereiches
+
+Der 8096 verf&uuml;gt &uuml;ber 96K RAM. Davon ben&ouml;tigt das 
+Betriebssystem 32K. Die 64K f&uuml;r das BASIC-Programm teilen 
+sich auf in 32K f&uuml;r das Programm und 32K f&uuml;r die 
+Variablen.
+
+F&uuml;r Sonderf&auml;lle sind folgende &Auml;nderungen der Standard-
+Einteilung m&ouml;glich:
+
+Zwischen der Obergrenze der Variablenverwaltung (52/53) 
+und der Adresse 65520 kann ein vor BASIC gesch&uuml;tzter 
+Bereich gebildet werden, indem (52/53) entsprechend 
+heruntergesetzt wird. Wollen Sie z.B. 10K reservieren, 
+schreiben Sie an den Anfang Ihres Programmes die 
+Befehlsfolge:
+
+10 a = 20000
+ : int(a/256)
+ : poke 52,a-h*256
+ : poke 53,h
+ : clr
+
+Achten Sie unbedingt darauf, da&szlig; a nicht gr&ouml;&szlig;er als 65519 
+sein darf; dies w&uuml;rde zum Absturz des Systems f&uuml;hren!
+
+Analog dazu k&ouml;nnen Sie am oberen Ende des 
+Programmbereiches ebenfalls einen gesch&uuml;tzten Bereich 
+reservieren, indem Sie die Zellen (241/242) mit den 
+entsprechenden Werten versehen. Die Grenze 65519 gilt 
+hier ebenfalls.
+
+Alternativ oder zus&auml;tzlich zur Reservierung am oberen 
+Ende kann durch &Auml;nderung der Werte in (42/43) bzw. 
+(40/41) am unteren Ende ein reservierter Bereich 
+geschaffen werden, indem die Inhalte der Zeiger gr&ouml;&szlig;er 
+als 32766 gemacht werden.
+
+Umgekehrt kann entweder der Programm oder 
+Variablenbereich (exklusiv!) nach unten verl&auml;ngert 
+werden, indem die Inhalte der Zeiger kleiner als 32768 
+gemacht werden. Dabei d&uuml;rfen aber das Betriebssystem 
+selbst und eventuelle Erweiterungsbereiche nicht verletzt 
+werden.<p><hr><p>Bei &Auml;nderung des Programm-Anfanges ist folgendes zu 
+beachten:
+
+In die Zelle Untergrenze-1 mu&szlig; 0 gepokt werden:
+
+10 a = 30000
+ : int(a/256)
+ : pake 40,a-h*256
+ : poke 41,h
+ : if a-1 (kleiner als) 32768 then of=0
+ : eise of=32768
+20 poke a-l+of,0
+ : new
+
+Diese Anweisungen k&ouml;nnen Sie nur dann im Programm 
+ausf&uuml;hren, wenn a nicht inner-
+halb des jetzigen Programmbereiches (40/41) - (248/249) 
+liegt. Anderenfalls m&uuml;ssen Sie diese Befehle im 
+Direktmodus ausf&uuml;hren.
+
+LOAD l&auml;dt Programme normalerweise ab der Stelle, ab der 
+sie abgespeichert wurden. Wenn Sie nicht sicher sind, ob 
+ein zu ladendes Programm ab der Stelle (40/41) 
+abgespeichert wurde, m&uuml;ssen Sie es durch 'load , "name' 
+(mit Komma) laden!
+
+
+2.6 BASIC-Stack
+
+Die Verwaltung der GOSUB-RETURN und FOR-NEXT Strukturen 
+liegt nicht mehr wie beim 8032 im Prozessorstack, sondern 
+in einem eigenen BASIC-Stack. Dieser Stack w&auml;chst ab der 
+Obergrenze des Programmspeichers nach unten dem 
+Programmende entgegen. &Auml;hnlich wie bei der 
+Stringverwaltung teilt sich also das Programm und der 
+Stack dynamisch einen Speicherbereich.
+
+Dies hat folgende Konsequenzen: Die beim 8032 vorhandene 
+Begrenzung auf z.B. maximal 26 GOSUB-Ebenen entf&auml;llt. In 
+der Regel wird die neue Fehlermeldung
+
+BASIC STACK OVERFLOW ERROR
+
+also kaum vorkommen. Andererseits haben Sie nicht eine 
+einzige Ebene zur Verf&uuml;gung, wenn Sie den BASIC-Speicher 
+bis zum letzten Byte mit Programm vollstopfen. Achten Sie 
+also darauf, da_ Sie nach dem Laden eines Programms 
+wenigstens 200 Bytes frei haben (fre(0)). Exakt ben&ouml;tigt 
+wie beim 8032 jedes GOSUB 5 Bytes und jede FOR-Schleife 
+18 Bytes auf dem Stack. F&uuml;r 20 Unterprogramm-Ebenen und 5 
+Schleifen-Ebenen ben&ouml;tigen Sie also 190 Bytes 
+(20*5+10*18) f&uuml;r den Stack.
+
+Die Abwicklung der Ausdrucksauswertung liegt weiterhin im 
+Prozessor-Stack, hier gilt also noch die Einschr&auml;nkung 
+auf 10 Klammerebenen.
+
+Der Zeiger auf die Untergrenze des Stack steht in 
+(239/240). Der Stack kann nach unten wachsen bis 
+(248/249), der Obergrenze des BASIC-Programms.
+
+Beachten Sie in Zusammenhang mit dem Stack die neue 
+Anweisung DISPOSE.<p><hr><p>2.7      Programm&auml;nderung ohne Variablenveriust / Overlay
+
+Durch die aus anderen Gr&uuml;nden erforderliche Trennung von 
+Programm- und Variablenspeicher ergibt sich zwangsl&auml;ufig, 
+da&szlig; Variable wegen Programm&auml;nderungen nicht 
+notwendigerweise gel&ouml;scht werden m&uuml;ssen. Dies bringt sehr 
+gro&szlig;e Annehmlichkeiten in der Testphase.
+
+Aus den-selben Grund ist f&uuml;r Programmoverlay nun nicht 
+mehr die Reservierung des ben&ouml;tigten Speicherplatzes 
+erforderlich.
+
+In der Stringverwaltung mu&szlig;te die Piatz-Optimierung 
+entfallen, die String-Konstante im Programm verwaltet 
+hat. Ausnahmslos jeder Inhalt von Stringvariablen steht 
+nun im Stringarbeitsbereich! Damit ist eine f&uuml;r Overlay 
+t&uuml;ckische Eigenschaft der Speicherverwaltung entfernt 
+worden.
+
+Trotzdem sind bei Overlay bzw. nach Programm&auml;nderungen 
+einige Punkte zu beachten:
+
+Wie beim 8032 legt die Definition einer Funktion (DEF FN) 
+einen Zeiger in einer Pseudovariablen ab. Dieser Zeiger 
+kennzeichnet die Stelle, wo die Funktion im 
+Programmspeicher beginnt. Wird nun nach Abarbeitung der 
+Definition das Programm ge&auml;ndert, sei es durch &Auml;nderungen 
+von Hand oder durch LOAD beim Overlay, wird bei Aufruf 
+der Funktion eine Fehlermeidung erfolgen, da an der durch 
+den Zeiger gemerkten Stelle nun etwas nicht verwertbares 
+steht.
+
+Funktionsdefinitionen m&uuml;ssen also nach Programm&auml;nderungen 
+wiederholt werden!
+
+F&uuml;r READ-DATA, GOSUB-RETURN und FOR-NEXT existieren 
+ebenfalls Zeiger, die durch Programm&auml;nderungen nicht 
+ver&auml;ndert werden, also potentiell falsch sein werden. 
+Wenn also das Programm nach &Auml;nderungen auf READ, RETURN 
+oder NEXT l&auml;uft, kann es zu Fehlermeldungen kommen.
+
+Strenggenommen sind zwei F&auml;lle zu unterscheiden. Bei 
+&Auml;nderungen am Programm verschiebt sich nur der 
+Programmbereich ab der &Auml;nderungsstelle bis zum 
+Programmende. Der Bereich vom Programmanfang bis zur 
+&Auml;nderungsstelle bleibt dagegen unver&auml;ndert. Wenn die 
+entsprechenden Zeiger auf den vorderen Bereich verweisen, 
+gibt es beim Weiterlauf keine Komplikationen.
+
+Schlie&szlig;lich ist noch CONT zu erw&auml;hnen. Sogar diese 
+Anweisung ist nach Programm&auml;nderungen prinzipiell 
+zugelassen. Selbstverst&auml;ndlich gelten die eben gemachten 
+Hinweise entsprechend.
+
+Zusammenfassend kann man sagen: Wenn Sie die gemachten 
+Hinweise und Unterscheidungen verstehen und in jedem 
+Einzelfall anwenden, k&ouml;nnen Sie nach &Auml;nderungen am 
+Programm das Programm durch CONT oder GOTO warm starten.
+
+Sollten Sie aber diese &Uuml;berlegungen nicht durchf&uuml;hren 
+wollen, k&ouml;nnen Sie, wie bisher ausschlie_lich m&ouml;glich, 
+das Programm durch RUN kalt starten. Allerdings d&uuml;rfen 
+Sie in diesem Fall nicht RUN zeile durch GOTO zeile 
+ersetzen, da sonst doch warm gestartet wird.
+<p><hr><p>2.8 Neue Tasten-Funktionen durch ESC
+
+Die ESC-Taste wird wie eine CONTROL-Taste behandelt; wird 
+sie gleichzeitig mit anderen Tasten gedr&uuml;ckt, haben diese 
+eine Sonderbedeutung bzw. erzeugen andere Codes als sie 
+bisher &uuml;ber die Tastatur erreichbar waren:
+
+ESC
+
+CURS UP          Bildschirm nach unten rollen
+CURS DOWN        Bildschirm nach oben rollen
+(SHIFT)
+CURS RIGHT       Zeile rechts vom Cursor l&ouml;schen
+CURS LEFT        Zeile links vom Cursor l&ouml;schen
+(SHIFT)
+DEL              Zeile l&ouml;schen
+INST (SHIFT)     Zeile einf&uuml;gen
+HOME             Bildschirmfenster links oben definieren
+CLR (SHIFT)      Bildschirmfenster rechts unten 
+                 definieren
+TAB              n&auml;chstes Blank suchen
+TAB (SHIFT)      n&auml;chstes Nicht-Blank suchen
+STOP             Sprung in Monitor (wird im Interrupt 
+                 abgefragt)
+RETURN           Cursor in erste Spalte der n&auml;chsten 
+                 Zeile, Flags l&ouml;schen, Zeile nicht 
+                 &uuml;bernehmen
+
+Bei diesen Funktionen ist die automatische Dauerfunktion 
+unterbunden, da ihr unbeabsichtigtes Einsetzen &Auml;rger 
+verursachen kann. Mit der REPEAT-Taste ist aber auch hier 
+Dauerfunktion m&ouml;glich.
+
+Werden die Buchstabentasten gleichzeitig mit ESC 
+gedr&uuml;ckt, so ergeben sich die ASCII-Control-Codes von 0 
+bis 31 (z.B. ESC a = 1).
+
+Wird die ESC-Taste alleine gedr&uuml;ckt, so hat sie dieselbe 
+Wirkung wie beim 8032. Wird sie zusammen mit anderen 
+Tasten gedr&uuml;ckt, so hat sie nicht diese flag-l&ouml;schende 
+Wirkung! (Ausnahme: RETURN)
+
+
+2.9 Automatische Zeilennummerierung
+
+Bei der Eingabe von Programmzeilen wird die n&auml;chste 
+Zeilennummer automatisch vorgegeben, wenn die 
+Zeilennummer der gerade durch RETURN &uuml;bergebenen Zeile in 
+der ersten Spalte beginnt. Dies ist bei der Eingabe von 
+neuen Zeilen die Regel.
+
+Die Differenz aus der gerade eingegebenen Nummer zur 
+vorhergehenden im Programm bestimmt die Differenz zur 
+n&auml;chsten Nummer. Vorgegebene Nummern k&ouml;nnen bei Bedarf 
+ohne weiteres ge&auml;ndert werden.
+
+Beispiel:
+
+Die Zeile 15 ist bereits eingegeben und Sie &uuml;bergeben 
+durch RETURN die Zeile
+20.Als Vorgabe erhalten Sie Zeile 25:
+
+15 ... (bereits eingegeben)
+20     (gerade durch RETURN &uuml;bergeben)
+25     (Vorgabe durch auto-number)
+
+Die n&auml;chste Nummer wird nicht vorgegeben, wenn sie 
+bereits im Programm existiert, oder wenn zwischen der 
+vorzugebenden und der eben durch RETURN &Uuml;bergebenen 
+bereits eine im Programm vorkommt.<p><hr><p>Beispiel:
+
+15 ... (bereits vorhanden)
+25 ... (bereits vorhanden)
+20 ... (gerade durch RETURN &uuml;bergeben)
+
+25 wird nicht vorgegeben, da sonst unbeabsichtigt eine 
+Zeile gel&ouml;scht bzw. &uuml;berschrieben werden k&ouml;nnte.
+
+15 ... (bereits vorhanden)
+25 ... (bereits vorhanden)
+21 ... (gerade durch RETURN &uuml;bergeben)
+
+27 m&uuml;sste vorgegeben werden. Da dann aber die Zeile 25 
+zwischen 21 und 27 liegen w&uuml;rde, wird nichts vorgegeben, 
+da es normalerweise nicht beabsichtigt ist, zwischen 
+automatisch nummerierten Zeilen 'heimlich' noch andere zu 
+haben.
+
+Die automatische Auto-Funktion ist anfangs etwas 
+ungewohnt, wenn Sie gew&ouml;hnt sind, in Nummern-Bl&ouml;cken zu 
+programmieren.
+
+Beispiel:
+
+Die Zeilen 10,20 und 30 seien vorhanden und Sie geben 
+Zeile 100 ein, weil ein neuer Programmabschnitt beginnt. 
+Dann wird als n&auml;chste Zeile 170 vorgegeben. &Uuml;berschreiben 
+Sie die 170 einfach durch 110 und die n&auml;chste Vorgabe 
+wird die dadurch definierte Schrittweite enthalten.
+
+Sobald die Zeilennummer nicht in der ersten Spalte steht 
+(z.B. nach LIST), ist Auto abgeschaltet. Dadurch werden 
+u.a. unbeabsichtigte Vorgaben beim Edieren von bereits 
+vorhandenen Programmen vermieden.
+
+Eine Zeilennummer mit leerer Zeile dahinter l&ouml;scht die 
+entsprechende Zeile und schaltet AUTO ab.
+
+2.10 Eingabe &uuml;berlanger Zeilen
+
+Der Interpreter des 8096 ist in der Lage, bis zu 250 
+Bytes lange Zeilen zu verarbeiten. Diese L&auml;nge bezieht 
+sich auf den &uuml;bersetzten Zustand, wenn die Befehlsw&ouml;rter 
+in jeweils 1 Byte codiert sind. Eine derart lange Zeile 
+wird auf dem Bildschirm mehrere Zeilen in Anspruch 
+nehmen. Um sie dennoch ein- und ausgeben zu k&ouml;nnen, sind 
+die folgenden Regeln wichtig:
+
+Der Anfang einer Programmzeile, also die erste 
+Bildschirmzeile von mehreren, die eine Programmzeile 
+bilden sollen, mu&szlig; in Spalte 1 oder 2 beginnen! Alle 
+Folgezeilen m&uuml;ssen in Spalte 3 oder dahinter beginnen. 
+Das Ende einer Programmzeile wird durch eine Leerzeile 
+oder durch eine Zeile, die in Spalte 1 oder 2 beginnt, 
+angegeben.
+
+Die Tastenfunktionen DEL und INST beziehen sich immer auf 
+eine ganze Programmzeile. Wenn in Spalte 80 ein Zeichen 
+geschrieben wurde, wird das n&auml;chste automatisch in Spalte 
+3 (nicht 1) geschrieben.<p><hr><p>Bei der Eingabe werden alle Blanks, die nicht zwischen 
+Anf&uuml;hrungszeichen oder hinter REM stehen, ignoriert. Dies 
+hat zwei Konsequenzen: Erstens kann nun LIST Blanks nach 
+Statements und einigen bestimmten Zeichen ausgeben, 
+wodurch die Lesbarkeit wesentlich verbessert wird. 
+Trotzdem artet die &Uuml;bernahme solcher Zeilen nicht in 
+Platzverschwendung aus. Zweitens k&ouml;nnen Sie z.B. 
+Statement f&uuml;r Statement untereinander schreiben und 
+trotzdem wird eine kompakte Programmzeile daraus. Die 
+Sonderform LIST, (Komma nach LIST) gibt Programmzeiien 
+sogar in dieser Form aus:
+
+10 for i = 1 to 20
+ : a = a-5
+ : next
+
+In derselben Form kann die Zeile wieder durch RETURN 
+&uuml;bernommen werden.
+
+Es hat keinen Sinn, hier alle Einzelheiten des Programm-
+Zeilen-Editors zu erkl&auml;ren. Geben Sie einfach 
+Programmzeilen verschiedener L&auml;ngen ein. Sie werden 
+sehen, der Editor denkt ganz brauchbar mit.
+
+Drei Anmerkungen zu Sonderf&auml;llen sollen aber 
+&Uuml;berraschungen vermeiden helfen:
+
+Wenn die Zeile intern l&auml;nger als 250 Bytes w&uuml;rde, darf 
+sie nicht &uuml;bernommen werden. In diesem Fall blinkt der 
+Cursor auf dem letztm&ouml;glichen Zeichen, und ein L&auml;uten 
+ert&ouml;nt. Gehen Sie dann mit dem Cursor so weit nach links, 
+bis Sie eine passende Stelle f&uuml;r das Zeilenende finden 
+und l&ouml;schen Sie den &uuml;berstehenden Teil z.B. durch ESC 
+CURSOR RECHTS und dr&uuml;cken RETURN.
+
+Innerhalb von Anf&uuml;hrungszeichen werden Blanks nicht 
+ignoriert. Wenn Sie nun innerhalb einer &uuml;berlangen 
+Proqrammzeile zus&auml;tzlich eine Stringkonstante einbauen 
+wollen, und nach dem &ouml;ffnen der Anf&uuml;hrungszeichen INST 
+dr&uuml;cken, um Platz zu schaffen, werden sofort alle 
+Folgezeilen mitgeschoben, obwohl in derselben Zelle noch 
+gen&uuml;gend Platz w&auml;re. Diese Reaktion zeigt, da&szlig; der Editor 
+ohne weiteres zeilen&uuml;berlappende Stringkonstanten 
+behandeln kann.
+
+Da eine Programmzeile mehr als 25 Statements haben kann, 
+kann eine durch LIST, (LIST und Komma) ausgegebene Zeile 
+nicht immer &uuml;bernommen werden.
+
+Wenn Sie anfangs noch unsicher sind, wo Zeilen enden, 
+schaffen Sie einfach &uuml;ber und unter den einzugebenden 
+Zeilen Leerzeilen. Dieses Kriterium ist am leichtesten zu 
+verstehen. Vor allem bei Kommandos im Direktmodus 
+&uuml;bersieht man manchmal in der Eile eine ungewoilte 
+Zusammengeh&ouml;rigkeit von Zeilen und handelt sich dadurch 
+Fehlermeidungen ein.
+
+Die Taste RETURN hat zusammen mit zwei anderen Tasten 
+drei verschiedene Wirkungen: RETURN alleine &uuml;bernimmt 
+eine evt. &uuml;berlange Programmzeile und stellt den Cursor 
+in die erste oder zweite Spalte der n&auml;chsten 
+Programmzeile (s. Auto).
+
+SHIFT-RETURN &uuml;bernimmt nicht, l&ouml;scht keine Flags und 
+bringt den Cursor in die dritte Spalte der n&auml;chsten 
+Bildschirmzeile.
+
+ESC-RETURN &uuml;bernimmt nicht, l&ouml;scht das Control- und RVS-
+Flag (Anf&uuml;hrungszeichen /lnsert) und bringt den Cursor in 
+die erste Spalte der n&auml;chsten Bildschirmzeile.
+
+Den gleichen Effekt k&ouml;nnen Sie auch mit Hilfe der Cursor-
+Tasten erzielen. Die letzten beiden RETURN-Funktionen 
+sollen nur ein Sonder-'Tabulator' sein.
+
+Achtung: Die Eigenschaften bez&uuml;glich &uuml;berlanger Zeilen 
+hat der Editor nur im Direktmodus, nicht aber im INPUT-
+Modus!<p><hr><p>2.11 &Uuml;ber den Gebrauch von vielen Statements in einer 
+Prograrnm-Zeile
+
+Manche Programmierer lehnen mehrere Statements hinter 
+einer Zeilennummer ab, weil das Programm dadurch 
+unleserlich werde. Abgesehen davon, da&szlig; man von dieser 
+M&ouml;glichkeit nicht Gebrauch machen mu&szlig;, wird die 
+Leserlichkeit durch die Funktion 'LIST,100-300' 
+mindestens gleichgestellt der Nummerierung jeder 
+einzelnen Anweisung.
+
+Und abgesehen davon, da&szlig; mehrere Statements pro 
+Zeilennummer aufgrund der internen Organisation Platz und 
+Ausf&uuml;hrungszeit sparen, kann so ein Programm durchaus 
+logisch &uuml;bersichtlicher sein- Ein BASIC-Programm ist u.a. 
+deshalb schwer zu lesen, weil an jede Stelle ein Sprung 
+erfolgen kann und u.a. dadurch Anweisungs-Bl&ouml;cke nicht zu 
+erkennen sind. Wenn man nun konsequent ganze Bl&ouml;cke 
+hinter eine Zeilennummer schreibt, sind sie ohne weiteres 
+als Einheit zu erkennen. Vor allem bei FOR-NEXT Schleifen 
+oder IF THEN ELSE Entscheidungen wird dadurch auch 
+optisch Struktur geschaffen (IF THEN ELSE mu&szlig; sogar in 1 
+Zeile stehen).
+
+Die M&ouml;glichkeiten des Programm-Editors machen ein 
+nachtr&auml;gliches Teilen oder Zusammenf&uuml;gen von Zeilen zu 
+einer Angelegenheit von Sekunden. Deshalb k&ouml;nnen unn&ouml;tig 
+getrennte Zeilen jederzeit zusammengef&uuml;gt, bzw. zu lange 
+Zeilen leicht getrennt werden.
+
+2.12 Fehlermeidungen
+
+Wenn das Programm mit einer Fehlermeldung 'aussteigt', 
+wird automatisch die betreffende Programmzeile gelistet 
+und der Cursor an die Stelle gesetzt, die den Interpreter 
+zu dieser &uuml;blicherweise nervenaufreibenden Ma&szlig;nahme 
+getrieben hat. Damit sollten Sie in der Lage sein, sich 
+in seine Schwierigkeiten zu versetzen. Nat&uuml;rlich d&uuml;rfen 
+Sie die angezeigte Fehlerstelle nicht zu w&ouml;rtlich nehmen, 
+sie ist nur ein ungef&auml;hrer Hinweis.
+
+
+2.13 Rekorderverwaltung und Floppy-Voreinstellung
+
+Die Rekorderverwaltung wurde vollst&auml;ndig entfernt, da 
+dieses Speichermedium den Anforderungen eines Systems mit 
+64K Arbeitsspeicher nicht mehr gewachsen ist.
+
+F&uuml;r die Befehle LOAD, SAVE und VERIFY bedeutet dies, da&szlig; 
+der Ersatzwert f&uuml;r die nicht angegebene Ger&auml;tenummer 
+nicht mehr 1, sondern 8 ist.
+
+2.14 INPUT kann 255 Bytes lesen
+
+Da dieBegrenzung auf 80 Zeichen vor allem in Zusammenhang 
+mit REL-Dateien einige Probleme gebracht hat, wurde der 
+BASIC-INPUT-BUFFER auf 1 Page (256 Bytes) verl&auml;ngert, 
+wodurch nun der maximale Inhalt eines Strings gelesen 
+werden kann. (Trotzdem wurde durch GET$ eine 
+bemerkenswerte Alternative zum INPUT implementiert)
+
+2.15 Zero-Page u.a. Adressen
+
+Die Verwendung der Zero-Page ist in wesentlichen Teilen 
+gleich geblieben. Einige Zellen haben zus&auml;tzlich zu ihrer 
+bisherigen Bedeutung neue Verwendungen erfahren. Die 
+Zellen f&uuml;r die Rekorderverwaltung wurden zum Teil neu 
+belegt.
+
+Der Input-Buffer belegt die ganze Page 2.
+Der Tastaturpuffer liegt ab Zelle 798.<p><hr><p>2.16     ROM
+
+Zweck
+
+ROM schaltet das ROM-Betriebssystem (BASIC-4) ein und 
+dadurch das RAM-Betriebssystem (LOS-96) aus.
+
+Format
+
+ROM
+
+Anmerkungen
+
+Beim Start von LOS-96 wird Zera-Page und Stack gerettet. 
+Durch ROM werden diese geretteten Bereiche gegen 
+diejenigen von LOS-96 ausgetauscht. Dadurch kann man 
+zwischen den beiden Maschinen umschalten, ohne RESET 
+machen zu m&uuml;ssen.
+
+Wird diese M&ouml;glichkeit nicht ben&ouml;tigt, kann der f&uuml;r den 
+Austausch ben&ouml;tigte Speicherbereich f&uuml;r andere Zwecke 
+verwendet werden. ROM wird dann normalerweise zum Absturz 
+f&uuml;hren, so da&szlig; man besser gleich durch SYS 64790 in die 
+RESET-Routine springt.
+
+Der Austauschbereich ist 784 Bytes lang und liegt ab 
+(1252/1253).
+
+Sofern nicht durch USR o.&auml;. der Sprung in den Zellen 
+0,1,2 ver&auml;ndert wurde, kann durch SYS 0 nach ROM von 
+BASIC-4 aus wieder ein Warmstart von LOS-96 durchgef&uuml;hrt 
+werden. Die 96-er BASIC-Maschine wird dadurch wieder in 
+den Zustand versetzt, den sie bei ROM hatte.
+
+Wurde allerdings nach dem Start von LOS-96 der 
+Austauschbereich anderweitig verwendet, so werden diese 
+Informationen zerst&ouml;rt!<p><hr><p>3.1 LOAD
+
+Zweck
+
+LOAD l&auml;dt eine PRG-Datei von Diskette in den 
+Arbeitsspeicher an die Adresse, die in den ersten beiden 
+Bytes der Datei vermerkt ist, bzw. die im Kommando 
+angegeben wird.
+
+Aufgrund der Diskrepanz zwischen logischen und 
+physikalischen Adressen mu&szlig;te LOAD einige optionale 
+Zusatzparameter erhalten, um auch Sonderf&auml;llen gerecht zu 
+werden.
+
+
+Format
+
+LOAD , ; &para; % adresse , "laufwerk:name" , ger&auml;tenummer
+
+Anmerkungen
+
+load "namell
+
+Im Normalfall werden die Parameter zwischen LOAD und dem 
+Namen nicht angegeben. Dann wird angenommen, ein Programm 
+soll in den Programmbereich geladen werden. Deshalb wird 
+in diesem Fall immer die Programm-Page eingeschaltet. Die 
+Adresse, an die geladen wird, wird den ersten beiden 
+Bytes der PRG-Datei entnommen. Die Adresse kann in der 
+Praxis von etwas unter 32K bis zu 64K reichen, je 
+nachdem, wie der Programmbereich eingestellt war, als das 
+Programm abgespeichert (SAVE) wurde. Standardeinstellung 
+des Programmbereichs ist Anfang der Programm-Page 
+(32768).
+
+Wird ', ger&auml;tenummer' nicht angegeben, gilt die 
+Voreinstellung 8.
+
+Kommt hinter dem Namen der Datei noch irgendein Wert, der 
+nicht durch Komma abgetrennt ist, so wird er ignoriert. 
+Dies erm&ouml;glicht das Laden aus dem Bildschirm-Listing des 
+Directory.
+
+
+load , "name"
+
+Komma nach LOAD bewirkt, da&szlig; das Programm automatisch an 
+den derzeit eingestellten Programmbereich-Anfang geladen 
+wird (40/41). Da dabei ein Link-Lauf n&ouml;tig ist, d&uuml;rfen 
+Maschinenprogramme nicht mit Komma geladen werden.
+
+Diese Option ist u.a. f&uuml;r das Laden von BASIC-4-
+Programmen n&ouml;tig.
+
+
+load &para; adresse , "name"
+
+Wird hinter &para; oder @ eine Adresse angegeben, so wird ab 
+dieser Adresse in den Speicher geladen. Diese Adresse 
+kann aus dem gesamten logischen Adressraum von 128K 
+genommen werden. Bei Werten &uuml;ber 32K wird die richtige 
+von den drei m&ouml;glichen 32K-Pages eingeschaltet. Bei 
+Werten unter 32K wird f&uuml;r den Fall der &Uuml;berlappung die 
+Programm-Page eingeschaltet. Dies ist von der logischen 
+Adresse her verwirrend, da nach logisch 32767 in 65536 
+weitergeladen wird. Da aber wegen der m&ouml;glichen 
+Verl&auml;ngerung des Programmspeichers in den Adressraum 
+unter 32K ein Programm ab einer Adresse unterhalb 32K 
+ladbar sein mu&szlig;, ist diese Abweichung von der logischen 
+Adressfolge n&ouml;tig. Andererseits macht es wenig Sinn, mit 
+dem Laden einer Datei unterhalb des Bildschirms zu 
+beginnen und dann im Bildschirm fortzusetzen.
+<p><hr><p>load &para; % adresse , "name"
+
+Da theoretisch durch SAVE auch ein nach unten 
+veri&auml;ngerter Variablenbereich abgespeichert werden kann 
+(physikalisch z.B. 30000 - 60000), wurde f&uuml;r LOAD eine 
+entsprechende Option vorgesehen: Durch '%' nach dem 
+Klammeraffen wird nicht der PRG-, sondern der VAR-Bereich 
+eingeschaltet. Dadurch werden physikalische Adressen 
+oberhalb von 32K in den Variablenbereich geladen.
+
+F&uuml;r den Bildschirmbereich existiert keine derartige 
+M&ouml;glichkeit. Der Bildschirm wird also nur eingeschaltet, 
+wenn die hinter &para; angegebene Anfangsadresse im Bereich 
+2^15 - 2^16 liegt.
+
+
+load ; "name"
+
+Beim Laden von Programmen in den Programmbereich wird der 
+Programmende-Zeiger (248/249) hinter das zuletzt geladene 
+Byte gesetzt. Dies ist f&uuml;r Overlay wichtig, wenn ein so 
+nachgeladenes Programm abgepeichert oder ge&auml;ndert werden 
+soll.
+
+Da f&uuml;r Sonderanwendungen aber auch Maschinenprogramme in 
+den PRG-Bereich geladen werden k&ouml;nnen, kann durch ';' 
+zwischen LOAD und NAME verhindert werden, da&szlig; der 
+Programm-Ende-Zeiger ver&auml;ndert wird.
+
+Beachten Sie, da&szlig; in BASIC-4 der Programm-Ende-Zeiger 
+(42/43) bei LOAD im Direktmodus ge&auml;ndert wurde, bei LOAD 
+aus dem Programm aber nicht!
+
+
+LOAD im Programm:
+
+Durch LOAD im Programm k&ouml;nnen sowohl BASIC-Programme 
+nachgeladen werden (Overlay), als auch Maschinenprogramme 
+bzw. beliebige Speicherinhalte auf bestimmte Adressen 
+gelegt werden.
+
+Nach LOAD von BASIC-Programmen l&auml;uft das Programm mit der 
+ersten Anweisung des neuen Programms weiter (s. Overlay-
+Erl&auml;uterungen im 8032-Handbuch).
+
+Im Gegensatz zu BASIC-4 wird aber das Programm hinter der 
+LOAD-Anweisung fortgesetzt, wenn
+
+
+· nicht in den PRG-Bereich geladen wird (load &para; adr)
+· ';' zwischen LOAD und NAME steht
+· das Ende des geladenen Programms vor (40/41) liegt
+
+In diesen F&auml;llen kann also der bisher n&ouml;tige ON-Verteiler 
+am Anfang des Programms entfallen.<p><hr><p>Beispiele
+
+load "programm"        'programm' ab der abgespeicherten 
+                       Adresse laden
+load , "programm"      'programm' ab PRG-Speicher-Anfang 
+                       (40/41) laden
+load "programm",9      'programm' von Ger&auml;t 9 laden
+
+load "programm" prg    'prg' vom directory-listing st&ouml;rt 
+                       nicht
+load ; "masch"         laden ohne Zeiger ver&auml;ndern und 
+                       weiter nach LOAD
+load &para; 32768 , "bild"  'bild' ab Bildschirm-Anfang laden
+
+load &para; 100000 , "block"'block' ab 100000 (Variablen-
+                       Page) laden
+load &para; 25000, "system" 'system' ab 25000 (BS-Bereich) 
+                       laden (falls 32768 &uuml;berschritten 
+                       wird, weiter in PRG)
+load &para; % 30000 "variab"in VAR-Bereich laden, falls 32768 
+                       &uuml;berschritten wird
+<p><hr><p>3.2 SAVE
+
+Zweck
+
+SAVE speichert ein BASIC-Programm bzw. einen beliebigen 
+Speicherbereich in eine PRG-Datei auf Floppy ab. Dabei 
+wird die Startadresse in den ersten beiden Bytes 
+vermerkt.
+
+
+Format
+
+SAVE &para; vonadresse , bisadresse , "laufwerk-name" , 
+ger&auml;tenummer
+
+Anmerkungen
+
+Im Normalfall wird &para; vonadresse,bisadresse,' nicht 
+angegeben. Dann wird das derzeit im Speicher stehende 
+BASIC-Programm auf Diskette abgelegt.
+
+Wird zwischen SAVE und dem Namen ein Komma angegeben, so 
+wird automatisch nach dem Abspeichern VERIFY 
+durchgef&uuml;hrt.
+
+Die Ger&auml;tenummer wird als 8 angenommen, wenn sie nicht 
+angegeben wird.
+
+Folgt auf den Namen ein Ausdruck, der nicht durch Komma 
+getrennt ist, so wird er ignoriert. Dies erm&ouml;glicht die 
+problemlose Entnahme des Namens aus dem Directory-Listing 
+auf dem Bildschirm.
+
+Wird &para; vonadresse , bisadresse , ' angegeben, so wird der 
+Speicherbereich von einschlie&szlig;lich 'vonadresse' bis 
+ausschlie&szlig;lich 'bisadresse' abgelegt.
+
+Wenn Anfangs- und Endadresse im selben 32K-Bereich liegt, 
+wird die betreffende Page eingeschaltet und unter der 
+jeweils zutreffenden physikalischen Anfangsadresse 
+abgelegt.
+
+Liegen dagegen Anfangs- und Endadresse in verschiedenen 
+Pages, so mu&szlig; die Anfangsadresse kleiner als 32K sein, 
+also im gemeinsamen Bereich liegen. Je nachdem, ob die 
+Endadresse im Bereich 32-64 K oder 64-96 K oder 96-128 K 
+liegt, wird beim Abspeichern der ROM oder PRG oder VAR - 
+Bereich eingeschaltet.
+
+&Uuml;berlappen &uuml;ber 64K bzw. 96K ist also nicht m&ouml;glich.
+
+Bitte beachten Sie, da&szlig; ein so abgespeicherter Bereich 
+(Anfangsadresse unter 32K) durch LOAD ohne Adressangabe 
+immer in den PRG-Bereich geladen wird!
+
+Beispiele
+
+save "0:programm"          'programm' auf Ger&auml;t 8 ablegen
+
+save , "0:programm"        abspeichern und sofort verifizieren
+
+save "0:programm",9        auf Ger&auml;t 9 ablegen
+
+save "0:programm" prg      'prg' st&ouml;rt nicht
+
+save &para;                     Bildschirminhalt unter 'bild' 
+32768,34768,"0:bild"       ablegen
+
+save &para;                     Gesamten Variablenbereich 
+98304,131056,"0:varia"     abspeichern (Dump)
+
+save &para;                     Nach unten verl&auml;ngerten 
+30000,100000,"0:varia"     Variablenbereich abspeichern
+
+<p><hr><p>3.3 VERIFY
+
+
+Drei Eigenschaften von VERFIY wurden gegen&uuml;ber 8032 
+ge&auml;ndert:
+
+Die Ersatzadresse ist 8, wenn nichts angegeben wird.
+
+Wie bei LOAD und SAVE st&ouml;ren Ausdr&uuml;cke nach dem Namen 
+nicht, wenn sie nicht durch Komma getrennt sind.
+
+VERIFY ERROR wird bereits bei der ersten Nicht-
+&Uuml;bereinstimmung gemeldet und der Zeiger auf die 
+physikalische RAM-Adresse in 201/202 &uuml;bergeben.
+
+VERIFY &uuml;bernimmt die Einstellung auf ROM PRG bzw. VAR 
+ohne sie zu ver&auml;ndern. Diese Einstellung wird durch LOAD 
+/ SAVE POKE / PEEK / SYS / WAIT definiert. Wenn also nach 
+dem zugeh&ouml;rigen SAVE oder LOAD einer der aufgef&uuml;hrten 
+Befehle einen anderen Bereich eingestellt hat, wird 
+VERIFY den falschen Bereich vergleichen, sofern die 
+Adressen &uuml;ber 32768 liegen.<p><hr><p>3.4 LIST
+
+
+Zweck
+
+LIST gibt ein BASIC-Programm auf Bildschirm aus. Dabei 
+werden Blanks zwischen Anweisungen und bestimmten Zeichen 
+eingef&uuml;gt, um das Listing lesbarer zu machen. Eine 
+besondere Art von LIST druckt jede Anweisung in eine neue 
+Zeile.
+
+
+Format
+
+LIST von - bis   normales Listing
+LIST , von - bis Komma hinter LIST bewirkt, da&szlig; jede 
+                 Anweisung in eine eigene Zeile gedruckt 
+                 wird
+
+Anmerkungen
+
+Die Blanks im Listing werden bei &Uuml;bergabe einer Zeile 
+durch RETURN wieder entfernt.
+
+Bei Verwendung von LIST mit Komma auf dem Bildschirm 
+m&uuml;ssen Sie bedenken, da&szlig; Zeilen mit mehr als 25 
+Anweisungen (durch Doppelpunkt getrennt) nicht mehr durch 
+RETURN &uuml;bernommen werden k&ouml;nnen, da sie nur zum Teil auf 
+dem Bildschirm stehen.
+
+Im Gegensatz zu BASIC-4 bricht LIST im Programm nicht den 
+Programmlauf ab; das Programm l&auml;uft also nach LIST 
+weiter.
+
+Durch folgende Anweisungen k&ouml;nnen Sie ein Programm-
+Listing auf Drucker ausgeben:
+
+open 4,4 : cmd 4 :    (Mit oder ohne Komma hinter 
+list,                 LIST)
+
+print#4 : close 4
+
+&Auml;hnlich k&ouml;nnen Sie auch ein Listing in eine Floppy-Datei 
+schreiben. Anstatt 'open 4,4' ben&ouml;tigen Sie nur 'open 
+2,8,2,"0:listing,s,w'"(z.B.).
+<p><hr><p>3.5 DELETE
+
+Zweck
+
+Durch DELETE kann ein Programm-Zeilen-Block gel&ouml;scht 
+werden. Die Angabe des Zeilenbereichs erfolgt wie bei 
+LIST.
+
+
+Format
+
+DELETE zeilenbereich
+
+Abk&uuml;rzung: deL
+
+
+Anmerkungen
+
+DELETE ist zwar im Programm nicht gesperrt, darf aber 
+nicht verwendet werden. Der Name kann in k&uuml;nftigen 
+Versionen ge&auml;ndert werden, bzw. das Token aus der Liste 
+entfernt werden.
+
+
+Beispiele
+
+delete 100-200     Zeilen 100 bis 200 l&ouml;schen
+
+deL100-200         Abk&uuml;rzung
+
+deL 100-           Zeilen 100 bis letzte Zeile l&ouml;schen
+
+deL -200           Erste Zeile bis Zeile 200 l&ouml;schen
+
+deL                Alle Zeilen l&ouml;schen (wie NEW, aber 
+                   ohne CLR!)
+<p><hr><p>3.6 FRE:
+
+Zweck
+
+FRE &uuml;bergibt die Anzahl der freien Bytes im Variablen- 
+bzw. im Programmspeicher. Beim Variablenspeicher wird 
+vorher Garbage Collect durchgef&uuml;hrt.
+
+
+Format
+
+A = FRE(M)
+
+m gleich 0           Programm
+m ungleich 0         Variabie
+
+FRE ist eine Funktion, die an beliebiger Stelle eines 
+numerischen Ausdrucks vorkommen kann.
+
+Anmerkungen:
+
+Bei FRE(0) wird die Differenz zwischen Programmabergrenze 
+und Stackuntergrenze ausgegeben, also (239/240) - 
+(248/249).
+
+Bei FRE(1) wird zuerst Garbage Collect durchgef&uuml;hrt und 
+dann die Differenz zwischen Untergrenze 
+Stringarbeitsbereich (48/49) und Obergrenze Felder 
+(46/47) berechnet.
+
+Beachten Sie, da&szlig; FRE(I) wegen Garbage Collect sehr 
+zeitintensiv sein kann (bis zu einigen Sekunden).
+
+
+Beipiele:
+
+?fre (0)      freie Bytes im Programmspeicher drucken
+
+?fre (1)      freie Bytes im Variablenspeicher drucken
+<p><hr><p>3.7 CLR
+
+Zweck
+
+Hinter CLR k&ouml;nnen im Gegensatz zu BASIC-4 Variabien-Namen 
+angegeben werden. Diese Variablen werden dann aus dem 
+Speicher gel&ouml;scht. Dies gilt auch f&uuml;r Felder.
+
+
+Format
+
+CLR variablenliste
+
+Die 'variablenliste' enth&auml;lt durch Komma getrennt 
+Variablennamen. Felder m&uuml;ssen durch '(' gekennzeichnet 
+werden.
+
+
+Beispiel
+
+clr a , b( , c$ , d$(, die einfachen Variablen a,c$ und 
+f%(                    e%, sowie die Felder b(, d$( und 
+                       f%( aus dem Variablenspeicher 
+                       l&ouml;schen
+
+clr                    ohne Variable: ganzen 
+                       Variablenspeicher l&ouml;schen, sowie 
+                       den BASIC-Stack und den DATA-Zeiger
+
+
+Anmerkungen
+
+CLR ohne Variable wirkt wie CLR im BASIC-4. Zus&auml;tzlich 
+wird ON-ERROR gel&ouml;scht.
+
+CLR mit Variablen l&ouml;scht nur die angegebenen Variablen. 
+Alle anderen bleiben erhalten. Bei Stringvariablen wird 
+der Inhalt und die Verwaltungs-Information gel&ouml;scht.
+
+Vor allem bei Feldern wird dies einen betr&auml;chtlichen 
+Speicherplatzgewinn im Variablenbereich bringen.
+
+Da beim L&ouml;schen von Variablen Felder verschoben werden 
+m&uuml;ssen, entspricht der Zeitbedarf dem beim Einf&uuml;gen von 
+Variablen. (Bei sehr vielen Variablen und Strings ist mit 
+Zeiten im Sekundenbereich zu rechnen.)<p><hr><p>3.8 REDIM: Felder verl&auml;ngern oder verk&uuml;rzen
+
+Zweck
+
+Eindimensionale (nicht mehrdimensionale) Felder k&ouml;nnen 
+durch REDIM verl&auml;ngert oder verk&uuml;rzt werden. Die Inhalte 
+bleiben dabei erhalten, soweit sie nicht in zu l&ouml;schenden 
+Elementen stehen.
+
+
+Format
+
+wie DIM
+
+Anmerkungen
+
+Bei Angabe eines mehrdimensionalen Feldes erfolgt BAD 
+SUBSCRIPT ERROR.
+
+Bei eindimensionalen Feldern kann REDIM die Anweisung DIM 
+ersetzen, noch nicht definierte Felder d&uuml;rfen also durch 
+REDIM dimensioniert werden.
+
+Der Zeitbedarf f&uuml;r die &Auml;nderung der Feldgr&ouml;&szlig;e liegt bei 
+dem von DIM oder etwas h&ouml;her.
+
+Wird ein Feld durch REDIM verkleinert, so wird sowohl bei 
+numerischen als auch bei String-Feldern der gewonnene 
+Platz v&ouml;llig freigegeben.
+<p><hr><p>3.9 RESTORE
+
+Zweck
+
+RESTORE setzt den DATA-Zeiger f&uuml;r READ auf eine bestimmte 
+BASIC-Zeile bzw. ein bestimmtes Element ab einer Zeile 
+zur&uuml;ck. Dadurch k&ouml;nnen DATA's wesentlich differenzierter 
+behandelt werden, als bei BASIC-4.
+
+
+Format
+
+RESTORE zeile , element
+
+zeile:          BASIC-Zeilennummer als Konstante
+
+element:        1 ... 255; kann entfallen, Ersatzwert 
+                ist 1
+
+
+Anmerkungen
+
+Wird eine Zeilennummer angegeben, mu&szlig; die Zeile 
+existieren, sonst erfolgt UNDEF'D STATEMENT ERROR. Die 
+angegebene Zeile mu&szlig; aber nicht unbedingt eine DATA-
+Anweisung enthalten. Wenn nicht, wird einfach die n&auml;chste 
+Zeile mit DATA-Anweisung gesucht.
+
+Das gew&uuml;nschte Element mu&szlig; nicht in der angegebenen Zeile 
+stehen. Das Element kann ab einer beliebigen Zeile 
+gesucht werden. Lediglich die Begrenzung von 255 
+Elementen ist zu beachten.
+
+Wird ein nicht vorhandenes Element verlangt, erfolgt OUT 
+OF DATA ERROR.
+
+Beispiele
+
+restore 100      DATA-Zeiger auf Zeile 100 setzen
+
+restore 100,20   auf das 20-te DATA-Element ab Zeile 
+                 100
+restore 20       nicht zul&auml;ssig: SYNTAX ERROR
+
+<p><hr><p>3.10 Maschinen-Adressen (POKE, PEEK, SYS, WAIT)
+
+Der 8096 verf&uuml;gt &uuml;ber insgesamt 128K Speicher. Der 
+Prozessor 6502 kann aber nur 64K gleichzeitig 
+adressieren. Deshalb mu&szlig; das Betriebssystem die jeweils 
+ben&ouml;tigten Speicherb&auml;nke einschalten. Um auf BASIC-Ebene 
+dennoch eine eindeutige Zuordnung von Speicherzellen zu 
+Adressen zu haben, wurde f&uuml;r die Befehle POKE, PEEK, SYS 
+und WAIT der zul&auml;ssige Adressbereich erweitert und 
+folgende Zuordnung von logischen (BASIC) Adressen zu 
+Speicherb&auml;nken gew&auml;hlt:
+
+12SK--------------------------------
+       Variablenspeicher       (VAR)
+96K --------------------------------
+       Programmspeicher        (PRG)
+64K --------------------------------
+       ROM-Bereich             (ROM)
+32K --------------------------------
+       Betriebssystem          (LOS)
+0K  --------------------------------
+
+Dieses Speicherschema ist an anderer Stelle ausf&uuml;hrlicher 
+dargestellt.
+
+Bitte beachten Sie, da&szlig; f&uuml;r die Funktion USR( ) diese 
+Konvention nicht gelten kann, da ihre Zieladresse in den 
+Zellen 1 und 2 enthalten ist, also nur 64K adressieren 
+kann!
+<p><hr><p>3.11 Getstring (GET$)
+
+Zweck
+
+GETSTRING liest von einem Peripherieger&auml;t maximal 255 
+beliebige Kodes (Zeichen) in eine Stringvariable.
+
+Dabei ist die Anzahl der zu lesenden Bytes oder ein 
+beliebiges Endezeichen (z.B. Carriage Return) vorzugeben. 
+Ein spezieller Aufruf holt sich die Anzahl der zu 
+lesenden Bytes automatisch aus dem ersten gelesenen 
+Bytes, wodurch verzeigerte Dateien sehr einfach und 
+schnell gelesen werden k&ouml;nnen.
+
+Durch diese Eigenschaften wird GET$ in vielen F&auml;llen 
+INPUT# vorzuziehen sein.
+
+Format
+
+GET$ logische adresse , stringvariable , max , ende , 
+ignor
+
+logische adresse; Byteausdruck
+
+Durch OPEN bzw. DOPEN mu&szlig; einer logischen Adresse die 
+Datei zugeordnet worden sein, aus der gelesen werden 
+soll. Falls die Datei nicht ge&ouml;ffnet wurde, wird FILE NOT 
+OPEN ERROR gemeldet.
+
+
+stringvariable : Einfache oder indizierte Stringvariable
+
+Einfache oder indizierte Stringvariable. In diese 
+Variable wird der eingelesene String ohne die 
+Beschr&auml;nkungen des INPUT &uuml;bernommen. Maximal sind 255 
+Zeichen m&ouml;glich. Prinzipiell wird jeder Code, also auch 
+0, 13, Komma, Doppelpunkt &uuml;bernommen, es sei denn er ist 
+bei 'ende' als Ende-Code definiert.
+
+
+Logische Adresse und Stringvariabie m&uuml;ssen angegeben 
+werden. Falls keine weiteren Angaben hinter der Variablen 
+folgen, wird angenommen, da&szlig; 255 Zeichen gelesen werden 
+sollen, und nur bei Dateiende (st = 64) oder 
+Zeit&uuml;berschreitung (st = 2) abgebrochen werden soll. 
+Endezeichen ist nicht definiert, also wird jeder der 256 
+m&ouml;glichen Codes von 0 - 255 eingelesen.
+
+max : Maximale Anzahl Bytes; Byteausdruck; Ersatzwert ist 
+255
+
+'max' gibt an, wieviele Zeichen maximal &uuml;bernommen werden 
+sollen.
+
+Angabe kann entfallen; 'max' ist dann 255 (Ersatzwert). 
+Entfallen hei&szlig;t, da&szlig; entweder kein weiterer Parameter 
+mehr kommt, oder da&szlig; zwei Kommas unmittelbar aufeinander 
+folgen.
+
+Bei max = 0 wird das erste gelesene Byte als L&auml;ngenzeiger 
+interpretiert und soviele Bytes eingelesen, wie der ASC-
+Wert des ersten Bytes ausmacht. Bei der Anzahl der zu 
+lesenden Bytes wird das L&auml;ngen-Byte nicht mitgerechnet.
+
+Bitte beachten Sie, da&szlig; bei Algorithmen, die die L&auml;nge 
+aus anderen Quellen nehmen, und dann diese L&auml;nge bei 
+'max' angeben, f&uuml;r L&auml;nge 0 eine Abfrage erforderlich ist, 
+die verhindert, da&szlig; in diesem Fall GET$ gerufen wird.
+
+Abbruch wegen Empfang der maximalen Zeichenanzahl wird 
+durch Bit 3 im Status vermerkt (8 and st ist wahr).<p><hr><p>ende : Ende - Code; Byteausdruck; Ersatzwert ist 'kein 
+Abbruchcode'
+
+'ende' definiert einen Abbruch-Code. Wird dieser Code 
+empfangen, so wird die &Uuml;bertragung abgebrochen. Der 
+Abbruch-Code selbst wird nicht mehr in den String 
+&uuml;bemommen. Abbruch wegen Empfang des Ende-Codes wird 
+durch Bit 4 im Status vermerkt (16 and st ist wahr).
+
+Wenn 'ende' nicht angegeben wird, kann jeder Code von 0 
+bis 255 eingelesen werden.
+
+ignor: zu ignorierender Anfangscode; Byteausdruck; 
+Ersatzwert ist 'kein Code'
+
+Dieser Code wird ignoriert, wenn er als erster Code 
+empfangen wird. (Z.B. 34 f&uuml;r Anf&uuml;hrungszeichen 
+unterdr&uuml;cken).
+
+Das ignorierte Zeichen z&auml;hlt nicht zur Anzahl der 
+eingelesenen Zeichen (max). 'ignor' darf nicht 
+gleichzeitig mit max=0 auftreten (ILLEGAL QUANTITY). 
+
+Abbruchkriterien
+
+Die &Uuml;bertragung in den String wird grunds&auml;tzlich nur dann 
+abgebrochen, wenn der Status (st) von 0 verschieden ist.
+
+Insgesamt existieren 4 verschiedene Abbruchgr&uuml;nde. Zwei 
+werden vom Betriebssystem geliefert und zwei von 
+GETSTRING selbst:
+
+
+Betriebssystem-Abbruchkriterien
+
+ 2 and st        Zeit&uuml;berschreitung beim 
+                 Lesen 
+64 and st        Ende der Datei
+
+GETSTRING-Abbruchkriterien
+
+ 8 and st        Maximall&auml;nge erreicht
+16 and st        Endecode empfangen
+
+(2 and st ist wahr) kommt vor, wenn entweder das 
+Dateiende (64 and st) &uuml;bersehen wurde, oder die Datei 
+nicht ordnungsgem&auml;&szlig; ge&ouml;ffnet wurde, oder ein Lesefehler 
+bei der Floppy auftritt oder die Floppy aus sonstigen 
+Gr&uuml;nden keine Daten liefert.
+
+Wenn dieser Wert auftritt, enth&auml;lt die Stringvariabie 
+normalerweise den Code 13 (Carriage Return). Dieser Code 
+wird vom Betriebssystem als Ersatzwert &uuml;bergeben. Wenn 
+allerdings gleichzeitig 13 als Abbruchkriterium 
+eingestellt ist, ist die Stringvariable leer.
+
+Bei (64 and st ist wahr) steht das letzte g&uuml;ltige Zeichen 
+in der Variablen, falls es nicht das voreingestellte 
+Ende-Zeichen ist.
+
+Bitte beachten Sie, da&szlig; mehrere Statuswerte gleichzeitig 
+auftreten k&ouml;nnen. Z.B. kann am Dateiende gleichzeitig der 
+Wert 64 und 16 auftreten. 'print st' w&uuml;rde dann 80 
+melden!<p><hr><p>Anwendung
+
+GETSTRING ist INPUT immer dann vorzuziehen , wenn die 
+Delimiter Komma, Doppelpunkt und CR nicht wirken sollen 
+oder wenn der Code 0 eingelesen werden soll.
+
+Spezialanwendungen ergeben sich, wenn Datenfelder 
+bekannter L&auml;nge ohne Abschlu&szlig;ode gelesen werden sollen, 
+oder ein beliebiger Ende-Code vorgegeben werden soll.
+
+Durch max=0 k&ouml;nnen durch Zeiger verkettete Bytefelder 
+gelesen werden, sofern die einzelnen Elemente nicht 255 
+Bytes &uuml;berschreiten.
+
+
+Syntax-M&ouml;glichkeiten:
+
+get$ la  ,str-var , max , ende , ignor
+get$ la  ,str-var ,     , ende , ignor
+get$ la  ,str-var , max ,      , ignor
+get$ la  ,str-var ,     ,      , ignor
+get$ la  ,str-var , max
+get$ la  ,str-var
+
+Beispiele
+
+open               bzw dopen &para;5,"lesedatei"
+5,8,2,"lesedatei"
+get$ 5,a$"13,34    liest einen String wie INPUT, d.h. 13 
+                   ist Endezeichen (CR) und 34 am Anfang 
+                   wird ignoriert (Anf&uuml;hrungszeichen). Die 
+                   Endezeichen Komma und                
+                   Doppelpunkt, sowie Code 0 bewirken aber 
+                   nicht Abbruch der &Uuml;bernahme in a$.
+
+get$ 5,a$255       Bytes werden bedingungslos in a$ 
+                   &uuml;bernommen
+
+get$ 5,a$,16       genau 16 Bytes werden in a$ &uuml;bernommen
+
+for i = 1 to    10 10 Elemente des Stringfeldes a$( ) werden
+get$ 5,a$(i),0     &uuml;bernommen. Die L&auml;nge der einzelnen 
+                   Elemente wird
+next               aus dem Byte vor dem jeweiligen 'Satz' 
+                   genommen. Eine derartige Struktur wird 
+                   durch das folgende Programm aufgebaut:
+
+open 5,8,2,"0:lesedatei,s,w"
+for i = 1 to 10
+print#5, chr$(len(a$(i@» a$(i);
+next<p><hr><p>3.12 lnstring (INSTR)
+
+Zweck
+
+Instring sucht den Inhalt einer Stringvariable nach einer 
+vorgegebenen Zeichenkette ab. Dabei ist die Suchrichtung, 
+der Suchanfang, sowie Suche auf Ubereinstimmung oder 
+Abweichung w&auml;hlbar.
+
+
+Forrnat
+
+INSTR( zeichenkette , stringvariabte, spalte , 
+betriebsart )
+
+
+Zeichenkette : Zeichenkette, nach der im String gesucht 
+wird.
+
+Einfache oder indizierte Stringvariable; Konstante; 
+Stringausdruck
+
+
+stringvariable : Zu durchsuchender String.
+
+Einfache oder indizierte Stringvariable; Stringausdruck
+
+
+spalte : Nummer des Zeichens in stringvariable, ab dem 
+gesucht werden soll.
+
+Byteausdruck (0 - 255)     1. Zeichen = 1
+
+Angabe kann entfallen, 'spalte' ist dann 0
+
+'spalte' = 0 : Automatisch je nach Betriebsart 1 oder 
+L&auml;nge von 'string-variable'
+
+Wenn 'spalte' gr&ouml;sser als len(stringvariable) ist, so 
+wird 'spalte' gleich der L&auml;nge von 'stringvariable'.
+
+Betriebsart : Byteausdruck: p (Angabe kann entfallen, p 
+ist dann 0)
+
+p=0       von links nach rechts auf &Uuml;bereinstimmung 
+          suchen
+p=l       von links nach rechts auf Abweichung suchen
+p=2       von rechts nach links auf &Uuml;bereinstimmung 
+          suchen
+P=3       von rechts nach links auf Abweichung suchen
+<p><hr><p>Beispiele
+
+a=instr(s$,q$)
+
+&Uuml;bergibt in a die Spalte, in der s$ in q$ gefunden wurde.
+
+a=instr(s$,q$,0,0)
+
+Wie oben
+
+print instr(s$(s),q$,10)
+
+Druckt die Spalte aus, in der s$(s) in q$ ab Spalte 10 
+gefunden wurde.
+
+s=instr(s$,q$(j),s-1,2)
+
+&Uuml;bergibt in s die Spalte, ab der s$ in q$(j) ab s-1 (von 
+rechts nach links) gefunden wurde. (Sinvoll in Schleifen, 
+wenn nach allen &Uuml;bereinstimmungen gesucht werden soll.)
+
+s=instr(" ",q$,0,3):q$=left$(q$,s)
+
+&Uuml;bergibt in s die Spalte, ab der in q$ von rechts nicht 
+mehr gefunden wurde und schneidet anschlie&szlig;end alle 
+nachfolgenden Blanks in q$ ab.
+
+if instr(s$,q$,s)=0 then print"nicht gefunden"
+
+Druckt 'nicht gefunden' aus, wenn INSTR(...) gleich 0 
+ist.
+
+Fehlermeidungen
+
+illegal quantity error     Spalte muss Wert zwischen 0 
+                           und 
+z.B. instr(n$,q$,300,0)    255 haben
+
+Keine Fehlermeidung        aber falsche Ausgabewerte
+z.B. instr(n$,q$,0,5)      Betriebsart muss Wert zwischen 
+                           0 und 3 haben
+
+syntax error               leere Parameter sind nicht er- 
+z.B. instr(n$,q$"3)        laubt.  
+
+type mismatch error        erster und zweiter Parameter
+z.B. instr(n$,q)           m&uuml;ssen String sein.
+<p><hr><p>3.13 Midstring (MIDSTR)
+
+Zweck
+
+Midstring setzt eine Zeichenkette (String) in einen 
+anderen String ab einer frei w&auml;hlbaren Stelle ein. Dabei 
+wird der alte Inhalt des Strings ab dieser Stelle 
+&uuml;berschrieben.
+
+Format
+
+MIDSTR(strvar , spalte ) = zeiket
+
+strvar:    Stringvariable, in die die Zeichenkette 
+           eingef&uuml;gt werden soll;Einfache oder 
+           indizierte Stringvariabie
+
+zeiket:    Zeichenkette, die in die Stringvariabie 
+           eingef&uuml;gt werden soll; Stringausdruck
+
+spalte:    Nummer des Zeichens in 'strvar', ab dem 
+           'strvar' durch 'zeiket' &uuml;berschrieben werden 
+           soll; Byteausdruck.
+
+Wenn der Wert von 'spalte' gr&ouml;&szlig;er ist als die L&auml;nge von 
+'strvar', wird die L&auml;nge entsprechend vergr&ouml;&szlig;ert. Im 
+Zwischenraum zwischen 'strvar' und 'zeiket' stehen dann 
+im neuen String irgendwelche Zufallszeichen.
+
+Bei spalte=0 wird nichts ersetzt (Abbruch).
+
+
+Beispiele
+
+a$="0123456789-
+11
+midstr                 Ersetzt in a$ ab Spalte 3 
+(a$,3)="xyz"           die Zeichen durch 'xyz'
+print a$
+0xyz56789
+
+midstr                 Ersetzt in b$ das Zeichen an 
+(b$,w)=chr$(q)         Spalte w durch das Zeichen, 
+                       das sich aus chr$(q) ergibt.
+
+a$="123"
+midstr(a$,8)="-
+89"
+?a$
+123xxxx89              Die Stellen x enthalten 
+                       undefinierte Codes
+
+
+
+Fehlermeidungen
+
+illegal quantity    spalte' kleiner als 0 oder gr&ouml;&szlig;er als 
+error               255
+string too long     Neuer String 'str-var' w&auml;re l&auml;nger 
+error               als 255 Zeichen
+<p><hr><p>3.14 ASC / CHR$
+
+Zweck
+
+CHR$ wandelt einen Zahlenwert in einen 1-5 Byte-String 
+um, ASC wandelt einen so erzeugten String wieder in einen 
+Zahlenwert um.
+
+Zus&auml;tzlich zu den alten M&ouml;glichkeiten von ASC und CHR$, 
+die auf 1 Byte be-
+schr&auml;nkt waren, k&ouml;nnen nun also alle vorkommenden 
+Zahlenwerte mit minimalem Platzbedarf abgespeichert 
+werden.
+
+
+Format
+
+A = ASC(string , spalte , l&auml;nge)
+
+A$ = CHR$(zahl , l&auml;nge)
+
+string       Stringausdruck
+zahl         numerischer Ausdruck
+spalte       1...255; kann entfallen (mit 'l&auml;nge'), 
+             Ersatzwert ist 1
+L&auml;nge        1...5; kann entfallen, Ersatzwert ist 1
+
+
+Anmerkungen:
+
+CHR$ packt eine beliebige Zahl in einen String mit der in 
+'l&auml;nge' angegebenen L&auml;nge.
+
+Folgende Wertebereiche sind abh&auml;ngig von der L&auml;nge 
+eindeutig wandelbar:
+
+
+L&auml;nge        Wertebereich
+
+1            0...255            (2 hoch 8 - 1)
+2            0...65535          (2 hoch 16 - 1)
+3            0...16777215       (2 hoch 24 - 1)
+4            0...4294967275     (2 hoch 32 - 1)
+5            Gleitkommabereich
+
+L&auml;nge 5 &uuml;bertr&auml;gt eine Zahl im Speicherformat (5 Bytes) 
+in den String. Dadurch kann jede Gleitkommazahl gepackt 
+werden.
+
+Bei den anderen vier L&auml;ngen ist darauf zu achten, da&szlig; der 
+Wertebereich nicht &uuml;berschritten wird, sonst wird die 
+Funktion durch ILLEGAL QUANTITY ERROR abgebrochen.
+
+ASC wandelt die oben angegebenen Wertebereiche eindeutig 
+vom gepackten Format in Zahlen zur&uuml;ck. Voraussetzung ist 
+nat&uuml;rlich, da&szlig; die angegebenen L&auml;ngen bei CHR$ und ASC 
+&uuml;bereinstimmen.
+
+Bei Gleitkomma wird durch CHR$ die Zahl nicht 
+normalisiert. Deshalb k&ouml;nnen beliebige Bitmuster in 
+beiden Richtungen gewandelt werden.
+
+Die Reihenfolge der Bytes bei L&auml;nge (2-4) ist high - low.
+
+Bei L&auml;nge 1-4 k&ouml;nnen bei CHR$ auch negative Zahlen 
+eingegeben werden. Diese werden aber durch ASC in ihr 
+Komplement &uuml;berf&uuml;hrt:
+
+z:     -2 hoch (l&auml;nge * 8 - 1)   ...    -1
+wird durch     z$ = chr$(z,l&auml;nge) : x = asc (z$,1,l&auml;nge)           
+abgebildet in
+x:      2 hoch (l&auml;nge * 8 ) + z<p><hr><p>spalte
+
+ASC hat gegen&uuml;ber der 8032-Version noch den Parameter 
+'spalte' bekommen. Dadurch wird das fr&uuml;her immer 
+ben&ouml;tigte MID$ &uuml;berfl&uuml;ssig. Der Hauptvorteil davon liegt 
+in einer Zeitersparnis, da nun kein Zwischenstring mehr 
+angelegt werden mu&szlig;:
+
+     ASC(string,spalte) ersetzt ASC(MID$(string,spalte))
+
+CHR$ hat keinen entsprechenden Parameter. Hier m&uuml;ssen Sie 
+durch
+
+     MIDSTR(A$,spalte) = CHR$(string,l&auml;nge)
+
+den Einbau an eine bestimmte Spalte in einem String 
+erzielen.
+
+Beipiele:
+
+? asc(a$,5)         Byte an 5-ter Spalte von A$ in Zahl 
+                    umwandeln
+
+print#2,chr$(a,5);  Inhalt von a als 5 Bytes in Datei 
+                    schreiben
+
+get$2,a$,5:         5 Bytes aus Datei holen
+a=asc(a$,G,5)       und in Zahl zur&uuml;ckwandeln
+
+
+Weiterf&uuml;hrende Hinweise
+
+Im Handbuch des 8032 ist nach den Stringfunktionen ASC 
+und CHR$ angedeutet, da&szlig; damit in Zusammenhang mit 
+Stringfeldern sogenannte Bytefelder aufgebaut werden 
+k&ouml;nnen.
+
+Durch die neuen Eigenschaften von ASC und CHR$ k&ouml;nnen nun 
+nicht nur Strukturen mit Basis 1 Byte, sondern mit bis zu 
+4 Bytes aufgebaut werden.
+
+Das gleiche Beispiel soll nochmal etwas abgewandelt 
+gebracht werden:
+
+Sie haben 1000 Elemente (Kunden), f&uuml;r jedes Element 
+maximal 85 Ereignisse (Rechnungen) und jedes Ereignis 
+ben&ouml;tigt 3 Bytes zu seiner Darstellung (7-stellige 
+Rechnungsnummer). Im Mittel haben Sie 5 Ereignisse pro 
+Kunde.
+
+Zur Darstellung dieser Daten mit Hilfe eines Stringfeldes 
+ben&ouml;tigen Sie 1000 Elemente * 5 Ereignisse/Element * 3 
+Bytes/Ereignis = 15 000 Bytes zuz&uuml;glich 5000 Bytes f&uuml;r 
+die Verwaltung des Stringfeldes.
+
+W&uuml;rden Sie ein zweidimensionales Gleitkommafeld mit 
+1000*85 Elementen verwenden, br&auml;uchten Sie 425 000 Bytes. 
+(Was selbst bei diesem Rechner noch nicht m&ouml;glich ist.)
+<p><hr><p>3.15 CATALOG$
+
+Zweck
+
+&Uuml;bernimmt das Directory der Floppy in ein Stringfeld.
+
+Format
+
+CATALOG$ string, gn , lw , muster , mode
+
+string: Stringfeld mit Anfangsindex
+
+Pro Element des angegebenen Stringfeldes wird ein 
+Directory-Eintrag abgelegt. Das Format wird weiter unten 
+beschrieben. Der angegebene Index bezeichnet das erste zu 
+verwendende Element. In diesem ersten Element wird der 
+Name der Diskette usw. abgelegt.
+
+gn: Ger&auml;tenummer; Byteausdruck; Ersatz = 8
+
+lw: Laufwerk; 0 oder 1; Ersatz = 0
+
+muster: Gem&auml;&szlig; bekanntem DOS-Kommandostring; Ersatz = leer 
+- Ans Floppy wird nur '$ lw' ohne Doppelpunkt gesendet, 
+wodurch ganzes Directory gelesen wird.
+
+mode: Ersatz = 0
+
+     0:Nur Name &uuml;bernehmen und nicht auf 16 Bytes 
+auff&uuml;llen
+     1:Nur Name und Typ &uuml;bernehmen
+     2:Name, Typ und belegte Bl&ouml;cke &uuml;bernehmen
+
+Format des String-Inhaltes:
+
+Name,     Typ,     Blockanzahl
+16        1        5
+
+namenamenamenameT65000
+1234567890123456789012
+
+Der Name wird linksb&uuml;ndig eingetragen und bei mode =1,2 
+rechts mit Blanks auf 16 Zeichen aufgef&uuml;llt.
+
+Der Typ wird als 'p s r' oder 'u' angegeben. Ist im 
+Directory das Ung&uuml;ltigkeitsmerkmal '*' gesetzt, so wird 
+der entsprechende Buchstabe geshiftet (Bit 7 gesetzt). 
+Dies kann durch 'AND 128' abgefragt werden.
+
+Die erste Zeile (Anfangsindex) enth&auml;lt
+
+Name , id , dos , freie Bl&ouml;cke
+namenamenamenameid2c65000
+1234567890123456789012345<p><hr><p>Anmerkungen
+
+Jeder Directory-Eintrag ben&ouml;tigt maximal 22 Bytes + 5 
+Bytes Stringverwaltung, das ergibt bei 224 Eintr&auml;gen 
+(8050) 6075 Bytes (225*(5+22)). Wegen dieses relativ 
+hohen Betrages wurden die drei Optionen vorgesehen. Bei 
+mode = 0 betr&auml;gt der Platzbedarf bei lauter 16-Byte-Namen 
+4725 Bytes (225*(5+16)). Hier lohnt also der Einsatz von 
+CLR bzw. REDIM.
+
+Bei mode=1,2 wird der Name mit Blanks rechtsb&uuml;ndig 
+aufgef&uuml;llt. Bitte beachten Sie, da_ die Blanks z.B. mit 
+Hilfe von INSTR abgeschnitten werden m&uuml;ssen, ehe Sie &uuml;ber 
+einen solchen Namen auf die Datei zugreifen k&ouml;nnen.
+
+Sollen mehr Directory-Eintr&auml;ge gelesen werden, als 
+Elemente im String-Feld zur Verf&uuml;gung stehen, wird 
+abgebrochen. Durch Bit 3 (Wert 8) in ST wird der Abbruch 
+mitgeteilt. In diesem Fall wird im ersten Element die 
+Anzahl der freien Bl&ouml;cke nicht mitgeteilt, da sie noch 
+nicht gelesen wurde.
+
+Wenn w&auml;hrend des Einlesens des Directory timeout auftritt 
+(Status 2), wird mit FILE DATA ERROR abgebrochen.
+
+
+Beispiel
+
+dim a$(100)    maximal 100 Directory-Eintr&auml;ge vom 
+               Laufwerk 0, Ger&auml;t 8
+catalog$ a$(0) lesen; nur die Namen &uuml;bernehmen, kein 
+               einschr&auml;nkendes Muster
+<p><hr><p>3.16 IF THEN ELSE
+
+Zweck
+
+Die IF THEN Anweisung von BASIC-4 mit der nur eine 
+einseitige Verzweigung m&ouml;glich war, ist durch ELSE zur 
+beidseitigen Verzweigung erweitert worden.
+
+Format
+
+IF logischer Ausdruck THEN Ja-Zweig : ELSE Nein-Zweig
+
+
+Anmerkungen
+
+Der Nein-Zweig kann mit ELSE entfallen (kompatibel mit 
+BASIC-4)
+
+10 if a=b then a=0
+20 ...
+
+Der Ja- bzw Nein-Zweig kann eine beliebige 
+Anweisungsfolge oder eine Zeilennummer sein.
+
+10 if a=b then a=0 : b=b+l : else a=a+l : c=l
+
+20 if a=b then 100 : else 200
+
+Der Ja-Zweig darf leer sein, aber THEN mu&szlig; immer 
+vorhanden sein.
+
+10 if a=b then : else a=a+l
+
+20 if a=b : eise a=a+l                     SYNTAX ERROR
+
+THEN darf durch GOTO ersetzt werden, ELSE nicht.
+
+20 if a=b goto 100 : else 200     richtig
+
+20 if a=b goto 100 : goto 200     das zweite goto wird nie 
+                                  erreicht
+
+20 if a=b goto 100 : else goto 200funktioniert
+
+Die beiden Zweige laufen in der n&auml;chsten Zeile zusammen, 
+sofern kein Sprung in den Zweigen vorkommt.
+
+20 if a=b then a=b : goto 100 : else a=a+l  im ja-Fall wird zu
+30 ...                                      Zeile 100 gesprungen
+
+IF THEN und ELSE m&uuml;ssen in einer BASIC-Zeile stehen. 
+Durch die langen BASIC-Zeilen ist dies aber kaum ein 
+Nachteil.
+
+ELSE ohne IF THEN wird wie REM mit allen folgenden 
+Anweisungen ignoriert, es erfolgt aber keine 
+Fehlermeldung.
+
+10 a=3 : ELSE a=5             a=5 wird ignoriert
+<p><hr><p>Schachteln von IF THEN ELSE Anweisungen ist m&ouml;glich.
+
+10 if a=b then a=0 :
+        if c=d then c=0 :
+               else c=c+l : 
+        else a=a+l :
+               if e=f then e=0 :
+               else e=e+l :
+
+Diese Einr&uuml;ckungen sollen die Struktur verdeutlichen, 
+sind aber im Programm nicht m&ouml;glich. Wenn Sie eine 
+derartige Struktur eingeben, erhalten Sie durch LIST,10 
+folgendes Bild:
+
+10 if a=b then a=0
+ : if c=d then c=0
+ : else c=c+l
+ : else a=a+I
+ : if e=f then e=0
+ : else e=e+l
+
+Durch LIST 10 (ohne Komma) erhalten Sie folgendes Bild:
+
+10 if a=b then a=0 : if c=d then c=0 - else c=c+l : eise 
+a=a+l if e=f then e= 0 : eise e=e+l
+
+Falls Sie bei sehr langen IF THEN ELSE Zeilen mit einigen 
+Schachtelebenen die &Uuml;bersicht verlieren sollten, machen 
+Sie es wie der Interpreter: Z&auml;hlen Sie von links nach 
+rechts f&uuml;r jedes IF ab 0 eins dazu und ziehen Sie f&uuml;r 
+jedes ELSE wieder eins ab. Sobald Sie bei einem 
+bestimmten ELSE denselben Z&auml;hlerstand haben wie bei einem 
+bestimmten IF, geh&ouml;ren diese beiden zusammen.
+<p><hr><p>3.17 ON ERROR GOTO / EL, EC, EO / RESUME
+
+Nach Abarbeitung von ON ERROR ... springt der Rechner bei 
+Auftreten eines ERRORs nicht in den Direktmodus und 
+meldet den Fehler auf dem Bildschirm, sondern springt auf 
+die angegebene Zeile, wo der Fehler vom Programm aus 
+behandelt werden kann.
+
+Die reservierten Variablen EL, EC und EO geben Auskunft 
+&uuml;ber Fehler-Ort und Art. Nach der Fehlerbehandlung kann 
+durch RESUME die fehlerhafte Anweisung wiederholt oder 
+die n&auml;chste Anweisung oder ein Sprung zu einer beliebigen 
+Zeile ausgef&uuml;hrt oder eine Direktmodus-Fehlermeldung 
+gebracht werden.
+
+
+3.17.1 ON ERROR
+
+Format
+
+ON ERROR GOTO zeilennummer
+
+GOTO ist optional
+
+zeilennummer mu&szlig; wie bei GOTO eine Konstante sein.
+
+Anmerkungen
+
+Die Variablen EL, EC und EO werden durch ON ERROR 
+initialisiert.
+
+CLR l&ouml;scht auch die ON ERROR Definition und die RESUME-
+Adresse.
+
+ON ERROR ohne Zeilennummer l&ouml;scht eine vorangegangene ON 
+ERROR - Definition.
+
+ON ERROR kann beliebig oft definiert werden - es gilt die 
+jeweils letzte Definition.
+
+Ist die hinter ON ERROR angegebene Zeilennummer nicht 
+vorhanden, wird UNDEF'D STATEMENT ERROR gemeldet.
+
+
+3.17.2    ERROR-LINE, ERROR-CODE, ERROR-OFFSET
+
+Drei reservierte Variable enthalten alle Informationen, 
+die n&ouml;tig sind, um einen Fehler identifizieren zu k&ouml;nnen. 
+Nach einem Fehler werden die aktuellen Werte vor dem 
+Sprung auf die Fehlerbehandlungsroutine, die durch ON 
+ERROR definiert wurde, in diese Variablen geschrieben.
+
+EL (ERROR-LINE) enth&auml;lt die BASIC-Zeilennummer, in der 
+der Fehler aufgetreten ist.
+
+EC (ERROR-CODE) enth&auml;lt die Fehlernummer. Die beiden 
+Fehlertabellen (Interpreter bzw. Betriebssystem) sind 
+durchnummeriert. Die Interpreterfehler werden positiv ab 
+1 gez&auml;hlt, die Betriebssystemfehler negativ ab -1. (s. 
+Tabelle)
+
+EO (ERROR-OFFSET) enth&auml;lt den Offset, der im X-Register 
+an die Fehlermeldungsroutine &uuml;bergeben wird. Dieser Wert 
+kann zwischen 0 und 255 liegen.
+
+ERROR (E0) &uuml;bergibt als String die Klartextmeidung, die 
+sonst im Direktmodus erscheinen w&uuml;rde, allerdings ohne 
+das nachfolgende 'error'.
+<p><hr><p>3.17.3 RESUME
+
+Nach der Fehlererkennung und Behandlung wird durch RESUME 
+bestimmt, wie das Programm fortgesetzt werden soll.
+
+Format:
+
+RESUME                  fehlerausl&ouml;sende Anweisung wiederholen
+RESUME NEXT             auf die f.A. folgende Anweisung 
+                        ausf&uuml;hren
+RESUME zeilennummer     entspricht GOTO zeilennummer (s. 
+                        Anmerkung)
+RESUME ERROR            Direkt-Modus-Fehlermeldung ausl&ouml;sen
+
+Durch RESUME wird der Interpreterzeiger auf den Anfang 
+der Anweisung gesetzt, die den Fehler produzierte, bei 
+RESUME NEXT auf den Anfang der darauf folgenden Anwe 
+isung.
+
+RESUME zeilennummer springt auf die Zeile mit dieser 
+Nummer.
+
+RESUME ERROR l&ouml;st die Direktmodus-Fehlermeldung aus, die 
+durch ON ERROR verhindert wurde. Dies ist f&uuml;r F&auml;lle 
+gedacht, wo f&uuml;r die Fehlerbehandlungsrautine 
+unvorhergesehene Fehler auftreten, was normalerweise 
+immer m&ouml;glich ist.
+
+RESUME ERROR ohne vorangegangene Fehlersituation f&uuml;hrt zu 
+einer Endlos-Schleife, die durch STOP unterbrochen werden 
+kann.
+
+Der STACK-LEVEL bleibt durch RESUME erhalten, sofern er 
+nicht durch die Fehler-Behandlung ver&auml;ndert wurde. 
+Erl&auml;uterung: Der ON ERROR-Sprung entspricht einem GOTO 
+von der Fehlerstelte zur Fehlerbehandlung, also ver&auml;ndert 
+er den Stack-Level nicht. RESUME entspricht ebenfalls 
+einem GOTO von der Fehterbehardlung zur&uuml;ck zur 
+Fehlerstelle - mit dem Unterschied, da&szlig; nicht die Zeile, 
+sondern die Anweisung angesprungen wird.
+
+Wenn aber in der Fehlerbehandlung z.B. durch DISPOSE der 
+Stack manipuliert wurde, wird durch RESUME nicht wieder 
+der alte Zustand hergestellt.
+
+Tritt w&auml;hrend der Fehlerbehandlung ein Fehler auf, so 
+wird dieser immer im Direktmodus gemeldet, da 
+anderenfalls Verklemmungen auftreten w&uuml;rden, die eine 
+Endlasschleife zur Folge haben k&ouml;nnten. Exakt ist der 
+Zusammenhang folgender: Durch ON ERROR wird ein Flag 
+gesetzt, weiches die Fehlermeidungsroutine des 
+Betriebssystems veranla&szlig;t, den Fehler nicht zu meiden, 
+sondern den ERROR-Sprung durchzuf&uuml;hren. Im selben Moment 
+wird dieses Flag aber gel&ouml;scht, so da&szlig; ab nun auftretende 
+Fehler normal gemeldet werden. Durch RESUME wird dieses 
+Flag wieder auf 'Nicht-Melden' geschaltet.
+
+Deshalb ist unbedingt erforderlich, da&szlig; die letzte 
+Anweisung der Fehlerbehand-
+lung immer RESUME enth&auml;lt.
+
+Achten Sie darauf, da&szlig; ihr Programm nicht von sich aus in 
+die Fehlerbehandlungsroutine l&auml;uft; z.B. RESUME ERROR 
+l&auml;uft dann in eine Endlosschleife.
+
+L&auml;uft Sie in der Fehlerbehandlung auf ein STOP oder END, 
+gelangt es also in den Direktmodus, so wird wie bei 
+RESUME das ON-ERROR-Flag wieder gesetzt. Tritt dann nach 
+einem CONT oder GOTO ein Fehler auf, so wird wieder die 
+Fehlerbehandlungsroutine gerufen.<p><hr><p>3.17.4 ON ERROR Beispiel-Programm
+
+10 REM ON ERROR DEMO
+20 ON ERROR 900
+100 INPUT "TEILERl";TL
+110 PRINT "QUOTIENT=";
+ : Q = 10/TL
+ : PRINT Q
+115 INPUT "TEILER2-1;TL
+120 PRINT "QUOTIENT=";
+ : Q = 10/TL
+ : PRINT Q
+125 INPUT "TEILER3";TL
+130 Q = 0
+ :PRINT "QUOTIENT=tl
+ :G = 10/TL
+ :PRINT Q
+140 INPUT "TEILER4";TL
+150 G = 0
+ :PRINT "QUOTIENT
+ :Q = 10/TL
+ :PRINT Q
+160 INPUT "TEILER5";TL
+170 Q = 0
+:PRINT "QUOTIENT=tt
+:Q = 10/TL
+:PRINT Q
+190 GO RO100
+899 STOP
+900 IF EC 11 THEN RESUME ERROR 
+910 IF EL = 110 THEN TL = lE-34 
+ : RESUME
+920 IF EL = 120 THEN PRINT "NICHT 0 EINGEBEN!" 
+ : RESUME 115
+930 IF EL = 130 THEN RESUME NEXT
+940 IF EL = 150 THEN OPEN 4,4
+ :PRINT#4,EL;EC;EO; ERROR (E0)
+ :CLOSE 4
+ :RESUME NEXT
+950 IF EL = 170 THEN PRINT
+ :PRINT "DIVISION DURCH 0 IST NICHT MOEGLICH! FEHLER IN 
+ZEILE"EL
+ :PRINT "LIST"EL
+ :END
+990 RESUME ERROR
+READY<p><hr><p>Anmerkungen zum Beispiel:
+
+Im Beispiel soll der Fehler DIVISION BY ZERO abgefangen 
+werden. Insgesamt 6 verschiedene M&ouml;glichkeiten der 
+Fehler-Behandlung sollen damit aufgezeigt werden.
+
+900: Die folgende Fehlerbehandlung kann nur den 
+Fehlercode 11 (DIVISION BY ZERO) behandeln. Deshalb soll 
+bei allen anderen Fehlern die Fehlermeidung im Direkt-
+modus gebracht werden.
+
+910: Tritt der Fehler in Zeile 110 auf, so wird der 
+fehlerhafte Teiler auf einen von Null verschiedenen, sehr 
+kleinen Wert gebracht und die Division mit diesem Wert 
+wiederholt. Dieses Beispiel steht daf&uuml;r, da&szlig; durch eine 
+&Auml;nderung der Eingangswerte bzw. Umgebungsbedingungen eine 
+fehlerhafte Anweisung zu einer richtigen Anweisungen 
+werden kann, also RESUME sinnvoll ist.
+
+920: In diesem Fall wird angenommen, da&szlig; der Fehler nur 
+in Zusammenarbeit mit dem Bediener behoben werden kann. 
+Er wird aufgefordert, einen anderen Wert einzugeben. 
+Durch RESUME zeile wird hier ab der auch sonst ben&ouml;tigten 
+Eingabe wiederholt.
+
+930: Hier wird angenommen, auf die fehlerhafte Anweisung 
+kann auch verzichtet werden. Deshalb wird einfach mit der 
+n&auml;chsten Anweisung weitergemacht. Denkbar w&auml;re hier auch 
+die Anweisung 'q=1e34' als Fehlerkorrektur.
+
+940: Dies ist ein Beispiel f&uuml;r eine Fehlerprotokollierung 
+auf Drucker. Selbstverst&auml;ndlich kann dies auch zus&auml;tzlich 
+zu anderen Ma&szlig;nahmen gemacht werden.
+
+950: Als Alternative zur englischen Fehlermeidung kann 
+versucht werden,denFehler ausf&uuml;hrlicher und in anderer 
+Sprache zu meiden. Dazu k&ouml;nnte man auch 
+alleFehlermeidungen &uuml;bersetzen, aus DATA in ein 
+Stringfeld lesen und &uuml;ber EC als Index zugreifen.
+
+990: F&uuml;r den Fall, da&szlig; DIVISION BY ZERO noch in einer 
+anderen Zeile auftritt, die hier nicht vorgesehen ist, 
+soll der Fehler analog zu 900 gemeldet werden.
+
+
+Die M&ouml;glichkeiten der ERROR-Behandlung k&ouml;nnen hier nur 
+angedeutet werden. Genauso wie Erfahrung dazugeh&ouml;rt, 
+Fehler zu finden und pr&auml;ventiv zu verhindern, so ist es 
+nicht einfach, denkbare Fehler zu korrigieren, nachdem 
+sie aufgetreten sind.<p><hr><p>3.17.5 Liste der Fehlermeldungen
+
+Einige der Meldungen mit negativem Code sind keine 
+Fehlermeldungen im laufenden Programm; sie werden also in 
+Zusammenhang mit ON ERROR nicht auftreten.'*' steht 
+ersatzweise f&uuml;r CHR$(13) (CR).
+
+
+
+   EC        EO        ERROR(E0)
+
+   -1        0         TOO MANY FILES
+   -2        14        FILE OPEN
+   -3        23        FILE NOT OPEN
+   -4        36        FILE NOT FOUND
+   -5        50        *SEARCHING
+   -6        61        FOR
+   -7        65        *LOAD
+   -8        70        *VERIFY
+   -9        77        DEVICE NOT PRESENT
+   -10       95        *FOUND
+   -11       102       *OK*
+   -12       106       *READY
+   -13       114       *ARE YOU SURE?
+   -14       129       *? BAD DISK *
+   +1        0         NEXT WITHOUT F'OR
+   +2        16        SYNTAX
+   +3        22        RETURN WITHOUT GOSUB
+   +4        42        OUT OF DATA
+   +5        53        ILLEGAL QUANTITY
+   +6        69        BASIC STACK OVERFLOW
+   +7        89        OUT OF MEMORY
+   +8        102       UNDEFID STATEMENT
+   +9        119       BAD SUBSCRIPT
+   +10       132       REDIM'D ARRAY
+   +11       145       DIVISION BY ZERO
+   +12       161       ILLEGAL DIRECT
+   +13       175       TYPE MISMATCH
+   +14       188       STRING TOO LONG
+   +15       203       FILE DATA
+   +16       212       FORMULA TOO COMPLEX
+   +17       231       CAN'T CONTINUE
+   +18       245       UNDEF'D FUNCTION
+<p><hr><p>3.18 DISPOSE
+
+Zweck
+
+Durch DISPOSE kann der BASIC-Stack manipuliert werden. 
+Folgende 4 M&ouml;glichkeiten sind gegeben:
+
+Format
+
+DISPOSE NEXT
+DISPOSE RETURN
+DISPOSE level
+DISPOSE NEXT,RETURN,NEXT usw
+
+
+DISPOSE NEXT
+
+Entfernt die Schleife, in der sich das Programm gerade 
+befindet, vom Stack. Die Laufvariable beh&auml;lt dabei ihren 
+aktuellen Wert.
+
+Durch diesen Befehl k&ouml;nnen Schleifen, deren Laufvariable 
+den Endwert noch nicht &uuml;berschritten hat, konfliktfrei 
+verlassen werden.
+
+Wenn im Stack an erster Stelle keine Schleife, sondern 
+ein Unterprogramm liegt, wird Fehler gemeldet (RETURN 
+WITHOUT GOSUB ERROR).
+
+
+DISPOSE RETURN
+
+Entfernt das Unterprogramm, in dem sich das Programm 
+gerade befindet, vom Stack. Dabei wird der entsprechende 
+R&uuml;cksprung nicht ausgef&uuml;hrt und die Adresse vergessen.
+
+Speziell f&uuml;r Fehlermeidungs-Verfahren n&uuml;tzlich.
+
+Wenn im Stack an erster Stelle kein Unterprogramm, 
+sondern eine Schleife liegt, wird Fehler gemeldet (NEXT 
+WITHOUT FOR ERROR).
+
+
+DISPOSE level
+
+level: Ebene zwischen 1 und n
+
+Der Stack wird auf die durch 'level' angegebene Ebene 
+gesetzt. Es ist gleichg&uuml;ltig, ob diese Ebene ein 
+Unterprogramm oder eine Schleife enth&auml;lt.
+
+DISPOSE 1 leert den Stack vollst&auml;ndig aus, bringt ihn 
+also in den Zustand, den er nach RUN hat.
+
+F&uuml;r Fehlermeidungs-Verfahren n&uuml;tzlich.
+
+Wenn level negativ oder gr&ouml;&szlig;er als 255 oder gr&ouml;&szlig;er als 
+der aktuelle Stack-Level ist, wird ILLEGAL QUANTITY 
+gemeldet.<p><hr><p>Beispiele
+
+10 for i = 1 to 1000
+ :if a$(i) = "" then dispose next
+ :print "erstes leeres eiement hat den index" i
+ :else next
+ :print "kein leeres element"
+30
+
+
+10 on error 20 : goto 50
+20 if el
+.
+.
+.
+40 print "unerwartete fehlermeidung:" error (eo) " error 
+in zeile "ei
+42 input "warmstart (j/n)";i$
+ :if i$ = "i" then resume 44 : else resume error
+44  dispose 1 : goto 1000 : rem warmstart-punkt<p><hr><p>3.19 INPUT / PRINT - &para;(zeilespalte)
+
+Zweck
+
+Die Sonderanweisung '&para; (zeile,spalte)1 hinter PRINT bzw. 
+INPUT bewirkt, da&szlig; der Cursor auf diese absolute 
+Bildschirmpositii)n gesetzt wird.
+
+Format
+
+PRINT &para; (zeile,spalte) variablenliste
+
+INPUT &para; (zeile,spalte) variable
+
+zeige:0...24
+spalte:0...79
+
+( &para; ist der Klammeraffe / CHR$(64)
+
+Anmerkungen
+
+Die Angabe von Spalte kann entfallen; Ersatzwert ist 0.
+
+Hinter INPUT &para; ()  darf im Gegensatz zum normalen INPUT 
+nur eine einzige Variable kommen. Das sonst &uuml;bliche 
+Fragezeichen erscheint dabei nicht auf dem Bildschirm und 
+der Cursor kann nur ab dem Aufsetzpunkt bis ans Ende der 
+Zeile bewegt werden. Weitere Einzelheiten sind bei INPUT 
+bzw INPUT USING zu finden.
+
+Hinter PRINT k&ouml;nnen mehrere (zeilen,spalten) Angaben 
+kommen.
+
+Bei Verwendung dieser Anweisung zusammen mit 
+Bildschirmfenstern k&ouml;nnen Schwierigkeiten auftreten, wenn 
+der Cursor au&szlig;erhalb des Bildschirmfensters aufgesetzt 
+wird!
+
+
+Beispiele
+
+print 5 (10,20) "text"          'text' ab Zeile 10, Spalte 20 
+                                drucken
+
+print &para; (10) "text"             Zeile 10, Spalte 0
+
+print &para;                         Itextl' ab Zeile 10, Spalte 
+(10,20)"textl"&para;(10,25)"text2"   20,
+                                'text2' ab Spalte 25 drucken
+
+print &para; (10,20);                nur Cursor positionieren
+
+input &para; (10,40) I$              Eingabe bei Zeile 10, Spalte 
+                                40 beginnen
+<p><hr><p>3.20 USING
+
+Zweck
+
+USING ist eine Stringfunktion, die mehrere 
+Variableninhalte gem&auml;&szlig; einer Formatvorschrift in einen 
+String einbaut. Im Gegensatz zu anderen Dialekten ist 
+USING unabh&auml;ngig von PRINT realisiert, kann aber 
+insbesondere auch hinter PRINT verwendet werden.
+
+In Zusammenhang mit INPUT vom Bildschirm hat USING 
+Sonderbedeutung.
+
+
+Format:
+
+A$ = USING ( format , var-liste )
+
+
+USING ist im Direktmodus nicht erlaubt, weil es den 
+INPUT-Puffer verwendet. (ILLEGAL DIRECT ERROR). Aus 
+demselben Grund darf ein USING als Argument kein weiteres 
+USING haben.
+
+
+format:
+
+Die Format-Angabe ist ein Stringausdruck. In der Praxis 
+wird es entweder eine Stringvariabie oder eine 
+Stringkonstante sein. format kann nicht wie manchmal 
+&uuml;blich auf eine BASIC-Zeile verweisen, die die 
+Formatangabe enth&auml;lt.
+
+format enth&auml;lt in Form von Sonderzeichen die 
+Formatierungsvorschrift f&uuml;r die Inhalte der var-liste. 
+Diese Zeichen sind nachfolgend beschrieben.
+
+
+Textfeld:
+
+Apostroph leitet ein Textfeld ein und Schr&auml;gstrich setzt 
+es fort. Apostroph und Schr&auml;gstrich bilden jeweils ein 
+Zeichen eines Textfeldes.
+
+"'////////'/////``/" definiert 4 Textfelder mit den 
+L&auml;ngen 9, 6, 1, 2
+ 123456789123456112
+
+Text wird linksb&uuml;ndig ins Feld gedruckt und rechts mit 
+Blanks aufgef&uuml;llt bzw. abgeschnitten.
+
+Apostroph ist absolut reserviert. Will man ihn drucken, 
+so wird dies folgenderma&szlig;en erreicht:
+
+A$ = USING ("SM's BASIC-96","'")          ergibt   SM's 
+BASIC-96
+
+Schr&auml;gstrich ist nur hinter Apostroph bzw. Schr&auml;gstrich 
+hinter Apostroph reser-
+viert. Nach einem beliebigen anderen Zeichen wird er als 
+normales Zeichen inter-
+pretiert.
+
+Ein Operator f&uuml;r variabel lange Felder wird nicht 
+vorgesehen, da dies durch Kettung von USING, String, 
+USING leicht erreicht werden kann.
+<p><hr><p>Zahlen:
+
+Doppelkreuz repr&auml;sentiert genau eine Ziffer, Punkt den 
+Dezimalpunkt, Komma Tausenderkomma, Schr&auml;gstrich 
+Tausender-Blank:
+
+('Doppelkreuz, ist das SHIFT-Zeichen &uuml;ber der '3'-Taste)
+
+Die Anzahl von Vor- und Nachkommastellen sollte zusammen 
+nicht 9 &uuml;bersteigen.
+
+Mehr als 9 Stellen bewirken folgendes: Mu&szlig; eine Zahl mit 
+9 Stellen rechts mit Nullen aufgef&uuml;llt werden, um die 
+Formatierungsvorschrift zu erf&uuml;llen, so findet &Uuml;berlauf 
+in Exponentialdarstellung statt. Dies ist n&ouml;tig, da sonst 
+optisch eine nicht vorhandene Rechengenauigkeit 
+vorget&auml;uscht werden w&uuml;rde.
+
+Im Fall von definierten Nachkommastellen ist der Exponent 
+um die Anzahl Nachkommastellen zu gro&szlig;, es wird also ein 
+fehlerhafter Exponent ausgegeben.
+
+Dagegen kann linksb&uuml;ndig mit Blanks oder '*' beliebig 
+aufgef&uuml;llt werden.
+
+Beipiele und Sonderf&auml;lle der Zahlenformatierung
+
+A$ = USING("###.##  ###,###,##  ###/###/###", 123.456, 
+123456789,
+                                                          
+123456789) 
+ergibt: 123.46 123,456,789.00 123 456 789
+
+Trenn-Komma wird nur gedruckt, wenn links weitere Ziffern 
+kommen:
+
+A$ = USING("###,###,###.## ###,###,###", 123456789, 
+123456)
+ergibt: 123,456,789.00 123,456
+
+Grenzfall 0 Vorkommastellen:
+
+A$ = USING("###.##   ##",.123,.123)
+ergibt:             0.12 .12
+
+F&uuml;hrende Vorkommanullen werden durch Blanks ersetzt mit 
+Ausnahme der ersten. Dies gilt nicht, wenn im Format 
+keine Vorkommastelle vorgesehen ist.
+
+&Uuml;berlauf wird durch ein &amp; in der letzten Stelle 
+signalisiert, sofern die Zahl nicht durchVerschieben zu 
+'retten' ist.
+
+A$=USING("###.##   ###.## ###.##", 
+1234.567,12345.67,123456.7,1234567)
+ergibt  1234.6 12346. 123457 12345&amp;
+
+Dadurch wird der Wert der Zahl gerundet richtig 
+wiedergegeben, solange sie nur um soviele Vorkommastellen 
+gr&ouml;&szlig;er ist, wie Nachkommastellen vorgesehen sind.
+
+Da&szlig; die Zahl in diesem Fall nicht mit der richtigen 
+Nachkommaanzahl gedruckt wird, ist bei Tabellen eindeutig 
+erkennbar; in anderen F&auml;llen nur, wenn das Format bekannt 
+ist.
+
+Vorzeichen:
+
+Der Platz f&uuml;r ein Vorzeichen ist immer explizit anzugeben
+
+   ###.##       kein Vorzeichen m&ouml;glich, sonst 
+                &Uuml;berlauf-Reaktion
+   +###.##      + oder - vor der Zahl ausgeben 
+                (explizites Plus)
+   -###.##      nur - vor der Zahl ausgeben 
+                (implizites Plus = Blank)
+   ###.##+      + oder - nach der Zahl ausgeben 
+                (explizites Plus)
+   ###.##-      nur - nach der Zahl ausgeben 
+                (implizites Plus = Blank)
+<p><hr><p>Scheckschutz:
+
+Durch einen f&uuml;hrenden Stern im format werden beim 
+Ausdruck f&uuml;hrende Blanks durch Sterne ersetzt:
+
+A$ = USING("*##,###,###.##       *##,###,###",123456,)
+ergibt:****123,456.00 **********0
+
+Der Stern repr&auml;sentiert ebenso wie Doppelkreuz eine 
+Ziffer!
+
+Die erste Vorkommastelle wird durch Null anstatt Stern 
+dargestellt.
+
+Wurde eine Vorzeichenstelle reserviert, so wird in die 
+linke Spalte Blank statt Stern gedruckt.
+
+Unmittelbar nach '*' darf kein 'Tausender-Komma' stehen; 
+dies f&uuml;hrt zu Fehlformatierungen.
+
+
+Exponentialdarstellung:
+
+Vier &amp;-Zeichen reservieren Platz f&uuml;r den Exponenten und 
+schalten auf Exponentialdarstellung. Die Mantisse wird 
+immer mit einer Vorkommastelle ausgegeben.
+
+Der Exponent hat immer die Form 'E', Vorzeichen, zwei 
+Ziffern Exponent. Bei einstelligem Exponent ist die 
+f&uuml;hrende Ziffer eine 0.
+
+
+Wiederholung:
+
+Ein Format kann von mehreren Variablen 'ben&uuml;tzt' werden. 
+Das ganze Format wird automatisch wiederholt:
+
+A$ = USING ("###.## ",123.45,234.56,345.67) 
+ergibt: 123.45 234.56 345.67
+
+A$ = USING("'//////// ### : ",mueller,25,maier,36)
+ergibt:        mueller    25 : maier      36 : 
+
+
+Wenn USNG alleine oder in Zusammenhang mit PRINT 
+verwendet wird, verh&auml;lt es sich wie eine Stringfunktion, 
+&uuml;bergibt also genau einen String.
+
+Dagegen hatUSING in Zusammenhang mit INPUT vom Bildschirm 
+eine Doppelfunktion: Einmal wird genauso wie bei PRINT 
+der Inhalt der E/A-Variabie formatiert auf den Bildschirm 
+geschrieben und zwar genau an der Eingabeposition. Zum 
+zweiten sind bei numerischer Eingabe nur Zifferntasten 
+usw. erlaubt und der Cursor kann nicht aus dem durch das 
+Format definierte Eingabefenster entfernt werden. Diese 
+Eigenschaften sind im Kapitel INPUT beschrieben.
+<p><hr><p>3.21 INPUT USING
+
+Zweck
+
+INPUT USING erm&ouml;glicht eine f&uuml;r Programmierer und 
+Anwender komfortable Eingabe, die weit &uuml;ber die 
+M&ouml;glichkeiten des normalen INPUT hinausgeht. Zusammen mit 
+der Cursorpositionierung durch '&para;(zeile,spalte)' ergeben 
+sich M&ouml;glichkeiten, mit geringem Aufwand einen 
+&uuml;bersichtlichen und abgesicherten Bildschirm-Dialog 
+aufzubauen.
+
+
+Forrnat
+
+INPUT &para; (ze,sp) eingabe-variable
+INPUT USING (format) eingabe-variable
+INPUT &para; (ze,sp) USING (format) eingabe-variable
+
+
+eingabe-variable: numerische oder String-Variable, 
+einfach oder indiziert
+
+Der Inhalt der Variablen wird ab (ze,sp) linksb&uuml;ndig auf 
+den Bildschirm geschrieben (Vorgabe) und der Cursor auf 
+die erste (linke) Spalte gesetzt.
+
+
+format: wie bei USING beschrieben, aber mit folgenden 
+Einschr&auml;nkungen:
+
+Nur 1 Eingabeformat (//// oder####) ist m&ouml;glich. Vor dem 
+Eingabeformat k&ouml;nnen beliebige konstante Zeichen stehen 
+("Alter: ###"). Nach dem ersten Eingabeformat werden alle 
+weiteren Angaben im Formatstring ignoriert.
+
+Typ von Eingabeformat und Variable m&uuml;ssen &uuml;bereinstimmen, 
+sonst erfolgt TYPE-MISMATCH-Meldung.
+
+
+Verhalten des Bildschirm-Editurs bei der Eingabe:
+
+Der Cursor kann aus dieser Bildschirmzeile nicht entfernt 
+werden:
+
+Cursor-Vertikal-Tasten sind wirkungslos.
+
+DEL wirkt nur rechts vom Aufsetzpunkt.
+
+HOME stellt alten Inhalt nochmal her, solange nicht durch 
+RETURN &uuml;bernommen wurde.
+
+CLR l&ouml;scht rechte Zeilenh&auml;lfte ab Aufsetzpunkt.
+
+RETURN &uuml;bernimmt Fenster-Inhalt in Variable.
+
+Leere Eingabe bei String erzeugt leeren String. Bei 
+numerischer Variable ist die leere Eingabe nicht 
+zugelassen, d.h. aus leerem Zahlenfenster kommt man nicht 
+raus. Die Reaktion ist wie bei HOME.
+
+STOP bewirkt die R&uuml;ckkehr ins BASIC-Programm und von dort 
+BREAK, sofern dies nicht verhindert wurde.
+
+Bei numerischer Eingabe (numerische Variable) sind nur 
+die Zifferntasten sowie Punkt, Komma, E, +, - und Blank 
+zugelassen.<p><hr><p>USING hinter INPUT hat zus&auml;tzlich zu den bisher genannten 
+noch die folgenden
+Wirkungen:
+
+Das Eingabefenster ist nicht nur nach links, sondern auch 
+nach rechts begrenzt (entsprechend der L&auml;nge des 
+Eingabeformats).
+
+Die Vorgabe wird entsprechend der Formatvorschrift 
+gemacht.
+
+Vorzeicheneingabe ist entsprechend der Formatangabe 
+erlaubt oder nicht.
+
+'E' ist nur zugelassen, wenn im Format ein Exponent 
+definiert ist.
+
+Vor &Uuml;bergabe einer Zahl durch RETURN wird sie 
+entsprechend der Formatvorschrift gerundet und formatiert 
+ins Fenster gedruckt. Der &uuml;bergebene Wert ist gerundet.
+
+
+Beispiel
+
+input &szlig;(10,20) using ("Menge (kg): ######.### mk
+<p><hr><p>4. CALL/FUNC
+
+4.1 &Uuml;bersicht
+
+LOS-96 bietet eine Schnittstelle zu 'fremden' 
+Maschinenprogrammen, die dann &uuml;ber Namen vom Interpreter 
+gerufen werden. Die LOS residente Schnittstelle ist sehr 
+einfach: Empf&auml;ngt der Interpeter das Wort (Token) 'CALL' 
+oder 'FUNC', so springt er &uuml;ber den Vektor in 1507/1508.
+
+Der CALL-Handier wird dadurch angesprungen, sofern er 
+geladen ist. Er sieht in der Tabelle, die durch den 
+Vektor in 1510/1511 definiert ist, nach, ab der hinter 
+CALL oder FUNC angegebene Name vorhanden ist, und springt 
+im Ja-Fall auf die angegebene Adresse. Im Nein-Fall wird 
+noch versucht, den Namen in einer REM-Zeile zu finden, 
+die dann die Maschinenrautine enth&auml;lt. Wird auch dort der 
+Name nicht gefunden, wird UNDEF'D FUNCTION ERROR 
+gemeldet.
+
+Da sich diese Beschreibung nur an erfahrene 
+Assembierprogrammierer richtet, bitten wir Sie, anhand 
+des auf der Diskette enthaltenen Demos die einzelnen 
+Eigenschaften nachzuvollziehen, wenn Sie selbst 
+Erweiterungen schreiben und ankoppeln wollen.
+
+4.2 Die Tabelle
+
+CALL bzw. FUNC ruft ein Maschinenprogramm &uuml;ber einen 
+Namen auf. Die Namen und Einsprungadressen der Programme 
+stehen in Tabellen.
+
+Die Tabelle ist folgenderma&szlig;en aufgebaut: Im ersten Teil 
+der Tabelle stehen die Adressen der Routinen und 
+Untertabellen, im zweiten Teil die dazugeh&ouml;rigen Namen. 
+Die Eintragungen in der Adresstabelle k&ouml;nnen l&auml;nger als 
+zwei Bytes sein. Die L&auml;nge einer Eintragung steht im 
+zweiten Byte der Tabelle. Die ersten beiden Bytes einer 
+Eintragung werden als Startadresse verwendet. Beim Aufruf 
+des Maschinenprogramms zeigt (31/32) in die Tabelle auf 
+das Low-Byte der Sprungadresse.
+
+Eine Tabelle kann mehrere Untertabellen besitzen. Die 
+Untertabellen sind genauso aufgebaut, wie die 
+Haupttabelle.
+
+Sie werden nur durchsucht, wenn der aufgerufene Name in 
+den ersten Zeichen mit dem Namen der Untertabelle 
+&uuml;bereinstimmt. Wenn die Untertabelle auf jeden Fall 
+durchsucht werden soll, wird kein Name f&uuml;r die 
+Untertabelle angegeben. Eine Untertabelle kann wieder 
+Untertabellen enthalten.
+
+
+Byte         Inhalt
+
+0            0 = Offset zur Namenstabelle
+1            L = L&auml;nge einer Eintragung in der 
+             Adre&szlig;tabelle
+2...L+l      erste Adresse
+.
+.
+.
+0 ... 0+11-1 erster Name (L&auml;nge 11)
+0+11         Endezeichen (s.u.)
+.
+.
+.
+0            Tabellenende
+
+
+Endezeichen:
+
+Jeder Name in der Tabelle mu&szlig; durch ein Endezeichen 
+begrenzt werden:<p><hr><p>EndezeichenBedeutung
+
+1          Aufruf als CALL
+2          Aufruf als FUNC
+3          Namen nicht ber&uuml;cksichtigen (z.B. Programm 
+           nicht geladen)
+4          Untertabelle
+
+
+4.3 Aufruf von CALL oder FUNC vom Betriebssystem
+
+Beim Erkennen eines CALL in der Interpreterschleife oder 
+FUNC in der Formelauswertung setzt der Interpreter die 
+Zelle 94 auf 1 (bei CALL) bzw. 2 (bei FUNC) und springt 
+auf die CALL-Routine &uuml;ber den Vektor (1507/1508).
+
+Beim Start des Systems zeigt dieser Vektor auf SYNTAX 
+ERROR, so da&szlig; bei nicht geladenem CALL-handler kein 
+Absturz m&ouml;glich ist.
+
+Der Tabellenvektor (s.o.) zeigt beim Start auf eine 
+Zelle, die 0 enth&auml;lt. Damit wird bei nicht geladener 
+Tabelle, aber geladenem CALL-Handler nur nach REM-
+Routinen gesucht.
+
+
+4.4 REM-Routinen
+
+Der Interpreter akzeptiert hinter REM jedes Byte mit 
+Ausnahme von 0 (Zeilen-ende). Diese Eigenschaft kann man 
+nutzen, um kurze (max 250 Bytes) Maschinenprogramme 
+direkt ins BASIC-Programm zu schreiben, wodurch weitere 
+Nachladevorg&auml;nge und Platzreservierungen &uuml;berfl&uuml;ssig 
+sind.
+
+Da REM-Routinen in der Regel verschiebbar sein m&uuml;ssen, 
+d&uuml;rfen keine absoluten Spr&uuml;nge (JMP, JSR auf diese oder 
+andere REM-Routinen und keine Lade- oder Speicherbefehle 
+auf denBereich des BASIC-Programms vorhanden sein.
+
+REM-Routinen unterhalb von 32768 (nach unten verl&auml;ngerter 
+PRG-Bereich) werden direkt ausgef&uuml;hrt, solche von 
+oberhalb 32766 (Normalfall) werden vom CALL-Handler in 
+den Input-Buffer (Page 2) kopiert und dann ausgef&uuml;hrt. Im 
+Direktmodus erfolgt in solchen F&auml;llen ILLEGAL DIRECT 
+ERROR.
+
+Wenn REM-Routinen immer oberhalb von 32768 stehen, k&ouml;nnen 
+Sie direkt f&uuml;r die zweite Page assembliert werden und 
+dann absolute Spr&uuml;nge und Speicherzugriffe auf sich 
+selbst enthalten.
+
+REM Routinen m&uuml;ssen unmittelbar nach dem REM-Token den 
+Namen enthalten. Der Name kann ein Token sein oder Token 
+enthalten.
+<p><hr><p>System- und Beispielprogramme
+
+Zus&auml;tzlich zu den beiden unbedingt n&ouml;tigen Programmen 
+(unterstrichen) sind auf der LOS-Diskette noch einige 
+kleine Hilfsprogramme, die nebenbei einige der neuen 
+Programmierm&ouml;glichkeiten zeigen.
+
+Zuerst ein &Uuml;berblick &uuml;ber die Diskette-
+
+0 "los-96/sm/010182" hg 2c
+1 91 "los96.......110m" prg Betriebssystem-Objektcode
+2  5 "start-catal.cv0p" prg Catalog$-Demo als 
+Startprogramm
+3  4 "start/call..culp" prg Lader f&uuml;r CALL-Option
+4  2 "call.e65169.cu0m" prg CALL-Objektcode
+5  1 "tab.e32614..cu0m" prg Demo f&uuml;r CALL/FUNC
+6  3 "zeiger-monitcv0p" prg zeigt die eingestellten 
+Speicherbereiche
+7  3 "cs(catal-screen)" prg Bildschirmprogramm f&uuml;r 
+Catalog im Direktmodus
+8  2 "fehlercodes.ct0p" prg druckt Fehlermeidungen mit 
+EC/EO - Codes
+9  2 "prg-untergrenze" prg Programm-Untergrenze ver&auml;ndern
+  1939 blocks free.
+
+1)     Das Betriebssystem sollte immer als erste Datei im 
+Directory stehen, um den einfachen Start durch SHIFT/RUN 
+zu erm&ouml;glichen.
+
+2) Ein ganz brauchbares Directory-Druck-Programm, das die 
+Anwendung von CATALOG$ zeigt.
+
+3/4/5) Wenn die CALL-Option verwendet werden soll, mu&szlig; 
+das Programm (4) auf der Diskette sein. (3) l&auml;dt die 
+Option in den daf&uuml;r vorgesehenen Speicherbereich an der 
+Obergrenze des Programmbereiches und reserviert den 
+ben&ouml;tigten Platz vor BASIC. Als Beispiel l&auml;dt (3) eine 
+kleine DEMO-Erweiterung, die f&uuml;r Interessierte das 
+Prinzip verdeutlichen kann (s. dazu die CALL-
+Beschreibung):
+
+func f1 (3)
+6
+? func f2 (3)
+1.5
+call hl
+hl
+call h2
+h2
+
+6) zeigt die aktuelle Einstellung des Programm- und 
+Variablenbereiches
+
+7) da CATALOG$ im Direktmodus etwas unhandlich ist, wurde 
+dieses kleine Programm auf den Bildschirm geschrieben. Es 
+wird durch
+
+load &para;32768,"cs*
+
+direkt in den Bildschirm geladen, ohne Programm und 
+Variable zu beeinflu&szlig;en (mit Ausnahme von A$( und A$
+
+In der zweiten Bildschirmzeile stehen alle Parameter von 
+CATALOG$. &Auml;ndern Sie die Vorgaben, wie gew&uuml;nscht und 
+dr&uuml;cken Sie zweimal RETURN. Nach kurzer Zeit erscheint 
+das Directory im Bildschirm. Falls ein langes Directory 
+zu schnell durchl&auml;uft, dr&uuml;cken Sie nach dem Ende einfach 
+nochmal RETURN.
+
+8) Dieses kleine Programm druckt alle Fehlercodes mit EC 
+und EO auf Bildschirm oder Drucker.
+
+9) Mit diesem Programm k&ouml;nnen Sie die PRG-Bereich-
+Untergrenze ver&auml;ndern. Zwei ben&ouml;tigte Absicherungen sind 
+in diesem Programm enthalten, die dritte fehlt: wenn der 
+Programmbereich unterhalb von 32768 beginnen soll, mu&szlig; 
+gefragt werden, ob der Variablenbereich (42/43) nicht 
+auch schon unterhalb beginnt.
+
+
+
+</pre></body></html>

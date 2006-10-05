@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
+<html><head><base target="_top">
+<meta name="author"  content="Andr&eacute; Fachat">
+<meta name="robots"  content="noindex">
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="keywords" content="C64, bus adapter"> <meta name="description" content="CS/A bus adapter for the C64">
+<title>CS/A adapter</title>
+<link rev=made href="mailto:afachat@gmx.de">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<h1>C64 &lt;-&gt; CS/A bus adapter</h1>
+<h2>(C) Andr&eacute; Fachat (<a href="mailto:afachat@gmx.de">afachat@gmx.de</a>) [file:///home/fachat/Current/WWW/8bit/home-8bit/html]</h2>
+<p>
+This is the description of an adapter to use most CS/A boards in a C64.
+A lot of CS/A boards, including a video card, serial interfaces, floppy
+controller and an SCSI card can be found on the 
+<a href="../../csa/index.html">CS/A65</a> homepage.
+Below is the schemactics for a <em>C64 SCSI card</em>, derived from this
+adapter and the CS/A SCSI card.
+</p>
+<div class=disclaimer>
+<hr class=disclaimer>
+<H1 class=disclaimer>Disclaimer</H1>
+
+<P class=disclaimer>Before you go on, you should know that all this stuff
+comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
+to be used in any important or even life-critical systems.
+The hardware schematics and software
+are provided 'as is', without warranty of any kind. The entire risk as
+to the quality and performance of the hard- and software is with you. Should
+the hard- or software prove defective, you assume the cost of all necessary
+servicing, repair or correction.</P>
+<hr class=disclaimer>
+</div>
+
+<H2>Distribution</H2>
+<p>
+<font size="+1">
+Warning: This computer system is free for <strong>NON-COMMERCIAL</strong>
+purposes only! If you want to do something useful with it, please
+contact me. Also if you like to produce PCBs, or want to earn money
+with it, please contact me first.
+The disclaimers in section 11. and 12. of the GNU public license apply.
+</font></p>
+<p><hr>
+<H2>Description</H2>
+The interface itself is, in fact, pretty simple. 
+It is a board that is plugged into the C64 expansion port. On the 
+other side it provides a socket for a CS/A bus card.
+Two things have to 
+be considered for the schematics: 
+<ul>
+<li>The C64 Video chip releases the bus with rising Phi2. This is too late
+for the 6522. Thus the rising edge of Phi2 must be delayed to the 
+CS/A bus, to be sure. The CS/A bus is specified to run up to 
+2 MHz, so there is no speed problem.
+<li>The I/O area in the C64 is 256 byte only. To cover the whole
+CS/A bus address space (1M memory and 4k I/O) additional address
+lines have to be generated. This is taken care of with a VIA 6522
+on the adapter. More in the <a href="c64csadesc.txt">description</a>.
+</ul>
+<p>schematics as <a href="c64csa.png">c64csa.png</a> or 
+<a href="c64csa.ps.gz">c64csa.ps.gz</a> (gzip'd postscript), 
+<a href="c64csadesc.txt">description</a>, 
+<a href="c64csaparts.txt">parts list</a>
+</p>
+<hr><p class=endofpage>
+Contents last modified Jan 13 12:44 |
+Go to <a href="../../index.html">Homepage</a> 
+</p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+
+Parts list for C64-CS/A adapter, version 1.0
+--------------------------------------------
+
+IC	1		74LS245
+	2		74LS541
+	3		74LS08
+	4		7404
+	5		74LS86
+	6		74F139
+	7		74LS74
+	8		R6522A
+
+P	1		C64 expansion port card edge connector
+	2		CS/A bus connector, female
+
+

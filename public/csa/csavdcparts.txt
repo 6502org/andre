@@ -1,0 +1,36 @@
+
+Parts for CS/A VDC40/80 board, version 1.3
+------------------------------------------
+
+IC	1		6545/6845		CRTC
+	2		74LS138	
+	3		74HCT688
+	4,10		74LS374
+	5,6,11,12,15	74LS257
+	7		74F245
+	8,9		41464			4*64k dyn. RAM, 120ns access time (or better)
+	13		2764			character generator ROM
+	14		74LS166
+	16		74LS175
+	17		74LS86
+	18		74LS74
+	19,22		74LS04
+	20,23		74LS00
+	21		74LS32
+
+P	1		CS/A bus connector
+	2		D-Sub 9 pin female	C128 VDC exit - alike
+	3		1-pin			charrom switch PET emulator
+
+R	1,5		220
+	2		10
+	3,4		47
+
+C	1-23		60-100nF		decoupling C between Vcc and GND
+	24		100uF
+
+J	1		3-pin			memory address range 0x01**** or 0x03****
+	2		3-pin			i/o address range 0x88* or 0x89*
+
+
+	

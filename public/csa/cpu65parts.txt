@@ -1,0 +1,41 @@
+
+Parts list for CS/A65 CPU65 board, version 1.3
+----------------------------------------------
+
+IC	1		74LS14	
+	2		74LS32
+	3		74F00
+	4		74LS06
+	5		7414			do not use LS or other type: timing critical
+	6		75LS86
+	7		65C02P4			CMOS CPU for 4MHz
+	8		16MHz frequency generator
+	9		74LS293
+	10,13,16	74HCT245/74LS245
+	11,12		74F245
+	14,17		74HCT688
+	15		74LS610
+	18		74F139
+	19		74LS244
+
+P	1		CS/A65 bus connector
+	2		4 pin for LED/key
+
+R	1-6,8,9,11-13	4k7
+	7		470
+	10		10k
+
+C	1-17		60-100nF		(decoupling C between Vcc and GND)
+	18,20		100uF
+	19		100nF
+
+J	1		3-pin			size I/O
+	2		3-pin			CPU clock 1 or 2 MHz
+	3		3-pin			CPU clock intern/extern
+	4		2-pin			connect bus Phi0
+	5		2-pin			connect bus Sync
+	6		2-pin			connect bus 2Phi2
+	7		2-pin			connect bus 8Phi2
+
+IC18 and IC19 only needed for read-only page hack.
+

@@ -1,0 +1,120 @@
+
+                             PET index - versions
+
+   [1]Text version
+
+What different machines are there? Version Overview
+
+   The Problem that caused much confusion is that there are a real lot of
+   different versions of PET-type computers. PET-type, as in Europe they are
+   called `CBM' machines, not `PET', and had a different numbering. Here is
+   only an overview with some comments. For more information look at the
+   [2]petfaq.
+
+   There are 4 major case versions:
+    1. 9" design model, never sold
+    2. 9" screen and tape recorder builtin, small chiclet-type keyboard
+    3. 9" screen builtin, full-size keyboard (with or without graphic symbols)
+    4. 12" screen builtin, full-size keyboard (with or without graphic symbols)
+    5. 12" turnable screen builtin, separate keyboard, rounded case, business
+       keyboard
+
+   All except the "separate keyboard" are one-piece cases. Pictures of these
+   cases can be seen in the [3]PET gallery.
+
+   In addition to that there are 4 major board revisions (see the [4]boards
+   section) And also the [5]ROMs have changed too.
+
+  Model Numbering
+
+   This can also only be an overview, for more accurate numering information
+   please look at the [6]CBM products list. All models except 80** and the
+   SuperPET are 40 columns.
+     * PET 2001 - Of this number there exist a lore of versions, with RAM from
+       4k to 32, 9" and 12" screen, chiclet-type, graphics and business
+       keyboard, ROMs from original to 4.0. The normal numbering was "2001"
+       with extras behind the number to show the RAM size of other version
+       information.
+          + 1977 first PET with chicklet style keyboard, board#1
+          + 1979 more memory (up to 32k), full size keyboard, Upgrade ROMs,
+            DOS1 disk drive, later DOS1.2, board#2
+     * CBM 30** - Those are in general European 9" PET models, with the board 2
+       (from above). They have no sound but have upgrade ROMs. Replace the "**"
+       with the RAM size 08, 16, or 32k. German 3001 machines are supposed to
+       be 2001's with large keyboard.
+     * PET/CBM 40** with 9" screen - The products list as well as the faq
+       mentions 9" 40** PETs. Around 1980, using the #2 board, with the revised
+       BASIC4.
+     * PET/CBM 40** with 12" screen - board #3 (with CRTC), upgradeable to 80
+       cols, piezo beeper. 4.0 ROMs, around 1981, with DOS2.1 drive 4040. Also
+       known as "Fat Forty". When the 8032 came out, 12" screens became
+       standard with this model.
+     * PET/CBM 8032 with 12" one-piece case. They have board #3, and 80 cols
+       screen and piezo beeper. 4.0 ROMs with 80 cols editor ROM. The 8032 came
+       1981. Some have been upgraded with expansion board to a 8096. Another
+       models based on this 8032 is the SuperPET (AKA MMF9000).
+     * PET/CBM 8032-SK with 12" separate keyboard. They have board #3 or board
+       #4. Board #3 doesn't fit into the new case so they had to use extra
+       cables from the board to the back of the computer. You can recognize
+       them by not having card-edge connectors for IEEE488 on the back. The
+       board #4 were sold as 8296 in 1984-1986
+
+  Comments
+
+   I guess to understand this numbering one has to understand a bit of the
+   model history. First the 9" models with board #1 and built-in tape have been
+   developed. The hardware was pretty much ok, but the software was buggy.
+   (Don't know if these boards have been sold with full-size keyboard).
+
+   Then they improved the software to BASIC 2 and working IEEE488, as well as
+   they developed the #2 board. They were also made for the 9" cases, They were
+   available with full-size keyboard (with tape as well? don't know).
+
+   After that came BASIC 4, with the 4000 series.
+
+   However, as the first BASIC version was so buggy, a lot of machines were
+   upgraded to higher BASIC versions, and the 9" models were even sold with
+   Basic 1, 2, and 4 (probably as 2001, 30** and 40** models). That is why
+   there are so many different types.
+
+   When Commodore developed the CRTC board (#3) they first did a version for 80
+   columns only. This probably went along with the development of BASIC 4 (?).
+   So they sold 9" 40 columns PETs with BASIC 4 without CRTC, and 12" 80
+   columns PET with CRTC and BASIC 4.
+
+   Then they modified the 80** board to the "universal dynamic PET board" to be
+   able to display 40 columns as well. It only fits into the 12" case, so the
+   "fat-40" with 40 columns and CRTC was born. I.e. they sold 12" cases with
+   basically the same board as 40** and 80**, which supposedly reduced
+   production costs a lot.
+
+   This universal board then became the base for the SuperPET and the 8096,
+   which were actually add-on boards to the 8032 board, either with an
+   additional 6809 CPU, RAM and ROM, or with a simple 64k RAM extension.
+
+   CBM then designed a new case, the rounded separate keyboard case.
+   Unfortunately the 8032 boards didn't fit in there, so they improvised
+   something with a lot of wiring.
+
+   Finally CBM designed the new board with up to 128k RAM. This board is used
+   in the rounded separate keyboard cases, and reduces the I/O to $E8**, so
+   that $E900-$EFFF can be used for nationalized editor ROMs. I have to see
+   reports about other models than the 8296 to use this board actually.
+
+   More on the PET history can be found on the [7]Commodore.ca web site.
+     _________________________________________________________________
+
+   Back to the [8]PET index
+
+   PET index V1.0 (c) 1998-2005 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/versions.txt
+   2. http://www.6502.org/users/andre/petindex/links.html#petfaq
+   3. http://www.6502.org/users/andre/petindex/gallery/index.html
+   4. http://www.6502.org/users/andre/petindex/boards.html
+   5. http://www.6502.org/users/andre/petindex/roms.html
+   6. http://www.6502.org/users/andre/petindex/links.html#prodlist
+   7. http://www.commodore.ca/products/pet/commodore_pet.htm
+   8. http://www.6502.org/users/andre/petindex/index.html

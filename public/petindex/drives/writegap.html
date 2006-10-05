@@ -1,0 +1,650 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<LINK HREF="../petindex.css" REL="stylesheet" TYPE="text/css">
+<LINK REV="made" HREF="mailto:afachat@gmx.de">
+<META NAME="author" CONTENT="Andr&eacute; Fachat">
+<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/writegap.html"-->
+<TITLE>PET index - disks</TITLE>
+</HEAD>
+<BODY>
+<H1>PET index - Write Gap diskussion</H1><P><A HREF="writegap.txt">Text version</A>
+<P>Here you find the information from Inside Commodore DOS and
+from a diskussion on the cbm-hackers mailing list in spring 2005.
+
+<H2>Inside Commodore DOS</H2>
+<PRE>
+9.12  Write Incompatibility with 4040
+
+Programs or data stored on a diskette formatted on a 1541 disk drive can be
+READ using a 2040 or 4040 disk drive.  Conversely, a 1541 disk drive can
+READ a diskette formatted on either a 2040 or 4040 disk drive.  However,
+these drives are not completely write compatible.
+
+This write-incompatibility problem appears to be caused by two things:
+
+1.  Differences in the header gap length.
+2.  Alignment problems (particularly with the 1541).
+
+Let's consider the differences in the header gap length first.
+
+Differences in Header Gap Length
+                                                                        :209:
+The 2040 and 4040 drives use a header gap that is nine GCR bytes long while
+the 1541 uses a header gap that is only eight non-GCR bytes long.  On this
+basis we would expect the header gaps to be 90 and 64 bits long respectively.
+However, when we use a bit-grabber to view the gap we find that the actual
+header gaps as recorded on the disk are 100 bits for the 4040 and 92 bits for
+the 1541.  In read mode, this makes no difference.  After reading the header
+bytes to check that this is the correct sector, all the drives simply wait
+for the next sync mark.  The number of bytes in the header gap does not
+matter.  Once the sync mark is over, the first character in the data block is
+read.  This is the data block ID character.  If it is not a $07, the DOS
+reports a 22 READ ERROR (data block not found).
+
+In write mode, however, the length of the header gap is important.  After
+reading the header bytes to check that this is the correct sector, all the
+drives count off the bytes that make up the header gap.  Once the correct
+number of bytes have been read, the drive flips to write mode and begins
+writing out the data block sync characte.  Since this is reputed to be an
+important aspect of the write incompatibility problem, let's examine what
+happens in some detail.
+
+The last part of the header gap and the start of the data block sync mark in
+a sector of a diskette that has just been formatted on a 1541 disk drive look
+something like this:
+
+               Sync mark
+1541 xxxxxxxxxx111111111111111111111111111111111111 -&gt; 92 bits
+
+The last part of the header gap and the start of the data block sync mark in
+a sector of a diskette that has just been formatted on a 4040 lokos something
+like this:
+
+                                         Sync mark
+4040 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx111111111111 -&gt; 100 bits
+
+When a sector of a diskette that was ORIGINALLY FORMATTED ON A 4040/2040 disk
+drive is REWRITTEN ON A 1541, the result is as follows:
+
+Original                                 Sync mark
+4040 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx111111111111 -&gt;
+
+Rewrite         Sync mark
+1541 xxxxxxxxxx-1111111111111111111111111111111111111 -&gt;
+
+Result          Sync mark
+     xxxxxxxxxx-1111111111111111111111111111111111111 -&gt;
+
+
+NOTE:  The "-" marks when the drive switches into write mode.  A transient
+current appears to flow through the record/play head during this time
+interval.
+
+The original sync mark on the diskette has been completely overwritten by the
+new one.  This sector can be read cleanly on any drive.  It appears that a
+1541 drive should be able to write data onto a dikette that was originally
+formatted on a 4040 without causing any problems.
+
+When a sector of a diskette that was originally formatted on a 1541 disk
+drive is rewritten on a 4040/2040, the result is as follows:
+                                                                        :210:
+Original       Sync mark
+1541 xxxxxxxxxx11111111111111111111111111111111111111 -&gt;
+
+Rewrite                Sync mark
+4040 xxxxxxxxxxxxxxxxx-111111111111111111111111111111 -&gt;
+
+Result         Pseudo-sync   Sync mark
+     xxxxxxxxxx1111111-111111111111111111111111111111 -&gt;
+
+
+NOTE:  The "-" marks when the drive switches into write mode.  A transient
+current appears to flow through the record/play head during this time
+interval.
+
+In this case, the original sync mark on the diskette has NOT been completely
+overwritten by the new one.  The start of the old sync mark is still there.
+What actualy gets recorded at the start of the "new" sync mark depends on the
+speed of the drives, the polarity of the magnetic field used to record the
+original "1" at that spot on the diskette, and any transients that flow
+through the head as it switches into write mode.
+
+Before you read this next section, be sure that you understand Section 9.7 on
+the Recording Process.
+
+Let's take a look at an "exploded" view of that spot just before the new sync
+character is written.  Remember, a "1" is not recorded as magnetization in a
+particular direction.  It is simply a change in the direction.  Now that
+you've got that straight, here is what that spot might look like.
+
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+Original  |N   S|S   N|N   S|S   N|N   S|S   N|N   S|S   N|N   S|
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+          1     1     1     1     1     1     1     1     1
+
+Everything appears normal.  Now let's write that sync mark.
+
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+Original  |N   S|S   N|N   S|S   N|N   S|S   N|N   S|S   N|N   S|
+by a 1541 +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+
+                                  +-----+-----+-----+-----+-----+
+Replacement sync mark           ??|N   S|S   N|N   S|S   N|N   S|
+written by a 4040                 +-----+-----+-----+-----+-----+
+                                ?? = effects of transient currents
+
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+Result    |N   S|S   N|N   S|S  ??|N   S|S   N|N   S|S   N|N   S|
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+          1     1     1     1     1     1     1     1     1
+
+Everything worked out just fine.  We have a clean sync mark and the sector
+can be read cleanly by either drive.  However, suppose our 74LS74 flip-flop
+(UF6) had been in the opposite state or the speed of this drive did not
+exactly match this new one.  What would happen?  Take a look.
+                                                                        :211:
+          +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+Original  |N   S|S   N|N   S|S   N|N   S|S   N|N   S|S   N|N   S|
+by a 1541 +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+
+                                  +-----+-----+-----+-----+-----+
+Replacement sync mark           ??|S   N|N   S|S   N|N   S|S   N|
+written by a 4040                 +-----+-----+-----+-----+-----+
+                                ?? = effects of transient currents
+
+          +-----+-----+-----+-----------+-----+-----+-----+-----+
+Result    |N   S|S   N|N   S|S   ??    N|N   S|S   N|N   S|S   N|
+          +-----+-----+-----+-----------+-----+-----+-----+-----+
+          1     1     1     1    ?0     1     1     1     1
+
+Argh!  Potential problems.  Because the magnetic polarity of the new "1"
+happened to match the polarity of the existing zone, we appear to have just
+created a double-length magnetic zone.  If we have, this will be interpreted
+as a "0" bit.  From a study of the bits actually recorded on disk, this
+appears to happen every time!  If there are more than 10 preceeding "1" bits,
+this single "0" will be interpreted as the end of the sync mark and the drive
+will interpret the rest of the sync bits as data.  Since this will definitely
+NOT be decoded as a $07 byte, the drive errs out with a 22 READ ERROR.
+
+Since th header gaps only differ in length by 8 bits, we should always have
+only seven 1's in the pseudo-sync.  An examination of the bits recorded on
+the disk seems to support this conclusion.  As a further test we did some
+testing using recently aligned drives.  We found surprisingly few errors when
+we use a 4040 disk drive to rewrite all non-directory sectors on a 1541
+formatted disk.  On a freshly formatted diskette, we found no errors at all
+after rewriting over 2400 sectors.  If the sectors of the 1541 diskette has
+been rewritten several times using a 1541 before they were rewritten on a
+4040, we did start to find a few errors.  However, the error count was low.
+Usually less than two errors when rewriting all 640 sectors and these tended
+to occur in two specific areas:  on tracks 25 or 26 or on tracks 31 or 32.
+These findings lead us to conclude that the differences in header gap length
+is NOT the cause of write compatibility problems between the 1541 and 4040
+disk drives.
+
+If for some reason you want to reduce the difference in header gap further
+when writing onto a 1541 formatted diskette using a 4040 drive, enter the
+following magic incarnation in either program or immediate mode.
+
+OPEN 15,8,15
+PRINT#15,"M-W"CHR$(157)CHR$(16)CHR$(1)CHR$(8)
+CLOSE 15
+
+This will change the header gap length of the 4040 drive from 9 to 8 GCR
+bytes (actual length = 90 bits).  You can now write to the 1541 diskette with
+little fear of damage.  However, you must remember to reset your 4040 drive
+(turn it off or issue a UJ command) before you insert one of your 4040
+formatted diskettes.  Otherwise, a magnetic plague will develop among your
+4040 formatted diskettes.  Don't say you weren't warned!
+
+Head Positioning Problems
+
+Since we encountered so few errors using properly aligned drives, we feel
+that most of the reported problems of incompatibilities are the result of
+head positioning errors.
+                                                                        :212:
+If a sector is rewritten on a different drive and the position of the read/
+write head is different, the new data will not completely replace the old as
+indicated below.
+
+           +---------------+-------------------------------+
+Original   | N           S | S                           N |
+on one     | N     1     S | S     1               0     N |
+drive      | N           S | S                           N |
+           +---------------+-------------------------------+
+
+           +-------------------------------+---------------+
+Rewritten  | S                           N | N           S |
+on another | S     1               0     N | N     1     S |
+drive      | S                           N | N           S |
+           +-------------------------------+---------------+
+
+           +---------------+-------------------------------+
+Original   | N     1     S | S     1               0     N |
+           +---------------+---------------+---------------+
+Rewritten  | S                           N | N           S |
+by another | S     1               0     N | N     1     S |
+drive      | S                           N | N           S |
+           +-------------------------------+---------------+
+
+When this sector is read on the original drive, the head will pick up both
+the new signal and the old signal.  The relative strengths of these two
+signals depend on the amount of the original signal remaining.  If the two
+drives are sufficiently different, the read signal will be garbled and
+produce a abundance of 22 and 23 READ ERROR's.
+
+Summary
+
+In conclusion, although there is a difference in header gap size between the
+1541 and the 4040 drives, this does NOT appear to be the cause of write
+incompatibility problems.  Most complaints about the write incompatibilities
+of various disk drives are probably due to problems in head positioning.
+Further evidence for this is the fact that some schools are experiencing
+similar difficulties when students use several different 1541 drives for
+saving programs on a single diskette.
+
+</PRE><HR>
+<H2>CBM-Hackers discussion</H2>
+<PRE>
+
+Hello,
+
+* On Fri, May 06, 2005 at 12:35:55AM +0200 Patrycjusz R. ?ogiewa wrote:
+
+&gt; &gt;OTOH, the 4040 used a gap between the data block header and the data
+&gt; &gt;block itself of 10 bytes. The 2031 and 1540 (and 1541 up to $E000-ROM
+&gt; &gt;version -02) used 8 bytes, while the 1541 (-03, -05 and later) and
+&gt; &gt;157x use 9 byte. I believe 8 bytes are critical if a disk is to be
+&gt; &gt;interchanged between a 154x and a 4040, as there might be "double
+&gt; &gt;SYNC marks", making the data block unreadable. With 9 byte, it is
+&gt; &gt;much more unlikely that this happens than with 8 byte.
+&gt;
+&gt; But...  "... note that a header block is never rewritten after
+&gt; formatting is complete. The data block of a sector, including the sync
+&gt; character, is completely rewritten every time data is written to that
+&gt; sector. The [...] header gap is counted off by the DOS to determine
+&gt; where to start writing the data block."
+
+Yes, this is wrong. But think about the following layout of a 4040 disk,
+which shows the part between the data block header and the data block
+itself:
+
+byte:    -2 -1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+content: xx yy 55 55 55 55 55 55 55 55 55 55 FF FF FF FF FF aa bb cc ...
+
+Here, xx yy are the last bytes of the data block header, aa bb cc are the
+first bytes of the data block. As the 4040 has written this part, there
+are 10 $55, followed by 5 $FF byte. This is immediately after formatting
+the disk.
+
+Now, think about what happens if the 2031, 1540 (or 1541-01, -02; I will
+call this the the 1540 case) write to this disk:
+
+byte:    -2 -1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+content: xx yy 55 55 55 55 55 55 55 55 FF FF FF FF FF aa bb cc ...
+
+As these disks use only 8 bytes for the gap, the $55 part is just
+getting smaller. Everything else is correct.
+
+Now, what if a 4040 writes to this very same disk again? Have a look
+here:
+
+
+byte:    -2 -1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+content: xx yy 55 55 55 55 55 55 55 55 FF FF FF FF FF aa FF FF FF FF FF aa bb cc ...
+gap count:      0  1  2  3  4  5  6  7  8  -  -  -  -  9
+
+I added the byte count, that is, how the write mechanism sees this disk
+(I assume the byte count mechanics are the same as with the 2031).
+
+The 4040 recognizes the $55 bytes 0-7. The 8th byte, a $FF, is
+recognized as a regular byte (a SYNC mark has to be 10 bits of 1, but we
+only have 9 up to the first $FF). Anyway, as we are now IN the SYNC
+mark, no more S.O. (byte marks are generated until the SYNC mark is
+over. Thus, the first data block byte (aa, byte 13) is recognized as 9th
+(and last) GAP byte, thus, the 4040 does not start before byte 14, thus,
+the 4040 writes its own SYNC mark, starting at byte 14. Of course, as
+the byte 13 (aa) is not a $FF byte, we have a double SYNC mark which
+makes this disk unreadable afterwards. Furthermore, this block is 6 byte
+longer than before (1541 format), or 4 byte longer than before (4040
+format), which could potentially overwrite parts of the SYNC mark of the
+next sector.
+
+
+Ok, why doesn't this happen with the 1541-03, -05 (which I will call
+1541 in the following) and newer, which write a 9 byte gap?
+
+Have a look again at the disk as it has been written with the 1541:
+
+byte:    -2 -1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+content: xx yy 55 55 55 55 55 55 55 55 55 FF FF FF FF FF aa bb cc ...
+
+You see, there is one more $55 than in the 1540 case.
+
+Now, the 4040 wants to write to this disk:
+
+byte:    -2 -1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+content: xx yy 55 55 55 55 55 55 55 55 55 FF FF FF FF FF FF aa bb cc ...
+gap count:      0  1  2  3  4  5  6  7  8  9
+
+Here, the 4040 correctly counts the bytes 0-8, and it still recognizes
+byte 9 as a data byte (as no 10 "1"-bits are recognized until then).
+Thus, it starts writing its SYNC mark at byte 10, which is exactly where
+it would have started its SYNC mark if no 1541 would have been used
+in-between. The only difference here is that the SYNC mark is 6 bytes
+long now, as byte 9 is the rest of the 1541 SYNC mark.
+
+Thus, this 9 byte gap of the 1541 is much more uncritical than the 8
+byte gap of the 1540. Anyway, there is still a chance for problems. The
+problem is that going into write mode takes some time. Thus, it could be
+that the 4040 emits a 0 bit before it starts writing the SYNC mark. If
+this does not occur with the first bit, but with the 2nd bit or later,
+than the drive would again have a double SYNC mark:
+
+1. case: first bit is 0. Then we have
+   55 FF 7F FF FF FF ...
+   This is not critical, as the last bit of $55 and the 8 bit of the
+   first $FF only give 9 "1" bits, thus, no SYNC mark is detected.
+2. case: first bit is 1, but some subsequent one is "0". Then, we have
+   55 FF BF FF FF FF ...
+   or
+   55 FF DF FF FF FF ...
+   or
+   55 FF EF FF FF FF ...
+   or so on.
+   Here, the "1" from the last bit of the $55, the 8 "1" bits in $FF and
+   the first "1" of the next byte result in 10 "1" bits, thus, giving a
+   SYNC mark. The next "0" then *clears* this sync mark, but there is a
+   new SYNC mark immediately after (after 1 $FF byte!). Thus, we drive
+   reads a $FF as first data byte, which makes this disk unusable.
+
+I do not think that this is very likely, but it can happen. Anyway,
+chances for problems are MUCH smaller than with the 8 byte gap.
+
+&gt; &gt;Thus, Commodore might have had some problem and tried to solve this
+&gt; &gt;by reducing the number of written bytes.
+&gt;
+&gt; At the off-bytes then? Note also that there is enough buffer at the
+&gt; end of the track. The tail gap of the last sector is usually much
+&gt; longer than any other (up to 100+ bytes),
+
+I have not checked any disk, but are you sure about 100+ bytes? This
+sounds like VERY much for me. My own probing formatter just has a
+variance of less than the number of sectors per this track (that is,
+less than 21 bytes for tracks 1-17).
+
+Furthermore, it is not only the tail gap of the last sector; it's the
+other way around: If the last sector's tail gap is that high, then
+the blocks are not written very balanced all over the track, thus,
+increasing the probability about one drive writing over the beginning of
+the next block if the formatting was done with a very slow drive, but
+the new writing drive is very fast.
+
+&gt; OTOH as we all more or less speculate on this then who really knows?
+
+Yes, this is true. Anyway, it IS remarkable that Commodore reduced this
+gap by 2 between the 4040 and the 2031, and increased it again by 1
+between the 1541-02 and 1541-03. I'm sure there was some reason for it.
+
+BTW: You all know the "wrong" empty sectors of the 1541 disks, don't
+you? That is, instead of being all $00, the sectors are $00, $01, $01,
+...  on track 1, and $4B, $01, $01, $01, ... on all subsequent tracks?
+It is interesting that this "bug" was introduced between the 1540 and
+the 1541. Thus, the 1540 had the "correct" empty pattern. Thus, to me,
+it seems to be a kind of "version information" from Commodore to use
+that blank pattern.
+
+Ok, again, this is pure speculation.
+
+Regards,
+   Spiro.
+</PRE><HR><PRE>
+Hello Glenn,
+
+* On Fri, May 06, 2005 at 04:44:20AM -0500 Glenn Holmer wrote:
+
+&gt; Immers and Neufeld discuss this in chapter 9.12 of "Inside Commodore
+&gt; DOS."
+
+Thank you, I did not know this one.
+
+What is interesting:
+
+1. My analyzes seems to be correct in most ways. ;-)
+
+2. The gap written by the 4040 is 9, not 10 as I had read elsewhere.
+   Thus, the 1541-03 ROM and later use the SAME gap as the 4040, it is
+   only the 2031, 1540 and 1541-01 and -02 ROMs which use a shorter GAP
+   (and thus, give a potential problem).
+
+Regards,
+   Spiro.
+
+</PRE><HR><PRE>
+
+Hello,
+
+* On Fri, May 06, 2005 at 07:59:46PM +0200 Patrycjusz R. ?ogiewa wrote:
+
+&gt; I read through this explanations and they seem really cogent. The
+&gt; question remains if you have really verified this?
+
+Well, I cannot verify this as I do not own any IEEE drive.
+
+&gt; I believe that we would have to take down the bit images of the 4040
+&gt; and 1541 (according to your terminology) tracks freshly formatted and
+&gt; then cross-rewritten and compare it this way. This would be something
+&gt; that I am tending to believe the "incomdos" authors did and they have
+&gt; somewhat similar, yet different explanations, starting from p. 208.
+
+Yes, thank, I now had a look at it. I believe I can explain their 100
+bit vs. 90 bit gap problem for the 4040:
+
+According to your explanation, the 4040 writes 9 gap (GCR-)bytes. This
+gives 9 * 10 = 90 bits.
+
+Anyway, when the drive executes the last BVC *, the "write shifter"
+already latched the byte to be written. Thus, even if we change to write
+mode immediately, the last byte will be written as 10th byte, resulting
+in a gap length of 10 * 10 = 100 bits.
+
+One remark: This is not true if the disk is to be formatted, as the
+formatter does not have to switch into write mode, and thus, it
+generates a 90 bit long gap.
+
+What is happening with the 1541? Here, 8 * 8 = 64 bits are expected, but
+the authors see a gap of 92 bits. Here, I have the following idea:
+
+On a freshly formatted disk, newer 1541 disks write a 9 bit non-GCR gap
+of $55. Anyway, the last 2 bytes of the data block are $0F $0F, which
+translates into $x5 $55 $55. Thus, there are chances the authors of
+Inside Commodore Dos counted these last two bytes as GAP bytes,
+resulting in the count of (9+2)0 * 8 = 88 bit.
+
+Now, the 1541 write mechanism has the same "problem" as the 4040 write
+mechanism when writing a block: If it wants to go into write mode after
+counting the last byte, the shifter already latched the last byte, which
+is exactly what it has read before ($55) since the PA of the VIA is
+still in read mode. Thus, it writes another $55 byte on the disk,
+resulting in a GAP of (9+2+1)*8 = 92 bit which can be observed.
+
+Of course, this all is pure speculation which would have been to be
+proven. Furthermore, if the 4040 ROM has that $0F $0F filler for the
+data block header, it would not explain why the authors count
+differently for the 4040 and the 1541. This would only make sense if the
+4040 ROM does not write the $0F $0F filler as part of the data block,
+but as part of the intra-sector GAP. This might be the case as:
+
+1. $0F $0F translates into $x5 $55 $55 in GCR
+2. The 4040 can write "half" GCR bytes, while the 2031/15xx cannot
+
+
+Of course, the authors tell that tests could not show this problem to
+happen very often.
+
+But remember: The authors examined 1541-03 drives (I conclude this from
+the section "late news" on page 215, which compares -03 and -05 ROMs).
+Which older drives (-02 and before), the other explanation from my mail
+some days ago holds true, which is a totally different beast!
+
+
+&gt; Yet it seems to me unlikely (speculation) that people at CBM have cut
+&gt; off last BVC from the sector write routine (the thing we started with
+&gt; ;-) to improve compatibility with 4040.
+
+Yes, I remember. ;-) In fact, I did not know that the 4040 counted in
+GCR bytes, thus, I thought that Commodore reduced 10 (non-GCR) bytes to
+8 (non-GCR) bytes, and then went back to 9 (non-GCR) bytes.
+
+Anyway, it now seems to me that Commodore used 8 (GCR-) bytes, took over
+that value for the 2031/1540 (which use non-GCR) and wondered about the
+problems. Then, they increased the number to 9 (non-GCR) bytes on the
+1541-03 ROMs to minimized the problem.
+
+
+&gt; &gt;I have not checked any disk, but are you sure about 100+ bytes?
+&gt;
+&gt; Again - to be sure I would have to take the bit image, which I didn't
+&gt; but I quoted the same source, which I thought to be reliable.
+
+Well, "sometime", I will do this test. If this is true, the probing
+routine of the drive is not very good, despite the fact that it is very
+slow.
+
+&gt; &gt;Furthermore, it is not only the tail gap of the last sector; it's the
+&gt; &gt;other way around: If the last sector's tail gap is that high, then
+&gt; &gt;the blocks are not written very balanced all over the track,
+&gt;
+&gt; Yes. There is supposedly a bigger gap at the end of the track.
+
+Well, "bigger" gap does not mean that one has to be 100+ bytes long.
+
+
+&gt; Well, such situations _will_ happen if the drive(s) are misadjusted
+&gt; but I think they have put enough buffer (as you calculated yourself)
+&gt; to cover the regular, acceptable deviations in drives' speed anyway.
+&gt; If that doesn't prove to be enough (since the drive exceeds the
+&gt; acceptable limits) then the drive needs servicing anyway.
+
+Well, the arguments I showed in another mail where for ONE drive. These
+arguments were not meant for different drives.
+
+Let's calculate the length of a track in bytes. As I am lazy, I'm just
+quoting from a mail of WoMo here. I came to the same formula
+independently from him, so it is just for the sake of not writing too
+much that I quote him, not that I did not follow the formula: ;-)
+
+
+  f     :=  base clock frequency, which is 4MHz
+            (this is not completeley true, the base clock is 16Mhz, but after
+            beeing divided by the speed zone divisor, it is divided by 4
+            again,
+            so the overall virtual base frequency results to 4Mhz again)
+  omega :=  rotation frequency of the main disk motor
+            (300Upm +-3% on most drives, aka. 5/s)
+  dvsr  :=  speed zone divisor of 13, 14, 15 or 16
+
+
+                                            f
+   Tracklength (Bytes)  :=  TlB  =  ------------------
+                                     omega * dvsr * 8
+
+
+
+Now, take speed zone 3 (track 1-17, dvsr = 13). Then, we get a tracklength with 300 rpm of
+
+                      4 MHz
+  TlB(300 rpm) = ---------------  = 7692,3 Byte
+                   5 * 13 * 8
+
+Take the same for 303 rpm:
+
+                     4 MHz
+  TlB(303 rpm) = --------------- = 7616,1 Byte
+                  5,05 * 13 * 8
+
+
+And the same for 297 rpm:
+
+                     4 MHz
+  TlB(297 rpm) = --------------- = 7770,0 Byte
+                  4,95 * 13 * 8
+
+
+You see, the track length differs by (7770 - 7616 byte) = 154 byte
+between the drive with 303 rpm and the drive with 297 rpm! That is, PER
+sector, the difference is 154 byte / 21 = approx. 7,3 byte!
+
+With this, you see why a probing formatting routine is very important if
+you want to share disks between different drives.
+
+
+&gt; &gt;Yes, this is true. Anyway, it IS remarkable that Commodore reduced this
+&gt; &gt;gap by 2 between the 4040 and the 2031, and increased it again by 1
+&gt; &gt;between the 1541-02 and 1541-03. I'm sure there was some reason for it.
+&gt;
+&gt; AFAIR it was 9 GCR bytes vs. 8 non-GCR, with the actual bit patterns
+&gt; taking even more for some reason - interesting for what reason though.
+&gt; It would have to be verified if that was indeed changed _twice_ as you
+&gt; suggested. Don't have resources at hand to verify it.
+
+Well, here, a simple byte compare suffices. Take the 1541-e000-02 and
+1541-e000-03 ROMs from funet an perform a byte compare. You will see
+that both images differ in exactly three positions:
+
+ l_f586: jsr     l_f78f
+         jsr     l_f510
+-        ldx     #$08
++        ldx     #$09
+ l_f58e: bvc     l_f58e
+
+and
+
+         bne     l_fcc2
+-        ldx     #$08
++        ldx     #$09
+ l_fcd1: bvc     l_fcd1a
+
+and
+
+-l_fee6: .byte   $10
++l_fee6: .byte   $0E
+
+The latter is just the ROM checksum. The other two differences are the
+counter for the intra-sector gap of the write routne ($F58D) and the
+counter for the intra-sector gap of the format routine ($FCD0).
+
+I have checked every 2031, 1540, 1541 and 157x ROM I found on funet:
+There are only these two variants, anything before 1541-03 has 8 byte,
+1541-03 and the later (including 157x) have a 9 byte gap.
+
+
+&gt; &gt;BTW: You all know the "wrong" empty sectors of the 1541 disks, don't
+&gt; &gt;you? That is, instead of being all $00, the sectors are $00, $01, $01,
+&gt; &gt;...  on track 1, and $4B, $01, $01, $01, ... on all subsequent tracks?
+&gt;
+&gt; Yes. There is one INX too much at $FC86, which both increments the
+&gt; value passed to A by one (hence $01) and skips the first byte when
+&gt; writing to the buffer later on (hence the first byte different). Some
+&gt; ages ago, I recall wondering what did they have in mind to make it this
+&gt; way... ;-)
+
+Yes. Interesting, the 1540 and 2031 ROM have a NOP ($EA) there, while
+even the 1541-01 ROM has the INX.  Interesting: INX ($E8) and the NOP
+differ in only one bit.
+
+&gt; At least the 1541 leaves its clearly distinguishable mark on the disk
+&gt; ;-)
+
+Yes, I believe this was the intention of this change.
+
+Regards,
+   Spiro.
+
+</PRE>
+<HR><P>
+Back to the <A HREF="../index.html">PET index</A>
+<P>PET index V1.0 (c) 1998 A. Fachat
+</BODY>
+</HTML>
+

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD><META NAME="author" CONTENT="Andr&eacute; Fachat">
+<TITLE>PET index - CRTC operation</TITLE>
+<LINK HREF="petindex.css" REL="stylesheet" TYPE="text/css">
+<!--BASE HREF="http://www.6502.org/users/andre/petindex/crtc.html"-->
+</HEAD>
+<BODY>
+<H1>PET index - CRTC operation</H1><P><A HREF="crtc.txt">Text version</A>
+<P>
+For the operation of the video interface Commodore introduced the 
+Cathode Ray Tube Controller (CRTC) 6545 with the third type of boards.
+This controller is very flexible, programmable and provides all
+necessary interface signals for the video hardware.
+</P>
+<P>I have made a collection of test programs and timing
+examples for the CRTC in my CBM 8296. You can download the whole
+suite, including a (derived) diagram of the CRTC internals from the CBM archive as
+<A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/programming/index.html">crtctest-1.1.tar.gz</A>.
+It also includes a summary of the differences of the various
+CRTC models.
+You can have a look at some of the weird screen distortions in
+the <A HREF="crtctest/index.html">test program documentation</A>, and an
+overview over the derived CRTC internals on
+<A HREF="crtctest/internals/crtc.html">this page</A>
+(all from the crtctest archive).
+</P><P>A sample schematic can be found on the
+<A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A>
+computer page or in the PET schematics on the 
+<A HREF="links.html">links page</A> of the PET index.
+</P>
+<H2>General description</H2>
+<P>
+The CRTC has a bus interface compatible to the 6502 bus system, 
+providing two registers, an address register and a value register. 
+Writing the index number of the internal CRTC register file to the
+address register provides access to the corresponding register 
+in the register file. I.e. to write #13 to register #6 you have to
+store 13 to the address register and then 6 to the value register.
+This procedure is the same for all registers.
+Therefore all mentionings of "register" will in the following
+denote internal CRTC register numbers, the value you write to the
+address register.
+</P>
+<P>The video interface consists of the Memory Address lines MA0-13,
+the Row Address lines RA0-4, Display Enable DE, Cursor Enable CE,
+and Vertical and Horizontal Sync outputs. Only inputs are the /RESET
+line that clears all counters (providing a sort of synchronisation
+method), the Light Pen Strobe and the Character Clock CCLK.
+</P>
+<P>
+There are several modes of operation for the CRTC available, but I 
+will only go into the most common one, which is also used in the
+PET line of computers, the normal non-interlaced 
+sync mode.
+</P>
+<H3>Timing</H3>
+<P>
+The word <EM>Line</EM> in a video context can have two meanings: The
+line of characters being displayed as text or a rasterline.
+A rasterline is a horizontal line of pixels that can either be 
+black or white (or on or off, or in newer systems have <EM>one</EM>
+color). A character line consists of several rasterlines, i.e. all
+characters in one line have the same height.
+</P><P>
+The horizontal (line-) timing is determined by the character clock
+(that defines the length of one character and in which all line 
+timing is measured) and the following registers:
+<PRE>
+R0   Horizontal Total Reg.           total length of line (displayed
+                                     and non-displayed cycles (retrace)
+                                     in CCLK cylces minus 1
+R1   Horizontal Displayed Reg.       number of characters displayed in a
+                                     line minus 1
+R2   Horizontal Sync Position Reg.   The position of the horizontal sync
+                                     pulse start in distance from line
+                                     start
+R3   Sync Width Reg. (Bits 0-3)      The width of the horizontal sync
+                                     pulse in CCLK cycles (0 means 16)
+</PRE>
+<P>
+This allows a very flexible rasterline timing . 
+Changing the value of R2 (Sync Position) shifts
+the video image to the left or right. Here is an example of the line
+timing (assuming a fictional 40 column line):
+</P>
+<PRE>
+
+CCLK cycle #   0000000000111111 .... 3333344444444445555555555 
+               0123456789012345 .... 5678901234567890123456789
+                _________________  _______
+Display Enable_|                          |___________________|
+                                         ^ R1 = 39           ^ R0 = 59
+                                                _______
+HSync          __________________  ____________|       |______
+
+                                               &lt;-------&gt; R3 = 8
+                                               ^ 
+                                                R2 = 45
+</PRE> 
+<P>
+During the scanline the MA0-13 address lines present the CRTC memory
+address of each character displayed, i.e. in the first CCLK cycle
+the memory address of the start of the line is presented, and for
+each following CCLK cycle the MA0-13 address lines are increased
+by one. Memory addresses are only valid, to be displayed addresses
+when the Display Enable signal is active (high).
+</P><P>
+A character line now consists of a number of scanlines
+</P>
+<PRE>
+R9   Maximum Scan Line Address Reg.  Number of scanlines per character
+                                     minus 1
+</PRE>
+<P>
+As each scanline of one single character line should read the
+character value from the same position in memory, the address
+shown on the MA0-13 lines repeat each other for each scanline. 
+Therefore the same memory location is being read. 
+</P><P>
+To display different lines on screen the Row Address lines RA0-4
+are used. They give the number of the scanline within the current
+character line. Thus by selecting a different character to raster
+translation with the RA0-4 lines the correct raster will be displayed 
+for each rasterline of a character line. 
+</P>
+<PRE>
+rasterline  RA0-4  MA0-13
+----------  -----  ------
+   0         0       0, 1, 2, 3, 4, 5, 6, ...
+   1         1       0, 1, 2, 3, 4, 5, 6, ...
+   ...
+   7         7       0, 1, 2, 3, 4, 5, 6, ...
+   8         0      40,41,42,43,44,45,46, ...
+   ...
+   15        7      40,41,42,43,44,45,46, ...
+   16        0      80,81,82,83,84,85,86, ...
+   ...
+</PRE>
+<P>
+After each character line the start of line character memory address
+is increased by the value of R1, Horizontal Total Displayed.
+For the first character the start of line character memory address
+is loaded from
+</P>
+<PRE>
+R12  Start Address Reg. H (bit 0-5)  Bits 8-13 of the start of display
+                                     memory address
+R13  Start Address Reg. L            Bits 0-7 of the start of display
+                                     memory address
+</PRE>
+<P>
+To control the vertical timing there are other registers
+</P>
+<PRE>
+R4   Vertical Total Register         The number of character lines 
+                                     of the screen minus 1
+R5   Vertical Total Adjust Reg.      The additional number of scanlines
+                                     to complete a screen
+R6   Vertical Displayed Reg.         Number character lines that are
+                                     displayed
+R7   Vertical Sync Position Reg.     Position of the vertical sync pulse
+                                     in character lines.
+R3   Sync Width Reg (Bits 4-7)       length of vertical sync pulse in 
+                                     times of a rasterline
+</PRE>
+<P>
+Those registers make up a similar timing as the horizontal timing.
+In the offscreen area (i.e. character line beyond R6) the Display
+Enable signal is set inactive all the time.
+Only R5 still needs to be explained. To allow a finer adjustment of the
+screen length than by the number of character lines (R4), R5 adds
+a number of blank scanlines at the end of the screen timing.
+</P>
+<P>
+After the number of rasterlines (as given by R4 and R5) is displayed
+all counters are reset, the start of line character memory address
+is reset to the value of R12/R13 and the whole thing starts again.
+</P>
+<H3>Cursor Control</H3>
+<P>
+The CRTC can generate a hardware cursor signal
+</P>
+<PRE>
+R14  Cursor Reg. H                   Bits 8-13 of the memory address
+                                     where Cursor Enable should be
+                                     active
+R15  Cursor Reg. L                   Bits 0-7 of the Cursor Enable
+                                     memory register
+R10  Cursor Start Reg.               Bits 0-4 start scanline of cursor
+                                     Bits 6,5:
+                                          0  0    non-blink
+                                          0  1    Cursor non-display
+                                          1  0    blink, 1/16 frame rate
+                                          1  1    blink, 1/32 frame rate
+R11  Crusor End Reg.                 Bits 0-4 last scanline of cursor
+</PRE>
+<P>
+The Cursor Enable signal (CE) is active when the memory address
+lines MA0-13 match the number set in R14/R15, and the scanline of the
+character is in the range of R10/R11 and a valid active cursor
+mode is selected.
+</P>
+
+<H2>CRTC use in the PET</H2>
+<P>
+There are a few things that might be different from other implementations
+in the PET. The CRTC has been used in 40 columns and 80 columns models.
+The CCLK frequency however is 1 MHz in both cases. 80 columns mode
+is achieved by reading not one byte but two byte in each CCLK 
+cycle with the same
+MA0-13, thus effectively using the MA0-9 as A1-10.
+</P>
+<P>
+As only MA0-9 are used, Commodore decided to use the uppermost two
+bits (MA12 and MA13) as additional control lines. MA12 is used
+to invert the complete pixel stream video output, probably to be able
+to cope with different video hardware. MA13 is used as an additional
+A11 to switch the 2k halfs of a newer 4k charrom. This is used
+for nationalized character sets?
+</P>
+<P>
+Only seven bit of the data read from memory are used for character
+ROM addressing. The 8th bit is instead directly fed to an inverter,
+inverting the pixel stream if set - thus inverting the character.
+</P>
+<P>
+The Cursor hardware is not used.
+</P>
+<P>
+If more than 8 scanlines per character are used the hardware automatically
+blanks the scanlines for the scanlines beyond the 8th.
+Without that and only RA0-2 used for character ROM address the 
+same character would be redisplayed from the start.
+</P>
+<PRE>
+PET CRTC usage block diagram
+----------------------------
+
+
+                |               CRTC                                                      |
+                ---------------------------------------------------------------------------
+           MA0-9  |                              RA0-2 |    -------                   DE|
+                  |                                    |    |     |                     |
+                  |  -----      -------                -----|A0-2 |      -----          |  ---
+                  |  |   |      |     |       -----         |     |D0-7  |   |     ---  ---| | Video
+                  ---|   | A0-9 |     | D0-7  |   |    D0-6 |     |------|   |-----| |     |&amp;|---    
+                     | &gt; |------| RAM |-------|   |---------|A3-8 |      |   |     | |-----| |
+ CPU A0-9 -----------|   |      |     |   |   |   |   |     |     |      -----   --| |     ---
+                     |   |      |     |   |   -----   |     -------      shift   | ---      AND
+                     -----      -------   |   Latch   |     Charrom     register |  XOR
+                   Mux 2-to-1             |           |D7                        |
+                                          |           ---------------------------- 
+                     -----                |
+                     |   |                |
+ CPU D0-7 -----------|   |-----------------
+                     |   |
+                     -----
+                    Buffer
+</PRE>
+<P>
+During Phi2 low (Processor does not use the bus) the Mux chip selects
+the MA0-9 address lines from the CRTC. The video RAM then outputs the
+character value and it is saved in the latch. The latch output is then
+used as input for the Charrom. The output of which is given to the
+shift register that makes a pixel stream rather than a byte stream.
+</P>
+<P>
+When Phi2 is high then the Mux selects the CPU address lines for the
+video RAM, allowing normal CPU memory accesses.
+</P>
+<P>
+The Vertical Sync signal of the CRTC is not only used for video
+hardware control but it is also (inverted and) connected to the 
+PIA1 CB1 line to 
+generate system interrupts with the frame rate. Also the state
+of this line can be checked with VIA PB5.
+</P>
+<H2>PET timing examples</H2>
+<P>
+The following table shows some timing examples for the PET CRTC
+as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
+[Note that the CS/A65 values have been derived by my humble self to interface 
+my <A HREF="http://www.6502.org/users/andre/csa/index.html">CS/A65</A> computer to a
+normal german (PAL, 50Hz) TV set. I derived them by starting from
+some guessed values and then trial and error until the TV set sync'd...]
+Remember that even for 80 columns the PET use a CCLK of 1 MHz and
+double the characters by hardware (i.e. writing 40 to R1).
+Interestingly enough the CS/A65 parameter that have been found by
+trial and error match the 8032 values quite well.
+</P>
+<PRE>
+                      4032    4032    8032    8032    CS/A65   CS/A65
+                      text    graph   text    graph   1 MHz    2 MHz
+----------------------------------------------------------------------------------------------------------
+CCLK rate [MHz]        1       1       1       1       1        2 
+ 
+R0 (hor. total)        49      49      63      63      63       126
+R1 (hor. displ)        40      40      40      40      40       80
+R2 (hor. sync)         41      41      50      50      50       100 
+R3 (syn width)         15      15      8       8       3        6
+
+R4 (vert. total)       39      49      32      36      41       41
+R5 (vert. adjust)      0       0       16      17      0        0 
+R6 (vert. displ)       25      25      25      25      25       25
+R7 (vert. sync)        32      37      29      32      33       33
+
+R9 (scanlines/char-1)  9       7       8       7       7        7
+
+time per scanline [us] 50      50      64      64      64       63.5
+scanl./char 
+ (R9+1)                10      8       9       8       8        8
+time per charline [us]
+ (R9+1)*t/scanline     500     400     576     512     512      508
+scanlines total
+ (R9+1)*(R4+1)+R5      400     400     313     313     336      336
+time/fram [ms]
+ scanl tot. * t/scanl  20.0    20.0    20.0    20.0    21.5     21.3
+framerate [Hz]
+ fram/time             50      50      50      50      47       47        
+</PRE>
+<HR><P>
+Back to the <A HREF="index.html">index</A>
+<P>PET index V1.0 (c) 1998-2005 A. Fachat
+</BODY></HTML>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
+<html><head><base target="_top">
+<meta name="author"  content="Andr&eacute; Fachat">
+<meta name="robots"  content="noindex">
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+ 
+<title>74LS610</title>
+<link rev=made href="mailto:a.fachat@physik.tu-chemnitz.de">
+<link rel=StyleSheet href="./../../style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<h1>74LS610 MMU</h1>
+<div class=disclaimer>
+<hr>
+<h1 class=disclaimer>Disclaimer</h1>
+<ul class=disclaimer>
+<li>All Copyrights are acknowledged.
+<li>There is no warranty of any kind attached to the information herein.
+<li>You may use this information for NON-COMMERCIAL use.
+</ul>
+<hr>
+</div>
+<p>
+The information within these pages is taken from a 1981 Texas Instruments 
+data book. 
+</p><p>
+I use this chip as MMU chip in my 
+<a href="../../csa/index.html">CS/A65</a> computer,
+where a schematic can be found how to use the chip in a 6502 computer.
+An overview how to use this memory mapper can be seen in the 
+<a href="ls610a.png">System Block Diagram</a>.
+</p><p>
+A lot of information is not contained in this page, as it is more aimed
+at the general understanding of how this chip works. You are encouraged 
+to get the relevant data from TI - although they are not electronically
+available (at least a site search didn't reveal anything).
+</p><p>
+The internal logic diagram can be found in 
+<a href="ls610b.png">ls610b.png</a>. This shows that the 
+internal RAM is not a dual-port or whatever RAM, but a simple multiplexed
+register file. This has consequences for the modes of operation.
+</p><p>
+The address lines for the register file come either from <code>RS0-3</code> (for
+read/write operations) or from <code>MA0-3</code> (for mapping).
+This is switched by the <code>/CS</code> line. Thus, if you access the
+read/write port by setting <code>/CS</code> low, you loose the mapped 
+output. The 'LS610 and 'LS611 have a latch that is controlled
+by <code>C</code> and can be used to save the mapped address lines
+during a read/write access.
+</p><p>
+<code>/MM</code> controls a multiplexer that either selects the mapped
+address lines as output (map mode), or feeds the input address lines through
+to <code>MO8-11</code> setting the other lines to zero (pass mode).
+This input thus enables or disables the mapping.
+</p><p>
+During read operation the mapped address lines are feed back to the 
+input <code>D0-11</code> to allow reading by the CPU. <code>/CS</code> must be
+low and <code>R/-W</code> must be high.
+</p><p>
+During write operation <code>/CS</code> must be low, as well as <code>R/-W</code>.
+In addition <code>/Strobe</code> must be low too. This input can be used
+for additional timing. 
+</p>
+<p> <a href="ls610c.png">Pinout</a>
+
+
+
+
+<hr><p class=endofpage>
+Contents last modified Nov 23 1997 |
+Go to <a href="../../index.html">Homepage</a> 
+</p>
+</body>
+</html>

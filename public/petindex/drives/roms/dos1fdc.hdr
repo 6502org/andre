@@ -1,0 +1,213 @@
+
+CLOCK=0
+MTRTM=1+1
+DRVST=3+1
+STEPS=5+1
+COW=7
+WORK=8+1
+DTRCK=a
+DSECT=b
+CSECT=c
+STAB=d+4
+DRIVE=12
+TRACK=13
+NEXTS=14
+SECTR=15
+BUFPT=16+1
+HDRPNT=18+1
+FTNUM=1a
+IP=1b+1
+CNT=1d
+IOB=1e
+JOBNUM=1f
+
+VIA_VB=40
+VIA_DIN=41
+VIA_VDDRB=42
+VIA_T1LL=44
+VIA_TIMER=45
+VIA_ACR=4b
+VIA_PCR=4c
+VIA_IFR=4d
+VIA_IER=4e
+
+RIOT_DOUT=80
+RIOT_EOUT=81
+RIOT_PB=82
+RIOT_DDRB=83
+
+TICK=0400
+DELAY=0401
+CUTMT=0402
+JOBS=0403+e
+HDRS=0421+77
+
+TAB1=0499+3
+GAP1=049d
+GAP2=049e
+VERNUM=049f
+ACTJOB=04a0
+
+BUF0=0500
+
+ANDB=ffeb
+ANDC=ffed
+ANDD=ffef
+ANDE=fff1
+
+START=fc47
+
+RESET=fc00
+IRQ=ff85
+
+
+fc47 load # of jobs
+L010=fc49
+fc49 check if valid job, if so which drive
+fc55 test motor status, turn on if not and set time for accel delay
+fc6a test motor speed
+fc74 test head status, if not moving branch to QUE
+fc77 scan next job, if next job, branch to L010
+END=fc7a
+fc7a branch to start
+;fc7c motor is on and head is still, if head is on right track, start
+;fc7c processing by branching to GOTU, otherwise move to closest
+;fc7c needed track: x=drive#, y=job#
+QUE=fc7c
+fc7c initialize to maximum distance + 1, and set y for max job#
+fc83 init JOBS and HOBID by y offset
+fc90 test if on right track
+fc9e find closest seek
+
+fcb1 decrement y loop for all jobs
+fcb4 set up seek to closest track
+FIN=fcce
+fcce loop to search table again
+TAB1=fcd0
+fcd0 sectors/tracks table: .byt 17,18,20,21
+ANDA=fcd4
+fcd4 .byt $f3
+TAB3=fcd5
+fcd5 TAB3+1 = tracks: .byt $fc, 31, 25,18
+fcd9 head is on desired track, set drive switch, # of sectors and bit density
+GOTU=fcd9
+fcdd set up for check of track zone
+fce2 check for track zone
+L032=fce2
+fce8 set # sectors/track by results of L032
+EXE=fd02
+;fd02 Job Routine: execute: mode = 110 (E)
+;fd02 check if execute, branch to EX if so, check if bump, branch to bump
+;fd02 if so, jump seek
+EX=fd0d
+fd0d execute routing: get job#, calc buffer address, branch to it
+BUMP=fd16
+;fd16 Job Routine: bump the hub: more 100 (C)
+;fd16 load drive #, accel to track, isolate drive, set head to phase "a"
+;fd16 set head to max distance (#256-116), jmp DONE
+WSECT=fd2d
+fd2d decide which sector to service
+fd43 check which job type, check track, drive
+HPNT=fd8d
+fd8d adjust header pointer: job.8 = hi byte of HDRS into HDRPNT
+FSNUM=fda1
+fda1 fix sector number for fake seek
+READ=fdaa
+;fdaa Job Routine: read a block: mode =000 (8)
+;fdaa check if read or write, branch to WRITE if so
+fdb1 get the bytes, store in (BUFPT),y, update checksum, jmp DEND
+DSTRT=fdc3
+fdc3 start reading data: init checksum, seach for header & start of data
+WRITE=fdd6
+;fdd6 Job Routine: write a block: mode =001 (9)
+;fdd6 check if verify, branch to VRFY if so
+;fdd6 check write protect, if ok L198, if no good, ER
+L198=fde4
+fde4 disable CB1 flag, get correct block
+fdeb write sync mode, load fill code
+fdfb reset port a flag, set 1st sync
+fe05 store normal code mode in PCR, set 2nd sync, chksum
+fe15 write block, write chksum, change job to verify, end
+VRFY=fe3a
+;fe3a Job Routine: verify a written block: mode=010 (A)
+;fe3a read data
+fe3d get byte and compare with contents of buffer, add up chksum
+DEND=fe4e
+fe4e end reading data, final chksum compare
+fe59 check if decoding error: if not then DONE, else ER
+fe61 set for verify error
+ER=fe63
+fe63 branch to error routing ERR
+SEEK=fe65
+;fe65  seek to determine next sector number
+;fe65 init chksum, get block header
+fe70 get a byte, store in STAB update chksum, branch again if more
+fe8c load job# and type, test if seek, branch to ESEEK if so
+fea6 check if id in (HDPTR),y = STAB,y error if not. continue loop, at end jmp WSECT
+ESEEK=fe83
+;fe83 Job Routine: seek: mode 011 (b)
+feb9 get complete header from STAB,y into (HDRPNT),y
+DONE=fec1
+fec1 set for no error: #1
+ERR=fec3
+fec3 jump ERROR: error routine
+CSERR=fec6
+fec6 lda #9 (chksum error) branch to ERR
+fecc lda#11 (mismatch), branch to ERR
+SRCH=fece
+fece search for specific block
+fed2 compute checksum, set up for search for a sector
+fedf jsr HEAD, set y for compare, every byte in hdr must be identical
+fee4 compare to header loop, loop entire header
+HEAD=fef3
+fef3 seach for block head: .x=max# of trials
+ERROR=fef9
+;fef9 send error code
+;fef9 #1: no error
+;fef9 #2: can't find block head
+;fef9 #3: no sync character
+;fef9 #4: data block not present
+;fef9 #5: checksum error
+;fef9 #7: verify error
+;fef9 #8: write with write protect on
+;fef9 #9: checksum error in seeked header
+;fef9 #10: data ran into next header
+;fef9 #11: disk id mismatch
+;fef9 #16: decoding error
+ERR1=ffc7
+ffc7 send job status, make motor stay longer, check job type
+ff1f purge stack (#$3f)
+ff25 get a byte, compare to start of header, branch if not equal to HEAD
+WATCH=ff2d
+;ff2d watch for sync characters
+;ff2d bit PB, bvc L450: test if sync present, branch if yes
+;ff2d bit IFR, bpl WATCH, test if byte present, loop until yes
+;ff2d .x contains # of tests, branch to WATCH till .x=0
+;ff2d bit PB, rts; test if sync present then return
+SYNC=ff3f
+ff3f hunt for sync character: set timer for 20ms limit
+BYTE=ff52
+ff52 get a byte
+OFF=ff59
+ff59 send two bytes, set for normal read mode
+;ff63 change EOUT and PCR to send sync. 
+;ff63 enable CB1, CA1, CB2 (IER=%10011010), get a byte. 
+;ff63 reset VIA flags, get next byte, reset VIA, jmp BYTE (get next byte)
+OUT=ff7c
+ff7c byte to be sent is in .x
+;ff85 CPU interrupt routine
+ff85 interrupt for a few milliseconds: set next interrupt, reset timer
+ff91 service motor: check if motor is on and stepping flag set
+ffab service stepper motor
+ffad check if on track, if not then L911. On track, clear stepping flag, check next stepper (jmp L920)
+L911=ffba
+ffba check direction - set out or step in 
+ffc9 step in (+)
+ffd0 step out (-)
+ffd8 store new stepper position, test if DRVTST ready
+ffe7 pop the stack of a and x and RTI
+
+
+;fffc CPU vectors
+*fffc WORD
+

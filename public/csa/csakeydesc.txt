@@ -1,0 +1,27 @@
+
+
+Description for CS/A KEY board, version 1.0
+-------------------------------------------
+
+whatsit	: PET keyboard and RS232 interface
+I/O	: 6821 PIA at $810-$817, 6551 ACIA at $818-$81f
+Mem	: --
+
+IC1 selects the right I/O are, and A3 is routed to the chip
+select signals for dividing the local 16 byte.
+No further CPU-side interfacing is necessary.
+
+The keyboard interface is CBM PET compatible (with P3) as well
+as it can be used with a C64-type keyboard (with P2).
+
+The 6551 ACIA is a little bit brain-dead concerning handshaking.
+That's why I use the PIA's CA2 as /RTS output and the ACIA's
+/DSR input as /CTS input. This way these lines can be controlled
+independently without disturbing Tx/Rx operations.
+
+In fact one might build an 'ACIA-improvement' which automatically
+sets /RTS when a byte arrives, and resets it when a byte is read
+from the ACIA data register. This can improve reliability 
+considerably, esp. with a high-latency operating system.
+More info on the ACIA hack on my RS232 page.
+

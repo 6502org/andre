@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<LINK HREF="../../petindex.css" REL="stylesheet" TYPE="text/css">
+<LINK REV="made" HREF="mailto:afachat@gmx.de">
+<META NAME="author" CONTENT="Andr&eacute; Fachat">
+<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/progs/index.html"-->
+<TITLE>PET index - Drive utilities</TITLE>
+</HEAD>
+<BODY>
+<H1>PET index - Drive utilities</H1><P><A HREF="index.txt">Text version</A>
+<P>This page contains some small utilities for the Commodore disk drives.</P>
+<H2>Read drive ROMs</H2>
+<P>These two programs read out the drive ROMs. There is one - simple - program
+to read out the DOS ROM. It actually reads the upper 16k.
+Another more complicated one is used to read out the FDC ROM. For this purpose it transfers some code into the drive buffer and lets it execute by the FDC
+CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffers so that they can be read by the readout programm.
+<TABLE BORDER="1">
+<TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
+<TR><TD>Read FDC ROM</TD><TD><A HREF="readfdc">readfdc</A></TD><TD><A HREF="readfdc.lst">readfdc.lst</A></TD><TD>Read the FDC ROM from a dual processor drive. As after the reading the FDC CPU is stuck in an endless loop, the drive must be reset during execution.</TD></TR>
+<TR><TD>Read DOS ROM</TD><TD><A HREF="readdos">readdos</A></TD><TD><A HREF="readdos.lst">readdos.lst</A></TD><TD>Read the upper 16k of the DOS CPU address space from a dual processor drive. This includes the ROM image and is large enough for all dual CPU DOS versions.</TD></TR>
+</TABLE>
+<H2>Read disk images</H2>
+<P>These programmes can be used to read disks into disk images and
+write the images back into disks. These files are linked from the  
+<A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/index.html">CBM archive</A> (except for the listings).<P>
+<TABLE BORDER="1">
+<TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
+<TR><TD>Read image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/dsk2file.prg">dsk2file.prg</A></TD><TD><A HREF="dsk2file.lst">dsk2file.lst</A></TD><TD>A BASIC/ML program to convert any CBM disk to a dump file (like VC1541 disk to .d64) for a PET or C64.
+ The dump file should be written to a device larger than the dumped disk (although the program can be tailored to split an image).</TD></TR>
+<TR><TD>Write image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/file2dsk.prg">file2dsk.prg</A></TD><TD><A HREF="file2dsk.lst">file2dsk.lst</A></TD><TD>A BASIC/ML program to restore any CBM disk from a fitting disk image (like .d64 restore to a VC1541).</TD></TR>
+<TR><TD>Read/Write disk image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.prg">emutil.prg</A></TD><TD><A HREF="emutil.lst">emutil.lst</A></TD><TD>EMUTIL is a disk image archiver for the Commodore 64 and 16K+ CBM/PET computers. It supports all known Commodore disk drives, of all capacities. It also supports all CMD HD and RL Native partitions. Programmed by Bo Zimmerman and Andr&eacute; Fachat.(See also <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.readme">emutil.readme</A>)</TD></TR>
+</TABLE> 
+<HR><P>
+Back to the <A HREF="../../index.html">PET index</A>
+<P>PET index V1.0 (c) 1998-2005 A. Fachat
+</BODY>
+</HTML>

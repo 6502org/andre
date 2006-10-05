@@ -1,0 +1,40 @@
+
+Adapter Commodore 64 <-> CS/A bus
+---------------------------------
+
+whatsit : Adapter to use CS/A cards in a C64
+I/O     : window to CS/A bus at $de00-$de7f and VIA 6522 at $de80-$deff
+Mem     : --
+
+
+This is an adapter to make most of the CS/A bus cards available to the 
+Commodore 64 home computer. It also serves as an example on how to 
+use the CS/A bus on other 6502-based computers.
+
+The C64 has two available I/O areas on the expansion port, $DE** and $DF**.
+Preferably $DE** is used.
+
+IC1 buffers the data bus to the card. IC2 buffers the available address 
+bus lines A0-A7. A part of IC3 buffers the R/W line.
+
+IC7 (together with another part of IC3) delays the rising transition
+of the system clock Phi2 by approx. 100ns. This makes the active part
+of Phi2 (high) shorter, but provides that the address lines are already
+stable when Phi2 goes high (during Phi2 low the Video chip has the bus
+and switching is too slow). This is needed for chips like the 6522 that
+samples the address bus at the rising flank of Phi2.
+
+The CS/A bus has a line 2Phi2 that can be used as /RAS signal for dynamic
+RAM. It is produced with IC4 (should be a slow version, no 'LS or faster)
+and IC5.
+
+As only 8 address lines are available, we need to produce more 
+address lines for the full CS/A bus. Therefore the address line
+A7 is used to select a 6522 that produces the bus address lines
+A7-A19. Also it switches between I/O space and Memory space on the
+CS/A bus. This is implemented with IC6.
+Thus we have a window of 128 byte to the CS/A bus address space,
+where the window can be moved with VIA PA and PB.
+
+
+

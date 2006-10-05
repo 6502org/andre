@@ -1,0 +1,74 @@
+
+Parts list for CS/A CPU65B/Gecko, version 2.1
+---------------------------------------------
+
+IC	1		6502		CPU, NMOS or CMOS
+	2,8		74LS139
+	3		74LS00
+	4		74LS06
+	5		6264/62256
+	6		2764/27128/27256
+	7		2MHz clock generator
+	9		74LS688
+	10		16550A		UART
+	11		6522		VIA
+	12,13		MAX232
+	14		74LS14
+	15		74LS86
+	16		74LS245
+	17		74LS13
+	18		74LS07
+	19		74LS145
+	20		74LS138
+
+R	1-5,7,9-13	4k7
+	6		180
+	8		33
+	14		1k5
+	15		1M
+
+C	1		100uF
+	2-7		47uF
+	8		100nF
+	9,10		10pF 		(should be 1pF)
+
+D	1		1N4148
+	2,3		LD271/274
+	4		LED (yellow)
+
+Q	1		1.8432MHz crystal 
+
+J	1		3-pin		RAM size 8 or 32k
+	2		3-pin		ROM size 8/16 or 32k
+	3		3-pin		I/O size 2 or 4k
+	4		2-pin		IEC slave mode enable
+	
+	5		3-pin		CPU on board or CPU from bus
+	6		3-pin		local I/O from local address or from
+					bus I/O in 'CPU from Bus' mode. 
+					Must have both sides shut in local
+					CPU mode
+	7		2-pin		when local CPU mode, pull /MEMSEL up
+
+P	1		CS/A bus connector
+	2		9 pin D-sub male (RS232)
+	3		CBM serial IEC bus DIN 6-pin female
+	4		2*5 pin		mini-I/O connector, for keyboard
+	5		4 pin		infrared LED connector
+
+PB	1		pushbutton	Reset
+	2-*		pushbutton	keyboard matrix
+
+
+Q1 (together with R14,15 and C9,C10) should probably better be replaced
+by a 1.8432MHz clock generator feeding to XIN of the UART.
+
+IC 20 (as well as J5-7) is only necessary when board will also be used
+from an external CPU (without local CPU).
+If no external CPU is used, connect IC2 pin 15 to ground, and IC5 pins
+20 and 22 to IC 1 pin 25.
+Also connect all three lines from J6.
+
+Watch out which speed version you are using, better get a 2MHz version
+of 6502 and 6522.
+

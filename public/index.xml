@@ -1,0 +1,86 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit,6502,Commodore</keywords>
+  <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
+  <overview>
+On these pages you will find quite some information concerning selfbuilt
+8-bit computers of the 6502 line. Also some stuff for old Commodore
+machines with this CPU is there, like new C64 kernals, VC1541 modifications
+etc. A selfbuilt operating system
+features Multitasking, dynamic memory management, a standard library
+and internet access.
+  </overview>
+  <news>
+    <item date="15jun2000">
+     Some of those pages have been rewritten into XML that is transformed
+     into HTML by using an XSL transformation.
+    </item>
+  </news>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+     <item name="General 6502 stuff">
+      <subitem name="GeckOS/A65" link="osa/index.html">
+A small 6502 multitasking operating
+system that runs on the Commodore C64 and PET computers, as well as my
+selfbuilt 6502s.
+      </subitem>
+      <subitem name="CS/A65" link="csa/index.html"> and
+<a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
+multi- resp. singleboard 6502 computers.
+The CS/A65 features virtual memory, video card, a SCSI interface
+and many more stuff
+I have now linked my CS/A65 emulator, based on the VICE emulator,
+to this page.</subitem>
+      <subitem name="LIB6502" link="lib6502/index.html">is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.</subitem>
+      <subitem name="o65" link="o65/index.html">fileformat is a flexible relocatable 6502/65816 fileformat.</subitem>
+      <subitem name="SCSI-64" link="scsi/index.html">, a project to add a
+SCSI interface to the 6502 in general (it is used in the CS/A65 computer
+and the C64).</subitem>
+     </item>
+     <item name="Commodore 8-bit Stuff">
+      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
+information and links to the old CBM PET machines</subitem>
+      <subitem name="C64 SCSI" link="scsi/index.html"> interfaces (see above)</subitem>
+      <subitem name="IEEE 488" link="ieee488/index.html"> interfaces for various
+CBM equipment and the PC. I use my PC as harddisk for my
+CBMs <code>:-)</code></subitem>
+      <subitem name="hardware modifications" link="cbmhw/index.html"> I made to my
+CBM equipment.</subitem>
+      <subitem name="VICE" link="http://www.cs.cmu.edu/~dsladic/vice/vice.html"> is
+a great C64/PET/VIC20/C128/CBM-II emulator for Unix/DOS/Windows/RiscOS/...
+where I have been working on the PET and CBM-II emulators and the Unix-specific
+code. It is released under the GPL (GNU Public License)</subitem>
+     </item>
+     <item name="Miscellaneous">
+      <subitem name="Software" link="misc/index.html"> I wrote with relation
+to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
+     </item>
+    </items>
+    <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+    </disclaimer>
+  </itemlist>
+  <closing>
+<P ALIGN="CENTER"><A HREF="http://www.anybrowser.org/campaign/"><IMG
+     SRC="imgs/anybrowser3.png"
+     ALT="Best Viewed With Any Browser"
+     BORDER="0"/></A>
+<a href="http://www4.tripnet.se/%7eslarti/f_frames_uk.htm"><img src="imgs/good_fr1.png" alt="Supporting GOOD frames" border="0"/></a>
+</P>
+<HR/>
+<I>www.6502.org: Andr&eacute;'s 8-bit pages</I>
+<BR/>This site is maintained by <A HREF="mailto:mnaberez@nyx.net">
+Mike Naberezny</A> and hosted on <A HREF="http://buzz.chisp.net">Buzz.chisp.net</A>.
+<BR/>Last updated June 15, 2000.
+  </closing>
+</webpage>

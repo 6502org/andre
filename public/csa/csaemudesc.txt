@@ -1,0 +1,25 @@
+
+Description for CS/A CPUEMU, version 1.0
+----------------------------------------
+
+whatsit : 6502 Emulation board
+I/O     : --
+Mem     : 64k memory of the simulated 6502 at $2****
+
+This boards allows to replace a 6502 CPU in another computer
+with a cable to this board. The 64k memory of the emulated 6502 
+are mapped to $2**** in the CS/A65 memory.
+
+All Data and Address lines are buffered. When a write takes place
+outside the mapped memory ($2****) the data bus driver is disabled,
+and the simulated R/-W line signals a read, not write.
+
+Warning: this design has a serious flaw: When an address outside the
+mapped memory is accessed, a read is done in the simulated system
+with the lower 16 address bits of the CS/A65 address as 6502 address.
+If by accident this address is something like a clear-on-read this
+register is accessed, cleared, and might change the state of the
+system!
+Instead a fixed, save address should be used, but this is not implemented.
+
+

@@ -1,0 +1,135 @@
+
+Description for CS/A VDC board, version 1.3
+-------------------------------------------
+
+whatsit	: Video (FBAS) output
+I/O	: 6545/6845 at $880-$887, Controlport at $888-$88f
+Mem	: RAM at $010000-$01ffff
+
+This Video board provides 40*25 (for 1MHz bus clock) or 80*25
+(for 2MHz bus clock) character oriented video output. It may,
+however, be used to produce 320*200 resp. 640*200 pixel
+hires graphics output. It provides 64k RAM to the system.
+Nevertheless, for a graphics card, the design is still simple :-)
+
+RAM timing
+
+The RAM used is a dynamic RAM, which means that the 
+address is split into two parts, a row and a column that
+are transfered to the RAM one after another over the same
+address lines. This means that we need less pins for a RAM,
+but a more sophisticated timing. 
+
+The RAM has two address control lines, /RAS and /CAS. first
+/CAS goes low and at this transition the first half of the
+address is read from the bus. Shortly after that /RAS goes
+low and during this transition the second half is read.
+
+I use the 2Phi2 bus signal directly as a /CAS signal.
+This signal is then delayed and used to switch the address
+lines with IC5,6,11, and 12.
+After a further delay and a check for the right address,
+it is given to the /RAS input. If /RAS is not assigned here,
+it is not a read/write access but a simple refresh cycle,
+with an address given by the CPU.
+
+Refresh
+
+Dynamic RAM must be refreshed cyclically, otherwise it would
+lose its contents. This is normally done by cyclically addressing
+all columns with the /CAS signal, but not assigning /RAS, i.e.
+only one half of a read cycle. I don't do this, but use the 
+feature that by reading from a certain column this column is 
+automatically refreshed.
+
+Thus, by cyclically reading the video contents it is possible
+to refresh the dynamic RAM. It is only necessary to ensure that
+the lower address bits must be the column address, to read a 
+different column when increasing the address.
+
+CPU access
+
+The CPU access is done during Phi2 high, while video reads are
+done during Phi2 low. 
+IC2 selects the right address range. This signal is routed to the 
+bus driver between the CS/A bus and the RAM data bus.
+This driver uses the bus R/-W for direction control and
+connects the busses as appropriate.
+
+In addition to that it is NAND-ed with Phi2 - if one of both is low,
+the result is high - to allow RAM access only on Phi2 low for video
+and in the right address range for the CPU. Only then /RAS can be 
+assigned.
+Inverted Phi2 is used to select the right address multiplexer for the
+CPU address lines (IC5,6).
+
+Video Access
+
+Video access takes place during Phi2 low.
+R/-W is set to read when Phi2 is low (video access).
+Again Phi2 is now used to select the address multiplexer for video
+access (IC11,12).
+The data read is stored in an 8-bit register (IC10). 
+
+The output of the register is put to the address bits A3-A10 of
+the character ROM. The lowest ROM address bits come from the 
+Row address bits of the CRTC. This is due to the way the CRTC
+works. It counts the same addresses for each raster line.
+One character now is 8 rasterlines high. This means the CRTC
+reads the addresses (for example):
+
+ 0  1  2  3  4  5 ... 79 
+ 0  1  2  3  4  5 ... 79
+ ...
+ 0  1  2  3  4  5 ... 79
+80 81 82 83 84 85 ... 159
+80 81 82 83 84 85 ... 159
+ ...
+
+Only the Row address lines count on from 0 to 7 and then start at
+0 again. So each character is read from the RAM as often as it
+has rasterlines. The raster address lines from the CRTC then 
+determine which byte to read from the character ROM. 
+
+Video signal generation
+
+This byte from the ROM is then fed to a shift register (IC14) and
+synchronized with the character clock. The shift register shifts out
+with 8 times the character clock, means 8 bits per character. Then the
+next byte is taken from the ROM.
+
+The output is then inverted when the Cursor enable line is set, and
+cleared when Display enable is not set. 
+
+Hires mode
+
+When in hires mode, the CRTC must work in a different mode.
+Ideally one would set the number of rasterlines per character
+to 1, and use a linear character ROM (i.e. output = input).
+Unfortunately the CRTC doesn't provide enough address space, i.e.
+it only allows 128 character lines in total (the vertical total
+register is 7 bit only!). So we have to map some of the 
+row address lines to the memory address lines. This is done
+with IC15, which replaces MA12 and MA13 with RA0 and RA1. 
+This gives a horribly complicated memory map...
+
+I/O operation
+
+The board also has an I/O area, so IC3 selects the right 
+I/O address range. The CRTC is mapped PET-compatible at $880.
+It uses only two byte, a register index and the register data byte.
+The upper 8 byte are for the control register implemented with a
+74LS374 (IC4). With this register one can: switch between the 
+4 possible 16k pages (the CRTC only has 14 address lines), invert
+the sync signals and switch different character ROMs.
+Also you can swith to hires mode here.
+
+Miscellaneous
+
+P3 is used to allow PET-compatible charrom switching from the IEC 
+board.
+
+J1 and J2 can be used to change the I/O are to $89* and the memory
+range to $03****, to allow two cards in one computer.
+
+

@@ -1,0 +1,25 @@
+
+Parts list for CS/A Copro65 board, version 1.0
+----------------------------------------------
+
+IC 	1,2,9,10,12	74HCT541
+	3,11		74HCT245
+	4,13		74HCT688
+	5,15,22		74F138
+	6		62256
+	7		62256/27256
+	8		74LS273
+	14		R65C02P2 (any 2MHz 6502 should do)
+	16		7407
+	17,24,27,28	74F74
+	18		74F04
+	19,26		74F32
+	20,25		74F00
+	21		74F257
+	23		74F139
+
+P	1		CS/A Bus connector male
+	2		CS/A Bus connector female
+	3+4		24 pin plug+socket, to connect part A with 
+			parts B+C (if it does not fit on one board).
+

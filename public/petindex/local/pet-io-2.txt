@@ -1,0 +1,2173 @@
+Article 45474 of comp.sys.cbm:
+From: rhialto@mbfys.kun.nl (Olaf Seibert)
+Newsgroups: comp.sys.cbm
+Subject: PetIO.doc   V1.5 14.11.95
+Date: 25 Nov 1995 21:36:59 GMT
+Organization: University of Nijmegen, The Netherlands
+Lines: 2160
+Distribution: world
+Message-ID: <49829r$oq5@wn1.sci.kun.nl>
+NNTP-Posting-Host: severus.mbfys.kun.nl
+
+
+PetIO.doc   V1.5 14.11.95
+=========================
+
+Summarised by Olaf Seibert, from "Programming the PET/CBM" (by Raeto Collin
+West) chapter 14, The Transactor, Volume 4 Issue 05, articles posted by
+Veit Laule, and other sources.
+
+Now also contains the "8296 addendum".
+
+PIA 6520 and VIA 6522
+---------------------
+
+In the PET, you find the two PIAs at E810 and E820, and the VIA at E840.
+
+The PIA
+-------
+The PIA has two 8-bit I/O ports, A and B, which are mostly identical in
+function.  All 8 bits can be set to input (1 in the DDR) or output (0 in
+the DDR) independently. Bit 2 in CRx determines whether the DDRx or Px are
+accessed.  Each port has 2 control lines: CA1, CA2, CB1, CB2. The Cx1 are
+input only, the Cx2 can be input or output.
+
+PIAs have two interrupt lines: IRQA and IRQB. They may go low on a change
+on the inputs of the Cxy lines. These interrupts may be enabled on either
+an 1->0 or an 0->1 transition. The selected transition is called the
+"active" transition. The flags which register that an active transition has
+occurred are reset by reading the appropriate PORT register.
+
+Register map:
+
+E810  PORT A or DDR A: Data Direction Register A
+E811  CRA: Control Register A
+E812  PORT B or DDR B: Data Direction Register B
+E813  CRB: Control Register B
+
+Control registers:
+
+CRA:
+
+bit   meaning
+---   -------
+ 7    CA1 active transition flag. 1= 0->1, 0= 1->0
+ 6    CA2 active transition flag. 1= 0->1, 0= 1->0
+ 5    CA2 direction	      1 = out	     | 0 = in
+ 4    CA2 control   Handshake=0 | Manual=1   | Active: High=1 Low=0
+ 3    CA2 control   On Read=0	| CA2 High=1 | IRQ on=1, IRQ off=0
+		    Pulse  =1	| CA2 Low=0  |
+ 2    Port A control: DDRA = 0, IORA = 1
+ 1    CA1 control: Active High = 1, Low = 0
+ 0    CA1 control: IRQ on=1, off = 0
+
+CRB works identical for CB1 and CB2, except for the differences in
+handshaking.
+
+The Cx2 handshake is not identical between ports. For port A, the handshake
+is on reading the PORT A register, for CB2 the handshake is sent on writing
+the PORT B register.
+
+On the listening side:
+
+BIT 3 LOW with CA2: CA2 is now controlled by two events:
+    (i) CA1 active transition sets it high ("Data Valid")
+    (ii) a READ operation sets it low ("Data Accepted").
+
+On the talking side:
+
+BIT 3 LOW with CB2: CB2 is now controlled by two events:
+    (i) CB1 active transition sets it high ("Ready For Data")
+    (ii) a WRITE operation sets it low ("Data Valid").
+
+Bit 2 HIGH: Causes pulse output, CA2 or CB2 going low for one cycle only
+after a read or write operation. This pulse may be too short for some uses.
+
+For operation with a sending and a receiving PIA one would connect
+
+talker	    listener
+------	    --------
+Port B	 -> Port A
+CB2	 -> CA1 with active = 1->0 (data valid)
+CB1	<-  CA2 with active = 1->0 (data accepted and ready for more)
+
+Use of PIA signals in a PET:
+
+PIA 1
+
+E810	PORT A	7   Diagnostic sense (pin 5 on the user port)
+		6   IEEE EOI in
+		5   Cassette sense #2
+		4   Cassette sense #1
+		3-0 Keyboard row select (through 4->10 decoder)
+E811	CA2	    output to blank the screen (old PETs only)
+		    IEEE EOI out
+	CA1	    cassette #1 read line
+E812	PORT B	7-0 Contents of keyboard row
+		    Usually all or all but one bits set.
+E813	CB2	    output to cassette #1 motor: 0=on, 1=off
+	CB1	    screen retrace detection in. This input is used to
+                    generate the 50 or 60 Hz IRQ. Also connected to
+		    VIA PB5.
+
+PIA 2
+
+E820	PORT A	    Input buffer for IEEE data lines
+E821	CA2	    IEEE NDAC out
+	CA1	    IEEE ATN in
+E822	PORT B	    Output buffer for IEEE data lines
+E823	CB2	    IEEE DAV out
+	CB1	    IEEE SRQ in
+
+The VIA
+-------
+The VIA is a superset of the PIA. Many of the principles apply here as
+well, though the organisation is slightly different.
+
+The VIA has two ports, PA and PB, 4 control lines C[AB][12], an 8-bit shift
+register SR and 2 timers TA and TB.
+
+Like the PIA, the Cx1 lines are input only, the Cx2 lines are I or O.
+
+Port A has two registers. One register causes handshaking with CA1 to
+happen, the other doesn't. Port B occurs in memory before port A.
+There are control registers CRA, CRB, ACR, PCR, and interrupt registers IFR
+and IER. The data direction registers DDRA and DDRB have their own
+addresses, unlike the PIA.
+
+I'll only describe the extra or different features.
+
+Timers. The VIA has two 16-bit timers T1 and T2. When written to the timers
+start counting down on each clock cycle, and when reaching 0000 will flag
+and may cause an interrupt or other special action. When the low byte of
+the timer is read, the interrupt flag is cleared. Writing to the high
+byte clears the flag and starts the timer counting.
+
+T1 has a latch register. This is a place to store the timer value before it
+will be used. When T1 reaches 0, the latch value is moved into the timer so
+that the countdown may begin all over again, if so enabled.
+
+Ports. PA and PB may be latched, so that on an active transition of CA1 the
+value in the PA register is retained indefinitely (or until the next active
+transition on that pin), and similarly with CB1 and PB.
+
+The shift register. This 8-bit register is connected to CB2. On command the
+SR performs 8 shifts, moving 8 bits to or from CB2 one at a time. The most
+significant bit is moved first (the register shifts left). The SR can be
+timed by T2 and at the same rate as the 6202, using the phase 2 clock phi2.
+Alternatively an external clock may time it.
+
+It seems there are bugs in the shift register. For instance, when doing
+cassette I/O, the CB2 sound, which uses the SR, must be turned off.
+Also (on my machine), when generating sound one must first set the shift
+register in "free running" mode, and then load it with a value to shift.
+The other way around does not seem to work.
+
+The ACR controls the timers, shift register and latch status of PA and PB.
+(T1 has effects on pin PB7, which are not described in the book, but I
+suspect they are similar to the features of the CIA in this respect. -Olaf)
+
+ACR E84B
+
+7-6 Timer 1 control
+    0 = PB7 unused
+    0 0 = one shot
+    0 1 = continuous, i.e. on underflow timer restarts at latch value.
+    (The following 3 lines are guessed, based on the Amiga's CIA description)
+    1 = PB7 used
+    1 0 = T1 underflow toggles PB7
+    1 1 = T1 underflow pulses PB7
+5   Timer 2 control
+    0 = one shot
+    1 = count set no. of PB6 pulses
+4-2 Shift register control
+    000 = shift reg disabled
+    001 = shift in by timer 2
+    010 = shift in by phi2
+    011 = shift in by external clock (PB6?)
+    100 = free run by timer 2 (setting for sound)
+	  this means keep shifting the same byte out over and over.
+	  T2 is hereby set to continuous mode.
+    101 = shift out by timer 2
+    110 = shift out by phi2
+    111 = shift out by external clock (PB6?)
+1   Port B latch
+    0 = disabled
+    1 = enabled on CB1 transition (in/out)
+0   Port A latch
+    0 = disabled
+    1 = enabled on CA1 transition (in)
+
+The Periheral Control Register PCR  controls the operating modes of the
+control lines CA1-CB2.
+
+PCR E84C
+
+7-5 CB2 control
+ 7  direction
+    1 = output
+    1 0 = do handshake
+    1 0 0 = on write
+    1 0 1 = pulse?
+    1 1 = manual CB2 control
+    1 1 0 = CB1 low
+    1 1 1 = CB1 high
+    0 = input
+    0 0 x = Active low:  1->0
+    0 1 x = Active high: 0->1
+    0 x 0 = Clear Interrupt condition on write of 1 in IFR or r/w of ORB
+    0 x 1 = Clear Interrupt condition on write of 1 in IFR only
+4   CB1 control
+    0 = active transition low
+    1 = active transition high
+3-1 CA2 control (similar to CB2 control)
+ 3  direction
+    1 = output
+    1 0 = do handshake
+    1 0 0 = on read
+    1 0 1 = pulse
+    1 1 = manual CA2 control
+    1 1 0 = CA1 low
+    1 1 1 = CA1 high
+    0 = input
+    0 0 x = Active low:  1->0
+    0 1 x = Active high: 0->1
+    0 x 0 = Clear Interrupt condition on write of 1 in IFR or r/w of ORB
+    0 x 1 = Clear Interrupt condition on write of 1 in IFR only
+0   CA1 control
+    0 = active transition low
+    1 = active transition high
+
+The handshaking is not specifically described in the book, so I presume it
+is identical to that of the PIA.
+
+The interrupt conditions for the control lines can be cleared by writing a
+1 bit in the corresponding bit in the IFR. Optionally for CA2 and CB2 it
+can also be cleared by accessing the port data register.
+
+Interrupt Flag Register IFR and Interrupt Enable Register IER. These
+registers are symmetrical wrt each other. The IER enables specific
+interrupts (i.e., allows an event to trigger an interrupt), and the IFR
+flags if the event took place.
+
+When writing to the IER bit 7 controls the meaning of the 1 bits in the
+data: when set each 1-bit sets the interrupt enable bit, when cleared it
+resets that interrupt enable bit.
+
+The flags in IFR can be cleared by writing a 1 in them (and bit 7 clear).
+
+IFR E84D
+IER E84E
+
+7   IFR: master flag bit: 1 when any of the other bits are set
+    IER: 0 disables, 1 enables interrupts
+6   Timer 1 underflow
+5   Timer 2 underflow
+4   CB1 active transition
+3   CB2 active transition
+2   Shift register full/empty
+1   CA1 active transition
+0   CA2 active transition
+
+Use of VIA signals in a PET
+---------------------------
+E840	PORT B	7   DAV in
+		6   NRFD in
+		5   screen retrace in (also connected to PIA1 CB1)
+		4   cassette #2 motor (note 2)
+		3   cassette write data out
+		2   ATN out
+		1   NRFD out
+		0   NDAC in
+E841	PORT A	    USER PORT with CA2 handshake (note 1)
+E842	DDRB	7-0 normal bits set to 0 0 0 1 1 1 1 0
+E843	DDRA	7-0 USER PORT data direction register
+E844	Timer 1 LO
+E845	Timer 1 HI  (set to $FF on system power-on)
+E846	Timer 1 latch LO
+E847	Timer 1 latch HI
+E848	Timer 2 LO
+E849	Timer 2 HI
+E84A	Shift register
+E84B	ACR	Aux. control register; set to $00 at power on
+		7-6 timer 1 control
+		5   timer 2 control
+		4-2 shift register control
+		1   port B latch
+		0   port A latch
+E84C	PCR	Peripheral Control Register; set to $0C or $0E at power on
+		7-5 CB2 control (user port pin M) (note 3)
+		4   CB1 control (note 3)
+		3-1 CA2 control (graphics mode) (note 3)
+		0   CA1 control (note 3)
+E84D	IFR	Intertrupt Flag Register; set to $00 at power on
+		7   IRQ on/off
+		6   T1 interrupt flagged
+		5   T2 interrupt flagged
+		4   CB1 interrupt flagged
+		3   CB2 interrupt flagged
+		2   shift register interrupt flagged
+		1   CA1 interrupt flagged
+		0   CA2 interrupt flagged
+E84E	IER	Interrupt Enable Register; set to $80 at power on
+		7   1=enable, 0=disable
+		6-0 enable interrupts; same bits as in IFR.
+E84F	PORTA	    USER PORT without CA2 handshake
+
+Note 1: E84F is the preferred user port register, since CA2 controls screen
+graphics.
+
+Note 2: The motor is on when this line is low, and off when it is high.
+
+Note 3: CA1 is connected to pin B of the user port. Pins B-L correspond to
+port A, which is invariably E84E. CB2 (connected to the shift register) also
+connects to pin M of the user port; square wave tones (see chapter 9 of
+"Programming the PET/CBM") use these facts. CB1 signals input from cassette
+#2. CA2 controls screen graphics: it is configured for output, and, when
+low, gives lower case characters and others. When high, the mode is upper
+case and graphics.
+
+VIA use by BASIC and KERNEL
+---------------------------
+T1 and T2 are used (though the T1 latch is ignored). T2 is only used for
+cassette operations, to time reading and writing of bits. T1 is used to
+time out the IEEE-488 bus response (before setting ST) and also with
+cassette (although not to such an extent as T2). Both timers also
+contribute to RND(0), but Basic 1 uses the wrong addresses for this. T1 is
+also used in Basics < 4 to time the screen-scroll delay when RVS or the
+left-arrow key is pressed.
+
+Interrupts from T1 and T2 are used for cassette and IEEE handling. CB1
+interrupts are also used with cassette. The kernel does not use interrupts
+from CB2, SR, CA2 and CA2.
+
+CB2 and the shift register are used for the bell sound, which exists only
+in Basic 4.
+
+
+64 K RAM expansion in 8096 and 8296
+-----------------------------------
+From: UKAH@ibm3090.rz.uni-karlsruhe.de (Veit Laule)
+Newsgroups: comp.sys.cbm
+Date: Tue, 22 Nov 1994 16:38
+Organization: University of Karlsruhe, Germany
+Message-ID: <19941122163828UKAH@ibm3090.rz.uni-karlsruhe.de>
+
+8096 exp-mem (64K):
+The control register is at $FFF0/65520
+You have 4 16K-banks, 0...3
+
+$8000	  $9000 	      $C000	      $E800    $F000	 $FFFF
+!----------------------------!!--------------------------------------!
+	Bank 0 or 2			Bank 1 or 3
+!--------!				      !-------!
+  screen					io
+
+Control Register $FFF0:
+bit 7:	0 normal 8032 configuration (screen, ROMs, IO, ROMs)
+       80 expansion memory
+bit 6:	0 RAM $E800-$EFFF (only when bit7=1)
+       40 IO peek through
+bit 5:	0 exp-mem $8000-$8FFF (-"-)
+       20 screen peek through
+bit 4: 10 not used
+bit 3:	0 bank 1 $C000-$FFFF
+       08 bank 3
+bit 2:	0 bank 0 $8000-$BFFF
+       04 bank 2
+bit 1: 02 write protect bank 1/3
+bit 0: 01 write protect bank 0/2
+when bit7=0, all other bits are ignored
+
+The missing 32K can't be accessed witout hardware modifications.
+You can only use the 2K "behind" the screen $8800-$8FFF (exact: 34768-
+36863), available in the normal configuration.
+The register is write-only, and the value is written through to the
+previously selected ram bank.
+
+6545/6845 CRT	(6545 used in CBM 8xxx + FAT FOURTY,
+-------------	 6845 used in CBM 6/7x0 (B-series))
+This info taken from Transactor Volume 4, Issue 05 and an article by
+Veit Laule. Note that the Transactor lists the 6545 with the B series info.
+Date: Wed, 14 Dec 1994 17:41
+Message-ID: <19941214174145UKAH@ibm3090.rz.uni-karlsruhe.de>
+
+This chip is only available with the wide-screen (12 inch) models.
+40 column models clock this chip at 1MHz, 80 column models at 2 MHz.
+
+E880: register select
+E881: register contents
+
+Reg#	Meaning
+---------------
+ R0	Horizontal total number of characters on line (Nht) including
+	horizontal retrace (true value = number + 1)
+ R1	Horizontal total number of characters displayed (Nhd)
+ R2	Distance (in characters) from left to right margin of screen + 1
+ R3	Sync width. Low nibble is vertical sync width (in lines) (0=16).
+		    High nibble is horizontal sync (in characters).
+ R4	Number of display lines including retrace (Nvt) (7 bits)
+ R5	Vertical position of the edge of the screen (5 bits)
+ R6	Number of display lines on screen (Nvd) (7 bits)
+ R7	Height of upper edge from bottom of screen (in lines displayed)
+	(7 bits)
+ R8	different between 6545 and 6845, not used
+	6545: Interlace and Skew:
+	  Bit 0: 1=interlace mode, 0=non interlaced mode
+	  Bit 1: if bit 0 = 1then interlace and video mode
+	  Bit 2: not used (not true?).
+	  Bit 3: not used.
+	  Bit 4: 1=scan from 32770 (8002) in memory
+	  Bit 5: 1=scan from 32772 (8004) in memory
+	  Bit 6: cursor (not implemented on the PET)
+	  Bit 7: cursor (not implemented on the PET)
+ R9	Number of lines between top of one display line and the next (-1)
+	(5 bits)
+R10	Cursor (not implemented on the PET)
+	cursor start line, bits 4-0
+	bit 6	bit 5	Cursor Operating Mode
+	-------------------------------------
+	  0	  0	display cursor continuously
+	  0	  1	blank cursor
+	  1	  0	blink cursor at 1/16 field rate
+	  1	  1	blink cursor at 1/32 field rate
+R11	Cursor end line (5 bits)  (not implemented on the PET)
+R12	Control register:
+	  Bit 0: 1=add 256 to screen start address ( 512 for 80-columns)
+	  Bit 1: 1=add 512 to screen start address (1024 for 80-columns)
+	  Bit 2: invert flyback
+	  Bit 3: invert video signal
+	  Bit 4: use top half of 4K character generator
+	  Bit 5: (not implemented on the PET)
+	  Bit 6: (not implemented on the PET)
+	  Bit 7: not used.
+	Note: In my 8296 I could not confirm bits 2-7.
+R13	Value + 32786 (8000) is address of first character
+	(multiply by 2 for 80-column models)
+R14	Cursor location HI (not implemented on the PET)
+R15	Cursor location LO (not implemented on the PET)
+R16	Light pen position HI (read only)
+R17	Light pen position LO (read only)
+R18	Update address high, 6bit (only 6545)
+R19		       low	    -"-
+
+R0-R13, R18, R19 are writeonly
+R16, R17	 are readonly
+
+R16-R19 are not used
+R10, R11, R14, R15 are only used in the CBM 6/700 (hardware cursor)
+
+
+RIOT 6532
+---------
+Source: TOuCHE manual: the keyboard for the Apple-II clone from
+the Computer Hobbyvereniging Eindhoven. (They got DDRA and DDRB reversed.)
+
+The RIOT is used at least in the diskdrives of type 2040, 3040, 4040, 8050,
+8250. They contain two RIOTs (at $0200 and $0280) and a VIA (at $????).
+
+The RIOT (RAM, I/O and Timer) has 128 bytes of RAM, 2 8-bit bidirectional
+I/O ports, and a timer that can count down at 4 different rates.
+
+Reg.	Name	Description
+---------------------------
+ 0	PA	Port A data
+ 1	DDRA	Port A Data Direction Register
+ 2	PB	Port B data
+ 3	DDRB	Port B Data Direction Register
+ 4	Timer	Timer read register
+14,0E	T1	1 clocks per decrement
+15,0F	T8	8
+16,10	T64	64
+17,11	T1024	1024
+
+The Data and DDR registers are as usual. The input is a buffer, the output
+is a latch.
+
+The Timer register reads out the timer value; its initial value is set by
+writing into the T1..T1024 registers. Which one is used determines the
+number of clock cycles between decrements of the Timer register.
+
+The chip also has an IRQ line but the cited source does not say anything
+further about it. The 8050 fdc rom usage suggests an irq is generated on
+timer underflow, with no special setup required.
+
+Pinout:
+
+ 1  0V				    21	PB3
+ 2  A5	Address lines		    22	PB2
+ 3  A4	(see also pin 40)	    23	PB1
+ 4  A3				    24	PB0
+ 5  A2				    25	IRQn
+ 6  A1				    26	D7	Data bus lines
+ 7  A0				    27	D6
+ 8  PA0 Port A data		    28	D5
+ 9  PA1 			    29	D4
+10  PA2 			    30	D3
+11  PA3 			    31	D2
+12  PA4 			    32	D1
+13  PA5 			    33	D0
+14  PA6 			    34	RESn	Reset
+15  PA7 			    35	R/Wn
+16  PB7 Port B data		    36	RSn	RAM Select
+17  PB6 			    37	CSn
+18  PB5 			    38	CS	Circuit Select
+19  PB4 			    39	PHI2	Clock
+20  +5V 			    40	A6	Address line
+
+
+
+IEEE Port Pinouts
+-----------------
+This info taken from Transactor Volume 4, Issue 05.
+
+rear view for IEEE and User port:
+
+	   1   2   3   4   5   6   7   8   9   10  11  12
+	  --- --- --- --- --- --- --- --- --- --- --- ---
+	===================================================
+	  --- --- --- --- --- --- --- --- --- --- --- ---
+	   A   B   C   D   E   F   H   J   K   L   M   N
+
+Contact spacing: 3.96 mm from centre to centre.
+
+The User port is the second port from the left, the IEEE-488 port is
+the third port. The left port is a cassette port, but cassette #1 and #2
+have moved around in various models. The other port is either inside the
+case for older models or at the right-hand side for newer models.
+
+Some machines (at least the 8032 SK) has a proper IEEE-488 connector for
+the IEEE-488 port instead of the more common card edge connector.  Those
+machines also have such a connector for the user port but mounted
+upside-down.
+
+PET   IEEE
+Pin#  Pin# Mnemonic Definition
+-----------------------------------
+ 1     1   DIO1     Data Input/Output Line #1         (PIA2 PA in, PIA2 PB out)
+ 2     2   DIO2     Data Input/Output Line #2
+ 3     3   DIO3     Data Input/Output Line #3
+ 4     4   DIO4     Data Input/Output Line #4
+ 5     5   EOI	    End Or Identify                 (PIA1 PA6 in, PIA1 CA2 out)
+ 6     6   DAV	    Data Valid                       (VIA PB7 in, PIA2 CB2 out)
+ 7     7   NRFD     Not Ready For Data                (VIA PB6 in, VIA PB1 out)
+ 8     8   NDAC     Not Data Accepted                (VIA PB1 in, PIA2 CA2 out)
+ 9     9   IFC	    Interface Clear
+10    10   SRQ	    Service Request                          (PIA2 CB1 in only)
+11    11   ATN	    Attention                           (VIA PB2 out, PIA2 CB1)
+12    12   GND	    Chassis Ground (IEEE cable shield)
+ A    13   DIO5     Data Input/Output Line #5         (PIA2 PA in, PIA2 PB out)
+ B    14   DIO6     Data Input/Output Line #6
+ C    15   DIO7     Data Input/Output Line #7
+ D    16   DIO8     Data Input/Output Line #8
+ E    17   REN	    Remote Enable
+ F    18   GND	    DAV Ground
+ H    19   GND	    NRFD Ground
+ J    20   GND	    NDAC Ground
+ K    21   GND	    IFC Ground
+ L    22   GND	    SRQ Ground
+ M    23   GND	    ATN Ground
+ N    24   GND	    Data Ground (DIO1-8)
+
+User port
+---------
+
+Pin# Function Description
+-------------------------
+ 1   Ground   System Ground
+ 2   TV Video Video Out for external displays
+ 3   SRQ      Connected to IEEE-488 SRQ (PIA2 CB1 in only)
+ 4   EOI      Connected to IEEE-488 EOI (PIA1 PA6 in, PIA1 CA2 out)
+ 5   Diagnostic Sense (PIA1 PA7)
+	      Held low causes power up to diagnostic routines or monitor
+ 6   Read 1   Connected to cassette #1 read line (PIA1 CA1)
+ 7   Read 2   Connected to cassette #2 read line (VIA CB1)
+ 8   Write    Diagnostic cassette write verify (VIA PA3)
+ 9   Vert     TV Vertical for external displays
+10   Horiz    TV Horizontal for external displays
+11   GND
+12   GND
+ A   GND
+ B   CA1      Edge sensitive input for 6522 VIA
+ C   PB0      PB0-7 are independently programmable
+ D   PB1      for Input or Output
+ E   PB2
+ F   PB3
+ H   PB4
+ J   PB5
+ K   PB6
+ L   PB7
+ M   CB2      Special IO pin of VIA, connected to shift register
+ N   GND      Digital ground
+
+Cassette port
+-------------
+	   1   2   3   4   5   6
+	  --- --- --- --- --- ---
+	==========================
+	  --- --- --- --- --- ---
+	   A   B   C   D   E   F
+
+Contact spacing: 3.96 mm from centre to centre.
+
+Pin# Name  Description
+----------------------
+A-1  GND   Digital Ground
+B-2  +5V   +5 Volts to operate cassette circuitry only
+C-3  Motor Computer controlled +6V for cassette motor
+D-4  Read  Read line from cassette
+E-5  Write Write line to cassette
+F-6  Sense Monitors closure of any locking type cassette switch
+
+Keyboard matrix
+===============
+
+There are two different keyboards: the graphics keyboard and the
+business keyboard.
+
+After analysis of the 50 and 60 Hz versions of the 8032 business
+roms, there are apparently even difference between the keyboards of
+those versions. The 60 Hz values are listed below the 50 Hz ones,
+if they differ.
+
+In Basic 4.0 CRTC the (PETSCII) values listed in the table below are
+recorded in location 151 [this makes distinguishing between the normal 0
+key and the one on the numeric keypad impossible]; in older versions (and
+4.0 without CRTC) the position in the table is recorded. The position is
+8 * (9 - row) + (7 - column) + 1, i.e. starting at 1, incrementing left to
+right and top to bottom.
+
+The keyboard is scanned by writing the row number into the row select port
+($E810), then reading the column bits ($E812). Each bit that reads 0
+represents a pressed key.
+
+; 00 = Shift
+; 10 = Repeat
+; 80   flags unshiftable key
+; FF = No key
+
+Business keyboard decoding table:
+
+----+------------------------
+row |  7  6  5  4  3  2  1  0
+----+------------------------
+ 9  | 16 04 3A 03 39 36 33 DF
+    | ^V --  : ^C  9  6  3 <-	^V = TAB + <- + DEL, ^C = STOP,
+    |				 <- = left arrow
+ 8  | B1 2F 15 13 4D 20 58 12
+    | k1  / ^U ^S  m sp  x ^R	k9 = keypad 9, ^U = RVS + A + L,
+    |				^S = HOME, sp = space, ^R = RVS
+ 7  | B2 10 0F B0 2C 4E 56 5A	^O = Z + A + L, rp = repeat
+    | k2 rp ^O k0  ,  n  v  z
+    |
+ 6  | B3 00 19 AE 2E 42 43 00
+    | k3 rs ^Y k.  .  b  c ls	^Y = left shift + TAB + I, k. = keypad .
+    |				ls = left shift, rs = right shift
+ 5  | B4 DB 4F 11 55 54 45 51	^Q = cursor down
+    | k4  [  o ^Q  u  t  e  q
+    |    5D]
+ 4  | 14 50 49 DC 59 52 57 09
+    | ^T  p  i  \  y  r  w ^I	^T = DEL, ^I = TAB
+    |          C0@
+ 3  | B6 C0 4C 0D 4A 47 44 41
+    | k6  @  l ^M  j  g  d  a	^M = return
+    |    5B[
+ 2  | B5 3B 4B DD 48 46 53 9B
+    | k5  ;  k  ]  h  f  s ^[	^[ = ESC
+    |    5C\   3B;
+ 1  | B9 06 DE B7 B0 37 34 31
+    | k9 --  ^ k7  0  7  4  1
+    |
+ 0  | 05 0E 1D B8 2D 38 35 32
+    |  . ^N ^] k8  -  8  5  2	^N = both shifts + 2, ^] = cursor right
+----+------------------------
+
+Graphics keyboard decoding table:
+
+----+------------------------
+row |  7  6  5  4  3  2  1  0
+----+------------------------
+ 9  | 3D 2E FF 03 3C 20 5B 12
+    |  =  . -- ^C  < sp  [ ^S	^C = STOP, ^S = HOME
+    |
+ 8  | 2D 30 00 3E FF 5D 40 00
+    |  -  0 rs  > --  ] @  ls	rs = right shift, ls = left shift
+    |
+ 7  | 2B 32 FF 3F 2C 4E 56 58
+    |  +  2 --  ?  ,  n  v  x
+    |
+ 6  | 33 31 0D 3B 4D 42 43 5A
+    |  3  1 ^M  ;  m  b  c  z	^M = return
+    |
+ 5  | 2A 35 FF 3A 4B 48 46 53
+    |  *  5 --  :  k  h  f  s
+    |
+ 4  | 36 34 FF 4C 4A 47 44 41
+    |  6  4 --  l  j  g  d  a
+    |
+ 3  | 2F 38 FF 50 49 59 52 57
+    |  /  8 --  p  i  y  r  w
+    |
+ 2  | 39 37 5E 4F 55 54 45 51
+    |  9  7  ^  o  u  t  e  q
+    |
+ 1  | 14 11 FF 29 5C 27 24 22
+    | ^T ^Q --  )  \  '  $  "	^T = DEL, ^Q = cursor down
+    |
+ 0  | 1d 13 5F 28 26 25 23 21
+    | ^] ^S <-  (  &  %  #  !	^] = cursor right, ^S = home
+----+------------------------
+
+The original gfx keyboard reflects the matrix perfectly:
+
+	  !  "  #  $  %  '  &  \  (  )  <-     ^s ^q ^] ^t
+	  q  w  e  r  t  y  u  i  o  p  ^       7  8  9  /
+	  a  s  d  f  g  h  j  k  l  : ^m       4  5  6  *
+	  z  x  c  v  b  n  m  ,  ;  ? ^m       1  2  3  +
+	 LS ^r  @  [  ]  SPACE <  > ^c  RS      0  .  -  =
+
+The shift key always set the high bit, producing a graphic character.
+
+
+CONTROL CODES
+=============
+
+F: only on 4.0 fat-40, i.e. NOT on upgrade 4.0 roms.
+8: only on 4.0 80 columns.
+4B: only on 4.0 upgrade, B keyboard (maybe also on N keybd but I don't
+    have a ROM to verify this)
+
++------+------------------------------+------------------------------------+
+|ctrl- | unshifted                    | shifted (unshifted + 128)          |
++------+------------------------------+------------------------------------+
+| C  3 | stop                         | load/run, dload"*/run, or dL"*/run |
+| G  7 | bell                         | double bell                        |
+| I  9 | tab (4B,F,8)                 | set/clear tab (4B,F,8)             |
+| M 13 | return                       | fake return                        |
+| N 14 | text mode (F,8)              | graphics mode (F,8)                |
+| O 15 | set top of window (8)        | set bottom of window (8)           |
+| P 16 | erase end of line (F)        | see note (no function)             |
+| Q 17 | cursor down                  | cursor up                          |
+| R 18 | reverse field on             | reverse field off                  |
+| S 19 | cursor home                  | clear screen                       |
+| T 20 | delete char left of cursor   | insert space at cursor             |
+| U 21 | delete line (8)              | insert line (8)                    |
+| V 22 | erase end of line (8)        | erase begin of line (F,8)          |
+| Y 25 | scroll up (8)                | scroll down (8)                    |
+| [ 26 | escape: end inst & quote mode| (no function)                      |
+| ] 28 | cursor right                 | cursor left                        |
+|      |                              | 255 pi (converted to 94)           |
++------+------------------------------+------------------------------------+
+
+Note: on the 4.0-40-crtc version the code for "erase end of line" is
+different from the 4.0-80 code. Note that the decimal notation of the
+former (16, or $10) equals the hex notation of the latter ($16, or 22).
+This suggests a typo while editing the assembly source for the other
+version.
+
+
+CBM 8296
+========
+
+What follows was typed in by yours truely from a photocopy of an
+"original". I hope I have reproduced the contents faithfully, even
+though this is a bit hard with some tables. Most text is in typewriter
+font, right-aligned, but some is in a proportional font and I had to
+rearrange some of that text.
+
+I left the small indications of German origin.
+
+Text between [square brackets] is mine.
+
+-Olaf
+
+CBM 8296
+
+SUPPLEMENT to the 8032 Manual					Seite
+
+1.	Introduction						1
+
+2.	Memory system						1
+2.1	Memory mapping						1
+2.2	Control register					3
+2.3	Modification of memory system				4
+2.4	User Jumper						5
+
+3.	Video-RAM						6
+
+4.	Hardware expansion via J4, J9				7
+4.1	Memory expansion bus J4, J9				7
+4.2	Power supply for hardware expansion			7
+
+5.	Programming the expansion memory bank			8
+5.1	I/O handling						8
+5.2	Interrupt processing					9
+5.3	Interrupt Handler Program				9
+
+Annex
+
+A	Memory map						12
+
+B.1	Connectors 8296						13
+B.2	Connectors, modification as compared with 8032		17
+
+C	Software addendum					18
+
+
+1.	Introduction
+
+The CBM 8296 is an expanded version of the CBM 8032, and is fully
+software compatible with the CBM 8096. Where the hardware is con-
+cerned, there are some amendments and additional options, since
+the CBM 8296 has a total of 128 k RAM. The plug arrangements are
+also slightly different.
+
+
+
+2.	Memory system
+
+The CBM 8296 has two RAM banks, each with 64 k bytes, designated
+here the main memory and the expansion memory.
+
+The main memory is activated on switch-on, and the computer reacts
+like a standard CBM 8032.
+
+
+2.1	Memory Mapping
+
+Expansion memory can be mapped into main memory addresses $8000
+through $FFFF. See Figure 2-1. Only two of the 16k expansion
+blocks can reside in main memory at one time. This provides an
+additional 32k bytes of memory to the user.
+
+Selection of the expansion blocks is by bits 2 and 3 of the
+expansion memory control register. Each 16k block has a 16k
+alternate that can be selected by bits 2 and 3 of the control
+register.
+
+Main memory addresses $8000 through $BFFF can only be mapped by
+expansion blocks 0 or 1.  Main memory addresses $C000 through $FFFF
+can only be mapped by expansion blocks 2 or 3.
+
+
+				- 1 -
+
+
+
+0	+----------------+ 0000
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+16K	+----------------+ 4000
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+	|                |
+32K	+----------------+ 8000 ............. +--------------+ +--------------+
+	|     Screen     |                    |              | |              |
+	+----------------+ 9000               |              | |              |
+	|                |	ADDRESSES     | BLOCK 0      | | BLOCK 1      |
+	|                |	8000 TO BFFF  | 16K          | | 16K          |
+	|                |	(32K TO 48K)  |              | |              |
+	|                |                    |              | |              |
+	|                | BFFF               |              | |              |
+48K	+----------------+ C000 ............. +--------------+ +--------------+
+	|                |                    |              | |              |
+	+----------------+	  	      |              | |              |
+	|                |      ADDRESSES     | BLOCK 2      | | BLOCK 3      |
+58K	+----------------+      C000 TO FFFF  | 16K          | | 16K          |
+	|                | E800 (48K TO 64K)  |              | |              |
+60K	|......I/O.......| F000               |              | |              |
+	|                | FFFF               |              | |              |
+64K	+----------------+                    +--------------+ +--------------+
+
+
+
+		Figure 2-1.  Expansion memory mapping
+
+
+				- 2 -
+
+
+2.2	Control Register
+
+Control of the expansion memory is through a memory control
+register located at address $FFF0. The memory control
+register provides selection of 16k-byte blocks, write
+protection, enabling the expansion memory, I/O peek through
+and screen peek through. Because the memory control register
+is write only, a copy of the register should be kept in the
+lower 32k of main memory.
+
+Figure 2-2 depicts the functions of the memory control register.
+The paragraphs following it describe these functions in detail.
+
+		Address $FFF0
+	---------------------------------------------------
+	 7      6      5      4      3      2      1      0
+	---------------------------------------------------
+         |      |      |      |                    |      |
+         |      |      |      |                    |      |
+Enable --+      |      |      |                    |      +-- Write Protect
+                |      |      |                    |          $8000 - $BFFF
+		|      |      |                    |
+I/O peek through+      |      |      Select        +--------- Write Protect
+$E800-$EFFF            |      |       16K                     $C000 - $FFFF
+                       |      |      Block:  0 0:  2 and 0
+Screen peek through ---+      |              0 1:  2 and 1
+$8000-$8FFF                   |              1 0:  3 and 0
+                              |              1 1:  3 and 1
+Reserved ---------------------+
+
+
+	Figure 2-2.
+	Expansion Memory
+	Control Register
+
+Control Register Bit 7 - When equal to 1, enables the expansion memory.
+When bit 7 equal to 0, expansion memory is disabled. Bit 7 defaults to 0
+on power up.
+
+Control Register Bit 6 - When equal to 1, I/O peek through is enabled.
+
+Control Register Bit 5 - When equal to 1, screen peek through is enabled.
+
+Control Register Bit 4 - Reserved.
+
+Control Register Bit 3 - When equal to 1, block 3 (16k-byte) is selected.
+When equal to 0, block 2 (16k-byte) is selected.
+
+Control Register Bit 2 - When equal to 1, block 1 (16k-byte) is selected.
+When equal to 0, block 0 (16k-byte) is selected.
+
+Control Register Bit 1 - When equal to 1, addresses $C000 through $FFFF
+on the /Expansion Memory Board only/ are write protected.
+I/O is not write protected if I/O peek through is enabled.
+When equal to 0, the addresses are not write protected.
+
+Control Register Bit 0 - When equal to 1, addresses $8000 through $BFFF
+on the /Expansion Memory Board only/ are write protected.
+The screen is not write protected if screen peek through is enabled.
+When equal to 0, the addresses are not write protected.
+
+				- 3 -
+
+
+2.3.	Modifications to the main memory system
+
+By contrast with the CBM 8032, each address in the 64 k main
+memory is covered by RAM. A write command into any address (apart
+from I/O) causes the corresponding RAM address to be written at,
+and a read command reads from RAM between $0000 and $8FFF; above
+$9000 from the empty [EP]ROM sockets, from the ROM or from the I/O
+devices.
+
+RAM			$0000 - $FFFF
+Empty socket		$9000 - $AFFF
+ROM			$B000 - $FFFF. except $E8XX
+I/O			$E800 - $E8FF
+
+The memory system for CPU read accesses can be modified by means of
+the signals /RAM SEL 9, /RAM SEL A, and /RAM ON (J4, Pins 12, 13, 14)
+in accordance with the following table:
+
+
+[The first line represents the normal config.  In my machine I have
+jumpered J4 (the expansion bus) pins 12 and 13 to ground which gives me
+8K of additional RAM which is not cleared on reset. Ground pins are
+available in the adjecent row.]
+
+[/NO ROM = 1; see page 12 for more cases]
++-----+--------+------------+-------------------------------------------------+
+|     |Control |            |                                                 |
+|     |Register|            |      main memory $8000 - $FFFF        [UB1-UB8] |
+|     |        |            |      [$0000 - $7FFF is always RAM from UB1-UB8] |
+|     |$FFF0   |            |                                                 |
++-----+--------+------------+-------------------------------------------------+
+|     |    I/O |___ ___ ___ |              E000                               |
+| ___ |    peek|RAM RAM RAM | E800  F000  -E7FF  B000  A000  9000  8000       |
+| NO_ |    thr.|___ ___ ___ |              E900                               |
+| ROM |CR7 CR6 |ON  S.9 S.A |-E8FF -FFFF  -EFFF -DFFF -AFFF -9FFF -8FFF       |
++-----+--------+------------+-------------------------------------------------+
+|     |        |            |                                                 |
+|  1  | 0   X  | 1   1   1  | I/O  Kernal Editor BASIC EPROM EPROM SCREEN     |
+|     |        |            |                                                 |
+|  1  | 0   X  | 1   1   0  | I/O  Kernal Editor BASIC  RAM  EPROM SCREEN     |
+|     |        |            |                               +-----+           |
+|  1  | 0   X  | 1   0   1  | I/O  Kernal Editor BASIC EPROM  RAM  SCREEN     |
+|     |        |            |                         +-----+                 |
+|  1  | 0   X  | 1   0   0  | I/O  Kernal Editor BASIC  RAM   RAM  SCREEN     |
+|     |        |            |                   +-----+                       |
+|  1  | 0   X  | 0   1   1  | I/O  Kernal Editor  RAM   RAM   RAM  SCREEN     |
+|     |        |            |            +------+                             |
+|  1  | 0   X  | 0   0   1  | I/O  Kernal  RAM    RAM   RAM   RAM  SCREEN     |
+|     |        |            |     +------+                                    |
+|  1  | 0   1  | 0   X   0  | I/O   RAM    RAM    RAM   RAM   RAM  SCREEN     |
+|     |        |            |+----+                                           |
+|  1  | 0   0  | 0   X   0  | RAM   RAM    RAM    RAM   RAM   RAM  SCREEN     |
+|     |        |            |                                                 |
++-----+--------+------------+-------------------------------------------------+
+SCREEN: 2000 bytes for screen memory, and 2096 bytes of available RAM.
+
+
+
+  				- 4 -
+
+
+2.4.	User Jumper
+
+These three signals can be either fixed or programmable via
+user jumpers. Bits 0, 1 and 2 are used for control under program
+control.
+
+[In my machine these jumpers are not true jumpers.  You must solder two
+very tiny locations on the motherboard together to close the jumpers.
+Also these locations are rather far apart in the midst of various other
+tiny traces. I opted to use J4 instead which has JU1 and JU2 effectively
+accessible.]
+
+Jumper      Description of function
+
+            _________
+ JU1        RAM SEL A = LOW
+            _________
+ JU2        RAM SEL 9 = LOW
+            _________
+ JU3        RAM SEL A to Port A0
+            _________
+ JU4        RAM SEL 9 to Port A1
+            ______
+ JU5        RAM ON    to Port A2
+
+
+To use the user jumpers JU3 to JU5, Pins 0, 1 and 2 of the user
+port must be programmed to output.
+
+DR = 59459 ($E843)
+DA = 59471 ($E84F)
+
+POKE DR, PEEK (DR) OR 7
+
+The desired combination of bits (0 ... 7) can then be poked into
+the port register DA.
+
+N.B. When using JU3, JU4 and JU5, make sure that the user port is
+     not written at accidentally. This can happen for instance in
+     a number of text processing programs, which emulate a
+     Centronics interface via the user port.
+
+                ______
+     The signal RAM ON must be high at the start, as it is not
+     otherwise possible to complete the POWER ON routine in the ROM.
+
+				- 5 -
+
+
+3.	Video RAM
+
+As previously, the video RAM is at $8000 - $87CF. With the CBM
+8296 however, the CRT controller has access to the full range of
+addresses from $8000 - $9FFF. This produces 3 further screen
+pages, which can be used for program menues, help lists and the
+like. The four screen pages can be written at any time. The
+operating system uses the first page only.
+
+Page turning on display is achieved by altering the VIDEO RAM
+start address in the CRT controller (reg. 12):
+
+	POKE 59520, 12
+	POKE 59521,  x
+
+wherein x=0  for page 1 ($8000-$87CF, switch on figure)
+	x=4  for page 2 ($8800-$8FCF)
+	x=8  for page 3 ($9000-$97CF)
+	x=12 for page 4 ($9800-$9FCF)
+
+Activating the switchover text-modus and graphic-modus brings the
+screen page 1 back each time to display.
+
+To use pages 3 and 4, the IC socket UE10 [$9XXX] must be free, or the
+/RAM SEL 9 signal set at LOW. Otherwise the ROM in the UE10 trans-
+mits data at the same time.
+
+For CPU read access to screen pages 3 and 4, /RAM SEL 9 must again
+be set at LOW (see 2.).
+
+Other parameters of the screen controller should be modified by
+comparison with the standard operating conditions (text or
+graphic) only with extreme caution. The dynamic RAM memories used
+require a cyclical refresh, which is produced by the CRT
+controller. To be sure of the refresh, the CRT controller must
+give at least 256 symbols in an interval of 4 ms.
+
+				- 6 -
+
+
+4.	Hardware expansions via J4, J9
+
+4.1.	Memory expansion bus J4, J9
+
+Hardware expansions can be linked via the memory expansion bus
+(J4, J9).
+
+The data buffer for the expansion bus is, as with the CBM 8032,
+always switched in as an output. If the CPU is to read from the
+expansion bus, close user jumper JU6 for the range $A000 to $AFFF,
+and user jumper JU7 for the range $9000 to $9FFF. The ROM sockets
+UE10 or UE9 must of course than remain free. The expansion bus
+cannot be read in the range $8000 to $8FFF.
+
+[ There are also JU8 (connected through a resistor) and JU9... ]
+
+A further way of gaining access to the expansion bus is provided
+by the line /SEL EXP (J4, Pin 15). Low-level on this line switches
+the data bus buffer of the expansion bus to input on a read
+command, independently of the address on the CPU. Care should
+therefore be taken to avoid bus conflicts when using SEL EXP. Make
+sure that only one data source (RAM, ROM I/O or expansion bus) is
+activated.
+                 _______
+The control like SEL EXP must be switched with a collector gate.
+Jumpers JU6 and JU7 may also be closed.
+       _________    _________
+If the RAM SEL 9 or RAM SEL A line is activated, the RAM is
+switched in to this address range, and the expansion bus is
+switched out.
+
+4.2.	Power supply for hardware expansions.
+
+Connectors J10 and J11 are available for this purpose. As
+previously, ground and +9V DC unregulated are available at J11
+(0.8 A max.). J10 is modified as compared with the CBM 8032, and
+now connected to 8V AC (1 A max.) and ground. Not more than 1A may
+be taken out via J10 and J11.
+
+				- 7 -
+
+
+5.	Programming the expansion memory bank
+
+The user may choose to write his own programs to operate the
+expansion memory. A sample program is included in this chapter.
+
+
+
+
+
+5.1	I/O Handling
+
+I/O in the CBM 8032 consists of the following five devices:
+
+    1. A 6520 PIA at $E810
+    2. A 6520 PIA at $E820
+    3. A 6522 VIA at $E840
+    4. A CRT controller at $E880
+    5. Screen memory at $8000 through $87FF
+
+These five I/O devices may be accessed in two ways. The first way is to
+simply switch out the expansion memory and restore main memory. This
+may be already accomplished by the memory manager software when a CBM
+I/O subroutine is called.
+
+The second way (necessary when a RAM-loaded application program accesses
+I/O) uses the I/O peek through feature. Bit 6 of the control register
+enables I/O peek through.
+
+
+    +----------------------------------------------------------------+
+    |  				NOTE                                 |
+    |  	When using the I/O peek through, ensure that the currently   |
+    |  	running subroutine does not reside over the top of the       |
+    |  	peek through.                                                |
+    +----------------------------------------------------------------+
+
+Accessing screen memory is accomplished in the same way as accessing
+the other I/O devices. When accessed, screen memory is seen as 25 lines
+of 80 columns. The data is stored row-wise as sequential bytes.
+
+The CRT display circuitry cannot directly display out of the expansion
+RAM. A suggested memory manager function is to page whole screen-fulls
+of data out of the expansion RAM.
+
+
+				- 8 -
+
+
+5.2	Interrupt Processing
+
+The 6502 microprocessor is designed for a simple architecture in which
+the lower 32k of the address space is RAM and the upper 32k is ROM. This
+allows the microprocessor to fetch the starting address of the first
+instruction out of ROM upon reset. The result is that three hardware
+vectors are stored in addresses $FFFA - $FFFF.
+
+The memory manager must accomplish the following functions.
+   1. Ensure that there is a valid address at each ROM address in the two
+   16k expansion blocks that are active. The only exception is if
+   interrupts are disabled by a SEI instruction executed before bit 7 is
+   set to a 1.
+
+   2. To avoid being interrupted while changing a vector, execute a SEI.
+
+   3. The ROM interrupt vectors in the CBM point to routines in ROM which
+   are not accessible when the expansion memory is selected. For that
+   reason, the memory manager should a) set the vectors to point at a
+   routine that switches to main memory mode, b) call the interrupt service
+   routine, and c) restore the expansion memory mode.
+
+
+
+
+5.3	Interrupt Handler Program
+
+The following sample program (Refer to Table 5-1) handles interrupt and
+passes control to the ROM routines for processing. The global variable
+MEMMAP contains the current contents of the control register. The user
+program must first call the INIT routine to load the 6502 interrupt vectors
+into the expansion RAM. After that, interrupts are pre-processed by the
+subroutines NMI and IRQ. Interrupts are excited by RTIP.
+
+
+				- 9 -
+
+
+	Table 5-1. Interrupt Handler Program
+
+; INITIALIZE INTERRUPT PROCESS
+;
+; ASSUME MEMMAP SETUP
+;
+INIT	SEI
+	LDA MEMMAP
+	STA $FFF0
+;
+; INIT USER IRQ VECTOR
+;
+	LDA #<IRQ
+	STA $FFFE
+	LDA #>IRQ
+	STA $FFFF
+
+; INIT USER NMI VECTOR
+;
+
+	LDA #<NMI
+	STA $FFFA
+	LDA #>NMI STA $FFFB
+
+	CLI
+;
+	RTS
+
+; PROCESS IRQ
+;
+IRQ	STA TMPA		PRESERVE .A
+;
+	PLA
+	PHA
+	STA TMPPS
+;
+	LDA #%00000000
+	STA $FFF0
+;
+; PUSH RETURN FROM INTERRUPT ADDRESS
+;
+	LDA #>RTIP
+	PHA
+	LDA #<RTIP
+	PHA
+;
+	LDA TMPPS
+	PHA			; PUSH DUMMY STATUS
+;
+	LDA TMPA		; RESTORE .A
+;
+; GO TO ROM IRQ SERVICE
+;
+	JMP ($FFFE)
+
+
+				- 10 -
+
+
+	Table 5-1. Interrupt Handler Program (Continued)
+
+
+; PROCESS NMI
+;
+; PROCESS NMI
+;
+NMI	STA TMPA		; PRESERVE .A
+				;
+	PLA
+	PHA
+	STA TMPPS
+;
+
+;
+	LDA #%00000000
+	STA $FFF0
+;
+; PUSH RETURN FROM INTERRUPT ADDRESS
+;
+	LDA #>RTIP
+	PHA
+	LDA #<RTIP
+	PHA
+;
+	LDA TMPPS
+	PHA			PUSH DUMMY STATUS
+;
+	LDA TMPA		; RESTORE .A
+;
+; GO TO ROM IRQ SERVICE
+;
+	JMP ($FFFA)
+;
+; RETURN FROM INTERRUPT PROCESS
+;
+RTIP	PHA
+	;
+; MAP BACK TO ORIGINAL RAM
+;
+	LDA MEMMAP
+	STA $FFF0
+;
+; RESTORE OLD .A
+;
+	PLA
+;
+; BACK TO USER
+;
+	RTI
+	.END
+	.LIB MONITOR
+
+
+
+				- 11 -
+
+
+		A	Memory Map
+
+[ I completely rearranged this table. It was printed sideways on the page
+  and repeated earlier info. This would not fit so I omitted the duplicate,
+  presenting only the new mappings in the same form as earlier. ]
+
+
++-----+--------+------------+-------------------------------------------------+
+|     |Control |            |                                                 |
+|     |Register|            |      main memory $8000 - $FFFF        [UB1-UB8] |
+|     |        |            |      [$0000 - $7FFF is always RAM from UB1-UB8] |
+|     |$FFF0   |            |                                                 |
++-----+--------+------------+-------------------------------------------------+
+|     |    I/O |___ ___ ___ |              E000                               |
+| ___ |    peek|RAM RAM RAM | E800  F000  -E7FF  B000  A000  9000  8000       |
+| NO_ |    thr.|___ ___ ___ |              E900                               |
+| ROM |CR7 CR6 |ON  S.9 S.A |-E8FF -FFFF  -EFFF -DFFF -AFFF -9FFF -8FFF       |
++-----+--------+------------+-------------------------------------------------+
+|     |        |            |                                                 |
+|  0  | 0   1  | X   X   X  | I/O  Free   Free   Free  Free  Free  SCREEN     |
+|     |        |            |                                                 |
+|  0  | 0   0  | X   X   X  | RAM  Free   Free   Free  Free  Free  SCREEN     |
+|     |        |            |                                                 |
+|  X  | 1   X  | X   X   X  | 2 x 32 K zus\"atl. RAM from 64K in UA1-UA8.     |
+|     |        |            |                                                 |
++-----+--------+------------+-------------------------------------------------+
+
+No Rom = 0: marked "for diagnostic".
+SCREEN: 2000 bytes for screen memory, and 2096 bytes of available RAM.
+
+
+				- 12 -
+
+
+	B.1	connectors 8296
+
+IEEE                                   USER - PORT
+====                                   ===========
+
+Arrangement of pins  plug J1/J12       Arrangement of pins  plug   J2
+
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+| PIN | SIGNAL      | PIN | SIGNAL |   | PIN | SIGNAL      | PIN | SIGNAL |
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+|  1  | DIO 1       |  A  | DIO 5  |   |  1  | GND         |  A  | GND    |
+|  2  | DIO 2       |  B  | DIO 6  |   |  2  | VIDEO       |  B  | CA1    |
+|  3  | DIO 3       |  C  | DIO 7  |   |  3  | /SRQ IN     |  C  | PA0    |
+|  4  | DIO 4       |  D  | DIO 8  |   |  4  | /EOI        |  D  |  |1    |
+|  5  | EOI         |  E  | REN    |   |  5  | DIAG        |  E  |  |2    |
+|  6  | DAV         |  F  | GND    |   |  6  | #2CASSREAD  |  F  |  |3    |
+|  7  | NRFD        |  H  |  |     |   |  7  | CASSWRITE   |  H  |  |4    |
+|  8  | NDAC        |  K  |  |     |   |  8  | #1CASSREAD  |  K  |  |5    |
+|  9  | IFC         |  K  |  |     |   |  9  | VERT DRIVE  |  K  |  |6    |
+| 10  | SRQ         |  L  |  |     |   | 10  | HORZ DRIVE  |  L  |  V7    |
+| 11  | ATN         |  M  |  V     |   | 11  | GRAPHIC     |  M  | CB2    |
+| 12  | CHASSIS GND |  N  | GND    |   | 12  | GND         |  N  | GND    |
++-----+-------------+-----+--------+   +-----+-------------+-----+--------+
+
+[ All IEEE signals are active low ]
+
+    1  2  3  4  5  6  7  8  9 10 11 12
+ +--o--o--o--o--o--o--o--o--o--o--o--o--+
+ |                                      |  J1 / J2     [PCB edge connector]
+ +--o--o--o--o--o--o--o--o--o--o--o--o--+
+    A  B  C  D  E  F  H  J  K  L  M  N
+
+
+   1  2  3  4  5  6  7  8  9 10 11 12
+ +------------------------------------+
+ | o  o  o  o  o  o  o  o  o  o  o  o |
+ |                                    |	   J12        [upright pins on PCB]
+ | o  o  o  o  o  o  o  o  o  o  o  o |
+ +------------------------------------+
+   A  B  C  D  E  F  H  J  K  L  M  N
+
+
+
+
+CASSETTE 1                             CASSETTE 2
+==========                             ==========
+
+Arrangement of pins  plug J3           Arrangement of pins  plug J6
+
++-----+-----+----------------------+   +-----+-----+----------------------+
+| PIN | PIN | SIGNAL               |   | PIN | PIN | SIGNAL               |
++-----+-----+----------------------+   +-----+-----+----------------------+
+|  1  |  A  | GND                  |   |  1  |  A  | GND                  |
+|  2  |  B  | +5V                  |   |  2  |  B  | +5V                  |
+|  3  |  C  | CASS MOTOR           |   |  3  |  C  | CASS MOTOR           |
+|  4  |  D  | CASS READ          #1|   |  4  |  D  | CASS READ          #2|
+|  5  |  E  | CASS WRITE           |   |  5  |  E  | CASS WRITE           |
+|  6  |  F  | CASS SWITCH        #1|   |  6  |  F  | CASS SWITCH        #2|
++-----+-----+----------------------+   +-----+-----+----------------------+
+
+
+    1  2  3  4  5  6
+ +--o--o--o--o--o--o--+
+ |                    |  J3 / J6                      [card edge connector]
+ +--o--o--o--o--o--o--+
+    A  B  C  D  E  F
+
+				- 13 -
+
+
+MEMORY - EXPANSION                              KEYBOARD
+==================                              ========
+
+Arrangement of pins  plug J4                    Arrangement of pins plug J5
+
++-----+-----------+-----+--------+              +-----+--------+
+| PIN | SIGNAL    | PIN | SIGNAL |     J4       | PIN | SIGNAL |  J5
++-----+-----------+-----+--------+              +-----+--------+ +---+
+|  1  | GND       | 26  | GND    | 25 o  o 50   |  A  | KIN 0  | | o |  A
+|  2  | BD0       | 27  |  |     |    o  o      |  B  | |   1  | | o |  B
+|  3  |   1       | 28  |  |     |    o  o      |  C  | |   2  | | o |  C
+|  4  |   2       | 29  |  |     |    o  o      |  D  | |   3  | | o |  D
+|  5  |   3       | 30  |  |     |    o  o      |  E  | |   4  | | o |  E
+|  6  |   4       | 31  |  |     |    o  o      |  F  | |   5  | | o |  F
+|  7  |   5       | 32  |  |     |    o  o      |  H  | |   6  | | o |  H
+|  8  |   6       | 33  |  |     |    o  o      |  J  | V   7  | | o |  J
+|  9  |   7       | 34  |  |     |    o  o      |  1  | DEC 0  | | o |  1
+| 10  | N.C.      | 35  |  |     |    o  o      |  2  | |   1  | | o |  2
+| 11  | N.C.      | 36  |  |     |    o  o      |  3  | |   2  | | o |  3
+| 12  | /RAMSEL 9 | 37  |  |     |    o  o      |  4  | |   3  | | o |  4
+| 13  | /RAMSEL A | 38  |  |     |    o  o      |  5  | |   4  | | o |  5
+| 14  | /RAMON    | 39  |  |     |    o  o      |  6  | |   5  | | o |  6
+| 15  | /SELEXP   | 40  |  |     |    o  o      |  7  | |   6  | | o |  7
+| 16  | N.C.      | 41  |  |     |    o  o      |  8  | |   7  | | o |  8
+| 17  | /CS 9     | 42  |  |     |    o  o      |  9  | |   8  | | o |  9
+| 18  | /CS A     | 43  |  |     |    o  o      | 10  | V   9  | | o | 10
+| 19  | /CS E     | 44  |  |     |    o  o      | 11  | KEY    | |   | 11
+| 20  | /NOROM    | 45  |  |     |    o  o      | 12  | GND    | | o | 12
+| 21  | /PENSTRB  | 46  |  |     |    o  o      +-----+--------+ +---+
+| 22  | /RESET    | 47  |  |     |    o  o
+| 23  | READY     | 48  |  |     |    o  o
+| 24  | /NMI      | 49  |  V     |    o  o
+| 25  | GND       | 50  | GND    |  1 o  o 26
++-----+-----------+-----+--------+
+
+
+
+
+
+VIDEO                                           POWER IN
+=====                                           ========
+                                                                         J8
+Arrangement of pins  plugJ7                     Arrangement of pins  plug
+
++-----+-----------+                             +-----+-----------+
+| PIN | SIGNAL    |                             | PIN | SIGNAL    |
++-----+-----------+   +---+                     +-----+-----------+   +---+
+|  1  | VIDEO     |  1| o |                     |  1  | AC        |  1| o |
+|  2  | GND       |  2| o |                     |  2  | GND       |  2| o |
+|  3  | VERT DRIVE|  3| o |                     |  3  | AC        |  3| o |
+|  4  | GND       |  4| o |                     +-----+-----------+   +---+
+|  5  | HORZ DRIVE|  5| o |
+|  6  | KEY       |  6|   |
+|  7  | GND       |  7| o |
++-----+-----------+   +---+
+
+
+
+				- 14 -
+
+
+                MEMORY - EXPANSION                          
+                ==================                          
+                                                            
+                Arrangement of pins  plug J9                
+                                                            
+                +-----+-----------+-----+--------+           
+                | PIN | SIGNAL    | PIN | SIGNAL |     J9    
+                +-----+-----------+-----+--------+           
+                |  1  | GND       | 26  | GND    | 25 o  o 50
+                |  2  | BA 0      | 27  |  |     |    o  o   
+                |  3  |    1      | 28  |  |     |    o  o   
+                |  4  |    2      | 29  |  |     |    o  o   
+                |  5  |    3      | 30  |  |     |    o  o   
+                |  6  |    4      | 31  |  |     |    o  o   
+                |  7  |    5      | 32  |  |     |    o  o   
+                |  8  |    6      | 33  |  |     |    o  o   
+                |  9  |    7      | 34  |  |     |    o  o   
+                | 10  |    8      | 35  |  |     |    o  o   
+                | 11  |    9      | 36  |  |     |    o  o   
+                | 12  |   10      | 37  |  |     |    o  o   
+                | 13  |   11      | 38  |  |     |    o  o   
+                | 14  |   12      | 39  |  |     |    o  o   
+                | 15  |   13      | 40  |  |     |    o  o   
+                | 16  |   14      | 41  |  |     |    o  o   
+                | 17  |   15      | 42  |  |     |    o  o   
+                | 18  | SYNC      | 43  |  |     |    o  o   
+                | 19  | /IRQ      | 44  |  |     |    o  o   
+                | 20  | DIAG      | 45  |  |     |    o  o   
+                | 21  | PHI2      | 46  |  |     |    o  o   
+                | 22  | B R/W     | 47  |  |     |    o  o  
+                | 23  | /B R/W    | 48  |  |     |    o  o  
+                | 24  | N.C       | 49  |  V     |    o  o  
+                | 25  | GND       | 50  | GND    |  1 o  o 26
+                +-----+-----------+-----+--------+           
+                
+
+POWER EXP. AC                         POWER EXP. DC               
+=============                         =============             
+                                                                 
+Arrangement of pins  plugJ10          Arrangement of pins  plugJ11
+                                                                
++-----+-----------+                   +-----+-----------+        
+| PIN | SIGNAL    |                   | PIN | SIGNAL    |        
++-----+-----------+   +---+           +-----+-----------+   +---+
+|  1  | AC  8V    |  1| o |           |  1  | +9V UNREG.|  1| o |
+|  2  | AC  8V    |  2| o |           |  2  | KEY       |  2|   |
+|  3  | GND       |  3| o |           |  3  | KEY       |  3|   |
+|  4  | KEY       |  4|   |           |  4  | +9V UNREG.|  4| o |
+|  5  | GND       |  5| o |           |  5  | GND       |  5| o |
+|  6  | AC  8V    |  6| o |           |  6  | +9V UNREG.|  6| o |
+|  7  | AC  8V    |  7| o |           |  7  | GND       |  7| o |
++-----+-----------+   +---+           +-----+-----------+   +---+
+
+				- 15 -
+
+
+          KEYBOARD                
+          ========                
+                                   
+          Arrangement of pins plug J13
+                                   
+          +-----+--------+        
+          | PIN | SIGNAL |
+          +-----+--------+
+          |  1  | KIN 0  |
+          |  2  | |   1  |  13                       1
+          |  3  | |   2  | +---------------------------+
+          |  4  | |   3  | | o o o o o o o o o o o o o |
+          |  5  | |   4  | \  o o o o o o o o o o o o /
+          |  6  | |   5  |  --------------------------
+          |  7  | |   6  |    25                    14
+          |  8  | V   7  |
+          |  9  | DEC 0  |
+          | 10  | |   1  |
+          | 11  | |   2  |
+          | 12  | |   3  |
+          | 13  | |   4  |
+          | 14  | |   5  |
+          | 15  | |   6  |
+          | 16  | |   7  |
+          | 17  | |   8  |
+          | 18  | V   9  |
+          | 19  | KEY    |
+          | 20  | GND    |
+          | 21  | N.C.   |
+          | 22  | N.C.   |
+          | 23  | N.C.   |
+          | 24  | N.C.   |
+          | 25  | N.C.   |
+          +-----+--------+        
+          
+          RESET
+          =====                
+                                   
+          Arrangement of pins plug J14
+                                   
+          +-----+--------+        
+          | PIN | SIGNAL |
+          +-----+--------+  +---+
+          |  1  | RESET  | 1| o |
+          |  2  | GND    | 2| o |
+          +-----+--------+  +---+
+
+				- 16 -
+
+
+B.2	Connectors, modifications as compared with 8032
+
+                        C B M  8 2 9 6
+
+		 Changes in arrangement of pins
+
+J 4    Memory expansion
++-----------------------------------+
+| Pin        Signal                 |
+|       old            new          |
++-----------------+-----------------+
+| 12  /SEL 4      | /RAM SEL 9      |
+| 13  /SEL 5      | /RAM SEL A      |
+| 14  /SEL 6      | /RAM ON         |
+| 15  /SEL 7      | /SEL EXP        |
+| 16  /SEL 8      | N.C.            |
+| ...             |                 |
+| 19  /SEL B      | /CS E           |
++-----------------+-----------------+
+
+
+J 8	Power supply
++-----------------+-----------------+
+|      8032       |      8096       |
+|                 |                 |
+| Pin  Signal     | Pin  Signal     |
++-----------------+-----------------+
+|  1   8V AC      |  1   AC         |
+|  2   +9V UNREG  |  2   GND        |
+|  3   GND        |  3   AC         |
+|  4   8V AC      |                 |
+|  5   8V AC      |                 |
+|  6   GND        |                 |
+|  7   KEY        |                 |
+|  8   14V AC     |                 |
+|  9   14V AC     |                 |
++-----------------+-----------------+
+
+J 10    Power supply for hardware expansion
++-----------------------------------+
+| Pin        Signal                 |
+|       old            new          |
++-----------------+-----------------+
+|  1    -9V UNREG |   AC 1          |
+|  2    -9V UNREG |   AC 1          |
+|  3    KEY       |   GND           |
+|  4    +16V UNREG|   KEY           |
+|  5    +16V UNREG|   GND           |
+|  6    GND       |   AC 2          |
+|  7    GND       |   AC 2          |
++-----------------+-----------------+
+
+
+
+				- 17 -
+
+
+[ The following was printed with a dot-matrix printer, with a few bits
+  pasted over with typewriter text ]
+
+C	Software addendum
+
+
+TABLE OF CONTENTS
+
+             64k System Disk...................... 19
+
+	     Add-on-load.......................... 19
+	     BASIC 2.0............................ 20
+	     BASIC 4.0/40......................... 20
+	     BASIC 4.0/80......................... 21
+	     Add-on-mon........................... 21
+	     Expanded BASIC....................... 24
+
+
+
+LIST OF ILLUSTRATIONS
+
+
+     f i g u r e
+
+         C-1 Modifications to BASIC 2.0........... 20
+	 C-2 Modifications to BASIC 4.0/40........ 21
+
+
+
+
+				- 18 -
+
+
+64k SYSTEM DISK
+
+By using the 64k Expansion Memory Bank[*1] you have given your
+system a soft load capability and also expanded program work
+space.  We have provided a disk with several programs to
+demonstrate these functions.
+
+[*1: Pasted over; it probably read "card" first]
+
+     ADD-ON-LOAD
+     ADD-ON-LOAD.SRC
+     ADD-ON-MON
+     ADD-ON-MON.SRC
+     BASIC2.0
+     BASIC4.0/40
+     BASIC4.0/80
+     EXPANDED-BASIC
+     EXP-BASIC.SRC
+     EXPANDED-DEMO
+     STTEST
+     TEST1
+     TEST2
+     TEST3
+     TEST4
+
+
+For your convenience we have recorded these programs in 8050
+format on one diskette surface and in 4040 format on the flip
+side. Use the corresponding side for your system and make a
+back-up copy before use.
+
+
+A D D - O N - L O A D
+
+This program is a special loader which loads one of three
+special versions of BASIC, which we have provided on the
+disk, and jumps to the proper entry to execute them. These
+versions of BASIC reprogram the CRT controller of your 8032
+to become a 40 column display. With this environment, all
+old 40-column programs in BASIC 2.0 and 4.0 will run on your
+8032.
+
+To load and execute a version of BASIC, type the following
+sequence of commands:
+
+
+     DLOAD"ADD-ON-LOAD" <return>
+     RUN <return>
+
+Your CRT should display the following message:
+
+
+				- 19 -
+
+
+
+     64K ADD-ON-LOADER 2-12-81
+
+
+
+     SYSTEM NAME?
+
+The cursor will be blinking for you to enter one of the
+following system names followed by <return>:
+
+
+
+     BASIC2.0
+     BASIC4.0/40
+     BASIC4.0/80
+
+In a few moments your 8032 will print the logon message from
+the program you selected.
+
+
+B A S I C  2 . 0
+
+This is the 40-column BASIC found in all the 3016 and 3032
+business keyboard machines. It was produced by dumping the
+ROMs and adding the following patch to re-initialize the CRT
+controller:
+
+
+
+     D71A    EA EA		[ NOP NOP ]
+     D745    A2 04		[ LDX #4 ]
+     D747    BD 5E D7		[ LDA $D75E,X ]
+     D74A    BC 59 D7           [ LDY $D759,X ]
+     D74D    8C 80 E8		[ STY $E880 ]
+     D750    8D 81 E8		[ STA $E881 ]
+     D753    CA			[ DEX ]
+     D754    10 F1		[ BPL $D747 ]
+     D756    4C DE E1		[ JMP $E1DE ]
+     D759    01 02 03 07 09
+     D75E    14 20 28 21 07
+     FCD5    20 45 D7		[ JSR $D745 ]
+
+
+                      f i g u r e     C-1
+
+
+
+
+B A S I C   4 . 0 / 4 0
+
+This is the 40-column BASIC found in all the 4016 and 4032
+business keyboard machines. It was produced by dumping the
+ROMs and adding the following patch to re-initialize the CRT
+controller:
+
+[ Actually, I think this ROM version is the "upgrade" ROM for
+3008, 3016, 3032 machines without CRTC. ]
+
+				- 20 -
+
+
+
+     FD1B    20 5D FD           [ JSR $FD5D ]
+     FD5D    A2 04		[ LDX #4 ]
+     FD5F    BD 76 FD		[ LDA $FD76,X ]
+     FD62    BC 71 FD           [ LDY $FD71,X ]
+     FD65    8C 80 E8		[ STY $E880 ]
+     FD68    8D 81 E8		[ STA $E881 ]
+     FD6B    CA			[ DEX ]
+     FD6C    10 F1		[ BPL FD5F7 ]
+     FD6E    4C 00 E0		[ JMP $E000 ]
+     FD71    01 02 03 07 09
+     FD76    14 20 28 21 07
+
+
+                      f i g u r e     C-2
+
+
+
+B A S I C   4 . 0 / 4 0
+
+This version of BASIC is that supplied in the 8032 60hz
+versions. If you have a 50hz machine you probably do not
+need this version anyway because it is already in ROM.
+
+
+
+E x p a n s i o n   M e m o r y   M o n i t o r   P r o g r a m
+
+The expansion memory monitor source program is provided on
+the diskette supplied with this manual. A listing of the
+program is provided as an addition to this manual. To run
+the monitor program:
+
+          1.  Load the program into the lower 32K of RAM by
+	  typing:
+	          dload "add-on-mon" <return>
+
+	  2.  Type:
+	          run <return>
+
+The following paragraphs describe the commands used in the
+expansion monitor program. The commands allow the programmer
+to examine or alter expansion memory, examine or alter 6502
+registers, execute programs, load or save disk files and load
+the expansion control register.
+
+
+				- 21 -
+
+
+          :
+
+Format:   : Address [list of bytes]
+
+Purpose:  Alter bytes in memory.
+
+Remarks:  This command is automatically printed onto the CRT
+          display preceding the address and data after
+	  execution of the display memory (M) command. To
+	  alter memory, use the screen editor to change the
+	  displayed bytes and press the <RETURN> key. The
+	  bytes are altered in the addresses specified by the
+	  expansion control register.
+
+
+;
+
+Format:   ;PC,IRQ,SR,AC,SR,YR,SP	[2nd SR should be XR]
+
+Purpose:  Loads list into 6502 registers.
+
+Remarks:  The list of data following this command is loaded
+          into the 6502 hardware registers when a G command
+	  is given. This command is automatically printed on
+	  the screen preceding the current list of data when
+	  an R command is executed. The list can be editeed
+	  and re-entered in the same manner as the alter
+	  memory command. See the R command for contents of
+	  the list.
+
+
+R
+
+Format:   R
+
+Purpose:  Displays the 6502 registers.
+
+Remarks:  This command displays the contents of a list loaded
+          into the 6502 hardware registers when execution is
+	  transferred from the monitor. A sample display
+	  follows:
+
+	  R <RETURN>
+
+	    PC  IRQ  SR AC XR YR SP
+
+	  ;0400 E262 01 00 FF FF FE
+
+
+	  The abbreviations are defined as follows:
+
+	            PC  = program counter
+		    IRQ = interrupt vector
+		    SR  = status register
+		    AC  = accumulator
+		    XR  = X-index register
+		    YR  = Y-index register
+		    SP  = stack pointer
+
+
+				- 22 -
+
+
+M
+
+Format:   M Address [Address]
+
+Purpose:  Displays bytes from memory
+
+Remarks:  Bytes are displayed from the addresses specified by
+          the expansion control register. If one address is
+	  specified, 8 bytes are read and displayed on the
+	  screen, starting at that address. For more than
+	  one adress, a range of bytes is displayed, but
+	  always the next even multiple of 8 bytes from the
+	  first. The STOP key stops the listing.
+
+	  M 0400 <RETURN>
+
+	  : 0400 00 00 00 AA AA AA AA AA
+
+
+M
+
+Format:   G [Address]
+
+Purpose:  Start execution.
+
+Remarks:  If an address is not specified, the monitor
+          dispatches to the location contained in the PC of
+	  the register display. If an address is specified,
+	  execution dispatches to that address. If a BRK
+	  (00) has been inserted in the user code, execution
+	  will return to the monitor and a register display
+	  given with the message "BREAK". On display, the
+	  registers are loaded with the contents of the
+	  register display.
+
+
+L
+
+Format:   L "name", Device
+
+Purpose:  Load memory
+
+Remarks:  Device number must be 4 or greater for CBM disks.
+          The starting load address is implicit in the
+	  program load file. The STOP key will break a
+	  program LOAD.
+
+
+S
+
+Format:   S "name", Device, Address, Address
+
+Purpose:  Save memory
+
+Remarks:  A file name must be specified in quotation marks
+          followed by a device number, a starting save
+	  address and an ending save address.  The STOP key
+	  will break a memory save.
+
+
+				- 23 -
+
+
+@
+
+Format:   @ [disk command]
+
+Purpose:  Displays disk status buffer
+
+Remarks:  The command immediately followed by <RETURN> will
+          read the disk status buffer and print its contents
+	  on the screen. The device is set at 8 and the
+	  command channel is 15.
+
+	  @ <RETURN>
+
+	  00,ok,00,00
+
+	  If a string follows the @, then that string is
+	  transmitted to device 8 channel 15 as a command.
+
+	  @ INITIALIZE 0
+
+
+name
+
+Format:   name
+
+Purpose:  Load and execute file from disk
+
+Remarks:  When a command cannot be matched to the list of
+          known commands, an attempt is successful, the
+	  monitor jumos to execute it. [ some text seems missing
+	  in this sentence]
+
+*
+
+Format:   * byte
+
+Purpose:  Load expansion memory control register (mapper).
+
+Remarks:  Puts the byte value following the command into the
+          expansion control register. When a byte value is
+	  not specified, a zero is stored. This value
+	  restores the machine to ROM operation.
+
+
+E X P A N D E D - B A S I C :
+
+This program is a pseud-cache memory system for use with the
+8032 and the 64k add-on memory board only. It is loaded into
+high memory, ($7800-$7BE0):
+
+           DLOAD"EXPANDED-BASIC"
+
+It is activated by
+
+           SYS 30720
+
+This routine works nearly the same as the DOS-support program
+
+
+				- 24 -
+
+
+provided with some Commodore disk systems. It moves the top
+of memory for BASIC down to $7800 and resets all the
+variables. Its commands are implemented by using an escape
+character sequence detected by a tap into the CHRGET routine
+in BASIC's zero page.
+
+The EXPANDED-BASIC program is completely protected from
+normal BASIC programs--however it is vulnerable to POKE
+and machine code programs.
+
+Because the 8032 ROM code is not modified, it is not possible
+to add space directly to a BASIC program. The EXPANDED-BASIC
+program allows a user to store or "cache" programs and data
+in the expansion RAM for ultra high-speed access in
+overlaying programs.
+
+The following commands are available:
+
+RECALL
+
+Format:   !R,0:"filename",s(u)(p),[device]
+
+Purpose:  Cache a file from disk.
+
+Remarks:  The file can be USR, SEQ or PRG. The device
+          number defaults to 8. The ST variable is set in
+	  the same manner as a file OPEN for read.
+
+
+LOAD
+
+Format:   !L,"program name"
+
+Purpose:  Move data from add-on to BASIC text area.
+
+Remarks:  This command clears the current program and loads
+          the named program. Will not work from a
+	  program--only direct.
+
+
+OVERLAY
+
+Format:   !O,"program name"
+
+Purpose:  Move data from add-on to BASIC text area.
+
+Remarks:  This command overlays the current program.
+          Variables and data are preserved.
+	  [ I think that like with the normal overlaying scheme,
+	    the first-loaded program must be at least as
+	    big as all overlays used ]
+
+
+
+				- 25 -
+
+
+[ That was the last page of my photocopy of a photocopy of the
+  8296 addendum. I suppose I wouldn't be so stupid as to forget
+  copying the last page, but there must be one missing:
+  there should be descriptions of !E and !Q. On the other hand
+  it might even be missing from the very original, since !E
+  would have fit on page 25.
+
+  I reconstruct the essential information here. ]
+
+
+EXECUTE
+
+Format:   !E,"program name"
+
+Purpose:  Execute a cached program.
+
+Remarks:  This command overlays the current program and RUNs it.
+          Variables and data are cleared.
+	  Basically equivalent to !L but for use within
+	  a program.
+
+
+QUIT
+
+Format:   !Q
+
+Purpose:  Quit the memory manager.
+
+Remarks:  The tap into the CHRGET routine is restored to the
+          power-up default. None of the expansion manager commands
+	  are recognised anymore from now on.
+
+
+[ end of the 8296 addendum ]
+
+: vi:set tw=75
+-Olaf.
+--
+___              Copyright 1995 Olaf 'Rhialto' Seibert. All Rights Reserved.
+\X/    You are not allowed to read this using any kind of Micro$oft product.
+
+

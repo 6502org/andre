@@ -1,0 +1,29 @@
+
+Description for CS/A SHUGART board, version 1.0
+-----------------------------------------------
+
+whatsit	: PC-style Floppy interface (shugart-bus), 8 bit parallel port w/ handshake
+I/O	: WD1772 at $8e0-$8ef, 6522 VIA at $8f0-$8ff
+Mem	: --
+
+IC1 determines a 32 byte I/O space area. Feeding A4 to the VIA's CS1 makes
+it listen to $8f*. For the WD1770 Phi2 must be put into the chip select
+signal, as there is no further timing input.
+
+The WD1772 device-side handling is almost by the book. The only thing is
+that I decided to use the PC-style MOTOR-ON handling, with two possible
+drives with separate MOTOR-ON, instead of 4 possible drives with only
+one common MOTOR-ON. 
+
+One thing that is definitely _not_ by the book is the clock circuitry.
+The WD1772 is only specified for 8 MHz input CLK. With the VIA PA5 I can
+switch the input CLK to 16 MHz, which is outside the specs!
+(IC7 divides the 16MHz clock by 2, giving the standard 8 MHz. the four
+NAND gates from IC6 switch between these two clocks)
+For me it works for using HD disks, but it may not for you, you are
+warned!
+
+The rest of the VIA (i.e. port B) is used to provide an 8-bit parallel
+I/O port.
+
+

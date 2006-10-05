@@ -1,0 +1,50 @@
+
+Description for CS/A IEC board, version 1.1
+-------------------------------------------
+
+whatsit	: IEEE488 interface and CBM serial IEC interface (for C64)
+I/O	: 6821 PIA at $820-$82f, 6522 VIA at $840-$84f
+Mem	: --
+
+IC1 together with half of IC4 selects the right I/O area for both
+chips. No further CPU-side interfacing is necessary.
+
+The ieee488 interface is not CBM PET compatible. The reason for this
+is that CBM decided to spread the IEEE488 lines over three I/O chips.
+I didn't want to do this, so I decided to move them around.
+
+IC2 (PIA) just provides a lot of I/O lines for the IEEE488 interface.
+As I don't use a bi-directional driver (like newer PETs, older do it
+like I do) both ports are already occupied with the data lines.
+Port B of IC3 (VIA) provides the rest of the I/O lines for the IEEE488
+interface. 
+
+The implementation supports slave mode operation, i.e. when an ATN
+comes from the bus (another master sets it), NRFD must go low to
+signal that there are devices on the bus. This is done by 
+xor-ing the bus ATN line with a PATNA output line. If they
+differ NRFD is pulled low, blocking the bus until the CPU
+has recognized the ATN situation, changed ATNA and is waiting
+for commands.
+
+If, however, the computer is on but no software for slave mode is 
+running, this would block the whole IEEE488 bus forever. That's why
+there is jumper J1 to disable this feature.
+
+The serial IEC bus is made with the VIA port A. The same note for
+slave operation holds true here, too. Only it is the DATA line
+to be pulled down.
+
+As a PET compatibility feature :-) VIA CA2 is routed to another
+connector, which can be connected to the video board (CS/A VDC)
+to provide PET compatible character ROM switching.
+Also VIA CB2 is put to drive a piezo beeper, as it is in the
+PET from the 4*** series on.
+
+The serial IEC bus is Commodore-compatible (i.e. it uses the 
+open-collector architecture as in the Commodore computer itself),
+while the IEEE488 interface is _not_ standard in electrical 
+terms. The bus should have different resistor arrays and 
+drivers. However, it worked for me, but you are warned.
+
+

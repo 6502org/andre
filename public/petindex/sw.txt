@@ -1,0 +1,55 @@
+
+                           PET index - PET software
+
+   [1]Text version
+
+   This page contains links to PET software projects and archives.
+
+Disclaimer
+
+   Whatever you do with the information in these pages or on the linked pages,
+   I am not responsible for any damage you have for using this information. The
+   information herein is provided AS-IS and there is no warranty whatsoever!
+
+Software projects
+
+   This section contains projects for PET software.
+
+   [2]GeckOS/A65
+          This is a new operating system for 6502 computers, and has
+          incarnations for the 32k PETs as well as the 8x96 machines. It
+          features multitasking and multithreading, multiple virtual terminals
+          and (on other architectures though) TCP/IP and SCSI support.
+
+   [3]LOS-96
+          This 'operating system' from Commodore is actually an improved BASIC,
+          that allows to utilize the additional memory found in the 8x96
+          models.
+
+Software Archives
+
+   This section contains links to archives with PET software.
+
+     * [4]The CBM archive, with archivers, utilties, demos, educational
+       software, games, programming examples ....
+     * [5]The SuperPET Waterloo disks
+     * [6]Independent PET library
+     * [7]Silicon PET archive - loads of Games and Utilities
+     * [8]Commodore Webring
+     _________________________________________________________________
+
+   Back to the [9]PET index
+
+   PET index V1.0 (c) 1998-2005 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/sw.txt
+   2. http://www.6502.org/users/andre/osa
+   3. http://www.6502.org/users/andre/petindex/8x96.html
+   4. http://www.zimmers.net/anonftp/pub/cbm/pet/
+   5. http://www.zimmers.net/anonftp/pub/cbm/pet/SuperPET
+   6. http://members.tripod.com/~petlibrary/
+   7. http://www.portcommodore.com/petfiles.php?path=main-cbmidx-cbmfile
+   8. http://s.webring.com/hub?ring=cbmring
+   9. http://www.6502.org/users/andre/petindex/index.html

@@ -1,0 +1,89 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY uuml "&#252; "> <!ENTITY nbsp " "> ]>
+<webpage name="Andr&eacute;'s CBM IEEE488 interfaces">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+<!--
+    <yearstart>1999</yearstart>
+    <yearend>1999</yearend>
+-->
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore,IEEE488</keywords>
+  <metadesc>IEEE488 interfaces for the Commdore 8-bit machines</metadesc>
+  <overview>
+On these pages you will find a number of IEEE-488 interfaces for Commodore
+8-bit equipment as well as one for the PC printerport.
+The IEEE-488 interface was used with the old CBM PET
+computers to connect disk drives, printers, modems and more.
+  </overview>
+<!--
+  <news>
+    <item date="">
+    </item>
+  </news>
+-->
+  <itemlist name="IEEE 488">
+    <description>The main bus that connects almost all of my CBM computers and devices
+is the parallel IEEE488 bus, at least the version that CBM
+implemented in the PET and CBM-II line of computers.
+Not all of them are by me, but some are.
+There is an <a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/IEEE-488.txt">introduction</a> to the IEEE-488 bus by Ruud Baltissen.
+    </description>
+    <items>
+      <subitem name="C64">The CBM IEEE488 interface for the C64 is used to connect the
+C64 to the IEEE488 bus. I had my own (hand-drawn) schematics
+here, but Wolfgang G&uuml;nther did it with a drawing program, and dumped
+the ROM as well. Find the description in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/c64/">c64/</a>. A readme can be found in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/c64/README">ieee c64 readme</a>.
+<br/>
+The original software uses up some space in the $c*** area and completely
+disabled the serial IEC bus. I wrote a modification to the C64 kernal
+such that both busses can be used and the $c*** area is free. See the
+<a href="../cbmhw/kernal/index.html">kernal pages</a>.</subitem>
+      <subitem name="VIC20">Although I never owned a VIC20, I list this one here as well for completeness.
+Wolfgang G&uuml;nther made the schematics of the original CBM IEEE488
+interface for the VIC20 with a drawing program, and dumped
+the ROM as well. Find the description in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/vic20">vic20/</a>.
+</subitem>
+      <subitem name="VC1541"> The now gone 64er magazin published a modification of the VC1541
+to use an IEEE488 interface. It basically implements the IEEE488
+interface of the 2031 drive, the IEEE488 sister drive to the VC1541.
+Only the ROM code was modified such that only one of the two 8k ROM
+chips had to be replaced by an EPROM.
+Find the description in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/vc1541-ieee.tar.gz">vc1541-ieee.tar.gz</a>.
+</subitem>
+      <subitem name="PC-LPT">This interface is listed here because I use my PC as
+a disk drive for my CBM equipment. Starting from ideas from
+Ruud Baltissen (see
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/pc-ieee.zip">pc-ieee.zip</a>)
+I developed this interface for the PCs LPT port and wrote
+the software (using some of VICE's disk emulation code).
+Schematics, description and software (for Linux) can be found in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/lptiec-0.9.2.tar.gz">lptiec-0.9.2.tar.gz</a>.<br/>
+Although the software is for Linux, it is written somewhat portably
+in that no special kernel device or so is used. The program directly
+interfaces the PC LPT hardware and should easily be ported.</subitem>
+      <subitem name="IEEE488-&gt;IEC"> A friend of mine used the serial IEC bus
+and not the IEEE488 bus to connect all his stuff. Unfortunately he also
+used a CBM&nbsp;600 (aka B128). We designed a small device - a 6502
+computer actually - that is put in between the two busses, converting the
+parallel IEEE488 to the serial IEC bus. The schematics has longs since
+been lost, so I reverse-engineered it from the last existing source file
+for the ROM. Find the description in
+<a href="http://www.funet.fi/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.</subitem>
+    </items>
+  </itemlist>
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+  </disclaimer>
+  <closing>
+Contents last modified 15 June 2000
+  </closing>
+</webpage>

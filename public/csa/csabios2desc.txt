@@ -1,0 +1,47 @@
+
+Description for CS/A BIOS board, version 2.0
+---------------------------------------------
+
+whatsit	: RAM, ROM, RS232 and basic control I/O
+I/O	: 16550 UART at $fe8-$fef, controlport at $fe0-$fe7 
+Mem	: 32k RAM at $00000-$07fff, 32k ROM at $08000-$0ffff
+
+The board is pretty straightforward. IC1 selects the memory address
+range. The 64k of RAM/ROM can be put to $0**** or to $3**** with J1.
+
+IC6 selects the I/O range for the controlport and the UART.
+J2 selects either $fe* or $fc*. IC3 then generates the control signals
+for the UART as well as the controlport.
+
+IC4 and IC5 make up a read/write control port. 
+The control port has the following bits:
+
+	Bit 0		r: the /IRQ bus line
+	Bit 1		w: 1 = allow interrupt generation from 50Hz bus line
+	Bit 2		-
+	Bit 3		w: 0 = LED on
+	Bit 4		w: 0 = map /EXTIO to $d*** in the local 64k memory range
+	Bit 5		w: 1 = assert the /IOINH bus line
+	Bit 6		r: the pushbutton state, 0 = pressed
+	Bit 7		r: 1 = interrupt generated from 50Hz bus line
+
+IC14 is an interrupt generator that generates an interrupt signal
+everytime there is a low-high transition on the 50Hz bus signal. 
+The interrupt signal can be monitored at bit 7 of the control port. 
+If controlport bit 1 is set, the interrupt signal is routed to the 
+CPU (i.e. bus) /IRQ line.
+
+IC2 selects a 4k Address range at $d*** within the 64k memory address range
+of this board. This signal is routed to the /EXTIO bus signal, enabling
+I/O addressing within the $0D*** memory address range. Also when the signal
+is asserted, the ROM on the local board is disabled. If controlport
+bit 4 is 1, then this signal is disabled, and instead the ROM can be 
+seen at $0D***. 
+
+With controlport bit 5 the /IOINH bus line can be asserted. This way
+the I/O area can be remapped from the hardcoded $E*** CPU address range
+(disabled by /IOINH) to $0D*** in the memory address range (enabled by 
+/EXTIO) which can then be remapped by the MMU to wherever we like.
+
+
+

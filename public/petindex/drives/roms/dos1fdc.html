@@ -1,0 +1,672 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<LINK REV=MADE HREF="mailto:fachat@linux"><TITLE>dos1fdc</TITLE>
+</HEAD>
+<!-- recomment 4.08 15 May 2005. -->
+<!-- Formatted to HTML for fachat  Sun Jul 31 00:15:52 CEST 2005. -->
+<BODY>
+<H1>Automatic Generated Disassembly of `dos1fdc'</H1>
+<HR><PRE>
+
+; *** Symbol table  follows ***
+ CLOCK      =$0000
+ MTRTM      =$0001
+ DRVST      =$0003
+ STEPS      =$0005
+ COW        =$0007
+ WORK       =$0008
+ DTRCK      =$000A
+ DSECT      =$000B
+ CSECT      =$000C
+ STAB       =$000D
+ DRIVE      =$0012
+ TRACK      =$0013
+ NEXTS      =$0014
+ SECTR      =$0015
+ BUFPT      =$0016
+ HDRPNT     =$0018
+ FTNUM      =$001A
+ IP         =$001B
+ IOB        =$001E
+ JOBNUM     =$001F
+ VIA_VB     =$0040
+ VIA_DIN    =$0041
+ VIA_VDDRB  =$0042
+ VIA_T1LL   =$0044
+ VIA_TIMER  =$0045
+ VIA_ACR    =$004B
+ VIA_PCR    =$004C
+ VIA_IFR    =$004D
+ VIA_IER    =$004E
+ RIOT_DOUT  =$0080
+ RIOT_EOUT  =$0081
+ RIOT_PB    =$0082
+ RIOT_DDRB  =$0083
+ x8F        =$8F
+ TICK       =$0400
+ DELAY      =$0401
+ CUTMT      =$0402
+ JOBS       =$0403
+ x0412      =$0412
+ i0543      =$0543
+ i104D      =$104D
+
+; *** text follows ***
+
+ *=$FC00
+
+
+ FC00  A2 3F     <A NAME="FC00">RESET</A>      LDX #$3F      
+ FC02  9A                   TXS           
+ FC03  D8                   CLD           
+ FC04  A2 FF                LDX #$FF      
+ FC06  86 42                STX VIA_VDDRB 
+ FC08  8E 02 04             STX CUTMT     
+ FC0B  A9 07                LDA #$07      
+ FC0D  85 83                STA RIOT_DDRB 
+ FC0F  86 1B                STX IP        
+ FC11  A9 FC                LDA #$FC      
+ FC13  85 4C                STA VIA_PCR   
+ FC15  86 40                STX VIA_VB    
+ FC17  A9 92                LDA #$92      
+ FC19  85 4E                STA VIA_IER   
+ FC1B  A9 01                LDA #$01      
+ FC1D  85 4B                STA VIA_ACR   
+ FC1F  4A                   LSR           
+ FC20  85 44                STA VIA_T1LL  
+ FC22  85 16                STA BUFPT     
+ FC24  85 1E                STA IOB       
+ FC26  A0 0E                LDY #$0E      
+ FC28  99 03 04  <A NAME="FC28">iFC28</A>      STA JOBS,Y    
+ FC2B  99 05 00             STA STEPS,Y   
+ FC2E  88                   DEY           
+ FC2F  10 F7                BPL <A HREF="#FC28">iFC28</A>     
+ FC31  A9 0F                LDA #$0F      
+ FC33  8D 00 04             STA TICK      
+ FC36  85 8F                STA x8F       
+ FC38  A9 80                LDA #$80      
+ FC3A  85 03                STA DRVST     
+ FC3C  85 04                STA DRVST+1   
+ FC3E  A9 32                LDA #$32      
+ FC40  8D 01 04             STA DELAY     
+ FC43  A9 04                LDA #$04      
+ FC45  85 19                STA HDRPNT+1  
+ FC47  A0 0E     <A NAME="FC47">START</A>      LDY #$0E       ; load # of jobs
+ FC49  58        <A NAME="FC49">L010</A>       CLI            ; check if valid job, if so which drive
+ FC4A  B9 03 04             LDA JOBS,Y    
+ FC4D  10 28                BPL <A HREF="#FC77">iFC77</A>     
+ FC4F  29 01                AND #$01      
+ FC51  AA                   TAX           
+ FC52  85 12                STA DRIVE     
+ FC54  78                   SEI           
+ FC55  A5 40                LDA VIA_VB     ; test motor status, turn on if not and set time for accel delay
+ FC57  3D ED FF             AND <A HREF="#FFED">ANDC,X</A>    
+ FC5A  F0 0E                BEQ <A HREF="#FC6A">iFC6A</A>     
+ FC5C  A5 40                LDA VIA_VB    
+ FC5E  5D F1 FF             EOR <A HREF="#FFF1">ANDE,X</A>    
+ FC61  85 40                STA VIA_VB    
+ FC63  A5 00                LDA CLOCK     
+ FC65  6D 01 04             ADC DELAY     
+ FC68  95 01                STA MTRTM,X   
+ FC6A  B5 03     <A NAME="FC6A">iFC6A</A>      LDA DRVST,X    ; test motor speed
+ FC6C  30 06                BMI <A HREF="#FC74">iFC74</A>     
+ FC6E  A5 00                LDA CLOCK     
+ FC70  95 01                STA MTRTM,X   
+ FC72  B5 03                LDA DRVST,X   
+ FC74  0A        <A NAME="FC74">iFC74</A>      ASL            ; test head status, if not moving branch to QUE
+ FC75  10 05                BPL <A HREF="#FC7C">QUE</A>       
+ FC77  88        <A NAME="FC77">iFC77</A>      DEY <A HREF="#FC7C"></A>           ; scan next job, if next job, branch to L010
+ FC78  10 CF                BPL <A HREF="#FC49">L010</A>      
+ FC7A  D0 CB     <A NAME="FC7A">END</A>        BNE <A HREF="#FC47">START</A>      ; branch to start
+
+; motor is on and head is still, if head is on right track, start
+; processing by branching to GOTU, otherwise move to closest
+; needed track: x=drive#, y=job#
+
+ FC7C  58        <A NAME="FC7C">QUE</A>        CLI <A HREF="#FC47"></A>           ; initialize to maximum distance + 1, and set y for max job#
+ FC7D  A9 40                LDA #$40      
+ FC7F  85 08                STA WORK      
+ FC81  A0 0E                LDY #$0E      
+ FC83  B9 03 04  <A NAME="FC83">iFC83</A>      LDA JOBS,Y     ; init JOBS and HOBID by y offset
+ FC86  84 1A                STY FTNUM     
+ FC88  10 27                BPL <A HREF="#FCB1">iFCB1</A>     
+ FC8A  29 01                AND #$01      
+ FC8C  C5 12                CMP DRIVE     
+ FC8E  D0 21                BNE <A HREF="#FCB1">iFCB1</A>     
+ FC90  B5 03                LDA DRVST,X    ; test if on right track
+ FC92  29 3F                AND #$3F      
+ FC94  85 13                STA TRACK     
+ FC96  F0 41                BEQ <A HREF="#FCD9">GOTU</A>      
+ FC98  38                   SEC <A HREF="#FCD9"></A>          
+ FC99  F9 12 04             SBC x0412,Y   
+ FC9C  F0 3B                BEQ <A HREF="#FCD9">GOTU</A>      
+ FC9E  85 0A                STA DTRCK      ; find closest seek
+ FCA0  10 05                BPL <A HREF="#FCA7">iFCA7</A>     
+ FCA2  18                   CLC <A HREF="#FCA7"></A>          
+ FCA3  49 FF                EOR #$FF      
+ FCA5  69 01                ADC #$01      
+ FCA7  C5 08     <A NAME="FCA7">iFCA7</A>      CMP WORK      
+ FCA9  B0 06                BCS <A HREF="#FCB1">iFCB1</A>     
+ FCAB  85 08                STA WORK      
+ FCAD  A5 0A                LDA DTRCK     
+ FCAF  85 09                STA WORK+1    
+ FCB1  88        <A NAME="FCB1">iFCB1</A>      DEY            ; decrement y loop for all jobs
+ FCB2  10 CF                BPL <A HREF="#FC83">iFC83</A>     
+ FCB4  A5 08                LDA WORK       ; set up seek to closest track
+ FCB6  24 09                BIT WORK+1    
+ FCB8  30 05                BMI <A HREF="#FCBF">iFCBF</A>     
+ FCBA  18                   CLC <A HREF="#FCBF"></A>          
+ FCBB  49 FF                EOR #$FF      
+ FCBD  69 01                ADC #$01      
+ FCBF  85 08     <A NAME="FCBF">iFCBF</A>      STA WORK      
+ FCC1  0A                   ASL           
+ FCC2  78                   SEI           
+ FCC3  95 05                STA STEPS,X   
+ FCC5  A9 40                LDA #$40      
+ FCC7  15 03                ORA DRVST,X   
+ FCC9  18                   CLC           
+ FCCA  65 08                ADC WORK      
+ FCCC  95 03                STA DRVST,X   
+ FCCE  D0 AA     <A NAME="FCCE">FIN</A>        BNE <A HREF="#FC7A">END</A>        ; loop to search table again
+
+
+; sectors/tracks table: .byt 17,18,20,21
+
+ FCD0  <A NAME="FCD0">TAB1</A>       .byte $11, $12, $14, $15                      ;qrtu
+
+
+; .byt $f3
+
+ FCD4  <A NAME="FCD4">ANDA</A>       .byte $F3                                     ;.
+
+
+; TAB3+1 = tracks: .byt $fc, 31, 25,18
+
+
+; *** Invalid reference FCD5 ignored.
+
+ FCD5  <A NAME="FCD5">TAB3</A>       .byte $FC, $1F, $19, $12                      ;._yr
+
+
+; head is on desired track, set drive switch, # of sectors and bit density
+
+
+ FCD9  B5 03     <A NAME="FCD9">GOTU</A>       LDA DRVST,X    ; head is on desired track, set drive switch, # of sectors and bit density
+ FCDB  30 F1                BMI <A HREF="#FCCE">FIN</A>       
+ FCDD  A2 04                LDX #$04       ; set up for check of track zone
+ FCDF  B9 12 04             LDA x0412,Y   
+ FCE2  DD D4 FC  <A NAME="FCE2">L032</A>       CMP <A HREF="#FCD4">ANDA,X</A>     ; check for track zone
+ FCE5  CA                   DEX <A HREF="#FCD4"></A>          
+ FCE6  B0 FA                BCS <A HREF="#FCE2">L032</A>      
+ FCE8  BD D0 FC             LDA <A HREF="#FCD0">TAB1,X</A>     ; set # sectors/track by results of L032
+ FCEB  85 15                STA SECTR     
+ FCED  8A                   TXA           
+ FCEE  0A                   ASL           
+ FCEF  85 08                STA WORK      
+ FCF1  A5 82                LDA RIOT_PB   
+ FCF3  29 F8                AND #$F8      
+ FCF5  05 08                ORA WORK      
+ FCF7  05 12                ORA DRIVE     
+ FCF9  85 82                STA RIOT_PB   
+ FCFB  A6 12                LDX DRIVE     
+ FCFD  B9 03 04             LDA JOBS,Y    
+ FD00  29 70                AND #$70      
+
+; Job Routine: execute: mode = 110 (E)
+; check if execute, branch to EX if so, check if bump, branch to bump
+; if so, jump seek
+
+ FD02  C9 60     <A NAME="FD02">EXE</A>        CMP #$60      
+ FD04  F0 07                BEQ <A HREF="#FD0D">EX</A>        
+ FD06  C9 40                CMP #$40      
+ FD08  F0 0C                BEQ <A HREF="#FD16">BUMP</A>      
+ FD0A  4C 65 FE             JMP <A HREF="#FE65">SEEK</A>      
+ FD0D  98        <A NAME="FD0D">EX</A>         TYA <A HREF="#FE65"></A>           ; execute routing: get job#, calc buffer address, branch to it
+ FD0E  18                   CLC <A HREF="#FE65"></A>          
+ FD0F  69 05                ADC #$05      
+ FD11  85 17                STA BUFPT+1   
+ FD13  6C 16 00             JMP (BUFPT)   
+
+; Job Routine: bump the hub: more 100 (C)
+; load drive #, accel to track, isolate drive, set head to phase "a"
+; set head to max distance (#256-116), jmp DONE
+
+ FD16  78        <A NAME="FD16">BUMP</A>       SEI           
+ FD17  A9 C1                LDA #$C1      
+ FD19  A6 12                LDX DRIVE     
+ FD1B  95 03                STA DRVST,X   
+ FD1D  A9 0F                LDA #$0F      
+ FD1F  3D EF FF             AND <A HREF="#FFEF">ANDD,X</A>    
+ FD22  05 40                ORA VIA_VB    
+ FD24  85 40                STA VIA_VB    
+ FD26  A9 8C                LDA #$8C      
+ FD28  95 05                STA STEPS,X   
+ FD2A  4C C1 FE             JMP <A HREF="#FEC1">DONE</A>      
+
+ FD2D  A9 FF     <A NAME="FD2D">WSECT</A>      LDA #$FF       ; decide which sector to service
+ FD2F  85 1A                STA FTNUM     
+ FD31  4A                   LSR           
+ FD32  85 0C                STA CSECT     
+ FD34  A5 10                LDA STAB+3    
+ FD36  18                   CLC           
+ FD37  69 01                ADC #$01      
+ FD39  C5 15                CMP SECTR     
+ FD3B  D0 02                BNE <A HREF="#FD3F">iFD3F</A>     
+ FD3D  A9 00                LDA #$00      
+ FD3F  85 14     <A NAME="FD3F">iFD3F</A>      STA NEXTS     
+ FD41  A2 0E                LDX #$0E      
+ FD43  BD 03 04  <A NAME="FD43">iFD43</A>      LDA JOBS,X     ; check which job type, check track, drive
+ FD46  10 3B                BPL <A HREF="#FD83">iFD83</A>     
+ FD48  BD 12 04             LDA x0412,X   
+ FD4B  29 3F                AND #$3F      
+ FD4D  C5 13                CMP TRACK     
+ FD4F  D0 32                BNE <A HREF="#FD83">iFD83</A>     
+ FD51  BD 03 04             LDA JOBS,X    
+ FD54  A8                   TAY           
+ FD55  29 01                AND #$01      
+ FD57  C5 12                CMP DRIVE     
+ FD59  D0 28                BNE <A HREF="#FD83">iFD83</A>     
+ FD5B  98                   TYA <A HREF="#FD83"></A>          
+ FD5C  C9 60                CMP #$60      
+ FD5E  F0 23                BEQ <A HREF="#FD83">iFD83</A>     
+ FD60  8A                   TXA <A HREF="#FD83"></A>          
+ FD61  20 99 FD             JSR <A HREF="#FD99">iFD99</A>     
+ FD64  A0 03                LDY #$03      
+ FD66  38                   SEC           
+ FD67  B1 18                LDA (HDRPNT),Y
+ FD69  E5 14                SBC NEXTS     
+ FD6B  10 03                BPL <A HREF="#FD70">iFD70</A>     
+ FD6D  18                   CLC <A HREF="#FD70"></A>          
+ FD6E  65 15                ADC SECTR     
+ FD70  85 0B     <A NAME="FD70">iFD70</A>      STA DSECT     
+ FD72  38                   SEC           
+ FD73  E5 0C                SBC CSECT     
+ FD75  10 0C                BPL <A HREF="#FD83">iFD83</A>     
+ FD77  86 1A                STX FTNUM     
+ FD79  A5 0B                LDA DSECT     
+ FD7B  85 0C                STA CSECT     
+ FD7D  8A                   TXA           
+ FD7E  18                   CLC           
+ FD7F  69 05                ADC #$05      
+ FD81  85 17                STA BUFPT+1   
+ FD83  CA        <A NAME="FD83">iFD83</A>      DEX           
+ FD84  10 BD                BPL <A HREF="#FD43">iFD43</A>     
+ FD86  A4 1A                LDY FTNUM     
+ FD88  10 03                BPL <A HREF="#FD8D">HPNT</A>      
+ FD8A  4C 47 FC             JMP <A HREF="#FC47">START</A>     
+ FD8D  98        <A NAME="FD8D">HPNT</A>       TYA <A HREF="#FC47"></A>           ; adjust header pointer: job.8 = hi byte of HDRS into HDRPNT
+ FD8E  20 99 FD             JSR <A HREF="#FD99">iFD99</A>     
+ FD91  B9 03 04             LDA JOBS,Y    
+ FD94  29 70                AND #$70      
+ FD96  4C AA FD             JMP <A HREF="#FDAA">READ</A>      
+
+ FD99  0A        <A NAME="FD99">iFD99</A>      ASL <A HREF="#FDAA"></A>          
+ FD9A  0A                   ASL <A HREF="#FDAA"></A>          
+ FD9B  0A                   ASL <A HREF="#FDAA"></A>          
+ FD9C  69 21                ADC #$21      
+ FD9E  85 18                STA HDRPNT    
+ FDA0  60                   RTS           
+
+ FDA1  A0 03     <A NAME="FDA1">FSNUM</A>      LDY #$03       ; fix sector number for fake seek
+ FDA3  B1 18                LDA (HDRPNT),Y
+ FDA5  85 10                STA STAB+3    
+ FDA7  4C 2D FD             JMP <A HREF="#FD2D">WSECT</A>     
+
+; Job Routine: read a block: mode =000 (8)
+; check if read or write, branch to WRITE if so
+
+ FDAA  C9 00     <A NAME="FDAA">READ</A>       CMP #$00      
+ FDAC  D0 28                BNE <A HREF="#FDD6">WRITE</A>     
+ FDAE  20 C3 FD             JSR <A HREF="#FDC3">DSTRT</A>     
+ FDB1  24 4D     <A NAME="FDB1">iFDB1</A>      BIT VIA_IFR    ; get the bytes, store in (BUFPT),y, update checksum, jmp DEND
+ FDB3  10 FC                BPL <A HREF="#FDB1">iFDB1</A>     
+ FDB5  A5 41                LDA VIA_DIN   
+ FDB7  91 16                STA (BUFPT),Y 
+ FDB9  45 08                EOR WORK      
+ FDBB  85 08                STA WORK      
+ FDBD  C8                   INY           
+ FDBE  D0 F1                BNE <A HREF="#FDB1">iFDB1</A>     
+ FDC0  4C 4E FE             JMP <A HREF="#FE4E">DEND</A>      
+ FDC3  A0 00     <A NAME="FDC3">DSTRT</A>      LDY #$00       ; start reading data: init checksum, seach for header &amp; start of data
+ FDC5  84 08                STY WORK      
+ FDC7  20 CE FE             JSR <A HREF="#FECE">SRCH</A>      
+ FDCA  20 3F FF             JSR <A HREF="#FF3F">SYNC</A>      
+ FDCD  C9 07                CMP #$07      
+ FDCF  F0 04                BEQ <A HREF="#FDD5">iFDD5</A>     
+ FDD1  A9 04                LDA #$04      
+ FDD3  D0 0D                BNE <A HREF="#FDE2">iFDE2</A>     
+ FDD5  60        <A NAME="FDD5">iFDD5</A>      RTS <A HREF="#FDE2"></A>          
+
+; Job Routine: write a block: mode =001 (9)
+; check if verify, branch to VRFY if so
+; check write protect, if ok L198, if no good, ER
+
+ FDD6  C9 20     <A NAME="FDD6">WRITE</A>      CMP #$20      
+ FDD8  10 60                BPL <A HREF="#FE3A">VRFY</A>      
+ FDDA  A5 82                LDA RIOT_PB   
+ FDDC  29 08                AND #$08      
+ FDDE  F0 04                BEQ <A HREF="#FDE4">L198</A>      
+ FDE0  A9 08                LDA #$08      
+ FDE2  D0 7F     <A NAME="FDE2">iFDE2</A>      BNE <A HREF="#FE63">ER</A>        
+ FDE4  A9 10     <A NAME="FDE4">L198</A>       LDA #$10       ; disable CB1 flag, get correct block
+ FDE6  85 4E                STA VIA_IER   
+ FDE8  20 CE FE             JSR <A HREF="#FECE">SRCH</A>      
+ FDEB  24 4D     <A NAME="FDEB">iFDEB</A>      BIT VIA_IFR    ; write sync mode, load fill code
+ FDED  10 FC                BPL <A HREF="#FDEB">iFDEB</A>     
+ FDEF  24 41                BIT VIA_DIN   
+ FDF1  A9 DE                LDA #$DE      
+ FDF3  85 4C                STA VIA_PCR   
+ FDF5  A2 FF                LDX #$FF      
+ FDF7  86 80                STX RIOT_DOUT 
+ FDF9  86 81                STX RIOT_EOUT 
+ FDFB  24 4D     <A NAME="FDFB">iFDFB</A>      BIT VIA_IFR    ; reset port a flag, set 1st sync
+ FDFD  10 FC                BPL <A HREF="#FDFB">iFDFB</A>     
+ FDFF  24 41                BIT VIA_DIN   
+ FE01  86 80                STX RIOT_DOUT 
+ FE03  A9 DC                LDA #$DC      
+ FE05  24 4D     <A NAME="FE05">iFE05</A>      BIT VIA_IFR    ; store normal code mode in PCR, set 2nd sync, chksum
+ FE07  10 FC                BPL <A HREF="#FE05">iFE05</A>     
+ FE09  24 41                BIT VIA_DIN   
+ FE0B  85 4C                STA VIA_PCR   
+ FE0D  A9 07                LDA #$07      
+ FE0F  85 80                STA RIOT_DOUT 
+ FE11  A0 00                LDY #$00      
+ FE13  84 08                STY WORK      
+ FE15  24 4D     <A NAME="FE15">iFE15</A>      BIT VIA_IFR    ; write block, write chksum, change job to verify, end
+ FE17  10 FC                BPL <A HREF="#FE15">iFE15</A>     
+ FE19  24 41                BIT VIA_DIN   
+ FE1B  B1 16                LDA (BUFPT),Y 
+ FE1D  85 80                STA RIOT_DOUT 
+ FE1F  45 08                EOR WORK      
+ FE21  85 08                STA WORK      
+ FE23  C8                   INY           
+ FE24  D0 EF                BNE <A HREF="#FE15">iFE15</A>     
+ FE26  AA                   TAX <A HREF="#FE15"></A>          
+ FE27  20 7C FF             JSR <A HREF="#FF7C">OUT</A>       
+ FE2A  20 59 FF             JSR <A HREF="#FF59">OFF</A>       
+ FE2D  A4 1A                LDY FTNUM     
+ FE2F  B9 03 04             LDA JOBS,Y    
+ FE32  49 30                EOR #$30      
+ FE34  99 03 04             STA JOBS,Y    
+ FE37  4C A1 FD             JMP <A HREF="#FDA1">FSNUM</A>     
+
+; Job Routine: verify a written block: mode=010 (A)
+; read data
+
+ FE3A  20 C3 FD  <A NAME="FE3A">VRFY</A>       JSR <A HREF="#FDC3">DSTRT</A>     
+ FE3D  24 4D     <A NAME="FE3D">iFE3D</A>      BIT VIA_IFR    ; get byte and compare with contents of buffer, add up chksum
+ FE3F  10 FC                BPL <A HREF="#FE3D">iFE3D</A>     
+ FE41  A5 41                LDA VIA_DIN   
+ FE43  D1 16                CMP (BUFPT),Y 
+ FE45  D0 1A                BNE <A HREF="#FE61">iFE61</A>     
+ FE47  45 08                EOR WORK      
+ FE49  85 08                STA WORK      
+ FE4B  C8                   INY           
+ FE4C  D0 EF                BNE <A HREF="#FE3D">iFE3D</A>     
+ FE4E  20 52 FF  <A NAME="FE4E">DEND</A>       JSR <A HREF="#FF52">BYTE</A>       ; end reading data, final chksum compare
+ FE51  C5 08                CMP WORK      
+ FE53  F0 04                BEQ <A HREF="#FE59">iFE59</A>     
+ FE55  A9 05                LDA #$05      
+ FE57  D0 0A                BNE <A HREF="#FE63">ER</A>        
+ FE59  A9 10     <A NAME="FE59">iFE59</A>      LDA #$10       ; check if decoding error: if not then DONE, else ER
+ FE5B  24 4D                BIT VIA_IFR   
+ FE5D  F0 62                BEQ <A HREF="#FEC1">DONE</A>      
+ FE5F  D0 02                BNE <A HREF="#FE63">ER</A>        
+ FE61  A9 07     <A NAME="FE61">iFE61</A>      LDA #$07       ; set for verify error
+ FE63  D0 5E     <A NAME="FE63">ER</A>         BNE <A HREF="#FEC3">ERR</A>        ; branch to error routing ERR
+
+; seek to determine next sector number
+; init chksum, get block header
+
+ FE65  A9 00     <A NAME="FE65">SEEK</A>       LDA #$00      
+ FE67  85 08                STA WORK      
+ FE69  A2 06                LDX #$06      
+ FE6B  20 F3 FE             JSR <A HREF="#FEF3">HEAD</A>      
+ FE6E  A0 04                LDY #$04      
+ FE70  20 4D 10  <A NAME="FE70">iFE70</A>      JSR i104D      ; get a byte, store in STAB update chksum, branch again if more
+
+; FE73: Illegal instruction.
+
+ FE73             .byte $FC, $A5, $41, $99, $0D, $00, $45, $08  ;.%a.m.eh
+ FE7B             .byte $85, $08, $88, $10, $F0, $C9, $00, $D0  ;.h.p.I.P
+
+; Job Routine: seek: mode 011 (b)
+
+
+; *** Invalid reference FE83 ignored.
+
+ FE83  <A NAME="FE83">ESEEK</A>      .byte $42, $A5, $0F, $29, $3F, $A6, $12, $95  ;b%o)?&r.
+ FE8B             .byte $03                                     ;c
+
+
+; load job# and type, test if seek, branch to ESEEK if so
+
+ FE8C             .byte $A4, $1A, $B9, $03, $04, $29, $70, $C9  ;$z9cd)PI
+ FE94             .byte $30, $F0, $1C, $98, $20, $99, $FD, $A0  ;0.\. .. 
+ FE9C             .byte $02, $B1, $18, $45, $0F, $29, $C0, $D0  ;b1xeo).P
+ FEA4             .byte $25, $88                                ;%.
+
+
+; check if id in (HDPTR),y = STAB,y error if not. continue loop, at end jmp WSECT
+
+
+ FEA6  B1 18     <A NAME="FEA6">iFEA6</A>      LDA (HDRPNT),Y ; check if id in (HDPTR),y = STAB,y error if not. continue loop, at end jmp WSECT
+ FEA8  D9 0D 00             CMP STAB,Y    
+ FEAB  D0 1D                BNE <A HREF="#FECA">iFECA</A>     
+ FEAD  88                   DEY <A HREF="#FECA"></A>          
+ FEAE  10 F6                BPL <A HREF="#FEA6">iFEA6</A>     
+ FEB0  4C 2D FD             JMP <A HREF="#FD2D">WSECT</A>     
+ FEB3  98        <A NAME="FEB3">iFEB3</A>      TYA <A HREF="#FD2D"></A>          
+ FEB4  20 99 FD             JSR <A HREF="#FD99">iFD99</A>     
+ FEB7  A0 04                LDY #$04      
+ FEB9  B9 0D 00  <A NAME="FEB9">iFEB9</A>      LDA STAB,Y     ; get complete header from STAB,y into (HDRPNT),y
+ FEBC  91 18                STA (HDRPNT),Y
+ FEBE  88                   DEY           
+ FEBF  10 F8                BPL <A HREF="#FEB9">iFEB9</A>     
+ FEC1  A9 01     <A NAME="FEC1">DONE</A>       LDA #$01       ; set for no error: #1
+ FEC3  4C F9 FE  <A NAME="FEC3">ERR</A>        JMP <A HREF="#FEF9">ERROR</A>      ; jump ERROR: error routine
+ FEC6  A9 09     <A NAME="FEC6">CSERR</A>      LDA #$09       ; lda #9 (chksum error) branch to ERR
+ FEC8  D0 F9                BNE <A HREF="#FEC3">ERR</A>       
+ FECA  A9 0B     <A NAME="FECA">iFECA</A>      LDA #$0B      
+ FECC  D0 F5                BNE <A HREF="#FEC3">ERR</A>        ; lda#11 (mismatch), branch to ERR
+ FECE  A0 03     <A NAME="FECE">SRCH</A>       LDY #$03       ; search for specific block
+ FED0  A9 00                LDA #$00      
+ FED2  51 18     <A NAME="FED2">iFED2</A>      EOR (HDRPNT),Y ; compute checksum, set up for search for a sector
+ FED4  88                   DEY           
+ FED5  10 FB                BPL <A HREF="#FED2">iFED2</A>     
+ FED7  A0 04                LDY #$04      
+ FED9  91 18                STA (HDRPNT),Y
+ FEDB  A4 1A                LDY FTNUM     
+ FEDD  A2 5A                LDX #$5A      
+ FEDF  20 F3 FE  <A NAME="FEDF">iFEDF</A>      JSR <A HREF="#FEF3">HEAD</A>       ; jsr HEAD, set y for compare, every byte in hdr must be identical
+ FEE2  A0 04                LDY #$04      
+ FEE4  24 4D     <A NAME="FEE4">iFEE4</A>      BIT VIA_IFR    ; compare to header loop, loop entire header
+ FEE6  10 FC                BPL <A HREF="#FEE4">iFEE4</A>     
+ FEE8  A5 41                LDA VIA_DIN   
+ FEEA  D1 18                CMP (HDRPNT),Y
+ FEEC  D0 F1                BNE <A HREF="#FEDF">iFEDF</A>     
+ FEEE  88                   DEY <A HREF="#FEDF"></A>          
+ FEEF  10 F3                BPL <A HREF="#FEE4">iFEE4</A>     
+ FEF1  C8                   INY <A HREF="#FEE4"></A>          
+ FEF2  60                   RTS <A HREF="#FEE4"></A>          
+
+ FEF3  58        <A NAME="FEF3">HEAD</A>       CLI <A HREF="#FEE4"></A>           ; seach for block head: .x=max# of trials
+ FEF4  CA                   DEX <A HREF="#FEE4"></A>          
+ FEF5  10 2E                BPL <A HREF="#FF25">iFF25</A>     
+ FEF7  A9 02                LDA #$02      
+
+; send error code
+; #1: no error
+; #2: can't find block head
+; #3: no sync character
+; #4: data block not present
+; #5: checksum error
+; #7: verify error
+; #8: write with write protect on
+; #9: checksum error in seeked header
+; #10: data ran into next header
+; #11: disk id mismatch
+; #16: decoding error
+
+ FEF9  24 1E     <A NAME="FEF9">ERROR</A>      BIT IOB       
+ FEFB  10 0A                BPL <A HREF="#FF07">iFF07</A>     
+ FEFD  E6 1F                INC JOBNUM    
+ FEFF  A2 3F                LDX #$3F      
+ FF01  9A                   TXS           
+ FF02  A6 12                LDX DRIVE     
+ FF04  4C 43 05             JMP i0543     
+ FF07  A4 1A     <A NAME="FF07">iFF07</A>      LDY FTNUM     
+ FF09  99 03 04             STA JOBS,Y    
+ FF0C  A6 12                LDX DRIVE     
+ FF0E  A5 00                LDA CLOCK     
+ FF10  6D 02 04             ADC CUTMT     
+ FF13  95 01                STA MTRTM,X   
+ FF15  B9 03 04             LDA JOBS,Y    
+ FF18  C9 01                CMP #$01      
+ FF1A  D0 03                BNE <A HREF="#FF1F">iFF1F</A>     
+ FF1C  4C A1 FD             JMP <A HREF="#FDA1">FSNUM</A>     
+ FF1F  A2 3F     <A NAME="FF1F">iFF1F</A>      LDX #$3F      
+ FF21  9A                   TXS           
+ FF22  4C 47 FC             JMP <A HREF="#FC47">START</A>     
+ FF25  20 3F FF  <A NAME="FF25">iFF25</A>      JSR <A HREF="#FF3F">SYNC</A>      
+ FF28  C9 08                CMP #$08      
+ FF2A  D0 C7                BNE <A HREF="#FEF3">HEAD</A>      
+ FF2C  60                   RTS <A HREF="#FEF3"></A>          
+
+; watch for sync characters
+; bit PB, bvc L450: test if sync present, branch if yes
+; bit IFR, bpl WATCH, test if byte present, loop until yes
+; .x contains # of tests, branch to WATCH till .x=0
+; bit PB, rts; test if sync present then return
+
+ FF2D  24 82     <A NAME="FF2D">WATCH</A>      BIT RIOT_PB   
+ FF2F  50 0D                BVC <A HREF="#FF3E">iFF3E</A>     
+ FF31  24 4D                BIT VIA_IFR   
+ FF33  10 F8                BPL <A HREF="#FF2D">WATCH</A>     
+ FF35  24 41                BIT VIA_DIN   
+ FF37  24 40                BIT VIA_VB    
+ FF39  CA                   DEX           
+ FF3A  D0 F1                BNE <A HREF="#FF2D">WATCH</A>     
+ FF3C  24 82                BIT RIOT_PB   
+ FF3E  60        <A NAME="FF3E">iFF3E</A>      RTS           
+
+ FF3F  78        <A NAME="FF3F">SYNC</A>       SEI           
+ FF40  A9 D0                LDA #$D0      
+ FF42  85 45                STA VIA_TIMER 
+ FF44  A9 03                LDA #$03      
+ FF46  24 45     <A NAME="FF46">iFF46</A>      BIT VIA_TIMER 
+ FF48  10 AF                BPL <A HREF="#FEF9">ERROR</A>     
+ FF4A  24 82                BIT RIOT_PB   
+ FF4C  70 F8                BVS <A HREF="#FF46">iFF46</A>     
+ FF4E  24 40                BIT VIA_VB    
+ FF50  24 41                BIT VIA_DIN   
+ FF52  24 4D     <A NAME="FF52">BYTE</A>       BIT VIA_IFR   
+ FF54  10 FC                BPL <A HREF="#FF52">BYTE</A>      
+ FF56  A5 41                LDA VIA_DIN   
+ FF58  60                   RTS           
+
+ FF59  20 7C FF  <A NAME="FF59">OFF</A>        JSR <A HREF="#FF7C">OUT</A>       
+ FF5C  A2 00                LDX #$00      
+ FF5E  20 7C FF             JSR <A HREF="#FF7C">OUT</A>       
+ FF61  A9 FC                LDA #$FC      
+
+; change EOUT and PCR to send sync. 
+; enable CB1, CA1, CB2 (IER=%10011010), get a byte. 
+; reset VIA flags, get next byte, reset VIA, jmp BYTE (get next byte)
+
+ FF63  24 4D     <A NAME="FF63">iFF63</A>      BIT VIA_IFR   
+ FF65  10 FC                BPL <A HREF="#FF63">iFF63</A>     
+ FF67  86 81                STX RIOT_EOUT 
+ FF69  85 4C                STA VIA_PCR   
+ FF6B  A9 9A                LDA #$9A      
+ FF6D  85 4E                STA VIA_IER   
+ FF6F  20 52 FF             JSR <A HREF="#FF52">BYTE</A>      
+ FF72  24 40                BIT VIA_VB    
+ FF74  20 52 FF             JSR <A HREF="#FF52">BYTE</A>      
+ FF77  24 40                BIT VIA_VB    
+ FF79  4C 52 FF             JMP <A HREF="#FF52">BYTE</A>      
+
+ FF7C  24 4D     <A NAME="FF7C">OUT</A>        BIT VIA_IFR   
+ FF7E  10 FC                BPL <A HREF="#FF7C">OUT</A>       
+ FF80  86 80                STX RIOT_DOUT 
+ FF82  24 41                BIT VIA_DIN   
+ FF84  60                   RTS           
+
+; CPU interrupt routine
+
+ FF85  48        <A NAME="FF85">IRQ</A>        PHA           
+ FF86  8A                   TXA           
+ FF87  48                   PHA           
+ FF88  AD 00 04             LDA TICK      
+ FF8B  85 8F                STA x8F       
+ FF8D  E6 00                INC CLOCK     
+ FF8F  A2 01                LDX #$01      
+ FF91  A5 00     <A NAME="FF91">iFF91</A>      LDA CLOCK     
+ FF93  D5 01                CMP MTRTM,X   
+ FF95  D0 16                BNE <A HREF="#FFAD">iFFAD</A>     
+ FF97  BD ED FF             LDA <A HREF="#FFED">ANDC,X</A>    
+ FF9A  16 03                ASL DRVST,X   
+ FF9C  24 40                BIT VIA_VB    
+ FF9E  B0 08                BCS <A HREF="#FFA8">iFFA8</A>     
+ FFA0  38                   SEC <A HREF="#FFA8"></A>          
+ FFA1  BD F1 FF             LDA <A HREF="#FFF1">ANDE,X</A>    
+ FFA4  45 40                EOR VIA_VB    
+ FFA6  85 40                STA VIA_VB    
+ FFA8  D0 01     <A NAME="FFA8">iFFA8</A>      BNE <A HREF="#FFAB">iFFAB</A>     
+ FFAA  18                   CLC <A HREF="#FFAB"></A>          
+ FFAB  76 03     <A NAME="FFAB">iFFAB</A>      ROR DRVST,X   
+ FFAD  B5 05     <A NAME="FFAD">iFFAD</A>      LDA STEPS,X   
+ FFAF  D0 09                BNE <A HREF="#FFBA">L911</A>      
+ FFB1  B5 03                LDA DRVST,X   
+ FFB3  29 BF                AND #$BF      
+ FFB5  95 03                STA DRVST,X   
+ FFB7  4C E4 FF             JMP <A HREF="#FFE4">iFFE4</A>     
+ FFBA  0A        <A NAME="FFBA">L911</A>       ASL <A HREF="#FFE4"></A>          
+ FFBB  A5 40                LDA VIA_VB    
+ FFBD  3D D4 FC             AND <A HREF="#FCD4">ANDA,X</A>    
+ FFC0  85 07                STA COW       
+ FFC2  A5 40                LDA VIA_VB    
+ FFC4  3D EF FF             AND <A HREF="#FFEF">ANDD,X</A>    
+ FFC7  B0 07     <A NAME="FFC7">ERR1</A>       BCS <A HREF="#FFD0">iFFD0</A>      ; send job status, make motor stay longer, check job type
+ FFC9  D6 05                DEC STEPS,X    ; step in (+)
+ FFCB  7D EB FF             ADC <A HREF="#FFEB">ANDB,X</A>    
+ FFCE  D0 05                BNE <A HREF="#FFD5">iFFD5</A>     
+ FFD0  F6 05     <A NAME="FFD0">iFFD0</A>      INC STEPS,X    ; step out (-)
+ FFD2  FD EB FF             SBC <A HREF="#FFEB">ANDB,X</A>    
+ FFD5  ED EF FF  <A NAME="FFD5">iFFD5</A>      SBC <A HREF="#FFEF">ANDD</A>      
+ FFD8  05 07                ORA COW        ; store new stepper position, test if DRVTST ready
+ FFDA  85 40                STA VIA_VB    
+ FFDC  B5 03                LDA DRVST,X   
+ FFDE  30 04                BMI <A HREF="#FFE4">iFFE4</A>     
+ FFE0  A5 00                LDA CLOCK     
+ FFE2  95 01                STA MTRTM,X   
+ FFE4  CA        <A NAME="FFE4">iFFE4</A>      DEX           
+ FFE5  10 AA                BPL <A HREF="#FF91">iFF91</A>     
+ FFE7  68                   PLA <A HREF="#FF91"></A>           ; pop the stack of a and x and RTI
+ FFE8  AA                   TAX <A HREF="#FF91"></A>          
+ FFE9  68                   PLA <A HREF="#FF91"></A>          
+ FFEA  40                   RTI <A HREF="#FF91"></A>          
+
+ FFEB  <A NAME="FFEB">ANDB</A>       .byte $04, $01                                ;da
+ FFED  <A NAME="FFED">ANDC</A>       .byte $20, $10                                ; p
+ FFEF  <A NAME="FFEF">ANDD</A>       .byte $0C, $03                                ;lc
+ FFF1  <A NAME="FFF1">ANDE</A>       .byte $A0, $50, $20, $49, $53, $20, $4F, $4E  ; p is on
+ FFF9             .byte $20, $41, $4E
+
+; CPU vectors
+
+, <A HREF="#FC00">RESET</A>   
+ FFFE             .word <A HREF="#FF85">IRQ</A>     
+
+
+; Misassembly source 4.08 15 May 2005   Generated  Sun Jul 31 00:15:53 CEST 2005
+
+
+</PRE>
+<P><HR>
+<P>Formatted to HTML by <EM>recomment 4.08 15 May 2005</EM> reassembler.</P>
+<P>Misassembled from <EM>dos1fdc</EM> by <EM>fachat@linux</EM> using header file <EM>dos1fdc.hdr</EM> in a 2-pass run at Sun Jul 31 00:15:53 CEST 2005
+.</P>
+</BODY></HTML>
+

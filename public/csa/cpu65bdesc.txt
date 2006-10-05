@@ -1,0 +1,22 @@
+
+Description for CS/A CPU65B/Plain board, version 2.0
+----------------------------------------------------
+
+whatsit	: CPU + RAM + ROM
+I/O	: --
+Mem	: --
+
+The board is pretty straightforward. It maps the 8 or 32k static
+RAM (IC5) to the lower 32k addresses. The upper 32k addresses are
+divided between the I/O area ($e000-$efff or $e800-$efff, see J3) 
+and the ROM (rest). 
+
+The first half of IC2 selects the I/O area. The second half then 
+enables either the /IOSEL line or the ROM (depending on the output
+of the first half) as long as it is in the upper 32k addresses.
+
+No I/O is directly on this board, nor can the memory be used from 
+an external CPU. This is probably the most simple example of building
+a 6502 CPU board for this bus.
+
+

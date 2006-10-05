@@ -1,0 +1,956 @@
+Here is the newest edition of the Canonical List of Commodore Products.  It
+contains informations on every piece of Commodore equipment I have heard of 
+to date.  Please help me weed out all the inconsistencies and nail down all
+the information.
+
+==========================Notes for this Release==============================
+
+PET models were also named with CBM prefixes. i.e PET 4016 = CBM 4016.
+
+Difference in naming early PETs exist.  A PET 2001-8N could also be
+referred to as a PET 2001N-8K or PET 2001N-8.  All are the same machine.
+
+Since the decision to boot in lowercase or uppercase mode was based on
+type of ROM, any machine can boot in either. 
+
+If you know of a model that is listed above that had differing properties,
+please tell me.  Examples are a bigger monitor than what I have listed,
+Different closing mechanism on Drive, etc.  
+
+This list comprises all machines that have been put out in some market.
+For this reason, the 364, C65, and others are include in the second
+list at the end of this document.
+
+The stars indicate that someone has seen this machine in production.
+Their friends own one, etc.
+
+The two letters at far right indicate that someone owns this machine.
+The names are in Mnemonic, and the expansions are directly above these 
+notes.
+
+Before emailing me with updates to an item, please make sure the item number 
+is not alrady in the list.  Sometimes I have people tell me that X is a 
+disk drive, when X is in the list already as something else.  I can't tell
+which one is right, so if you find contradictory info, please acknowledge
+that your info does not match mine and what your opinion is regarding which
+info is correct.
+
+Any item that has letters after it in the far right column not only exists,
+but is owned by someone.  Now, a typo is always possible, but please keep
+that in mind when telling me an item was never made, since Commodore 
+sometimes never marketed an item in some countries.
+
+I put in any item that I think _might_ have made it to market, so everyone
+needs to continually check up on me.  
+
+There list is in two parts: Marketed and Not-Marketed, since some models
+were produced but never sold at the time of production (C65 is one of them),
+and some models never got past the "pipe-dream" stage.
+
+The newest version of this file can be retrieved from Jim Brain's MAILSERV
+server.  Just send an email message:
+   
+To: j.brain@ieee.org
+Subject: MAILSERV
+Body:
+send cbmmodel.txt
+help
+ls
+quit
+
+This will retrieve the newest version.  
+
+Interested persons can now subscribe to the CBMMODEL Mailing
+List.  To add your name to the list, please mail a message:
+
+To: j.brain@ieee.org
+Subject: MAILSERV
+Body:
+subscribe cbmmodel Firstname Lastname msglen
+help
+quit
+
+Note: msglen is maximum number of text lines you can receive in an 
+email messsage.  a value of 0 means maxlines.  All parameters to the
+subscribe command are necessary.  The newest version of the list will be
+mailed to you when posted to the newsgroup.
+
+I hope you enjoy the list.  It is the result of over 3 years of continual
+updating.
+
+Jim Brain
+j.brain@ieee.org
+
+======================Questions Still Left to Answer==========================
+
+The P500 baffles me.  George obviously has a P500 machine.  Was there
+more in the P series?  
+
+The PET 2001NT:  Which PET 2001 was it, 08,16,32?
+
+Some needs to explain to me why the 700 model is an LP machine when the rest
+of the 700 line are HP machines....
+
+===========Canonical List of Commodore Computer Equipment (96-10-01)==========
+							       	  
+---------------------Products Produced In Some Quantity:----------------------
+
+Calculator Series:
+* 202           electric, 1 digit display with slider indiciator, 
+                black case, white keypad, black,white,red keys SN B-63768   WW
+* 208           mechanical tape calc with red/black ribbon.                 MI
+*               Blue LEDs, basic math, cream color, blue/red butons.        TA
+*               Scientific calc, made in England, 44 extra keys             BD
+* 401           paper readout, darkgreen/bluegreen                          DV
+  770D
+* 774D          Red LED, 9 digit, white keys.  Red clear and blue op keys.  BA
+  776M
+* 797D          Red LED, basic math+memory and percentage, cream/blk keys   BD
+* 887D          8 dig Red LED, white, black trim, white, red, blue keys.    RI
+* 897D          10 digit Red LED, basic math, percent, one memory.          GK
+* C108          green LED, basic math, black, colored buttons               DV
+  GL976MR
+  GL979R        blk-cream case,Colored buttons,green LED,basic calc+mem+x^2 
+* LC5K2                                                                     JC
+* MM3M          Cream, Colored buttons, Red LED readout, basic math, 1 mem. JB
+* MM3M (Conv)   MM3M with Volume, Area, Metric Conversions                  JP
+* MM6           blk-silver case,basic calcs,red LED,switchable dec point,
+                9V battery                                                  TE
+* N80           10 dig LED, white nums, blue func, lt-blu mem, navigational FR
+* SR-1400       "Electronic Slide Rule Calculator" may 5, 1975              JS
+* SR-1800       Black, Colored buttons, Green LED readout, Trig.            FB
+* SR-9190R      Black, 10 Red LED, 49 keys, white num keys, SN#26612.       RI
+
+* GL997R        blk-cream case,colored buttons,green LED,basic calcs+memory TE
+* SR-4120R      SR-4148R                                                    TE
+* SR-4148R      blk case,colored buttons(48),10 red LED,
+                basic calc+memory+trig+x^y+statistics	                    TE
+* SR-100NC      black case,49 colored buttons (most of them twice used),
+                scientific calcs (was originally sold as QUELLE Privileg 
+                but is from Commodore)                                      TE
+				
+Video Game Series:
+                Pong-type game. Labels in English and German, Games include
+                "target", "tennis", "football", "squash". Amateur or Pro
+                settings, 1-4 player.  Basic pot bats, bat #1 is built into
+                unit. Runs on 9VDC or batteries.  Outputs to UHF36. 2 ports
+                at rear. One 5 pin DIN for light rifle (lightpen), other
+                for two more bats. PAL output.
+* CBM 3000H     Commodore TV Game 3000H,                                    LJ
+		 		
+Trainer Series:
+* KIM-1         Computer Trainer:  Has hex keypad and LED readout          
+
+PET 2000 Series:Renamed to CBM 20XX, XX = RAM, when Philips forbid PET use.
+                Most CBM renamed units powered up in lowercase and had a 
+                different keyboard config, while the PET machines booted in
+                uppercase. B and N notation alternately put after RAM amount
+                in name (PET 2001B-32 = PET 2001-32B)			
+                Black (B) or Blue (N) Trim, 9" (9) or 12" (2) screen,
+                Built-In Cassette with Chiclet Keys (C),
+                Business Style Keyboard with No Graphics on Keys (K), or
+                Home Computer with Number Keys and Graphics on Keys (H),
+                Green/White screen (G) or Black/White screen (W)     
+* PET 2001-4K   4kB, CB                                                     GP
+* PET 2001-8K   8kB, CN9                                                    GP
+* PET 2001-8C   8kB, CN9W, SN#0620733, No "WAIT 6502,X"                     GL
+* PET 2001-8C   8kB, CB9G, SN#0629836, No "WAIT 6502,X"                     GL
+  PET 2001-16K  16kB, CN9						    
+  PET 2001-32K  32kB, CN9
+  PET 2001B-8   8kB, K2
+  PET 2001B-16  16kB, K2
+  PET 2001B-32  32kB, BK9W, boots in lowercase                              RB
+  PET 2001B-32  32kB, K2	    					    
+  PET 2001N-8   8kB, H2
+* PET 2001N-16  16kB, H9                                                    CH
+  PET 2001N-16  16kB, H2
+* PET 2001N-32  32kB, H, BASIC 4.0,                                         CS
+* PET 2001NT    Teacher's PET.  Same as 2001N, just rebadged
+* MDS 6500      Modified 2001N-32 with matching 2040 drive.  500 made.      GP
+
+CBM 3000 Series: 40 Col. Screen, BASIC 2.0-2.3, Same Board as Thin 4000
+                 3001 series in Germany were just 2001's with big Keyboard.
+* CBM 3008      8kB, 9" Screen.                                             EG
+* CBM 3016      16kB 
+* CBM 3032      32kB.                                                       SL
+
+CBM 4000 Thin Series: 9" Screen, 40 Column Only, Basic 4.0.
+CBM 4000 Fat Series:  12" Screen, Upgradeable to 80 Column, When upgraded
+                      to 80 Columns, the systems were 8000's. 
+  CBM 4004      4kB, One Piece.
+* CBM 4008      8kB, One Piece.                                             SF
+* CBM 4016      16kB, One Piece.                                            KK
+* CBM 4032      32kB, One Piece                                             JB
+* CBM 4064      Educator 64 in 40XX case. green screen (no Fat option)      GP
+
+CBM 8000 Series:12" Screen, 80 Column, BASIC 4.0
+                SK means "SoftKey", or "Separated Keyboard"  All -SK and d
+                units were enclosed in CBM 700/B series HP cases.
+  CBM 8008      8kB, One Piece
+  CBM 8016      16kB, One Piece
+* CBM 8032      32kB, One Piece                                             GP
+* CBM 8032-32 B 8032 in Higher Profile case (HP).  Could install LP drives. GP
+* CBM 8032 SK   32kB, Detached Keyboard, SK = SoftKey or Separated Keyboard.EG
+  CBM 8096      96kB, 8032 with 64kB ram card
+* CBM 8096 SK   96kB, Detached Keyboard.
+* CBM 8096d     8096 + 8250LP                                               SL
+* CBM 8296      128kB, Detached Keyboard, Brown like 64, LOS-96 OS          TL
+* CBM 8296d     8296 + 8250LP                                               SL
+* "CASSIE"      Synergistics Inc. rebadged 8032                             AH
+  
+SuperPet Series:Sold in Germany as MMF (MicroMainFrame) 9000
+                Machines sold in Italy had 134kB of RAM.
+* CBM SP9000    Dual uP 6502/6809, 96kB RAM, business keyboard.             GP
+
+CBM B Series:   6509 @ 2MHz, 6545/6845 Video, 6526 CIA, 6581 SID, BASIC 4.0+
+                (Sometimes called BASIC 4.5)
+                Commodore differentiated between the HP (High Profile) and 
+                LP (Low Profile) series by naming all HP machine CBM.
+                (B128-80HP was CBM128-80).  Also, any machine with optional
+                8088 CPU card had 'X' after B or CBM (BX128-80).
+* CBM B128-80HP 128kB, Detached Keyboard, Cream.                            GP
+* CBM B128-80LP 128kB, One-Piece, Cream, New Keyboard.                      GP
+* CBM B256-80HP 256kB, Detached Keyboard, Cream.
+* CBM B256-80LP 256kB, One-Piece, Cream.                                    GP
+* CBM B128-40   6567, 6581, 6509, 6551, 128kB.  In B128-80LP case.
+  CBM B256-40   6567, 6581, 6509, 6551, 256kB.  In B128-80LP case.
+* CBM B500     
+* CBM B500      256kB. board same as B128-80.                               GP
+
+CBM 200 Series				     		 
+* CBM 200       CBM 8032 SK                                                 VM
+  CBM 210       ???
+* CBM 220       CBM 8096 SK
+
+CBM 500 Series: 6509, 6567, 6581, 6551.
+                Sometimes called PET II series.  
+* CBM 500       256kB. (is this the 500, or should it 515?)                 EC
+* CBM 505       64kB.
+* CBM 510       128kB.
+* CBM P500      64kB                                                        GP
+		
+CBM 600 Series: Same as B series LP
+* CBM 610       B128-80 LP                                                  CS
+* CBM 620       B256-80 LP                                                  CS
+                   
+CBM 700 Series: Same as B series HP.  Also named PET 700 Series
+* CBM 700       B128-80 LP (Note this unit is out of place here)
+* CBM 710       B128-80 HP                                                  SL
+* CBM 720       B256-80 HP                                                  GP
+* CBM 730       720 with 8088 coprocessor card
+
+VIC-20 Series:  22*23 screen, 5kB RAM,  Basic 2.0, one piece. 
+                Could be hooked to TV with RF modulator.
+                Cream (C), or Off-White (O) case.
+                Flat top keys with Square type font on keycaps (S),
+                Indent top keys with somewhat square font and thin letters
+                for RESTORE/CLR/HOME/INST... (I), or
+                Indent top keys with rounded type font (R).
+                2 Prong PS adaptor (2) or DIN PS adaptor (D).
+                Black/Silver Decals (B), or Brown/Color Decals (H).
+                5 pin video connector (5), or 8 pin video connector (8)
+                "2" implies VIC-20 motherboard.  "D" implies VIC-20DCR 
+                motherboard.  
+* VIC-20 1      SOB2                                                        GP
+* VIC-20 2      ICHD                                                        GP
+* VIC-20 3      ROB2                                                        GP
+* VIC-20 4      RCHD8                                                       JB
+* VIC-20 5      SCHD                                                        JB
+* VIC-20 6      VIC with 2001K Keyboard.                                    MS
+* VIC-20 7      RCBD5                                                       SD
+* VIC-10        Japanese VIC with 2001K keyboard.
+* VC-20 1       SCHD5 (German) (source says has beige instead of grey? case)
+* VC-20 2       RCHD5 (German)                                              MH
+* VC-20 3       R5OB2 (German) Color VIC logo...                            CE
+* VC-20 4       HD (cheap label) (German)                                   RC
+* VC-20 4       HD (better aluminum label) (German)                         RC
+* VC-20 4       2 (UK)                                                      RC
+		    							     
+
+CBM-64 Series:  40*25 screen, 64kB RAM, BASIC 2.0, one piece, TV ouput.
+                Called VIC-64 in Sweden.
+                Off-white VIC case (O), Brown Breadbox case (B),
+                Cream Breadbox case (C)
+                Flat top keys with Square type font on keycaps (S),
+                Indent top keys with somewhat square font and thin letters
+                for RESTORE/CLR/HOME/INST... (I), or
+                Indent top keys with rounded type font (R).
+                Black/Silver Decals (L), or Brown/Color Decals (H).
+                5 pin video connector (5), or 8 pin video connector (8)
+                
+* CBM 64 1      SO
+* CBM 64 2      SBH8                                                        JB
+* CBM 64 3      RBH8                                                        JB
+* CBM 64 4      RCH8 (Referred to as a C64G)                                ME
+* CBM 64 (JP)   Chiclet Keyboard sold in Japan. (Might be MAX Machine)
+* SX-64         Portable 64 With 5" Color Screen, One 1541 Built-in.        GP
+* CBM-64C       Cream Sloping Case, Cream Keys, GFX on front of keys        JB
+* CBM-64C       Cream Sloping Case, Cream Keys, GFX on top of keys.         JB
+* Educator 64-1 64 Rev1 Kernal without monitor in 64 case.                  RS
+* Educator 64-2 64 Rev1 Kernal, green monitor, PET case.                    GP
+* PET64         CBM 4064 (Eductor 64-2)                                     GP
+* (Color) MAX   64 with 16kB, no Keyboard, just Exp. Port and Video Out.    EC
+  Unimax        MAX Machine.
+* Ultimax       MAX Machine.                                                FH
+  CBM VC-10     C-64 with stripped down Basic 2.0, 2.5kB RAM, Ultimax
+* CBM C64GS     Game Console, GS = Game System. 64 with no keyboard.        MM
+
+C-128 Series:   128kB, Cream Case, 40*25 and 80*25 screen, 64 and CP/M em.
+* C-128         One-Piece Unit, 16kB VDC.                                   GP
+* C-128         One-Piece Unit, 64kB VDC.
+* C-128D        Two-Piece,16K VDC, Used C128 board, internal 1571. Fan
+* C-128DCR      C128D with 64K VDC, Metal Case, Cost Reduced, No Fan.       DL
+
+CBM 264 Series: Charcoal Grey Case, 40*25 screen
+* Plus/4        New Keyboard and Case design, 64kB RAM, 6551 UART           GP
+* C-16          64 Case and Keyboard Style, 16kB RAM                        JB
+* C-116         C-16 with Chiclet keys and smaller case                     SL
+
+Amiga Series:   680X0 processor, Off White Case
+* A500          One piece, 68000, Off-White, 880K 3.5" Floppy               FF
+* A500+         A500 + 2MB Agnus, 1MB Chip Ram Expandable to 2 MB
+* A600          One piece, 68000, White,ECS Chips,PCMCIA Slot,880K Floppy.
+* A600HD        A600 with 40 MB HD.
+* A1000         Detached Keyboard, 68000, Cream, 256kB, 880K Floppy.
+* A1000-1       Detached older style keyboard, 68000, no daughterboard      CS
+* A1000-2       Has both daughter and motherboards                          YC
+* A1200         White, 68EC020, PCMCIA slot,AGA graphics, one piece.
+  A1200HD/40    A1200 with 40 MB HD.
+* A1500         UK released A2000 with two drives
+* A2000A        detached keyboard, slots, 68000, .5 MB on board, .5 MB on
+                card in processor slot, German design
+* A2000B        US design, 1 MB on motherboard, CPU slot free
+* A2000HD       A2000 with installed 50 MB SCSI hard disk.
+* A2500/20      A2000 with A2620(68020,68881,68851 @14.3MHz) processor card.CS
+* A2500/30      A2000 with A2630(68030,68882 @25 MHz) processor card.       CS
+* A2500UX       A2500 with UNIX and TapeDrive
+* A3000/16      ECS graphics, 68030 and 68881 @ 16 MHz, SCSI hard drive
+* A3000/25      ECS graphics, 68030 and 68882 @ 25 MHz, SCSI hard drive
+* A3000T        Tower Case with more slots.
+* A3000T/40     Tower Case with more slots and 68040
+* A3000UXA      A3000 with ATT Unix V.4, 5MB RAM, 100MB HD.
+* A3000UXB      A3000 with ATT Unix V.4, 10MB RAM, 200MB HD.
+* A4000/030     AGA graphics, 68EC030, IDE HD, 1.76 MB Floppy, no MMU.
+* A4000/040     White, AGA graphics, 68040, IDE HD, 1.76 MB Floppy.         FF
+* A4000T        Tower Case with More Slots.
+* Amiga CD32    Based on A1200, double speed CD-ROM, no keyboard.
+* CDTV          Black case, based on A500+ with CD-ROM, no keyboard, Remote.FF
+
+PC Series:
+* A1060         DOS/PC SideCar that connects to an A1000.
+* A2088         8088 BridgeBoard for A2000 and higher (4.77 MHz).
+* A2088D        A2088 @ 9.54 MHz.
+* A2286/8       80286 @ 8MHz BridgeCard.
+* A2386/16      80386 @ 16MHz BridgeCard.
+* A2386/20      80386 @ 20MHz BridgeCard.
+* A2386/25      80386 @ 25MHz BridgeCard.
+* PC-1          8088 @ 4.77 MHz, Non-expandable.
+  PC-IV         ???
+* PC-5          8088 @ 4.77 MHz, 256kB RAM, 360kB 5.25" FD, monochrome.     SL
+* PC-10         8088 @ 4.77 MHz, 256kB RAM, 2 Floppies, Large Case, German.
+* PC-10 HD      PC-10 with 640kB RAM, 360kB 5.25" FD, 30 MB HD.
+* PC-20         PC-10 with 1 Floppy/1 10MB HD.                              RS
+* PC-30         80186 (US only)                                             RS
+* PC-40         80286 @ 10 MHz, Large Case                                  RS
+* PC-50         80386SX @ 25MHz.                                            RS
+* PC-60         80386DX @ 16 MHz German.
+* PC-70         Pentium, US only model.
+* PC-10 II      PC-10 with "Combined Board", 640 KB RAM.
+* PC 20-II      PC-10 II with 1 floppy, 10 MB HD, later 20 MB.
+* PC 10-III-1   PC-10, large case, CGA + Hercules.
+* PC 10-III-2   PC-10, small case, turbo mode 9.54 MHz, CGA + Hercules.
+* PC 20-III     PC-10 III with 1 floppy, 20 MB HD.
+* PC 30-III     cheaper variant of PC 40-III (EGA, smaller HD, etc.).
+* PC 35-III     PC-30 III with VGA
+* PC 40-III-1   AT with 80286, 12 MHz, HD floppy, 20 MB HD, VGA&iO on cards 
+* PC 40-III-2   PC 40-III, Colt style "all-in-one" brd, called Sel. Ed. 286 RM
+* PC 40-III-3   PC 40-III in tower case.	    			 
+* PC 45-III     a bit bigger HD
+* PC 60-III     AT 80386 @ 25 MHz, 0-200 MB HD, 5.25" and 3.5" FD, Tower.
+* PC Colt       Denoted a line of rebadged CBM PC units.
+  SL 286 AT     80286 @ 16 MHz, VGA, 2MB RAM, 40 MB HD, 3.5" FD, Slimline.
+  SL 286 AT     as above but with extra 5.25" FD, Slimline.
+  SL 386 SX     80386SX @ 16 MHz, VGA, 2MB RAM, 40 MB HD, 3.5" FD.
+  SL 386-SX25   80386SX @ 25 MHz, SVGA 2MB RAM, 80 MB HD.
+  DT 386-25     80386DX @ 25 MHz, VGA, 1MB RAM, 40 MB HD, Desktop.
+  DT 386-33 C   80386DX @ 33 MHz, SVGA, 4MB RAM, 80/100 MB HD.
+  DT 486-33 C   80486DX @ 33 MHz, SVGA, 4MB RAM, 80-120 MB HD.
+  DT 486SX-25   80486SX @ 25 MHz, SVGA, 4MB RAM, 80 MB HD.
+* DT 486SX-25   80486SX @ 25 MHz, SVGA, 4MB RAM, 120 MB HD.                 DA
+  DT 486-25 C   80486DX @ 25 MHz, SVGA?, 4MB RAM, 100 MB HD.
+  T 486-25 C    DT 486-25 C in Tower Case.
+  T 486-50 C    80486DX @ 50 MHz, SVGA, 4MB RAM, 120 MB HD.
+* C 286 LT 12   80286 @ 12.5 MHz, 1MB RAM, 20 MB HD, 3.5" FD Notebook.
+* C 386SX-LT 20 80386SX @ 20 MHz, VGA, 2MB RAM, 40 MB HD Notebook.
+* C 386SX-LT 20 80386SX @ 20 MHz, VGA, 2MB RAM, 60 MB HD Notebook.
+* C 486SX-CLT   80486SX color notebook.
+* 4S3MPC        80486SX @ 33 MHz, VESA SVGA, 4MB RAM, 170 MB HD, *2 CD/Snd
+
+Cassette Series:Took regular cassettes, non standard format data.
+                Note: 1530 is same as C2N.  Therefore, variations were not
+                expanded.
+* CBM C2N-1     Black, 8.00"Lx5.25"Wx2.50"H, 5 button, No Tape Ctr.         GP
+* CBM C2N-2     Cream C2N-1, Tinted Window, Tape Counter.                   GP
+* CBM C2N-3     C2N-3 with bolder logo.                                     GP
+* CBM C2N-4     Cream, 6.00"Lx7.75"Wx2.00"H, 6 button,Clear Win., Tape Ctr. GP
+* CBM C2N-5     C2N-3 with no counter label, orange under cassette.         GP
+* CBM C2N-6     C2N-4 with no save label, bolder logo.                      GP
+* CBM 1531      Charcoal Grey C2N-6, Commodore 16/+4 Cassette Drive         TH
+* CBM Load-It   LED Readout, Adjustment Screw
+
+Disk Drive Series:
+* Amiga 1010    Single 3.5" 880K, offered for Amiga 1000, AmigaSerial.
+* Amiga 1011    Single 3.5" 880K, offered for Amiga 500 & 2000, AmigaSerial.JM
+* Amiga 1020    Single 5.25", 440K Amiga, 360K MS-DOS, In 1571 Case.        CS
+* Amiga 2010    Single 3.5", 880K Internal for A2000/2500.
+* Amiga 2020    Single 5.25", 440K Internal for A2000.
+* Amiga 3010    Single 3.5", 1.76M Dual Speed, internal.
+* CBM 1541      *All types, see VIC 1541*
+* CBM 1541C     Single 5.25" 170K, updated 1541, Brown, Turn-Down,Serial.
+* CBM 1541C     Single 5.25" 170K, updated 1541, Cream, Turn-Down,Serial.   GP
+* CBM 1541C     Single 5.25" 170K, updated 1541, Cream, Push-Down,Serial.   GP
+* CBM 1541 II   Single 5.25" 170K, Cream, Sep. PS, Direct Drive, Serial.    GP
+* CBM 1541 II   Single 5.25" 170K, Cream, Sep. PS, Belt Drive, Serial.      JB
+* CBM 1542      Single 5.25" 170K, Charcoal Grey, Serial.
+* CBM 1551      1541, Push-Down Closure, Chacoal Grey, TED Parellel.        RJ
+* CBM 1570      Single 5.25" SS Version of 1571, Cream in 1541 case.        GP
+* CBM 1571      Single 5.25" 340K(128),170K(64),CPM,Cream,Alps Mech,Serial. GP
+* CBM 1571      Single 5.25" 340K(128),170K(64),CPM,Cream,NewT Mech,Serial. GP
+* CBM 1571CR    Internal 1571 used in C128D
+* CBM 1572      Dual 1571, Cream color, 5000 made, side-by-side device 8&9
+* CBM 1581      Single 3.5" 800K, Cream, Serial.                            JB
+* CBM 2031      Single 5.25" 170K, Off-White, IEEE-488.                     GP
+* CBM 2031-SL   Single 5.25" 170K, Off-White, IEEE-488.
+* CBM 2031 LP   Single 5.25" 170K, DOS2.6, Off-White, 1541 Case,IEEE-488.   GP
+* CBM 2031 LP   Single 5.25" 170K, DOS2.6, Tan, 1541 Case,IEEE-488.         GP
+* CBM 2040      Dual 5.25" 170K, DOS1.0, Off-White, No Rel Files, IEEE-488. GP
+* CBM 2040      Dual 5.25" 170K, DOS1.2, Off-White, No Rel Files, IEEE-488. GP
+* CBM 2081      Single 5.25" ?????                               
+* CBM 3040      2040.                                                       GP
+* CBM 4031 HP   2031 HP. (Has 4040 Mechanism)                               SL
+* CBM 4031 LP   2031 LP.
+* CBM 4040      Dual 5.25" 170K, DOS2.0, Off-White, IEEE-488.
+* CBM 4040      Dual 5.25" 170K, DOS2.1, Off-White, IEEE-488.               GP
+* CBM 8050      Dual 5.25" 512K, DOS2.1, Off-White, IEEE-488.
+* CBM 8050      Dual 5.25" 512K, DOS2.5, Off-White, IEEE-488.               GP
+* CBM 8050      Dual 5.25" 512K, DOS2.7, Off-White, IEEE-488.               JB
+* CBM 8060      Dual 8", 750K, Off-White, IEEE-488.
+* CBM 8061      Dual 8", 1.5M, Off-White, IEEE-488.                         GP
+* CBM 8250      Dual 5.25" 1MB, DOS2.7, Off-White, IEEE-488.                GP
+* CBM 8250 LP   Dual 5.25" 1MB, DOS2.7, Off-White, Half Height, IEEE-488.   GP
+* CBM 8280      Dual 8" 1MB, DOS3.0, Off-White, Read IBM disks, Slimline.   PZ
+* CBM D9060     5 MB Hard Drive, DOS3.0, Off-White, IEEE-488.               GP
+* CBM D9090     7.5 MB Hard Drive, DOS3.0, Off-White, IEEE-488.             GP
+* CD 1411       Black version of Amiga 1011. CDTV dedicated.
+* PC 910        Single 3.5" 360K/720K, Internal for PC10/20-I-II-III.
+* PC 915        Newer 910.
+* PC 920        Single 5.25" 360K/1.2M, Internal for PC10/20-I-II-III.
+* SFD 1001      Single 5.25" 1MB, In 1541 Case, DOS2.7, Brown, IEEE-488.    JB
+* SFS 481       CBM 1551. (This was its first number, then they renamed it)
+* VIC 1540      Single 5.25" 170K, Off-White, Xfer spd > 1541, Serial.
+* VIC 1541      Single 5.25" 170K, Push-Down Closure, Off-White, Serial     GP
+* VIC 1541      Single 5.25" 170K, Push-Down Closure, Brown, Serial.        JB
+* VIC 1541      Single 5.25" 170K, Turn-Down Closure, Brown, Serial.        JB
+
+Printer Series:
+* CBM 530       Small Receipt Printer, 70mm paper roll, black/red ribbon    BC
+* CBM 1526      80 Col. 8.5" Wide 8*8 Matrix No GFX, Brown, Serial 60cps.   JB
+  CBM 2020      ?
+  CBM 2021      80 Col. Matrix Electrosatic (Thermal) Printer, GFX.
+* CBM 2022      80 Col. 8.5" Wide 7*6 Matrix No GFX, Off-White, IEEE-488.   GP
+* CBM 2023      Friction-Only 2022.
+* CBM 3022      2022 for PET 3000, IEEE-488.                                SL
+* CBM 3023      2023 for PET 3000, IEEE-488.                                TL
+* CBM 4022      80 Col, 10" Wide 8*6 Matrix No GFX, Epson MX-80, IEEE-488.  SL
+* CBM 4022p     Bidirectional 4022, Epson MX-70?, IEEE-488.
+* CBM 4023      80 Col. 10" Wide 8*8 Matrix No GFX, NLQ, Brown, IEEE-488.   GP
+* CBM 6400      C.Itoh Starwriter F10-40, Centronics or IEEE-488            SL
+  CBM 8022      ?
+* CBM 8023      80 Col. 14" Wide 8*8 Matrix No GFX, Off White, IEEE-488     JB
+  CBM 8023P     136 Col. 15" Wide 8*6 Matrix, GFX, IEEE-488.
+* CBM 8024      132 Col. Mannesman Tally, 7*7, Upgrade to 7*9, Cream, IEEE.
+* CBM 8024/A    132 Col. Mannesman Tally, 9*7, 160 cps bidirectional.       SL
+* CBM 8024L     8024 Multi-Pass NLQ Printer, IEEE-488.
+* CBM 8026      OLYMPIA ESW-103, TypeWriter Printer, IEEE-488.
+* CBM 8026b     8026 Extended.?
+* CBM 8027      8026 without Keys, IEEE-488.
+* CBM 8028      132 Col. 15" Daisy-Wheel, (Robotron), Cent./IEEE-488         SL
+* CBM 8075      Plotter, available in 1 and 8 pen variety, IEEE-488
+* CBM 8229      8028 with 16kB print buffer.
+* CBM 8300P     Diablo 630, Daisy Wheel, Cream, IEEE-488.
+  CBM-P1        Daisy Wheel Printer.
+* DPS 1101      132 Col. 13", Daisy-Wheel, Friction Feed, Juki 6100, Serial.
+* DPS 1120      116-175 Col. 14.5" wide Daisy, Black, Serial.  (Olympia)    RH
+* IP3300        Ink Jet Printer                                             IM
+* LPS 2000      Laser Printer, Centronics (Possibly German Only).
+* MCS 801       80 Col. 8.5" Wide 8*8 Matrix GFX Color, Serial.             FB
+* MPC 801       Juki Color Printer                                          HR
+* MPP 1361      8023P.                                                      GP
+* MPS 801       80 Col. 8.5" Wide 7*6 Matrix GFX, Brown, Serial.            GP
+* MPS 802       1526.                                                       JB
+* MPS 803       80 Col. 8.5" Wide 7*6 Matrix GFX, Brown, Serial.            GP
+* MPS 803       80 Col. 8.5" Wide 7*6 Matrix GFX, Charcoal Grey, Serial.    GP
+* MPS 810       Okimate 10 ?                                                CA
+* MPS 820       Okimate 20 ?                                                CA
+* MPS 1000      Epson HomeWriter, US Version. 9 pin, 100cps draft.
+* MPS 1000      Epson HomeWriter, Intl. version with switchable charsets.   GD
+* MPS 1000      Seikosha 1000.
+* MPS 1200      Citizen 120D. Serial or optional Cent. Parallel.            BW
+* MPS 1224C     Mannesmann Tally, 24 pin Color Printer, MT Printer, Ser/Par
+* MPS 1230      Citizen
+* MPS 1250      Citizen, Serial/Centronics.
+* MPS 1270      Ink Jet Printer, uses Kodak Diconix Cartridges, Centronics. DL
+* MPS 1550      9 pin printer, Centronics.
+* MPS 1550C     9 pin 4 color Printer, OLIVETTI DM105, Centronics.          MH
+* MPS 2000      NEC P6
+* MPS 2000C     NEC P6 Color
+* MPS 2010      NEC P7
+* MPS 2010C     NEC P7 Color
+* VIC 1515      80 Col. 7.0" Wide 6*7 Matrix GFX, Off White, Serial.        GY
+* VIC 1520      80 Col. 4.0" Wide Plotter, GFX, Off White, 4 color. Serial
+* VIC 1520      80 Col. 4.0" Wide Plotter, GFX, Brown, Paper Cover,Ser.     GY 
+* VIC 1520      80 Col. 4.0" Wide Plotter, GFX, Brown, No Paper Cover,Ser.  PZ
+* VIC 1525      80 Col. 8.5" Wide 7*6 Matrix GFX, Off-White, Serial.        JB
+  VIC 1525e     same as 1525, but packaged for 64.  Might have slower bus?.
+
+Monitor Series:
+* CBM 1070      Dig&Analog RGBI.                                            BR
+* CBM 1080      13" Comp. Sep, Dig&Analog RGB                               YC
+* CBM 1081      1987 German Amiga Monitor                                   MK
+* CBM 1083S-P1  13" Comp, Sep, D&A RGBI, Stereo, CVBS/RGB/LCA 1991 French   PM
+* CBM 1084      1080 with squarer case .42mm dot pitch			    
+* CBM 1084-D    12" Comp. Sep, Dig&Analog RGBI, ???? case, Mono.            FM
+* CBM 1084S-P   13" Comp, Sep, Dig&Analog RGBI, 1902 case, Stereo.          FF
+* CBM 1084S-D   13" Comp, Sep, Dig&Analog RGBI, 1080 case, Stereo.          JB
+* CBM 1084S-D1  13" Comp, Sep, Dig&Analog RGBI, 1084 case, Stereo.          DE
+* CBM 1085S     14" .52mm dot pitch 1084
+* CBM 1402      12" Hercules Monitor                                        SM
+* CBM 1403      13" VGA.
+* CBM 1404      14" Amber Monochrome.
+* CBM 1407      14" VGA Monochrome, 64 grey tones.
+* CBM 1450      Monochrome BISYNC monitor.
+  CBM 1601      12" Monochrome monitor.
+  CBM 1701      13" Comp, Sep, Came with 5 pin DIN adaptor
+* CBM 1702      13" Comp, Sep, Came with 8 pin DIN adaptor.
+  CBM 1703      Repackaged 1702 for X64 series,  Was Charcoal Grey.
+* CBM 1801      14" Comp, Sep, PAL.                                         JT
+* CBM 1802      13" Comp, Sep, Mono, Grey, one big knob in front.           PS
+* CBM 1802      13" Comp, Sep, Mono, Grey, Two small knobs in front.
+* CBM 1802      13" Comp, Sep, Mono, Cream, Tilted screen.
+* CBM 1802C     13" Comp, Sep, Mono, Cream, Straight screen.
+* CBM 1900      12" Green Mono Monitor.
+  CBM 1901      European 128 Monitor (Thomson).                             AC
+* CBM 1902      13" Comp, Sep, Digital RGBI, has a 9 pin RGB plug.          MP
+* CBM 1902A     13" Comp, Sep, Digital RGBI, Looks like 1084, DIN RGB plug. DL
+* CBM 1903      13" EGA 
+* CBM 1904      13" EGA
+* CBM 1930      14" VGA .31mm dot pitch.
+* CBM 1934      14" VGA .39mm dot pitch.
+* CBM 1935-II   14" SVGA, .28mm dot pitch, MPR-II low radiation.
+* CBM 1936      14" SVGA .28mm dot pitch.
+* CBM 1944      13" EGA Low Radiation
+* CBM 1940      Amiga Multiscan Monitor
+* CBM 1942      Amiga Multiscan Monitor                                     FF
+* CBM 1950      13" MultiScan
+* CBM 1960      13" MultiScan
+* CBM 2002-23   13" Comp, Sep, Dig&Analog RGBI.                             CS
+* CBM 2002-89   13" Comp, Sep, Dig&Analog RGBI.
+  CBM 2020                        
+* CBM 2024      15" Grey scale 1024*1024(PAL), 1024*800(NTSC).              IN
+* CBM 2080      13" CBM 1080 with High Persistence Phosphors.               TM
+* CBM CM141     13" Comp, Sep., Grey.                                       WS
+* CBM CM8833                                                                JA
+* CBM DM-10     12" CGA monochrone text monitor for PC-10.
+* Viking        Moniterm: 19" Grey Scale 1024*1024, Made by Moniterm/CBM.
+                2024 is similar, but has electronics in monitor.
+
+Modem Series:   Direct Connect (8010 is aucoustic).
+* Amiga RS1200  0-1200 bps, Hayes Compatible
+* Btx-Modul I   Cartridge IC to display CEPT GFX (BTX = German CIS)
+* Btx-Modul II  Upgraded version of Btx-Modul I.
+* CBM 1650      0-300 bps, Pulse Dial
+* CBM 1660      0-300 bps, Pulse Dial, Tone Dial with 64, Brown/White       DV
+* CBM 1660      0-300 bps, Pulse Dial, Tone Dial with 64, Cream/Black       DV
+* CBM 1670      0-1200 bps, Hayes Compatible, ATS0=0 turns off Auto-Answer
+* CBM 1670CR    1670 with DIP switches to turn off default auto-answer      JB
+* CBM 1680      1670 with true RS-232 for Amiga.
+* CBM 6499      300/300 and 1200/75 bps modem for 64. Italian Compunet?     FF
+* CBM 8010      0-300 bps, US & Euro Versions, IEEE-488                     SL
+* Compunet      plugged into Exp. Port, Cream case.
+* VIC 1600      0-300 bps, No dial.                                         JB
+* VM 2400       0-2400 bps, CCITT V.24, Model 701324, BTX, MNP 5, V.42bis   RL
+
+Mouse Series:
+* CBM 1350      Emulates Joystick only
+* CBM 1351      Does both Joystick and Real Mouse Movements                 JB
+* CBM 1352      Amiga 2 button Mouse, will work with PC-III models.
+* CBM 1360      Serial Mouse for PC series.
+* 313254-01     2 button Amiga mouse.
+* 313255-01     3 button Amiga mouse.                                       CS
+* CD-1252       Amiga 2 button mouse, black, infrared, CDTV dedicated
+* CD-1253       CDTV mouse, 8.5 foot cable. black                           BB
+
+RAM Expanders:    
+* 8032099       64kB RAM for 8032.                                          RS
+* A501          512kB for Amiga 500                                         AC
+* A501+         1MB for Amiga 500+
+* A590          Ram Expansion 2MB, SCSI and XT bus for A500
+* A601          1MB for Amiga 600
+* A1050         256kB for Amiga 1000 (Under Front Cover)                    CS
+* A2058-2       2MB for Amiga 2000, expandable to 8                         BK
+* CBM 1700      128kB.                                                      WS
+* CBM 1750      512kB                                                       AC
+* CBM 1764      256kB.                                                      JB
+* CD 1401       Personal RAM Card for CDTV (64kB)
+* CD 1405       Personal RAM card for CDTV (256kB)
+* VIC 1110      8kB for VIC-20                                              WS
+* VIC 1111      16kB for VIC-20                                             JB
+* VIC 1210      3kB for VIC-20
+
+Joysticks:
+                VIC Joystick, Atari style body and stick.
+* VIC 1311      VIC Joystick, Rectangular body, triangular stick            JB
+* VIC 1312      VIC Paddles                                                 MP
+*               Paddles, Dark Grey, Light Grey Knobs.                       GP
+* T-1341        Plus 4 Joystick
+
+CPU Upgrade Series:
+* Amiga 2620    68020 and 68881 @ 14.3 MHz for A2000                        CS
+* Amiga 2630    68030 and 68882 @ 25 MHz for A2000  with 4MB RAM            CS
+* Amiga 3640    68040 CPU Card for A3000T.                                  FF 
+
+Networking Series:
+* Amiga 560     ARCNET for Amiga 500.
+* Amiga 2060    ARCNET for A2000 for star topology
+* Amiga 2060    ARCNET for A2000 for bus topology
+* Amiga 2065    Ethernet for A2000
+* Amiga 2232    7 Port Multi-Serial Card.
+* MBS 100       Mehr-Benutzer-System (Multi-User-System) Mother Unit with   SL
+                one D-25 and 1 IEEE-488.  Basically a simply-designed
+                peripheral-sharing system
+* MBS 150       Daughter Unit, had two D-25's and one IEEE-488        
+* MBS 150       MBS 150 with extra plug to connect 8032SK                   SL
+* MBS-CP        MBS System for Commodore 64.
+
+Cartridge Series:
+*               International Soccer
+*               Magic Desk I
+*               Magic Voice Speech Module
+*               Music Machine
+* C64403        Music Composer
+* C64601        Jupiter Lander
+* C64602        Kickman         * = Bally developed under CBM license
+* C64603        Sea Wolf        *
+* C64604        Speed Math/Bingo Math 
+* C64605        Radar Rat Race	
+* C64606        Clowns          *
+* C64609        Visible Solar System
+* C64610        Tooth Invaders
+  C64612        Blueprint       *
+* C64613        Lazarian        *
+* C64614        Omega Race      *
+  C64615        Wizard of Wor
+* C64616        Le Mans
+* C64617        Pinball Spectacular
+* C64618        Gorf
+  C64621        Avenger
+  C64622        Super Smash
+* C64623        Star Post
+* C64624        Frogmaster
+* C64631        Star Ranger
+*               Simons' BASIC
+* VIC 1211A     VIC SuperExpander with 3kB RAM Expansion. (for VIC-20)      HS
+* VIC 1212      VIC Programmer's Aid. (for VIC-20)
+* VIC 1213      VIC Machine Language Monitor. (for VIC-20)                  HS
+* VIC 1901      Avenger (VIC Avenger)                                       GY
+* VIC 1902      Star Battle
+* VIC 1904      Slot (Super Slot), Japan, embossed aluminum label           GY
+* VIC 1905      Jelly Monsters, Handic SW, Sweden, silver foil label
+* VIC 1906      Alien (Super Alien)                                         GY
+* VIC 1907      Jupiter Lander   (Super Lander?)                            GY
+* VIC 1908      Poker (Draw Poker)                                          GY
+* VIC 1909      Road Race (Midnight Drive)                                  GY
+* VIC 1909      Rat Race? Handic SW, Sweden, silver foil label              AB
+* VIC 1910      Radar Rat Race                                              GY
+* VIC 1911      The Sky Is Falling                                          GY
+* VIC 1912      Mole Attack                                                 GY
+* VIC 1913      Raid On Fort Knox, Hong Kong, grey plastic label            GY
+* VIC 1914      Adventure Land                                              GY
+* VIC 1915      Pirate's Cove                                               GY
+* VIC 1916      Mission Impossible                                          GY
+* VIC 1917      The Count                                                   GY
+* VIC 1918      Voodoo Castle                                               GY
+* VIC 1919      Sargon II Chess                                             GY
+* VIC 1920      Pinball (Pinball Spectacular?), Hong Kong, grey plastic lab GY
+* VIC 1921      Super Smash                                                 GY
+* VIC 1922      Cosmic Cruncher                                             GY
+* VIC 1923      Gorf                                                        GY
+* VIC 1924      Omega Race                                                  GY
+* VIC 1925      Money Wars                                                  GY
+* VIC 1926      Menagerie
+* VIC 1927      Cosmic Jailhouse (Cosmic Jailbreak), Hong Kong, grey label
+* VIC 1928      Home Babysitter
+* VIC 1929      Personal Finance
+* VIC 1930      Visible Solar System                                        GY
+* VIC 1931      Clowns                                                      GY
+* VIC 1932      Garden Wars                                                 GY
+* VIC 1933      Speed Math/Bingo Math                                       GY
+* VIC 1935      Commodore Artist                                            GY
+* VIC 1937      Sea Wolf                                                    GY
+* VIC 1938      Tooth Invaders                                              GY
+* VIC 1939      Star Post                                                   GY
+* VIC 1941      Number Nabber Shape Grabber                                 GY
+  VIC 2011      VIC-Stat cartridge.
+  VIC 2012      VIC-Graph cartridge.
+  VIC 2013      VIC-Forth cartridge.
+  VT106A        Recreation Six Pack (Car Chase, Blue Meanies, Space Math,
+                Slither/Super Slither, Bioryhtm Capability)   
+* VT107A        Home Utility Six Pack (Cassette with Personal Finance I & 2,
+                VIC Typewriter, Expense Calendar, Loan and Mort. Calc,	    
+                Home Inventory                                              DR
+* VT108         Math Improvement Six Pack (Numbowl, LCM Machine, Sector
+                Five, Backfire, Ruler Dueler, City Motel                    PA
+* VT109         Six Pack Sampler (Crawler, Treasure of the Bat Cave, Big     
+                Wolf, Alpha Draw, Music Synthesizer, Super Seeker           PA
+
+Miscellaneous Series:
+*               Tractor Feed for MPS 803
+*               HiRes Graphics for PET 4000/8000.
+*               MOS Technology EPROM Programmer, Off-White.                 GP
+                Single Sheet Feeder for CBM 8028.
+                CBM 3040 to CBM 4040 ROM upgrade kit.
+*               252594-01 CDTV remote controller, standard unit.            BB
+  324402        High Speed Graphics board for CBM 40XX/80XX.                PO
+  1001027-03    PAL TV Modulator for VIC-20.                                FF
+* Amiga 10      Stereo MultiMedia Speakers, Cream.                          CS
+* Amiga 520     RF Modulator Channel 3-4, Audio In, Video Out, RF Out       JM
+* Amiga 570     CD-ROM for Amiga 500+, CDTV compatible.
+* Amiga 1300    Amiga Genlock made for Amiga 1000.
+* Amiga 1310    Amiga Genlock.
+* Amiga 2031    Amiga PAL Video modulator board for A2000
+* Amiga 2032    Amiga PAL Video modulator board for A2000
+* Amiga 2070    150.250 MB Tape Drive, uses 1/4" tape, Grey, SCSI, A2000
+* Amiga 2090    SCSI and ST506 (MFM)
+* Amiga 2090A   Autoboot A2090
+* Amiga 2091    SCSI Controller, RAM Expansion.                             CS
+* Amiga 2300    Amiga Genlock for A2000.
+  Amiga 2301    Semi-professional Genlock (Possibly PAL?)
+* Amiga 2320    Deinterlacer card.  Converts 15.75KHz display to 31.5KHz.
+* Amiga 2350    Professional Genlock for A2000.
+  Amiga 2351    Genlock (PAL?)
+* Amiga 2410    "University of Lowell" TIGA Card, 8 bit GFX, TI34010.
+  Amiga 2995    Video Master (Direction rack + Genlock + Video Digitizer)
+* Amiga 3070    150.250 MB Tape Drive, uses 1/4" tape, Cream, SCSI.         CS
+* Amiga 3406    Amiga RF Modulator.
+* Amiga 4091    SCSI-2 Controller for Zorro III Slot.
+* AMIX          O.S. ATT SysVR4 for A2000. Requires A2620.
+* CBM 1399      MicroSwitches Joystick w/ Auto-Fire.
+* CBM 4010      Voice Response Unit made by Votrax for PETs.
+* CBM 4270      I/O Controller for CBM PET series.                          SL
+* CBM 8072      Graphics Tablet, IEEE-488.
+* CBM 64850     Magic Voice Module for Commodore 64. (p/n 319000-01         GB
+* CBM 60110     Commodore 64 CP/M Cartridge. US model?                      JV
+* CBM 606480    Commodore 64 CP/M Cartridge. German model?                  HS
+* CD 1200       Black external infrared controller for CDTV.
+* CD 1221       Black version of A4000 Keyboard. CDTV dedicated.
+* CD 1300       Genlock card for CDTV (NTSC)
+* CD 1301       Genlock card for CDTV (PAL)
+* CD 1321       SCART card for CDTV
+  CSA 58A-601   Thermostat manufactured for Johnson Controls.               DB
+* Sound Expander CBM SFX FM Sound Expander: uses FM DSS IC in Yamaha DX7    RW
+* Sound Sampler CBM SFX Sound Sampler                                       RW
+* VIC 1011A     RS-232 Interface, Outputted True RS-232 Voltages
+* VIC 1011B     RS-232 20mA Current Loop.                                   NP
+* VIC 1020      Expansion Chassis for VIC                                   AC
+* VIC 1112      IEEE-488 Interface.                                         HS
+  VIC 1214      VIC Voice Synthesizer.
+  VIC 4011      VIC-REL (Rele') Remote control switch
+  VIC 4012      Vic-Switch.  Allow 16 VICs to share drives and printers.
+  VIC 1010      VIC-20 Expansion Module                                     GE
+* VM115         Softback Books (VIC Revealed, VIC Games, VIC Graphics, 
+                Stimulating Situations for the VIC)
+
+------------------Commodore Models Never Produced or Marketed:----------------
+
+Commodore PET Series:
+* CBM 4032-P    Portable 4032 Prototype. Had 4032, 4040, and Datasette.     RS
+* CBM 8033      Color 8032.
+  PETREGISTER   (CBMREGISTER) Cash register PET (based on 8032). 50 units
+
+Commodore VIC Series:
+  VIC-20TV      Vic-20 with built in 2" TV
+  
+Commodore 64 Series:                
+  CBM SX-100    Predecessor of the SX-64, had B&W monitor.
+  CBM DX-64     SX-64 with two drives.
+  
+Commodore 264 Series:
+* CBM 264       Prototype Plus/4                                            JB
+* CBM CV364     264 with keypad and speech synthesizer.
+  
+Commodore LCD Series: 
+  CBM CLCD      Commodore Portable with LCD screen. 1MHz 65C102, BASIC 3.6,
+                32 kB RAM, 96 kB ROM, 80x16 text display, 480x128 graphics,
+                RS-232-C, Centronics, and H-P Bar Coder Ports, Plus-4 type
+                keyboard, no SID, no sprites, ML Monitor in ROM.
+  CBM C64Laptop CLCD.
+
+Commodore 128 Series:
+  CBM C128PC    Preannounce name for C128.
+* CBM C128D/81  Prototype C128D (plastic) with 3.5" drive                   AA
+* CBM 256       128 with 125MB HD, one button mouse, built-in 3.5" drive    FD
+
+Commodore P series:
+  CBM P128      P-500
+  
+C900 Series:    Prototype UNIX System, dropped after Amiga acquisition
+                Zilog Z8000 CPU, Runs Coherent 0.7.3, UNIX 7 clone,
+                Built-In Floppy, HD, IEEE-488. MFM Disk Controller, 1MB
+                9600 bps, 500 units made. Came in two versions.
+* C900/lo       LoRes (80*24 Text, Max 6 Serial Lines)                      PL
+* C900/hi       HiRes (1024*800 Graphics 2 Serial Lines)                    SL
+* Z 8000/lo     C900/lo                                                     PL
+* Z 8000/hi     C900/hi                                                     SL
+* CBM 464       C900
+
+Amiga Series:
+  A300          Prototype A600
+  A300CD        A 300 + CD ROM Drive
+  A3000+        3000 with 25MHz 68040, AGA, DSP. (<100 made)
+  CDTV-II       CDTV with built in drive
+  
+Commodore 64DX Series: had both 64 and 65 mode.  built in 1581 style drive.
+                       Native mode had BASIC 10.0, dual SID, 128kB and 3.54
+                       MHz 6502 derivative CPU with extra addressing modes.
+                       Could access >64kB directly.  
+* CBM C65       Commodore 64 DX Machine                                     GP
+
+Drive Series:
+  CBM 1541H     High density 1541 drive
+  CBM 1543      1541H
+  CBM 1541D     Double 1541
+* CBM 1563      720kB single 3.5". prototype of 1581, found in C128D/81     AA
+  CBM 1571 II   1571 with external PS
+* CBM 1590-D-1  Single 3.5" 1.44MB, DOS 14.13, 1581 case, Serial.           JV
+  CBM 2041      Single 5.25" 170K, DOS1.2,Off-White,No Rel Files,IEEE-488.
+  CBM 4040 LP   Dual 5.25" 170K, Off-White, Half Height, IEEE-488
+  CBM 8250 LP   Prototype, no "tower" PCBs on motherboard                   PK
+  CBM D9062     Dual D9065.
+  CBM D9065     7.5 MB Hard Drive   
+*               35MB HD, Serial                                             JV
+                3.5" DD FD for CBM Laptop, battery powered
+
+PC Series:
+* PC-30         PC-20-II with 20MB HD                                       PK
+* PC-70         prototype of TW486-25C                                      PK
+  PC-80-1       80386DX @ 16MHz, German.
+  PC-80-2       Pentium Pro machine. (US only)
+  A2088T        A2088 @ 8 MHz. V20.
+  A2286/6       80286 @ 6MHz BridgeCard.
+  A2286/10      80286 @ 10MHz BridgeCard.
+
+CPU Upgrade Series:
+  Amiga 2630    68030 and 68882 @ 33 MHz for A2000  with 4MB RAM
+
+Miscellaneous Series:
+* Amiga 3091    Internal SCSI Controller for A3000.  
+                It exists, but is not a product.  It is a nickname for the
+                SCSI Controller part of the A3000 Motherboard.
+                Jelly Monsters VIC Cart, Pac Man Clone.  GFX too close to
+                Pac Man.  Taken off Market.  GFX changed.  Re-released as
+                Cosmic Crunchers.
+
+-----------------------------Owner Mnemonics:---------------------------------
+
+AA    Al Anger                   coyote@bridge.net
+AB    Adam Bergstrom             adam.bergstrom@um.erisoft.se
+AC    Anders Carlsson            anders.carlsson@star.ct.se
+BA    Brian Van Avermaete        sespgrrmmr@aol.com
+BB    Brian Bell                 bbell19@nwlink.com
+BC    Barbara Clarke             queenbee@mpx.com.au
+BD    Bill Dwyne                 dwyne@wchat.on.ca
+BK    Barry Kryshka              avs@visi.com
+BR    Bob Richardson
+BW    Bill Ward
+CA    Chris Alevras
+CE    Chris Eckersley            chris@brutaleq.demon.co.uk
+CH    Charlie Hitselberger       72570.2520@compuserve.com
+CS    Christian Stich
+DA    Doug Armstrong
+DB    David Belter
+DE    David Evola                devola@attila.stevens-tech.edu
+DL    Daniel Lowe
+DR    Dave Ross                  dross4@niu.edu
+DV    David Villegas             mnementh@netcom.com
+EC    Ernie Chorney
+EG    Edward Groenenberg
+FB    Fredrick Backman
+FD    Fred Dagler                fdagler@netcom.com
+FF    Fabrizio Farenga
+FH    Frank Hughes               frankh@iquest.net
+FM    Frank McKee                FRMCKEE@delphi.com
+FR    Francois Bruggemans        Francois.Bruggemans@ping.be
+GB    Gene B                     103243.446@compuserve.com
+GD    Gregoire Debaiseux
+GE    Gary Pearson
+GK    Golan Klinger
+GP    George Page
+GY    Gil Y. Parrish
+HR    Harold Ross                hross@accutrade.com
+HS    Horst Schulte-Schrepping
+IM    Ian MacGowan               ev90028@dial.pipex.com
+IN    Thomas 'innot' Holland
+JA    Joerg Amhofer              jamhofer@sbox.tu-graz.ac.at
+JB    Jim Brain                  J.brain@ieee.org
+JC    Joe Cassara		 
+JM    Jon Mines
+JP    Jim Spindler               commsys@syspac.com
+JS    Jeff Shropshire            jshr@ix.netcom.com
+JT    Joe Tiziano
+JV    Jack Vanderwhite           ceejack@crl.com
+KK    Ken Kopin
+KO    Kevin Ottum                izombie@netins.net
+LJ    L Jones                    jones29@delphi.com
+ME    Miika Seppanen             smaug@iwn.fi
+MH    Michael Herz
+MI    Marco Sicco                cshare@ix.netcom.com
+MK    Marcel van Kervinck
+MM    Marko Makela
+MP    Michael Parson
+MS    Myles Skinner
+NP    Nhat-Veit Phi
+PA    Patrick Mattauch           ay189@lafn.org
+PK    Peter Kittel
+PL    Pascal Lefrancois          eat@worldnet.net
+PM    P. Moulin                  zorg@ctid.hp3c.fr
+PO    Peter Soukup
+PS    Paul Siu
+PZ    Philip Zembrod
+RB    Richard Briggs             rgb@achilles.net
+RC    Rico                       elmer_fudd@voerde.globvill.de
+RH    Richard Hable
+RI    Rich White                 rwhite2@prolog.net
+RJ    R. Jaycocks		 
+RL    Rob vd Luur                luur@pi.net
+RM    Ronald A. Mayne            aardvark@chesco.com
+RS    Ronald Snyder
+RW    Randy Winchester
+SD    Shawn Dessaigne            pierrot@jersey.net
+SF    Sean Fox                   mailcall@kiva.net
+SL    Scott McLauchlan           scott@softserver@canberra.edu.au
+SM    Sander van Malssen
+SL    Simon Laule
+TE    Thomas Hechelhammer        030757400008-3005@t-online.de
+TH    Tapio Olavi Heikkinen
+TL    Thomas Lampart
+TM    Tony McKimm
+TA    Todd Mason                 BMW.M3er@sleepless.acm.uiuc.edu
+VM    Ville Muikkula             vmuikku@yrttis.ratol.fi
+WS    Ward Shrake                wardshrake@aol.com
+WW    WrongWay                   wrongway@eagle.ais.net
+YC    Yvette Cantrell
+
+===========================End of Canonical List==============================
+
+
+

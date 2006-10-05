@@ -1,0 +1,111 @@
+
+                               PET index - disks
+
+   [1]Text version
+
+   There a a great variety of 5.25" disk drives. For the first PET with BASIC 2
+   it started with the 2040 disk drive and with its CBM DOS 1.0. The design of
+   this drive is typical for all the other dual drive disks up to the 8250, and
+   even for the single drive 1001.
+
+   Those drives have two 6502 processors (i.e. one 6502 and one 6504). The
+   first processor (the 6504) connects to the drives and does all the disk
+   read/write operations. It uses a hardware(!) GCR decoder to convert the data
+   bytes to the GCR encoding that is used on the disk (for more details, see
+   the [2]Architecture overview). The second processor (the 6502) does the
+   IEEE488 transfer to the PET and all the file and directory handling. Both
+   CPUs have their separate ROM, and some separate RAM. They communicate via a
+   4k common RAM area. The DOS part - the 6502 ROM - was the same for a product
+   line. The FDC part - the 6504 ROM - however can be different for different
+   drive mechanics.
+
+   The 2040 is a dual drive floppy disk. Its DOS 1.0 has a disk format that is
+   very similar to the 1541 disk format. Only in one of the speed zones the
+   format has one additional sector (resulting in 670 blocks free after
+   format). The DOS lacked the relative files, though. It is assumed that the
+   3040 only is a renaming of the 2040, to accompany the 30xx PET models. It
+   has DOS 1.2, that was also shipped in later 2040 drives.
+
+   The 4040 then got DOS 2.0. It features the same format as the 1541 (664
+   blocks free) and relative files. Later it then got DOS 2.1. These drives
+   were the first to sport relative files.
+
+   DOS 2.5 then came with the 8050 drives and DOS 2.7 came with the 8250
+   drives. Those drives feature 500k on one single-sided disk (8050) or 1M on a
+   double-sided disk (8250)! The new DOS was needed to handle the 77 (8050)
+   resp 154 (8250) tracks resp. The internal structure is still the same as the
+   2040, with its 2 processors etc.
+
+   DOS 2.7 is even capable of being used in the 4040, the 8050 and 8250 without
+   changes. The DOS ROM checks the FDC for the type of drive (170k, 500k or 1M)
+   connected and adjusts its tables appropriately. However, besides some 4040
+   prototypes this DOS is only seen in 8050 and 8250 drives.
+
+   The SFD1001 is a single drive disk drive. Basically it is a single-drive
+   8250. In fact it uses the same ROM. Only the FDC always returns an error for
+   the second drive.
+
+   The 2031 seems to be a single drive 4040, yet it is not. It is in fact the
+   sister drive of the 1541. As such it has only one CPU and the two ROM parts
+   (DOS and FDC) have been put together into one. The FDC code has been put
+   into the interrupt routine, while the DOS ROM is the main loop. Also the
+   hardware GCR encode has been removed, so software GCR encoding and decoding
+   routines have been added. The DOS version here is 2.6. The early 1540/1541
+   manual says that DOS 2.6 is read/write compatible with the 4040 DOS.
+   However, rumors have it that the write gap between header and block is
+   different between the two, so that they are only read compatible ([3]Read
+   more).
+
+   Here is a list of disk drives for the Commodore PET
+
+   Commodore IEEE-488 5.25" models
+   2040 DOS1.0/DOS1.2 DOS1.0 contained bugs, most have been updated to DOS1.2,
+   later models shipped with DOS1.2; 670 blocks free Many of these drives have
+   later been updated to DOS2
+   3040 DOS1.2 European 2040, like the 3000 series PET
+   4040 DOS2.0/2.1 664 blocks free, read compatible with 1541
+   4031/2031/2031LP DOS2.6 Single drive only. Read/Write compatible with
+   1541/1571s. Basically a 1541 with an IEEE488 interface, i.e. one CPU only.
+   8050 DOS2.5/2.7 Single Sided/Quad Density format, 512k per disk side. The
+   DOS2.7 was the same for both, in fact even for the 1001, only the controller
+   ROM differed.
+   8250/8250LP DOS2.7<td<td> Double Sided/Quad Density format, 1mb per disk
+   SFD-1001 DOS2.7 Same as 8250, but single drive unit. Other than the 2031 it
+   still had both CPUs, and even the very same DOS as the 8250. Only the
+   Controller DOS differed.
+
+   The "LP" versions were "Low Profile" versions. Which means that while the
+   other drives were delivered in the old "boat anchor" design with full height
+   drives, the LP versions came in 1541-like (SFD-1001) design or even in a
+   very slick low profile case for the 8250LP. You can see them in the [4]drive
+   gallery.
+
+   Commodore even sold 8" disk drives...
+
+      Commodore IEEE-488 8" models
+   8060 DOS1.x  750 kByte              (little info on this one...)
+   8061 DOS1.x  1500 kByte?            (little info on this one...)
+   8280 DOS3.x? 1 MB or 512k per Drive (little info on this one...)
+
+   ... and harddisks for the PETs.
+
+   Commodore IEEE-488 Hard Disk Drives
+   9060 DOS? 5 MByte                    Hard Disk Unit
+   9090 DOS? 7.5 MByte                  Hard Disk Unit
+
+   Note: the DOS version numbering of "3.0" for harddisks and even later 8"
+   drives seems inconsistent with the DOS 3.0 of the 1571 disk drive for the
+   C64/C128.
+     _________________________________________________________________
+
+   Back to the [5]PET index
+
+   PET index V1.0 (c) 1998-2005 A. Fachat
+
+References
+
+   1. http://www.6502.org/users/andre/petindex/drives/drives.txt
+   2. http://www.6502.org/users/andre/petindex/drives/arch/index.html
+   3. http://www.6502.org/users/andre/petindex/drives/writegap.html
+   4. http://www.6502.org/users/andre/petindex/drives/gallery/index.html
+   5. http://www.6502.org/users/andre/petindex/index.html

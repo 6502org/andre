@@ -1,0 +1,47 @@
+
+Changes from lib6502 version 0.2 to 0.6
+---------------------------------------
+
+Log says:
+
+0.5 -> 0.6:
+	added getenvp
+        added os version call getos
+        changed cwd definition to let the app provide a buffer
+        removed a/y length of data processed return value from fread/fwrite,
+        added end-of-file comment to fread
+        added "cwd" call
+        added SIG_CHLD definition to signal
+        added "yield" call
+
+0.4 -> 0.5:
+        moved file mode in fopen to xr
+        Moved getenv/putenv from the Ideas section to an own subsection
+        added directory entry definitions, added owner/group
+            (this makes fsetattr equivalent to chmod and chown)
+        remove no-block bit from freaddir, use fcntl(FC_RCHECK)
+        E_FNAMLEN for name too long added to fopen
+        absolute values for FC_* constants added
+        fopen bits for exclusive etc added
+        realloc added
+        Trying to add more explicit values to not only have source but
+                also binary compatibility someday
+        getenv/putenv added to ideas section.
+
+0.3 -> 0.4:
+        completely moved to bi-directional file-nos
+        added more comments on flock
+        introduced fcntl(FC_RCHECK) and fcntl(FC_WCHECK)
+        put a note for the directory into the fopen() description
+
+0.2 -> 0.3:
+        added fseek
+        added stddup
+        changed forknexec to forkto
+        added forkthread
+        added how to get list of file devices
+        added how a program is started (main, a/y=pars)
+        added o65 impementation notes.
+        added dup call and notes about read-write file-nrs
+        added kill
+

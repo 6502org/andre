@@ -1,0 +1,22 @@
+
+Parts list for CS/A KEY board, version 1.0
+------------------------------------------
+
+IC	1		74LS688
+	2		6821		PIA
+	3		6551		ACIA
+	4		74LS145
+	5		MAX232		RS232 level driver
+	6		74LS04
+
+P	1		CS/A bus connector
+	2		20 pin single line male	(C64 keyboard connector)
+	3		D-sub 25pin female (PET 8*** keyboard connector)
+	4		D-sub 9pin male (RS232)
+
+R	1-8		10k
+	9		3.3k
+
+C	1-6		60-100nF	decoupling C between Vcc and GND
+	7-10		47uF
+

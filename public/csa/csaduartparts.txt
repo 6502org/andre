@@ -1,0 +1,18 @@
+
+Parts list for CS/A DUART board, version 1.0
+--------------------------------------------
+
+IC	1,2		16550A
+	3,4,5		MAX232
+	6		74LS06
+	7		74LS138
+	8		74LS688
+	9		1.8432MHz clock generator
+
+P	1		CS/A bus connector
+	2,3		9 pin D-sub male (RS232)
+
+R	1		4k7
+
+C	1-10		47uF
+

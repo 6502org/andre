@@ -1,0 +1,187 @@
+
+Description for CS/A Copro65 board, version 1.0
+-----------------------------------------------
+
+whatsit : 6502 Coprocessor board with local CS/A bus connector.
+I/O     : $F00-$F0F Copro controll port
+Mem     : $5**** or $6**** 64k memory (RAM/ROM) shared with Copro
+
+I/O(Copro) : $F00-$F0F Copro controll port
+             $E800-$EFFF I/O on external CS/A bus connector
+Mem(Copro) : $0000-$7FFF 32k RAM, $8000-$E7FF + $F000-$FFFF 30k RAM or ROM
+
+This is a very special board, as it has a full computer in itself.
+The 64k memory is shared between the coprocessor and the processor
+on the main bus.
+
+WARNING: this schematics is a draft and untested. It might not work at all.
+         You are warned.
+
+  CS/A bus
+    ||
+    ||  +--------+
+    ||  |  CS/A  |
+    ||==|  main  |
+    ||  |  CPU   |
+    ||  +--------+
+    ||
+    ||
+    ||  +--------+  +-------+  +--
+    ||  | 64k    |  | Copro |  | external I/O
+    ||==| shared |==|  CPU  |==| connector
+    ||  | Mem    |  |       |  | (e.g. Floppy, or SCSI, or serial)
+    ||  +--------+  +-------+  +--
+    ||
+    ||
+
+This allows very flexible use of the coprocessor CPU, as it can use
+any of the available I/O Cards. For example it could be used as
+a SCSI subprocessor with the CS/A SCSI board, or as TCP/IP subprocessor
+with a serial line (UART) board as I/O.
+Communication takes place via the shared memory.
+
+Another means of communication is the CPU control port. This port is
+available from both CPUs and can signal IRQ, NMI, RESET, or RDY conditions
+to the coprocessor. Thus the coprocessor can even stop himself.
+The control port is protected in a way that a write fails if the other
+processor has written to the port after the last read from the first 
+processor. The write does not fail silently, instead reading the
+port afterwards indicates the failure with a special bit.
+
+The schematics are gate-optimized, i.e. I don't think that any
+of the logic ICs has an unused gate left....
+
+
+Schematics - Part A
+-------------------
+
+The first part of the schematics is basically all the busses:
+main data and address bus, copro data and address bus, and memory
+data and address bus in between.
+IC 5 (the '138 on the main bus side) selects the memory area for 
+the 64k shared memory on the main CPU address map. IC4 and selects
+$F0* from the main bus IO area for the control port.
+IC1-3 are the data and address bus drivers that separate the main bus
+from the memory bus. 
+
+IC6 and IC7 are the shared memory. IC6 is a 32k static RAM.
+IC7 can be made a 32k EPROM or a 32k static RAM. If it is a RAM,
+it can be write-protected with a bit in the CPU control port.
+
+IC8 and IC12 make up the CPU control port. It is located in the memory
+data bus as it uses the same data bus drivers. IC8 is a resetable 
+register, and it is reset at main bus reset. If reset, it also
+sets RESET and RDY condition on the coprocessor (D0=/RESET, D1=/IRQ,
+D2=/NMI and D3=RDY of the coprocessor). So the coprocessor is 
+stopped completely and restarts when the control port is set to 
+appropriate values by the main CPU.
+D4 is the write protect bit for the upper 32k of RAM. 
+D5 is (yet) unused.
+D6 (Copro) and D7 (main CPU) signal, when read, the failure of a previous 
+write from the related CPU.  See part C for a description of this
+mechanism.
+
+IC9-11 are the address and data bus buffers that separate the memory
+bus from the coprocessor bus. 
+
+IC14 is the coprocessor itself.
+
+IC15 selects the I/O area at copro addresses $E800-$EFFF. 
+IC13 then selects $EF0* from this area for the control port.
+
+All timing and control are done in the following two parts
+
+
+Part B - Bus control
+--------------------
+
+This part of the schematics generates all the timing signals for the
+latches and the memory. The problem is with synchronising the two
+CPUs. Both want to have a Phi0 clock input and generate Phi1 and Phi2,
+where all external timing goes with Phi2 (the falling edge actually).
+
+There once were 6502 versions that took Phi1 and Phi2 as input, but even
+when they were available even Commodore didn't use them for their
+disk drives (that have a 6502 and a 6504 working in parallel).
+
+Thus there is an elaborate signal generation that tries to delay
+the falling edge of Phi2 - the Phi2, main CPU or Copro that's active - as 
+little as possible. On the fly it generates enable signals for the
+various latches.
+
+Now for the parts:
+
+2Phi2 is a signal that goes high at each edge of the main (bus) Phi2,
+and low approx. 100ns after that. It can directly be used as dRAM
+control for example. Here it is used to sample the bus Phi2 at
+its falling edge. The result is an approx. 100ns delayed bus Phi2 (DelPhi2).
+This is used to switch between bus Phi2 (BPhi2) and Coprocessor Phi2
+(CPPhi2). 
+
+In this diagram CPPhi2 is intentionally drawn "out of phase" to clearify
+how this circuitry works.
+
+BPhi2      --+                                 +---------------------------------+
+             +---------------------------------+                                 +------
+
+2Phi2        +-----------+                     +-----------+                     +------
+           --+           +---------------------+           +---------------------+ 
+
+DelPhi2    --------------+                                 +----------------------------
+                         +---------------------------------+                          
+   
+/DelPhi2   --+           +-------------------------------------------------------+
+OR BPhi2     +-----------+                                                       +------  
+
+CPPhi2          +--------------------------------+                                  +---
+           -----+                                +----------------------------------+
+
+DelPhi2    --------------------------------------+         +----------------------------
+OR CPPhi2                                        +---------+
+
+C2Phi2       +-----------+                       +---------+                     +------
+           --+           +-----------------------+         +---------------------+
+
+/AE1         +-----------------------------------+                               +------
+           --+                                   +-------------------------------+
+
+(/DelPhi2 OR BPhi2) and (DelPhis OR CPPhi2) are used to disable any
+address selection at their falling via IC22. This is also the signal
+to take over the data from the bus. The respective Phi2 signals have
+passed only two ICs till they reach the RAM, so that should be fast 
+enough.
+/AE1 is generated by sampling DelPhi2 at the rising edges of C2Phi2. 
+The rising edges of C2Phi2 are the falling edges of both Phi2 signals,
+so /AE1 switches every time an access is finished. This is exactly
+what we want for enabling of the address latches.
+
+IC21 selects the respective Data latch enabled signals, the 
+shared memory select signals and the R/-W signals for each 
+half-Phi2 cycle. 
+
+
+Part C - Control Port Access
+----------------------------
+
+The control port has a very special feature. One CPU can read it, modify
+the value read and the write the value back. But the write fails if
+between the read and the write access the other CPU has written to
+the port. 
+This failure condition can be checked with the BIT operation, as 
+D6 and D7 are used for the failure bit of Copro and main CPU resp.
+
+IC23 generates 4 signals (two of each chip half) for read or write from
+either CPU. A read access (/Q1) resets the flipflop in IC24. Therefore,
+when a write access (/Q0) occurs, the first flipflop of IC27 (IC28) is 
+unaffected, and /REGW (control port write access) is enabled via
+IC25. A successful write access from one processor sets the flipflop
+in IC24. If the other processor then tries to write, the write is
+blocked and instead the first flipflop of IC27 (IC28) is set.
+This output is cleared on a read access. To save the flipflop state
+during the read access, it is saved in the second latch of IC27 (IC28)
+with the rising edge of BPhi2/CPPhi2.
+[Thinking of it now, I am wondering if this saving really works, as 
+for example /AE1 might go active before Phi2 goes high - /AE1 is 
+determined by CPPhi2 going low....]
+
+
