@@ -1,0 +1,22 @@
+s Main boards
+d cpu CS/A65 CPU
+d bios CS/A65 BIOS board
+d petcpu 64k CPU
+d gecko Gecko
+s I/O boards
+d vdc Video board
+d petio CBM PET I/O
+d shug PC floppy
+d duart Double UART (RS232)
+d scsi SCSI board
+s Special purpose
+d copro Coprocessor board
+d cpuemu Emulate a 6502
+d keyemu Emulate a keyboard
+s I/O boards (deprecated)
+d key Keyboard
+d iec IEEE488 and CBM IEC
+s Other links
+d gallery Gallery
+d emu VICE emu of CS/A65
+
