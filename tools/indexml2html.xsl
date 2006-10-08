@@ -1,6 +1,51 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> ] >
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/XSL/Transform/1.0">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<xsl:template match="board">
+<HTML><HEAD><xsl:text>
+</xsl:text>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
+</xsl:text>
+<META NAME="keywords" CONTENT="{keywords}"/>
+<TITLE><xsl:value-of select="name"/></TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
+</HEAD><xsl:text>
+</xsl:text><BODY>
+<DIV ID="menu">
+@MENU@
+</DIV>
+<DIV ID="content"><xsl:text>
+</xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
+</xsl:text><P><xsl:value-of select="desc"/></P><xsl:text>
+</xsl:text>
+<xsl:for-each select="rev">
+<H2>Version: <xsl:value-of select="version"/></H2><xsl:text>
+</xsl:text>
+<P>Status: <xsl:value-of select="status"/></P><xsl:text>
+</xsl:text>
+<xsl:for-each select="note">
+<TABLE><TR><TD><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
+</xsl:text><TD><xsl:copy-of select="text()"/></TD></TR></TABLE><xsl:text>
+</xsl:text>
+</xsl:for-each><!-- note -->
+
+<TABLE><xsl:for-each select="file"><xsl:text>
+</xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
+</xsl:text><TD><IMG SRC="%up%imgs/file_{@ptype}.gif" ALT="{@ptype}"/></TD><xsl:text>
+</xsl:text><TD><A HREF="{.}"><xsl:value-of select="."/></A></TD><xsl:text>
+</xsl:text></TR>
+</xsl:for-each><!-- file -->
+</TABLE><xsl:text>
+</xsl:text>
+</xsl:for-each><!-- rev -->
+<BR></BR>
+<P><xsl:text>Last modified: @LASTMODIFIED@</xsl:text></P>
+</DIV>
+</BODY></HTML>
+</xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 

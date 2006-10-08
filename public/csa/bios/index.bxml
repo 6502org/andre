@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 BIOS</name>
+	<keywords>CSA65 6502 BIOS UART</keywords>
+	<desc>This board implements basic memory and I/O functionality
+		for the CS/A65 computer. 
+The BIOS board complements the MMU CPU board in that it provides
+some RAM, ROM, and basic I/O (a RS232 interface, that is).
+It also has a special I/O port that allows the CPU to read the IRQ line,
+or the state of a pushbutton. Also a 50 Hz interrupt is provided that
+can be switched on and off with this port, as well as a system LED.
+The I/O mapping can be changed from the BIOS port as well.
+The older version 1 used a 6551 ACIA for the RS232 interface, but now I
+use a 16550 UART (with FIFO).
+	</desc>
+	<rev>
+		<version>3.0B</version>
+		<status>ok</status>
+		<note type="msg">This is the new version of the board,
+			using larger (up to 512k) RAM and ROM sockets.
+			For this board also Eagle(tm) schematics and layout
+			files are available
+		</note>
+		<note type="warn">At this time only the basic RAM, ROM, and 
+			IRQ/Port functionality has been tested. RS232 is 
+			as of now untested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_bios_v3.0b.sch</file>
+		<file ltype="schem" ptype="png">csa_bios_v3.0b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_bios_v3.0b.brd</file>
+		<file ltype="layout" ptype="png">csa_bios_v3.0b-lay.png</file>
+	</rev>
+	<rev>
+		<version>2.0B</version>
+		<status>ok</status>
+		<note type="msg"> This is the old version of the board,
+			using small (up to 32k) RAM and ROM sockets.
+		</note>
+		<file ltype="schem" ptype="png">csabios2.png</file>
+		<file ltype="schem" ptype="psgz">csabios2.ps.gz</file>
+		<file ltype="desc" ptype="txt">csabios2desc.txt</file>
+		<file ltype="parts" ptype="txt">csabios2parts.txt</file>
+	</rev>
+</board>

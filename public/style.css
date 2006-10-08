@@ -14,3 +14,17 @@ TH {
 	background-color: #dddddd;
 }
 
+DIV#content {
+  margin-left: 22em;
+  padding: 0 1em;
+/*  border: 1px dashed silver; */
+  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+}
+
+DIV#menu {
+  font-size: 0.91em;
+  float: left; width: 22em;
+  margin: 0; padding: 0;
+/*  border: 1px dashed silver; */
+}
+
