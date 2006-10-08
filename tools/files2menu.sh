@@ -23,8 +23,8 @@ if [ -f $root/.files ]; then
 	| awk -v upn="$upn" ' \
 		BEGIN { print "<ul div=\"menu" upn "\" >"; } \
 		/^s / { print "<li>" substr($0, 3) "</li>"; }\
-		/^f / { print "<li><img src=\"%up%imgs/file.gif\"/><a href=\"" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^d / { print "<li><img src=\"%up%imgs/dir.gif\"/><a href=\"" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>"; print "@" $2 "@"; }\
+		/^f / { print "<li><img src=\"%up%imgs/file.gif\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^d / { print "<li><img src=\"%up%imgs/dir.gif\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>"; print "@" $2 "@"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml

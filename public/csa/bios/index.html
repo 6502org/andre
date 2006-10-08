@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 6502 BIOS UART">
+<TITLE>CS/A65 BIOS</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul div="menu0" >
+<li>Commodore</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../petindex/index.html">CBM PET info</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+
+<li>Hardware</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../csa/index.html">My CS/A65 computer</a></li>
+<ul div="menu1" >
+<li>Main boards</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../cpu/index.html">CS/A65 CPU</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../bios/index.html">CS/A65 BIOS board</a></li>
+<ul div="menu2"><li><img src="../../imgs/file.gif"/><a href="index.html">Start</a></li></ul>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../petcpu/index.html">64k CPU</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../gecko/index.html">Gecko</a></li>
+
+<li>I/O boards</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../vdc/index.html">Video board</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../petio/index.html">CBM PET I/O</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../shug/index.html">PC floppy</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../duart/index.html">Double UART (RS232)</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../scsi/index.html">SCSI board</a></li>
+
+<li>Special purpose</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../copro/index.html">Coprocessor board</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../cpuemu/index.html">Emulate a 6502</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../keyemu/index.html">Emulate a keyboard</a></li>
+
+<li>I/O boards (deprecated)</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../key/index.html">Keyboard</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../iec/index.html">IEEE488 and CBM IEC</a></li>
+
+<li>Other links</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../gallery/index.html">Gallery</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../emu/index.html">VICE emu of CS/A65</a></li>
+
+</ul>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../hwinfo/index.html">Hardware info</a></li>
+
+<li>Software</li>
+<li><img src="../../imgs/dir.gif"/><a href="../../osa/index.html">GeckOS operating system</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../o65/index.html">O65 file format</a></li>
+
+<li><img src="../../imgs/dir.gif"/><a href="../../misc/index.html">Misc software</a></li>
+
+<li><img src="../../imgs/file.gif"/><a href="../../index.html">Start</a></li>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>CS/A65 BIOS</H1>
+<P>This board implements basic memory and I/O functionality
+		for the CS/A65 computer. 
+The BIOS board complements the MMU CPU board in that it provides
+some RAM, ROM, and basic I/O (a RS232 interface, that is).
+It also has a special I/O port that allows the CPU to read the IRQ line,
+or the state of a pushbutton. Also a 50 Hz interrupt is provided that
+can be switched on and off with this port, as well as a system LED.
+The I/O mapping can be changed from the BIOS port as well.
+The older version 1 used a 6551 ACIA for the RS232 interface, but now I
+use a 16550 UART (with FIFO).
+	</P>
+<H2>Version: 3.0B</H2>
+<P>Status: ok</P>
+<TABLE><TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>This is the new version of the board,
+			using larger (up to 512k) RAM and ROM sockets.
+			For this board also Eagle(tm) schematics and layout
+			files are available
+		</TD>
+</TR></TABLE>
+<TABLE><TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>At this time only the basic RAM, ROM, and 
+			IRQ/Port functionality has been tested. RS232 is 
+			as of now untested.
+		</TD>
+</TR></TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csa_bios_v3.0b-desc.txt">csa_bios_v3.0b-desc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v3.0b.sch">csa_bios_v3.0b.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v3.0b-sch.png">csa_bios_v3.0b-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0b.brd">csa_bios_v3.0b.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0b-lay.png">csa_bios_v3.0b-lay.png</A></TD>
+</TR>
+</TABLE>
+<H2>Version: 2.0B</H2>
+<P>Status: ok</P>
+<TABLE><TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD> This is the old version of the board,
+			using small (up to 32k) RAM and ROM sockets.
+		</TD>
+</TR></TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csabios2.png">csabios2.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csabios2.ps.gz">csabios2.ps.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csabios2desc.txt">csabios2desc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD><A HREF="csabios2parts.txt">csabios2parts.txt</A></TD>
+</TR>
+</TABLE>
+<BR><P>Last modified: </P>
+</DIV>
+</BODY>
+</HTML>

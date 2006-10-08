@@ -34,8 +34,8 @@
 
 <TABLE><xsl:for-each select="file"><xsl:text>
 </xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
-</xsl:text><TD><IMG SRC="%up%imgs/file_{@ptype}.gif" ALT="{@ptype}"/></TD><xsl:text>
-</xsl:text><TD><A HREF="{.}"><xsl:value-of select="."/></A></TD><xsl:text>
+</xsl:text><!-- <TD><xsl:value-of select="@ptype"/></TD><xsl:text>
+</xsl:text>--><TD><A HREF="{.}"><xsl:value-of select="."/></A></TD><xsl:text>
 </xsl:text></TR>
 </xsl:for-each><!-- file -->
 </TABLE><xsl:text>
