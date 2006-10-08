@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TMPFILE=`mktemp /tmp/checkmylinks.XXXXXXXXXX` || exit 1
+
+checklink -r -s -l file:///home/fachat/8bit/websvn file:///home/fachat/8bit/websnv/ | tee $TMPFILE
+
+rm $TMPFILE
+
+
