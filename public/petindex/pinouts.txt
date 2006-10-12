@@ -19,32 +19,35 @@ Keyboards
           KEYBOARD
           ========
 
-          [3]Arrangement of pins plug J13
+          PLease note that the original documentation in the 8296 addendum
+          is incorrect. Here you can see the [3]incorrect original documentatio
+n,
+          and here is the relevant part of the [4]schematics.
 
           +-----+--------+
           | PIN | SIGNAL |
           +-----+--------+
-          |  1  | KIN 0  |
-          |  2  | |   1  |  13                       1
-          |  3  | |   2  | +---------------------------+
-          |  4  | |   3  | | o o o o o o o o o o o o o |
-          |  5  | |   4  | \  o o o o o o o o o o o o /
-          |  6  | |   5  |  --------------------------
-          |  7  | |   6  |    25                    14
-          |  8  | V   7  |
-          |  9  | DEC 0  |
-          | 10  | |   1  |
-          | 11  | |   2  |
-          | 12  | |   3  |
-          | 13  | |   4  |
-          | 14  | |   5  |
-          | 15  | |   6  |
-          | 16  | |   7  |
-          | 17  | |   8  |
-          | 18  | V   9  |
-          | 19  | KEY    |
-          | 20  | GND    |
-          | 21  | N.C.   |
+          |  1  | DEC 0  |
+          |  2  | |   1  |
+          |  3  | |   2  |
+          |  4  | |   3  |
+          |  5  | |   4  |
+          |  6  | |   5  |
+          |  7  | |   6  |
+          |  8  | |   7  |
+          |  9  | |   8  |
+          | 10  | V   9  |
+          | 11  | N.C.   |
+          | 12  | GND    |  13                       1
+          | 13  | N.C.   | +---------------------------+
+          | 14  | KIN 0  | | o o o o o o o o o o o o o |
+          | 15  | |   1  | \  o o o o o o o o o o o o /
+          | 16  | |   2  |  --------------------------
+          | 17  | |   3  |    25                    14
+          | 18  | |   4  |
+          | 19  | |   5  |
+          | 20  | |   6  |
+          | 21  | V   7  |
           | 22  | N.C.   |
           | 23  | N.C.   |
           | 24  | N.C.   |
@@ -60,7 +63,7 @@ I/O - IEEE488, Tape and Userport
 IEEE                                   USER - PORT
 ====                                   ===========
 
-[4]Arrangement of pins  plug J1/J12       [5]Arrangement of pins  plug   J2
+[5]Arrangement of pins  plug J1/J12       [6]Arrangement of pins  plug   J2
 
 +-----+-------------+-----+--------+   +-----+-------------+-----+--------+
 | PIN | SIGNAL      | PIN | SIGNAL |   | PIN | SIGNAL      | PIN | SIGNAL |
@@ -102,7 +105,7 @@ IEEE                                   USER - PORT
 CASSETTE 1                             CASSETTE 2
 ==========                             ==========
 
-[6]Arrangement of pins  plug J3           Arrangement of pins  plug J6
+[7]Arrangement of pins  plug J3           Arrangement of pins  plug J6
 
 +-----+-----+----------------------+   +-----+-----+----------------------+
 | PIN | PIN | SIGNAL               |   | PIN | PIN | SIGNAL               |
@@ -129,7 +132,7 @@ Misc.
 MEMORY - EXPANSION
 ==================
 
-[7]Arrangement of pins  plug J4
+[8]Arrangement of pins  plug J4
 
 +-----+-----------+-----+--------+
 | PIN | SIGNAL    | PIN | SIGNAL |     J4
@@ -166,7 +169,7 @@ MEMORY - EXPANSION
 MEMORY - EXPANSION
 ==================
 
-[8]Arrangement of pins  plug J9
+[9]Arrangement of pins  plug J9
 
 +-----+-----------+-----+--------+
 | PIN | SIGNAL    | PIN | SIGNAL |     J9
@@ -203,7 +206,7 @@ MEMORY - EXPANSION
 POWER EXP. AC                         POWER EXP. DC
 =============                         =============
 
-[9]Arrangement of pins  plugJ10          [10]Arrangement of pins  plugJ11
+[10]Arrangement of pins  plugJ10          [11]Arrangement of pins  plugJ11
 
 +-----+-----------+                   +-----+-----------+
 | PIN | SIGNAL    |                   | PIN | SIGNAL    |
@@ -219,7 +222,7 @@ POWER EXP. AC                         POWER EXP. DC
 
   8296 Changes in arrangements of pins Memory Expansion J4
 
-   [11]This is the change from 8032 (old) to 8296 (new).
+   [12]This is the change from 8032 (old) to 8296 (new).
 J 4    Memory expansion
 +-----------------------------------+
 | Pin        Signal                 |
@@ -274,7 +277,7 @@ J 10    Power supply for hardware expansion
 KEYBOARD
 ========
 
-[12]Arrangement of pins plug J5
+[13]Arrangement of pins plug J5
 
 +-----+--------+
 | PIN | SIGNAL |  J5
@@ -306,7 +309,7 @@ KEYBOARD
           RESET
           =====
 
-          [13]Arrangement of pins plug J14
+          [14]Arrangement of pins plug J14
 
           +-----+--------+
           | PIN | SIGNAL |
@@ -316,23 +319,24 @@ KEYBOARD
           +-----+--------+  +---+
      _________________________________________________________________
 
-   Back to the [14]PET index
+   Back to the [15]PET index
 
-   PET index V0.9 (c) 1998 A. Fachat
+   PET index V1.1 (c) 1998,2006 A. Fachat
 
 References
 
-   1. http://www.6502.org/users/andre/petindex/pinouts.txt
-   2. http://www.6502.org/users/andre/petindex/keyboards.html
-   3. http://www.6502.org/users/andre/petindex/imgs/j13.gif
-   4. http://www.6502.org/users/andre/petindex/imgs/j1+j12.gif
-   5. http://www.6502.org/users/andre/petindex/imgs/j2.gif
-   6. http://www.6502.org/users/andre/petindex/imgs/j3+j6.gif
-   7. http://www.6502.org/users/andre/petindex/imgs/j4.gif
-   8. http://www.6502.org/users/andre/petindex/imgs/j9.gif
-   9. http://www.6502.org/users/andre/petindex/imgs/j10.gif
-  10. http://www.6502.org/users/andre/petindex/imgs/j11.gif
-  11. http://www.6502.org/users/andre/petindex/imgs/8296changes.gif
-  12. http://www.6502.org/users/andre/petindex/imgs/j5.gif
-  13. http://www.6502.org/users/andre/petindex/imgs/j14.gif
-  14. http://www.6502.org/users/andre/petindex/index.html
+   1. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/pinouts.txt
+   2. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/keyboards.html
+   3. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j13.gif
+   4. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j13schem.gif
+   5. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j1+j12.gif
+   6. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j2.gif
+   7. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j3+j6.gif
+   8. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j4.gif
+   9. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j9.gif
+  10. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j10.gif
+  11. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j11.gif
+  12. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/8296changes.gif
+  13. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j5.gif
+  14. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/imgs/j14.gif
+  15. file://localhost/home/fachat/8bit/svn/branch/OLDSTYLE/public/petindex/index.html
