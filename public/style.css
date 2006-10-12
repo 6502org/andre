@@ -28,3 +28,15 @@ DIV#menu {
 /*  border: 1px dashed silver; */
 }
 
+LI.separator {
+	list-style-type:none;
+}
+
+LI.file {
+	list-style-image:url(imgs/file.gif);
+}
+
+LI.dir {
+	list-style-image:url(imgs/dir.gif);
+}
+
