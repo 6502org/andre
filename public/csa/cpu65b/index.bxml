@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 CPU65b</name>
+	<keywords>CSA65 6502 processor</keywords>
+	<desc>This board implements a 6502 processor board for the 
+		CS/A65 bus system. Compared to the main cpu, however,
+		it only utilizes 64k memory without an MMU, and can
+		thus only use the I/O address space on the CS/A65 bus.
+	</desc>
+	<rev>
+		<version>2.0B</version>
+		<status>draft</status>
+		<note type="msg">
+			This board is derived from the Gecko board,
+			in that the Gecko I/O circuitry have been removed.
+		</note>
+		<note type="warn">
+			This schematics has not been tested.
+		</note>
+		<file ltype="desc" ptype="txt">cpu65bdesc.txt</file>
+		<file ltype="schem" ptype="fig">cpu65b.fig</file>
+		<file ltype="schem" ptype="png">cpu65b.png</file>
+		<file ltype="schem" ptype="psgz">cpu65b.ps.gz</file>
+	</rev>
+</board>
