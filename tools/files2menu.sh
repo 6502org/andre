@@ -21,15 +21,15 @@ echo "Run: " $0 $root $up $upn $parent
 if [ -f $root/.files ]; then
     cat $root/.files \
 	| awk -v upn="$upn" ' \
-		BEGIN { print "<ul div=\"menu" upn "\" >"; } \
-		/^s / { print "<li>" substr($0, 3) "</li>"; }\
-		/^f / { print "<li><img src=\"%up%imgs/file.gif\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^d / { print "<li><img src=\"%up%imgs/dir.gif\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>"; print "@" $2 "@"; }\
+		BEGIN { print "<ul class=\"menu" upn "\" >"; } \
+		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
+		/^f / { print "<li class=\"file\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^d / { print "<li class=\"dir\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>"; print "@" $2 "@"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml
 else
-    echo "<ul div=\"menu"$upn"\"><li><img src=\"%up%imgs/file.gif\"/><a href=\"index.html\">Start</a></li></ul>" > $root/.files.xml
+    echo "<ul class=\"menu"$upn"\"><li class=\"file\"><a href=\"index.html\">Start</a></li></ul>" > $root/.files.xml
 fi
 
 if [ "x$parent" != "x" ]; then
