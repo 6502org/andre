@@ -40,6 +40,7 @@ if [ "x$parent" != "x" ]; then
 			{ if (index($0, m) > 0) { pp=0; } } 
 		'\
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
+		| sed -e "s@%up%@../%up%@g" \
 		> $root/.files.xml2
 	cat $root/.files.xml >> $root/.files.xml2
 	cat $root/../.files.xml2 \
@@ -49,9 +50,12 @@ if [ "x$parent" != "x" ]; then
 			{ if (index($0, m) > 0) { pp=1; } } 
 		'\
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
+		| sed -e "s@%up%@../%up%@g" \
 		>> $root/.files.xml2
 else
-	cp $root/.files.xml $root/.files.xml2
+	cat $root/.files.xml \
+		> $root/.files.xml2
+		#| sed -e "s@%up%@../%up%@g" \
 fi
 
 if [ -f $root/.files ]; then
@@ -64,7 +68,7 @@ fi
 
 cat $root/.files.xml2 \
 	| sed -e "s/@[a-zA-Z0-9]*@//g" \
-	| sed -e "s@%up%@$up@g" \
+	| sed -e "s@%up%@@g" \
 	> $root/.files.xml
 
 # test 
