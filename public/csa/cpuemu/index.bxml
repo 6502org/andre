@@ -2,6 +2,7 @@
 <board>
 	<name>CS/A65 CPU emulator</name>
 	<keywords>CSA65 6502 cpu emulator</keywords>
+        <lastmodified>2006-10-13</lastmodified>
 	<desc>This board implements a 6502 emulator.....: 
 		it allows the CS/A65 bus cpu to emulate a 6502 cpu 
 		on another computer. I.e. it utilizes a 40pin 

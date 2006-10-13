@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <board>
-	<name>CS/A65 CPU65b</name>
-	<keywords>CSA65 6502 processor</keywords>
+	<name>CS/A65 PETCPU</name>
+	<keywords>CSA65 6502 PET CPU</keywords>
         <lastmodified>2006-10-13</lastmodified>
 	<desc>This board implements a 6502 processor board for the 
-		CS/A65 bus system. Compared to the main cpu, however,
-		it only utilizes 64k memory without an MMU, and can
-		thus only use the I/O address space on the CS/A65 bus.
+		CS/A65 bus system. 
 	</desc>
 	<rev>
 		<version>2.0B</version>

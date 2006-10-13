@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 KEY+RS232</name>
+	<keywords>CSA65 6502 keyboard rs232 ACIA</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board implements a simple matrix keyboard interface
+		that is Commodore PET compatible but can also use a C64
+		keyboard. It also implements a RS232
+		interface using a 6551 ACIA.
+	</desc>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="warn">
+			This board is deprecated.
+		</note>
+		<file ltype="desc" ptype="txt">csakeydesc.txt</file>
+		<file ltype="parts" ptype="txt">csakeyparts.txt</file>
+		<file ltype="schem" ptype="fig">csakey.fig</file>
+		<file ltype="schem" ptype="png">csakey.png</file>
+		<file ltype="schem" ptype="psgz">csakey.ps.gz</file>
+	</rev>
+</board>

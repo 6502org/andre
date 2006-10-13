@@ -40,3 +40,7 @@ LI.dir {
 	list-style-image:url(imgs/dir.gif);
 }
 
+LI.openfile {
+	list-style-image:url(imgs/openfile.gif);
+}
+

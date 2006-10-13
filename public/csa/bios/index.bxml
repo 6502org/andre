@@ -2,6 +2,7 @@
 <board>
 	<name>CS/A65 BIOS</name>
 	<keywords>CSA65 6502 BIOS UART</keywords>
+	<lastmodified>2006-10-13</lastmodified>
 	<desc>This board implements basic memory and I/O functionality
 		for the CS/A65 computer. 
 The BIOS board complements the MMU CPU board in that it provides
@@ -13,6 +14,10 @@ The I/O mapping can be changed from the BIOS port as well.
 The older version 1 used a 6551 ACIA for the RS232 interface, but now I
 use a 16550 UART (with FIFO).
 	</desc>
+	<diagram>
+		<file>bios.gif</file>
+		<desc>This diagram shows an overview on the board architecture</desc>
+	</diagram>
 	<rev>
 		<version>3.0B</version>
 		<status>ok</status>

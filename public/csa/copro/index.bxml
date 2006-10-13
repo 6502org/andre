@@ -2,6 +2,7 @@
 <board>
 	<name>CS/A65 Copro</name>
 	<keywords>CSA65 6502 coprocessor</keywords>
+        <lastmodified>2006-10-13</lastmodified>
 	<desc>This board implements a 6502 coprocessor board for the 
 		CS/A65 bus system. The coprocessor runs in parallel to the
 		main bus CPU, with the same clock frequency as the bus itself.

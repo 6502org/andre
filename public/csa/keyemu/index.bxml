@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 keyboard emulator</name>
+	<keywords>CSA65 6502 keyboard emulator</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board allows to emulate a real matrix keyboard for another
+		computer. A matrix keyboard uses a set of input lines and
+		each keypress connects an input line with a specific output
+		line, which is detected by the host cpu. This is emulated
+		by the board using a shared memory. Access to the shared
+		memory is time-shared.
+	</desc>
+	<diagram>
+		<file>keyemu.gif</file>
+		<desc>The block diagram shows the dual access to the 
+			shared memory.
+		</desc>
+	</diagram>
+	<rev>
+		<version>1.0C</version>
+		<status>ok</status>
+		<note type="msg">
+			The board implements two keyboard ports with
+			a 8x8 matrix each, using 512 byte of I/O memory.
+		</note>
+		<file ltype="desc" ptype="txt">csakeyemudesc.txt</file>
+		<file ltype="schem" ptype="fig">csakeyemu.fig</file>
+		<file ltype="schem" ptype="png">csakeyemu.png</file>
+		<file ltype="schem" ptype="psgz">csakeyemu.ps.gz</file>
+	</rev>
+</board>

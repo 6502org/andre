@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 IEC</name>
+	<keywords>CSA65 6502 IEEE488 IEC</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board implements an IEEE488 interface, as well
+		as a Commodore serial IEC bus interface, as used in
+		the VIC20 and C64 (and others).
+	</desc>
+	<rev>
+		<version>1.1B</version>
+		<status>ok</status>
+		<note type="msg">
+			This board is only partially compatible with the
+			Commodore PET IEEE488 interface, although it
+			uses the same I/O address. It adds, however,
+			the ability to be used as a device (for both the
+			IEEE488 and the IEC bus).
+		</note>
+		<file ltype="desc" ptype="txt">cpuiecdesc.txt</file>
+		<file ltype="parts" ptype="txt">cpuiecparts.txt</file>
+		<file ltype="schem" ptype="fig">csaiec.fig</file>
+		<file ltype="schem" ptype="png">csaiec.png</file>
+		<file ltype="schem" ptype="psgz">csaiec.ps.gz</file>
+	</rev>
+</board>

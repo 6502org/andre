@@ -21,8 +21,9 @@
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><P><xsl:value-of select="desc"/></P><xsl:text>
 </xsl:text>
+<H2>Board revisions</H2>
 <xsl:for-each select="rev">
-<H2>Version: <xsl:value-of select="version"/></H2><xsl:text>
+<H3>Version: <xsl:value-of select="version"/></H3><xsl:text>
 </xsl:text>
 <P>Status: <xsl:value-of select="status"/></P><xsl:text>
 </xsl:text>
@@ -41,8 +42,13 @@
 </TABLE><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- rev -->
+<xsl:if test="diagram">
+<H2>Block diagram</H2>
+<img src="{diagram/file}" alt="block diagram"/>
+<P><xsl:copy-of select="diagram/desc"/></P>
+</xsl:if>
 <BR></BR>
-<P><xsl:text>Last modified: @LASTMODIFIED@</xsl:text></P>
+<P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
 </DIV>
 </BODY></HTML>
 </xsl:template>
