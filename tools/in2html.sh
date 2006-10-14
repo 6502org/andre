@@ -31,7 +31,9 @@ for i in $root/*.inx; do
 				{ if ( pp>0 ) print $0; } 
 			'\
 			> $to
+		echo "<DIV ID=\"menu\">" >> $to
 		cat $root/.files.xml >> $to
+		echo "</DIV>" >> $to
 		cat $i \
 			| awk -v m="@MENU@" '
 				BEGIN { pp=0; } 
@@ -42,6 +44,7 @@ for i in $root/*.inx; do
 
 		echo "from " $to " to " $t2
 		cat $to \
+			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \
 			> $t2

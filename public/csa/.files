@@ -15,7 +15,7 @@ d copro Coprocessor board
 d cpuemu Emulate a 6502
 d keyemu Emulate a keyboard
 s I/O boards (deprecated)
-d key Keyboard
+d key Keyboard and RS232
 d iec IEEE488 and CBM IEC
 s Other links
 d gallery Gallery

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
+<html><head><base target="_top">
+<meta name="author"  content="Andr&eacute; Fachat">
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="keywords" content="6502,standard,fileformat"> <meta name="description" content="6502 o65 standard fileformat">
+<title>Hardware information</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<link rev="made" href="mailto:@EMAIL@">
+</head>
+<body>
+@MENU@
+<DIV ID="content">
+<h1 class="overview">Hardware information</h1>
+<ul>
+<li>The <a href="ls610/index.html">MMU 74ls610</a> is used in the <a href="../csa/index.html">CS/A65
+computer</a>. Here is a description, as well as an emulation board that can
+replace the MMU.</li>
+<li>The <a href="crtctest/index.html">CRTC 6545</a> is used in the <a href="../petindex/index.html">Commodore PET</a>, as
+well as my <a href="../csa/index.html">CS/A65 computer</a>.</li>
+</ul>
+<hr><p class=endofpage>
+Contents last modified 14 oct 2006 |
+Go to <a href="../index.html">Homepage</a> 
+</p>
+</DIV>
+</body>
+</html>

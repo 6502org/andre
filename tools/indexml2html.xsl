@@ -14,9 +14,7 @@
 <LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
 </HEAD><xsl:text>
 </xsl:text><BODY>
-<DIV ID="menu">
 @MENU@
-</DIV>
 <DIV ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><P><xsl:value-of select="desc"/></P><xsl:text>
