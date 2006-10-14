@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 CPU MMU">
-<TITLE>CS/A65 CPU</TITLE>
+<META NAME="keywords" CONTENT="CSA65 VDC video CRTC 6545 6845">
+<TITLE>CS/A65 Video board</TITLE>
 <LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
 </HEAD>
 <BODY>
@@ -15,13 +15,13 @@
 <li class="separator">Hardware</li>
 <ul class="menu1" >
 <li class="separator">Main boards</li>
-<li class="openfile"><a href="index.html">Start</a></li>
+<li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS board</a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="separator">I/O boards</li>
-<li class="dir"><a href="../vdc/index.html">Video board</a></li>
+<li class="openfile"><a href="index.html">Start</a></li>
 <li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
 <li class="dir"><a href="../shug/index.html">PC floppy</a></li>
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
@@ -47,172 +47,135 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 CPU</H1>
-<P>This board implements the main 6502 CPU board. 
-		It extends the 6502 cpu with a memory management unit (MMU)
-		to achieve a 1 MByte address space. The board also contains
-		the reset circuit, addressing logic for the I/O address space,
-		clock and dRAM signal generation (2Phi2), bus drivers, 
-		and - in the newer versions - bus error detection circuits.
+<H1>CS/A65 Video board</H1>
+<P>This board implements the a video board for the CS/A65 bus.
+		The board uses 64k dynamic RAM that is accessed in a
+		time-shared way, by the CPU at Phi2 high, and by the
+		video at Phi2 low. Due to this interlock the board can
+		display 40 columns a line at 1MHz system clock, and 80 columns
+		a line at 2MHz system clock.
 	</P>
 <H2>Board revisions</H2>
-<H3>Version: 2.0H</H3>
+<H3>Version: 1.3F</H3>
+<P>Status: untested</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			In addition to the timing bugs this board implements
+			a larger character ROM - now the character can be
+			more than 8 pixels high. Also the crude 
+			circuit for the generation of the composite video
+			signal is gone. Instead the video connector has 
+			an additional supply voltage pin, so the video plug
+			can implement any better composite generation.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board is untested.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_vdc_v1.3f-sch.png">csa_vdc_v1.3f-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_vdc_v1.3f.sch">csa_vdc_v1.3f.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_vdc_v1.3f-lay.png">csa_vdc_v1.3f-lay.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_vdc_v1.3f.brd">csa_vdc_v1.3f.brd</A></TD>
+</TR>
+</TABLE>
+<H3>Version: 1.3E</H3>
 <P>Status: prototype</P>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>
-			Version 2.0H implements all the features mentioned
-			above. There is an Eagle(tm) schematics and 
-			also layout available. The schematics and layout
-			are not yet tested in a prototype board.
+<TD>This board version is a redo of the
+			original board, with the known bugs fixed.
 		</TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>
-			This board has not yet been tested.
+<TD>During testing with the PETCPU and
+			new CS/A board - with 74ALS technology I decided to
+			better restrict the timing on the video board 
+			(which was not the cause of the problem), so 
+			a patched the board. The results can be found in
+			version 1.3F.
 		</TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_cpu_v2.0h.sch">csa_cpu_v2.0h.sch</A></TD>
+<TD><A HREF="csa_vdc_v1.3e-sch.png">csa_vdc_v1.3e-sch.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_cpu_v2.0h-sch.png">csa_cpu_v2.0h-sch.png</A></TD>
+<TD><A HREF="csa_vdc_v1.3e.sch">csa_vdc_v1.3e.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_cpu_v2.0h.brd">csa_cpu_v2.0h.brd</A></TD>
+<TD><A HREF="csa_vdc_v1.3e-lay.png">csa_vdc_v1.3e-lay.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_cpu_v2.0h-lay.png">csa_cpu_v2.0h-lay.png</A></TD>
+<TD><A HREF="csa_vdc_v1.3e.brd">csa_vdc_v1.3e.brd</A></TD>
 </TR>
 </TABLE>
-<H3>Version: 2.0G</H3>
+<H3>Version: 1.3C</H3>
 <P>Status: prototype with bugs</P>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>
-			Version 2.0G implements all the features mentioned
-			above. There is an Eagle(tm) schematics and 
-			also layout available. The schematics and layout
-			are tested in a prototype board.
+<TD>This is the original video board. 
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>
-			This version has a severe bug (that can be fixed,
-			though): the mmu inputs RS0-RS3 are connected to
-			the BUSA0-BUSA3 in the wrong order. Due to the way
-			the address bits are connected, it should have RS0
-			connected to BUSA3 and so on.
-		</TD>
-</TR>
-</TABLE>
-<TABLE>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_cpu_v2.0g.sch">csa_cpu_v2.0g.sch</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_cpu_v2.0g-sch.png">csa_cpu_v2.0g-sch.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_cpu_v2.0g.brd">csa_cpu_v2.0g.brd</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_cpu_v2.0g-lay.png">csa_cpu_v2.0g-lay.png</A></TD>
-</TR>
-</TABLE>
-<H3>Version: 1.3B</H3>
-<P>Status: ok</P>
-<TABLE>
-<TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>This version implements an additional
-			write protection circuit. I.e. an additional
-			mmu bit is used to disable the memory access 
-			to the selected memory.
-		</TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>This schematics is only available
-			as a "diff" to the 1.2C version.
+<TD><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
+<TD>This schematics has a bug in the
+			circuit to generate the shift register load 
+			signal. It went unnoticed as my prototype board
+			was manually soldered.
 		</TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="cpu65wpdesc.txt">cpu65wpdesc.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65wp.png">cpu65wp.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65wp.fig">cpu65wp.fig</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65wp.ps.gz">cpu65wp.ps.gz</A></TD>
-</TR>
-</TABLE>
-<H3>Version: 1.2C</H3>
-<P>Status: ok</P>
-<TABLE>
-<TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>This is the original cpu board. It implements
-			most features, but not the bus error detection
-			circuits.
-		</TD>
-</TR>
-</TABLE>
-<TABLE>
-<TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="cpu65desc.txt">cpu65desc.txt</A></TD>
+<TD><A HREF="csavdcdesc.txt">csavdcdesc.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="cpu65parts.txt">cpu65parts.txt</A></TD>
+<TD><A HREF="csavdcparts.txt">csavdcparts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65.png">cpu65.png</A></TD>
+<TD><A HREF="csavdc.png">csavdc.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65.fig">cpu65.fig</A></TD>
+<TD><A HREF="csavdc.fig">csavdc.fig</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65.ps.gz">cpu65.ps.gz</A></TD>
+<TD><A HREF="csavdc.ps.gz">csavdc.ps.gz</A></TD>
 </TR>
 </TABLE>
 <H2>Block diagram</H2>
-<img src="cpu.gif" alt="block diagram"><P><desc>Block diagram of the cpu board. It shows the MMU,
-			but also the port to read the CPU address.
-			Please note that the MMU and the port can be
-			accessed from the bus alone, if the cpu is decoupled
-			from the bus with the drivers. This can be used
-			when the cpu is stopped with the RDY e.g. by
-			a bus error.
-		</desc></P>
-<BR><P>Last modified: 2006-10-13.</P>
+<img src="vdc.gif" alt="block diagram"><P><desc>Block diagram of the vdc board.</desc></P>
+<BR><P>Last modified: 2006-10-14.</P>
 </DIV>
 </BODY>
 </HTML>

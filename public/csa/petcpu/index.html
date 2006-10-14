@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 processor">
-<TITLE>CS/A65 CPU65b</TITLE>
+<META NAME="keywords" CONTENT="CSA65 6502 PET CPU">
+<TITLE>CS/A65 PETCPU</TITLE>
 <LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
 </HEAD>
 <BODY>
@@ -17,8 +17,8 @@
 <li class="separator">Main boards</li>
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS board</a></li>
-<li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="openfile"><a href="index.html">Start</a></li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="separator">I/O boards</li>
 <li class="dir"><a href="../vdc/index.html">Video board</a></li>
@@ -47,49 +47,97 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 CPU65b</H1>
+<H1>CS/A65 PETCPU</H1>
 <P>This board implements a 6502 processor board for the 
-		CS/A65 bus system. Compared to the main cpu, however,
-		it only utilizes 64k memory without an MMU, and can
-		thus only use the I/O address space on the CS/A65 bus.
+		CS/A65 bus system. It in addition to the 
+		CPU65b board it allows
+		to use (small parts) of the memory area of the CS/A65 bus.
+		This can be utilized to access the video board to implement
+		a video interface.
 	</P>
 <H2>Board revisions</H2>
-<H3>Version: 2.0B</H3>
-<P>Status: draft</P>
+<H3>Version: 1.1B</H3>
+<P>Status: untested</P>
 <TABLE>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board is derived from the Gecko board,
-			in that the Gecko I/O circuitry have been removed.
+			This schematics has been tested by modifying the
+			1.1A board version, but the layout itself has not
+			been tested. It mainly adds a driver for the Phi2
+			signal, and has been tested with the MOS6502 (1MHz), 
+			Rockwell R6502AD and R65C02P4 (1 and 2MHz each). 
 		</TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This schematics has not been tested.
+			The RS232 interface has not yet been tested.
 		</TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petcpu_v1.1b.sch">csa_petcpu_v1.1b.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petcpu_v1.1b-sch.png">csa_petcpu_v1.1b-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petcpu_v1.1b.brd">csa_petcpu_v1.1b.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petcpu_v1.1b-lay.png">csa_petcpu_v1.1b-lay.png</A></TD>
+</TR>
+<TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="cpu65bdesc.txt">cpu65bdesc.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.fig">cpu65b.fig</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.png">cpu65b.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.ps.gz">cpu65b.ps.gz</A></TD>
+<TD><A HREF="csa_petcpu_v1.1b-desc.txt">csa_petcpu_v1.1b-desc.txt</A></TD>
 </TR>
 </TABLE>
-<BR><P>Last modified: 2006-10-13.</P>
+<H3>Version: 1.1A</H3>
+<P>Status: prototype with bugs</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board has been tested and I found a severe bug
+			in the timing in combination with the NMOS 6502: 
+			the NMOS 6502 can not drive the Phi2 signal with
+			sufficient power on the bus, so the board works with 
+			the CMOS 6502 version only. Please see the 1.1B
+			version for a comparison.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The RS232 interface has not yet been tested.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petcpu_v1.1a.sch">csa_petcpu_v1.1a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petcpu_v1.1a-sch.png">csa_petcpu_v1.1a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petcpu_v1.1a.brd">csa_petcpu_v1.1a.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petcpu_v1.1a-lay.png">csa_petcpu_v1.1a-lay.png</A></TD>
+</TR>
+</TABLE>
+<BR><P>Last modified: 2006-10-14.</P>
 </DIV>
 </BODY>
 </HTML>

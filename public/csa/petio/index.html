@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 processor">
-<TITLE>CS/A65 CPU65b</TITLE>
+<META NAME="keywords" CONTENT="CSA65 6502 PET IO">
+<TITLE>CS/A65 PETIO</TITLE>
 <LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
 </HEAD>
 <BODY>
@@ -18,11 +18,11 @@
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS board</a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
-<li class="openfile"><a href="index.html">Start</a></li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="separator">I/O boards</li>
 <li class="dir"><a href="../vdc/index.html">Video board</a></li>
-<li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
+<li class="openfile"><a href="index.html">Start</a></li>
 <li class="dir"><a href="../shug/index.html">PC floppy</a></li>
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
 <li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
@@ -47,49 +47,97 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 CPU65b</H1>
-<P>This board implements a 6502 processor board for the 
-		CS/A65 bus system. Compared to the main cpu, however,
-		it only utilizes 64k memory without an MMU, and can
-		thus only use the I/O address space on the CS/A65 bus.
+<H1>CS/A65 PETIO</H1>
+<P>This board implements Commodore PET compatible
+		I/O interfaces. This includes the keyboard, IEEE488,
+		userport (mostly) and tape ports. It adds the functionality
+		that the IEEE488 bus can also be used as a device.
 	</P>
 <H2>Board revisions</H2>
-<H3>Version: 2.0B</H3>
-<P>Status: draft</P>
+<H3>Version: 1.1C</H3>
+<P>Status: untested</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board has the keyboard connector bug from revision
+			1.1B fixed, but is otherwise completely untested.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petio_v1.1c.sch">csa_petio_v1.1c.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petio_v1.1c-sch.png">csa_petio_v1.1c-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petio_v1.1c.brd">csa_petio_v1.1c.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petio_v1.1c-lay.png">csa_petio_v1.1c-lay.png</A></TD>
+</TR>
+</TABLE>
+<H3>Version: 1.1B</H3>
+<P>Status: prototype with bug</P>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
-			This board is derived from the Gecko board,
-			in that the Gecko I/O circuitry have been removed.
+			This board has been tested with a Commodore PET
+			ROM.
 		</TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This schematics has not been tested.
+			The 25-pin D-Sub keyboard connector has the wrong
+			keyboard layout. Silly me, relying on the Commodore
+			documentation, in this case the 8296 addendum to
+			the 8032 manual - it has the wrong pinout listed.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The use of the IEEE488 interface as device, not 
+			controller has not been tested yet.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			I did not really find a fitting piezo beeper
+			device in the Eagle(tm) libraries, so please
+			make sure you do not make short circuits. Best
+			is to isolate the beeper from the board.
 		</TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="cpu65bdesc.txt">cpu65bdesc.txt</A></TD>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_petio_v1.1b.sch">csa_petio_v1.1b.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.fig">cpu65b.fig</A></TD>
+<TD><A HREF="csa_petio_v1.1b-sch.png">csa_petio_v1.1b-sch.png</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.png">cpu65b.png</A></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petio_v1.1b.brd">csa_petio_v1.1b.brd</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="cpu65b.ps.gz">cpu65b.ps.gz</A></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_petio_v1.1b-lay.png">csa_petio_v1.1b-lay.png</A></TD>
 </TR>
 </TABLE>
-<BR><P>Last modified: 2006-10-13.</P>
+<BR><P>Last modified: 2006-10-14.</P>
 </DIV>
 </BODY>
 </HTML>

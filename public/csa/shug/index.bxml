@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 PC floppy interface</name>
+	<keywords>CSA65 6502 shugart floppy</keywords>
+        <lastmodified>2006-10-14</lastmodified>
+	<desc>This board implements a shugart bus interface as used 
+		in the standard PC floppy disk drives (5.25&quot; and 3.5&quot;).
+	</desc>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 5.25&quot; and 3.5&quot; PC disk drives.
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<file ltype="schem" ptype="psgz">csashug.ps.gz</file>
+		<file ltype="schem" ptype="png">csashug.png</file>
+		<file ltype="schem" ptype="fig">csashug.fig</file>
+		<file ltype="parts" ptype="txt">csashugparts.txt</file>
+		<file ltype="desc" ptype="txt">csashugdesc.txt</file>
+	</rev>
+</board>

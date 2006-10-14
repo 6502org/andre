@@ -27,11 +27,13 @@
 </xsl:text>
 <P>Status: <xsl:value-of select="status"/></P><xsl:text>
 </xsl:text>
+<TABLE>
 <xsl:for-each select="note">
-<TABLE><TR><TD><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
-</xsl:text><TD><xsl:copy-of select="text()"/></TD></TR></TABLE><xsl:text>
+<TR><TD><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
+</xsl:text><TD><xsl:copy-of select="text()|*"/></TD></TR><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- note -->
+</TABLE>
 
 <TABLE><xsl:for-each select="file"><xsl:text>
 </xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>

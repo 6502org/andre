@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 SCSI interface</name>
+	<keywords>CSA65 6502 SCSI</keywords>
+        <lastmodified>2006-10-14</lastmodified>
+	<desc>This board implements a SCSI interface for the CS/A65
+		computer.
+	</desc>
+	<rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<note type="msg">
+			This board implements a SCSI-I controller. The 
+			following restrictions apply:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul>
+		</note>
+		<file ltype="schem" ptype="psgz">csascsi1.ps.gz</file>
+		<file ltype="schem" ptype="png">csascsi1.png</file>
+		<file ltype="schem" ptype="fig">csascsi1.fig</file>
+		<file ltype="parts" ptype="txt">csascsi1parts.txt</file>
+		<file ltype="desc" ptype="txt">csascsi1desc.txt</file>
+	</rev>
+</board>
