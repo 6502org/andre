@@ -2,8 +2,11 @@
 <head>
 <title>CS/A65 Emulator</title>
 <link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
-<body bgcolor="#ffffff">
+<body>
+@MENU@
+<DIV ID="content">
 <H1 align=center>CS/A65 Emulator</H1>
 <h2>CS/A65 emulator (<a href="@WEBROOT@">A. Fachat</a>)</h2>
 <p>
@@ -39,4 +42,4 @@ Drive C:-F: are IEEE drives 8-11, i.e. on drive 11 you find the Unix
 directory under VICE.
 </p><hr>
 13 jan 1998 A. Fachat
-</body></html>
+</DIV></body></html>

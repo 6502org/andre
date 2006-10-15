@@ -24,20 +24,22 @@ if [ -f $root/.files ]; then
 		BEGIN { print "<ul class=\"menu" upn "\" >"; } \
 		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
 		/^f / { print "<li class=\"file\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^l / { print "<li class=\"link\"><a href=\"" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^d / { print "<li class=\"dir\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>@" $2 "@"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml
 else
-    echo "<li class=\"openfile\"><a href=\"index.html\">Start</a></li>" > $root/.files.xml
+    echo "" > $root/.files.xml
+#    echo "<li class=\"openfile\">index.html</li>" > $root/.files.xml
 fi
 
-if [ "x$parent" != "x" ]; then
+if [ -f $root/../.files.xml2 ]; then
 	cat $root/../.files.xml2 \
 		| awk -v m="$parent" '
 			BEGIN { pp=1; } 
-			{ if (index($0, m) > 0) { pp=0; } } 
 			{ if ( pp>0 ) print $0; } 
+			{ if (index($0, m) > 0) { pp=0; } } 
 		'\
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
 		| sed -e "s@%up%@../%up%@g" \
@@ -53,9 +55,11 @@ if [ "x$parent" != "x" ]; then
 		| sed -e "s@%up%@../%up%@g" \
 		>> $root/.files.xml2
 else
+	echo "<ul><li class="homepage"><a href="%up%index.html">Homepage</a></li>" > $root/.files.xml2
 	cat $root/.files.xml \
-		> $root/.files.xml2
+		>> $root/.files.xml2
 		#| sed -e "s@%up%@../%up%@g" \
+	echo "</ul>" >> $root/.files.xml2
 fi
 
 if [ -f $root/.files ]; then

@@ -5,27 +5,10 @@
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
 <!--BASE HREF="http://www.6502.org/users/andre/petindex/index.html"-->
 <TITLE>PET index V1.0</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </HEAD>
 <BODY>
-<DIV ID="menu">
-<ul><li class=homepage><a href=../index.html>Homepage</a></li>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
-
-<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
-<li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">My CS/A65 computer</a></li>
-<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
-<li class="separator">Software</li>
-<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
-<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
-<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
-<li class="dir"><a href="../misc/index.html">Misc software</a></li>
-</ul>
-</ul>
-</DIV>
+@MENU@
 <DIV ID="content">
 <H1>PET index V1.0</H1><P><A HREF="index.txt">Text version</A>
 <P>NEW: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>

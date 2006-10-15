@@ -5,39 +5,10 @@
 <meta content="C64, SCSI controller" name="keywords">
 <title>www.6502.org: SCSI-64: SCSI controller for the C64 and other 6502</title>
 <link href="mailto:afachat@gmx.de" rev="made">
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
 <body>
-<DIV ID="menu">
-<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
-<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
-<ul class="menu1" >
-<li class="dir"><a href="../ryofat40/index.html">Build your own new PET!</a></li>
-<li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
-<li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
-<li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
-<ul class="menu2" >
-<li class="link"><a href="../../csa/scsi/index.html">CS/A65 SCSI interface</a></li>
-<li class="dir"><a href="c64scsi/index.html">C64 SCSI interface</a></li>
-<li class="dir"><a href="vcscsi1/index.html">SCSI disk drive V1</a></li>
-<li class="dir"><a href="vcscsi2/index.html">SCSI disk drive V2</a></li>
-</ul>
-<li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
-</ul>
-<li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">My CS/A65 computer</a></li>
-<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
-<li class="separator">Software</li>
-<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
-<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
-<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
-<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
-</ul>
-</ul>
-</DIV>
+@MENU@
 <DIV ID="content">
 <h1>SCSI-64: SCSI controller for the C64 and other 6502</h1><h2>(C)
 1997-2000 Andr&eacute;  Fachat 

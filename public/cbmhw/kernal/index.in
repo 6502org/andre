@@ -6,8 +6,11 @@
 <meta name="keywords" content="C64,kernal,kernel"> <meta name="description" content="Modified C64 kernals">
 <title>new kernals</title>
 <link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<body>
+@MENU@
+<DIV ID="content">
 <h1>C64 kernals</h1>
 <h2>This is Copyright A.Fachat, for distributing use my own 
 <a href="MYCOPYING.ASC">License</a></h2><hr>
@@ -151,5 +154,5 @@ POSSIBILITY OF SUCH DAMAGES.
 Contents last modified Nov 13 1998 |
 Go to <a href="../../index.html">Homepage</a> 
 </p>
-</body>
+</DIV></body>
 </html>

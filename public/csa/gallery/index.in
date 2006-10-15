@@ -2,7 +2,10 @@
 <meta name="author" content="Andr&eacute; Fachat">
 <title>Andr&eacute;'s CS/A65 computer</title>
 <link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head><body>
+@MENU@
+<DIV ID="content">
 <h2 align=center>This is my selfdesigned and selfbuilt computer</h2>
 <h3 align=center>&copy; Andr&eacute; Fachat</h3>
 <hr><p>
@@ -59,5 +62,5 @@ Web-publishing. So here are the photos of this one:<p>
 <a name="config"></a>
 <h2>My current configuration</h2>
 <img src="mycomps.png" alt="[Sorry, no picture!]">
-</body>
+</DIV></body>
 </html>

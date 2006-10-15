@@ -1,0 +1,6 @@
+l ../../csa/scsi/index.html CS/A65 SCSI interface
+d c64scsi C64 SCSI interface
+d vcscsi1 SCSI disk drive V1
+d vcscsi2 SCSI disk drive V2
+
+

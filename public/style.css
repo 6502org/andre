@@ -29,11 +29,22 @@ DIV#menu {
 }
 
 LI.separator {
-	list-style-type:none;
+	font-size:larger;
+	font-weight:bold;
+	list-style-image:url(imgs/arrow.gif);
+}
+
+LI.homepage {
+	list-style-image:url(imgs/dir.gif);
+	font-size:large;
 }
 
 LI.file {
 	list-style-image:url(imgs/file.gif);
+}
+
+LI.link {
+	list-style-image:url(imgs/link.gif);
 }
 
 LI.dir {

@@ -56,35 +56,28 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="webpage">
-<html><head><base target="_top"/>
+<html><head>
 <xsl:text>
 </xsl:text>
-<meta name="author" content="{author/name}"/>
-<xsl:text>
+<meta name="author" content="{author/name}"/><xsl:text>
 </xsl:text>
-<meta http-equiv="content-type" content="text/html; charset=iso8859-1"/>
-<xsl:text>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1"/><xsl:text>
 </xsl:text>
-<meta name="description" content="{metadesc}"/>
-<xsl:text>
+<meta name="description" content="{metadesc}"/><xsl:text>
 </xsl:text>
-<meta name="keywords" content="{keywords}"/>
-<xsl:text>
+<meta name="keywords" content="{keywords}"/><xsl:text>
 </xsl:text>
-<title>www.6502.org: <xsl:value-of select="@name"/></title>
-<xsl:text>
+<title><xsl:value-of select="@name"/></title><xsl:text>
 </xsl:text>
-<link rev="made" href="mailto:{author/email}"/>
+<link rev="made" href="mailto:{author/email}"/><xsl:text>
+</xsl:text>
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
 </head>
 <xsl:text>
 </xsl:text>
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
-<xsl:text>
-</xsl:text>
-<img src="@WEBROOT@/logo2.png" alt="logo" align="left"/>
-<A HREF="http://www.6502.org"><IMG SRC="http://www.6502.org/mainlink.jpg" align="right" border="0" alt="[Return to www.6502.org]"/></A><br/>
-<xsl:text>
-</xsl:text>
+<body>
+@MENU@
+<DIV ID="content">
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">
@@ -97,7 +90,6 @@
 <xsl:text> 
 </xsl:text>
 </xsl:for-each>
-
 <p>
 <xsl:value-of select="overview"/>
 </p>
@@ -124,7 +116,7 @@
 </xsl:for-each>
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
-</body></html>
+</DIV></body></html>
 <xsl:text> 
 </xsl:text>
 </xsl:template>

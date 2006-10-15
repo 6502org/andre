@@ -5,8 +5,11 @@
 <meta name="keywords" content="6502,hardware,8 bit,schematics"> <meta name="description" content="6502 computer with MMU">
 <title>CS/A65 and Gecko computers</title>
 <link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<body>
+@MENU@
+<DIV ID="content">
 <h1>CS/A65 and Gecko Computer</h1>
 <h2>(C) 1989-1999 A. Fachat</h2>
 <hr>
@@ -198,6 +201,7 @@ processors. For more please see the description.
 <p>WARNING: This schematic has not been implemented. In fact I have no
 idea when I'm going to have the time to do so. So this might well
 be really buggy!
+<p>NOTE: This has indeed proven to be buggy. Wait for an updated version (hopefully) soon.</p>
 <p>The schematics are only available as scanned hand-drawings. If 
 someone can send me the etched boards if I send the
 eagle(tm) schematics (I think the free version I have only restricts the
@@ -313,5 +317,6 @@ to the lines the C64 is reading in response.
 Contents last modified 28 June 1999 |
 Go to <a href="../index.html">Homepage</a> 
 </p>
+</DIV>
 </body>
 </html>

@@ -5,8 +5,51 @@
 <meta name="keywords" content="6502,hardware,8 bit,schematics"> <meta name="description" content="6502 computer with MMU">
 <title>CS/A65 and Gecko computers</title>
 <link rev=made href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
 </head>
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../csa/index.html">My CS/A65 computer</a></li>
+<ul class="menu1" >
+<li class="separator">Main boards</li>
+<li class="dir"><a href="cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="bios/index.html">CS/A65 BIOS board</a></li>
+<li class="dir"><a href="petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="vdc/index.html">Video board</a></li>
+<li class="dir"><a href="petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="scsi/index.html">SCSI board</a></li>
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="keyemu/index.html">Emulate a keyboard</a></li>
+<li class="separator">I/O boards (deprecated)</li>
+<li class="dir"><a href="key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="iec/index.html">IEEE488 and CBM IEC</a></li>
+<li class="separator">Other links</li>
+<li class="dir"><a href="gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="emu/index.html">VICE emu of CS/A65</a></li>
+</ul>
+<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../misc/index.html">Misc software</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
 <h1>CS/A65 and Gecko Computer</h1>
 <h2>(C) 1989-1999 A. Fachat</h2>
 <hr>
@@ -198,8 +241,7 @@ processors. For more please see the description.
 <p>WARNING: This schematic has not been implemented. In fact I have no
 idea when I'm going to have the time to do so. So this might well
 be really buggy!
-<p>
-NOTE: This has indeed proven to be buggy. Wait for an updated version (hopefully) soon.
+<p>NOTE: This has indeed proven to be buggy. Wait for an updated version (hopefully) soon.</p>
 <p>The schematics are only available as scanned hand-drawings. If 
 someone can send me the etched boards if I send the
 eagle(tm) schematics (I think the free version I have only restricts the
@@ -221,8 +263,7 @@ speed) with 25 lines on a TV set.
 The 6545 I/O location is the same as in the PET, and information
 on the chip can be found on <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">the commodore archives</a>.
 The card can only be used with a MMU CPU board, that uses the 
-<code>/MEMSEL</code> line. <br>
-NOTE: the schematics has a small bug in the pixel-shift register control, an updated version is coming soon.
+<code>/MEMSEL</code> line. 
 <p> schematics <a href="csavdc.ps.gz">csavdc.ps.gz</a> or
 <a href="csavdc.png">csavdc.png</a>, 
 <a href="csavdcdesc.txt">description</a>, <a href="csavdcparts.txt">parts list</a>.
@@ -316,5 +357,6 @@ to the lines the C64 is reading in response.
 Contents last modified 28 June 1999 |
 Go to <a href="../index.html">Homepage</a> 
 </p>
+</DIV>
 </body>
 </html>

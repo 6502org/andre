@@ -11,13 +11,11 @@
 @MENU@
 <DIV ID="content">
 <h1 class="overview">Hardware information</h1>
-<ul>
-<li>The <a href="ls610/index.html">MMU 74ls610</a> is used in the <a href="../csa/index.html">CS/A65
+<p>The <a href="ls610/index.html">MMU 74ls610</a> is used in the <a href="../csa/index.html">CS/A65
 computer</a>. Here is a description, as well as an emulation board that can
-replace the MMU.</li>
-<li>The <a href="crtctest/index.html">CRTC 6545</a> is used in the <a href="../petindex/index.html">Commodore PET</a>, as
-well as my <a href="../csa/index.html">CS/A65 computer</a>.</li>
-</ul>
+replace the MMU.</p>
+<p>The <a href="crtctest/index.html">CRTC 6545</a> is used in the <a href="../petindex/index.html">Commodore PET</a>, as
+well as my <a href="../csa/index.html">CS/A65 computer</a>.</p>
 <hr><p class=endofpage>
 Contents last modified 14 oct 2006 |
 Go to <a href="../index.html">Homepage</a> 
