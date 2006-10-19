@@ -1,0 +1,93 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp " "> ]>
+<webpage name="Andr&eacute;'s 8-bit misc pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>6502,8-bit</keywords>
+  <metadesc>Miscellaneous 8-bit stuff</metadesc>
+  <overview>
+On these pages you will find quite some software I made around the
+6502 and the Commodore 8-bit machines.
+  </overview>
+<!--
+  <news>
+    <item date="">
+    </item>
+  </news>
+-->
+  <itemlist name="Crossdevelopment">
+    <description>
+    </description>
+    <items>
+      <subitem name="xa65" link="http://stockholm.ptloma.edu/cbm/xa/">6502 crossassembler<br/>
+This is the 6502 crossassembler I developed to use with my seflbuilt
+computers. It is the main assembler for the
+<a href="../osa/index.html">GeckOS/A65</a>
+operating system and supports the
+<a href="../o65/index.html">o65 fileformat</a>.<br/>
+It originates on my old, long-gone Atari ST and has been ported
+to standard ANSI C since. It compiles on various platforms.
+<a href="xa-2.1.4h.tar.gz">xa-2.1.4h.tar.gz</a> is the latest Unix
+version I use. Jolse Maginnis added 65816 support. This version is
+<a href="xa-2.1.4f+65816-v2.tar.gz">xa-2.1.4f+65816-v2.tar.gz</a>
+<br/>
+However, due to lack of time I have given the maintenance job to
+Cameron Kaiser. The new website (with current versions) is
+<a href="http://stockholm.ptloma.edu/cbm/xa/">http://stockholm.ptloma.edu/cbm/xa/</a></subitem>
+   </items>
+  </itemlist>
+  <itemlist name="C64 development">
+    <description>These programs are not under development anymore.
+    </description>
+     <items>
+      <subitem name="@basic">My own basic extension for the C64.
+Provides list-scroll, builtin micromonitor, disk-basic, and some more
+development tools. You find it at
+<a href="@CBMARC@/c64/programming/atbasic.tar.gz">@CBMARC@/c64/programming/atbasic.tar.gz</a>
+or <a href="@CBMARC@/c64/programming/atbasic.lzh">atbasic.lzh</a>.</subitem>
+      <subitem name="@mon">My own machine language monitor. Probably not as good
+as others, but I am used to it and I like it. You find it at
+<a href="@CBMARC@/c64/programming/atmon.tar.gz">@CBMARC@/c64/programming/atmon.tar.gz</a>
+or <a href="@CBMARC@/c64/programming/atbasic.lzh">atmon.lzh</a>.</subitem>
+      <subitem name="@ass">My own C64 native assembler.
+You need it for some
+of the projects on this page. You find it at
+<a href="@CBMARC@/c64/programming/atass.tar.gz">@CBMARC@/c64/programming/atass.tar.gz</a>or <a href="@CBMARC@/c64/programming/atbasic.lzh">atass.lzh</a>.</subitem>
+      <subitem name="BASMON">: This small monitor program is written in BASIC,
+uses some of the kernal code and should runs on the C64 and the PET
+computers. A special version for the CBM&nbsp;600 (aka B128) is available.</subitem>
+     </items>
+   </itemlist>
+   <itemlist name="Other programs">
+    <description>Here is some other stuff that might be of interest.
+    </description>
+    <items>
+      <subitem name="BDOS+">This program reads and writes
+PC floppy disks on a C128 with a VC1571 disk drive.
+I once published a version in the 64er magazin as <em>project of the month</em>.
+Nowadays I would suggest using the transfer tools from
+<a href="@CBMARC@/transfer/index.html">@CBMARC@/transfer/</a>.</subitem>
+      <subitem name="xcbm">This was my first attempt in writing a C64/PET
+emulator running on Unix before I joined the VICE team. It basically
+emulates the
+6502 opcodes (not the undefined ones) and traps the kernal to access
+the hardware (except the screen). It uses the text terminal for display,
+so if it works you could even run it over a terminal line :-).
+Get the full archive at
+<a href="@CBMARC@/crossplatform/emulators/unix/xcbm-0.1.2.tar.gz">@CBMARC@/crossplatform/emulators/unix/xcbm-0.1.2.tar.gz</a>
+or read the <a href="README.xcbm.txt">README.xcbm.txt</a>.
+</subitem>
+    </items>
+  </itemlist>
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+  </disclaimer>
+  <closing>
+Contents last modified 15 June 2000
+  </closing>
+</webpage>

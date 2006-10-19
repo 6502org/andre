@@ -1,0 +1,58 @@
+<html><head><base target="_top">
+<meta content="André  Fachat" name="author">
+<meta content="text/html; charset=iso8859-1" http-equiv="content-type">
+<meta content="Commodore resp. 8-bit 6502 information" name="description">
+<meta content="8-bit,6502,Commodore" name="keywords">
+<title>www.6502.org: Andr&eacute; 's 8-bit pages</title>
+<link href="mailto:afachat@gmx.de" rev="made"></head>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css">
+<body>
+@MENU@
+<DIV ID="content">
+<h1>Andr&eacute; 's 8-bit pages</h1><h2>(C)
+- Andr&eacute;  Fachat 
+&lt;<a href="mailto:afachat@gmx.de">afachat@gmx.de</a>&gt; 
+</h2> 
+<p>
+On these pages you will find quite some information concerning selfbuilt
+8-bit computers of the 6502 line. Also some stuff for old Commodore
+machines with this CPU is there, like new C64 kernals, VC1541 modifications
+etc. A selfbuilt operating system
+features Multitasking, dynamic memory management, a standard library
+and internet access.
+  </p><hr><strong>News:</strong><p><small>7. Aug. 2006</small>
+    I have updated the links from funet to the new home of the 
+    Commodore archive at <a href="http://www.zimmers.net/anonftp/pub/cbm/">http://www.zimmers.net/anonftp/pub/cbm/</a>, as well as checked the other
+    links and updated them where necessary.
+    </p><hr><h3>Quickfinder</h3>
+    <ul><li><strong>General 6502 stuff</strong><br><br><ul><li><a href="osa/index.html">GeckOS/A65</a>
+A small 6502 multitasking operating
+system that runs on the Commodore C64 and PET computers, as well as my
+selfbuilt 6502s.
+      <br><br></li><li><a href="csa/index.html">CS/A65</a> and
+<a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
+multi- resp. singleboard 6502 computers.
+The CS/A65 features virtual memory, video card, a SCSI interface
+and many more stuff
+I have now linked my CS/A65 emulator, based on the VICE emulator,
+to this page.<br><br></li><li><a href="lib6502/index.html">LIB6502</a>is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.<br><br></li><li><a href="o65/index.html">o65</a>fileformat is a flexible relocatable 6502/65816 fileformat.<br><br></li><li><a href="scsi/index.html">SCSI-64</a>, a project to add a
+SCSI interface to the 6502 in general (it is used in the CS/A65 computer
+and the C64).<br><br></li></ul></li><br><li><strong>Commodore 8-bit Stuff</strong><br><br><ul><li><a href="petindex/index.html">PETindex</a> - a list of hardware
+information and links to the old CBM PET machines<br><br></li><li><a href="scsi/index.html">C64 SCSI</a> interfaces (see above)<br><br></li><li><a href="ieee488/index.html">IEEE 488</a> interfaces for various
+CBM equipment and the PC. I use my PC as harddisk for my
+CBMs <code>:-)</code><br><br></li><li><a href="cbmhw/index.html">hardware modifications</a> I made to my
+CBM equipment.<br><br></li><li><a href="http://www.cs.cmu.edu/~dsladic/vice/vice.html">VICE</a> is
+a great C64/PET/VIC20/C128/CBM-II emulator for Unix/DOS/Windows/RiscOS/...
+where I have been working on the PET and CBM-II emulators and the Unix-specific
+code. It is released under the GPL (GNU Public License)<br><br></li></ul></li><br><li><strong>Miscellaneous</strong><br><br><ul><li><a href="misc/index.html">Software</a> I wrote with relation
+to the 6502. Features cross assembler, C64 basic extension, etc.<br><br></li></ul></li><br></ul><hr><h4>Disclaimer</h4>
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+    <hr>
+<P ALIGN="CENTER"><A HREF="http://www.anybrowser.org/campaign/"><IMG ALT="Best Viewed With Any Browser" BORDER="0" SRC="imgs/anybrowser3.png"></A>
+<a href="http://www4.tripnet.se/%7eslarti/f_frames_uk.htm"><img alt="Supporting GOOD frames" border="0" src="imgs/good_fr1.png"></a>
+</P>
+<Font size=-1>Last updated June 15, 2000.</font>
+  </DIV></body></html>

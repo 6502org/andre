@@ -74,7 +74,7 @@ Sorry, no schematics at this time.<br><br></li><li><strong>CS/A65</strong>
 to use all the memory and I/O cards of the
 <a href="../csa/index.html">CS/A65</a> computer - which includes
 another video card, extra RAM, IEEE488 and SCSI interfaces.
-For the SCSI interfaces see the <a href="../scsi/index.html">SCSI-64</a>
+For the SCSI interfaces see the <a href="scsi/index.html">SCSI-64</a>
 pages also.
 For more on the adapter see the <a href="c64csa/index.html">C64-CS/A</a> pages.<br><br></li></ul><hr><h3>VC1541 Modifications</h3>My old VC1541 (a really early one in a white case, fitting the color of
 the VIC20 and not the color of the C128 like later white versions)

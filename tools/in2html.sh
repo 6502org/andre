@@ -45,14 +45,19 @@ for i in $root/*.inx; do
 		echo "from " $to " to " ${t2}~
 		cat $to \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
+			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \
 			> ${t2}~
 
-		diff ${t2} ${t2}~
-		if [ $? -eq 1 ]; then
+		if [ ! -f ${t2} ]; then
 			cp ${t2}~ ${t2};
-		fi
+		else
+			diff -q ${t2} ${t2}~
+				if [ $? -eq 1 ]; then
+				cp ${t2}~ ${t2};
+			fi
+		fi;
 		rm $i $to ${t2}~
 	fi;
 done

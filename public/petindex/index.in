@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
-<LINK HREF="petindex.css" REL="stylesheet" TYPE="text/css">
+<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
 <!--BASE HREF="http://www.6502.org/users/andre/petindex/index.html"-->
 <TITLE>PET index V1.0</TITLE>
@@ -10,7 +10,7 @@
 <BODY>
 @MENU@
 <DIV ID="content">
-<H1>PET index V1.0</H1><P><A HREF="index.txt">Text version</A>
+<H1>PET index V1.0</H1>
 <P>NEW: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>
 <P>This file is intended to be an index about the
 PET line of Commodore computers. It is compiled out of several
