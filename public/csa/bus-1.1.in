@@ -1,55 +1,12 @@
 <html><head><meta name="author" content="Andr&eacute; Fachat">
-<link rev=made href="afachat@gmx.de">
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<link rev=made href="@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 <title>CS/A bus connector</title></head>
 <body>
-<DIV ID="menu">
-<ul><li class=homepage><a href=../index.html>Homepage</a></li>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
-<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
-<li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">My CS/A65 computer</a></li>
-<ul class="menu1" >
-<li class="separator">Specifications</li>
-<li class="file"><a href="bus.html">Bus V1.0</a></li>
-<li class="file"><a href="bus-1.1.html">Bus V1.1</a></li>
-<li class="separator">Main boards</li>
-<li class="dir"><a href="cpu/index.html">CS/A65 CPU</a></li>
-<li class="dir"><a href="bios/index.html">CS/A65 BIOS board</a></li>
-<li class="dir"><a href="petcpu/index.html">64k PET CPU</a></li>
-<li class="dir"><a href="cpu65b/index.html">64k CPU</a></li>
-<li class="dir"><a href="gecko/index.html">Gecko</a></li>
-<li class="separator">I/O boards</li>
-<li class="dir"><a href="vdc/index.html">Video board</a></li>
-<li class="dir"><a href="petio/index.html">CBM PET I/O</a></li>
-<li class="dir"><a href="shug/index.html">PC floppy</a></li>
-<li class="dir"><a href="duart/index.html">Double UART (RS232)</a></li>
-<li class="dir"><a href="scsi/index.html">SCSI board</a></li>
-<li class="separator">Special purpose</li>
-<li class="dir"><a href="copro/index.html">Coprocessor board</a></li>
-<li class="dir"><a href="cpuemu/index.html">Emulate a 6502</a></li>
-<li class="dir"><a href="keyemu/index.html">Emulate a keyboard</a></li>
-<li class="separator">I/O boards (deprecated)</li>
-<li class="dir"><a href="key/index.html">Keyboard and RS232</a></li>
-<li class="dir"><a href="iec/index.html">IEEE488 and CBM IEC</a></li>
-<li class="separator">Other links</li>
-<li class="dir"><a href="gallery/index.html">Gallery</a></li>
-<li class="dir"><a href="emu/index.html">VICE emu of CS/A65</a></li>
-</ul>
-<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
-<li class="separator">Software</li>
-<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
-<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
-<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
-<li class="dir"><a href="../misc/index.html">Misc software</a></li>
-</ul>
-</ul>
-</DIV>
+@MENU@
 <DIV ID="content">
-<h1 align="center">CS/A bus connector V1.0</h1>
-<H2 ALIGN=CENTER>(c) 1997 Andr&eacute; Fachat</h2>
+<h1 align="center">CS/A bus connector V1.1</h1>
+<H2 ALIGN=CENTER>(c) 1997,2006 Andr&eacute; Fachat</h2>
 <hr>
 The bus connector is a 96 pin connector according to DIN 41612, type C,
 where only 64 pins (rows a+c) are used.
@@ -68,12 +25,12 @@ The bus layout is:
 -MEMSEL a    6  c A17
  -IOSEL a    7	c A16
     -BE a    8  c A15
- 	a    9	c A14
- 	a   10	c A13
-	a   11	c A12
- 	a   12	c A11
- 	a   13  c A10
- 	a   14	c A9
+  VCC33	a    9	c A14
+ NOEXEC	a   10	c A13
+NOTMAPD	a   11	c A12
+  WPROT	a   12	c A11
+ I2CSDA	a   13  c A10
+ I2CSCL	a   14	c A9
      D7 a   15	c A8
      D6	a   16 	c A7
      D5	a   17	c A6
@@ -95,7 +52,19 @@ The bus layout is:
 
 </pre>
 
-Comments:
+Comments to V1.1:
+<ul>
+<li>The V1.1 is an upward compatible version of the V1.0 bus. The
+additional lines used are A9-A14</li>
+<li>I2CSCL and I2CSDA are the I2C clock and data lines. Currently the
+lines are specified for a 5V I2C bus.</li>
+<li>WPROT, NOTMAPD and NOEXEC are bus error lines. They are set when the
+CPU writes to a write protected page (WPROT), accesses a memory area
+that is marked as not mapped in the MMU (NOTMAPD), or reads an opcode
+on a page that is marked as not executable (NOEXEC).
+</li><li>The VCC33 line is a 3.3V supply line.</li>
+</ul>
+Comments to V1.0:
 <ul>
 <li>For non-MMU systems like the <strong>Gecko</strong>
 only the lines <code>A0-A11, D0-D7, Phi2, R/-W, -RES, -IRQ, -NMI, -IOSEL</code>

@@ -21,9 +21,6 @@
 <li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
 <ul class="menu2" >
 <li class="link"><a href="../../csa/scsi/index.html">CS/A65 SCSI interface</a></li>
-<li class="dir"><a href="c64scsi/index.html">C64 SCSI interface</a></li>
-<li class="dir"><a href="vcscsi1/index.html">SCSI disk drive V1</a></li>
-<li class="dir"><a href="vcscsi2/index.html">SCSI disk drive V2</a></li>
 </ul>
 <li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
 </ul>
@@ -74,10 +71,8 @@ are provided 'AS IS', WITHOUT WARRANTY of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
 servicing, repair or correction.</font>
-    <hr><h3>Distribution</h3>Warning: This computer system is public domain for <strong>NON-COMMERCIAL</strong>
-purposes only! If you want to do something useful with it, please
-contact me. Also if you like to produce PCBs, or want to earn money
-with it, please contact me first.
+    <hr><h3>Distribution</h3>
+<p>This computer system is distributed under the GNU Public License V2.</p>
     <hr><h3>SCSI Standard</h3><p>
 SCSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
@@ -110,8 +105,8 @@ The SCSI-II standard is refered to as
 <em>ANSI X3.131-1990 Small Computer Systems Interface-2 (SCSI-II)</em>.
 The SCSI-I standard is X3.131-1986.
 </p><p>
-<strong>NEW:</strong>Recently, I have found a copy of the SCSI-II standard document on the web.
-You can find it at <a href="http://www.leo.org/pub/comp/doc/scsi/index.html">http://www.leo.org/pub/comp/doc/scsi/index.html</a>.
+<strong>NEW:</strong>You can find anything on the SCSI standard on 
+<a href="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html">this IBM developerWorks article</a> by Peter Seebach.
 </p><p>
 A good source (although a bit hard to read) is the linux kernel source
 code. Recommended reading are the comments at the beginning of
@@ -128,14 +123,7 @@ the linux version should not matter that much here).
 The SCSI controller is derived from a very old SASI interface card
 published by the german magazin "elektor".
 I implemented this interface (heavily modified and modernized) in 1998 as a
-CS/A board (my own design for 6502-based computers, see on
-<a href="../csa/index.html">http://www.6502.org/users/andre/csa/index.html</a>).
-</p><p>
-The schematics can be found in
-<a href="csascsi/csascsi1.ps.gz">csascsi1.ps.gz</a> or
-<a href="csascsi/csascsi1.png">csascsi1.png</a>.
-A <a href="csascsi/csascsi1parts.txt">parts list</a> and
-a <a href="csascsi/csascsi1desc.txt">hardware description</a> are available.
+<a href="../../csa/scsi/index.html">CS/A65 SCSI board</a>.
 </p><p>
 The interface is still not at SCSI-II level and it only does basic
 asynchronous I/O mode, but nevertheless, it works with my Seagate
@@ -144,7 +132,7 @@ with 4.3G (I love SCSI for that. Try to add an MFM disk that was still in
 use when I bought my Seagate to a PC of today...).
 </p><p>
 This interface has been designed for the
-<a href="../csa/bus.html">CS/A65 bus system</a>. However, this
+<a href="../../csa/bus.html">CS/A65 bus system</a>. However, this
 bus system basically is the 6502 bus. In fact, besides the <code>/IOSEL</code>
 line only 6502 CPU lines are used.<code>/IOSEL</code> selects the I/O area
 and is generated from the address lines in the usual way.
@@ -196,10 +184,8 @@ heavily depending on the operating system.
 It should be easy to implement any filesystem you like on the level
 provided by the partition code.
 </p><p>
-The most recent SCSI drivers can be found in the GeckOS/A65 operating
-system in
-<a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a> in the directory
-<code>oa-2.0.8/devices/scsi</code>. An example of a filesystem
+The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
+system</a>. An example of a filesystem
 implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
 that implement a fileserver task for the GeckOS/A65 operating
 system. It handles PC-style disks with the FAT12 or FAT16 filesystem
@@ -217,11 +203,7 @@ but it is fast (no serial IEC bus) and cheap.<br><br></li><li><strong>Descriptio
 	      : 
   	      <p>This is a simple example of how to use the C64-CS/A adapter
 with a CS/A65 I/O card.
-The C64-CS/A adapter
-(schematics in <a href="../cbmhw/c64csa/c64csa.ps.gz">c64csa.ps.gz</a>,
-<a href="../cbmhw/c64csa/c64csa.png">c64csa.png</a>,
-<a href="../cbmhw/c64csa/c64csaparts.txt">parts list</a>
-and <a href="../cbmhw/c64csa/c64csadesc.txt">description</a>)
+The <a href="../c64csa/index.html">C64-CS/A adapter</a>
 is plugged into the expansion port using one I/O area (at $de** or $df**).
 It uses a VIA 6522 to expand the address range so that you can
 use the full CS/A bus system with all cards.
@@ -247,7 +229,8 @@ You can find it in <a href="c64scsi/c64scsi.zip">c64scsi.zip</a>.</p><br><br></l
 	      : 
   	      The interface consisting of the C64-CS/A adapter and the CS/A-SCSI
 card has been tested on a C64 and works. The "imploded" version
-with the left out parts has not been tested.<br><br></li></ul></li><br><li><strong>VC-SCSI 1.0 drive</strong><br><br><ul><li><strong>Idea</strong>
+with the left out parts has not been tested.<br><br></li>
+</ul></li><br><li><strong>VC-SCSI 1.0 drive</strong><br><br><ul><li><strong>Idea</strong>
 	      : 
   	      Provide a separate computer like the VC1541 and interface it with
 the C64 via the serial IEC bus. This would keep a lot of work off the

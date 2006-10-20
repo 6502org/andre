@@ -48,8 +48,8 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<h1 align="center">CS/A bus connector V1.0</h1>
-<H2 ALIGN=CENTER>(c) 1997 Andr&eacute; Fachat</h2>
+<h1 align="center">CS/A bus connector V1.1</h1>
+<H2 ALIGN=CENTER>(c) 1997,2006 Andr&eacute; Fachat</h2>
 <hr>
 The bus connector is a 96 pin connector according to DIN 41612, type C,
 where only 64 pins (rows a+c) are used.
@@ -68,12 +68,12 @@ The bus layout is:
 -MEMSEL a    6  c A17
  -IOSEL a    7	c A16
     -BE a    8  c A15
- 	a    9	c A14
- 	a   10	c A13
-	a   11	c A12
- 	a   12	c A11
- 	a   13  c A10
- 	a   14	c A9
+  VCC33	a    9	c A14
+ NOEXEC	a   10	c A13
+NOTMAPD	a   11	c A12
+  WPROT	a   12	c A11
+ I2CSDA	a   13  c A10
+ I2CSCL	a   14	c A9
      D7 a   15	c A8
      D6	a   16 	c A7
      D5	a   17	c A6
@@ -95,7 +95,19 @@ The bus layout is:
 
 </pre>
 
-Comments:
+Comments to V1.1:
+<ul>
+<li>The V1.1 is an upward compatible version of the V1.0 bus. The
+additional lines used are A9-A14</li>
+<li>I2CSCL and I2CSDA are the I2C clock and data lines. Currently the
+lines are specified for a 5V I2C bus.</li>
+<li>WPROT, NOTMAPD and NOEXEC are bus error lines. They are set when the
+CPU writes to a write protected page (WPROT), accesses a memory area
+that is marked as not mapped in the MMU (NOTMAPD), or reads an opcode
+on a page that is marked as not executable (NOEXEC).
+</li><li>The VCC33 line is a 3.3V supply line.</li>
+</ul>
+Comments to V1.0:
 <ul>
 <li>For non-MMU systems like the <strong>Gecko</strong>
 only the lines <code>A0-A11, D0-D7, Phi2, R/-W, -RES, -IRQ, -NMI, -IOSEL</code>

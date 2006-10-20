@@ -1,3 +1,6 @@
+s Specifications
+f bus.html Bus V1.0
+f bus-1.1.html Bus V1.1
 s Main boards
 d cpu CS/A65 CPU
 d bios CS/A65 BIOS board
