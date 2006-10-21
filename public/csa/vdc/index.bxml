@@ -29,7 +29,7 @@
 		</desc>
 	</diagram>
 	<rev>
-		<version>1.3F</version>
+		<version>1.4A</version>
 		<status>untested</status>
 		<note type="msg">
 			In addition to the timing bugs this board implements
@@ -43,10 +43,22 @@
 		<note type="warn">
 			This board is untested.
 		</note>
-		<file ltype="schem" ptype="png">csa_vdc_v1.3f-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_vdc_v1.3f.sch</file>
-		<file ltype="layout" ptype="png">csa_vdc_v1.3f-lay.png</file>
-		<file ltype="layout" ptype="ebrd">csa_vdc_v1.3f.brd</file>
+		<note type="msg">
+			Most of the TTL chips are 'ALS technology, but a few
+			have to be 'LS for timing requirements: IC9 is a
+			74LS245 so that the data read from the RAM is held
+			on the bus longer, as the CPU requires a certain
+			hold time of that data. IC21 is a 'LS so that the
+			delay between /RAS and /CAS is still long enough.
+			IC9 may probably be an 'ALS04 as well, but never
+			change a running system...
+		</note>
+		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
+		<file ltype="schem" ptype="png">csa_vdc_v1.4a-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_vdc_v1.4a.sch</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4a-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4a.brd</file>
 	</rev>
 	<rev>
 		<version>1.3E</version>

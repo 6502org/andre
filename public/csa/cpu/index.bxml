@@ -33,6 +33,24 @@
 		<note type="warn">
 			This board has not yet been tested.
 		</note>
+		<note type="msg">
+			The TTL types are mostly 'ALS technology, which is 
+			faster and less power-hungry than 'LS. In one place,
+			however, I needed to fall back to 'LS: IC3 is still
+			a 74LS245 instead of a 74ALS245, as it seemed that
+			the 6522 on the <a href="../petio/index.html">PETIO</a>
+			board did not like it. Don't ask me why, I don't know.
+		</note>
+		<note type="msg">
+			This board implements new features, in that bus
+			errors like writing on a write protected page, 
+			accessing a page that is not mapped, and also 
+			fetching an opcode from a "no-execute" page! This
+			feature is similar to the new feature implemented
+			in the PC processors, to protect from buffer overflows.
+		</note>
+		<file ltype="desc" ptype="txt">csa_cpu_v2.0h-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_cpu_v2.0h-parts.txt</file>
 		<file ltype="schem" ptype="esch">csa_cpu_v2.0h.sch</file>
 		<file ltype="schem" ptype="png">csa_cpu_v2.0h-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_cpu_v2.0h.brd</file>

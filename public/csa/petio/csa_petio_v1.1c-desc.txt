@@ -1,0 +1,87 @@
+
+Description for CS/A PETIO, version 1.1
+---------------------------------------
+
+whatsit	: Commodore PET compatible I/O 
+	  (keyboard, IEEE488, tapes, userport)
+I/O	: 6821 PIA at $810-$817,
+	  6821 PIA at $820-$82f, 
+	  6522 VIA at $840-$84f
+Mem	: --
+
+This board combines parts of the functionality of the earlier
+"KEY" and "IEC" boards in a way that the result is Commodore PET 
+compatible. the design is pretty straigthforward.
+IC1 and IC2 select the I/O chips.
+
+IEEE488
+
+The ieee488 interface is now CBM PET compatible.  CBM decided to spread 
+the IEEE488 lines over three I/O chips that were previously spread on
+two different CS/A65 boards, but are now on one board only.
+
+The PIA just provides a lot of I/O lines for the IEEE488 interface.
+As I don't use a bi-directional driver (like newer PETs, older do it
+like I do) both ports are already occupied with the data lines.
+Port B of IC9 (VIA) provides the rest of the I/O lines for the IEEE488
+interface.
+
+The implementation supports slave mode operation, i.e. when an ATN
+comes from the bus (another master sets it), NRFD must go low to
+signal that there are devices on the bus. This is done by
+xor-ing the bus ATN line with a PATNA output line. If they
+differ NRFD is pulled low, blocking the bus until the CPU
+has recognized the ATN situation, changed ATNA and is waiting
+for commands.
+
+If, however, the computer is on but no software for slave mode is
+running, this would block the whole IEEE488 bus forever. That's why
+there is jumper JP7 to disable this feature.
+
+VDC connector
+
+As a PET compatibility feature :-) VIA CA2 is routed to another
+connector, which can be connected to the video board (CS/A VDC)
+to provide PET compatible character ROM switching. Also IC10 CB1
+is routed to the connector, so it can get the VDC horizontal sync
+signal as input. This is the way interrupts are generated in the PET.
+
+Beeper
+
+Also VIA CB2 is put to drive a piezo beeper, as it is in the
+PET from the 4*** series on.
+
+Keyboard
+
+The keyboard interface is CBM PET compatible (with P7 and P8) as well
+as it can be used with a C64-type keyboard (with P1).
+
+Tapes
+
+The PET has two tape connectors. The tape requires 9V operation,
+which is not available on the bus. Thus I decided to only put the
+signals for the tape to two separate connectors, one for each tape.
+
+Userport
+
+The PET has standard I/O lines from the VIA on the userport, but
+also a number of special signals. Not all signals are provided,
+especially the VIDEO and HDRIVE signals are not provided.
+
+
+Special feature
+
+As the PET I/O uses basically all available I/O lines, I had to 
+decide what to sacrifice to add more features. So I decided to 
+reuse the tape lines:
+
+1) The "IEEE488 device mode" (or "slave mode") requires an additional
+   line that is borrowed from the tape 1 motor control line CB2 on
+   the keyboard PIA.
+
+2) To use a C64 keyboard in a full matrix design (as opposed to the PET
+   where a 74LS145 expands the line number to a single selected line)
+   the lines that are otherwise used must be relocated. This is done
+   with JP6 that connects the IEEE488 EOI line to the tape 2 motor
+   control on VIA PB4
+.

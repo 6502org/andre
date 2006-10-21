@@ -30,7 +30,11 @@ use a 16550 UART (with FIFO).
 			IRQ/Port functionality has been tested. RS232 is 
 			as of now untested.
 		</note>
+		<note type="msg">The TTL parts mainly consist of the 'ALS (advanced
+			Low-Power Shottky) TTL types, except where available.
+		</note>
 		<file ltype="desc" ptype="esch">csa_bios_v3.0b-desc.txt</file>
+		<file ltype="parts" ptype="esch">csa_bios_v3.0b-parts.txt</file>
 		<file ltype="schem" ptype="esch">csa_bios_v3.0b.sch</file>
 		<file ltype="schem" ptype="png">csa_bios_v3.0b-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_bios_v3.0b.brd</file>

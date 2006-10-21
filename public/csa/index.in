@@ -49,7 +49,7 @@ are now free. They
 can be used and distributed under the terms of the 
 <a href="../osa/COPYING">GNU Public License</a>.
 </p><p>
-The <a href="bus.html">bus design</a> is completely in the public domain.
+The <a href="bus-1.1.html">bus design</a> is completely in the public domain.
 It can be used as long as any changes to the original specs are marked as such
 (to not let incompatibilites slip in unnoticed).
 <p> 

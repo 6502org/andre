@@ -42,6 +42,7 @@
 <li class="separator">Other links</li>
 <li class="dir"><a href="../gallery/index.html">Gallery</a></li>
 <li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
 </ul>
 <li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
 <li class="separator">Software</li>
@@ -62,7 +63,7 @@
 		a line at 2MHz system clock.
 	</P>
 <H2>Board revisions</H2>
-<H3>Version: 1.3F</H3>
+<H3>Version: 1.4A</H3>
 <P>Status: untested</P>
 <TABLE>
 <TR>
@@ -83,23 +84,44 @@
 			This board is untested.
 		</TD>
 </TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			Most of the TTL chips are 'ALS technology, but a few
+			have to be 'LS for timing requirements: IC9 is a
+			74LS245 so that the data read from the RAM is held
+			on the bus longer, as the CPU requires a certain
+			hold time of that data. IC21 is a 'LS so that the
+			delay between /RAS and /CAS is still long enough.
+			IC9 may probably be an 'ALS04 as well, but never
+			change a running system...
+		</TD>
+</TR>
 </TABLE>
 <TABLE>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_vdc_v1.3f-sch.png">csa_vdc_v1.3f-sch.png</A></TD>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD><A HREF="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csa_vdc_v1.3f.sch">csa_vdc_v1.3f.sch</A></TD>
+<TD><A HREF="csa_vdc_v1.4a-sch.png">csa_vdc_v1.4a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_vdc_v1.4a.sch">csa_vdc_v1.4a.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_vdc_v1.3f-lay.png">csa_vdc_v1.3f-lay.png</A></TD>
+<TD><A HREF="csa_vdc_v1.4a-brd.png">csa_vdc_v1.4a-brd.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD><A HREF="csa_vdc_v1.3f.brd">csa_vdc_v1.3f.brd</A></TD>
+<TD><A HREF="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</A></TD>
 </TR>
 </TABLE>
 <H3>Version: 1.3E</H3>

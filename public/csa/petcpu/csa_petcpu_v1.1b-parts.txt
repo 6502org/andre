@@ -1,0 +1,60 @@
+Partlist
+
+Part     Value   
+
+C1       100n   
+C2       100n   
+C3       100n   
+C4       100n   
+C5       100n   
+C6       100n   
+C7       100n   
+C8       100n   
+C9       100n   
+C10      100n   
+C11      100n   
+C12      100n   
+C13      100n   
+C14      100n  
+C15      47u   
+C16      100n   
+C17      1u     
+C18      1u     
+C19      4u7   
+C20      4u7     
+C21      1u     
+C22      1u    
+C23      100n 
+C24      100n  
+C25      100n  
+C26      100n 
+C27      100n
+IC1      ROMSOCK32TO512K 
+IC2      74LS85        
+IC3      74ALS688
+IC4      74ALS164
+IC5      74ALS86
+IC6      74LS293
+IC7      74ALS00
+IC8      RAMSOCKET8OR32K
+IC9      74LS85
+IC10     UART16550
+IC11     74LS06
+IC12     74ALS688
+IC13     74ALS138
+IC14     74LS173
+IC15     MAX232 
+IC16     MAX232 
+LED1     LED3MM Green
+P1       CSABUS 
+QG1      16MHz Crystal oscillator
+QG2      1,8432MHz Crystal oscillator
+R1       240     
+R2       10k    
+R3       10k   
+RN1      10k  
+U$1      TL7705  
+U$2      TASTER 
+U1       CPU 6502
+X2       9-pin D-Sub male
+

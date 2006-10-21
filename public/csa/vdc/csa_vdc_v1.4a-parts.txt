@@ -1,0 +1,56 @@
+Partlist
+
+Part     Value  
+
+C1       100n  
+C2       100n  
+C3       100n  
+C4       100n  
+C5       100n  
+C6       100n  
+C7       100n   
+C8       100n   
+C9       100n  
+C10      100n  
+C11      100n  
+C12      100n   
+C13      100n   
+C14      100n   
+C15      100n   
+C16      100n   
+C17      100n   
+C18      100n 
+C19      100n  
+C20      100n 
+C21      100n 
+C22      100n  
+C23      100n  
+C24      47u   
+IC1      74ALS374
+IC2      74ALS138
+IC3      74ALS688
+IC4      74ALS257
+IC5      74ALS257
+IC6      74ALS257
+IC7      74ALS257
+IC8      74ALS257
+IC9      74LS245 (*)
+IC10     74ALS166
+IC11     74ALS273
+IC12     74ALS175
+IC13     74ALS86
+IC14     74ALS74
+IC15     74LS04 (*)
+IC16     74ALS00
+IC17     74ALS32
+IC18     41464
+IC19     41464
+IC21     74LS04 (*)
+IC22     CRTC6545/6845
+IC23     74ALS00
+IC24     27C128P
+U$1      CSABUS            CSABUS            CSABUS       csa        1
+X1       9-pin D-Sub female
+
+(*) 'LS and not 'ALS for timing requirements.
+
