@@ -32,6 +32,10 @@
 		Information on the SCSI standard I use to connect
 		harddisks to my computers.
       </subitem>
+      <subitem name="I2C" link="i2c.html">
+		Information on the I2C standard I use 
+		in my computers.
+      </subitem>
      </item>
     </items>
     <disclaimer name="Disclaimer">

@@ -1,0 +1,43 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>2006</yearstart>
+    <yearend>2006</yearend>
+    <email>@EMAIL@</email>
+  </author>
+  <keywords>I2C</keywords>
+  <metadesc>I2C information</metadesc>
+  <overview>
+	In my <a href="../csa/index.html">CS/A65</a> computer I use the
+	I2C interface, which is a simple chip interconnect bus designed
+	by Philips.
+  </overview>
+  <!--news>
+    <item date="">
+    </item>
+  </news-->
+  <itemlist name="I2C Links">
+    <!--description>
+    </description-->
+    <items>
+     <subitem name="ELektronik-KOmpendium" link="http://www.elektronik-kompendium.de/public/borchers/i2c/main.htm">
+	This page contains a very good introduction to the I2C bus - although
+	in German. If you can read that, a recommended reading!
+     </subitem>
+     <subitem name="wikipedia" link="http://en.wikipedia.org/wiki/I2c">
+	The wikipedia article on I2C.
+     </subitem>
+     <!--item name="">
+      <subitem name="" link=""></subitem>
+     </item-->
+    </items>
+    <disclaimer name="">
+	All copyrights are acknowledged. No warranty!
+    </disclaimer>
+  </itemlist>
+  <disclaimer name="">
+  </disclaimer>
+  <closing>
+  </closing>
+</webpage>
