@@ -25,13 +25,32 @@ DIV#menu {
   font-size: 0.91em;
   float: left; width: 22em;
   margin: 0; padding: 0;
-/*  border: 1px dashed silver; */
+	list-style-position:outside;
 }
 
 LI.separator {
 	font-size:larger;
 	font-weight:bold;
-	list-style-image:url(imgs/arrow.gif);
+	list-style-type:none;
+/*	list-style-image:url(imgs/arrow.gif); */
+        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+}
+
+UL.menu0 {
+  padding-left:20px;
+}
+UL.menu1 {
+  padding-left:20px;
+}
+UL.menu2 {
+  padding-left:20px;
+}
+UL.menu3 {
+  padding-left:20px;
+}
+
+UL.news {
+	list-style-image:url(imgs/news.gif);
 }
 
 LI.homepage {

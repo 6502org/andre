@@ -1,8 +1,12 @@
 <html>
 <head>
 <title>The CRTC internals</title>
+<link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
 <body>
+@MENU@
+<DIV ID="content">
 <h1>The CRTC internals</h1>
 <p>
 I have deduced from the timing measurements done with the test
@@ -36,14 +40,14 @@ Please note that the CRTC timing starts with the first rasterline of
 the first displayed
 character, not somewhere in the upper left corner of the screens border.
 The end of the CRTC rasterline is thus wrapped around to the left border.
-An overview can be seen in figure 0.
+An overview can be seen in figure 0 (click on the image for a large view).
 </p>
-<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png"></a>
+<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png" width="20%"></a>
 <hr>
 <p>
 The rasterline timing is done by the circuits in figure 1.
 </p>
-<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png"></a>
+<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png" width="20%"></a>
 <p>
 The main counter character counter is clocked by the character clock.
 Starting from 0 the counter counts each character. The first comparator
@@ -61,7 +65,7 @@ the counter is reset again, enabling the display output.
 <p>
 The EndLine pulse is used by the counter for rasterlines/char.
 </p>
-<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png"></a>
+<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png" width="20%"></a>
 <p>
 Here a very similar mechanics is used to determine the height of
 a charline. The second and third are used to enable the hardware
@@ -72,7 +76,7 @@ cursor (that is not used in the PET).
 The next part does the vertical timing by counting character lines
 (and rasterlines for the adjust)
 </p>
-<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png"></a>
+<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="20%"></a>
 <p>
 Here the very same technique is assumed to be used as for the 
 horizontal timing. In addition to that, however, the rasterline
@@ -85,7 +89,7 @@ counter reset needs to be switched between register 9 and register 5).
 <p>
 Finally the memory counter needs to be discussed.
 </p>
-<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png"></a>
+<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="20%"></a>
 <p>
 The main memory counter is clocked by CCLK. It is loaded at the
 beginning of each new rasterline. When in the last rasterline of 
@@ -117,5 +121,6 @@ addressing into a straight binary sequence in order to conserve memory".
 The memory access for both schemes during one frame can be seen 
 in the next figure
 </p>
-<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png"></a>
-</body>
+<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png" width="20%"></a>
+</DIV>
+</body></html>

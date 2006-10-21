@@ -12,7 +12,21 @@
 	</desc>
 	<diagram>
 		<file>vdc.gif</file>
-		<desc>Block diagram of the vdc board.</desc>
+		<desc>Block diagram of the vdc board. Only some relevant info
+			is shown. It is actually a pretty simple design, if
+			it were not for the timing...
+			The CPU accesses the memory during Phi2 high, so 
+			then the BUSA0-15 and D0-7 are connected to the
+			memory address and bus lines. During Phi2 low the
+			video accesses the memory and thus RA0-13 is connected
+			to the memory. The byte read for the video is latched
+			and given to the character ROM as input. The CA0-2
+			lines select the correct scan line of the character 
+			in the character ROM. The output of the character ROM
+			is then shifted out to the video output.
+			More on how the CRTC works can be found on the
+			<a href="../../hwinfo/crtctest/index.html">CRTC page</a>.
+		</desc>
 	</diagram>
 	<rev>
 		<version>1.3F</version>

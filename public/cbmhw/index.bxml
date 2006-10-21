@@ -1,0 +1,52 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore hardware</keywords>
+  <metadesc>Commodore hardware modifications</metadesc>
+  <overview>
+	This page contains an overview over hardware modifications
+	and devices for Commodore 8-bit computer.
+  </overview>
+  <news>
+    <item date="21. October 2006">
+	There is a new section where you can build your own, new PET!
+    </item>
+  </news>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+      <subitem name="Mods" link="hwmods.html">
+	The hardware modifications I made for my Commodore equipment.
+      </subitem>
+      <subitem name="C64 CS/A65 adapter" link="c64csa/index.html"> 
+	An adapter to use the <a href="../csa/index.html">CS/A65</a> 
+	boards on a C64.
+      </subitem>
+      <subitem name="C64 kernal" link="kernal/index.html">
+	C64 kernal mods I made.
+      </subitem>
+      <subitem name="CBM SCSI" link="scsi/index.html">
+	SCSI interfaces for the C64 and others.
+      </subitem>
+      <subitem name="IEEE488" link="ieee488/index.html">
+	A set of IEC and IEEE488 interfaces for the Commodore computers.
+      </subitem>
+      <subitem name="Roll-your-own FAT40" link="ryofat40/index.html">
+	Build yourself a completely new Commodore PET 4032 (aka Fat40 with CRTC).
+      </subitem>
+    </items>
+    <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+    </disclaimer>
+  </itemlist>
+  <closing>
+  </closing>
+</webpage>

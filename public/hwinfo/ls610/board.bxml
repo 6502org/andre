@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<board>
+	<name>74ls610 replacement board</name>
+	<keywords>MMU 74ls610</keywords>
+	<lastmodified>2006-10-15</lastmodified>
+	<desc> This board implements the functionality of the
+		74ls610 MMU chip, which is not easily available nowadays.
+		It uses cache RAM I salvaged from an old PC motherboard
+		as the register file.
+	</desc>
+	<diagram>
+		<file>ls610b.png</file>
+		<desc>This diagram shows the 74ls610 internal architecture
+			that the board replaces.</desc>
+	</diagram>
+	<rev>
+		<version>1.0B</version>
+		<status>untested</status>
+		<note type="msg">
+			This board has the two lines exchanged compared
+			to the 1.0A version.
+		</note>
+		<file ltype="schem" ptype="esch">mmu610_v1.0b.sch</file>
+		<file ltype="schem" ptype="png">mmu610_v1.0b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">mmu610_v1.0b.brd</file>
+		<file ltype="layout" ptype="png">mmu610_v1.0b-lay.png</file>
+	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>prototype with bug</status>
+		<note type="warn">
+			In this schematic and board layout has a bug: the two 
+			lines <code>C</code> and <code>/ME</code> of the
+			74ls610 socket must be exchanged.
+		</note>
+		<file ltype="schem" ptype="esch">mmu610_v1.0a.sch</file>
+		<file ltype="schem" ptype="png">mmu610_v1.0a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">mmu610_v1.0a.brd</file>
+		<file ltype="layout" ptype="png">mmu610_v1.0a-lay.png</file>
+	</rev>
+</board>

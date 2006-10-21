@@ -1,0 +1,140 @@
+<html><head><base target="_top">
+<meta content="André  Fachat" name="author">
+<meta content="text/html; charset=iso8859-1" http-equiv="content-type">
+<meta content="Commodore 8-bit hardware modifications" name="description">
+<meta content="Commodore, 8-bit, hardware" name="keywords">
+<title>www.6502.org: Andr&eacute; 's CBM hardware modifications</title>
+<link href="mailto:afachat@gmx.de" rev="made">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+</head>
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="ryofat40/index.html">Build your own new PET!</a></li>
+<li class="dir"><a href="c64csa/index.html">CS/A adapter for C64</a></li>
+<li class="dir"><a href="kernal/index.html">C64 kernal modifications</a></li>
+<li class="dir"><a href="scsi/index.html">CBM SCSI interfaces</a></li>
+<li class="dir"><a href="ieee488/index.html">IEEE488 interfaces</a></li>
+<li class="file"><a href="hwmods.html">My Hardware mods</a></li>
+</ul>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../misc/index.html">Misc software</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<h1>Andr&eacute; 's CBM hardware modifications</h1><h2>(C)
+- Andr&eacute;  Fachat 
+</h2> 
+<p>
+On these pages you will find a number of hacks I applied to my Commodore
+8-bit equipment. Some of them are designed by me, others are taken
+from magazins or the web. If there are no schematics available and
+you desperately need them, mail me and I will (probably) write them
+up and put them here.
+  </p><hr><h3>RS232</h3>
+The RS232 interface is a standard interface in the PC world and I use
+it as a terminal connection to my multitasking OS for the C64 or the
+CS/A65 or Gecko computers.
+    <ul><li><strong>C64-1</strong>
+	      : 
+  	      The userport of the C64 can do more than the approximately 2400 baud
+the original kernal software can handle. With a small modification, invented
+by Daniel Dallmann, it can do 9600 baud. See
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/rs232-userport-9600.zip">http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/rs232-userport-9600.zip</a>.<br><br></li><li><strong>C64-2</strong>
+	      : 
+  	      Originally I built a 6551 interface for the C64 that was mounted between the
+SID and its socket in the C64. Nevertheless, this IC is crap compared to
+the UART 16550A with 16 byte FIFO, especially if you use a
+multitasking OS like my <a href="../osa/index.html">GeckOS</a>.
+So I modified the interface to use an UART. Find the description, schematics
+and some source code in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/c64-uart-1.tar.gz">c64-uart-1.tar.gz</a>.<br><br></li></ul><hr><h3>C64 Modifications</h3>Besides the above modifications I did some more.
+Also the original C64 kernal is not very comfortable. So I decided to do some
+modifications to it.
+    <ul><li><strong>EPROM</strong>
+	      : 
+  	      First of all, to modify the kernal, you have to replace an 8k ROM chip.
+As, normally, you will not have a ROM, but an EPROM chip, you need an
+adapter. I originally used the Kernal switch adapter of the 64er
+magazin. However, as I am about to overhaul all my CBM devices
+now, I guess I am doing my own one (where all kernals are in one
+EPROM only, saving place and soldering...).
+Wait for the schematics coming soon (I hope).<br><br></li><li><strong>Kernal</strong>
+	      : 
+  	      The software to modify the ROM is a bit of a mess, because it is
+quite old and you have to fit the new code into the holes made by
+removing the tape and/or the old RS232 code.
+Find them on my page with the <a href="kernal/index.html">new C64 kernals</a>.
+I hope I find the time to clean that up a bit.
+It includes drivers for the CBM IEEE488 interface, an UART 16550A
+RS232 driver, function key mapping and a DOS wedge.<br><br></li><li><strong>Burst mode</strong>
+	      : 
+  	      To use the burst mode of the VC1571 in my C128D
+I implemented some schematics to connect the CIA shift registers
+with the IEC bus. I used it in the BDOS
+program, that reads PC disks with the VC1571 and runs on the
+C64 or C128.
+Sorry, no schematics at this time.<br><br></li><li><strong>Modules</strong>
+	      : 
+  	      To be able to switch the IEEE488 ROM off when I like it,
+I built two switches into the C64, that could set the <code>EXROM</code>
+and <code>GAME</code> line to either open, GND, or the module.
+Sorry, no schematics at this time.<br><br></li><li><strong>CS/A65</strong>
+	      : 
+  	      I have built an interface for the C64 expansion port
+to use all the memory and I/O cards of the
+<a href="../csa/index.html">CS/A65</a> computer - which includes
+another video card, extra RAM, IEEE488 and SCSI interfaces.
+For the SCSI interfaces see the <a href="scsi/index.html">SCSI-64</a>
+pages also.
+For more on the adapter see the <a href="c64csa/index.html">C64-CS/A</a> pages.<br><br></li></ul><hr><h3>VC1541 Modifications</h3>My old VC1541 (a really early one in a white case, fitting the color of
+the VIC20 and not the color of the C128 like later white versions)
+really got some history. First I had speeddos installed, later I
+built the IEEE488 interface into the drive. Then I experimented
+with a DOS-1 (670 blocks free) and a 2MHz modification.
+Also I disabled the original power supply and use a PC power supply.
+I will try to get these things out of my archives and prepare them
+for the web (actually now I don't even remember whether it worked at all...).
+    <ul><li><strong>Power supply</strong>
+	      : 
+  	      I removed the power regulators and used a PC-style
+power supply instead.
+Sorry, no schematics at this time.<br><br></li><li><strong>&gt;Write-protect</strong>
+	      : 
+  	      With this switch you could remove the write
+protection of a protected disk. This is a fixed switch, so it has to
+be set back to normal when a disk is changed, to make the VC1541
+recognize the disk change.
+Sorry, no schematics at this time.<br><br></li><li><strong>LED</strong>
+	      : 
+  	      I removed the power LED and used a two-colored
+LED in the drive only to indicate power and activity (green is idle,
+red is active/error)
+Sorry, no schematics at this time.<br><br></li><li><strong>2 MHz</strong>
+	      : 
+  	      If you use the IEEE488 bus (and not the time-critical serial
+IEC bus) you can speed up the drive - I thought. I tried but yet no
+success.
+Sorry, no schematics at this time.<br><br></li><li><strong>DOS</strong>
+	      : 
+  	      I experimented a lot with the VC1541, but currently only
+the IEEE488 DOS is installed. I see whether I can get the other stuff
+out of the archives.
+<br><br></li></ul><hr><h4>Disclaimer</h4>All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+  <hr>Contents last modified 15 June 2000
+  </DIV></body></html>

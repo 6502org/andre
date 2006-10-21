@@ -1,0 +1,46 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit MMU CRTC SCSI</keywords>
+  <metadesc>8-bit hardware information</metadesc>
+  <overview>
+	This page contains information about certain hardware standards
+	and special ICs I use in my designs.
+  </overview>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+     <item name="ICs">
+      <subitem name="CRTC" link="crtctest/index.html">
+		Information on the CRTC (Cathode Ray Tube Controller) video
+		chip, with additional information about the differences
+		between the 6545, 6845 and others.
+      </subitem>
+      <subitem name="MMU 74LS610" link="ls610/index.html"> 
+		Description of the 74LS610 TTL chip. This chip implements
+		the MMU in my <a href="../csa/index.html">CS/A65</a>
+		computer. A replacement board for the IC is available.
+      </subitem>
+     </item>
+     <item name="Standards">
+      <subitem name="SCSI" link="scsi.html">
+		Information on the SCSI standard I use to connect
+		harddisks to my computers.
+      </subitem>
+     </item>
+    </items>
+    <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+There is no warranty of any kind attached to the information herein.
+You may use this information for NON-COMMERCIAL use, unless where the
+GNU Public License applies. Then its conditions hold.
+    </disclaimer>
+  </itemlist>
+  <closing>
+  </closing>
+</webpage>

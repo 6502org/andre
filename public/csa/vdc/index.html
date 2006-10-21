@@ -14,14 +14,14 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">My CS/A65 computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
 <ul class="menu1" >
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
 <li class="separator">Main boards</li>
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
-<li class="dir"><a href="../bios/index.html">CS/A65 BIOS board</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
@@ -180,7 +180,21 @@
 </TR>
 </TABLE>
 <H2>Block diagram</H2>
-<img src="vdc.gif" alt="block diagram"><P><desc>Block diagram of the vdc board.</desc></P>
+<img src="vdc.gif" alt="block diagram"><P><desc>Block diagram of the vdc board. Only some relevant info
+			is shown. It is actually a pretty simple design, if
+			it were not for the timing...
+			The CPU accesses the memory during Phi2 high, so 
+			then the BUSA0-15 and D0-7 are connected to the
+			memory address and bus lines. During Phi2 low the
+			video accesses the memory and thus RA0-13 is connected
+			to the memory. The byte read for the video is latched
+			and given to the character ROM as input. The CA0-2
+			lines select the correct scan line of the character 
+			in the character ROM. The output of the character ROM
+			is then shifted out to the video output.
+			More on how the CRTC works can be found on the
+			<a href="../../hwinfo/crtctest/index.html">CRTC page</a>.
+		</desc></P>
 <BR><P>Last modified: 2006-10-14.</P>
 </DIV>
 </BODY>

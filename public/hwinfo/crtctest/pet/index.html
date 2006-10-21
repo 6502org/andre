@@ -1,8 +1,40 @@
 <html>
 <head>
 <title>PET CRTC 6545 Test Programs</title>
+<link rev=made href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../style.css">
 </head>
 <body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../../petindex/index.html">CBM PET info</a></li>
+
+<li class="dir"><a href="../../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../../hwinfo/index.html">Hardware info</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="../../crtctest/index.html">CRTC 6545/6845</a></li>
+<ul class="menu2" >
+<li class="dir"><a href="../internals/index.html">CRTC internals</a></li>
+<li class="dir"><a href="../pet/index.html">CBM PET test programs</a></li>
+<li class="file"><a href="../crtc.html">CRTC operation</a></li>
+<li class="file"><a href="../diffs.html">Differences between models</a></li>
+</ul>
+<li class="dir"><a href="../../ls610/index.html">74LS610 MMU</a></li>
+<li class="file"><a href="../../scsi.html">SCSI</a></li>
+</ul>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../../misc/index.html">Misc software</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
 <h1>PET CRTC 6545 Test Programs</h1>
 <p>
 The programs in this directory are a number of test programs
@@ -90,7 +122,7 @@ This means that this effect is probably not very useful.
 A screen shot shows the cursor in the 22nd line as well as the diagonal
 line of digits with the distortion.
 </pre>
-<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png"></a>
+<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="30%"></a>
 
 <h2>crtc4, crtc5</h2>
 <pre>
@@ -112,7 +144,7 @@ crtc4 (see below) moves the line to the right, crtc5 to the left. ALso crtc5
 uses VIA T2 instead of VIA T1, but this did not help with the 
 use of IEEE488 during the demo (crashes :-(
 </pre>
-<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png"></a>
+<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="30%"></a>
 
 <h2>crtc6, crtc7, crtc8, crtc9</h2>
 <pre>
@@ -135,7 +167,7 @@ start of the next charline is not updated! The charline is repeated,
 but this time only 20 chars long.
 Therefore in this picture the cursor is two characters high.
 </pre>
-<a href="crtc6.png"><img src="crtc6.png" alt="crtc6.png"></a>
+<a href="crtc6.png"><img src="crtc6.png" alt="crtc6.png" width="30%"></a>
 <pre>
 crtc7 does so at the first rasterline of the 24th charline. So only
 the first rasterline of the 24th charline is displayed over the 
@@ -174,7 +206,7 @@ line. Only RA3 is used to blank the rasterline, thus rasterlines
 the contents of some other part of the RAM, and rasterlines
 24-31 of a char are blank again. 
 </pre>
-<a href="crtc10.png"><img src="crtc10.png" alt="crtc10.png"></a>
+<a href="crtc10.png"><img src="crtc10.png" alt="crtc10.png" width="30%"></a>
 <pre>
 In this picture the RA4 line used as in the 8296 (only the memory adress
 during the single character line (with the middle "2") is wrong - a bug
@@ -202,7 +234,7 @@ the vertical displayed rows register that is lower than the
 row counter. After the counter has passed the original value,
 this original value is set to the register again.
 </pre>
-<a href="crtc13.png"><img src="crtc13.png" alt="crtc13.png"></a>
+<a href="crtc13.png"><img src="crtc13.png" alt="crtc13.png" width="30%"></a>
 <pre>
 What is not seen here is the display during the vertical retrace.
 This retrace display can disturb the normal screen because it
@@ -212,6 +244,7 @@ This effect can actually much easier be done by
 a <code>POKE 59520, 6: POKE 59521, 64</code> :-)
 (If you use VICE, do a <code>PRINT CHR$(142)</code> before the pokes).
 </pre>
+</DIV>
 </body>
 </html>
 

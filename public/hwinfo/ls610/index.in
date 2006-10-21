@@ -64,10 +64,14 @@ In addition <code>/Strobe</code> must be low too. This input can be used
 for additional timing. 
 </p>
 <p> <a href="ls610c.png">Pinout</a>
-
-
-
-
+</p>
+<hr/>
+<h2>replacement board</h2>
+<p>A replacement board can be used to replace the IC in an existing board.
+I found that the 74LS610 is hard to come by these days, so I decided to 
+implement a replacement board for it.
+See it at the <a href="board.html">74LS610 replacement board</a> page.
+</p>
 <hr><p class=endofpage>
 Contents last modified Nov 23 1997 |
 Go to <a href="../../index.html">Homepage</a> 

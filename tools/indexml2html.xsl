@@ -17,7 +17,7 @@
 @MENU@
 <DIV ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
-</xsl:text><P><xsl:value-of select="desc"/></P><xsl:text>
+</xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
 </xsl:text>
 <H2>Board revisions</H2>
 <xsl:for-each select="rev">
@@ -85,8 +85,7 @@
 <xsl:value-of select="yearstart"/>-<xsl:value-of select="yearend"/>
 <xsl:text> </xsl:text>
 <xsl:value-of select="name"/> 
-&lt;<a href="mailto:{email}"><xsl:value-of select="email"/></a>&gt; 
-[<a href="{homepage}">Homepage</a>]</h2>
+</h2>
 <xsl:text> 
 </xsl:text>
 </xsl:for-each>
@@ -125,13 +124,15 @@
 
 <xsl:template match="news">
  <hr/>
- <strong>News:</strong>
+ <h3>News:</h3>
+ <ul class="news">
  <xsl:for-each select="item">
-  <p>
+  <li>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
-  </p>
+  </li>
  </xsl:for-each>
+ </ul>
 </xsl:template>
 
 <xsl:template match="disclaimer">

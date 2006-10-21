@@ -52,58 +52,11 @@ SCSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
 disks, scanners, CD-ROMs etc. As such it is very flexible.
 </p><p>
-The first SCSI interfaces were using asynchronous I/O mode. Each
-transfered byte was requested and acknowledged with a special
-handshake. Nowadays synchronous modes with up to 40 or 80 MByte/s
-are supported. Yet, all devices still know the asynchronous mode and
-can be used with this interface (at least I did not encounter one, but
-I also did not test that many).
-</p><p>
-The SCSI-II standard defines a number of command sets for a variety
-of devices.
-Disks are accessed as
-"direct access devices", and commands for CD-ROM devices, Printers,
-coprocessors etc are defined.
-The commands are transferred in a standard way,
-which makes the transport level flexible.
-And once you know how to send one command, you can easily send
-any other. To send a command you can have a look at the software
-from this page, that includes SCSI drivers for the 6502.
-</p><p>
-Unfortunately the SCSI standard cannot be found on the net,
-but has to be purchased from the ANSI organization (see
-<a href="http://web.ansi.org/">http://web.ansi.org/</a>) or
-other sources. A technical or university library might be a place
-where you can at least read the standard if they have it.
-The SCSI-II standard is refered to as
-<em>ANSI X3.131-1990 Small Computer Systems Interface-2 (SCSI-II)</em>.
-The SCSI-I standard is X3.131-1986.
-</p><p>
-<strong>NEW:</strong>You can find anything on the SCSI standard on 
-<a href="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html">this IBM developerWorks article</a> by Peter Seebach.
-</p><p>
-A good source (although a bit hard to read) is the linux kernel source
-code. Recommended reading are the comments at the beginning of
-<code>drivers/scsi/aha152x.c</code>, the defines in <code>include/scsi/*</code>,
-especially the SCSI command opcodes. <code>grep</code>ing for them in the code
-will give you an idea
-how to use them. One example is the function <code>scan_scsis_single()</code>
-in <code>drivers/scsi/scsi.c</code>.
-All code references relative to the main source directory, usually under
-<code>/usr/src/linux/</code>, of linux kernel version 2.0.36 (although
-the linux version should not matter that much here).
+More on the SCSI standard can be found on its <a href="../../hwinfo/scsi.html">SCSI page</a> on this site.
 </p>
     <hr><h3>Generic 6502 SCSI Interface</h3><p>
-The SCSI controller is derived from a very old SASI interface card
-published by the german magazin "elektor".
-I implemented this interface (heavily modified and modernized) in 1998 as a
-<a href="../../csa/scsi/index.html">CS/A65 SCSI board</a>.
-</p><p>
-The interface is still not at SCSI-II level and it only does basic
-asynchronous I/O mode, but nevertheless, it works with my Seagate
-ST 1096N (80M) as well as with my IBM Ultra-Wide SCSI-II disk
-with 4.3G (I love SCSI for that. Try to add an MFM disk that was still in
-use when I bought my Seagate to a PC of today...).
+In my SCSI interfaces and devices for the Commodore computers I use a
+generic 6502 SCSI interface I developed for the <a href="../../csa/index.html">CS/A65</a> computer. The SCSI interface has its own <a href="../../csa/scsi/index.html">place</a> there.
 </p><p>
 This interface has been designed for the
 <a href="../../csa/bus.html">CS/A65 bus system</a>. However, this
@@ -123,40 +76,8 @@ level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the
 filesystem code.
 </p><p>
-The hardware layer is a low level driver that can detect the
-devices connected to the SCSI bus, inquire the device (it returns
-the type etc), get the blocksize and read or write single blocks.
-As SCSI devices just hold a number of linearly numbered blocks
-there is absolutely no need to use any track/sector numbering etc.
-In the driver code (see below) the file <code>csascsi1.a65</code>
-contains the low level driver for the generic SCSI interface
-described above. The file <code>ramdscsi.a65</code> holds a driver
-for another interface, that I implemented in the VICE
-emulator, not in hardware. You write the block number to some
-I/O locations and get the right block memory mapped. This code
-shows how easy it is to replace the hardware level if necessary.
-</p><p>
-The partition level consists of three parts, where only two
-are implemented so far.
-First in the file <code>part.i65</code>
-the format of the partition table is defined.
-<code>paccess.a65</code> then translates the block numbers given
-to the absolute block numbers on the device using the partition
-table. The table is filled in on init by the code in
-<code>pcpart.a65</code> that scans the disk for PC-like partition
-tables. To use other types of partition tables (like Amiga-type for example),
-simply replace this file with a new one that fills in the partition
-table appropriately.
-The third part would be an <code>fdisk</code> program that uses the low
-level routines to manipulate the partition tables. But here I still
-rely on the Linux counterpart I already have :-)
-</p><p>
-The upper level is the filesystem level. It contains code to handle
-directories, files, allocation tables etc.
-This is not contained in the basic SCSI drivers, because it is
-heavily depending on the operating system.
-It should be easy to implement any filesystem you like on the level
-provided by the partition code.
+An implementation of the drivers can be found in the <a href="../../osa/index.html">GeckOS</a> operating system. A description comes with the 
+description of the <a href="../../csa/scsi/index.html">CS/A65 SCSI interface</a>.
 </p><p>
 The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
 system</a>. An example of a filesystem

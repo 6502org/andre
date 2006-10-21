@@ -14,14 +14,14 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">My CS/A65 computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
 <ul class="menu1" >
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
 <li class="separator">Main boards</li>
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
-<li class="dir"><a href="../bios/index.html">CS/A65 BIOS board</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
@@ -54,8 +54,74 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 SCSI interface</H1>
-<P>This board implements a SCSI interface for the CS/A65
-		computer.
+<P>
+<p>This board implements a SCSI interface for the CS/A65
+		computer. </p>
+<p>It implements a mechanism to use the
+		asynchronous mode on parallel SCSI cables - that
+		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.</p>
+		<p>This interface can be used to attach disk drives 
+		and other SCSI devices. It has only been tested with 
+		SCSI disks, though (yet).</p>
+    <h3>Software Architecture</h3>
+<p>
+The software architecture is kept as flexible as possible.
+Three levels work together, the hardware driver, the partition
+level that transforms block numbers in a partition into
+block numbers in the device, and the third level which is the
+filesystem code.
+</p>
+<h4>Hardware layer</h4>
+<p>
+The hardware layer is a low level driver that can detect the
+devices connected to the SCSI bus, inquire the device (it returns
+the type etc), get the blocksize and read or write single blocks.
+As SCSI devices just hold a number of linearly numbered blocks
+there is absolutely no need to use any track/sector numbering etc.
+In the driver code (see below) the file <code>csascsi1.a65</code>
+contains the low level driver for the generic SCSI interface
+described above. The file <code>ramdscsi.a65</code> holds a driver
+for another interface, that I implemented in the VICE
+emulator, not in hardware. You write the block number to some
+I/O locations and get the right block memory mapped. This code
+shows how easy it is to replace the hardware level if necessary.
+</p>
+<h4>Partition layer</h4>
+<p>
+The partition level consists of three parts, where only two
+are implemented so far.
+First in the file <code>part.i65</code>
+the format of the partition table is defined.
+<code>paccess.a65</code> then translates the block numbers given
+to the absolute block numbers on the device using the partition
+table. The table is filled in on init by the code in
+<code>pcpart.a65</code> that scans the disk for PC-like partition
+tables. To use other types of partition tables (like Amiga-type for example),
+simply replace this file with a new one that fills in the partition
+table appropriately.
+The third part would be an <code>fdisk</code> program that uses the low
+level routines to manipulate the partition tables. But here I still
+rely on the Linux counterpart I already have :-)
+</p>
+<h4>Filesystem level</h4>
+<p>
+The upper level is the filesystem level. It contains code to handle
+directories, files, allocation tables etc.
+This is not contained in the basic SCSI drivers, because it is
+heavily depending on the operating system.
+It should be easy to implement any filesystem you like on the level
+provided by the partition code.
+</p>
+<h4>Drivers</h4>
+<p>
+The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
+system</a>. An example of a filesystem
+implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
+that implement a fileserver task for the GeckOS/A65 operating
+system. It handles PC-style disks with the FAT12 or FAT16 filesystem
+(no FAT32 and no long filenames). But be warned, it is an early
+beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
+</p>
 	</P>
 <H2>Board revisions</H2>
 <H3>Version: 1.0A</H3>

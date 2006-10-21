@@ -2,7 +2,7 @@ s Commodore
 d petindex CBM PET info
 d cbmhw CBM hardware and mods
 s Hardware
-d csa My CS/A65 computer
+d csa CS/A65 and Gecko computer
 d hwinfo Hardware info
 s Software
 d osa GeckOS operating system
