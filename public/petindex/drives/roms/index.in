@@ -105,7 +105,7 @@ It was directly used in the 4040 drives, but many 2040/3040 drives have
 been upgraded to these ROMs, as the hardware was otherwise the same.
 </P>
 <P> The original Commodore DOS source code can be found in the CBM archive
-at <A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/drives/">the CBM archive</A>.</P>
+at <A HREF="@CBMARC@/src/drives/">the CBM archive</A>.</P>
 <H2>DOS 2.5</H2>
 <P>The DOS&nbsp;2.5 adds support for the large, quad density disk drives and is used in the 8050 disk drives.
 </P>
@@ -124,12 +124,12 @@ version for the 4040 disk drive was never released.
 In fact the DOS2.7 probes the FDC and adjusts itself automatically to
 the 4040, 8050 or 8250 disk formats.
 </P>
-<P>A disassembly can be found in <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/8050/d/index.html">the CBM archive</A>.</P>
+<P>A disassembly can be found in <A HREF="@CBMARC@/firmware/drives/old/8050/d/index.html">the CBM archive</A>.</P>
 <H2>8280 8" disk drive DOS</H2>
-<P>The 8" disk drives use a ROM that, according to <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/8280/index.html">the CBM archive</A>, are very similar to DOS&nbsp;2.7.
+<P>The 8" disk drives use a ROM that, according to <A HREF="@CBMARC@/firmware/drives/old/8280/index.html">the CBM archive</A>, are very similar to DOS&nbsp;2.7.
 <H2>Harddisk ROMs</H2>
 <P>The hard disks have their own ROM. The source code can be found in
-<A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/drives/">the CBM archive</A>.
+<A HREF="@CBMARC@/src/drives/">the CBM archive</A>.
 </P>
 <HR><P>
 Back to the <A HREF="../../index.html">PET index</A>

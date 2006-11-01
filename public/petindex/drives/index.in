@@ -71,7 +71,7 @@ If the LED's come on and stay on, the microprocessor UN1 is probably at fault. <
 
 <H2><A NAME="misc"></A>Other disk drive information</H2>
 <P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.
-<P><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
+<P><A HREF="@CBMARC@/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
 <HR><P>
 Back to the <A HREF="../index.html">PET index</A>
 <P>PET index V1.0 (c) 1998-2005 A. Fachat

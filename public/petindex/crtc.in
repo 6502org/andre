@@ -17,7 +17,7 @@ necessary interface signals for the video hardware.
 <P>I have made a collection of test programs and timing
 examples for the CRTC in my CBM 8296. You can download the whole
 suite, including a (derived) diagram of the CRTC internals from the CBM archive as
-<A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/programming/index.html">crtctest-1.1.tar.gz</A>.
+<A HREF="@CBMARC@/pet/programming/index.html">crtctest-1.1.tar.gz</A>.
 It also includes a summary of the differences of the various
 CRTC models.
 You can have a look at some of the weird screen distortions in

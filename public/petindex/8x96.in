@@ -144,7 +144,7 @@ The 8296 uses three PLAs to reduce the number of logic chips considerably.
 The PLAs have been read out and the equations have been reverse engineered.
 You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> and the images and equations in <A HREF="local/8296desc3.tar.gz">8296desc3.tar.gz</A>.
 </P>
-<P>More info can also be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/8296/index.html">8296 firmware page</A> on the CBM archive.</P>
+<P>More info can also be found in the <A HREF="@CBMARC@/firmware/computers/pet/8296/index.html">8296 firmware page</A> on the CBM archive.</P>
 <H2>Orignal Docs and LOS-96</H2>
 <P>There are some original documents available in electronic form
 (of course always looking for more):

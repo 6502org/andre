@@ -30,8 +30,8 @@ allows to utilize the additional memory found in the 8x96 models.</DD>
 <H2>Software Archives</H2>
 <P>This section contains links to archives with PET software.</P>
 <P><UL>
-<LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/">The CBM archive</A>, with archivers, utilties, demos, educational software, games, programming examples ....</LI>
-<LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/SuperPET/">The SuperPET Waterloo disks</A></LI>
+<LI><A HREF="@CBMARC@/pet/">The CBM archive</A>, with archivers, utilties, demos, educational software, games, programming examples ....</LI>
+<LI><A HREF="@CBMARC@/pet/SuperPET/">The SuperPET Waterloo disks</A></LI>
 <LI><A HREF="http://members.tripod.com/~petlibrary/">Independent PET library</A></LI>
 <LI><A HREF="http://www.portcommodore.com/petfiles.php?path=main-cbmidx-cbmfile">Silicon PET archive</A> - loads of Games and Utilities</LI>
 <LI><A HREF="http://s.webring.com/hub?ring=cbmring">Commodore Webring</A>

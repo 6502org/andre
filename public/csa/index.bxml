@@ -1,92 +1,20 @@
-<HTML>
-<HEAD>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<META NAME="keywords" CONTENT="CSA65 6502 self-built computer">
-<TITLE>CS/A65 computer</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
-</HEAD>
-<BODY>
-<DIV ID="menu">
-<ul><li class=homepage><a href=../index.html>Homepage</a></li>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
-<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
-<li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">CS/A65 and Gecko computer</a></li>
-<ul class="menu1" >
-<li class="separator">Specifications</li>
-<li class="file"><a href="bus.html">Bus V1.0</a></li>
-<li class="file"><a href="bus-1.1.html">Bus V1.1</a></li>
-<li class="separator">Main boards</li>
-<li class="dir"><a href="cpu/index.html">CS/A65 CPU</a></li>
-<li class="dir"><a href="bios/index.html">CS/A65 BIOS </a></li>
-<li class="dir"><a href="petcpu/index.html">64k PET CPU</a></li>
-<li class="dir"><a href="gecko/index.html">Gecko</a></li>
-<li class="separator">I/O boards</li>
-<li class="dir"><a href="vdc/index.html">Video board</a></li>
-<li class="dir"><a href="petio/index.html">CBM PET I/O</a></li>
-<li class="dir"><a href="shug/index.html">PC floppy</a></li>
-<li class="dir"><a href="duart/index.html">Double UART (RS232)</a></li>
-<li class="dir"><a href="scsi/index.html">SCSI board</a></li>
-<li class="separator">Special purpose</li>
-<li class="dir"><a href="copro/index.html">Coprocessor board</a></li>
-<li class="dir"><a href="cpuemu/index.html">Emulate a 6502</a></li>
-<li class="dir"><a href="keyemu/index.html">Emulate a keyboard</a></li>
-<li class="separator">Deprecated boards</li>
-<li class="dir"><a href="cpu65b/index.html">64k CPU</a></li>
-<li class="dir"><a href="key/index.html">Keyboard and RS232</a></li>
-<li class="dir"><a href="iec/index.html">IEEE488 and CBM IEC</a></li>
-<li class="separator">Other links</li>
-<li class="dir"><a href="gallery/index.html">Gallery</a></li>
-<li class="dir"><a href="emu/index.html">VICE emu of CS/A65</a></li>
-<li class="link"><a href="../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
-</ul>
-<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
-<li class="separator">Software</li>
-<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
-<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
-<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
-<li class="dir"><a href="../misc/index.html">Misc software</a></li>
-</ul>
-</ul>
-</DIV>
-<DIV ID="content">
-<H1>CS/A65 computer</H1>
-<P>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard.
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 computer</name>
+	<keywords>CSA65 6502 self-built computer</keywords>
+        <lastmodified>2006-11-01</lastmodified>
+	<desc>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard.
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
-	</P>
-<h3>News:</h3>
-<ul class="news"><li>
-<small>2006-11-01</small>
+	</desc>
+        <news>
+                <item date="2006-11-01">
                         Added new boards and new revisions of existing boards.
 			Most notably are the <a href="cpu/index.html">CPU</a>, <a href="bios/index.html">BIOS</a>, <a href="petcpu/index.html">PET CPU</a>, <a href="petio/index.html">PET I/O</a> and <a href="vdc/index.html">Video</a> boards.
-                </li></ul>
-<DIV ID="toc">
-<H2><A NAME="toc">Table of content</A></H2>
-<dir>
-<li><a href="#disclaimer">Disclaimer</a></li>
-<li><a href="#dist">Distribution</a></li>
-<li><a href="#overview">Introduction</a></li>
-<li><a href="#general">General considerations</a></li>
-<dir>
-<li><a href="#othercpu">Other CPUs</a></li>
-<li><a href="#bus">Bus</a></li>
-<li><a href="#tech">Technology</a></li>
-<li><a href="#schem">Schematics</a></li>
-<li><a href="#age">Age</a></li>
-</dir>
-<li><a href="#sw">Software</a></li>
-<li><a href="#main">Main boards</a></li>
-<li><a href="#io">I/O boards</a></li>
-<li><a href="#special">Special purpose boards</a></li>
-<li><a href="#deprecated">Deprecated boards</a></li>
-</dir>
-</DIV>
-<H2><a name="disclaimer">Disclaimer</a></H2>
-<p>
+                </item>
+        </news>
+	<section toc="disclaimer" name="Disclaimer">
+	<desc>
 	<P class="disclaimer">Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
 to be used in any important or even life-critical systems.
@@ -95,9 +23,8 @@ are provided 'as is', without warranty of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
 servicing, repair or correction.</P>
-	</p>
-<H2><a name="dist">Distribution</a></H2>
-<p>
+	</desc></section>
+	<section toc="dist" name="Distribution"><desc>
 <p>The boards, i.e. the schematics, and layout artworks are distributed
 under the terms of the <a href="../osa/COPYING">GNU public license version 2</a>.
 </p><p>
@@ -105,9 +32,8 @@ The <a href="bus-1.1.html">bus design</a> is completely in the public domain.
 It can be used as long as any changes to the original specs are marked as such
 (to not let incompatibilites slip in unnoticed).
 </p>
-	</p>
-<H2><a name="overview">Introduction</a></H2>
-<p>
+	</desc></section>
+	<section toc="overview" name="Introduction"><desc>
 	<p>The CS/A65 computer is a modular computer based on a passive
 	backplane and a number of active boards. The system is based around
 	the 6502 technology originating from the long gone MOS technologies.
@@ -123,10 +49,9 @@ It can be used as long as any changes to the original specs are marked as such
 	as well as PC floppy interface, or a 6502 emulator.</p>
 	<p>A software emulator based on the VICE commodore emulator
 	is used for software development for the system</p>
-	</p>
-<H2><a name="general">General considerations</a></H2>
-<H3><a name="othercpu">Other CPUs</a></H3>
-<desc>
+	</desc></section>
+	<section toc="general" name="General considerations">
+	<subsection toc="othercpu" name="Other CPUs"><desc>
 <p>
 Currently the system is based on the 6502 processor, although other
 configurations (65816, 6809) should be possible. The software I use
@@ -134,27 +59,26 @@ for this systems is homemade and can be found on my
 <a href="../osa/index.html">OS/A65</a> page. There are drivers and programs
 for most of the hardware described below available.
 </p>
-	</desc><H3><a name="bus">Bus</a></H3>
-<desc>
+	</desc></subsection>
+	<subsection toc="bus" name="Bus"><desc>
 <p>
 The bus used is the synchronous bus used in the 6502/6800/6809 CPU bus
 interfaces. It has some additional lines, though...
 A description of the bus interface is in
 <a href="bus-1.1.html">bus.html</a>.</p>
-	</desc><H3><a name="tech">Technology</a></H3>
-<desc>
+	</desc></subsection>
+	<subsection toc="tech" name="Technology"><desc>
 <p>
 All ICs are standard Low-Power Shottky ('LS) or Advanced Low-Power Shottky
 ('ALS) TTL ICs. These ICs are still standard, although some of the ICs
 seem to have been deprecated and are not <quote>ported</quote> to newer technologies like 'ALS.
-</p>
-<p>Also, getting documentation for the 8bit
+</p><p>Also, getting documentation for the 8bit
 stuff is getting more and more difficult. But there is an archive in
-Finland, <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html</a>
+Finland, <a href="@CBMARC@/documents/chipdata/index.html">@CBMARC@/documents/chipdata/index.html</a>
 that has most of the stuff. However there is a separate
 <a href="../hwinfo/ls610/index.html">74LS610 page</a>.</p>
-	</desc><H3><a name="schem">Schematics</a></H3>
-<desc>
+	</desc></subsection>
+	<subsection toc="schem" name="Schematics"><desc>
 <p>
 In the older schematics there are no decoupling capacitors (or what are they called?)
 that should be from Vcc to GND for each IC. Sometimes they are mentioned
@@ -162,34 +86,30 @@ in the parts list, though. Also there is no 100uF capacitor at the CS/A
 bus connector between Vcc and GND, to buffer the supply voltage for the
 board. These are always implict, so I didn't bother drawing them.
 But you should use them anyway.
-</p>
-<p>
+</p><p>
 Most of the boards, esp. the I/O boards, are pretty straightforward.
 That's why I concentrate on the special I/O and even then I will only go into
 detail when necessary. You should have some basic understanding of
 6502 hardware design.
-</p>
-<p>
+</p><p>
 In all mentionings I have just written 6502 or 6522 or 6821. These and
 other chips exist in different flavors, and it is only save to assume
 a that they are specified for 1MHz bus frequency only.
 Check if you want a 2MHz system and use the appropriate faster models.
 </p>
-	</desc><H3><a name="age">Age</a></H3>
-<desc>
+	</desc></subsection>
+	<subsection toc="age" name="Age"><desc>
 <p>
 Last but not least one remark. Some of the boards have been designed
 as early as 1989, which means they are pretty old. Nowadays I would do some things
 differently, the Reset circuitry is one example that can actually
 be seen in the newer 2006 versions of the CPU boards for example.
-</p>
-<p>
+</p><p>
 The schematics on this page can be found either as PNG, xfig and gzipped 
 postscript, in which case they are at least from 1999 or earlier, or
 as <a href="http://www.cadsoft.de">Eagle</a> schematics and PNG, in 
 which case they are from 2006 or later.
-</p>
-<p>
+</p><p>
 Nevertheless for the older boards 
 I have mostly transcripted the schematics from my hand-drawing to
 xfig format. Although I used quite some time to find any remaining error,
@@ -198,8 +118,8 @@ And my hand-drawing is still the authoritative source.</p>
 <p>For the newer boards you can be pretty sure that the Eagle schematics
 and board layout works when the board description indicates that I have
 tested the board and found no problem.
-	</p></desc><H2><a name="sw">Software</a></H2>
-<p>
+	</p></desc></subsection></section>
+	<section toc="sw" name="Software"><desc>
 <p>
 The software used is the <a href="../osa/index.html">GeckOS/A65</a>
 operating system. It features the handling of the MMU, serial devices,
@@ -212,136 +132,127 @@ VICE emulator, that now emulates a subset of the CS/A65 hardware.
 Please check it out at its <a href="emu/index.html">site</a>.
 </p>
 <p>The board pages contain driver code where appropriate and available.</p>
-	</p>
-<H2><a name="main">Main boards</a></H2>
-<p>Those boards are the heart of the CS/A65 and Gecko computers.</p>
-<li>
-<a href="cpu/index.html">CS/A65 CPU</a>
+	</desc></section>
+	<section toc="main" name="Main boards">
+	<desc>Those boards are the heart of the CS/A65 and Gecko computers.</desc>
+          <subitem name="CS/A65 CPU" link="cpu/index.html">
 		The main CPU board features an MMU, and newer versions also
 		sport bus error condition detection. It is a CPU-only board
 		and thus requires the BIOS board for its operation.
-	  <br><br>
-</li>
-<li>
-<a href="bios/index.html">CS/A65 BIOS</a>
+	  </subitem>
+
+          <subitem name="CS/A65 BIOS" link="bios/index.html">
 		This BIOS board contains RAM and ROM for the main CPU, as
 		well as simple 50Hz interrupt generation, as well as a
 		serial (RS232) interface.
-	  <br><br>
-</li>
-<li>
-<a href="petcpu/index.html">64k PET CPU</a>
+	  </subitem>
+
+          <subitem name="64k PET CPU" link="petcpu/index.html">
 		This board implements a simple CPU board that includes
 		not only the CPU, but also RAM and ROM (and also a serial
 		interface). It can - as it does not have an MMU - make only
 		restricted use of the bus memory address space, but can
 		fully use the bus I/O area.
-	  <br><br>
-</li>
-<li>
-<a href="gecko/index.html">Gecko</a>
+	  </subitem>
+
+          <subitem name="Gecko" link="gecko/index.html">
 		This board implements a single-board computer with a 
 		6502, RAM and ROM, that 
 		accidentially ;-) contains a CS/A65 bus connector.
 		It sports a serial interface (RS232), Commodore serial IEC
 		bus, infrared LED driver to use as remote control
 		and a small keyboard interface.
-	  <br><br>
-</li>
-<H2><a name="io">I/O boards</a></H2>
-<p>Many of the I/O boards are designed to be at least to some extent
-Commodore PET compatible 	</p>
-<li>
-<a href="vdc/index.html">Video</a>
+	  </subitem>
+
+	</section>
+	<section toc="io" name="I/O boards">
+	<desc>Many of the I/O boards are designed to be at least to some extent
+Commodore PET compatible 	</desc>
+
+          <subitem name="Video" link="vdc/index.html">
 		Thie VDC board implements a 6545 CRTC-based video interface.
 		It includes 64k dynamic RAM that is used as video memory
 		(at least parts of). If the system bus runs with 1MHz it can
 		display 40 columns PAL video, on 2MHz it can display 80 columns
 		video.
-	  <br><br>
-</li>
-<li>
-<a href="petio/index.html">CBM PET I/O</a>
+	  </subitem>
+
+          <subitem name="CBM PET I/O" link="petio/index.html">
 		This board contains basically all Commodore PET I/O interfaces
 		except for the video. It thus features an IEEE488 interface,
 		as well as keyboard, userport and tape interfaces. It also
 		contains a small beeper to make noise :-)
-	  <br><br>
-</li>
-<li>
-<a href="shug/index.html">PC floppy</a>
+	  </subitem>
+
+          <subitem name="PC floppy" link="shug/index.html">
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip. It also contains a small printer interface.
-	  <br><br>
-</li>
-<li>
-<a href="duart/index.html">Double UART</a>
+	  </subitem>
+
+          <subitem name="Double UART" link="duart/index.html">
 		Two UART 16550A implement two serial line RS232 interfacs.
-	  <br><br>
-</li>
-<li>
-<a href="scsi/index.html">SCSI</a>
+	  </subitem>
+
+          <subitem name="SCSI" link="scsi/index.html">
 		This board implements a SCSI interface to attach SCSI devices
 		to the CS/A65 computer. It is currently only tested with
 		disk drives, though.
-	  <br><br>
-</li>
-<H2><a name="special">Special purpose boards</a></H2>
-<p>Special interest in this computer system is on the topic of emulation.
+	  </subitem>
+
+	</section>
+	<section toc="special" name="Special purpose boards">
+	<desc>Special interest in this computer system is on the topic of emulation.
 The larger address space and the MMU allows for mapping of other
 computers memory into the main memory map.
-	</p>
-<li>
-<a href="copro/index.html">Coprocessor</a>
+	</desc>
+
+          <subitem name="Coprocessor" link="copro/index.html">
 		This is the schematic of a coprocessor board, that 
 		runs in paralle to the main CPU and has its 64k of memory
 		mapped into the 1M bus address space. Currently only a draft
 		is available.
-	  <br><br>
-</li>
-<li>
-<a href="cpuemu/index.html">Emulate a 6502</a>
+	  </subitem>
+
+          <subitem name="Emulate a 6502" link="cpuemu/index.html">
 		This board allows to connect another 6502-based computer
 		with the CS/A65. The other 6502's 64k address space is
 		mapped into the 1M bus address space. So with the help of
 		the MMU that main CPU can play the role of the replaced
 		other computer's CPU for example to test new ROM versions
 		of the other computer.
-	  <br><br>
-</li>
-<li>
-<a href="keyemu/index.html">Emulate a keyboard</a>
+	  </subitem>
+
+          <subitem name="Emulate a keyboard" link="keyemu/index.html">
 		This board emulates up to two matrix-based keyboard.
 		It features two shared memory areas, where the memory
 		is shared between the main CPU and the keyboard matrix
 		select and detect lines.
-	  <br><br>
-</li>
-<H2><a name="deprecated">Deprecated boards</a></H2>
-<p>These boards are deprecated and I will not support them
+	  </subitem>
+
+	</section>
+	<section toc="deprecated" name="Deprecated boards">
+	<desc>These boards are deprecated and I will not support them
 		further. 
 (well, they managed to spread the IEEE488
 interface across 3 ICs, which was not nice for building it on PCBs
 like these, why I moved some of the lines around...)
-	</p>
-<li>
-<a href="cpu65b/index.html">64k CPU</a>
+	</desc>
+
+          <subitem name="64k CPU" link="cpu65b/index.html">
 		This is a 64k CPU that is actually a stripped down
 		Gecko board. It only existed as schematics and is replaced
 		by the PETCPU board.
-	  <br><br>
-</li>
-<li>
-<a href="key/index.html">Keyboard and RS232</a>
+	  </subitem>
+
+          <subitem name="Keyboard and RS232" link="key/index.html">
 		This is a PET compatible keyboard interface, plus a
 		ACIA 6551 based serial (RS232) interface. As the 6551
 		is a rather rough-edged chip, and the keyboard interface
 		is available with the PETIO board in a more compatible way, 
 		this board is replaced by the PETIO and DUART boards.
-	  <br><br>
-</li>
-<li>
-<a href="iec/index.html">IEEE488 and CBM IEC</a>
+	  </subitem>
+
+          <subitem name="IEEE488 and CBM IEC" link="iec/index.html">
 		This board implements a partially PET compatible IEEE488
 		interface, plus a Commodore serial IEC bus as it is used
 		in the C64 for example. In addition both busses can be used
@@ -349,13 +260,20 @@ like these, why I moved some of the lines around...)
 		computer can be used as drive by the PET or C64. This 
 		board is replaced by the PETIO and (yet to be released)
 		DRVIO boards.
-	  <br><br>
-</li>
-<DIV ID="footer">
-<P>Last modified: 2006-11-01.</P>
-<p>Return to <a href="../index.html">Homepage</a></p>
+	  </subitem>
 
-</DIV>
-</DIV>
-</BODY>
-</HTML>
+	</section>
+        <!--driver>
+                <name>driver</name>
+                <desc>
+                </desc>
+                <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
+        </driver-->
+	<!--rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<note type="msg">
+		</note>
+		<file ltype="desc" ptype="txt">csascsi1desc.txt</file>
+	</rev-->
+</board>

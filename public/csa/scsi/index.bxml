@@ -16,14 +16,20 @@
                         Added driver code.
                 </item>
         </news>
-	<section toc="hwarc" name="Hardware Architecture">
+	<section toc="hwarc" name="Hardware Architecture"><desc>
+		<p>
 		The hardware architecture is actually very simple. As 
 		only asynchronous data transfer is needed, the board
 		provides bidirectional access to the 8 data lines, plus
 		access to the control lines. Parity check is provided,
 		as well as automatic REQ/ACK handling by simply accessing the
 		data register. For more information see the board 
-		description below.
+		description below.</p><p>
+	The SCSI board has a heavily modified version of an old SASI
+interface from the german elektor magazin (around '88 or so).
+It has been reworked to get more SCSI-II compliance, but it is still
+not there. It works, however, with my Seagate ST1096N harddisk :-)
+		</p></desc>
 	</section>
 	<section toc="swarc" name="Software Architecture">
 <desc><p>The software architecture is kept as flexible as possible.

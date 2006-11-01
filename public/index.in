@@ -22,7 +22,7 @@ features Multitasking, dynamic memory management, a standard library
 and internet access.
   </p><hr><strong>News:</strong><p><small>7. Aug. 2006</small>
     I have updated the links from funet to the new home of the 
-    Commodore archive at <a href="http://www.zimmers.net/anonftp/pub/cbm/">http://www.zimmers.net/anonftp/pub/cbm/</a>, as well as checked the other
+    Commodore archive at <a href="@CBMARC@/">@CBMARC@/</a>, as well as checked the other
     links and updated them where necessary.
     </p><hr><h3>Quickfinder</h3>
     <ul><li><strong>General 6502 stuff</strong><br><br><ul><li><a href="osa/index.html">GeckOS/A65</a>

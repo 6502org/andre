@@ -28,7 +28,7 @@ CS/A65 or Gecko computers.
   	      The userport of the C64 can do more than the approximately 2400 baud
 the original kernal software can handle. With a small modification, invented
 by Daniel Dallmann, it can do 9600 baud. See
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/rs232-userport-9600.zip">http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/rs232-userport-9600.zip</a>.<br><br></li><li><strong>C64-2</strong>
+<a href="@CBMARC@/documents/projects/rs232/rs232-userport-9600.zip">@CBMARC@/documents/projects/rs232/rs232-userport-9600.zip</a>.<br><br></li><li><strong>C64-2</strong>
 	      : 
   	      Originally I built a 6551 interface for the C64 that was mounted between the
 SID and its socket in the C64. Nevertheless, this IC is crap compared to
@@ -36,7 +36,7 @@ the UART 16550A with 16 byte FIFO, especially if you use a
 multitasking OS like my <a href="../osa/index.html">GeckOS</a>.
 So I modified the interface to use an UART. Find the description, schematics
 and some source code in
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/rs232/c64-uart-1.tar.gz">c64-uart-1.tar.gz</a>.<br><br></li></ul><hr><h3>C64 Modifications</h3>Besides the above modifications I did some more.
+<a href="@CBMARC@/documents/projects/rs232/c64-uart-1.tar.gz">c64-uart-1.tar.gz</a>.<br><br></li></ul><hr><h3>C64 Modifications</h3>Besides the above modifications I did some more.
 Also the original C64 kernal is not very comfortable. So I decided to do some
 modifications to it.
     <ul><li><strong>EPROM</strong>

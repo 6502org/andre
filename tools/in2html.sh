@@ -67,9 +67,10 @@ done
 if [ -f $root/.files ]; then
     for i in `cat $root/.files | grep "^d " | cut -d " " -f 2`; do
 	"$0" $root/$i $up../ $(($upn+1)) $i
-	rm -f $root/.files.xml
+	rm -f $root/$i/.files.xml
     done;
 fi
 
+rm -f $root/.files.xml
 
 

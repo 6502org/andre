@@ -86,23 +86,29 @@
 <a href="#board1">1.0A</a> (ok)</li></dir>
 </dir>
 </DIV>
-<H2><a name="#hwarc">Hardware Architecture</a></H2>
+<H2><a name="hwarc">Hardware Architecture</a></H2>
+<p>
+		<p>
 		The hardware architecture is actually very simple. As 
 		only asynchronous data transfer is needed, the board
 		provides bidirectional access to the 8 data lines, plus
 		access to the control lines. Parity check is provided,
 		as well as automatic REQ/ACK handling by simply accessing the
 		data register. For more information see the board 
-		description below.
-	<H2><a name="#swarc">Software Architecture</a></H2>
+		description below.</p><p>
+	The SCSI board has a heavily modified version of an old SASI
+interface from the german elektor magazin (around '88 or so).
+It has been reworked to get more SCSI-II compliance, but it is still
+not there. It works, however, with my Seagate ST1096N harddisk :-)
+		</p></p>
+<H2><a name="swarc">Software Architecture</a></H2>
 <p><p>The software architecture is kept as flexible as possible.
 Three levels work together, the hardware driver, the partition
 level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the
 filesystem code.
 </p></p>
-<desc></desc>
-	<H3><a name="#hwlay">Hardware layer</a></H3>
+<H3><a name="hwlay">Hardware layer</a></H3>
 <p>
 The hardware layer is a low level driver that can detect the
 devices connected to the SCSI bus, inquire the device (it returns
@@ -117,7 +123,7 @@ emulator, not in hardware. You write the block number to some
 I/O locations and get the right block memory mapped. This code
 shows how easy it is to replace the hardware level if necessary.
 </p>
-<H3><a name="#part">Partition layer</a></H3>
+<H3><a name="part">Partition layer</a></H3>
 <p>
 The partition level consists of three parts, where only two
 are implemented so far.
@@ -134,7 +140,7 @@ The third part would be an <code>fdisk</code> program that uses the low
 level routines to manipulate the partition tables. But here I still
 rely on the Linux counterpart I already have :-)
 </p>
-<H3><a name="#fs">Filesystem level</a></H3>
+<H3><a name="fs">Filesystem level</a></H3>
 <p>
 The upper level is the filesystem level. It contains code to handle
 directories, files, allocation tables etc.
@@ -143,7 +149,7 @@ heavily depending on the operating system.
 It should be easy to implement any filesystem you like on the level
 provided by the partition code.
 </p>
-<H3><a name="#drvs">Drivers</a></H3>
+<H3><a name="drvs">Drivers</a></H3>
 <p>
 The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
 system</a>. An example of a filesystem
@@ -153,7 +159,7 @@ system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 (no FAT32 and no long filenames). But be warned, it is an early
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </p>
-	<H2><A NAME="driver">Driver</A></H2>
+<H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">OS/A65 SCSI driver</A></H3>
 <P>
                         This driver handles the base SCSI operations.

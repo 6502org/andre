@@ -22,7 +22,7 @@ In VICE almost all PET computers are emulated (SuperPET 6809 mode is not support
 The VICE emulator runs on different platforms, notably the 
 Windows and Linux/Unix platforms are supprted, but others as well.
 </DD>
-<DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
+<DT><A HREF="@CBMARC@/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
 <DD>This is a different type of emulator - it runs on the C64, and 
 emulates the hardware only as far as it is able to catch hardware accesses
 using BASIC POKE and PEEK commands.</DD>

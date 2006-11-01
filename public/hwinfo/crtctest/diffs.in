@@ -13,7 +13,7 @@ sources. The docs to
 <li>Hitachi 46505
 <li>Commodore 6545-1
 </ul><p>
-have been taken from <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html</a>. 
+have been taken from <a href="@CBMARC@/documents/chipdata/index.html">@CBMARC@/documents/chipdata/index.html</a>. 
 The Motorola chips are actually only two different chips, 
 namely 6845 and 6845-1, with different speed ratings ("", "A", "B").
 I will therefore only use the names without speed ratings.
@@ -28,7 +28,7 @@ the R6545E).
 </p><hr><p>
 I will not go into details that are common to all chips.
 If you have further questions please refer to the CRTC documentation
-on http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html
+on @CBMARC@/documents/chipdata/index.html
 </p>
 <h2>Pinout</h2>
 <p>

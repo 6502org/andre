@@ -41,12 +41,14 @@
 </xsl:for-each>
 </dir>
 </xsl:if>
+<xsl:if test="rev">
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <xsl:for-each select="rev">
 <li><a href="#board{position()}"><xsl:value-of select="version"/></a> (<xsl:value-of select="status"/>)</li>
 </xsl:for-each>
 </dir>
+</xsl:if>
 <xsl:if test="diagram">
 <li><a href="#blkdiag">Block diagram</a></li>
 </xsl:if>
@@ -57,8 +59,10 @@
 <H2><A NAME="driver">Driver</A></H2>
 <xsl:apply-templates select="driver"/>
 </xsl:if>
+<xsl:if test="rev">
 <H2><A NAME="boards">Board revisions</A></H2>
 <xsl:apply-templates select="rev"/>
+</xsl:if>
 <xsl:if test="diagram">
 <H2><A name="blkdiag">Block diagram</A></H2>
 <img src="{diagram/file}" alt="block diagram"/>
@@ -73,13 +77,14 @@
 </xsl:template>
 
 <xsl:template match="section">
-<H2><a name="#{@toc}"><xsl:value-of select="@name"/></a></H2>
+<H2><a name="{@toc}"><xsl:value-of select="@name"/></a></H2>
 <xsl:if test="desc"><p><xsl:copy-of select="desc/*|desc/text()"/></p></xsl:if>
-<xsl:apply-templates match="subsectioN"/>
+<xsl:apply-templates select="subsection"/>
+<xsl:apply-templates select="subitem"/>
 </xsl:template>
 
 <xsl:template match="subsection">
-<H3><a name="#{@toc}"><xsl:value-of select="@name"/></a></H3>
+<H3><a name="{@toc}"><xsl:value-of select="@name"/></a></H3>
 <xsl:copy-of select="*|text()"/>
 </xsl:template>
 

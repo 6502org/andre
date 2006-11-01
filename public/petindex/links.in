@@ -24,33 +24,33 @@
 
 <P><UL>
 
-<LI><P><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/index.html">PET schematics</A> on the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/">CBM archive</A>
+<LI><P><A HREF="@CBMARC@/schematics/computers/pet/index.html">PET schematics</A> on the <A HREF="@CBMARC@/">CBM archive</A>
 The other links are links into the subdirectories there. Some contain not
 only the schematics but also parts lists and service information.</P>
 <P><UL>
 
-<LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/2001/index.html">PET 2001, board #1</A> (scanned)
+<LI><A HREF="@CBMARC@/schematics/computers/pet/2001/index.html">PET 2001, board #1</A> (scanned)
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/2001N/index.html">PET 2001, board #2</A> (scanned)
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/2001N/index.html">PET 2001, board #2</A> (scanned)
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/8032/index.html">PET 8032, board #3a</A> (scanned)
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/8032/index.html">PET 8032, board #3a</A> (scanned)
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/univ/index.html">PET 8032, board #3b</A> (scanned)
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/univ/index.html">PET 8032, board #3b</A> (scanned)
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/univ2/index.html">PET 8032, a newer flavour of board #3b</A> (scanned)
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/univ2/index.html">PET 8032, a newer flavour of board #3b</A> (scanned)
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/SuperPET/index.html">SuperPET add-on boards to #3</A> (scanned)<BR>
-The <A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/SuperPET/9000016.gif">9000016.gif</A> has the schematics of the combined version of the
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/SuperPET/index.html">SuperPET add-on boards to #3</A> (scanned)<BR>
+The <A HREF="@CBMARC@/schematics/computers/pet/SuperPET/9000016.gif">9000016.gif</A> has the schematics of the combined version of the
 SuperPET expansion
 
-</LI><LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/re/index.html">PET 3008/PET 8032</A> (reverse engineered)
+</LI><LI><A HREF="@CBMARC@/schematics/computers/pet/re/index.html">PET 3008/PET 8032</A> (reverse engineered)
 </LI></UL>
 </LI></UL>
 
 <H2><A NAME="chipdata">Chip Data</A></H2>
 
 <P><UL>
-<LI><A HREF="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">Chipdata</A> on the CBM archive</LI>
+<LI><A HREF="@CBMARC@/documents/chipdata/index.html">Chipdata</A> on the CBM archive</LI>
 <LI><A HREF="http://www.6502.org/documents/datasheets/">Chipdata</A> on the <A HREF="http://www.6502.org/">6502.org</A></LI>
 <LI>Some other interesting documents:
 <UL>
@@ -62,9 +62,9 @@ SuperPET expansion
 <H2>CBM Archive links</H2>
 
 <P><UL>
-<LI>ROMs on <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/index.html">http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/index.html</A>
-</LI><LI>Transfer programs <A HREF="http://www.zimmers.net/anonftp/pub/cbm/transfer/index.html">http://www.zimmers.net/anonftp/pub/cbm/transfer/index.html</A>
-</LI><LI>Pictures on <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pictures/index.html">http://www.zimmers.net/anonftp/pub/cbm/pictures/index.html</A>
+<LI>ROMs on <A HREF="@CBMARC@/firmware/computers/index.html">@CBMARC@/firmware/computers/index.html</A>
+</LI><LI>Transfer programs <A HREF="@CBMARC@/transfer/index.html">@CBMARC@/transfer/index.html</A>
+</LI><LI>Pictures on <A HREF="@CBMARC@/pictures/index.html">@CBMARC@/pictures/index.html</A>
 </LI></UL>
 
 
