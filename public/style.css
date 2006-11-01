@@ -35,11 +35,15 @@ DIV#menu {
 	list-style-position:outside;
 }
 
+P.copyright {
+	font-size:larger;
+	font-weight:bold;
+}
+
 LI.separator {
 	font-size:larger;
 	font-weight:bold;
 	list-style-type:none;
-/*	list-style-image:url(imgs/arrow.gif); */
         margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
 }
 

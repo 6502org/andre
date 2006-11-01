@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="">
+<webpage name="I2C Information">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <yearstart>2006</yearstart>

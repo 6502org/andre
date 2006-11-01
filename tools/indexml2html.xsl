@@ -149,11 +149,11 @@
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">
-<h2>(C)
+<p class="copyright">(C)
 <xsl:value-of select="yearstart"/>-<xsl:value-of select="yearend"/>
 <xsl:text> </xsl:text>
 <xsl:value-of select="name"/> 
-</h2>
+</p>
 <xsl:text> 
 </xsl:text>
 </xsl:for-each>

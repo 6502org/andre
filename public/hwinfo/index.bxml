@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="Andr&eacute;'s 8-bit pages">
+<webpage name="Chips and Hardware Standards">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -46,5 +46,6 @@ GNU Public License applies. Then its conditions hold.
     </disclaimer>
   </itemlist>
   <closing>
+@FOOTER@
   </closing>
 </webpage>

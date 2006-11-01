@@ -10,9 +10,8 @@
 <body>
 @MENU@
 <DIV ID="content">
-<h1>Andr&eacute; 's CBM hardware modifications</h1><h2>(C)
-- Andr&eacute;  Fachat 
-</h2> 
+<h1>Andr&eacute; 's CBM hardware modifications</h1>
+<p class="copyright">(C) - Andr&eacute;  Fachat </p> 
 <p>
 On these pages you will find a number of hacks I applied to my Commodore
 8-bit equipment. Some of them are designed by me, others are taken
@@ -113,4 +112,5 @@ There is no warranty of any kind attached to the information herein.
 You may use this information for NON-COMMERCIAL use, unless where the
 GNU Public License applies. Then its conditions hold.
   <hr>Contents last modified 15 June 2000
+@FOOTER@
   </DIV></body></html>

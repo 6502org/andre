@@ -11,7 +11,7 @@
 @MENU@
 <DIV ID="content">
 <h1 class=overview>lib6502 standard library</h1>
-<h2 class=overview>(c) 1997-1999 A. Fachat</h2>
+<p class="copyright">(c) 1997-1999 A. Fachat</p>
 <p class=overview>
 The lib6502 standard library for 6502 systems is far from being
 complete. The current version is 

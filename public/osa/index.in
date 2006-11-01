@@ -11,10 +11,9 @@
 <body>
 @MENU@
 <DIV ID="content">
-<h1 align=center>GeckOS/A65 Operating System</h1>
-<h2 align=center>Version 2.0</h2>
-<h2 align=center>(c) 1989-1999 
-Andr&eacute; Fachat</h2>
+<h1 align=center>GeckOS/A65 Operating System Version 2.0</h1>
+<p class="copyright">(c) 1989-1999 
+Andr&eacute; Fachat</p>
 <hr><p>
 This is a completely new version of my 6502 operating system GeckOS/A65.
 From version 2.0.0 on it has a lot of new features:
