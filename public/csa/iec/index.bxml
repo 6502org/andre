@@ -7,8 +7,13 @@
 		as a Commodore serial IEC bus interface, as used in
 		the VIC20 and C64 (and others).
 	</desc>
+	<news>
+    		<item date="2006-11-01">
+			Added driver code.
+    		</item>
+  	</news>
         <driver>
-                <name>OS/A65 IEEE488 driver</name>
+                <name>OS/A65 V2 IEEE488 driver</name>
                 <desc>
 		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
 		OS/A65 filesystem process. It implements the hardware access with the following methods:
@@ -42,9 +47,11 @@
 		<li><code>getif</code> - get interface using PSEM() and/or CTRLNMI()</li>
 		<li><code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
 		</ul>
+		Unfortunately, due to its age, the code is a mess, but works in GeckOS/A65.
                 </desc>
-                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code">piec_csa.a65</file>
-                <file ltype="driver" ptype="a65" note="serial IEC Driver code">siec_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code, excerpt to use as bus master">piec_csa_master.a65</file>
+                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code, excerpt to use as IEEE488 drive">piec_csa_drive.a65</file>
+                <file ltype="driver" ptype="a65" note="serial IEC Driver code (bus master only)">siec_csa.a65</file>
         </driver>
         <driver>
                 <name>OS/A65 Beeper driver</name>
@@ -60,7 +67,8 @@
 				count values must be modified.</li>
 			</ul>
                 </desc>
-                <file ltype="driver" ptype="a65" note="console driver">con_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="excerpt from console driver">con_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="VIA register definitions">via6522.i65</file>
         </driver>
 	<rev>
 		<version>1.1B</version>
@@ -72,6 +80,7 @@
 			the ability to be used as a device (for both the
 			IEEE488 and the IEC bus).
 		</note>
+		<note type="deprecated">This board is deprecated. Please use the PETIO board instead.</note>
 		<file ltype="desc" ptype="txt">cpuiecdesc.txt</file>
 		<file ltype="parts" ptype="txt">cpuiecparts.txt</file>
 		<file ltype="schem" ptype="fig">csaiec.fig</file>

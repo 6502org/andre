@@ -2,7 +2,7 @@
 <board>
 	<name>CS/A65 Video board</name>
 	<keywords>CSA65 VDC video CRTC 6545 6845</keywords>	
-	<lastmodified>2006-10-14</lastmodified>
+	<lastmodified>2006-11-01</lastmodified>
 	<desc>This board implements the a video board for the CS/A65 bus.
 		The board uses 64k dynamic RAM that is accessed in a
 		time-shared way, by the CPU at Phi2 high, and by the
@@ -10,6 +10,31 @@
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
 	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+	<driver>
+		<name>OS/A65 VDC hardware driver</name>
+		<desc>This is the video-specific hardware part of the 
+			CS/A65 console driver. It provides the following
+			methods:
+			<ul>
+			<li><code>inivid</code> - initialize video hardware</li>
+			<li><code>setact</code> - set the CRTC display address to the current screen</li>
+			<li><code>crsron</code> - set the CRTC cursor to the correct address (the hardware cursor is actually flashing all the time)</li>
+			</ul>
+			The video memory is memory-mapped into CPU address space,
+			so the rest of the console driver (the hardware independent part)
+			acts on this memory mapped video.
+			The console can actually work in 40 columns (1MHz CPU clock) and
+			80 columns mode (2MHz CPU clock). This is detected by 
+			checking bit 7 of the <code>freq</code> variable.
+		</desc>
+
+                <file ltype="driver" ptype="a65" note="VDC driver excerpt">con_csa.a65</file>
+	</driver>
 	<diagram>
 		<file>vdc.gif</file>
 		<desc>Block diagram of the vdc board. Only some relevant info

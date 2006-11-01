@@ -18,6 +18,9 @@
 		<note type="warn">
 			This schematics has not been tested.
 		</note>
+		<note type="deprecated">
+			This board is deprecated. Please use the PETCPU board instead.
+		</note>
 		<file ltype="desc" ptype="txt">cpu65bdesc.txt</file>
 		<file ltype="schem" ptype="fig">cpu65b.fig</file>
 		<file ltype="schem" ptype="png">cpu65b.png</file>

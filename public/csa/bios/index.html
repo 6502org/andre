@@ -24,7 +24,6 @@
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
 
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
-<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="separator">I/O boards</li>
 <li class="dir"><a href="../vdc/index.html">Video board</a></li>
@@ -36,13 +35,14 @@
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
 <li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
 <li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
-<li class="separator">I/O boards (deprecated)</li>
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
 <li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
 <li class="separator">Other links</li>
 <li class="dir"><a href="../gallery/index.html">Gallery</a></li>
 <li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
-<li class="link"><a href="../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+<li class="link"><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
 </ul>
 <li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
 <li class="separator">Software</li>
@@ -66,8 +66,21 @@ The I/O mapping can be changed from the BIOS port as well.
 The older version 1 used a 6551 ACIA for the RS232 interface, but now I
 use a 16550 UART (with FIFO).
 	</P>
-<H2>Board revisions</H2>
-<H3>Version: 3.0B</H3>
+<DIV ID="toc">
+<H2><A NAME="toc">Table of content</A></H2>
+<dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir>
+<li>
+<a href="#board1">3.0B</a> (ok)</li>
+<li>
+<a href="#board2">2.0B</a> (ok)</li>
+</dir>
+<li><a href="#blkdiag">Block diagram</a></li>
+</dir>
+</DIV>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 3.0B</A></H3>
 <P>Status: ok</P>
 <TABLE>
 <TR>
@@ -124,7 +137,7 @@ use a 16550 UART (with FIFO).
 <A HREF="csa_bios_v3.0b-lay.png">csa_bios_v3.0b-lay.png</A></TD>
 </TR>
 </TABLE>
-<H3>Version: 2.0B</H3>
+<H3><A NAME="board2">Version: 2.0B</A></H3>
 <P>Status: ok</P>
 <TABLE>
 <TR>
@@ -156,9 +169,13 @@ use a 16550 UART (with FIFO).
 <A HREF="csabios2parts.txt">csabios2parts.txt</A></TD>
 </TR>
 </TABLE>
-<H2>Block diagram</H2>
+<H2><A name="blkdiag">Block diagram</A></H2>
 <img src="bios.gif" alt="block diagram"><P><desc>This diagram shows an overview on the board architecture</desc></P>
-<BR><P>Last modified: 2006-10-13.</P>
+<DIV ID="footer">
+<P>Last modified: 2006-10-13.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
 </DIV>
 </BODY>
 </HTML>

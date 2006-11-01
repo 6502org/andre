@@ -5,7 +5,6 @@ s Main boards
 d cpu CS/A65 CPU
 d bios CS/A65 BIOS 
 d petcpu 64k PET CPU
-d cpu65b 64k CPU
 d gecko Gecko
 s I/O boards
 d vdc Video board
@@ -17,7 +16,8 @@ s Special purpose
 d copro Coprocessor board
 d cpuemu Emulate a 6502
 d keyemu Emulate a keyboard
-s I/O boards (deprecated)
+s Deprecated boards
+d cpu65b 64k CPU
 d key Keyboard and RS232
 d iec IEEE488 and CBM IEC
 s Other links

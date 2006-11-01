@@ -19,17 +19,72 @@
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
 </xsl:text>
-<xsl:if test="driver">
-<H2>Driver</H2>
-<xsl:for-each select="driver">
-<H3><xsl:value-of select="name"/></H3>
-<P><xsl:copy-of select="desc/*|desc/text()"/></P>
-<TABLE><xsl:apply-templates select="file"/></TABLE>
+<xsl:apply-templates select="news"/>
+<DIV ID="toc">
+<H2><A NAME="toc">Table of content</A></H2>
+<dir>
+<xsl:for-each select="section">
+<li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
+<xsl:if test="subsection">
+<dir>
+<xsl:for-each select="subsection">
+<li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 </xsl:for-each>
+</dir>
 </xsl:if>
-<H2>Board revisions</H2>
+</xsl:for-each>
+<xsl:if test="driver">
+<li><a href="#driver">Driver</a></li>
+<dir>
+<xsl:for-each select="driver">
+<li><a href="#driver{position()}"><xsl:value-of select="name"/></a></li>
+</xsl:for-each>
+</dir>
+</xsl:if>
+<li><a href="#boards">Board Revisions</a></li>
+<dir>
 <xsl:for-each select="rev">
-<H3>Version: <xsl:value-of select="version"/></H3><xsl:text>
+<li><a href="#board{position()}"><xsl:value-of select="version"/></a> (<xsl:value-of select="status"/>)</li>
+</xsl:for-each>
+</dir>
+<xsl:if test="diagram">
+<li><a href="#blkdiag">Block diagram</a></li>
+</xsl:if>
+</dir>
+</DIV>
+<xsl:apply-templates select="section"/>
+<xsl:if test="driver">
+<H2><A NAME="driver">Driver</A></H2>
+<xsl:apply-templates select="driver"/>
+</xsl:if>
+<H2><A NAME="boards">Board revisions</A></H2>
+<xsl:apply-templates select="rev"/>
+<xsl:if test="diagram">
+<H2><A name="blkdiag">Block diagram</A></H2>
+<img src="{diagram/file}" alt="block diagram"/>
+<P><xsl:copy-of select="diagram/desc"/></P>
+</xsl:if>
+<DIV ID="footer">
+<P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
+@FOOTER@
+</DIV>
+</DIV>
+</BODY></HTML>
+</xsl:template>
+
+<xsl:template match="section">
+<H2><a name="#{@toc}"><xsl:value-of select="@name"/></a></H2>
+<xsl:if test="desc"><p><xsl:copy-of select="desc/*|desc/text()"/></p></xsl:if>
+<xsl:apply-templates match="subsectioN"/>
+</xsl:template>
+
+<xsl:template match="subsection">
+<H3><a name="#{@toc}"><xsl:value-of select="@name"/></a></H3>
+<xsl:copy-of select="*|text()"/>
+</xsl:template>
+
+<xsl:template match="rev">
+<H3><A NAME="board{position()}">Version: <xsl:value-of select="version"/></A></H3><xsl:text>
 </xsl:text>
 <P>Status: <xsl:value-of select="status"/></P><xsl:text>
 </xsl:text>
@@ -40,21 +95,16 @@
 </xsl:text>
 </xsl:for-each><!-- note -->
 </TABLE>
-
 <TABLE>
 <xsl:apply-templates select="file"/>
 </TABLE><xsl:text>
 </xsl:text>
-</xsl:for-each><!-- rev -->
-<xsl:if test="diagram">
-<H2>Block diagram</H2>
-<img src="{diagram/file}" alt="block diagram"/>
-<P><xsl:copy-of select="diagram/desc"/></P>
-</xsl:if>
-<BR></BR>
-<P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
-</DIV>
-</BODY></HTML>
+</xsl:template>
+
+<xsl:template match="driver">
+<H3><A NAME="driver{position()}"><xsl:value-of select="name"/></A></H3>
+<P><xsl:copy-of select="desc/*|desc/text()"/></P>
+<TABLE><xsl:apply-templates select="file"/></TABLE>
 </xsl:template>
 
 <xsl:template match="file">
@@ -136,7 +186,6 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="news">
- <hr/>
  <h3>News:</h3>
  <ul class="news">
  <xsl:for-each select="item">

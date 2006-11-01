@@ -1,0 +1,88 @@
+
+#define   vdcctrl   $e888
+#define   vdc       $e880
+#define   VIDPAGE   4
+
+	.data
+&maxspal .byt 0
+&maxscr .byt 0
+	.text
+
+&console_init .(
+	ldx #4
+	bit freq
+	bpl c1mhz
+	ldx #2
+c1mhz	stx maxscr
+
+	jsr inivid
+	rts
+	.)
+
+&inivid   .(   
+          lda screen
+          bne ix
+
+	  lda #$0c		; set charrom and video base
+	  sta vdcctrl
+
+          ldx #0
+i1        bit freq
+          bpl onemhz
+          lda vdc8tab,x
+          jmp nex
+onemhz    lda vdc4tab,x
+nex       stx vdc
+          sta vdc+1
+          inx
+          cpx #16
+          bcc i1
+ix
+          lda #40
+          bit freq
+          bpl i2
+          lda #80
+i2	  sta maxspal
+	  rts
+
+vdc8tab   .byt $7e,$50,$64,6,$29,0,$19,$21,0,7,$60,7,0,0,0,0
+
+vdc4tab   .byt $3f,$28,$32,3,$29,0,$19,$21,0,7,$60,7,0,0,0,0
+
+	  .)
+
+&setact   .(
+          sta actscr
+          asl
+          asl
+          bit freq
+          bpl s1
+          asl
+s1        and #%00001111
+          ldx #12
+          stx vdc
+          sta vdc+1
+	  rts
+	  .)
+
+/**************************************************************************
+ * Cursor handling
+ */
+
+&crsron  .(
+          ldx #15
+          lda spalte
+          clc
+          adc vzei
+          stx vdc
+          sta vdc+1
+          lda vzei+1
+          adc #0
+          dex
+          stx vdc
+          and #%00001111
+          sta vdc+1
+&&crsroff rts
+	  .)
+
+

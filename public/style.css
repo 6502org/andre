@@ -14,10 +14,17 @@ TH {
 	background-color: #dddddd;
 }
 
+H2 {
+	border-top: 2px solid;
+}
+
+DIV#footer {
+	border-top: 2px solid;
+}
+
 DIV#content {
   margin-left: 22em;
   padding: 0 1em;
-/*  border: 1px dashed silver; */
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
 }
 

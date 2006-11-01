@@ -24,7 +24,7 @@ if [ -f $root/.files ]; then
 		BEGIN { print "<ul class=\"menu" upn "\" >"; } \
 		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
 		/^f / { print "<li class=\"file\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^l / { print "<li class=\"link\"><a href=\"" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^l / { print "<li class=\"link\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^d / { print "<li class=\"dir\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>@" $2 "@"; }\
 		END { print "</ul>"; } \
 	' \

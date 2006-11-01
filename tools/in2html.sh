@@ -44,6 +44,8 @@ for i in $root/*.inx; do
 
 		#echo "from " $to " to " ${t2}~
 		cat $to \
+			| awk '/@FOOTER@/ { print "<p>Return to <a href=\"%up%index.html\">Homepage</a></p>"; }
+				{ print $0; }' \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \

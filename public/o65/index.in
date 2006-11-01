@@ -13,7 +13,6 @@
 <DIV ID="content">
 <h1 class=overview>o65 6502 binary relocation format v1.3</h1>
 <h2 class=overview>(c) Andr&eacute; Fachat</h2>
-<hr class=overview>
 <h2 class=overview>File format definitions</h2>
 <p class=overview>
 The <strong>o65</strong> fileformat provides portable way 
@@ -34,7 +33,6 @@ The change from the <a href="fileformat-1.1.html.gz">version 1.1</a>
 is that the undefined reference relocation entry for high-byte 
 relocation has changed.
 </p>
-<hr>
 <h2 class=overview>Example code</h2>
 <p>
 In the file <a href="libloader.a65">libloader.a65</a> is a sample loader 
@@ -51,12 +49,10 @@ also has a sample C64 binding.
 The code is not cleared from debug statements and lacks comments. Wear your
 hard hat.
 </p>
-<hr>
 <h2>O65 Next Generation</h2>
 Due to some requests to support other CPUs and "larger" systems, I have made an attempt to
 define a new, "v2" version of the o65 file format. It is far from complete, and open for discussion.
 You can find the working draft in <a href="fileformatng.html">fileformatng.html</a>.
-<hr>
 <h2 class=overview>Current uses</h2>
 <p>
 The <code>o65</code> file format is currently used in the following systems:

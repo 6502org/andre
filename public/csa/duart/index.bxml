@@ -2,12 +2,17 @@
 <board>
 	<name>CS/A65 DUART</name>
 	<keywords>CSA65 6502 UART</keywords>
-        <lastmodified>2006-10-13</lastmodified>
+        <lastmodified>2006-11-01</lastmodified>
 	<desc>
 	 This Dual RS232 board uses two 16550A for the two interfaces. I 
 	know that there are ICs like the 16552(?) with two interfaces in 
 	one chip, but when I needed it, I had the parts at home already...
 	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
 	<driver>
 		<name>OS/A65 UART16550A driver</name>
 		<desc>The driver consists of two files. First the
