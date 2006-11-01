@@ -61,6 +61,33 @@ system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </p>
 	</desc>
+        <driver>
+                <name>OS/A65 SCSI driver</name>
+                <desc>
+                        This driver handles the base SCSI operations.
+			It consists of these files:
+                        <ul><li><code>scsi.a65</code> - binds the hardware driver to the <code>fsibm</code> FAT filesystem. It exports the same interface 
+			as described in the <a href="../shug/index.html">floppy driver</a>.</li>
+                        <li><code>part.i65</code> - partition definitions</li>
+                        <li><code>pcpart.a65</code> - scan PC-style partitions</li>
+                        <li><code>paccess.a65</code> - translates the partition-relative block numbers to absolute disk block numbers.</li>
+                        <li><code>csascsi1.a65</code> - the actual hardware driver</li>
+                        </ul>
+			The hardware driver exports the following methods:
+			<ul>
+			<li><code>iniscsi</code> - init the device</li>
+			<li><code>inquiry</code> - inquire a device</li>
+			<li><code>getsize</code> - get the size of the device</li>
+			<li><code>readblock</code> - read a block</li>
+			<li><code>writeblock</code> - write a block</li>
+			</ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="OS/A65 binding">scsi.a65</file>
+                <file ltype="driver" ptype="a65" note="partition definitions">part.i65</file>
+                <file ltype="driver" ptype="a65" note="pc partition scanner">pcpart.a65</file>
+                <file ltype="driver" ptype="a65" note="partition access">paccess.a65</file>
+                <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
+        </driver>
 	<rev>
 		<version>1.0A</version>
 		<status>ok</status>

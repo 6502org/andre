@@ -18,15 +18,15 @@ fi;
 
 bin=`dirname $0`
 
-echo "xslt: force=" $force
+#echo "xslt: force=" $force
 
 for i in `find $dir -name \*.in`; do 
 	to=`dirname $i`/`basename $i .in`.inx
-	echo $i " -> " $to;
+	#echo $i " -> " $to;
 	if [ $force = "true" -o $i -nt $to ]; then
 		cat $i > $to
-	else 
-		echo "not newer!"
+	#else 
+		#echo "not newer!"
 	fi
 done
 

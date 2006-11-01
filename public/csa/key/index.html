@@ -60,6 +60,41 @@
 		keyboard. It also implements a RS232
 		interface using a 6551 ACIA.
 	</P>
+<H2>Driver</H2>
+<H3>OS/A65 Keyboard driver</H3>
+<P>
+                        This driver handles the keyboard included
+                        in this board.
+                        It provides these methods
+                        <ul>
+<li>
+<code>inikbd</code> - initialize the keyboard</li>
+                        <li>
+<code>getkey</code> - scan the keyboard</li>
+                        </ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="con_csa.a65">con_csa.a65</A>(console driver)</TD>
+</TR>
+</TABLE>
+<H3>OS/A65 ACIA RS232 driver</H3>
+<P>
+                        This driver handles the ACIA RS232 hardware included
+                        in this board. As this board does not use the standard
+			ACIA handshake lines but lines from the VIA, this is
+			not a general ACIA driver. In addition it includes
+			the ACIA driver for the original BIOS V1.x board.
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="oa1ds.a65">oa1ds.a65</A>(ACIA driver)</TD>
+</TR>
+</TABLE>
 <H2>Board revisions</H2>
 <H3>Version: 1.0B</H3>
 <P>Status: ok</P>
@@ -74,23 +109,28 @@
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="csakeydesc.txt">csakeydesc.txt</A></TD>
+<TD>
+<A HREF="csakeydesc.txt">csakeydesc.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="csakeyparts.txt">csakeyparts.txt</A></TD>
+<TD>
+<A HREF="csakeyparts.txt">csakeyparts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csakey.fig">csakey.fig</A></TD>
+<TD>
+<A HREF="csakey.fig">csakey.fig</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csakey.png">csakey.png</A></TD>
+<TD>
+<A HREF="csakey.png">csakey.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csakey.ps.gz">csakey.ps.gz</A></TD>
+<TD>
+<A HREF="csakey.ps.gz">csakey.ps.gz</A></TD>
 </TR>
 </TABLE>
 <BR><P>Last modified: 2006-10-13.</P>

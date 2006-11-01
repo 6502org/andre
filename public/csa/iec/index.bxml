@@ -7,6 +7,61 @@
 		as a Commodore serial IEC bus interface, as used in
 		the VIC20 and C64 (and others).
 	</desc>
+        <driver>
+                <name>OS/A65 IEEE488 driver</name>
+                <desc>
+		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
+		OS/A65 filesystem process. It implements the hardware access with the following methods:
+		<ul><li><code>IECINIT</code> - Initialize the hardware</li>
+		</ul>
+		The following methods are used when the filesystem runs as
+		a device (like CBM2031). This part is enclosed with the 
+		conditional variable NOLOOP. This part also handles a
+		directory hierarchy with the <code>CD</code> command.
+		This part is only available for the parallel IEEE488 interface,
+		not the serial IEC bus.
+		<ul>
+		<li><code>RETLOOP</code> - clear the bus</li>
+		<li><code>INLOOP</code> - detect ATN activity and react as a device</li>
+		<li><code>talkloop</code> - called from INLOOP to send data (TALK)</li>
+		<li><code>listenloop</code> - called from INLOOP to receive data (LISTEN)</li>
+		<li><code>sendcmd</code> - interpret the command channel</li>
+		<li><code>open</code> - open a file</li>
+		</ul>
+		The following methods are used when the filesystem is 
+		running as bus master (similar to PET or C64). This part
+		is enclosed with the preprocessor conditional variable NOFS.
+		<ul>
+		<li><code>iec0out</code> - send a byte with ATN set</li>
+		<li><code>iecout</code> - send a byte</li>
+		<li><code>sectalk</code> - send a secondary talk</li>
+		<li><code>seclisten</code> - send a secondary listen</li>
+		<li><code>IECIN</code> - receive a byte</li>
+		<li><code>UNLISTEN</code> - send unlisten</li>
+		<li><code>UNTALK</code> - send untalk</li>
+		<li><code>getif</code> - get interface using PSEM() and/or CTRLNMI()</li>
+		<li><code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
+		</ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code">piec_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="serial IEC Driver code">siec_csa.a65</file>
+        </driver>
+        <driver>
+                <name>OS/A65 Beeper driver</name>
+                <desc>
+			This driver handles the piezo beeper included
+			in this board.
+			It provides the three methods
+			<ul><li><code>inibell</code> - initialize the bell</li>
+			<li><code>trigbell</code> - trigger the bell sound</li>
+			<li><code>bellirq</code> - interrupt code that 
+				modulates the bell ring until the ring is 
+				finished. Should be called with 50Hz or the
+				count values must be modified.</li>
+			</ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="console driver">con_csa.a65</file>
+        </driver>
 	<rev>
 		<version>1.1B</version>
 		<status>ok</status>

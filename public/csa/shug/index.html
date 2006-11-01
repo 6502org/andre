@@ -58,6 +58,40 @@
 <P>This board implements a shugart bus interface as used 
 		in the standard PC floppy disk drives (5.25" and 3.5").
 	</P>
+<H2>Driver</H2>
+<H3>OS/A65 shugart bus floppy driver</H3>
+<P>
+                        This driver handles the WD1770/1772 shugart bus floppy device.
+			It is included in the <code>fsibm</code> filesystem code
+			and provides the interface the filesystem expects.
+                        <ul>
+<li>
+<code>DINIT</code> - initialize the device</li>
+                        <li>
+<code>DFORMAT</code> - format a floppy</li>
+                        <li>
+<code>GETDPB</code> - get the disk parameter block that describes the disk format</li>
+                        <li>
+<code>RWSEC</code> - read or write a sector</li>
+                        <li>
+<code>DLOOP</code> - loop to check disk changed, or
+				to switch motor on or off</li>
+                        </ul>
+			The driver calls the method <code>dchanged</code> to
+			signal that a disk has been changed.
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="drv_wd1770.a65">drv_wd1770.a65</A>(floppy driver)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="wd1770.i65">wd1770.i65</A>(wd1770 register definitions)</TD>
+</TR>
+</TABLE>
 <H2>Board revisions</H2>
 <H3>Version: 1.0B</H3>
 <P>Status: ok</P>
@@ -82,23 +116,28 @@
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csashug.ps.gz">csashug.ps.gz</A></TD>
+<TD>
+<A HREF="csashug.ps.gz">csashug.ps.gz</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csashug.png">csashug.png</A></TD>
+<TD>
+<A HREF="csashug.png">csashug.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csashug.fig">csashug.fig</A></TD>
+<TD>
+<A HREF="csashug.fig">csashug.fig</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="csashugparts.txt">csashugparts.txt</A></TD>
+<TD>
+<A HREF="csashugparts.txt">csashugparts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="csashugdesc.txt">csashugdesc.txt</A></TD>
+<TD>
+<A HREF="csashugdesc.txt">csashugdesc.txt</A></TD>
 </TR>
 </TABLE>
 <BR><P>Last modified: 2006-10-14.</P>

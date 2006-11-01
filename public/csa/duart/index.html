@@ -60,6 +60,49 @@
 	know that there are ICs like the 16552(?) with two interfaces in 
 	one chip, but when I needed it, I had the parts at home already...
 	</P>
+<H2>Driver</H2>
+<H3>OS/A65 UART16550A driver</H3>
+<P>The driver consists of two files. First the
+			<code>uart16550.i65</code> file contains chip
+			register definitions. The file <code>ser_uart.a65</code>
+			is the actual driver. This actually is a driver
+			for a single UART only, but it can be linked
+			into the system twice to handle both UARTs.
+			The OS/A65 operating system (1.x and 2.x) uses
+			a single entry point for the device, with the 
+			accumulator containing the command code. 
+			The entry point
+			is <code>prg1</code> in this case. It branches to 
+			these routines for the UART: 
+			<ul>
+<li>
+<code>devini</code> - initialize the UART</li>
+			<li>
+<code>devirq</code> - interrupt routine. This 
+				routine is called on every interrupt, one device
+				after the other, until the irq is handled.
+				The 50Hz system interrupt is last, so this
+				driver uses this feature to check whether
+				a new byte can be send at <code>tx2</code>.</li>
+			<li>
+<code>others</code> checks the other commands,
+				like open, close, or handshake handling.</li>
+			</ul>
+			Unfortunately the driver code is pretty messy, but
+			works.
+		</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="ser_uart.a65">ser_uart.a65</A>(Driver code)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="uart16550.i65">uart16550.i65</A>(UART register definitions)</TD>
+</TR>
+</TABLE>
 <H2>Board revisions</H2>
 <H3>Version: 1.0B</H3>
 <P>Status: ok</P>
@@ -74,23 +117,28 @@
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="csaduartdesc.txt">csaduartdesc.txt</A></TD>
+<TD>
+<A HREF="csaduartdesc.txt">csaduartdesc.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="csaduartparts.txt">csaduartparts.txt</A></TD>
+<TD>
+<A HREF="csaduartparts.txt">csaduartparts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaduart.ps.gz">csaduart.ps.gz</A></TD>
+<TD>
+<A HREF="csaduart.ps.gz">csaduart.ps.gz</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaduart.png">csaduart.png</A></TD>
+<TD>
+<A HREF="csaduart.png">csaduart.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaduart.fig">csaduart.fig</A></TD>
+<TD>
+<A HREF="csaduart.fig">csaduart.fig</A></TD>
 </TR>
 </TABLE>
 <BR><P>Last modified: 2006-10-13.</P>

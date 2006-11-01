@@ -16,7 +16,7 @@ if [ $# -ge 4 ]; then
    parent="$4";
 fi
 
-echo "Run: " $0 $root $up $upn $parent
+#echo "Run: " $0 $root $up $upn $parent
 
 if [ -f $root/.files ]; then
     cat $root/.files \

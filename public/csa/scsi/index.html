@@ -124,6 +124,65 @@ system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </p>
 	</P>
+<H2>Driver</H2>
+<H3>OS/A65 SCSI driver</H3>
+<P>
+                        This driver handles the base SCSI operations.
+			It consists of these files:
+                        <ul>
+<li>
+<code>scsi.a65</code> - binds the hardware driver to the <code>fsibm</code> FAT filesystem. It exports the same interface 
+			as described in the <a href="../shug/index.html">floppy driver</a>.</li>
+                        <li>
+<code>part.i65</code> - partition definitions</li>
+                        <li>
+<code>pcpart.a65</code> - scan PC-style partitions</li>
+                        <li>
+<code>paccess.a65</code> - translates the partition-relative block numbers to absolute disk block numbers.</li>
+                        <li>
+<code>csascsi1.a65</code> - the actual hardware driver</li>
+                        </ul>
+			The hardware driver exports the following methods:
+			<ul>
+			<li>
+<code>iniscsi</code> - init the device</li>
+			<li>
+<code>inquiry</code> - inquire a device</li>
+			<li>
+<code>getsize</code> - get the size of the device</li>
+			<li>
+<code>readblock</code> - read a block</li>
+			<li>
+<code>writeblock</code> - write a block</li>
+			</ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="scsi.a65">scsi.a65</A>(OS/A65 binding)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="part.i65">part.i65</A>(partition definitions)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="pcpart.a65">pcpart.a65</A>(pc partition scanner)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="paccess.a65">paccess.a65</A>(partition access)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="csascsi1.a65">csascsi1.a65</A>(hardware driver)</TD>
+</TR>
+</TABLE>
 <H2>Board revisions</H2>
 <H3>Version: 1.0A</H3>
 <P>Status: ok</P>
@@ -144,23 +203,28 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csascsi1.ps.gz">csascsi1.ps.gz</A></TD>
+<TD>
+<A HREF="csascsi1.ps.gz">csascsi1.ps.gz</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csascsi1.png">csascsi1.png</A></TD>
+<TD>
+<A HREF="csascsi1.png">csascsi1.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csascsi1.fig">csascsi1.fig</A></TD>
+<TD>
+<A HREF="csascsi1.fig">csascsi1.fig</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="csascsi1parts.txt">csascsi1parts.txt</A></TD>
+<TD>
+<A HREF="csascsi1parts.txt">csascsi1parts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="csascsi1desc.txt">csascsi1desc.txt</A></TD>
+<TD>
+<A HREF="csascsi1desc.txt">csascsi1desc.txt</A></TD>
 </TR>
 </TABLE>
 <BR><P>Last modified: 2006-10-14.</P>

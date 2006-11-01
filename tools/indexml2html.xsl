@@ -19,6 +19,14 @@
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
 </xsl:text>
+<xsl:if test="driver">
+<H2>Driver</H2>
+<xsl:for-each select="driver">
+<H3><xsl:value-of select="name"/></H3>
+<P><xsl:copy-of select="desc/*|desc/text()"/></P>
+<TABLE><xsl:apply-templates select="file"/></TABLE>
+</xsl:for-each>
+</xsl:if>
 <H2>Board revisions</H2>
 <xsl:for-each select="rev">
 <H3>Version: <xsl:value-of select="version"/></H3><xsl:text>
@@ -33,12 +41,8 @@
 </xsl:for-each><!-- note -->
 </TABLE>
 
-<TABLE><xsl:for-each select="file"><xsl:text>
-</xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
-</xsl:text><!-- <TD><xsl:value-of select="@ptype"/></TD><xsl:text>
-</xsl:text>--><TD><A HREF="{.}"><xsl:value-of select="."/></A></TD><xsl:text>
-</xsl:text></TR>
-</xsl:for-each><!-- file -->
+<TABLE>
+<xsl:apply-templates select="file"/>
 </TABLE><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- rev -->
@@ -51,6 +55,15 @@
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
 </DIV>
 </BODY></HTML>
+</xsl:template>
+
+<xsl:template match="file">
+<xsl:variable name="note"><xsl:if test="@note">(<xsl:value-of select="@note"/>)</xsl:if></xsl:variable>
+<xsl:text>
+</xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
+</xsl:text><!-- <TD><xsl:value-of select="@ptype"/></TD><xsl:text>
+</xsl:text>--><TD><A HREF="{.}"><xsl:value-of select="."/></A><xsl:value-of select="$note"/></TD><xsl:text>
+</xsl:text></TR>
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->

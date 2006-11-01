@@ -16,7 +16,7 @@ if [ $# -ge 4 ]; then
    parent="$4";
 fi
 
-echo "Run: " $0 $root $up $upn $parent
+#echo "Run: " $0 $root $up $upn $parent
 
 for i in $root/*.inx; do 
 	#echo "d="`pwd`", i=" $i
@@ -42,7 +42,7 @@ for i in $root/*.inx; do
 			'\
 			>> $to
 
-		echo "from " $to " to " ${t2}~
+		#echo "from " $to " to " ${t2}~
 		cat $to \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \

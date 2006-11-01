@@ -59,6 +59,95 @@
 		as a Commodore serial IEC bus interface, as used in
 		the VIC20 and C64 (and others).
 	</P>
+<H2>Driver</H2>
+<H3>OS/A65 IEEE488 driver</H3>
+<P>
+		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
+		OS/A65 filesystem process. It implements the hardware access with the following methods:
+		<ul>
+<li>
+<code>IECINIT</code> - Initialize the hardware</li>
+		</ul>
+		The following methods are used when the filesystem runs as
+		a device (like CBM2031). This part is enclosed with the 
+		conditional variable NOLOOP. This part also handles a
+		directory hierarchy with the <code>CD</code> command.
+		This part is only available for the parallel IEEE488 interface,
+		not the serial IEC bus.
+		<ul>
+		<li>
+<code>RETLOOP</code> - clear the bus</li>
+		<li>
+<code>INLOOP</code> - detect ATN activity and react as a device</li>
+		<li>
+<code>talkloop</code> - called from INLOOP to send data (TALK)</li>
+		<li>
+<code>listenloop</code> - called from INLOOP to receive data (LISTEN)</li>
+		<li>
+<code>sendcmd</code> - interpret the command channel</li>
+		<li>
+<code>open</code> - open a file</li>
+		</ul>
+		The following methods are used when the filesystem is 
+		running as bus master (similar to PET or C64). This part
+		is enclosed with the preprocessor conditional variable NOFS.
+		<ul>
+		<li>
+<code>iec0out</code> - send a byte with ATN set</li>
+		<li>
+<code>iecout</code> - send a byte</li>
+		<li>
+<code>sectalk</code> - send a secondary talk</li>
+		<li>
+<code>seclisten</code> - send a secondary listen</li>
+		<li>
+<code>IECIN</code> - receive a byte</li>
+		<li>
+<code>UNLISTEN</code> - send unlisten</li>
+		<li>
+<code>UNTALK</code> - send untalk</li>
+		<li>
+<code>getif</code> - get interface using PSEM() and/or CTRLNMI()</li>
+		<li>
+<code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
+		</ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="piec_csa.a65">piec_csa.a65</A>(parallel IEEE488 Driver code)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="siec_csa.a65">siec_csa.a65</A>(serial IEC Driver code)</TD>
+</TR>
+</TABLE>
+<H3>OS/A65 Beeper driver</H3>
+<P>
+			This driver handles the piezo beeper included
+			in this board.
+			It provides the three methods
+			<ul>
+<li>
+<code>inibell</code> - initialize the bell</li>
+			<li>
+<code>trigbell</code> - trigger the bell sound</li>
+			<li>
+<code>bellirq</code> - interrupt code that 
+				modulates the bell ring until the ring is 
+				finished. Should be called with 50Hz or the
+				count values must be modified.</li>
+			</ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="con_csa.a65">con_csa.a65</A>(console driver)</TD>
+</TR>
+</TABLE>
 <H2>Board revisions</H2>
 <H3>Version: 1.1B</H3>
 <P>Status: ok</P>
@@ -77,23 +166,28 @@
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
-<TD><A HREF="cpuiecdesc.txt">cpuiecdesc.txt</A></TD>
+<TD>
+<A HREF="cpuiecdesc.txt">cpuiecdesc.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD><A HREF="cpuiecparts.txt">cpuiecparts.txt</A></TD>
+<TD>
+<A HREF="cpuiecparts.txt">cpuiecparts.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaiec.fig">csaiec.fig</A></TD>
+<TD>
+<A HREF="csaiec.fig">csaiec.fig</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaiec.png">csaiec.png</A></TD>
+<TD>
+<A HREF="csaiec.png">csaiec.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD><A HREF="csaiec.ps.gz">csaiec.ps.gz</A></TD>
+<TD>
+<A HREF="csaiec.ps.gz">csaiec.ps.gz</A></TD>
 </TR>
 </TABLE>
 <BR><P>Last modified: 2006-10-13.</P>
