@@ -33,9 +33,17 @@ Changes of the library definition are in <a href="changes.txt">changes.txt</A>.
 <li><a href="lib6502-0.4.html.gz">lib6502-0.4.html.gz</a> 
 <li><a href="lib6502-0.3.html.gz">lib6502-0.3.html.gz</a>
 </ul>
+<h2>Distribution</h2>
+<p>
+The name lib6502 for a 6502 library is copyrighted by me. It may be used by systems and applications without restriction, as long as the libraries named with this name obey the definitions stated in this document.
+</p>
+<h2>Disclaimer</h2>
+<p>
+@DISCLAIMER@
+</p>
 <hr><p class=endofpage>
-Contents last modified Jan 27 1998 |
-Go to <a href="../index.html">Homepage</a> 
+Contents last modified Jan 27 1998 
+@FOOTER@
 </p>
 </DIV>
 </body>

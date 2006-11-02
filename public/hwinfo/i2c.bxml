@@ -32,12 +32,14 @@
       <subitem name="" link=""></subitem>
      </item-->
     </items>
-    <disclaimer name="">
-	All copyrights are acknowledged. No warranty!
-    </disclaimer>
+    <!--disclaimer name="">
+    </disclaimer-->
   </itemlist>
-  <disclaimer name="">
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
   </disclaimer>
   <closing>
+Contents last modified 2006-11-02.
+@FOOTER@
   </closing>
 </webpage>

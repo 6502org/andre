@@ -68,6 +68,7 @@
 <img src="{diagram/file}" alt="block diagram"/>
 <P><xsl:copy-of select="diagram/desc"/></P>
 </xsl:if>
+<xsl:apply-templates select="disclaimer"/>
 <DIV ID="footer">
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
 @FOOTER@
@@ -162,8 +163,7 @@
 </p>
 <xsl:apply-templates select="news"/>
 <xsl:for-each select="itemlist">
-  <hr/>
-  <h3><xsl:value-of select="@name"/></h3>
+  <h2><xsl:value-of select="@name"/></h2>
   <xsl:apply-templates select="description"/>
    <xsl:for-each select="items[item|subitem]">
    <ul>
@@ -203,9 +203,8 @@
 </xsl:template>
 
 <xsl:template match="disclaimer">
-    <hr/>
-    <h4><xsl:value-of select="@name"/></h4>
-    <xsl:copy-of select="*|text()"/>
+    <h2><xsl:value-of select="@name"/></h2>
+    <p><xsl:copy-of select="*|text()"/></p>
 </xsl:template>
 
 <xsl:template match="description">

@@ -84,4 +84,7 @@ for additional timing.
 		<file ltype="layout" ptype="ebrd">mmu610_v1.0a.brd</file>
 		<file ltype="layout" ptype="png">mmu610_v1.0a-lay.png</file>
 	</rev>
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
+  </disclaimer>
 </board>

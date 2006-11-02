@@ -18,9 +18,8 @@ fi
 
 function print_disclaimer () {
 	echo "All Copyrights are acknowledged."
-	echo "The information here is provided AS IS, and there is no warranty of any kind attached to it."
-	echo "You may use this information for NON-COMMERCIAL use, unless where the"
-	echo "GNU Public License applies. Then its conditions hold."
+	echo "The information here is provided under the terms of the"
+	echo "GNU Public License version 2 unless noted otherwise."
 }
 
 # insert a text in the middle at the position of a keyword
