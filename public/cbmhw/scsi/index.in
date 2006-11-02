@@ -4,14 +4,14 @@
 <meta content="SCSI controllers for the C64" name="description">
 <meta content="C64, SCSI controller" name="keywords">
 <title>www.6502.org: SCSI-64: SCSI controller for the C64 and other 6502</title>
-<link href="mailto:afachat@gmx.de" rev="made">
+<link href="mailto:@EMAIL@" rev="made">
 <LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </head>
 <body>
 @MENU@
 <DIV ID="content">
 <h1>SCSI-64: SCSI controller for the C64 and other 6502</h1>
-<p class="copyright">(C) 1997-2000 Andr&eacute; Fachat &lt;<a href="mailto:@EMAIL@">@EMAIL@</a>&gt; </p> 
+<p class="copyright">(C) 1997-2000 Andr&eacute; Fachat</p> 
 <p>This is the description of several SCSI controllers for the Commodore C64
 computer. Some of them may be used with a VIC20 or C128 as well.
 All of the controllers are based on one hardware interface that is built
@@ -57,7 +57,7 @@ In my SCSI interfaces and devices for the Commodore computers I use a
 generic 6502 SCSI interface I developed for the <a href="../../csa/index.html">CS/A65</a> computer. The SCSI interface has its own <a href="../../csa/scsi/index.html">place</a> there.
 </p><p>
 This interface has been designed for the
-<a href="../../csa/bus.html">CS/A65 bus system</a>. However, this
+<a href="../../csa/bus-1.1.html">CS/A65 bus system</a>. However, this
 bus system basically is the 6502 bus. In fact, besides the <code>/IOSEL</code>
 line only 6502 CPU lines are used.<code>/IOSEL</code> selects the I/O area
 and is generated from the address lines in the usual way.
@@ -132,9 +132,9 @@ C64, and provide easier access.<br><br></li><li><strong>Description</strong>
   	      <p>
 This is a combination of the Gecko computer and the SCSI board.
 </p><p>
-The Gecko (see the <a href="../csa/gecko/index.html">gecko</a> directory) is
+The Gecko (see the <a href="../../csa/gecko/index.html">gecko</a> directory) is
 a small single-board 6502 computer. The base system provides
-32k RAM, 32k ROM and access to the <a href="../csa/bus.html">CS/A I/O bus</a>
+32k RAM, 32k ROM and access to the <a href="../../csa/bus.html">CS/A I/O bus</a>
 (which is the CS/A bus itself, but only using the lower 12 address bits
 with <code>/IOSEL</code>). The full Gecko includes an RS232 interface,
 as well as a VIA6522 with serial IEC and keyboard interface.

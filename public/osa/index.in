@@ -133,7 +133,7 @@ kernel description.
 <h3>More Docs</h3>
 <ul>
 <p><li>Here is the cross assembler 
-<a href="../misc/index.html#xa">xa</a>
+<a href="../misc/index.html">xa</a>
 you need to assemble the whole stuff
 <p><li>How to <a href="build.html">build</a> the binaries
 <p><li>A description of the <a href="files.txt">files</a> in the archive

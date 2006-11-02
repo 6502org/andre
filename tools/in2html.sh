@@ -95,6 +95,7 @@ for i in $root/*.inx; do
 			| awk '/@FOOTER@/ { print "<p>Return to <a href=\"%up%index.html\">Homepage</a></p>"; }
 				{ print $0; }' \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
+			| sed -e "s%@XA@%http://www.floodgap.com/retrotech/xa/%g" \
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \

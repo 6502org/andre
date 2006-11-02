@@ -21,7 +21,7 @@
 </xsl:text>
 <xsl:apply-templates select="news"/>
 <DIV ID="toc">
-<H2><A NAME="toc">Table of content</A></H2>
+<H2>Table of content</H2>
 <dir>
 <xsl:for-each select="section">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>

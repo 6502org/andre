@@ -23,7 +23,7 @@ version 1.4) A copy of the 1.3.3 ROM as well as the pre-1.4 csarom-1.3.94p
  is included. For more information see the
 <a href="../index.html">GeckOS pages</a>. The source archive, a 
 patched VICE 0.12.0.16
-version can be found as <a href="vice.16-csa-20.tgz">vice.16-csa-20.tgz</a>.
+version can be found as <a href="vice.16-csa-20.tar.gz">vice.16-csa-20.tar.gz</a>.
 Now even the hardware cursor of the 6545 crtc controller works, 
 and it should be much faster (than previous versions, not compared to VICE
 itself...) on slow machines now.
