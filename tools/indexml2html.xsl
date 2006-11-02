@@ -158,7 +158,7 @@
 </xsl:text>
 </xsl:for-each>
 <p>
-<xsl:value-of select="overview"/>
+<xsl:copy-of select="overview/*|overview/text()"/>
 </p>
 <xsl:apply-templates select="news"/>
 <xsl:for-each select="itemlist">
