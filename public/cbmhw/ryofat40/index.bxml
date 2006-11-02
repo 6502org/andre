@@ -64,10 +64,7 @@
     </disclaimer-->
   </itemlist>
   <disclaimer name="Disclaimer">
-All Copyrights are acknowledged.
-The information here is provided AS IS, and there is no warranty of any kind attached to it.
-You may use this information for NON-COMMERCIAL use, unless where the
-GNU Public License applies. Then its conditions hold.
+@DISCLAIMER@
   </disclaimer>
   <closing>
 @FOOTER@

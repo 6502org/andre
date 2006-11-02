@@ -16,51 +16,101 @@ if [ $# -ge 4 ]; then
    parent="$4";
 fi
 
-#echo "Run: " $0 $root $up $upn $parent
+function print_disclaimer () {
+	echo "All Copyrights are acknowledged."
+	echo "The information here is provided AS IS, and there is no warranty of any kind attached to it."
+	echo "You may use this information for NON-COMMERCIAL use, unless where the"
+	echo "GNU Public License applies. Then its conditions hold."
+}
 
-for i in $root/*.inx; do 
-	#echo "d="`pwd`", i=" $i
-	to=${i}_2;
-	t2=`dirname $i`/`basename $i .inx`.html;
-	if [ -f $i ]; then
-		#echo "from " $i " to " $to
-		cat $i \
-			| awk -v m="@MENU@" '
+# insert a text in the middle at the position of a keyword
+# using two methods:
+#
+# doinsert1() - split out the first part of the file
+# doinsert2() - split out the second part of the file
+#
+# params:
+#   from	- where to read the orig file from
+#   to		- where to write the new file to
+#   key		- keyword
+#
+function doinsert1 () {
+	from="$1"
+	tox="$2"
+	key="$3"
+		cat $from \
+			| awk -v m="$key" '
 				BEGIN { pp=1; } 
 				{ if (index($0, m) > 0) { pp=0; } } 
 				{ if ( pp>0 ) print $0; } 
 			'\
-			> $to
-		echo "<DIV ID=\"menu\">" >> $to
-		cat $root/.files.xml >> $to
-		echo "</DIV>" >> $to
-		cat $i \
-			| awk -v m="@MENU@" '
+		> $tox
+	diff -q $from $tox > /dev/null
+	rv=$?
+	return $rv
+}	
+function doinsert2 () {
+	from="$1"
+	tox="$2"
+	key="$3"
+		cat $from \
+			| awk -v m="$key" '
 				BEGIN { pp=0; } 
 				{ if ( pp>0 ) print $0; } 
 				{ if (index($0, m) > 0) { pp=1; } } 
 			'\
-			>> $to
+		>> $tox
+}
 
-		#echo "from " $to " to " ${t2}~
-		cat $to \
+#echo "Run: " $0 $root $up $upn $parent
+
+for i in $root/*.inx; do 
+	#echo "d="`pwd`", i=" $i
+	t2=${i}_2;
+	t3=${i}_3;
+	t4=${i}_4;
+	to=`dirname $i`/`basename $i .inx`.html;
+	if [ -f $i ]; then
+		#echo "from " $i " to " $t2
+
+		# insert menu
+		doinsert1 $i $t2 "@MENU@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			echo "<DIV ID=\"menu\">" >> $t2
+			cat $root/.files.xml >> $t2
+			echo "</DIV>" >> $t2
+			doinsert2 $i $t2 "@MENU@"
+		fi
+
+		# insert disclaimer
+		doinsert1 $t2 $t3 "@DISCLAIMER@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			print_disclaimer >> $t3
+			doinsert2 $t2 $t3 "@DISCLAIMER@" 
+		fi
+
+		#echo "from " $t3 " to " $t4
+		cat $t3 \
 			| awk '/@FOOTER@/ { print "<p>Return to <a href=\"%up%index.html\">Homepage</a></p>"; }
 				{ print $0; }' \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \
-			> ${t2}~
+			> $t4
 
-		if [ ! -f ${t2} ]; then
-			cp ${t2}~ ${t2};
+		#echo "from " $t4 " to " $to
+		if [ ! -f $to ]; then
+			cp $t4 $to;
 		else
-			diff -q ${t2} ${t2}~
-				if [ $? -eq 1 ]; then
-				cp ${t2}~ ${t2};
+			diff -q $to $t4
+			if [ $? -eq 1 ]; then
+				cp $t4 $to;
 			fi
 		fi;
-		rm $i $to ${t2}~
+		rm $i $t2 $t3 $t4
 	fi;
 done
 

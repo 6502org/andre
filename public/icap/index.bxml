@@ -1,0 +1,37 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Knowledge Bits">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit,6502</keywords>
+  <metadesc>8-bit 6502 knowledge</metadesc>
+  <overview>
+	These pages lists some articles explaining various bits and pieces
+	that you may find useful.
+  </overview>
+  <news>
+    <item date="2006-11-01">
+	Created this page.
+    </item>
+  </news>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only)
+      </subitem>
+     <!--item name="Commodore 8-bit stuff">
+      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
+information and links to the old CBM PET machines</subitem>
+     </item-->
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist>
+  <closing>
+<BR/>Last updated 2006-11-01.
+  </closing>
+</webpage>

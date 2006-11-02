@@ -39,10 +39,7 @@
      </item>
     </items>
     <disclaimer name="Disclaimer">
-All Copyrights are acknowledged.
-There is no warranty of any kind attached to the information herein.
-You may use this information for NON-COMMERCIAL use, unless where the
-GNU Public License applies. Then its conditions hold.
+@DISCLAIMER@
     </disclaimer>
   </itemlist>
   <closing>

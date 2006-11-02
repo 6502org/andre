@@ -107,10 +107,8 @@ Sorry, no schematics at this time.<br><br></li><li><strong>DOS</strong>
   	      I experimented a lot with the VC1541, but currently only
 the IEEE488 DOS is installed. I see whether I can get the other stuff
 out of the archives.
-<br><br></li></ul><hr><h4>Disclaimer</h4>All Copyrights are acknowledged.
-There is no warranty of any kind attached to the information herein.
-You may use this information for NON-COMMERCIAL use, unless where the
-GNU Public License applies. Then its conditions hold.
+<br><br></li></ul><hr><h4>Disclaimer</h4>
+@DISCLAIMER@
   <hr>Contents last modified 15 June 2000
 @FOOTER@
   </DIV></body></html>
