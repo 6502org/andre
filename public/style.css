@@ -29,10 +29,9 @@ DIV#content {
 }
 
 DIV#menu {
-  font-size: 0.91em;
   float: left; width: 22em;
   margin: 0; padding: 0;
-	list-style-position:outside;
+  list-style-position:outside;
   position: fixed;
 }
 
@@ -49,6 +48,7 @@ LI.separator {
 }
 
 UL.menu0 {
+  font-size:small;
   padding-left:20px;
 }
 UL.menu1 {
