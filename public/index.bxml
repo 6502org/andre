@@ -4,6 +4,8 @@
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
+    <yearstart>1989</yearstart>
+    <yearend>2006</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
@@ -31,6 +33,11 @@ improve messaging and communication throughput, add C support and more.
 	I have added a few items, like the <a href="hwinfo/ls610/index.html">MMU replacement board</a>, or the 
 	<a href="cbmhw/ryofat40/index.html">Roll-you-own-PET</a> page where
 	you can build your own PET 4032.
+    </item>
+    <item date="2006-11-01">
+	For some of the <a href="csa/index.html">CS/A65</a>
+	boards I have added the driver code as extracted
+	from the GeckOS operating system.
     </item>
     <item date="2006-11-01">
 	The <a href="csa/index.html">CS/A65</a> part has been completely

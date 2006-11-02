@@ -33,6 +33,7 @@ DIV#menu {
   float: left; width: 22em;
   margin: 0; padding: 0;
 	list-style-position:outside;
+  position: fixed;
 }
 
 P.copyright {
