@@ -91,5 +91,6 @@
 		<file ltype="schem" ptype="fig">csaiec.fig</file>
 		<file ltype="schem" ptype="png">csaiec.png</file>
 		<file ltype="schem" ptype="psgz">csaiec.ps.gz</file>
+		<file ltype="photo" ptype="jpg">csaiec.jpg</file>
 	</rev>
 </board>

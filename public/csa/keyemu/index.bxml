@@ -27,5 +27,6 @@
 		<file ltype="schem" ptype="fig">csakeyemu.fig</file>
 		<file ltype="schem" ptype="png">csakeyemu.png</file>
 		<file ltype="schem" ptype="psgz">csakeyemu.ps.gz</file>
+		<file ltype="photo" ptype="jpg">csakeyemu.jpg</file>
 	</rev>
 </board>

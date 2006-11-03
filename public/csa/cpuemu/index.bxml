@@ -25,5 +25,6 @@
 		<file ltype="schem" ptype="fig">csaemu.fig</file>
 		<file ltype="schem" ptype="psgz">csaemu.ps.gz</file>
 		<file ltype="schem" ptype="png">csaemu.png</file>
+		<file ltype="photo" ptype="jpg" note="The unused sockets were planned for a - so far - unimplemented 6510 processor port">csaemu.jpg</file>
 	</rev>
 </board>

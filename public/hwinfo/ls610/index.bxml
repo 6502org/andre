@@ -83,6 +83,7 @@ for additional timing.
 		<file ltype="schem" ptype="png">mmu610_v1.0a-sch.png</file>
 		<file ltype="layout" ptype="ebrd">mmu610_v1.0a.brd</file>
 		<file ltype="layout" ptype="png">mmu610_v1.0a-lay.png</file>
+		<file ltype="photo" ptype="jpg" note="on top of an old CS/A65 CPU board">mmu610_v1.0a.jpg</file>
 	</rev>
   <disclaimer name="Disclaimer">
 All Copyrights are acknowledged. There is no warranty attached to the information on these pages.

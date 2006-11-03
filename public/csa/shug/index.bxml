@@ -48,6 +48,7 @@
 		<file ltype="schem" ptype="fig">csashug.fig</file>
 		<file ltype="parts" ptype="txt">csashugparts.txt</file>
 		<file ltype="desc" ptype="txt">csashugdesc.txt</file>
+		<file ltype="photo" ptype="jpg">csashug.jpg</file>
         <news>
                 <item date="2006-11-01">
                         Added driver code.

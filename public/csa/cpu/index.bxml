@@ -76,6 +76,7 @@
 		<file ltype="schem" ptype="png">csa_cpu_v2.0g-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_cpu_v2.0g.brd</file>
 		<file ltype="layout" ptype="png">csa_cpu_v2.0g-lay.png</file>
+		<file ltype="photo" ptype="jpg" note="Without CPU, to see the driver underneath">csa_cpu_v2.0g.jpg</file>
 	</rev>
 	<rev>
 		<version>1.3B</version>
@@ -105,5 +106,6 @@
 		<file ltype="schem" ptype="png">cpu65.png</file>
 		<file ltype="schem" ptype="fig">cpu65.fig</file>
 		<file ltype="schem" ptype="psgz">cpu65.ps.gz</file>
+		<file ltype="photo" ptype="jpg" note="The IC on top and the 74LS244 on the right are testbeds for the new 2Phi2 generation and the write protect as implemented in newer versions">cpu65.fig</file>
 	</rev>
 </board>

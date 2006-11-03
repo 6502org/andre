@@ -39,6 +39,7 @@ use a 16550 UART (with FIFO).
 		<file ltype="schem" ptype="png">csa_bios_v3.0b-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_bios_v3.0b.brd</file>
 		<file ltype="layout" ptype="png">csa_bios_v3.0b-lay.png</file>
+		<file ltype="photo" ptype="jpg">csa_bios_v3.0b.jpg</file>
 	</rev>
 	<rev>
 		<version>2.0B</version>
@@ -50,5 +51,16 @@ use a 16550 UART (with FIFO).
 		<file ltype="schem" ptype="psgz">csabios2.ps.gz</file>
 		<file ltype="desc" ptype="txt">csabios2desc.txt</file>
 		<file ltype="parts" ptype="txt">csabios2parts.txt</file>
+		<file ltype="photo" ptype="jpg" note="The ROM is currently missing">csabios2.jpg</file>
+	</rev>
+	<rev>
+		<version>1.x</version>
+		<status>ok</status>
+		<note type="stop"> 
+			This is the very first version, using an ACIA
+			for the serial interface. It is (here) only
+			documented as a photo.
+		</note>
+		<file ltype="photo" ptype="jpg">csabios.jpg</file>
 	</rev>
 </board>

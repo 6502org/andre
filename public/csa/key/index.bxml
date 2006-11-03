@@ -54,5 +54,6 @@
 		<file ltype="schem" ptype="fig">csakey.fig</file>
 		<file ltype="schem" ptype="png">csakey.png</file>
 		<file ltype="schem" ptype="psgz">csakey.ps.gz</file>
+		<file ltype="photo" ptype="jpg" note="ACIA missing, but (so far undocumented) I2C testbed added">csakey.jpg</file>
 	</rev>
 </board>

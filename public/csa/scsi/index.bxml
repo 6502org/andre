@@ -127,5 +127,6 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 		<file ltype="schem" ptype="fig">csascsi1.fig</file>
 		<file ltype="parts" ptype="txt">csascsi1parts.txt</file>
 		<file ltype="desc" ptype="txt">csascsi1desc.txt</file>
+		<file ltype="photo" ptype="jpg">csascsi1.jpg</file>
 	</rev>
 </board>

@@ -47,5 +47,6 @@
 		<file ltype="schem" ptype="png">csa_petcpu_v1.1a-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_petcpu_v1.1a.brd</file>
 		<file ltype="layout" ptype="png">csa_petcpu_v1.1a-lay.png</file>
+		<file ltype="photo" ptype="jpg" note="There are two more ICs underneath the UART">csa_petcpu_v1.1a.jpg</file>
 	</rev>
 </board>

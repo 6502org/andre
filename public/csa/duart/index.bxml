@@ -54,5 +54,6 @@
 		<file ltype="schem" ptype="psgz">csaduart.ps.gz</file>
 		<file ltype="schem" ptype="png">csaduart.png</file>
 		<file ltype="schem" ptype="fig">csaduart.fig</file>
+		<file ltype="photo" ptype="jpg" note="One of the UARTs is missing">csaduart.jpg</file>
 	</rev>
 </board>

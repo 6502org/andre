@@ -49,5 +49,6 @@
 		<file ltype="schem" ptype="png">csa_petio_v1.1b-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_petio_v1.1b.brd</file>
 		<file ltype="layout" ptype="png">csa_petio_v1.1b-lay.png</file>
+		<file ltype="photo" ptype="jpg">csa_petio_v1.1b.jpg</file>
 	</rev>
 </board>

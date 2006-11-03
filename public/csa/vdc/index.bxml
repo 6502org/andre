@@ -102,6 +102,7 @@
 		<file ltype="schem" ptype="esch">csa_vdc_v1.3e.sch</file>
 		<file ltype="layout" ptype="png">csa_vdc_v1.3e-lay.png</file>
 		<file ltype="layout" ptype="ebrd">csa_vdc_v1.3e.brd</file>
+		<file ltype="photo" ptype="jpg">csa_vdc_v1.3e.jpg</file>
 	</rev>
 	<rev>
 		<version>1.3C</version>
@@ -118,5 +119,6 @@
 		<file ltype="schem" ptype="png">csavdc.png</file>
 		<file ltype="schem" ptype="fig">csavdc.fig</file>
 		<file ltype="schem" ptype="psgz">csavdc.ps.gz</file>
+		<file ltype="photo" ptype="jpg">csavdc.jpg</file>
 	</rev>
 </board>
