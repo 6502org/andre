@@ -30,6 +30,12 @@
   </news-->
   <itemlist name="Board settings">
     <description>
+	This section describe the CS/A65 boards making up the PET 4032.
+	Here is a <a href="fat40.jpg">picture</a> of the three boards on 
+	a backplane. Note the separate cable between the VDC and the 
+	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
+	from VDC to PETIO and the character ROM selection.
+	from PETIO to VDC.
     </description>
     <items>
      <subitem name="PETCPU board" link="../../csa/petcpu/index.html">

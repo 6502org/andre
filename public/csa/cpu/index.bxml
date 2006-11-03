@@ -106,6 +106,6 @@
 		<file ltype="schem" ptype="png">cpu65.png</file>
 		<file ltype="schem" ptype="fig">cpu65.fig</file>
 		<file ltype="schem" ptype="psgz">cpu65.ps.gz</file>
-		<file ltype="photo" ptype="jpg" note="The IC on top and the 74LS244 on the right are testbeds for the new 2Phi2 generation and the write protect as implemented in newer versions">cpu65.fig</file>
+		<file ltype="photo" ptype="jpg" note="The IC on top and the 74LS244 on the right are testbeds for the new 2Phi2 generation and the write protect as implemented in newer versions">cpu65.jpg</file>
 	</rev>
 </board>
