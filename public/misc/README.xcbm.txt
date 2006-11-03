@@ -76,7 +76,7 @@ BUGS/FEATURES (don't expect too much):
 - CIA only partially emulated, VIC only regs 24 and 33, no SID
 - no real timing. IRQ timer gets decremented by ten for each executed
   opcode. This gives a curser blink rate at roughly original speed (may
-  be a bit slower, but I have long time no real C64 seen).
+  be a bit slower, but I have not seen a real C64 for a long time).
 - Can use Un*x filesystem subdirectories as disks. At the moment, the 
   current directory for unit 8, drive 0 is ".". You can set this at
   command line. no real disk command ("R","S",...) is emulated

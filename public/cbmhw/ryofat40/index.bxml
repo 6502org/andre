@@ -1,0 +1,78 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Roll your own PET4032 (Fat40)">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>2006</yearstart>
+    <yearend>2006</yearend>
+    <email>@EMAIL@</email>
+  </author>
+  <keywords>Commodore PET 4032</keywords>
+  <metadesc>A new implementation of the Commodore PET 4032</metadesc>
+  <overview>
+	<p>This page describes how you can build your own PET 4032 using
+	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p><p>
+	Well, not actually the whole computer, but at least the mainboard,
+	where "only" the case, screen, and power supply are missing. I have
+	though managed to use a standard PAL screen with this PET by 
+	redefining the timing values the PET ROM writes into the 
+	CRTC registers.
+	</p><p>
+	Basically what you do is to combine the <a href="../../csa/petcpu/index.html">PETCPU</a>,
+	<a href="../../csa/petio/index.html">PETIO</a> and <a href="../../csa/vdc/index.html">Video</a> boards 
+	into one computer, put the PET ROM into a ROM for the PETCPU ROM socket
+	and there you are. The following sections describe the special settings
+	on the different boards.
+	</p>
+  </overview>
+  <!--news>
+    <item date="">
+    </item>
+  </news-->
+  <itemlist name="Board settings">
+    <description>
+	This section describe the CS/A65 boards making up the PET 4032.
+	Here is a <a href="fat40.jpg">picture</a> of the three boards on 
+	a backplane. Note the separate cable between the VDC and the 
+	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
+	from VDC to PETIO and the character ROM selection.
+	from PETIO to VDC.
+    </description>
+    <items>
+     <subitem name="PETCPU board" link="../../csa/petcpu/index.html">
+	The PETCPU board must be set to a maximum of 32k RAM on the board
+	itself, and maximum of 28k of ROM, so that the memory area at
+	$8*** is selected on the CS/A65 bus and can be handled by the
+	video board. Actually all memory not handled by the PETCPU is
+	covered by RAM from the video board (e.g. the $9*** area). 
+	To achieve this, the PETCPU board must be set to use the 
+	$01**** are on the bus. In addition it must exclusive-or
+	the address lines 15 and 12 - as the PET CRTC is set to a 
+	memory address of $9000 - but the video board resets the video
+	to $0000 with the control register and the values set in the
+	CRTC. Also the I/O area must be enabled for $E800 to $EFFF.
+     </subitem>
+     <subitem name="PETIO board" link="../../csa/petio/index.html">
+	On the PETIO board only the "special features" must be
+	switched off, especially the IEEE488 slave mode feature, as the
+	ROM does not handle this, as well as the EOI must be located
+	at its original place on the keyboard PIA.
+     </subitem>
+     <subitem name="Video board" link="../../csa/vdc/index.html">
+	The video board must be set to the memory area $01****. Otherwise
+	it should best be a 1.4 version, as the control port is reset
+	with /RES and needs not be set by the ROM.
+     </subitem>
+     <!--item name="">
+      <subitem name="" link=""></subitem>
+     </item-->
+    </items>
+    <!--disclaimer name="">
+    </disclaimer-->
+  </itemlist>
+  <disclaimer name="Disclaimer">
+@DISCLAIMER@
+  </disclaimer>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

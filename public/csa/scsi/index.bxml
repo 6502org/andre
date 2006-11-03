@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 SCSI interface</name>
+	<keywords>CSA65 6502 SCSI</keywords>
+        <lastmodified>2006-10-14</lastmodified>
+	<desc>This board implements a SCSI interface for the CS/A65
+		computer. It implements a mechanism to use the
+		asynchronous mode on parallel SCSI cables - that
+		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.
+		This interface can be used to attach disk drives 
+		and other SCSI devices. It has only been tested with 
+		SCSI disks, though (yet).
+	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+	<section toc="hwarc" name="Hardware Architecture"><desc>
+		<p>
+		The hardware architecture is actually very simple. As 
+		only asynchronous data transfer is needed, the board
+		provides bidirectional access to the 8 data lines, plus
+		access to the control lines. Parity check is provided,
+		as well as automatic REQ/ACK handling by simply accessing the
+		data register. For more information see the board 
+		description below.</p><p>
+	The SCSI board has a heavily modified version of an old SASI
+interface from the german elektor magazin (around '88 or so).
+It has been reworked to get more SCSI-II compliance, but it is still
+not there. It works, however, with my Seagate ST1096N harddisk :-)
+		</p></desc>
+	</section>
+	<section toc="swarc" name="Software Architecture">
+<desc><p>The software architecture is kept as flexible as possible.
+Three levels work together, the hardware driver, the partition
+level that transforms block numbers in a partition into
+block numbers in the device, and the third level which is the
+filesystem code.
+</p></desc>
+	<subsection toc="hwlay" name="Hardware layer"><p>
+The hardware layer is a low level driver that can detect the
+devices connected to the SCSI bus, inquire the device (it returns
+the type etc), get the blocksize and read or write single blocks.
+As SCSI devices just hold a number of linearly numbered blocks
+there is absolutely no need to use any track/sector numbering etc.
+In the driver code (see below) the file <code>csascsi1.a65</code>
+contains the low level driver for the generic SCSI interface
+described above. The file <code>ramdscsi.a65</code> holds a driver
+for another interface, that I implemented in the VICE
+emulator, not in hardware. You write the block number to some
+I/O locations and get the right block memory mapped. This code
+shows how easy it is to replace the hardware level if necessary.
+</p></subsection><subsection toc="part" name="Partition layer"><p>
+The partition level consists of three parts, where only two
+are implemented so far.
+First in the file <code>part.i65</code>
+the format of the partition table is defined.
+<code>paccess.a65</code> then translates the block numbers given
+to the absolute block numbers on the device using the partition
+table. The table is filled in on init by the code in
+<code>pcpart.a65</code> that scans the disk for PC-like partition
+tables. To use other types of partition tables (like Amiga-type for example),
+simply replace this file with a new one that fills in the partition
+table appropriately.
+The third part would be an <code>fdisk</code> program that uses the low
+level routines to manipulate the partition tables. But here I still
+rely on the Linux counterpart I already have :-)
+</p></subsection><subsection toc="fs" name="Filesystem level"><p>
+The upper level is the filesystem level. It contains code to handle
+directories, files, allocation tables etc.
+This is not contained in the basic SCSI drivers, because it is
+heavily depending on the operating system.
+It should be easy to implement any filesystem you like on the level
+provided by the partition code.
+</p></subsection><subsection toc="drvs" name="Drivers"><p>
+The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
+system</a>. An example of a filesystem
+implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
+that implement a fileserver task for the GeckOS/A65 operating
+system. It handles PC-style disks with the FAT12 or FAT16 filesystem
+(no FAT32 and no long filenames). But be warned, it is an early
+beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
+</p></subsection>
+	</section>
+        <driver>
+                <name>OS/A65 SCSI driver</name>
+                <desc>
+                        This driver handles the base SCSI operations.
+			It consists of these files:
+                        <ul><li><code>scsi.a65</code> - binds the hardware driver to the <code>fsibm</code> FAT filesystem. It exports the same interface 
+			as described in the <a href="../shug/index.html">floppy driver</a>.</li>
+                        <li><code>part.i65</code> - partition definitions</li>
+                        <li><code>pcpart.a65</code> - scan PC-style partitions</li>
+                        <li><code>paccess.a65</code> - translates the partition-relative block numbers to absolute disk block numbers.</li>
+                        <li><code>csascsi1.a65</code> - the actual hardware driver</li>
+                        </ul>
+			The hardware driver exports the following methods:
+			<ul>
+			<li><code>iniscsi</code> - init the device</li>
+			<li><code>inquiry</code> - inquire a device</li>
+			<li><code>getsize</code> - get the size of the device</li>
+			<li><code>readblock</code> - read a block</li>
+			<li><code>writeblock</code> - write a block</li>
+			</ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="OS/A65 binding">scsi.a65</file>
+                <file ltype="driver" ptype="a65" note="partition definitions">part.i65</file>
+                <file ltype="driver" ptype="a65" note="pc partition scanner">pcpart.a65</file>
+                <file ltype="driver" ptype="a65" note="partition access">paccess.a65</file>
+                <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
+        </driver>
+	<rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<note type="msg">
+			This board implements a SCSI-I controller. The 
+			following restrictions apply:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul>
+		</note>
+		<file ltype="schem" ptype="psgz">csascsi1.ps.gz</file>
+		<file ltype="schem" ptype="png">csascsi1.png</file>
+		<file ltype="schem" ptype="fig">csascsi1.fig</file>
+		<file ltype="parts" ptype="txt">csascsi1parts.txt</file>
+		<file ltype="desc" ptype="txt">csascsi1desc.txt</file>
+		<file ltype="photo" ptype="jpg">csascsi1.jpg</file>
+	</rev>
+</board>

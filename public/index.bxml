@@ -1,0 +1,113 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1989</yearstart>
+    <yearend>2006</yearend>
+  </author>
+  <keywords>8-bit,6502,Commodore</keywords>
+  <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
+  <overview>
+<p>On these pages you will find quite some information concerning selfbuilt
+8-bit computers of the 6502 line. Also some stuff for old Commodore
+machines with this CPU is there, like new C64 kernals, VC1541 modifications
+etc. A selfbuilt operating system
+features Multitasking, dynamic memory management, a standard library
+and internet access.</p><p>
+I am currently in the process of testing some more boards for the CS/A65 
+computer. This includes a DRVIO board for 1581-like disk I/O, and
+adapters to use the boards on the C64 or on the PET. 
+After that I plan to update the GeckOS operating system to
+improve messaging and communication throughput, add C support and more.
+</p>
+
+  </overview>
+  <news>
+    <item date="2006-11-01">
+	I have added the <a href="icap/index.html">article page</a> with
+	for now one article how to generate the RDY signal for a slow device.
+    </item>
+    <item date="2006-11-01">
+	I have added a few items, like the <a href="hwinfo/ls610/index.html">MMU replacement board</a>, or the 
+	<a href="cbmhw/ryofat40/index.html">Roll-you-own-PET</a> page where
+	you can build your own PET 4032.
+    </item>
+    <item date="2006-11-01">
+	For some of the <a href="csa/index.html">CS/A65</a>
+	boards I have added the driver code as extracted
+	from the GeckOS operating system.
+    </item>
+    <item date="2006-11-01">
+	The <a href="csa/index.html">CS/A65</a> part has been completely
+	overhauled, and some boards have been updated and new boards have been 
+	added!
+    </item>
+    <item date="2006-11-01">
+	Completely overworked the 8-bit pages. Now includes a navigation
+	menu and is better maintainable (for me :-). I have
+	also streamlined the webpage hierarchy. I hope you like it!
+    </item>
+<!--
+    <item date="2006-08-07">
+    I have updated the links from funet to the new home of the
+    Commodore archive at <a href="@CBMARC@/">@CBMARC@/</a>, as well as checked the other
+    links and updated them where necessary.
+    </item>
+    <item date="15jun2000">
+     Some of those pages have been rewritten into XML that is transformed
+     into HTML by using an XSL transformation.
+    </item>
+-->
+  </news>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+     <item name="Commodore 8-bit stuff">
+      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
+information and links to the old CBM PET machines</subitem>
+      <subitem name="Commodore Hardware mods and projects" 
+		link="cbmhw/index.html">: Various CBM hardware projects, like
+		<a href="cbmhw/scsi/index.html">SCSI</a> interface, or a project to build
+		<a href="cbmhw/ryofat40/index.html">Your own new PET 4032</a>.
+		Other items are C64 kernel mods and <a href="cbmhw/ieee488/index.html">IEEE488 interfaces</a>, including
+		one for the PC to use it as disk drive.
+      </subitem>
+     </item>
+     <item name="General 6502 hardware stuff">
+      <subitem name="CS/A65" link="csa/index.html"> and
+<a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
+multi- resp. singleboard 6502 computers.
+The CS/A65 features virtual memory, video card, a SCSI interface
+and many more stuff
+I have now linked my CS/A65 emulator, based on the VICE emulator,
+to this page.</subitem>
+      <subitem name="Hardware info" 
+		link="hwinfo/index.html">: Information on various 
+	items and standards used in these pages. Examples are 
+	<a href="hwinfo/crtctest/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
+	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
+      </subitem>
+     </item>
+     <item name="6502 software stuff">
+      <subitem name="GeckOS/A65" link="osa/index.html">
+A small 6502 multitasking operating
+system that runs on the Commodore C64 and PET computers, as well as my
+selfbuilt 6502s.
+      </subitem>
+      <subitem name="LIB6502" link="lib6502/index.html">is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.</subitem>
+      <subitem name="o65" link="o65/index.html">fileformat is a flexible relocatable 6502/65816 fileformat.</subitem>
+      <subitem name="Software" link="misc/index.html"> I wrote with relation
+to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
+     </item>
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist>
+  <closing>
+<BR/>Last updated 2006-11-01.
+  </closing>
+</webpage>

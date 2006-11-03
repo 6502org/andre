@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 PETCPU</name>
+	<keywords>CSA65 6502 PET CPU</keywords>
+        <lastmodified>2006-10-14</lastmodified>
+	<desc>This board implements a 6502 processor board for the 
+		CS/A65 bus system. It in addition to the 
+		<a href="../cpu65b/index.html">CPU65b</a> board it allows
+		to use (small parts) of the memory area of the CS/A65 bus.
+		This can be utilized to access the video board to implement
+		a video interface.
+	</desc>
+	<rev>
+		<version>1.1B</version>
+		<status>untested</status>
+		<note type="warn">
+			This schematics has been tested by modifying the
+			1.1A board version, but the layout itself has not
+			been tested. It mainly adds a driver for the Phi2
+			signal, and has been tested with the MOS6502 (1MHz), 
+			Rockwell R6502AD and R65C02P4 (1 and 2MHz each). 
+		</note>
+		<note type="warn">
+			The RS232 interface has not yet been tested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_petcpu_v1.1b.sch</file>
+		<file ltype="schem" ptype="png">csa_petcpu_v1.1b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petcpu_v1.1b.brd</file>
+		<file ltype="layout" ptype="png">csa_petcpu_v1.1b-lay.png</file>
+		<file ltype="desc" ptype="txt">csa_petcpu_v1.1b-desc.txt</file>
+	</rev>
+	<rev>
+		<version>1.1A</version>
+		<status>prototype with bugs</status>
+		<note type="warn">
+			This board has been tested and I found a severe bug
+			in the timing in combination with the NMOS 6502: 
+			the NMOS 6502 can not drive the Phi2 signal with
+			sufficient power on the bus, so the board works with 
+			the CMOS 6502 version only. Please see the 1.1B
+			version for a comparison.
+		</note>
+		<note type="warn">
+			The RS232 interface has not yet been tested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_petcpu_v1.1a.sch</file>
+		<file ltype="schem" ptype="png">csa_petcpu_v1.1a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petcpu_v1.1a.brd</file>
+		<file ltype="layout" ptype="png">csa_petcpu_v1.1a-lay.png</file>
+		<file ltype="photo" ptype="jpg" note="There are two more ICs underneath the UART">csa_petcpu_v1.1a.jpg</file>
+	</rev>
+</board>

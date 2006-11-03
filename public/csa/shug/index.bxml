@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 PC floppy interface</name>
+	<keywords>CSA65 6502 shugart floppy</keywords>
+        <lastmodified>2006-11-01</lastmodified>
+	<desc>This board implements a shugart bus interface as used 
+		in the standard PC floppy disk drives (5.25&quot; and 3.5&quot;).
+	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+        <driver>
+                <name>OS/A65 shugart bus floppy driver</name>
+                <desc>
+                        This driver handles the WD1770/1772 shugart bus floppy device.
+			It is included in the <code>fsibm</code> filesystem code
+			and provides the interface the filesystem expects.
+                        <ul><li><code>DINIT</code> - initialize the device</li>
+                        <li><code>DFORMAT</code> - format a floppy</li>
+                        <li><code>GETDPB</code> - get the disk parameter block that describes the disk format</li>
+                        <li><code>RWSEC</code> - read or write a sector</li>
+                        <li><code>DLOOP</code> - loop to check disk changed, or
+				to switch motor on or off</li>
+                        </ul>
+			The driver calls the method <code>dchanged</code> to
+			signal that a disk has been changed.
+                </desc>
+                <file ltype="driver" ptype="a65" note="floppy driver">drv_wd1770.a65</file>
+                <file ltype="driver" ptype="a65" note="wd1770 register definitions">wd1770.i65</file>
+        </driver>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 5.25&quot; and 3.5&quot; PC disk drives.
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<file ltype="schem" ptype="psgz">csashug.ps.gz</file>
+		<file ltype="schem" ptype="png">csashug.png</file>
+		<file ltype="schem" ptype="fig">csashug.fig</file>
+		<file ltype="parts" ptype="txt">csashugparts.txt</file>
+		<file ltype="desc" ptype="txt">csashugdesc.txt</file>
+		<file ltype="photo" ptype="jpg">csashug.jpg</file>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+	</rev>
+</board>

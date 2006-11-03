@@ -1,0 +1,34 @@
+<html><head><title>CRTC test programs and internals</title>
+<link rev=made href="mailto:@EMAIL@">
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
+</head><body>
+@MENU@
+<DIV ID="content">
+<h1>CRTC test programs and internals</h1>
+<p>
+This is a collection of information for the CRTC 6545.
+<p></p>
+There is NO WARRANTY of any kind attached to the information contained
+in this collection!!!
+DO NOT RUN THE PROGRAMS FROM THIS COLLECTION ON YOUR COMPUTER!!!
+</p><p>
+This includes some test programs for a Commodore PET in the
+<a href="pet/index.html">pet</a> directory.
+The test programs use some timing effects to produce raster effects
+on the screen. They run on my 8296, but not on yours. 
+I only provide the source as a reference on how to do these
+timing effects. 
+</p><p>
+The subdirectory <a href="internals/index.html">internals</a> contains a 
+vague description of the CRTC
+internals as derived from the results of the test programs.
+</p><p>
+The <a href="diffs.html">CRTC diffs page</a> also summarizes the differences between the different CRTC models.
+</p><p>
+The <a href="crtc.html">operations</a> document contains the CRTC description of the PET index.
+</p><pre>
+Take care!
+Andr&eacute;
+</pre>
+</DIV>
+</body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<LINK HREF="../../style.css" REL="stylesheet" TYPE="text/css">
+<LINK REV="made" HREF="mailto:afachat@gmx.de">
+<META NAME="author" CONTENT="Andr&eacute; Fachat">
+<TITLE>PET index - Disk drives</TITLE>
+</HEAD>
+<BODY>
+@MENU@
+<DIV ID="content">
+<H1>PET index - Disk drives</H1>
+<P><STRONG>This part is under construction</STRONG></P>
+<P>The Commodore disk drives for the PET computers actually are more
+intelligent than the PET itself - they had two 650x processors, one
+for the DOS and one for the drive controller. Using this "intelligent"
+design the PET was able to send a command to the disk drive and continue 
+its own work, while the floppy was doing its.
+<P>
+Disk drives to be used with the PET have to be equipped with an IEEE488
+interface. Most of the devices had two drives, but there are single drive
+units. 
+</P><P>In the following you find some more information about these drives:
+</P>
+<P><UL>
+<LI><A HREF="drives.html">Disk drive list</A>
+</LI><LI><A HREF="arch/index.html">Architecture overview</A> on the drives and schematics
+</LI><LI><A HREF="roms/index.html">DOS ROM information</A>
+</LI><LI><A HREF="progs/index.html">Drive utility programs</A>
+</LI><LI><A HREF="gallery/index.html">Gallery</A> with pictures of the drives
+</LI><LI><A HREF="#capacity">Drive capacity and compatibility</A> and other DOS information.
+</LI><LI><A HREF="#blink">Disk error codes</A>
+</LI><LI><A HREF="#misc">Other disk drive information</A>
+</LI></UL>
+<H2><A NAME="capacity"></A>Drive capacity and compatibility</H2>
+<P>All in all, there were two major 5.25" disk formats for the PET series,
+the 35 track double density version with around 170&nbsp;kByte and the 39/78 track quad density version with 512k/1M&nbsp;Byte free. 
+Both major types are completely incompatible.
+</P><P>
+The quad density came in two variations only, single sided (8050 DOS2.5/2.7) and double sided (8250/1001 DOS2.7). The double sided drives could read the single sided disks ok. The single sided drives could even read the double sided disks,
+as long as the second side was not used.
+</P><P>
+The double density disks are another story. With DOS1 Commodore introduced a disk format that is almost the same as in the 1541 - only in one of the speed zones there was one sector more. Therefore the disks had 670 blocks free. Probably Commdore found that there were too many errors, so with DOS2 they reduced the number of blocks by one sector per track in one speed zone, resulting in 664 blocks free. But that is not the end of the story. In the disk format there is a write gap between the header and the data block. Commodore changed the size of the
+write gap from the DOS2 disks to the 1541. Due to this the drives are only
+read compatible. You can read more about this <A HREF="writegap.html">here</A>.
+</P>
+<H2><A NAME="blink"></A>Disk drive error codes</H2>
+<P>The Commodore disk drives indicated hardware failures detected 
+during boot with a blink code. Here's the meaning from the 8050/8250 service manual:
+</P>
+<H3>POWER UP DIAGNOSTIC FOR 8050/8250 FLASH CODE</H3>
+<P>
+On power up, the three LED's on the drive should blink. The drive LED's go off and the center Tri-State LED remains green. The sytem has a built in self diagnostic which can be read in the form of a flash code. In the event of a failure, the 3 LED's will blink in a repetitive sequence. The number of blinks between intervals will indicate the possible location of a failure. </P>
+
+<TABLE BORDER="1">
+<TR><TH COLSPAN="4">ERROR INDICATIONS</TH></TR>
+<TR><TH>NUMBER OF FLASHES</TH><TH>ERROR CAUSE</TH><TH>COMPONENT</TH><TH>LOCATION</TH></TR>
+<TR><TD> 1 </TD><TD> Zero Page </TD><TD> 6532 </TD><TD>UC1,UE1 </TD></TR>
+<TR><TD>2 </TD><TD>ROM $E000-$EFFF </TD><TD>2364 </TD><TD>UL1 </TD></TR>
+<TR><TD>3 </TD><TD>ROM $C000-$DFFF </TD><TD>2364 </TD><TD>UH1 </TD></TR>
+<TR><TD>4 </TD><TD>Unused </TD></TR>
+<TR><TD>5 </TD><TD>Zero Page </TD><TD>6530 6502 </TD><TD>UK3 UH3 </TD></TR>
+<TR><TD>6 </TD><TD>Common RAM $1000-$13FF </TD><TD>2114 </TD><TD>UC4,UC5 </TD></TR>
+<TR><TD>7 </TD><TD>Common RAM $2000-$23FF </TD><TD>2114 </TD><TD>UD4,UD5 </TD></TR>
+<TR><TD>8 </TD><TD>Common RAM $3000-$33FF </TD><TD>2114 </TD><TD>UE4,UE5 </TD></TR>
+<TR><TD>9 </TD><TD>Common RAM $4000-$43FF </TD><TD>2114 </TD><TD>UF4,UF5 </TD></TR>
+<TR><TD>10 </TD><TD>Controller ROM </TD><TD>6530 6502 </TD><TD>UK3 UH3 </TD></TR>
+</TABLE>
+<P>
+If the LED's come on and stay on, the microprocessor UN1 is probably at fault. </P>
+
+<H2><A NAME="misc"></A>Other disk drive information</H2>
+<P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.
+<P><A HREF="@CBMARC@/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
+<HR><P>
+Back to the <A HREF="../index.html">PET index</A>
+<P>PET index V1.0 (c) 1998-2005 A. Fachat
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<board>
+	<name>74ls610 replacement board</name>
+	<keywords>MMU 74ls610</keywords>
+	<lastmodified>2006-10-15</lastmodified>
+	<desc> This board implements the functionality of the
+		74ls610 MMU chip, which is not easily available nowadays.
+		However, I use it in my <a href="../../csa/index.html">CS/A65</a> computer.
+		The board uses cache RAM I salvaged from an old PC motherboard
+		as the register file.
+	</desc>
+	<section toc="ls610" name="74LS610 MMU">
+<desc><p>
+The information within these pages is taken from a 1981 Texas Instruments
+data book.
+</p><p>
+I use this chip as MMU chip in my
+<a href="../../csa/index.html">CS/A65</a> computer,
+where a schematic can be found how to use the chip in a 6502 computer.
+An overview how to use this memory mapper can be seen in the
+<a href="ls610a.png">System Block Diagram</a>.
+</p><p>
+There is not much information on this page, as it is more aimed
+at the general understanding of how this chip works. You are encouraged
+to get the relevant data from TI - although they are not electronically
+available (at least a site search didn't reveal anything).
+</p><p>
+The internal logic diagram can be found in
+<a href="ls610b.png">ls610b.png</a>. This shows that the
+internal RAM is not a dual-port or whatever RAM, but a simple multiplexed
+register file. This has consequences for the modes of operation.
+</p><p>
+The address lines for the register file come either from <code>RS0-3</code> (for
+read/write operations) or from <code>MA0-3</code> (for mapping).
+This is switched by the <code>/CS</code> line. Thus, if you access the
+read/write port by setting <code>/CS</code> low, you loose the mapped
+output. The 'LS610 and 'LS611 have a latch that is controlled
+by <code>C</code> and can be used to save the mapped address lines
+during a read/write access.
+</p><p>
+<code>/MM</code> controls a multiplexer that either selects the mapped
+address lines as output (map mode), or feeds the input address lines through
+to <code>MO8-11</code> setting the other lines to zero (pass mode).
+This input thus enables or disables the mapping.
+</p><p>
+During read operation the mapped address lines are feed back to the
+input <code>D0-11</code> to allow reading by the CPU. <code>/CS</code> must be
+low and <code>R/-W</code> must be high.
+</p><p>
+During write operation <code>/CS</code> must be low, as well as <code>R/-W</code>.
+In addition <code>/Strobe</code> must be low too. This input can be used
+for additional timing.
+</p>
+<p> <a href="ls610c.png">Pinout</a>
+</p></desc>
+	</section>
+	<diagram>
+		<file>ls610b.png</file>
+		<desc>This diagram shows the 74ls610 internal architecture
+			that the board replaces.</desc>
+	</diagram>
+	<rev>
+		<version>1.0B</version>
+		<status>untested</status>
+		<note type="msg">
+			This board has the two lines exchanged compared
+			to the 1.0A version.
+		</note>
+		<file ltype="schem" ptype="esch">mmu610_v1.0b.sch</file>
+		<file ltype="schem" ptype="png">mmu610_v1.0b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">mmu610_v1.0b.brd</file>
+		<file ltype="layout" ptype="png">mmu610_v1.0b-lay.png</file>
+	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>prototype with bug</status>
+		<note type="warn">
+			In this schematic and board layout has a bug: the two 
+			lines <code>C</code> and <code>/ME</code> of the
+			74ls610 socket must be exchanged.
+		</note>
+		<file ltype="schem" ptype="esch">mmu610_v1.0a.sch</file>
+		<file ltype="schem" ptype="png">mmu610_v1.0a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">mmu610_v1.0a.brd</file>
+		<file ltype="layout" ptype="png">mmu610_v1.0a-lay.png</file>
+		<file ltype="photo" ptype="jpg" note="on top of an old CS/A65 CPU board">mmu610_v1.0a.jpg</file>
+	</rev>
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
+  </disclaimer>
+</board>

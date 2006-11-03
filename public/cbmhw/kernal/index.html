@@ -6,11 +6,43 @@
 <meta name="keywords" content="C64,kernal,kernel"> <meta name="description" content="Modified C64 kernals">
 <title>new kernals</title>
 <link rev=made href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
 </head>
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" alink="#ff0000" vlink="#220088">
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="../ryofat40/index.html">Build your own new PET!</a></li>
+<li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
+<li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
+
+<li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
+<li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
+<li class="file"><a href="../hwmods.html">My Hardware mods</a></li>
+</ul>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
 <h1>C64 kernals</h1>
-<h2>This is Copyright A.Fachat, for distributing use my own 
-<a href="MYCOPYING.ASC">License</a></h2><hr>
+<p class="copyright">This is Copyright A.Fachat, for distributing use my own 
+<a href="MYCOPYING.ASC">License</a></p>
 <p>
 <h2>Boot ROM</h2>
 <p> This is a small patch to allow the C64 to boot an arbitrary
@@ -20,11 +52,10 @@ a feature now?
 The patch is really small, so I only provide the basic executable for it
 in the file <a href="bs-l.s07">bs-l.s07</a> and a listing in the file
 <a href="bs-l.s07.txt">bs-l.s07.txt</a>.
-To assemble, you have to place my <a href="../../misc/index.html#atass">@ASS</a>
+To assemble, you have to place my <a href="../../misc/index.html">@ASS</a>
 at $7000 in memory (or somewhere else if you correct the SYS statement).
 The you have the modified kernal in the RAM under the kernal ROM.
 </p>
-<hr>
 <h2>Improved ROMs</h2>
 <p> These kernal ROMs do have a lot more new features than the 
 standard kernal. The place has been taken from the tape routines
@@ -44,7 +75,7 @@ routines replaced by UART 16550A routines.
 <p>
 To assemble the source "BS  1.40.S89,P" (C64 BASIC program) yourself, 
 you have to have my 
-<a href="../../misc/index.html#atass">@ASS assembler</a> at $7000 in memory (or change the
+<a href="../../misc/index.html">@ASS assembler</a> at $7000 in memory (or change the
 SYS statements in the source to the correct address). 
 In line 11090 you can change the address of the
 UART in memory. I have it mapped above the SID, at $d600.
@@ -148,8 +179,9 @@ POSSIBILITY OF SUCH DAMAGES.
 
 <p>
 <hr><p class=endofpage>
-Contents last modified Nov 13 1998 |
-Go to <a href="../../index.html">Homepage</a> 
+Contents last modified Nov 13 1998 
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
 </p>
-</body>
+</DIV></body>
 </html>

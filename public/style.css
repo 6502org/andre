@@ -14,3 +14,75 @@ TH {
 	background-color: #dddddd;
 }
 
+H2 {
+	border-top: 2px solid;
+}
+
+DIV#footer {
+	border-top: 2px solid;
+}
+
+DIV#content {
+  margin-left: 22em;
+  padding: 0 1em;
+  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+}
+
+DIV#menu {
+  float: left; width: 22em;
+  margin: 0; padding: 0;
+  list-style-position:outside;
+  position: fixed;
+}
+
+P.copyright {
+	font-size:larger;
+	font-weight:bold;
+}
+
+LI.separator {
+	font-size:larger;
+	font-weight:bold;
+	list-style-type:none;
+        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+}
+
+UL.menu0 {
+  font-size:small;
+  padding-left:20px;
+}
+UL.menu1 {
+  padding-left:20px;
+}
+UL.menu2 {
+  padding-left:20px;
+}
+UL.menu3 {
+  padding-left:20px;
+}
+
+UL.news {
+	list-style-image:url(imgs/news.gif);
+}
+
+LI.homepage {
+	list-style-image:url(imgs/dir.gif);
+	font-size:large;
+}
+
+LI.file {
+	list-style-image:url(imgs/file.gif);
+}
+
+LI.link {
+	list-style-image:url(imgs/link.gif);
+}
+
+LI.dir {
+	list-style-image:url(imgs/dir.gif);
+}
+
+LI.openfile {
+	list-style-image:url(imgs/openfile.gif);
+}
+

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 CPU emulator</name>
+	<keywords>CSA65 6502 cpu emulator</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board implements a 6502 emulator.....: 
+		it allows the CS/A65 bus cpu to emulate a 6502 cpu 
+		on another computer. I.e. it utilizes a 40pin 
+		cable to connect to a 6502 socket on another computer,
+		where the original cpu has been replaced. This allows
+		to map the 64k memory of the emulated cpu into the 
+		1MByte address space of the CS/A65 bus. Using the
+		MMU for example the ROM space of the emulated cpu
+		can be replaced with (write-protected) CS/A65 RAM, to
+		test new ROM versions. I have successfully tested new
+		Commodore VC1541 ROMs with this system.
+	</desc>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+			This is the initial version.
+		</note>
+		<file ltype="desc" ptype="txt">csaemudesc.txt</file>
+		<file ltype="schem" ptype="fig">csaemu.fig</file>
+		<file ltype="schem" ptype="psgz">csaemu.ps.gz</file>
+		<file ltype="schem" ptype="png">csaemu.png</file>
+		<file ltype="photo" ptype="jpg" note="The unused sockets were planned for a - so far - unimplemented 6510 processor port">csaemu.jpg</file>
+	</rev>
+</board>

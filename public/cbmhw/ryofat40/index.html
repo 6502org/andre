@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="A new implementation of the Commodore PET 4032">
+<meta name="keywords" content="Commodore PET 4032">
+<title>Roll your own PET4032 (Fat40)</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</head>
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="../ryofat40/index.html">Build your own new PET!</a></li>
+<ul class="menu2" >
+<li class="link"><a href="../../csa/petcpu/index.html">PETCPU</a></li>
+<li class="link"><a href="../../csa/petio/index.html">PETIO</a></li>
+<li class="link"><a href="../../csa/vdc/index.html">Video</a></li>
+</ul>
+<li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
+<li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
+<li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
+<li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
+<li class="file"><a href="../hwmods.html">My Hardware mods</a></li>
+</ul>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<h1>Roll your own PET4032 (Fat40)</h1>
+<p class="copyright">(C)
+2006-2006 André  Fachat</p> 
+<p>
+	<p>This page describes how you can build your own PET 4032 using
+	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p><p>
+	Well, not actually the whole computer, but at least the mainboard,
+	where "only" the case, screen, and power supply are missing. I have
+	though managed to use a standard PAL screen with this PET by 
+	redefining the timing values the PET ROM writes into the 
+	CRTC registers.
+	</p><p>
+	Basically what you do is to combine the <a href="../../csa/petcpu/index.html">PETCPU</a>,
+	<a href="../../csa/petio/index.html">PETIO</a> and <a href="../../csa/vdc/index.html">Video</a> boards 
+	into one computer, put the PET ROM into a ROM for the PETCPU ROM socket
+	and there you are. The following sections describe the special settings
+	on the different boards.
+	</p>
+  </p>
+<h2>Board settings</h2>
+	This section describe the CS/A65 boards making up the PET 4032.
+	Here is a <a href="fat40.jpg">picture</a> of the three boards on 
+	a backplane. Note the separate cable between the VDC and the 
+	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
+	from VDC to PETIO and the character ROM selection.
+	from PETIO to VDC.
+    <ul>
+<li>
+<a href="../../csa/petcpu/index.html">PETCPU board</a>
+	The PETCPU board must be set to a maximum of 32k RAM on the board
+	itself, and maximum of 28k of ROM, so that the memory area at
+	$8*** is selected on the CS/A65 bus and can be handled by the
+	video board. Actually all memory not handled by the PETCPU is
+	covered by RAM from the video board (e.g. the $9*** area). 
+	To achieve this, the PETCPU board must be set to use the 
+	$01**** are on the bus. In addition it must exclusive-or
+	the address lines 15 and 12 - as the PET CRTC is set to a 
+	memory address of $9000 - but the video board resets the video
+	to $0000 with the control register and the values set in the
+	CRTC. Also the I/O area must be enabled for $E800 to $EFFF.
+     <br><br>
+</li>
+<li>
+<a href="../../csa/petio/index.html">PETIO board</a>
+	On the PETIO board only the "special features" must be
+	switched off, especially the IEEE488 slave mode feature, as the
+	ROM does not handle this, as well as the EOI must be located
+	at its original place on the keyboard PIA.
+     <br><br>
+</li>
+<li>
+<a href="../../csa/vdc/index.html">Video board</a>
+	The video board must be set to the memory area $01****. Otherwise
+	it should best be a 1.4 version, as the control port is reset
+	with /RES and needs not be set by the ROM.
+     <br><br>
+</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>
+All Copyrights are acknowledged.
+The information here is provided under the terms of the
+GNU Public License version 2 unless noted otherwise.
+  </p>
+<hr>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+  </DIV>
+</body>
+</html> 
+

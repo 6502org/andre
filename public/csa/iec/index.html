@@ -1,0 +1,247 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 6502 IEEE488 IEC">
+<TITLE>CS/A65 IEC</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<ul class="menu1" >
+<li class="separator">Specifications</li>
+<li class="file"><a href="../bus.html">Bus V1.0</a></li>
+<li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
+<li class="separator">Main boards</li>
+<li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="../gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="../vdc/index.html">Video board</a></li>
+<li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="../shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
+
+<li class="separator">Other links</li>
+<li class="dir"><a href="../gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+</ul>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>CS/A65 IEC</H1>
+<P>This board implements an IEEE488 interface, as well
+		as a Commodore serial IEC bus interface, as used in
+		the VIC20 and C64 (and others).
+	</P>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+			Board is deprecated. Use PETIO board instead.
+    		</li></ul>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+			Added driver code.
+    		</li></ul>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#driver">Driver</a></li>
+<dir>
+<li><a href="#driver1">OS/A65 V2 IEEE488 driver</a></li>
+<li><a href="#driver2">OS/A65 Beeper driver</a></li>
+</dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir><li>
+<a href="#board1">1.1B</a> (ok)</li></dir>
+</dir>
+</DIV>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">OS/A65 V2 IEEE488 driver</A></H3>
+<P>
+		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
+		OS/A65 filesystem process. It implements the hardware access with the following methods:
+		<ul>
+<li>
+<code>IECINIT</code> - Initialize the hardware</li>
+		</ul>
+		The following methods are used when the filesystem runs as
+		a device (like CBM2031). This part is enclosed with the 
+		conditional variable NOLOOP. This part also handles a
+		directory hierarchy with the <code>CD</code> command.
+		This part is only available for the parallel IEEE488 interface,
+		not the serial IEC bus.
+		<ul>
+		<li>
+<code>RETLOOP</code> - clear the bus</li>
+		<li>
+<code>INLOOP</code> - detect ATN activity and react as a device</li>
+		<li>
+<code>talkloop</code> - called from INLOOP to send data (TALK)</li>
+		<li>
+<code>listenloop</code> - called from INLOOP to receive data (LISTEN)</li>
+		<li>
+<code>sendcmd</code> - interpret the command channel</li>
+		<li>
+<code>open</code> - open a file</li>
+		</ul>
+		The following methods are used when the filesystem is 
+		running as bus master (similar to PET or C64). This part
+		is enclosed with the preprocessor conditional variable NOFS.
+		<ul>
+		<li>
+<code>iec0out</code> - send a byte with ATN set</li>
+		<li>
+<code>iecout</code> - send a byte</li>
+		<li>
+<code>sectalk</code> - send a secondary talk</li>
+		<li>
+<code>seclisten</code> - send a secondary listen</li>
+		<li>
+<code>IECIN</code> - receive a byte</li>
+		<li>
+<code>UNLISTEN</code> - send unlisten</li>
+		<li>
+<code>UNTALK</code> - send untalk</li>
+		<li>
+<code>getif</code> - get interface using PSEM() and/or CTRLNMI()</li>
+		<li>
+<code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
+		</ul>
+		Unfortunately, due to its age, the code is a mess, but works in GeckOS/A65.
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="piec_csa_master.a65">piec_csa_master.a65</A>(parallel IEEE488 Driver code, excerpt to use as bus master)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="piec_csa_drive.a65">piec_csa_drive.a65</A>(parallel IEEE488 Driver code, excerpt to use as IEEE488 drive)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="siec_csa.a65">siec_csa.a65</A>(serial IEC Driver code (bus master only))</TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">OS/A65 Beeper driver</A></H3>
+<P>
+			This driver handles the piezo beeper included
+			in this board.
+			It provides the three methods
+			<ul>
+<li>
+<code>inibell</code> - initialize the bell</li>
+			<li>
+<code>trigbell</code> - trigger the bell sound</li>
+			<li>
+<code>bellirq</code> - interrupt code that 
+				modulates the bell ring until the ring is 
+				finished. Should be called with 50Hz or the
+				count values must be modified.</li>
+			</ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="con_csa.a65">con_csa.a65</A>(excerpt from console driver)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="via6522.i65">via6522.i65</A>(VIA register definitions)</TD>
+</TR>
+</TABLE>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.1B</A></H3>
+<P>Status: ok</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This board is only partially compatible with the
+			Commodore PET IEEE488 interface, although it
+			uses the same I/O address. It adds, however,
+			the ability to be used as a device (for both the
+			IEEE488 and the IEC bus).
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_deprecated.gif" ALT="deprecated"></TD>
+<TD>This board is deprecated. Please use the PETIO board instead.</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD>
+<A HREF="csaiecdesc.txt">csaiecdesc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD>
+<A HREF="csaiecparts.txt">csaiecparts.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csaiec.fig">csaiec.fig</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csaiec.png">csaiec.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csaiec.ps.gz">csaiec.ps.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="csaiec.jpg">csaiec.jpg</A></TD>
+</TR>
+</TABLE>
+<DIV ID="footer">
+<P>Last modified: 2006-10-13.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

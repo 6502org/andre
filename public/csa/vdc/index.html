@@ -1,0 +1,305 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 VDC video CRTC 6545 6845">
+<TITLE>CS/A65 Video board</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<ul class="menu1" >
+<li class="separator">Specifications</li>
+<li class="file"><a href="../bus.html">Bus V1.0</a></li>
+<li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
+<li class="separator">Main boards</li>
+<li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="../gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="../vdc/index.html">Video board</a></li>
+
+<li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="../shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
+<li class="separator">Other links</li>
+<li class="dir"><a href="../gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+</ul>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>CS/A65 Video board</H1>
+<P>This board implements the a video board for the CS/A65 bus.
+		The board uses 64k dynamic RAM that is accessed in a
+		time-shared way, by the CPU at Phi2 high, and by the
+		video at Phi2 low. Due to this interlock the board can
+		display 40 columns a line at 1MHz system clock, and 80 columns
+		a line at 2MHz system clock.
+	</P>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+                        Added driver code.
+                </li></ul>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#driver">Driver</a></li>
+<dir><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir>
+<li>
+<a href="#board1">1.4A</a> (untested)</li>
+<li>
+<a href="#board2">1.3E</a> (prototype)</li>
+<li>
+<a href="#board3">1.3C</a> (prototype with bugs)</li>
+</dir>
+<li><a href="#blkdiag">Block diagram</a></li>
+</dir>
+</DIV>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">OS/A65 VDC hardware driver</A></H3>
+<P>This is the video-specific hardware part of the 
+			CS/A65 console driver. It provides the following
+			methods:
+			<ul>
+			<li>
+<code>inivid</code> - initialize video hardware</li>
+			<li>
+<code>setact</code> - set the CRTC display address to the current screen</li>
+			<li>
+<code>crsron</code> - set the CRTC cursor to the correct address (the hardware cursor is actually flashing all the time)</li>
+			</ul>
+			The video memory is memory-mapped into CPU address space,
+			so the rest of the console driver (the hardware independent part)
+			acts on this memory mapped video.
+			The console can actually work in 40 columns (1MHz CPU clock) and
+			80 columns mode (2MHz CPU clock). This is detected by 
+			checking bit 7 of the <code>freq</code> variable.
+		</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="con_csa.a65">con_csa.a65</A>(VDC driver excerpt)</TD>
+</TR>
+</TABLE>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.4A</A></H3>
+<P>Status: untested</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			In addition to the timing bugs this board implements
+			a larger character ROM - now the character can be
+			more than 8 pixels high. Also the crude 
+			circuit for the generation of the composite video
+			signal is gone. Instead the video connector has 
+			an additional supply voltage pin, so the video plug
+			can implement any better composite generation.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board is untested.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			Most of the TTL chips are 'ALS technology, but a few
+			have to be 'LS for timing requirements: IC9 is a
+			74LS245 so that the data read from the RAM is held
+			on the bus longer, as the CPU requires a certain
+			hold time of that data. IC21 is a 'LS so that the
+			delay between /RAS and /CAS is still long enough.
+			IC9 may probably be an 'ALS04 as well, but never
+			change a running system...
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a-sch.png">csa_vdc_v1.4a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a.sch">csa_vdc_v1.4a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a-brd.png">csa_vdc_v1.4a-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.3E</A></H3>
+<P>Status: prototype</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>This board version is a redo of the
+			original board, with the known bugs fixed.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>During testing with the PETCPU and
+			new CS/A board - with 74ALS technology I decided to
+			better restrict the timing on the video board 
+			(which was not the cause of the problem), so 
+			a patched the board. The results can be found in
+			version 1.3F.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_vdc_v1.3e-sch.png">csa_vdc_v1.3e-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_vdc_v1.3e.sch">csa_vdc_v1.3e.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_vdc_v1.3e-lay.png">csa_vdc_v1.3e-lay.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_vdc_v1.3e.brd">csa_vdc_v1.3e.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board3">Version: 1.3C</A></H3>
+<P>Status: prototype with bugs</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>This is the original video board. 
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
+<TD>This schematics has a bug in the
+			circuit to generate the shift register load 
+			signal. It went unnoticed as my prototype board
+			was manually soldered.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD>
+<A HREF="csavdcdesc.txt">csavdcdesc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD>
+<A HREF="csavdcparts.txt">csavdcparts.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csavdc.png">csavdc.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csavdc.fig">csavdc.fig</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csavdc.ps.gz">csavdc.ps.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="csavdc.jpg">csavdc.jpg</A></TD>
+</TR>
+</TABLE>
+<H2><A name="blkdiag">Block diagram</A></H2>
+<img src="vdc.gif" alt="block diagram"><P><desc>Block diagram of the vdc board. Only some relevant info
+			is shown. It is actually a pretty simple design, if
+			it were not for the timing...
+			The CPU accesses the memory during Phi2 high, so 
+			then the BUSA0-15 and D0-7 are connected to the
+			memory address and bus lines. During Phi2 low the
+			video accesses the memory and thus RA0-13 is connected
+			to the memory. The byte read for the video is latched
+			and given to the character ROM as input. The CA0-2
+			lines select the correct scan line of the character 
+			in the character ROM. The output of the character ROM
+			is then shifted out to the video output.
+			More on how the CRTC works can be found on the
+			<a href="../../hwinfo/crtctest/index.html">CRTC page</a>.
+		</desc></P>
+<DIV ID="footer">
+<P>Last modified: 2006-11-01.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

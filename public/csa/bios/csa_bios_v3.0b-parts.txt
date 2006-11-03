@@ -1,0 +1,55 @@
+Partlist
+
+Part     Value 
+
+C1       1u 
+C2       1u 
+C3       4u7
+C4       4u7 
+C5       1u  
+C6       1u  
+C7       100n
+C8       47u 
+C9       100n
+C10      100n
+C12      100n
+C13      100n
+C14      100n
+C15      100n
+C16      100n
+C17      100n
+C18      100n
+C19      100n
+C20      100n
+C21      100n
+C22      100n
+C23      100n
+C25      100n
+C26      100n
+C27      100n 
+IC1      74ALS138
+IC2      74ALS139
+IC3      74ALS138
+IC4      74ALS273
+IC5      74ALS245
+IC6      ROMSOCK32TO512K 
+IC7      RAMSOCK32TO512K 
+IC8      74ALS00
+IC9      UART 16550A
+IC10     74ALS32
+IC11     74ALS04
+IC12     74LS07
+IC13     74ALS00
+IC14     74LS279
+IC15     MAX232 
+IC16     MAX232
+LED1     LED5MM  yellow
+QG1      1,8432MHz crystal oscillator DIL14E
+R1       4k7    
+R2       220   
+R3       10k 
+U$1      CSABUS 
+U$2      TASTER  
+U$3      74ALS688
+X2       9pin D-Sub Male
+

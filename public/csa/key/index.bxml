@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 KEY+RS232</name>
+	<keywords>CSA65 6502 keyboard rs232 ACIA</keywords>
+        <lastmodified>2006-11-01</lastmodified>
+	<desc>This board implements a simple matrix keyboard interface
+		that is Commodore PET compatible but can also use a C64
+		keyboard. It also implements a RS232
+		interface using a 6551 ACIA.
+	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Board is deprecated. Use PETIO board instead.
+                </item>
+        </news>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+        <driver>
+                <name>OS/A65 Keyboard driver</name>
+                <desc>
+                        This driver handles the keyboard included
+                        in this board.
+                        It provides these methods
+                        <ul><li><code>inikbd</code> - initialize the keyboard</li>
+                        <li><code>getkey</code> - scan the keyboard</li>
+                        </ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="excerpt from console driver">con_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="terminal codes definitions">kdefs.i65</file>
+                <file ltype="driver" ptype="a65" note="PIA register definitions">pia6521.i65</file>
+        </driver>
+        <driver>
+                <name>OS/A65 ACIA RS232 driver</name>
+                <desc>
+                        This driver handles the ACIA RS232 hardware included
+                        in this board. As this board does not use the standard
+			ACIA handshake lines but lines from the VIA, this is
+			not a general ACIA driver. In addition it includes
+			the ACIA driver for the original BIOS V1.x board.
+                </desc>
+                <file ltype="driver" ptype="a65" note="ACIA driver">oa1ds.a65</file>
+        </driver>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="deprecated">
+			This board is deprecated. Please use the PETIO board instead.
+		</note>
+		<file ltype="desc" ptype="txt">csakeydesc.txt</file>
+		<file ltype="parts" ptype="txt">csakeyparts.txt</file>
+		<file ltype="schem" ptype="fig">csakey.fig</file>
+		<file ltype="schem" ptype="png">csakey.png</file>
+		<file ltype="schem" ptype="psgz">csakey.ps.gz</file>
+		<file ltype="photo" ptype="jpg" note="ACIA missing, but (so far undocumented) I2C testbed added">csakey.jpg</file>
+	</rev>
+</board>
