@@ -24,10 +24,11 @@
 	on the different boards.
 	</p>
   </overview>
-  <!--news>
-    <item date="">
+  <news>
+    <item date="2006-11-12">
+	Added the ROMs.
     </item>
-  </news-->
+  </news>
   <itemlist name="Board settings">
     <description>
 	This section describe the CS/A65 boards making up the PET 4032.
@@ -50,6 +51,9 @@
 	memory address of $9000 - but the video board resets the video
 	to $0000 with the control register and the values set in the
 	CRTC. Also the I/O area must be enabled for $E800 to $EFFF.
+	<br/>You can see the jumpers in this <a href="petcpu.jpg">picture</a>.
+	Please note that this is jumpered for 2MHz, and the RAM is missing -
+	as the RAM is setup to be used from the video board.
      </subitem>
      <subitem name="PETIO board" link="../../csa/petio/index.html">
 	On the PETIO board only the "special features" must be
@@ -68,6 +72,23 @@
     </items>
     <!--disclaimer name="">
     </disclaimer-->
+  </itemlist>
+  <itemlist name="ROMs">
+    <description>
+	In this section you can find the ROMs for the PET. They basically
+	are the original PET ROMs, only that I have modified the 
+	CRTC timing parameters. Please note that the 2MHz (8032) version
+	is experimental only, as the IEEE488 timing seems to be flakey
+	now.
+    </description>
+    <items>
+     <subitem name="Fat40 4032 graphics keyboard 1MHz" link="roms/pet-fat40-1mhz-n.bin">
+	This is the 1MHz ROM that produces roughly PAL compatible video output.
+     </subitem>
+     <subitem name="8032 business keyboard 2MHz" link="roms/pet-8032-2mhz-b.bin">
+	This 2MHz version is experimental. As the VDC board can only do 80 columns with 2MHz bus frequency, no 8032 with 1MHz is possible.
+     </subitem>
+    </items>
   </itemlist>
   <disclaimer name="Disclaimer">
 @DISCLAIMER@
