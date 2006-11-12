@@ -26,6 +26,7 @@ DIV#content {
   margin-left: 22em;
   padding: 0 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+  text-align: left;
 }
 
 DIV#menu {

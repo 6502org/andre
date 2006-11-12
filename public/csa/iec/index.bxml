@@ -11,8 +11,6 @@
     		<item date="2006-11-01">
 			Board is deprecated. Use PETIO board instead.
     		</item>
-  	</news>
-	<news>
     		<item date="2006-11-01">
 			Added driver code.
     		</item>
