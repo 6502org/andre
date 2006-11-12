@@ -1,0 +1,15 @@
+s Commodore
+d petindex CBM PET info
+d cbmhw CBM hardware and mods
+s Hardware
+d csa CS/A65 and Gecko computer
+d hwinfo Hardware info
+s Software
+d osa GeckOS operating system
+d lib6502 Lib6502 standard
+d o65 O65 file format
+d misc Misc software
+s Knowledge Bits
+d icap Articles
+s Misc
+f contact.html Contact

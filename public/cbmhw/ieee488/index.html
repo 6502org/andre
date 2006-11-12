@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="IEEE488 interfaces for the Commdore 8-bit machines">
+<meta name="keywords" content="Commodore,IEEE488">
+<title>André 's CBM IEEE488 interfaces</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</head>
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="../ryofat40/index.html">Build your own new PET!</a></li>
+<li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
+<li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
+<li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
+<li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
+
+<li class="file"><a href="../hwmods.html">My Hardware mods</a></li>
+<li class="link"><a href="../../icap/c64ser.html">UART serial interface</a></li>
+</ul>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<h1>André 's CBM IEEE488 interfaces</h1>
+<p class="copyright">(C)
+- André  Fachat</p> 
+<p>
+On these pages you will find a number of IEEE-488 interfaces for Commodore
+8-bit equipment as well as one for the PC printerport.
+The IEEE-488 interface was used with the old CBM PET
+computers to connect disk drives, printers, modems and more.
+  </p>
+<h2>IEEE 488</h2>The main bus that connects almost all of my CBM computers and devices
+is the parallel IEEE488 bus, at least the version that CBM
+implemented in the PET and CBM-II line of computers.
+Not all of them are by me, but some are.
+There is an <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/IEEE-488.txt">introduction</a> to the IEEE-488 bus by Ruud Baltissen.
+    <ul>
+<li>
+<strong>C64</strong>: The CBM IEEE488 interface for the C64 is used to connect the
+C64 to the IEEE488 bus. I had my own (hand-drawn) schematics
+here, but Wolfgang Gü nther did it with a drawing program, and dumped
+the ROM as well. Find the description in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/c64/">c64/</a>. A readme can be found in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/c64/README">ieee c64 readme</a>.
+<br>
+The original software uses up some space in the $c*** area and completely
+disabled the serial IEC bus. I wrote a modification to the C64 kernal
+such that both busses can be used and the $c*** area is free. See the
+<a href="../kernal/index.html">kernal pages</a>.<br><br>
+</li>
+<li>
+<strong>VIC20</strong>: Although I never owned a VIC20, I list this one here as well for completeness.
+Wolfgang Gü nther made the schematics of the original CBM IEEE488
+interface for the VIC20 with a drawing program, and dumped
+the ROM as well. Find the description in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/vic20/">vic20/</a>.
+<br><br>
+</li>
+<li>
+<strong>VC1541</strong>:  The now gone 64er magazin published a modification of the VC1541
+to use an IEEE488 interface. It basically implements the IEEE488
+interface of the 2031 drive, the IEEE488 sister drive to the VC1541.
+Only the ROM code was modified such that only one of the two 8k ROM
+chips had to be replaced by an EPROM.
+Find the description in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/vc1541-ieee.tar.gz">vc1541-ieee.tar.gz</a>.
+<br><br>
+</li>
+<li>
+<strong>PC-LPT</strong>: This interface is listed here because I use my PC as
+a disk drive for my CBM equipment. Starting from ideas from
+Ruud Baltissen (see
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/pc-ieee.zip">pc-ieee.zip</a>)
+I developed this interface for the PCs LPT port and wrote
+the software (using some of VICE's disk emulation code).
+Schematics, description and software (for Linux) can be found in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/lptiec-0.9.2.tar.gz">lptiec-0.9.2.tar.gz</a>.<br>
+Although the software is for Linux, it is written somewhat portably
+in that no special kernel device or so is used. The program directly
+interfaces the PC LPT hardware and should easily be ported.<br><br>
+</li>
+<li>
+<strong>IEEE488-&gt;IEC</strong>:  A friend of mine used the serial IEC bus
+and not the IEEE488 bus to connect all his stuff. Unfortunately he also
+used a CBM 600 (aka B128). We designed a small device - a 6502
+computer actually - that is put in between the two busses, converting the
+parallel IEEE488 to the serial IEC bus. The schematics has longs since
+been lost, so I reverse-engineered it from the last existing source file
+for the ROM. Find the description in
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.<br><br>
+</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>
+All Copyrights are acknowledged.
+The information here is provided under the terms of the
+GNU Public License version 2 unless noted otherwise.
+  </p>
+<hr>
+Contents last modified 15 June 2000
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+  </DIV>
+</body>
+</html> 
+

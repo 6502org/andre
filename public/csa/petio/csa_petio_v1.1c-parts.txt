@@ -1,0 +1,48 @@
+Partlist
+
+Part     Value 
+
+BEEP1    PIEZOBEEPERPIEZO 
+C1       100n
+C2       100n
+C3       100n
+C4       100n
+C5       100n
+C6       100n
+C7       100n
+C8       100n
+C9       100n
+C10      100n
+C11      100n
+C12      100n
+C13      100n
+IC1      74ALS138
+IC2      74ALS138
+IC3      74ALS00
+IC4      74ALS86
+IC5      74LS145
+IC6      MC3446
+IC7      MC3446
+IC8      MC3446
+IC9      VIA6522    
+IC10     PIA6520/6821
+IC11     PIA6520/6821
+IC12     74LS17
+P1       C64KEYB 
+P2       IEEE488FLATCABLE 
+P3       PETUSERPORT     
+P4       CSABUS         
+P5       CBMTAPE       
+P6       CBMTAPE      
+P7       PETKEYBD    
+P8       PETKEYBDSUBD
+R1       2k4        
+R2       5k1       
+R3       2k4      
+R4       2k4     
+R5       5k1    
+R6       10     
+R7       10k    
+RN1      10k    
+U$2      TASTER 
+

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 DUART</name>
+	<keywords>CSA65 6502 UART</keywords>
+        <lastmodified>2006-11-01</lastmodified>
+	<desc>
+	 This Dual RS232 board uses two 16550A for the two interfaces. I 
+	know that there are ICs like the 16552(?) with two interfaces in 
+	one chip, but when I needed it, I had the parts at home already...
+	</desc>
+        <news>
+                <item date="2006-11-01">
+                        Added driver code.
+                </item>
+        </news>
+	<driver>
+		<name>OS/A65 UART16550A driver</name>
+		<desc>The driver consists of two files. First the
+			<code>uart16550.i65</code> file contains chip
+			register definitions. The file <code>ser_uart.a65</code>
+			is the actual driver. This actually is a driver
+			for a single UART only, but it can be linked
+			into the system twice to handle both UARTs.
+			The OS/A65 operating system (1.x and 2.x) uses
+			a single entry point for the device, with the 
+			accumulator containing the command code. 
+			The entry point
+			is <code>prg1</code> in this case. It branches to 
+			these routines for the UART: 
+			<ul><li><code>devini</code> - initialize the UART</li>
+			<li><code>devirq</code> - interrupt routine. This 
+				routine is called on every interrupt, one device
+				after the other, until the irq is handled.
+				The 50Hz system interrupt is last, so this
+				driver uses this feature to check whether
+				a new byte can be send at <code>tx2</code>.</li>
+			<li><code>others</code> checks the other commands,
+				like open, close, or handshake handling.</li>
+			</ul>
+			Unfortunately the driver code is pretty messy, but
+			works.
+		</desc>
+		<file ltype="driver" ptype="a65" note="Driver code">ser_uart.a65</file>
+		<file ltype="driver" ptype="i65" note="UART register definitions">uart16550.i65</file>
+	</driver>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+			This is the initial version.
+		</note>
+		<file ltype="desc" ptype="txt">csaduartdesc.txt</file>
+		<file ltype="parts" ptype="txt">csaduartparts.txt</file>
+		<file ltype="schem" ptype="psgz">csaduart.ps.gz</file>
+		<file ltype="schem" ptype="png">csaduart.png</file>
+		<file ltype="schem" ptype="fig">csaduart.fig</file>
+		<file ltype="photo" ptype="jpg" note="One of the UARTs is missing">csaduart.jpg</file>
+	</rev>
+</board>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
+<html><head><base target="_top">
+<meta name="author"  content="Andr&eacute; Fachat">
+<meta name="robots"  content="noindex">
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="keywords" content="6502,standard,fileformat"> <meta name="description" content="6502 o65 standard fileformat">
+<title>o65 fileformat</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<link rev="made" href="mailto:afachat@gmx.de">
+</head>
+<body>
+@MENU@
+<DIV ID="content">
+<h1 class=overview>o65 6502 binary relocation format v1.3</h1>
+<p class="copyright">(c) Andr&eacute; Fachat</p>
+<h2 class=overview>File format definitions</h2>
+<p class=overview>
+The <strong>o65</strong> fileformat provides portable way 
+for using relocatable 6502 binaries. It can hold object files
+or executables, and features segments for uninitialized data,
+initialized data and text, as well as (uninitialized) zeropage.
+Block loading can be used and when there is no late-binding
+(which is possible) no side-storage is needed.
+</p><p class=overview>
+The current version is version 1.3 in 
+<a href="fileformat.html">fileformat.html</a>
+</p><p>
+The change from <a href="fileformat-1.2.html.gz">version 1.2</a>
+are an upward compatible change in the mode bits, more os types,
+and better explanations.
+</p><p>
+The change from the <a href="fileformat-1.1.html.gz">version 1.1</a>
+is that the undefined reference relocation entry for high-byte 
+relocation has changed.
+</p>
+<h2 class=overview>Example code</h2>
+<p>
+In the file <a href="libloader.a65">libloader.a65</a> is a sample loader 
+for the o65 file format in 6502 assembler. It is taken from the OS/A65 lib6502 code. It does not use the simple file format (as described by mode.11), but
+computes the relocation differences for each segment separately. What it 
+does, however, is late binding of the <code>OSA2KERNEL</code> and 
+<code>lib6502</code> variables, as well as looking for the <code>main</code>
+exported label to start the program.
+</p><p>
+A simpler version (without undefined references and without late binding) comes with the 
+<code>xa</code> assembler and you can find it in <a href="loader.a65">loader.a65</a>. It
+also has a sample C64 binding.
+</p><p>
+The code is not cleared from debug statements and lacks comments. Wear your
+hard hat.
+</p>
+<h2>O65 Next Generation</h2>
+Due to some requests to support other CPUs and "larger" systems, I have made an attempt to
+define a new, "v2" version of the o65 file format. It is far from complete, and open for discussion.
+You can find the working draft in <a href="fileformatng.html">fileformatng.html</a>.
+<h2 class=overview>Distribution</h2>
+<p>
+The file format extension <quote>o65</quote> for a 6502 relocatable file format
+is copyrighted by me. It may be used by systems and applications without
+restriction, as long
+as the files named with this extension obey 
+the definitions stated in this document.
+</p>
+<h2 class=overview>Current uses</h2>
+<p>
+The <code>o65</code> file format is currently used in the following systems:
+<ul>
+<li><a href="http://www.6502.org/users/andre/osa/index.html">GeckOS/A65</a> operating system: o65 is the main file format for the GeckOS operating
+system for executables.<br>It uses late binding to insert the kernel jumptable address as
+well as the lib6502 jumptable address into the executable at load time. Also it searches
+the (optional) "main" label to start the executable. Name lengths can be arbitrary as they
+are not stored, name encoding is ASCII.
+Currently the simple file format is not required, the loader can handle arbitrary segment
+addresses.<p>
+<li><a href="http://lng.sourceforge.net">Lunix operating system</a> uses the cc65 toolchain to produce o65 as executable file format.<p>
+<li><a href="http://www.cc65.org">CC65</a>: o65 is used for two purposes in the 6502 C compiler:
+<ul>
+<li>Loadable modules (can be viewed either as "executables" or as "overlays").
+<li>ld65 can also generate executable programs in o65 format for use with
+      other operating systems. Currently this is in experimental use in Lunix
+      (as far as I know).
+</ul>
+The format is currently used for 6502/C02. The cc65 module loader expects
+the <code>simple</code> format. The linker is able to
+ generate other formats as well.
+cc65 itself (that is: the library) won't use exports and imports.
+  o65 is not used as an object code format. Because of its simplicity (which,
+  as said before, is also its advantage) it is missing features for this
+  purpose.<p>
+<li>opencbm floppy modules:
+The <a href="http://www.trikaliotis.net/cbm4win">opencbm</a> API (cbm4win, cbm4linux) will (work in progress) use the o65 file format for
+modules to load into floppy. The API itself loads o65 files to account
+for the differences between the various floppy drives (1540/1541,
+1570/1571, 1581), and to present the API user transfer protocols for its
+use. The API user loads additional modules into the floppy drives which
+then use late binding to connect to the various support routines of the
+floppy ROM, or of the transfer protocols. Name encoding is ASCII.
+Currently, the simple file format is not
+required (but there is no definitive decision about this yet).
+<p>
+<li>The <a href="http://www.sics.se/~adam/contiki/index.html">Contiki Operating System</a> uses
+o65 as format for its 6502 program executables.<p>
+<li>A <a href="http://bisqwit.iki.fi/source/snescom.html">Free SNES assembler</a> 
+uses o65 as output file format for the 65816 files.<p>
+<li>The <a href="http://www.king.igs.net/~billnacu/wings/programming.html">WiNGs</a> operating system use the o65 file format for its binaries.<p>
+<li>Other projects use the o65 file format for own experimentation,
+even for such CPUs as Z80 and 80286!
+</ul>
+</p>
+<h2>Disclaimer</h2>
+<p>
+@DISCLAIMER@
+</p>
+<hr><p class=endofpage>
+Contents last modified 31 mar 2005 
+@FOOTER@
+</p>
+</DIV>
+</body>
+</html>

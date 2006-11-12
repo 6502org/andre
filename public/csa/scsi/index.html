@@ -1,0 +1,281 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 6502 SCSI">
+<TITLE>CS/A65 SCSI interface</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<ul class="menu1" >
+<li class="separator">Specifications</li>
+<li class="file"><a href="../bus.html">Bus V1.0</a></li>
+<li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
+<li class="separator">Main boards</li>
+<li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="../gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="../vdc/index.html">Video board</a></li>
+<li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="../shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
+
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
+<li class="separator">Other links</li>
+<li class="dir"><a href="../gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+</ul>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>CS/A65 SCSI interface</H1>
+<P>This board implements a SCSI interface for the CS/A65
+		computer. It implements a mechanism to use the
+		asynchronous mode on parallel SCSI cables - that
+		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.
+		This interface can be used to attach disk drives 
+		and other SCSI devices. It has only been tested with 
+		SCSI disks, though (yet).
+	</P>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+                        Added driver code.
+                </li></ul>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#hwarc">Hardware Architecture</a></li>
+<li><a href="#swarc">Software Architecture</a></li>
+<dir>
+<li><a href="#hwlay">Hardware layer</a></li>
+<li><a href="#part">Partition layer</a></li>
+<li><a href="#fs">Filesystem level</a></li>
+<li><a href="#drvs">Drivers</a></li>
+</dir>
+<li><a href="#driver">Driver</a></li>
+<dir><li><a href="#driver1">OS/A65 SCSI driver</a></li></dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir><li>
+<a href="#board1">1.0A</a> (ok)</li></dir>
+</dir>
+</DIV>
+<H2><a name="hwarc">Hardware Architecture</a></H2>
+<p>
+		<p>
+		The hardware architecture is actually very simple. As 
+		only asynchronous data transfer is needed, the board
+		provides bidirectional access to the 8 data lines, plus
+		access to the control lines. Parity check is provided,
+		as well as automatic REQ/ACK handling by simply accessing the
+		data register. For more information see the board 
+		description below.</p><p>
+	The SCSI board has a heavily modified version of an old SASI
+interface from the german elektor magazin (around '88 or so).
+It has been reworked to get more SCSI-II compliance, but it is still
+not there. It works, however, with my Seagate ST1096N harddisk :-)
+		</p></p>
+<H2><a name="swarc">Software Architecture</a></H2>
+<p><p>The software architecture is kept as flexible as possible.
+Three levels work together, the hardware driver, the partition
+level that transforms block numbers in a partition into
+block numbers in the device, and the third level which is the
+filesystem code.
+</p></p>
+<H3><a name="hwlay">Hardware layer</a></H3>
+<p>
+The hardware layer is a low level driver that can detect the
+devices connected to the SCSI bus, inquire the device (it returns
+the type etc), get the blocksize and read or write single blocks.
+As SCSI devices just hold a number of linearly numbered blocks
+there is absolutely no need to use any track/sector numbering etc.
+In the driver code (see below) the file <code>csascsi1.a65</code>
+contains the low level driver for the generic SCSI interface
+described above. The file <code>ramdscsi.a65</code> holds a driver
+for another interface, that I implemented in the VICE
+emulator, not in hardware. You write the block number to some
+I/O locations and get the right block memory mapped. This code
+shows how easy it is to replace the hardware level if necessary.
+</p>
+<H3><a name="part">Partition layer</a></H3>
+<p>
+The partition level consists of three parts, where only two
+are implemented so far.
+First in the file <code>part.i65</code>
+the format of the partition table is defined.
+<code>paccess.a65</code> then translates the block numbers given
+to the absolute block numbers on the device using the partition
+table. The table is filled in on init by the code in
+<code>pcpart.a65</code> that scans the disk for PC-like partition
+tables. To use other types of partition tables (like Amiga-type for example),
+simply replace this file with a new one that fills in the partition
+table appropriately.
+The third part would be an <code>fdisk</code> program that uses the low
+level routines to manipulate the partition tables. But here I still
+rely on the Linux counterpart I already have :-)
+</p>
+<H3><a name="fs">Filesystem level</a></H3>
+<p>
+The upper level is the filesystem level. It contains code to handle
+directories, files, allocation tables etc.
+This is not contained in the basic SCSI drivers, because it is
+heavily depending on the operating system.
+It should be easy to implement any filesystem you like on the level
+provided by the partition code.
+</p>
+<H3><a name="drvs">Drivers</a></H3>
+<p>
+The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
+system</a>. An example of a filesystem
+implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
+that implement a fileserver task for the GeckOS/A65 operating
+system. It handles PC-style disks with the FAT12 or FAT16 filesystem
+(no FAT32 and no long filenames). But be warned, it is an early
+beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
+</p>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">OS/A65 SCSI driver</A></H3>
+<P>
+                        This driver handles the base SCSI operations.
+			It consists of these files:
+                        <ul>
+<li>
+<code>scsi.a65</code> - binds the hardware driver to the <code>fsibm</code> FAT filesystem. It exports the same interface 
+			as described in the <a href="../shug/index.html">floppy driver</a>.</li>
+                        <li>
+<code>part.i65</code> - partition definitions</li>
+                        <li>
+<code>pcpart.a65</code> - scan PC-style partitions</li>
+                        <li>
+<code>paccess.a65</code> - translates the partition-relative block numbers to absolute disk block numbers.</li>
+                        <li>
+<code>csascsi1.a65</code> - the actual hardware driver</li>
+                        </ul>
+			The hardware driver exports the following methods:
+			<ul>
+			<li>
+<code>iniscsi</code> - init the device</li>
+			<li>
+<code>inquiry</code> - inquire a device</li>
+			<li>
+<code>getsize</code> - get the size of the device</li>
+			<li>
+<code>readblock</code> - read a block</li>
+			<li>
+<code>writeblock</code> - write a block</li>
+			</ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="scsi.a65">scsi.a65</A>(OS/A65 binding)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="part.i65">part.i65</A>(partition definitions)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="pcpart.a65">pcpart.a65</A>(pc partition scanner)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="paccess.a65">paccess.a65</A>(partition access)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="csascsi1.a65">csascsi1.a65</A>(hardware driver)</TD>
+</TR>
+</TABLE>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.0A</A></H3>
+<P>Status: ok</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This board implements a SCSI-I controller. The 
+			following restrictions apply:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul>
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csascsi1.ps.gz">csascsi1.ps.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csascsi1.png">csascsi1.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csascsi1.fig">csascsi1.fig</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD>
+<A HREF="csascsi1parts.txt">csascsi1parts.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD>
+<A HREF="csascsi1desc.txt">csascsi1desc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="csascsi1.jpg">csascsi1.jpg</A></TD>
+</TR>
+</TABLE>
+<DIV ID="footer">
+<P>Last modified: 2006-10-14.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

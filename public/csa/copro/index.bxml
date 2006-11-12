@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 Copro</name>
+	<keywords>CSA65 6502 coprocessor</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board implements a 6502 coprocessor board for the 
+		CS/A65 bus system. The coprocessor runs in parallel to the
+		main bus CPU, with the same clock frequency as the bus itself.
+		The bus CPU and the coprocessor can communicate via a 
+		64k shared memory area on the bus, as well as via a 
+		shared control port. The port is protected against 
+		concurrent accesses from the two cpus by optimistic
+		locking (explained below).
+		The coprocessor board has a separate bus socket where
+		another CS/A65 I/O board can be plugged in that the 
+		coprocessor can handle independently from the bus I/O.
+	</desc>
+	<rev>
+		<version>1.0</version>
+		<status>draft</status>
+		<note type="stop">
+			Please note that the current state of this 
+			is a draft, so there are only scanned versions
+			of the schematics is available, and also due to
+			its size the schematics is separated into to
+			parts.
+		</note>
+		<file ltype="desc" ptype="txt">csacoprodesc.txt</file>
+		<file ltype="parts" ptype="txt">csacoproparts.txt</file>
+		<file ltype="schem" ptype="tiff">csacopro1.tiff.gz</file>
+		<file ltype="schem" ptype="tiff">csacopro2.tiff.gz</file>
+	</rev>
+</board>

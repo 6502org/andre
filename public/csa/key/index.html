@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 6502 keyboard rs232 ACIA">
+<TITLE>CS/A65 KEY+RS232</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<ul class="menu1" >
+<li class="separator">Specifications</li>
+<li class="file"><a href="../bus.html">Bus V1.0</a></li>
+<li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
+<li class="separator">Main boards</li>
+<li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="../gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="../vdc/index.html">Video board</a></li>
+<li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="../shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
+
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
+<li class="separator">Other links</li>
+<li class="dir"><a href="../gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="../emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+</ul>
+<li class="dir"><a href="../../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>CS/A65 KEY+RS232</H1>
+<P>This board implements a simple matrix keyboard interface
+		that is Commodore PET compatible but can also use a C64
+		keyboard. It also implements a RS232
+		interface using a 6551 ACIA.
+	</P>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+                        Board is deprecated. Use PETIO board instead.
+                </li></ul>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-11-01</small>
+                        Added driver code.
+                </li></ul>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#driver">Driver</a></li>
+<dir>
+<li><a href="#driver1">OS/A65 Keyboard driver</a></li>
+<li><a href="#driver2">OS/A65 ACIA RS232 driver</a></li>
+</dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir><li>
+<a href="#board1">1.0B</a> (ok)</li></dir>
+</dir>
+</DIV>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">OS/A65 Keyboard driver</A></H3>
+<P>
+                        This driver handles the keyboard included
+                        in this board.
+                        It provides these methods
+                        <ul>
+<li>
+<code>inikbd</code> - initialize the keyboard</li>
+                        <li>
+<code>getkey</code> - scan the keyboard</li>
+                        </ul>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="con_csa.a65">con_csa.a65</A>(excerpt from console driver)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="kdefs.i65">kdefs.i65</A>(terminal codes definitions)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="pia6521.i65">pia6521.i65</A>(PIA register definitions)</TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">OS/A65 ACIA RS232 driver</A></H3>
+<P>
+                        This driver handles the ACIA RS232 hardware included
+                        in this board. As this board does not use the standard
+			ACIA handshake lines but lines from the VIA, this is
+			not a general ACIA driver. In addition it includes
+			the ACIA driver for the original BIOS V1.x board.
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="oa1ds.a65">oa1ds.a65</A>(ACIA driver)</TD>
+</TR>
+</TABLE>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.0B</A></H3>
+<P>Status: ok</P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/note_deprecated.gif" ALT="deprecated"></TD>
+<TD>
+			This board is deprecated. Please use the PETIO board instead.
+		</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD>
+<A HREF="csakeydesc.txt">csakeydesc.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD>
+<A HREF="csakeyparts.txt">csakeyparts.txt</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csakey.fig">csakey.fig</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csakey.png">csakey.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csakey.ps.gz">csakey.ps.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="csakey.jpg">csakey.jpg</A>(ACIA missing, but (so far undocumented) I2C testbed added)</TD>
+</TR>
+</TABLE>
+<DIV ID="footer">
+<P>Last modified: 2006-11-01.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

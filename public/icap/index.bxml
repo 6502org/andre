@@ -1,0 +1,46 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Knowledge Bits">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit,6502</keywords>
+  <metadesc>8-bit 6502 knowledge</metadesc>
+  <overview>
+	These pages lists some articles explaining various bits and pieces
+	that you may find useful.
+  </overview>
+  <news>
+    <item date="2006-11-12">
+	Added the MMU, UART and remote control articles.
+    </item>
+    <item date="2006-11-01" state="old">
+	Created this page.
+    </item>
+  </news>
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
+      </subitem>
+      <subitem name="6502 MMU" link="mmu65.html"> - How a virtual address space works and how to implement it for a 6502 computer (1997).
+      </subitem>
+      <subitem name="UART serial interface" link="rdy.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
+      </subitem>
+      <subitem name="Infrared remote control" link="remote.html"> - control your home equipment with your 6502 :-) (1997)
+      </subitem>
+     <!--item name="Commodore 8-bit stuff">
+      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
+information and links to the old CBM PET machines</subitem>
+     </item-->
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist>
+  <closing>
+<BR/>Last updated 2006-11-12.
+  </closing>
+</webpage>

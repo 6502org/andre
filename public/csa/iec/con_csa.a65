@@ -1,0 +1,58 @@
+
+#include "via6522.i65"
+
+#define   VIA1      $e840
+
+#define	BELLIRQ		jsr bellirq
+
+#define	TRIGBELL	jsr trigbell
+
+
+/**************************************************************************
+ * Bell handling
+ */
+
+          .(
+          
+	.data
+pnt       .byt 0
+cnt       .byt 0
+	.text
+
+&inibell  
+	  lda #%00100100
+          sta VIA1+VIA_IER
+          lda VIA1+VIA_ACR
+          and #%11000011
+          ora #%00010000
+          sta VIA1+VIA_ACR
+&&trigbell 
+	  lda #0
+          sta pnt
+          sta cnt
+          lda #15
+          sta VIA1+VIA_SR
+&&bellirq  
+	  lda cnt
+          bne endirq
+          ldy pnt
+          lda tcnt,y
+          beq endbell
+          sta cnt
+          lda tfrq,y
+          sta VIA1+VIA_T2CL
+          lda #0
+          sta VIA1+VIA_T2CH
+          inc pnt
+endirq    dec cnt
+          rts
+endbell   lda #0
+          sta VIA1+VIA_SR
+          rts
+          
+tcnt      .byt 2,2,2,2,2,2,2,0
+tfrq      .byt 32,64,128,32,64,128,32
+
+          .)
+ 
+

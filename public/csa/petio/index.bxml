@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 PETIO</name>
+	<keywords>CSA65 6502 PET IO</keywords>
+        <lastmodified>2006-10-14</lastmodified>
+	<desc>This board implements Commodore PET compatible
+		I/O interfaces. This includes the keyboard, IEEE488,
+		userport (mostly) and tape ports. It adds the functionality
+		that the IEEE488 bus can also be used as a device.
+	</desc>
+	<rev>
+		<version>1.1C</version>
+		<status>untested</status>
+		<note type="warn">
+			This board has the keyboard connector bug from revision
+			1.1B fixed, but is otherwise completely untested.
+		</note>
+		<file ltype="desc" ptype="txt">csa_petio_v1.1c-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_petio_v1.1c-parts.txt</file>
+		<file ltype="schem" ptype="esch">csa_petio_v1.1c.sch</file>
+		<file ltype="schem" ptype="png">csa_petio_v1.1c-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.1c.brd</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.1c-lay.png</file>
+	</rev>
+	<rev>
+		<version>1.1B</version>
+		<status>prototype with bug</status>
+		<note type="msg">
+			This board has been tested with a Commodore PET
+			ROM.
+		</note>
+		<note type="warn">
+			The 25-pin D-Sub keyboard connector has the wrong
+			keyboard layout. Silly me, relying on the Commodore
+			documentation, in this case the 8296 addendum to
+			the 8032 manual - it has the wrong pinout listed.
+		</note>
+		<note type="warn">
+			The use of the IEEE488 interface as device, not 
+			controller has not been tested yet.
+		</note>
+		<note type="warn">
+			I did not really find a fitting piezo beeper
+			device in the Eagle(tm) libraries, so please
+			make sure you do not make short circuits. Best
+			is to isolate the beeper from the board.
+		</note>
+		<file ltype="schem" ptype="esch">csa_petio_v1.1b.sch</file>
+		<file ltype="schem" ptype="png">csa_petio_v1.1b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.1b.brd</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.1b-lay.png</file>
+		<file ltype="photo" ptype="jpg">csa_petio_v1.1b.jpg</file>
+	</rev>
+</board>

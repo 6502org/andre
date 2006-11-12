@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<LINK HREF="../../style.css" REL="stylesheet" TYPE="text/css">
+<LINK REV="made" HREF="mailto:afachat@gmx.de">
+<META NAME="author" CONTENT="Andr&eacute; Fachat">
+<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/drives.html"-->
+<TITLE>PET index - disk drives</TITLE>
+</HEAD>
+<BODY>
+@MENU@
+<DIV ID="content">
+<H1>PET index - disks</H1>
+<P>There a a great variety of 5.25" disk drives. For the first PET
+with BASIC&nbsp;2 it started with the 2040 disk drive and with
+its CBM DOS 1.0.
+The design of this drive is typical for all the other dual drive
+disks up to the 8250, and even for the single drive 1001.
+</P><P>
+Those drives have two 6502 processors (i.e. one 6502 and one 6504).
+The first processor (the 6504) connects to the drives and does
+all the disk read/write operations. It uses a hardware(!) GCR
+decoder to convert the data bytes to the GCR encoding that
+is used on the disk (for more details, see the <A HREF="arch/index.html">Architecture overview</A>).
+The second processor (the 6502) does the IEEE488 transfer to the
+PET and all the file and directory handling.
+Both CPUs have their separate ROM, and some separate RAM.
+They communicate via a 4k common RAM area.
+The DOS part - the 6502 ROM - was the same for a product line.
+The FDC part - the 6504 ROM - however can be different for different
+drive mechanics.
+</P><P>
+The 2040 is a dual drive floppy disk.
+Its DOS 1.0 has a disk format that is very similar to the
+1541 disk format. Only in one of the speed zones the format
+has one additional sector (resulting in 670 blocks free after format).
+The DOS lacked the relative files, though.
+It is assumed that the 3040 only is a renaming of the 2040,
+to accompany the 30xx PET models. It has DOS&nbsp;1.2, that was also shipped in later 2040 drives.
+</P><P>
+The 4040 then got DOS 2.0. It features the same format as the
+1541 (664 blocks free) and relative files. Later it then got
+DOS 2.1. These drives were the first to sport relative files.
+</P><P>
+DOS 2.5 then came with the 8050 drives and DOS 2.7 came with the 8250 drives.
+Those drives feature 500k
+on one single-sided disk (8050) or 1M on a double-sided disk (8250)!
+The new DOS was needed to handle the
+77 (8050) resp 154 (8250) tracks resp. The internal structure is still
+the same as the 2040, with its 2 processors etc.
+</P><P>
+DOS 2.7 is even capable of being used in the 4040, the 8050 and 8250
+without changes. The DOS ROM checks the FDC for the type of
+drive (170k, 500k or 1M) connected and adjusts its tables appropriately.
+However, besides some 4040 prototypes this DOS is only seen in
+8050 and 8250 drives.
+</P><P>
+The SFD1001 is a single drive disk drive. Basically it is
+a single-drive 8250. In fact it uses the same ROM. Only the
+FDC always returns an error for the second drive.
+</P><P>
+The 2031 seems to be a single drive 4040, yet it is not.
+It is in fact the sister drive of the 1541.
+As such it has only one CPU and the two ROM parts (DOS and FDC)
+have been put together into one.
+The FDC code has been put into the interrupt routine, while the
+DOS ROM is the main loop. Also the hardware GCR encode has been
+removed, so software GCR encoding and decoding routines have been
+added. The DOS version here is 2.6.
+The early 1540/1541 manual says that DOS 2.6 is read/write compatible
+with the 4040 DOS. However, rumors have it that the write gap between
+header and block is different between the two, so that they
+are only read compatible (<A HREF="writegap.html">Read more</A>).
+</P>
+<P>Here is a list of disk drives for the Commodore PET</P>
+<TABLE BORDER="1">
+<TR><TH COLSPAN="4">Commodore IEEE-488 5.25" models</TH></TR>
+<TR><TD>2040</TD><TD>DOS1.0/DOS1.2</TD><TD>DOS1.0 contained bugs, most have been updated to DOS1.2, later models shipped with DOS1.2; 670 blocks free</TD><TD ROWSPAN="2">Many of these drives have later been updated to DOS2</TD></TR>
+<TR><TD>3040</TD><TD>DOS1.2</TD><TD>European 2040, like the 3000 series PET</TD></TR>
+<TR><TD>4040</TD><TD>DOS2.0/2.1</TD><TD>664 blocks free, read compatible with 1541</TD></TR>
+<TR><TD>4031/2031/2031LP</TD><TD>DOS2.6</TD><TD>Single drive only. Read/Write compatible with 1541/1571s.</TD><TD>Basically a 1541 with an IEEE488 interface, i.e. one CPU only.</TD></TR>
+<TR><TD>8050</TD><TD>DOS2.5/2.7</TD><TD>Single Sided/Quad Density format, 512k per disk side.</TD><TD ROWSPAN="2">The DOS2.7 was the same for both, in fact even for the 1001, only the controller ROM differed.</TD></TR>
+<TR><TD>8250/8250LP</TD><TD>DOS2.7&lt;td&lt;td&gt;</TD><TD>Double Sided/Quad Density format, 1mb per disk</TD></TR>
+<TR><TD>SFD-1001</TD><TD>DOS2.7</TD><TD>Same as 8250, but single drive unit.</TD><TD>Other than the 2031 it still had both CPUs, and even the very same DOS as the 8250. Only the Controller DOS differed.</TD></TR>
+</TABLE>
+<P>The "LP" versions were "Low Profile" versions. Which means that while the other drives were delivered in the old "boat anchor" design with full height drives, the LP versions came in 1541-like (SFD-1001) design or even in a very slick low profile case for the 8250LP. You can see them in the <A HREF="gallery/index.html">drive gallery</A>.
+
+<P>Commodore even sold 8" disk drives...</P>
+<TABLE BORDER="1">
+<TR><TH COLSPAN="3">Commodore IEEE-488 8" models</TH></TR>
+<TR><TD>8060</TD><TD>DOS1.x</TD><TD>750 kByte</TD><TD>(little info on this one...)</TD></TR>
+<TR><TD>8061</TD><TD>DOS1.x</TD><TD>1500 kByte?</TD><TD>(little info on this one...)</TD></TR>
+<TR><TD>8280</TD><TD>DOS3.x?</TD><TD>1 MB or 512k per Drive</TD><TD> (little info on this one...)</TD></TR>
+</TABLE>
+<P>... and harddisks for the PETs.</P>
+<TABLE BORDER="1">
+<TR><TH COLSPAN="3">Commodore IEEE-488 Hard Disk Drives</TH></TR>
+<TR><TD>9060</TD><TD>DOS?</TD><TD>5 MByte</TD><TD>Hard Disk Unit</TD></TR>
+<TR><TD>9090</TD><TD>DOS?</TD><TD>7.5 MByte</TD><TD>Hard Disk Unit</TD></TR>
+</TABLE>
+<P>Note: the DOS version numbering of "3.0" for harddisks and even later 8" drives seems inconsistent with the DOS&nbsp;3.0 of the 1571 disk drive for the C64/C128.
+<HR><P>
+Back to the <A HREF="../index.html">PET index</A>
+<P>PET index V1.0 (c) 1998-2005 A. Fachat
+</DIV>
+</BODY>
+</HTML>

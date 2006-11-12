@@ -1,0 +1,57 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Andr&eacute; Fachat</keywords>
+  <metadesc>Contact Andr&eacute; Fachat</metadesc>
+  <overview>
+	<p>
+	My name is Andr&eacute; Fachat, and these pages on 
+	<a href="http://www.6502.org">http://www.6502.org</a>
+	show what I do for a hobby in my little spare time.
+	</p><p>
+	Mike Naberezny maintains the 
+	<a href="http://www.6502.org">http://www.6502.org</a>
+	pages and has thankfully offered to host my pages
+	on his site. Many thanks!
+	</p><p>
+	If you like this stuff, or have any questions about
+	it, please let me know. I will, however, not answer any rants
+	for example about how obsolete this technology is - it
+	is not anyway, you may have more 6502s in your home
+	than you think.
+	</p><p>
+	If you want to contact me, you can reach me via email on
+	<a href="mailto:afachat@gmx.de?subject=6502.org">afachat@gmx.de</a>.
+	It has a strong spam filter and I am pretty busy, so it may
+	take a while for me to answer, though.
+	</p><p>
+	I hope you enjoy these pages!
+	</p><p>
+	Andr&eacute; Fachat
+	</p>
+  </overview>
+  <!--news>
+    <item date="2006-08-07">
+    </item>
+  </news-->
+  <!--itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+     <item name="Commodore 8-bit stuff">
+      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
+      </subitem>
+     </item>
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist-->
+  <closing>
+<BR/>Last updated 2006-11-02.
+  </closing>
+</webpage>

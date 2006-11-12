@@ -1,0 +1,83 @@
+
+Description for CS/A BIOS board, version 3.0
+---------------------------------------------
+
+whatsit	: RAM, ROM, RS232 and basic control I/O
+I/O	: 16550 UART at $fe8-$fef, controlport at $fe0-$fe7 
+Mem	: up to 512k RAM, up to 512k ROM
+
+Memory
+------
+
+The boards provides two memory sockets, one for RAM (IC7) and one for ROM
+(IC6). Both sockets can take up to 512k memory, which in itself would
+fill up the 1M address range of the bus. Therefore the memory selection
+has become more complex than in version 2, where only 32k RAM and 32k ROM
+were possible.
+
+Basically IC2 and IC10, together with jumpers JP10, JP11, JP12, JP15, JP20, 
+JP3 and JP21 provide the selection circuitry: 
+IC10B and IC10D use the bus /MEMSEL
+and A19 to select either the upper or lower 512k of the bus address space.
+One of those two signals can be selected with JP3 and fed to the first part
+of IC2. IC2A selects either 128k or 256k areas of this address space 
+(depending on JP10). One of the resulting select lines can be fed to the
+second part that selects either 64k or 32k (depending on JP11) from the
+address space. All those address select lines can then be used to select
+the chip memory:
+
+	JP15 - select the upper 512k memory for the ROM socket
+	JP20 - select the upper 512k memory for the RAM socket
+	JP18 - select 256k/128k areas from IC2A for the ROM socket
+	JP17 - select 256k/128k areas from IC2A for the RAM socket
+	JP14 - select 64k/32k areas from IC2B for the ROM socket
+	JP13 - select 64k/32k areas from IC2B for the RAM socket
+
+This allows for a large variety of combinations. For example use 512k RAM
+in the upper half of the address space and 256k ROM in the $40000-$7ffff area.
+To achieve compatibility with the CPU and the version 2 boards, there 
+is jumper JP21, that if set, enables the additional mapping of the two
+lowest outputs of IC2B. If this is enabled, and JP10, JP11 and JP12 are
+set so that these outputs define areas $00000-07fff and $08000-0ffff, then
+this additional mapping maps the RAM and ROM into the lowest 64k of the
+bus. This is required to boot the CPU.
+
+I/O
+---
+
+The 74LS688 selects the I/O range for the controlport and the UART.
+JP4 and JP5 select different I/O areas. IC1 then generates the control signals
+for the UART as well as the controlport.
+
+IC4 and IC5 make up a read/write control port. 
+The control port has the following bits:
+
+	Bit 0		r: the /IRQ bus line
+	Bit 1		w: 1 = allow interrupt generation from 50Hz bus line
+	Bit 2		-
+	Bit 3		w: 0 = LED on
+	Bit 4		w: 0 = map /EXTIO to $d*** in the local 64k memory range
+	Bit 5		w: 1 = assert the /IOINH bus line
+	Bit 6		r: the pushbutton state, 0 = pressed
+	Bit 7		r: 1 = interrupt generated from 50Hz bus line
+
+IC14 is an interrupt generator that generates an interrupt signal
+everytime there is a low-high transition on the 50Hz bus signal. 
+The interrupt signal can be monitored at bit 7 of the control port. 
+If controlport bit 1 is set, the interrupt signal is routed to the 
+CPU (i.e. bus) /IRQ line.
+
+IC3 selects a 4k Address range at $d*** within the 64k memory address range
+of this board. This signal is routed to the /EXTIO bus signal, enabling
+I/O addressing within the $0D*** memory address range. Also when the signal
+is asserted, the ROM on the local board is disabled. If controlport
+bit 4 is 1, then this signal is disabled, and instead the ROM can be 
+seen at $0D***. 
+
+With controlport bit 5 the /IOINH bus line can be asserted. This way
+the I/O area can be remapped from the hardcoded $E*** CPU address range
+(disabled by /IOINH) to $0D*** in the memory address range (enabled by 
+/EXTIO) which can then be remapped by the MMU to wherever we like.
+
+
+

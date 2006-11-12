@@ -1,0 +1,27 @@
+
+CS/A65 PETCPU
+=============
+
+This board implements a 6502 CPU board for the CS/A65 bus, with access to
+64k memory (instead of the 1M available on the bus). The board includes
+a socket for a 32k RAM chip, as well as a socket for up to 512k ROM
+(where up to a maximum of 32k can be used at any one time).
+
+The memory is mapped into the 64k CPU address space (RAM at the bottom,
+ROM at the top). IC2 and IC9 define the size of the respective ROM and
+RAM areas. The place "in the middle", between the RAM and the ROM is
+selected in the memory area of the CS/A65 bus. So for example the
+RAM can be set to zero, ROM to 20k and thus the lower 44k are provided
+by the bus, e.g. by the video card. 
+
+In addition to the CPU and memory, it includes an RS232 interface implemented
+by a UART chip.
+
+The name of this board comes from the fact that it can be used to 
+implement a PET compatible computer. IC3 selects a PET compatible I/O
+area (selectable from $E8xx to $E800-$EFFF), and IC5B and IC5C are used
+to invert the memory address lines so the values for the video address
+stored in the video chip match with the addresses used from the PETCPU
+board.
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 IEC</name>
+	<keywords>CSA65 6502 IEEE488 IEC</keywords>
+        <lastmodified>2006-10-13</lastmodified>
+	<desc>This board implements an IEEE488 interface, as well
+		as a Commodore serial IEC bus interface, as used in
+		the VIC20 and C64 (and others).
+	</desc>
+	<news>
+    		<item date="2006-11-01">
+			Board is deprecated. Use PETIO board instead.
+    		</item>
+    		<item date="2006-11-01">
+			Added driver code.
+    		</item>
+  	</news>
+        <driver>
+                <name>OS/A65 V2 IEEE488 driver</name>
+                <desc>
+		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
+		OS/A65 filesystem process. It implements the hardware access with the following methods:
+		<ul><li><code>IECINIT</code> - Initialize the hardware</li>
+		</ul>
+		The following methods are used when the filesystem runs as
+		a device (like CBM2031). This part is enclosed with the 
+		conditional variable NOLOOP. This part also handles a
+		directory hierarchy with the <code>CD</code> command.
+		This part is only available for the parallel IEEE488 interface,
+		not the serial IEC bus.
+		<ul>
+		<li><code>RETLOOP</code> - clear the bus</li>
+		<li><code>INLOOP</code> - detect ATN activity and react as a device</li>
+		<li><code>talkloop</code> - called from INLOOP to send data (TALK)</li>
+		<li><code>listenloop</code> - called from INLOOP to receive data (LISTEN)</li>
+		<li><code>sendcmd</code> - interpret the command channel</li>
+		<li><code>open</code> - open a file</li>
+		</ul>
+		The following methods are used when the filesystem is 
+		running as bus master (similar to PET or C64). This part
+		is enclosed with the preprocessor conditional variable NOFS.
+		<ul>
+		<li><code>iec0out</code> - send a byte with ATN set</li>
+		<li><code>iecout</code> - send a byte</li>
+		<li><code>sectalk</code> - send a secondary talk</li>
+		<li><code>seclisten</code> - send a secondary listen</li>
+		<li><code>IECIN</code> - receive a byte</li>
+		<li><code>UNLISTEN</code> - send unlisten</li>
+		<li><code>UNTALK</code> - send untalk</li>
+		<li><code>getif</code> - get interface using PSEM() and/or CTRLNMI()</li>
+		<li><code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
+		</ul>
+		Unfortunately, due to its age, the code is a mess, but works in GeckOS/A65.
+                </desc>
+                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code, excerpt to use as bus master">piec_csa_master.a65</file>
+                <file ltype="driver" ptype="a65" note="parallel IEEE488 Driver code, excerpt to use as IEEE488 drive">piec_csa_drive.a65</file>
+                <file ltype="driver" ptype="a65" note="serial IEC Driver code (bus master only)">siec_csa.a65</file>
+        </driver>
+        <driver>
+                <name>OS/A65 Beeper driver</name>
+                <desc>
+			This driver handles the piezo beeper included
+			in this board.
+			It provides the three methods
+			<ul><li><code>inibell</code> - initialize the bell</li>
+			<li><code>trigbell</code> - trigger the bell sound</li>
+			<li><code>bellirq</code> - interrupt code that 
+				modulates the bell ring until the ring is 
+				finished. Should be called with 50Hz or the
+				count values must be modified.</li>
+			</ul>
+                </desc>
+                <file ltype="driver" ptype="a65" note="excerpt from console driver">con_csa.a65</file>
+                <file ltype="driver" ptype="a65" note="VIA register definitions">via6522.i65</file>
+        </driver>
+	<rev>
+		<version>1.1B</version>
+		<status>ok</status>
+		<note type="msg">
+			This board is only partially compatible with the
+			Commodore PET IEEE488 interface, although it
+			uses the same I/O address. It adds, however,
+			the ability to be used as a device (for both the
+			IEEE488 and the IEC bus).
+		</note>
+		<note type="deprecated">This board is deprecated. Please use the PETIO board instead.</note>
+		<file ltype="desc" ptype="txt">csaiecdesc.txt</file>
+		<file ltype="parts" ptype="txt">csaiecparts.txt</file>
+		<file ltype="schem" ptype="fig">csaiec.fig</file>
+		<file ltype="schem" ptype="png">csaiec.png</file>
+		<file ltype="schem" ptype="psgz">csaiec.ps.gz</file>
+		<file ltype="photo" ptype="jpg">csaiec.jpg</file>
+	</rev>
+</board>

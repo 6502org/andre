@@ -1,0 +1,160 @@
+<html><head><meta name="author" content="Andr&eacute; Fachat">
+<link rev=made href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<title>CS/A bus connector</title></head>
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../petindex/index.html">CBM PET info</a></li>
+<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../csa/index.html">CS/A65 and Gecko computer</a></li>
+<ul class="menu1" >
+<li class="separator">Specifications</li>
+<li class="file"><a href="bus.html">Bus V1.0</a></li>
+<li class="file"><a href="bus-1.1.html">Bus V1.1</a></li>
+<li class="separator">Main boards</li>
+<li class="dir"><a href="cpu/index.html">CS/A65 CPU</a></li>
+<li class="dir"><a href="bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="petcpu/index.html">64k PET CPU</a></li>
+<li class="dir"><a href="gecko/index.html">Gecko</a></li>
+<li class="separator">I/O boards</li>
+<li class="dir"><a href="vdc/index.html">Video board</a></li>
+<li class="dir"><a href="petio/index.html">CBM PET I/O</a></li>
+<li class="dir"><a href="shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="duart/index.html">Double UART (RS232)</a></li>
+<li class="dir"><a href="scsi/index.html">SCSI board</a></li>
+<li class="separator">Special purpose</li>
+<li class="dir"><a href="copro/index.html">Coprocessor board</a></li>
+<li class="dir"><a href="cpuemu/index.html">Emulate a 6502</a></li>
+<li class="dir"><a href="keyemu/index.html">Emulate a keyboard</a></li>
+<li class="separator">Deprecated boards</li>
+<li class="dir"><a href="cpu65b/index.html">64k CPU</a></li>
+<li class="dir"><a href="key/index.html">Keyboard and RS232</a></li>
+<li class="dir"><a href="iec/index.html">IEEE488 and CBM IEC</a></li>
+<li class="separator">Other links</li>
+<li class="dir"><a href="gallery/index.html">Gallery</a></li>
+<li class="dir"><a href="emu/index.html">VICE emu of CS/A65</a></li>
+<li class="link"><a href="../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+</ul>
+<li class="dir"><a href="../hwinfo/index.html">Hardware info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<h1 align="center">CS/A bus connector V1.1</h1>
+<H2 ALIGN=CENTER>(c) 1997,2006 Andr&eacute; Fachat</h2>
+<hr>
+The bus connector is a 96 pin connector according to DIN 41612, type C,
+where only 64 pins (rows a+c) are used.
+The board itself has the male connector. It can be plugged into a bus 
+plane with female connectors.
+<p>
+The bus layout is:
+<pre>
+	a	c
+--------------------------
+    GND a    1  c GND
+   Vbuf a    2	c Vcc
+   50Hz a    3	c Vcc
+ -IOINH a    4	c A19
+ -EXTIO a    5  c A18
+-MEMSEL a    6  c A17
+ -IOSEL a    7	c A16
+    -BE a    8  c A15
+  VCC33	a    9	c A14
+ NOEXEC	a   10	c A13
+NOTMAPD	a   11	c A12
+  WPROT	a   12	c A11
+ I2CSDA	a   13  c A10
+ I2CSCL	a   14	c A9
+     D7 a   15	c A8
+     D6	a   16 	c A7
+     D5	a   17	c A6
+     D4	a   18 	c A5
+     D3	a   19	c A4
+     D2	a   20 	c A3
+     D1	a   21	c A2
+     D0	a   22	c A1
+   -NMI	a   23	c A0
+   -IRQ	a   24	c SYNC
+    -SO	a   25	c R/-W
+    RDY	a   26	c Phi2
+   -RES	a   27	c Phi1
+    GND	a   28	c Phi0
+    GND	a   29 	c 2Phi2
+    GND	a   30	c 16MHz
+    GND	a   31	c 8Phi2
+    GND	a   32	c GND
+
+</pre>
+
+Comments to V1.1:
+<ul>
+<li>The V1.1 is an upward compatible version of the V1.0 bus. The
+additional lines used are A9-A14</li>
+<li>I2CSCL and I2CSDA are the I2C clock and data lines. Currently the
+lines are specified for a 5V I2C bus.</li>
+<li>WPROT, NOTMAPD and NOEXEC are bus error lines. They are set when the
+CPU writes to a write protected page (WPROT), accesses a memory area
+that is marked as not mapped in the MMU (NOTMAPD), or reads an opcode
+on a page that is marked as not executable (NOEXEC).
+</li><li>The VCC33 line is a 3.3V supply line.</li>
+</ul>
+Comments to V1.0:
+<ul>
+<li>For non-MMU systems like the <strong>Gecko</strong>
+only the lines <code>A0-A11, D0-D7, Phi2, R/-W, -RES, -IRQ, -NMI, -IOSEL</code>
+are necessary. Still some of the other lines need to be taken care of.
+(-MEMSEL must be pushed high).
+<li>-MEMSEL and -IOSEL are memory selection lines. If -MEMSEL goes low
+(active), address lines A0-A19 must be valid. If -IOSEL goes low, then
+only address lines A0-A11 must be valid. Both lines are <strong>not</strong>
+open collector lines (although this is one of the few 'known bugs' of
+this design)! 
+The select lines are generated by the CPU. 
+To map the I/O address space somewhere else (i.e. in a memory area selected
+by -MEMSEL), -EXTIO must be pulled low
+when an address in the selected area is accessed (by a memory card). 
+Thus -MEMSEL <strong>and</strong>
+-IOSEL go then low on such an access. <br>
+In MMU systems, the I/O space is normally mapped to some fixed location 
+in the CPU address space and cannot be mapped around with the MMU. To avoid
+this mapping, -IOINH must be pulled low. Warning: if you pull -IOINH and
+not do not assign -EXTIO at some address, you lose access to the I/O area.
+In the BIOS card for the MMU system, a control port can set these lines.
+-IOINH and -EXTIO are open collector lines.
+<li>Vbuf is a battery buffered 5 Volt supply. Vcc is standard 5 Volt supply, 
+respective to GND.
+<li>50Hz is a 50/50 phase 50 Hz TTL signal, generated from line frequency.
+(In the U.S., you might generate it differently). <br>
+16MHz is a 16 MHz clock.
+<li>To drive some circuits synchronously with the CPU, there are 2Phi2 and 8Phi2.
+2Phi2 has double the frequency than the CPU clock Phi2. At each 
+transition of Phi2, 2Phi2 has a low-high transition. The high-low transition
+follows about less than 100 ns later. I use 2Phi2 to directly drive
+the -RAS signal of dynamic RAM.<br>
+8Phi2 is the 8-times Phi2, but this signal has no fixed phase relation
+to Phi2. I use it as pixel clock in a video card.<br>
+Both signals are usually generated by the CPU card.
+<li>-BE cuts the CPU off the bus, i.e. select (-IOSEL, -MEMSEL),
+Data (D0-7) and Address lines (A0-A19) are put into tri-state.
+This line is asynchronous and should only be assigned with carefully
+designed circuitry using -RDY stop the CPU and Phi2 for clock and all that.
+Using -RDY and BE should allow an external bus master to take the 
+bus, although it has not been tested so far.
+</ul>
+</DIV>
+</body>
+</html>
