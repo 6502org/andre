@@ -4,6 +4,7 @@
 @MENU@
 <DIV ID="content">
 <h1>RDY-Generation for CMOS 65C02 Microprocessors</h1>
+<p>(C) 2006 A. Fachat</p>
 <p>This article describes a generic schematics for the generation of the RDY 
 line used by the 65C02 processor to hold bus accesses when the device is not
 ready.

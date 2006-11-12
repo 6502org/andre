@@ -1,0 +1,158 @@
+/****************************************************************************
+   
+    OS/A65 Version 1.3.10
+    Multitasking Operating System for 6502 Computers
+
+    Copyright (C) 1989-1996 Andre Fachat 
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+****************************************************************************/
+
+/***************************************************************************
+ * local variables
+ */
+
+AC        =syszp
+XR        =syszp+1
+YR        =syszp+2
+SR        =syszp+3
+ADR       =syszp+4
+mmu       =syszp+6
+
+-syszp   +=7
+
+
+/***************************************************************************
+ * Leaving the kernel 
+ */
+
++memtask  php		; save status register on stack
+          sei		; never get interrupted!
+          dec Syscnt	; are we still in the kernel?
+          bne mtask     ; yes, then return
+
+          sty YR     	; no, we really leave - save registers
+          stx XR
+          sta AC
+          pla
+          sta SR	; status register from stack
+          pla  
+          sta ADR	; return address to the function that called memtask
+          pla
+          sta ADR+1
+          tsx		; and save system stack pointer 
+          stx $1FF
+
+          lda adev      ; return to device?
+          bmi mt1       ; no, then return to task -> mt1
+
+	  ; return to device 
+          asl
+          asl
+          tax
+          lda DEVTAB+DVT_POS,x	; load position in MMU table
+          tay
+          lda DEVTAB+DVT_BLK,x	; load page to put there
+          sta mmu		; and save temporarily
+          sta MMU,y		; store block number in MMU
+          jmp mt2		; ok, return
+         
+	  ; return to process 
+mt1       ldx Task		; get process number
+          jsr setyenv		; get pointer to process table from process 
+          sty p0		; and save it
+
+          ldx #2		; start remapping from block 2 
+tm1       lda Envtab+TE_MMU+2,y	; load block numbers from process table
+          sta MMU,x		; store in MMU
+          iny			; page 0 and $f = kernel RAM and kernel ROM
+          inx			; are not remapped
+          cpx #TE_MMU_L		; end reached?
+          bcc tm1		; no then again...
+
+          ldy p0
+          lda Envtab+TE_MMU+1,y	; load block number for page 1
+          sta mmu		; save it locally
+          lda Envtab+TE_MMU,y	; load block number for page 0
+          sta MMU		; write to MMU (-> no kernel RAM!)
+          
+mt2       ldx $1ff		; load stack pointer from page
+          txs			; and set
+
+          lda #SYSPAGE		; load the block number for kernel RAM 
+          sta MMU+1		; and map to $1xxx
+
+          lda BLKSIZ+ADR+1	; load return address from kernel RAM 
+          pha			; at now $1000+ADR
+          lda BLKSIZ+ADR
+          pha
+          lda BLKSIZ+SR		; load status register
+          pha			; and save on stack
+          lda BLKSIZ+AC		; load AC value
+          pha			; and save on stack
+          lda BLKSIZ+mmu	; load block number to map $1xxx to
+          ldy BLKSIZ+YR
+          ldx BLKSIZ+XR
+          sta MMU+1		; store block number after all register
+				; values are read
+          pla			; restore AC from stack
+mtask     plp			; return
+          rts
+
+/***************************************************************************
+ * Entering the kernel 
+ */
+
++memsys   php			; save status register
+          sei			; never get interrupted
+          pha			; save AC on stack
+          lda #SYSPAGE		; map kernel RAM 
+          sta MMU+1		; on $1xxx
+          lda BLKSIZ+Syscnt	; check call level
+          inc BLKSIZ+Syscnt	
+          cmp #0		; are we called from kernel space?
+          beq msys		; no, then really do something
+          pla
+          plp
+          rts
+
+msys      pla			; get AC from stack
+          sta BLKSIZ+AC
+          pla			; get SR from stack
+          sta BLKSIZ+SR
+          stx BLKSIZ+XR		; save registers
+          sty BLKSIZ+YR
+          pla			; get return address -> a/y
+          tay
+          pla
+          tsx			; save process stack pointer
+          stx $1FF
+          ldx #SYSPAGE		; map kernel RAM where it belongs ($0xxx)
+          stx MMU
+          ldx $1FF		; restore kernel stack pointer
+          txs
+          pha			; save return address on stack
+          tya
+          pha
+          lda SR		; save status register on stack again
+          pha
+          lda AC		; restore register values
+          ldx XR
+          ldy YR
+          plp			; restore status register
+          cld			; clear decimal flag...
+          rts
+

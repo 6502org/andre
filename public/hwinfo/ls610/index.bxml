@@ -52,6 +52,7 @@ In addition <code>/Strobe</code> must be low too. This input can be used
 for additional timing.
 </p>
 <p> <a href="ls610c.png">Pinout</a>
+</p><p>You can read a better explanation in the <a href="../../icap/mmu65.html">virtual address space</a> article.
 </p></desc>
 	</section>
 	<diagram>

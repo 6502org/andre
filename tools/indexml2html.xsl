@@ -195,6 +195,7 @@
  <ul class="news">
  <xsl:for-each select="item">
   <li>
+  <xsl:if test="@state='old'"><xsl:attribute name="class">oldnews</xsl:attribute></xsl:if>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>

@@ -4,3 +4,4 @@ d kernal C64 kernal modifications
 d scsi CBM SCSI interfaces
 d ieee488 IEEE488 interfaces
 f hwmods.html My Hardware mods
+l ../icap/c64ser.html UART serial interface

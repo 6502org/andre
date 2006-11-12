@@ -32,7 +32,7 @@ DIV#menu {
   float: left; width: 22em;
   margin: 0; padding: 0;
   list-style-position:outside;
-  position: fixed;
+/*  position: fixed; */
 }
 
 P.copyright {
@@ -63,6 +63,9 @@ UL.menu3 {
 
 UL.news {
 	list-style-image:url(imgs/news.gif);
+}
+LI.oldnews {
+	list-style-image:url(imgs/oldnews.gif);
 }
 
 LI.homepage {

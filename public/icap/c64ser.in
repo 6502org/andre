@@ -1,0 +1,171 @@
+<html><head><title>Adding an UART to a 6502</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
+</head><body>
+@MENU@
+<DIV ID="content">
+<H1>How to add a 16550A UART to a 65xx system</H1>
+<p>(C) 1997,2006 A. Fachat (Originally published in TCJ in 1997)</p>
+<p>
+I have now stumbled across quite some 6502 computers that use the
+6551 ACIA for a serial interface. When I used this chip, I found 
+it rather slow then. Especially as I was doing a Multitasking
+operating system for the 6502, the interrupt latency became to large
+to reliably catch each and every character from the device even
+at 2400 Baud. This was even worse on the 1MHz my C64, into which I had built
+an ACIA interface in a socket under the SID 6581 (sound chip).
+</p><p>
+I had already heard of the 'FIFO-serial interface' for PCs, and even 
+replaced some 8250 with 16550A myself. So I decided to replace the 
+ACIA in my C64 with the UART 16550A. 
+</p>
+
+<h2>Bus differences</h2>
+<p>
+The UART chips was designed for a different bus as the 6502, so there
+are differences in how to handle the chip. When I had a first look 
+at the interface I really wondered why they built the chip this way...
+</p><p>
+The Reset line is high active - which places the chip in "running mode"
+at power up, and then only an explicit signal on the Reset line 
+resets the chip. The 65xx series use an active low -RESET line, such
+that even a simple RC-element with an additional Schmitt-Trigger suffices
+for a simple computer. 
+</p><p>
+The UART Interrupt line is high active also. You can not wire-or it together
+with other devices (brain-damaged PC design!) as in 65xx systems for example.
+And of course, there is no general clock line, but accesses take place
+during active RD/WR lines, as long as the chip is selected. The UART
+has two read (RD and -RD) and write (WR and -WR) lines, where each 
+triggers a data transfer (i.e. not (RD and -RD), but (RD or -RD) -- which
+is IMHO quite peculiar, but I can think of uses for DMA, for example).
+</p><p>
+These differences in the bus system are, in my opinion, the reason that
+many people still use the ACIA 6551, and not the much more sophisticated
+UART 16550A. A more sophisticated chip involves more sophisticated
+software. In contrary to the simple handling of an ACIA, the UART is
+indeed more complicated to handle, which also seems a reason for its low
+usage. In fact there are many caveats in the UART design that make the
+thing terrible to program. See the Serial FAQ at
+ftp://ftp.phil.uni-sb.de/pub/people/chris/The_Serial_Port for more
+information.  But then the UART has the already mentioned advantage of
+the FIFO, which makes it attractive.
+</p>
+<h2>Schematics</h2>
+<p>
+When I was rebuilding my ACIA interface to a UART interface, I had to reuse
+some sockets and chips, because I didn't really want to build everything
+from scratch (where I didn't have all the parts at home at that time anyway...)
+</p><p>
+The old Interface card was a daugtherboard to be put between the socket
+for the C64 SID chip and the SID itself. An additional connector gave
+three signals: A9 to divide the SID address space in half (although the
+SID has only 28 registers, they are mirrored in a 1kByte block of I/O
+space in the C64), -E to enable the ACIA at all and -IRQ to signal the
+CPU. I soldered A9 and -IRQ to appropriate places on the C64
+motherboard, while -E goes to a switch.
+</p><p>
+With the ACIA and the only use of a dual 2-to-4 decoder 74LS139 I was able
+to do the whole thing. It even really made the ACIA disappear from the
+memory map, when it was disabled.  This didn't work with the UART, because
+I needed more circuitry from the decoder to manage the RD/WR handling.
+Well, one could surely think of something cleaner, but I wanted it quick...
+</p>
+<h2>Here's how it works in the C64</h2>
+<p>
+All pins from the SID are connected from the C64 SID socket to the SID
+socket on the daughterboard, except -CS (pin 8). This line is or'ed with
+the additional A9, to remove the SID from the upper half of its memory
+window, and then given to the SID. The first half of the '139 then gives
+the condition that Phi2 is high, -CS is active, and A9 is high.  This
+output is then fed into the -E pin of the second decoder.  The enable
+line (from the external enable switch) switches between the two used and
+the two not used outputs of the decoder. R/-W as the lower decoder
+address line then switches between the RD and the WR line.  These
+outputs are or'ed with the inverted Phi2, and fed to the UART.
+</p><p>
+This arrangements has two purposes: The two decoder stages that have Phi2
+in the first decoder give a delay to the beginning of the access. This is
+needed, as the C64 switches from video chip memory access to CPU memory
+access with the phases of Phi2. So the address lines need some time to
+adjust (The VIA 6522, for example, expects the address lines valid at the
+beginning of Phi2, and doesn't work with the C64 that way. It needs the
+starting transition of Phi2 to be delayed).  The ORing with the inverted
+Phi2 then stops the access by invalidating the RD/WR lines when Phi2
+becomes inactive. This also is a reason for Phi2 being used as CS line.
+</p>
+<h2>Another example</h2>
+<p>
+I have also built a Dual UART card with two 16550A for my selfbuilt 6502
+computer, and there I used a similar approach.  I took a 74LS138, a
+3-to-8 decoder. The select line for the I/O area goes to the decoder as
+enable line (-E1), as well as Phi2 (E3).  -E2 is not used and set low.
+A0 is connected to R/-W of the system, and A1 is another address line.
+A2 is also set low. The outputs Q0-Q3 are then connected to the two
+chips.
+<pre>
+-Q0 -> UART1 -WR, 
+-Q1 -> UART1 -RD, 
+-Q2 -> UART2 -WR, 
+-Q3 -> UART2 -RD
+</pre>
+</p>
+<h2>The Software</h2>
+<p>
+Now that you have the UART in your computer, you have to have some software
+to use it. I have also rewritten the C64 OS to use the UART as serial
+interface (which I had also done to use the ACIA before).
+You can find it on my <a href="../cbmhw/kernal/index.html">kernal</a> page.
+But I have already written a generic
+UART device driver for my selfbuilt 6502 Operating System, OS/A65.
+</p><p>
+The code shown here is part of that driver, together with a simple
+C64 binding. It actually follows the 
+suggestions given in the "Serial FAQ" (being mentioned in TCJ#79 to be
+at ftp://ftp.phil.uni-sb.de/pub/people/chris/The_Serial_Port but not
+available anymore).
+I have one problem, though. Because the interrupt generation is somehow
+buggy in the UART, the FAQ suggests to start the transmitter from outside
+the IRQ routine. Well, in my OS I don't have any device code outside the
+IRQ routine (that is called when data is being sent). But then, as the
+6502 cannot directly decide where an IRQ came from, the interrupt drivers 
+are (almost) all called when an IRQ occurs, with "higher priority" first.
+So the serial driver, being the one with the highest priority, is called
+very often, even if it is not the source of the IRQ itself. But that ensures
+that the IRQ routine is called and so I can check there, if I have to 
+start transmission manually.
+</p><p>
+The listed program echos characters it receives from the serial line
+back to the serial line. It also takes characters typed on the C64
+and sends them to the serial line. A part of the screen is used as
+character buffer, so that you can see something, when the program 
+receives characters
+</p><p>
+I have written a SLIP (Serial Line Internet Protocol) program for my
+selfwritten OS, that uses an UART. On my 1 MHz C64 with builtin UART it
+replies to Internet PING messages without packet loss at 9600 baud. Using
+the same program with an ACIA, even at 2400 baud, is completely useless
+due to lost characters.
+</p>
+<h2>Conclusion</h2>
+<p>
+The 16550A might not be the chip of choice for simple applications, where
+a high data rate is not necessary. But if you don't want to use the serial
+line as a terminal line only, but want to do some serious data transfer,
+better take an UART. Here you see a way to use the UART in 6502 based
+systems and how to program it.
+<p>
+<h2>References</h2>
+<p>Here are the schematics and source code for the interface</p>
+<ul>
+<li><a href="c64ser/c64ser2.gif">c64ser2.gif</a> is the C64 interface on top of the SID chip (Source: <a href="c64ser2.fig">c64ser2.fig</a></li>
+<li><a href="c64ser/c64ser.a65">c64ser.a65</a> is a C64 demo program with a UART driver as commented source code.</li>
+<li><a href="c64ser/c64ser.o65">c64ser.o65</a> is the C64 demo program as loadable binary.</li>
+<li><a href="c64ser/c64ser2.a65">c64ser2.a65</a> is the UART driver from GeckOS/A65.</li>
+<li><a href="../csa/duart/index.html">DUART</a> board for the CS/A65 computer.</li>
+</ul>
+<hr>
+<p>(C) 1997,2006 Andr&eacute; Fachat</p>
+@FOOTER@
+</DIV>
+</body></html>
+

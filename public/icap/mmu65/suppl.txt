@@ -1,0 +1,76 @@
+
+You asked for write-protection? You got it...
+
+Here is a description of another feature possible with the MMU 74LS610.
+Dave pointed out that newer systems always have write-protection and
+other features within their memory management. Thus this article would
+still be about 'trailing edge' technology. But, well, you can have write
+protection too!
+
+What do you need for additional features? You need more data bits. But
+the 6502 only has an 8 bit wide data bus and all of the bits are used
+to write address table entries to the MMU. And I didn't want to change
+the page size from 4 kByte to a larger size. So I decided to map the MMU
+into the memory twice. One of the address bits wasn't used for selection
+any more and is now used as additional data bit (D1 in the diagram).
+Well, after giving it through a tri-state driver that puts it on the MMU
+data input only when the CPU writes. That means, if you write to a MMU
+register at one location, the additional bit is cleared, if you write
+to the same MMU register at the other location, the additional bit is set.
+I decided to have the bit set when a page is read-write, and cleared
+when the page is read-only.
+
+The mapping output (MO1) is then ore'd with the -MM MMU input. This
+disables write protection after reset and before the MMU is enabled.
+If the MMU is disabled after reset, all bits (except MO8-11) are zero
+output, and would thus protect writing at all. The result (-WP for
+Write Protect) is then given to the first 2-to-4 decoder (1/2 74F139,
+the right one in the diagram) as -E. The CPU R/-W is put on the A input,
+and the -MMUSEL line to the B input. A collision - i.e. a write attempt
+on a write protected page - occurs exactly when R/-W is low, -WP is low
+and -MMUSEL is high.  The third condition ensures that the MMU can always
+be written to.
+
+If -MMUSEL would not go into this equation, you can produce unpredictable
+results if you don't take enough care: assume the kernel at $f***, running
+the initialization routines. The CPU loads the MMU register $f first,
+to ensures that its's own page stays mapped. With this store, the MMU
+is enabled. But all other registers now contain garbage, as the MMU
+doesn't have a fixed reset condition.
+If the MMU is not mapped in page $f, then it is possible that the 
+write-protect bit for the MMU page is cleared (i.e. protected) and 
+thus it wouldn't be possible to change anything.
+
+The output -Q1 of the 2-to-4 decoder satisifies the collision condition,
+it goes low if a collision is detected. My computer system has the
+feature that an external Bus Master can disable the CPU and decouple
+it from the bus. Therefore the second 2-to-4 decoder inverts the collision
+output from the first one and OR's it with the external -BE. So the output
+-Q1 (now called COLL) of the second decoder is high if an external
+bus master takes the bus or a collision is detected. 
+
+Fig.1: logic table for collision circuitry
+
+ -BE   -MMUSEL   -MM    -WP    R/-W   |    COLL
+--------------------------------------+-----------
+  1       *       *      *      *     |     1
+  *       0       *      *      *     |     0
+  *       *       1      *      *     |     0
+  *       *       *      1      *     |     0
+  *       *       *      *      1     |     0
+  *       1       0      0      0     |     1
+
+The COLL line is now given to the -E input of the data bus CPU bus
+drivers.  If a collision is detected, the CPU is decoupled from the
+bus. But that's not enough. The memory would still see a write attempt
+and read open bus lines. Therefore the CPU R/-W line is XOR'd with the
+COLL line. If there is no collision but an external bus master, that
+doesn't matter, as R/-W is not given to the bus. If there is a collision,
+then R/-W is low (write) anyway, and XORing it with COLL makes it high
+(read).  This way the memory sees a read access and writes its data
+on the bus, as well as the CPU. But the CPU bus driver is disabled,
+so noone cares, and the memory is not changed.
+
+
+
+
