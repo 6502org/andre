@@ -70,8 +70,8 @@ improve messaging and communication throughput, add C support and more.
   <itemlist name="Quickfinder">
     <description>
     </description>
-    <items>
-     <item name="Commodore 8-bit stuff">
+    <items class="quickfinder">
+     <item name="Commodore 8-bit stuff" class="cbm">
       <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
 information and links to the old CBM PET machines</subitem>
       <subitem name="Commodore Hardware mods and projects" 
@@ -82,7 +82,7 @@ information and links to the old CBM PET machines</subitem>
 		one for the PC to use it as disk drive.
       </subitem>
      </item>
-     <item name="General 6502 hardware stuff">
+     <item name="General 6502 hardware stuff" class="hw">
       <subitem name="CS/A65" link="csa/index.html"> and
 <a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
 multi- resp. singleboard 6502 computers.
@@ -97,7 +97,7 @@ to this page.</subitem>
 	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
       </subitem>
      </item>
-     <item name="6502 software stuff">
+     <item name="6502 software stuff" class="sw">
       <subitem name="GeckOS/A65" link="osa/index.html">
 A small 6502 multitasking operating
 system that runs on the Commodore C64 and PET computers, as well as my
@@ -114,6 +114,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
     </disclaimer>
   </itemlist>
   <closing>
-<BR/>Last updated 2006-11-01.
+Last updated 2006-11-18.
   </closing>
 </webpage>

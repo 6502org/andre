@@ -48,6 +48,27 @@ LI.separator {
         margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
 }
 
+LI.hw {
+	list-style-image:url(imgs/icon_hw.jpg);
+        margin-left:50px;
+}
+LI.sw {
+	list-style-image:url(imgs/icon_sw.jpg);
+        margin-left:50px;
+}
+LI.cbm {
+	list-style-image:url(imgs/icon_cbm.jpg);
+        margin-left:50px;
+}
+UL.quickfinder LI.subitem {
+	list-style-image:none;
+        margin-left:-40px;
+}
+LI.subitem {
+	list-style-position: outside;
+	/*margin-left:18px;*/
+}
+
 UL.menu0 {
   font-size:small;
   padding-left:20px;

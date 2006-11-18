@@ -81,7 +81,9 @@
 <H2><a name="{@toc}"><xsl:value-of select="@name"/></a></H2>
 <xsl:if test="desc"><p><xsl:copy-of select="desc/*|desc/text()"/></p></xsl:if>
 <xsl:apply-templates select="subsection"/>
+<ul>
 <xsl:apply-templates select="subitem"/>
+</ul>
 </xsl:template>
 
 <xsl:template match="subsection">
@@ -167,9 +169,12 @@
   <xsl:apply-templates select="description"/>
    <xsl:for-each select="items[item|subitem]">
    <ul>
+    <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
     <xsl:apply-templates select="subitem"/>
     <xsl:for-each select="item">
-      <li><strong><xsl:value-of select="@name"/></strong><br/>
+      <li>
+	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+	<strong><xsl:value-of select="@name"/></strong><br/>
         <br/>
 	<ul>
           <xsl:apply-templates select="subitem"/>
@@ -218,7 +223,7 @@
 </xsl:template>
 
 <xsl:template match="subitem[@link]">
-	<li>
+	<li class="subitem">
 	      <a href="{@link}">
 	      <xsl:value-of select="@name"/>
 	      </a><!--<br/>-->
