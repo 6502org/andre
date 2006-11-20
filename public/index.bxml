@@ -25,6 +25,13 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2006-11-20">
+	Better graphical look-and-feel by using nicer icons.
+    </item>
+    <item date="2006-11-20">
+	Updated the <a href="petindex/index.html">PETindex</a> to version 1.1 by adding more information
+	on the SuperPET and 8x96 boards. 
+    </item>
     <item date="2006-11-12">
 	I have added ROMs and jumper settings to the <a href="cbmhw/ryofat40/index.html">Roll-you-own-PET</a> page.
     </item>
@@ -45,6 +52,7 @@ improve messaging and communication throughput, add C support and more.
 	boards I have added the driver code as extracted
 	from the GeckOS operating system.
     </item>
+<!--
     <item date="2006-11-01" state="old">
 	The <a href="csa/index.html">CS/A65</a> part has been completely
 	overhauled, and some boards have been updated and new boards have been 
@@ -55,7 +63,6 @@ improve messaging and communication throughput, add C support and more.
 	menu and is better maintainable (for me :-). I have
 	also streamlined the webpage hierarchy. I hope you like it!
     </item>
-<!--
     <item date="2006-08-07" state="old">
     I have updated the links from funet to the new home of the
     Commodore archive at <a href="@CBMARC@/">@CBMARC@/</a>, as well as checked the other
@@ -114,6 +121,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
     </disclaimer>
   </itemlist>
   <closing>
-Last updated 2006-11-18.
+Last updated 2006-11-20.
   </closing>
 </webpage>
