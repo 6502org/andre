@@ -4,14 +4,16 @@
 <LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
 <!--BASE HREF="http://www.6502.org/users/andre/petindex/index.html"-->
-<TITLE>PET index V1.0</TITLE>
+<TITLE>PET index V1.1</TITLE>
 <LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
 </HEAD>
 <BODY>
 @MENU@
 <DIV ID="content">
-<H1>PET index V1.0</H1>
-<P>NEW: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>
+<H1>PET index V1.1</H1>
+<P>In this 1.1 release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
+images for the 8x96.</P>
+<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>
 <P>This file is intended to be an index about the
 PET line of Commodore computers. It is compiled out of several
 resources found on the internet. As there are a number of sites
@@ -33,7 +35,7 @@ tell me about it!
 </P><P>
 I hope you enjoy this document.<BR>
 <A HREF="http://www.6502.org/users/andre/">A. Fachat</A>
-(<A HREF="mailto:afachat@gmx.de">afachat@gmx.de</A>)
+(<A HREF="mailto:@EMAIL@?subject=PETindex:">@EMAIL@</A>)
 </P>
 <H2>What is covered and what not?</H2>
 <P>Coverage is the whole line of Commodore PET computers, ranging
@@ -43,28 +45,28 @@ and the 510-520 (also known as P500)</P>
 
 <H2>The parts of the index</H2>
 <P><UL>
-<LI>The <A HREF="versions.html">PET model index</A> (UPDATED Sep2005)
-<P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> (NEW Sep2005)
-<P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET (UPDATED Sep2005)
+<LI>The <A HREF="versions.html">PET model index</A>
+<P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> 
+<P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
 <P></LI><LI><A HREF="pinouts.html">Pinouts</A> of various PET connectors
-<P></LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes (Updated Sep2005)
+<P></LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
 <P></LI><LI>Hardware <A HREF="progmod.html">Programming</A> information
-<P></LI><LI><A HREF="roms.html">ROM</A> description (UPDATED Sep2005)
+<P></LI><LI><A HREF="roms.html">ROM</A> description
 <P></LI><LI><A HREF="crtc.html">CRTC 6545 operation</A>
-<P></LI><LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page (NEW Sep2005)
-<P></LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s)
-<P></LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96)
-<P></LI><LI><A HREF="hw.html">Hardware</A> projects around the PET (NEW Sep2005)
-<P></LI><LI><A HREF="sw.html">Software</A> projects and archives (NEW Sep2005)
-<P></LI><LI><A HREF="emus.html">PET emulators</A> run PET programs on other hardware (NEW Sep2005)
+<P></LI><LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page
+<P></LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s) (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
+<P></LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96) (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
+<P></LI><LI><A HREF="hw.html">Hardware</A> projects around the PET
+<P></LI><LI><A HREF="sw.html">Software</A> projects and archives
+<P></LI><LI><A HREF="emus.html">PET emulators</A> run PET programs on other hardware
 <P></LI><LI><A HREF="transfer.html">Transfer</A> projects to transfer files from the PET to the PC and back.
-<P></LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics) (UPDATED Sep2005).
+<P></LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics)
 </LI></UL>
 <HR>
 <P>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
 Ruud Baltissen and all the others that provided this information.
 </P><P>
-Last changed 5. September 2005 A.Fachat
+Last changed 20. November 2006 A.Fachat
 </P></DIV>
 </BODY>
 </HTML>
