@@ -16,7 +16,7 @@
     </description>
     <items>
      <item name="ICs">
-      <subitem name="CRTC" link="crtctest/index.html">
+      <subitem name="CRTC" link="crtc/index.html">
 		Information on the CRTC (Cathode Ray Tube Controller) video
 		chip, with additional information about the differences
 		between the 6545, 6845 and others.

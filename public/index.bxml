@@ -26,7 +26,8 @@ improve messaging and communication throughput, add C support and more.
   </overview>
   <news>
     <item date="2006-11-20">
-	Better graphical look-and-feel by using nicer icons.
+	Better graphical look-and-feel by using nicer icons. 
+	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs.
     </item>
     <item date="2006-11-20">
 	Updated the <a href="petindex/index.html">PETindex</a> to version 1.1 by adding more information

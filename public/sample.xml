@@ -15,12 +15,15 @@
     <item date="">
     </item>
   </news>
-  <itemlist name="">
+  <toc/>
+  <itemlist name="" toc="">
     <description>
     </description>
     <items>
      <subitem name="" link=""></subitem>
-     <item name="">
+     <item name="" toc="">
+      <description>
+      </description>
       <subitem name="" link=""></subitem>
      </item>
     </items>

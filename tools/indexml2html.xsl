@@ -4,30 +4,15 @@
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-<xsl:template match="board">
-<HTML><HEAD><xsl:text>
-</xsl:text>
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
-</xsl:text>
-<META NAME="keywords" CONTENT="{keywords}"/>
-<TITLE><xsl:value-of select="name"/></TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
-</HEAD><xsl:text>
-</xsl:text><BODY>
-@MENU@
-<DIV ID="content"><xsl:text>
-</xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
-</xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
-</xsl:text>
-<xsl:apply-templates select="news"/>
+<xsl:template name="toc">
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
-<xsl:for-each select="section">
+<xsl:for-each select="section|itemlist">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
-<xsl:if test="subsection">
+<xsl:if test="subsection|items/item">
 <dir>
-<xsl:for-each select="subsection">
+<xsl:for-each select="subsection|items/item">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 </xsl:for-each>
 </dir>
@@ -54,6 +39,27 @@
 </xsl:if>
 </dir>
 </DIV>
+</xsl:template>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<xsl:template match="board">
+<HTML><HEAD><xsl:text>
+</xsl:text>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
+</xsl:text>
+<META NAME="keywords" CONTENT="{keywords}"/>
+<TITLE><xsl:value-of select="name"/></TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
+</HEAD><xsl:text>
+</xsl:text><BODY>
+@MENU@
+<DIV ID="content"><xsl:text>
+</xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
+</xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
+</xsl:text>
+<xsl:apply-templates select="news"/>
+<xsl:call-template name="toc"/>
 <xsl:apply-templates select="section"/>
 <xsl:if test="driver">
 <H2><A NAME="driver">Driver</A></H2>
@@ -126,6 +132,19 @@
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
+<xsl:template name="aname">
+    <xsl:choose>
+	<xsl:when test="@toc">
+		<a name="{@toc}"><xsl:value-of select="@name"/></a>
+	</xsl:when>
+	<xsl:otherwise>
+		<xsl:value-of select="@name"/>
+	</xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 <xsl:template match="webpage">
 <html><head>
 <xsl:text>
@@ -164,21 +183,30 @@
 <xsl:copy-of select="overview/*|overview/text()"/>
 </p>
 <xsl:apply-templates select="news"/>
+<xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist">
-  <h2><xsl:value-of select="@name"/></h2>
+  <h2><xsl:call-template name="aname"/></h2>
   <xsl:apply-templates select="description"/>
-   <xsl:for-each select="items[item|subitem]">
+  <xsl:apply-templates select="subsection"/>
+   <xsl:for-each select="items[item|subitem|file]">
+    <xsl:if test="file">
+	<h3>Files</h3>
+	<table><xsl:apply-templates select="file"/></table>
+    </xsl:if>
    <ul>
     <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
     <xsl:apply-templates select="subitem"/>
     <xsl:for-each select="item">
       <li>
 	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-	<strong><xsl:value-of select="@name"/></strong><br/>
+	<strong><xsl:call-template name="aname"/></strong><br/>
         <br/>
+          <xsl:apply-templates select="description"/>
+	  <xsl:if test="subitem">
 	<ul>
           <xsl:apply-templates select="subitem"/>
 	</ul>
+	  </xsl:if>
       </li>
       <br/>
     </xsl:for-each>
@@ -226,7 +254,7 @@
 	<li class="subitem">
 	      <a href="{@link}">
 	      <xsl:value-of select="@name"/>
-	      </a><!--<br/>-->
+	      </a><xsl:text> </xsl:text>
   	      <xsl:copy-of select="*|text()"/>
         <br/>
         <br/>
