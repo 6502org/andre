@@ -88,7 +88,7 @@ R0   Horizontal Total Reg.           total length of line (displayed
                                      and non-displayed cycles (retrace)
                                      in CCLK cylces minus 1
 R1   Horizontal Displayed Reg.       number of characters displayed in a
-                                     line minus 1
+                                     line 
 R2   Horizontal Sync Position Reg.   The position of the horizontal sync
                                      pulse start in distance from line
                                      start
@@ -107,7 +107,7 @@ CCLK cycle #   0000000000111111 .... 3333344444444445555555555
                0123456789012345 .... 5678901234567890123456789
                 _________________  _______
 Display Enable_|                          |___________________|
-                                         ^ R1 = 39           ^ R0 = 59
+                                          ^ R1 = 40           ^ R0 = 59
                                                 _______
 HSync          __________________  ____________|       |______
 
@@ -224,26 +224,14 @@ mode is selected.
       </description>
      </subsection>
   </itemlist>
-  <itemlist name="CRTC use in the Commodore PET" toc="pet">
+  <itemlist name="Example CRTC use in the Commodore PET" toc="pet">
       <description>
 <P>
-There are a few things that might be different from other implementations
-in the PET. The CRTC has been used in 40 columns and 80 columns models.
-The CCLK frequency however is 1 MHz in both cases. 80 columns mode
-is achieved by reading not one byte but two byte in each CCLK
-cycle with the same
-MA0-13, thus effectively using the MA0-9 as A1-10.
+This is an example of how the CRTC can be used in a computer. For more
+accurate information see the <a href="../../petindex/crtc.html">PETindex CRTC page</a>.
 </P>
 <P>
-As only MA0-9 are used, Commodore decided to use the uppermost two
-bits (MA12 and MA13) as additional control lines. MA12 is used
-to invert the complete pixel stream video output, probably to be able
-to cope with different video hardware. MA13 is used as an additional
-A11 to switch the 2k halfs of a newer 4k charrom. This is used
-for nationalized character sets?
-</P>
-<P>
-Only seven bit of the data read from memory are used for character
+In the PET only seven bit of the data read from memory are used for character
 ROM addressing. The 8th bit is instead directly fed to an inverter,
 inverting the pixel stream if set - thus inverting the character.
 </P>
@@ -256,6 +244,7 @@ blanks the scanlines for the scanlines beyond the 8th.
 Without that and only RA0-2 used for character ROM address the
 same character would be redisplayed from the start.
 </P>
+<P>The following diagram shows a sample block schematics.</P>
 <PRE>
 PET CRTC usage block diagram
 ----------------------------
@@ -292,13 +281,6 @@ shift register that makes a pixel stream rather than a byte stream.
 <P>
 When Phi2 is high then the Mux selects the CPU address lines for the
 video RAM, allowing normal CPU memory accesses.
-</P>
-<P>
-The Vertical Sync signal of the CRTC is not only used for video
-hardware control but it is also (inverted and) connected to the
-PIA1 CB1 line to
-generate system interrupts with the frame rate. Also the state
-of this line can be checked with VIA PB5.
 </P>
       </description>
 	<subsection name="PET timing examples" toc="petiming">

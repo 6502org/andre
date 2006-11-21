@@ -46,8 +46,9 @@ The PLAs have been read out and the equations have been reverse engineered.
 You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> and the images and equations in <A HREF="local/8296desc3.tar.gz">8296desc3.tar.gz</A>.
 </P>
 <P>More info can also be found in the <A HREF="@CBMARC@/firmware/computers/pet/8296/index.html">8296 firmware page</A> on the CBM archive.</P>
-
-
+<P>The <a href="crtc.html">CRTC page</a> contains a block schematics on
+how the video circuitry works, that also shows how the memory is used.
+</P>
 <H2><a name="2">8x96 memory mapping</a></H2><P>
 The 64k RAM of the 8096 can replace the upper 32k address range. 
 The mapping is best depicted with this table

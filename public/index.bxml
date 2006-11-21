@@ -25,9 +25,10 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
-    <item date="2006-11-20">
+    <item date="2006-11-21">
 	Better graphical look-and-feel by using nicer icons. 
-	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs.
+	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs. Additionally I have added more information about the PET 8032 and 8296 use of the CRTC to
+	the <a href="petindex/crtc.html">PETindex CRTC page</a>.
     </item>
     <item date="2006-11-20">
 	Updated the <a href="petindex/index.html">PETindex</a> to version 1.1 by adding more information
