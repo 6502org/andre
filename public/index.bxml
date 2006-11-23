@@ -25,6 +25,9 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2006-11-23">
+	Updated the CS/A computer with a memory map.
+    </item>
     <item date="2006-11-21">
 	Better graphical look-and-feel by using nicer icons. 
 	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs. Additionally I have added more information about the PET 8032 and 8296 use of the CRTC to
@@ -123,6 +126,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
     </disclaimer>
   </itemlist>
   <closing>
-Last updated 2006-11-20.
+Last updated 2006-11-23.
   </closing>
 </webpage>

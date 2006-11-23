@@ -2,13 +2,13 @@
 <board>
 	<name>CS/A65 computer</name>
 	<keywords>CSA65 6502 self-built computer</keywords>
-        <lastmodified>2006-11-01</lastmodified>
+        <lastmodified>2006-11-23</lastmodified>
 	<desc>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard.
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
-                <item date="2006-11-13">
+                <item date="2006-11-23">
 			Added the memory map section to document the different I/O areas used by the boards.
                 </item>
                 <item date="2006-11-01">
@@ -305,8 +305,6 @@ like these, why I moved some of the lines around...)
 <table class="memmap">
 <caption>Table for $d** I/O addresses</caption>
 <tr> <th></th><th>$d0*</th> <th>$d1*</th> <th>$d2*</th> <th>$d3*</th> <th>$d4*</th> <th>$d5*</th> <th>$d6*</th> <th>$d7*</th> <th>$d8*</th> <th>$d9*</th> <th>$da*</th> <th>$db*</th> <th>$dc*</th> <th>$dd*</th> <th>$de*</th> <th>$df*</th> </tr>
-<tr> <th colspan="17" class="separator">Main boards</th> </tr>
-<tr> <th>Gecko</th><td>UART</td><td>VIA</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th colspan="17" class="separator">Emulation boards</th> </tr>
 <tr> <th>keyemu</th><td colspan="16">shared RAM keybd2</td></tr>
 </table>
