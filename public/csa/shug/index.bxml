@@ -12,6 +12,20 @@
                 </item>
         </news>
         <driver>
+                <name>PETCPU test</name>
+                <desc><p>
+			This file includes a small test program that
+			does a "readaddress" command on the WDC and either
+			prints the sector header (in reverse) or the 
+			WDC status register in case of an error.
+			</p><p>This driver runs on a PETCPU with the Commodore
+			PET ROMs (just 'dL"test1"' :-) and expects the 
+			card I/O at $E8C0 (WD177x) and $E8D0 (VIA).
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz">test1.tar.gz</file>
+        </driver>
+        <driver>
                 <name>OS/A65 shugart bus floppy driver</name>
                 <desc>
                         This driver handles the WD1770/1772 shugart bus floppy device.

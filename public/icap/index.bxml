@@ -27,7 +27,7 @@
       </subitem>
       <subitem name="6502 MMU" link="mmu65.html"> - How a virtual address space works and how to implement it for a 6502 computer (1997).
       </subitem>
-      <subitem name="UART serial interface" link="rdy.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
+      <subitem name="UART serial interface" link="c64ser.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
       </subitem>
       <subitem name="Infrared remote control" link="remote.html"> - control your home equipment with your 6502 :-) (1997)
       </subitem>

@@ -1,0 +1,57 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="CRTC 6545/6845 information">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>1999</yearstart>
+    <yearend>2006</yearend>
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>CRTC 6545 6845</keywords>
+  <metadesc>Description of CRTC6545/6845 operation</metadesc>
+  <overview>
+	The pages linked here describe the operation of the CRTC 6545/6845
+	chips.
+  </overview>
+  <!--news>
+    <item date="2006-11-20">
+    </item>
+  </news-->
+  <itemlist name="Quickfinder">
+    <description>
+    </description>
+    <items>
+     <subitem name="General operation" link="crtc.html">
+	This document describes the general CRTC operation, as well
+	as the register file.
+     </subitem>
+     <subitem name="CRTC differences" link="diffs.html">
+	This document describes the differences between a number of
+	CRTC implementations from Rockwell, MOS, and others.
+     </subitem>
+     <subitem name="CRTC internals" link="internals/index.html">
+	This document describes the internal structure of the
+	CRTC. I.e. it tries to show the internal CRTC counters,
+	compares, etc. It explains in greater depth how the CRTC
+	works.
+     </subitem>
+     <subitem name="Test programs" link="pet/index.html">
+	This page shows a number of test programs and the results
+	that they produce on a Commodore PET. The test programs
+	create "raster-effects" by using the CRTC interrupt in the
+	PET to dynamically change the register values. 
+     </subitem>
+     <!--item name="">
+      <subitem name="" link=""></subitem>
+     </item-->
+    </items>
+    <!--disclaimer name="">
+    </disclaimer-->
+  </itemlist>
+  <disclaimer name="Disclaimer">
+	@DISCLAIMER@
+  </disclaimer>
+  <closing>
+	@FOOTER@
+  </closing>
+</webpage>

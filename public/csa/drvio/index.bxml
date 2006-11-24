@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<board>
+	<name>DRVIO board</name>
+	<keywords>CSA65 6502 shugart floppy 1581</keywords>
+        <lastmodified>2006-11-24</lastmodified>
+	<desc><p>This board implements a shugart bus interface as used 
+		in the standard PC floppy disk drives (5.25&quot; and 3.5&quot;)
+		in a way that is compatible with the Commodore VC1581
+		disk drive. I.e. it is planned that this board, together with
+		the <a href="../petcpu/index.html">PETCPU</a> board, make up
+		a VC1581 replacement. 
+	    </p><p>
+		To accomodate this, the ICs can be addressed either via
+		the bus I/O area, or via a mapping into the 1Mbyte bus
+		memory address space - so it can mimick the 1581 address
+		space. 
+	    </p><p>
+		Additionally, the board contains a Commodore IEC bus interface,
+		as well as an infrared signal generator.
+	    </p>
+	</desc>
+        <news>
+                <item date="2006-11-24">
+                        Published the board
+                </item>
+        </news>
+        <driver>
+                <name>PETCPU test</name>
+                <desc><p>
+			This file includes a small test program that
+			does a "readaddress" command on the WDC and either
+			prints the sector header (in reverse) or the 
+			WDC status register in case of an error.
+			</p><p>This driver runs on a PETCPU with the Commodore
+			PET ROMs (just 'dL"test1"' :-) and expects the 
+			card I/O at $E8A0 (WD177x) and $E8B0 (CIA).
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz">test2.tar.gz</file>
+        </driver>
+	<rev>
+		<version>1.0A</version>
+		<status>prototype with bugs</status>
+		<note type="warn">
+			This is a preliminary release. Subject to change without notice
+		</note>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 3.5&quot; PC disk drives with DD (double density
+			disks)
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<note type="warn">
+			I found that modern 3.5&quot; disk drives do not
+			drive the DENSEL shugart bus signal (and not need it either).
+			Thus the selection of HD/DD disks will change from
+			shugart bus drive to I/O port driven.
+		</note>
+		<note type="warn">
+			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change.
+		</note>
+		<note type="warn">
+			The board lacks a feature to drive the ATN line - 
+			so it cannot be used as a IEC bus master. This feature will be added if possible.
+		</note>
+                <file ltype="schem" ptype="esch">csa_drvio_v1.0a.sch</file>
+                <file ltype="schem" ptype="png">csa_drvio_v1.0a-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_drvio_v1.0a.brd</file>
+                <file ltype="layout" ptype="png">csa_drvio_v1.0a-brd.png</file>
+	</rev>
+</board>

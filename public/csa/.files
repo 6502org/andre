@@ -10,6 +10,7 @@ s I/O boards
 d vdc Video board
 d petio CBM PET I/O
 d shug PC floppy
+d drvio DRVIO floppy and IEC
 d duart Double UART (RS232)
 d scsi SCSI board
 s Special purpose

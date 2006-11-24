@@ -1,0 +1,296 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="PET index - CRTC operation">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>1998</yearstart>
+    <yearend>2006</yearend>
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore PET CRTC 6545</keywords>
+  <metadesc>Description of the CRTC operation in a Commodore PET</metadesc>
+  <overview>
+<P>
+For the operation of the video interface Commodore introduced the
+Cathode Ray Tube Controller (CRTC) 6545 with the third type of boards.
+This controller is very flexible, programmable and provides all
+necessary interface signals for the video hardware.
+</P>
+<P>I have made a collection of test programs and timing
+examples for the CRTC in my CBM 8296. You can see it on the <a href="../hwinfo/crtc/index.html">CRTC pages</a> or
+You can download (an older version of) the whole
+suite, including a (derived) diagram of the CRTC internals from the CBM archive as
+<A HREF="@CBMARC@/pet/programming/index.html">crtctest-1.1.tar.gz</A>.
+It also includes a summary of the differences of the various
+CRTC models.
+You can have a look at some of the weird screen distortions in
+the <A HREF="../hwinfo/crtctest/index.html">test program documentation</A>, and an
+overview over the derived CRTC internals on
+<A HREF="../hwinfo/crtctest/internals/index.html">this page</A>.
+</P><P>A sample schematic can be found on the
+<A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A>
+computer page or in the PET schematics on the
+<A HREF="links.html">links page</A> of the PET index.
+</P>
+<P>For a general description please refer to the <a href="../hwinfo/crtc/index.html">CRTC pages</a>.</P>
+  </overview>
+  <news>
+    <item date="2006-11-21">Added descriptions of 8032 and 8296 use of the CRTC.
+    </item>
+  </news>
+  <toc/>
+  <itemlist name="CRTC use in the PET" toc="crtc">
+    <description>
+<P>
+There are a few things that might be different from other implementations
+in the PET. The CRTC has been used in 40 columns and 80 columns models.
+The CCLK frequency however is 1 MHz in both cases. 80 columns mode
+is achieved by reading not one byte but two byte in each CCLK
+cycle with the same
+MA0-13, thus effectively using the MA0-9 as A1-10.
+</P>
+<P>
+As only MA0-9 are used, Commodore decided to use the uppermost two
+bits (MA12 and MA13) as additional control lines. MA12 is used
+to invert the complete pixel stream video output, probably to be able
+to cope with different video hardware. MA13 is used as an additional
+A11 to switch the 2k halfs of a newer 4k charrom. This is used
+for nationalized character sets?
+</P>
+<P>
+Only seven bit of the data read from memory are used for character
+ROM addressing. The 8th bit is instead directly fed to an inverter,
+inverting the pixel stream if set - thus inverting the character.
+</P>
+<P>
+The Cursor hardware is not used.
+</P>
+<P>
+If more than 8 scanlines per character are used the hardware automatically
+blanks the scanlines for the scanlines beyond the 8th.
+Without that and only RA0-2 used for character ROM address the
+same character would be redisplayed from the start.
+</P>
+    </description>
+	<subsection name="PET 4032 'Fat40'" toc="fat40">
+	<description>
+<P>The so-called 'Fat40' is a 4032 model that has a 12&quot; screen
+and a "universal board" - a board that can be used for the 8032 or the
+4032. Thus it uses the CRTC as video chip. A separate static memory
+separate from main memory is used as video RAM.
+</P>
+<PRE>
+PET 4032 CRTC usage block diagram
+---------------------------------
+
+
+                |               CRTC                                                      |
+                ---------------------------------------------------------------------------
+           MA0-9  |                              RA0-2 |    -------                   DE|
+                  |                                    |    |     |                     |
+                  |  -----      -------                -----|A0-2 |      -----          |  ---
+                  |  |   |      |     |       -----         |     |D0-7  |   |     ---  +--| | Video
+                  +--|   | A0-9 |     | D0-7  |   |    D0-6 |     |------|   |-----| |     |&gt;|---
+                     | &gt; |------| RAM |---+---|   |---+-----|A3-8 |      |   |     | |-----| |
+ CPU A0-9 -----------|   |      |     |   |   |   |   |     |     |      -----   +-| |     ---
+                     |   |      |     |   |   -----   |     -------      shift   | ---      AND
+                     -----      -------   |   Latch   |     Charrom     register |  XOR
+                   Mux 2-to-1             |           |D7                        |
+                                          |           +--------------------------+
+                     -----                |
+                     |   |                |
+ CPU D0-7 -----------|   |----------------+
+                     |   |
+                     -----
+                    Buffer
+</PRE>
+<P>
+During Phi2 low (Processor does not use the bus) the Mux chip selects
+the MA0-9 address lines from the CRTC. The video RAM then outputs the
+character value and it is saved in the latch. The latch output is then
+used as input for the Charrom. The output of which is given to the
+shift register that makes a pixel stream rather than a byte stream.
+</P>
+<P>
+When Phi2 is high then the Mux selects the CPU address lines for the
+video RAM, allowing normal CPU memory accesses.
+</P>
+<P>
+The Vertical Sync signal of the CRTC is not only used for video
+hardware control but it is also (inverted and) connected to the
+PIA1 CB1 line to
+generate system interrupts with the frame rate. Also the state
+of this line can be checked with VIA PB5.
+</P>
+	</description>
+	</subsection>
+	<subsection name="PET 8032" toc="8032">
+	<description>
+<P>The universal board can also be used in the 8032. As the 8032 also
+runs on 1MHz only, there is a problem with the memory bandwidth.
+The memory used was static RAM with a maximum access frequency of
+2MHz. As half the cycles were reserved for the CPU (Phi2 high),
+only 1MHz video RAM bandwidth was left, which is only enough for
+40 columns a line - with an 8 bit graphics data bus.
+</P><P>In the 8032, however, Commodore decided to use a 16 bit
+graphics data bus. How does this work? The video memory is separated
+into to areas of 1kByte each, that the CPU can write to independetly
+with 8 bit access. One area is for even addresses, the other for
+odd CPU memory addresses. The video circuitry, however, reads both
+the RAM areas at the same time (thus twice 8bit = 16bit access), and
+latches both values. To generate the video signal than first the
+value from the even area, then the one from the odd area is used.
+</P>
+<PRE>
+PET 8032 CRTC usage block diagram
+---------------------------------
+
+
+                |               CRTC                                                        |
+                -----------------------------------------------------------------------------
+           MA0-9  |                                RA0-2 |    -------                   DE|
+                  |                                      |    |     |                     |
+                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
+                  |  |   |      |     |         -----         |     |D0-7  |   |     ---  +--| | Video
+                  +--|   | A0-9 | even| D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|---
+                     | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |
+ CPU A0-9 -----------|   |   |  |     |   |     |   | | |     |     |      -----   +-| |     ---
+                     |   |   |  |     |   |     ----- | |     -------      shift   | ---      AND
+                     -----   |  -------   |     Latch | |     Charrom     register |  XOR
+                      Mux    |            |           | |  D7                      |
+                     2-to-1  |            |           | +--------------------------+
+                             |  -------   |      odd  |
+                             |  |     |   |     ----- |D0-7
+                             |  | odd |   |     |   | |
+                             +--| RAM |--/|\-+--|   |-+
+                                |     |   |  |  |   |
+                                |     |   |  |  -----
+                     even       -------   |  |  Latch
+                     -----                |  |
+                     |   |                |  |
+ CPU D0-7 ------+----|   |-----------------  |
+                |    |   |                   |
+                |    -----                   |
+                |     odd                    |
+                |    -----                   |
+                |    |   |                   |
+                -----|   |-------------------+
+                     |   |
+                     -----
+                     Buffer
+</PRE>
+<P>This diagram shows how the RAM and latches are doubled for even and odd addresses.
+It also makes it clear that it is a relatively simple addition to the 4032 to display
+80 columns. This is one reason why universal boards are actually feasible.
+</P><P>This setup also explains why even the 80 columns PET actually initialize the
+CRTC video chip with 40 columns - as the video RAM bus width is 16bit instead of 8bit,
+each of the CRTC character actually is two characters on the screen.
+</P>
+	</description>
+	</subsection>
+	<subsection name="PET 8296" toc="8296">
+	<description>
+<P>The 8296 is a different beast altogether. Here the separate static video memory is
+completely gone. All the memory of the system (actually 128k, of which 96k can be
+used as main memory and 4k as video memory) is put into two dynamic RAM banks of
+64k each.
+</P>
+<PRE>
+PET 8296 CRTC usage block diagram
+---------------------------------
+
+
+                |               CRTC                                                        |
+                -----------------------------------------------------------------------------
+           MA0-9  |                                RA0-2 |    -------                   DE|
+                  |                                      |    |     |                     |
+                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
+                  |  |   | DRM  |     |         -----         |     |D0-7  |   |     ---  +--| | Video
+                  +--|   | 0-7  | 64k | D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|---
+                  |  | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |
+                  +--|   |   |  |     |   |     |   | | |     |     |      -----   +-| |     ---
+                     |   |   |  |     |   |     ----- | |     -------      shift   | ---      AND
+                     -----   |  -------   |     Latch | |     Charrom     register |  XOR
+                      Mux    |            |           | |  D7                      |
+                     2-to-1  |            |           | +--------------------------+
+                     -----   |  -------   |      odd  |
+                     |   |   |  |     |   |     ----- |D0-7
+               +-----|   |   |  | 64k |   |     |   | |
+ CPU A0-15 ----+     | &gt; |---+--| RAM |---+-----|   |-+
+               +-----|   |      |     |   |     |   |
+                     |   |      |     |   |     -----
+                     -----      -------   |     Latch
+                                          |
+                     -----                |
+                     |   |                |
+ CPU D0-7 -----------|   |-----------------
+                     |   |
+                     -----
+</PRE>
+<P>As opposed to static RAM, dynamic RAM requires multiplexed address
+lines. Therefore both, the CPU and CRTC address lines are multiplexed
+separately with 74ls257 ICs that are enabled only when the CPU or
+CRTC respectively accesses the memory.</P>
+<P>The diagram shows that now the dRAM address and data lines are
+shared between the two 64k memory banks. This means that only one access
+can happen at a time. as a result, to display 80 columns, it is necessary
+that the memory is accessed faster than 2MHz. In fact it is accessed
+faster, with approx. 4Mhz, as can be seen in the description of the UC2
+PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
+</P>
+	</description>
+	</subsection>
+  </itemlist>
+  <itemlist name="PET timing examples" toc="timing">
+	<description>
+<P>
+The following table shows some timing examples for the PET CRTC
+as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
+[Note that the CS/A65 values have been derived by my humble self to interface
+my <A HREF="http://www.6502.org/users/andre/csa/index.html">CS/A65</A> computer to a
+normal german (PAL, 50Hz) TV set. I derived them by starting from
+some guessed values and then trial and error until the TV set sync'd...]
+Remember that even for 80 columns the PET use a CCLK of 1 MHz and
+double the characters by hardware (i.e. writing 40 to R1).
+Interestingly enough the CS/A65 parameter that have been found by
+trial and error match the 8032 values quite well.
+</P>
+<PRE>
+                      4032    4032    8032    8032    CS/A65   CS/A65
+                      text    graph   text    graph   1 MHz    2 MHz
+----------------------------------------------------------------------------------------------------------
+CCLK rate [MHz]        1       1       1       1       1        2
+
+R0 (hor. total)        49      49      63      63      63       126
+R1 (hor. displ)        40      40      40      40      40       80
+R2 (hor. sync)         41      41      50      50      50       100
+R3 (syn width)         15      15      8       8       3        6
+
+R4 (vert. total)       39      49      32      36      41       41
+R5 (vert. adjust)      0       0       16      17      0        0
+R6 (vert. displ)       25      25      25      25      25       25
+R7 (vert. sync)        32      37      29      32      33       33
+
+R9 (scanlines/char-1)  9       7       8       7       7        7
+
+time per scanline [us] 50      50      64      64      64       63.5
+scanl./char
+ (R9+1)                10      8       9       8       8        8
+time per charline [us]
+ (R9+1)*t/scanline     500     400     576     512     512      508
+scanlines total
+ (R9+1)*(R4+1)+R5      400     400     313     313     336      336
+time/fram [ms]
+ scanl tot. * t/scanl  20.0    20.0    20.0    20.0    21.5     21.3
+framerate [Hz]
+ fram/time             50      50      50      50      47       47
+</PRE>
+	</description>
+  </itemlist>
+  <disclaimer name="Disclaimer">
+	@DISCLAIMER@
+  </disclaimer>
+  <closing>
+	@FOOTER@
+  </closing>
+</webpage>

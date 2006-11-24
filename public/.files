@@ -1,9 +1,9 @@
 s Commodore
-d petindex CBM PET info
+d petindex CBM PETindex
 d cbmhw CBM hardware and mods
 s Hardware
 d csa CS/A65 and Gecko computer
-d hwinfo Hardware info
+d hwinfo ICs and Standards Info
 s Software
 d osa GeckOS operating system
 d lib6502 Lib6502 standard

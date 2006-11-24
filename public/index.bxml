@@ -25,8 +25,14 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
-    <item date="2006-11-20">
-	Better graphical look-and-feel by using nicer icons.
+    <item date="2006-11-24">
+	Updated the CS/A computer with <a href="csa/index.html#memmap">a memory map</a>, also added a new <a href="csa/drvio/index.html">I/O
+	board</a> for PC floppies and serial IEC bus.
+    </item>
+    <item date="2006-11-21">
+	Better graphical look-and-feel by using nicer icons. 
+	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs. Additionally I have added more information about the PET 8032 and 8296 use of the CRTC to
+	the <a href="petindex/crtc.html">PETindex CRTC page</a>.
     </item>
     <item date="2006-11-20">
 	Updated the <a href="petindex/index.html">PETindex</a> to version 1.1 by adding more information
@@ -121,6 +127,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
     </disclaimer>
   </itemlist>
   <closing>
-Last updated 2006-11-20.
+Last updated 2006-11-23.
   </closing>
 </webpage>
