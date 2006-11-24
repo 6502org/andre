@@ -80,7 +80,7 @@ are only read compatible (<A HREF="writegap.html">Read more</A>).
 <TR><TD>4040</TD><TD>DOS2.0/2.1</TD><TD>664 blocks free, read compatible with 1541</TD></TR>
 <TR><TD>4031/2031/2031LP</TD><TD>DOS2.6</TD><TD>Single drive only. Read/Write compatible with 1541/1571s.</TD><TD>Basically a 1541 with an IEEE488 interface, i.e. one CPU only.</TD></TR>
 <TR><TD>8050</TD><TD>DOS2.5/2.7</TD><TD>Single Sided/Quad Density format, 512k per disk side.</TD><TD ROWSPAN="2">The DOS2.7 was the same for both, in fact even for the 1001, only the controller ROM differed.</TD></TR>
-<TR><TD>8250/8250LP</TD><TD>DOS2.7&lt;td&lt;td&gt;</TD><TD>Double Sided/Quad Density format, 1mb per disk</TD></TR>
+<TR><TD>8250/8250LP</TD><TD>DOS2.7</TD><TD>Double Sided/Quad Density format, 1mb per disk</TD></TR>
 <TR><TD>SFD-1001</TD><TD>DOS2.7</TD><TD>Same as 8250, but single drive unit.</TD><TD>Other than the 2031 it still had both CPUs, and even the very same DOS as the 8250. Only the Controller DOS differed.</TD></TR>
 </TABLE>
 <P>The "LP" versions were "Low Profile" versions. Which means that while the other drives were delivered in the old "boat anchor" design with full height drives, the LP versions came in 1541-like (SFD-1001) design or even in a very slick low profile case for the 8250LP. You can see them in the <A HREF="gallery/index.html">drive gallery</A>.
