@@ -8,6 +8,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2006-11-24">
+			Introduce the DRVIO board with VC1581 compatible disk and bus interfaces.
+                </item>
                 <item date="2006-11-23">
 			Added the memory map section to document the different I/O areas used by the boards.
                 </item>
@@ -192,6 +195,12 @@ Commodore PET compatible 	</desc>
 		the WD1772 chip. It also contains a small printer interface.
 	  </subitem>
 
+          <subitem name="VC1581 I/O" link="drvio/index.html">
+		This board contains a PC-style floppy drive interface using
+		the WD1772 chip in a way that is compatible with the 
+		Commodore VC1581 disk drive.
+	  </subitem>
+
           <subitem name="Double UART" link="duart/index.html">
 		Two UART 16550A implement two serial line RS232 interfacs.
 	  </subitem>
@@ -286,6 +295,7 @@ like these, why I moved some of the lines around...)
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (default)</td><td>CRTC, Control (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (default)</td><td>PIA2 (default)</td><td></td><td>VIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PC floppy</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD1770 (opt)</td><td>VIA (opt)</td><td>WD1770 (default)</td><td>VIA (default)</td></tr>
+<tr> <th>DRVIO</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD177x, Control (default)</td><td>CIA (default)</td><td></td><td></td><td>WD177x, Control (opt)</td><td>CIA (opt)</td></tr>
 <tr> <th>DUART</th><td/><td/><td/><td/><td/><td>UART1, UART2</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>SCSI</th><td/><td/><td/><td/><td/><td/><td/><td>SCSI</td><td/><td/><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th colspan="17" class="separator">Deprecated boards</th> </tr>

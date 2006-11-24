@@ -28,6 +28,7 @@
 <li class="dir"><a href="vdc/index.html">Video board</a></li>
 <li class="dir"><a href="petio/index.html">CBM PET I/O</a></li>
 <li class="dir"><a href="shug/index.html">PC floppy</a></li>
+<li class="dir"><a href="drvio/index.html">DRVIO floppy and IEC</a></li>
 <li class="dir"><a href="duart/index.html">Double UART (RS232)</a></li>
 <li class="dir"><a href="scsi/index.html">SCSI board</a></li>
 <li class="separator">Special purpose</li>
@@ -64,6 +65,10 @@ that in itself is a complete, single-board computer.
 	</P>
 <h3>News:</h3>
 <ul class="news">
+<li>
+<small>2006-11-24</small>
+			Introduce the DRVIO board with VC1581 compatible disk and bus interfaces.
+                </li>
 <li>
 <small>2006-11-23</small>
 			Added the memory map section to document the different I/O areas used by the boards.
@@ -294,6 +299,13 @@ Commodore PET compatible 	</p>
 	  <br><br>
 </li>
 <li class="subitem">
+<a href="drvio/index.html">VC1581 I/O</a> 
+		This board contains a PC-style floppy drive interface using
+		the WD1772 chip in a way that is compatible with the 
+		Commodore VC1581 disk drive.
+	  <br><br>
+</li>
+<li class="subitem">
 <a href="duart/index.html">Double UART</a> 
 		Two UART 16550A implement two serial line RS232 interfacs.
 	  <br><br>
@@ -463,6 +475,24 @@ like these, why I moved some of the lines around...)
 <td>VIA (opt)</td>
 <td>WD1770 (default)</td>
 <td>VIA (default)</td>
+</tr>
+<tr> <th>DRVIO</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>WD177x, Control (default)</td>
+<td>CIA (default)</td>
+<td></td>
+<td></td>
+<td>WD177x, Control (opt)</td>
+<td>CIA (opt)</td>
 </tr>
 <tr> <th>DUART</th>
 <td></td>

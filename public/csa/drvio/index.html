@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 keyboard rs232 ACIA">
-<TITLE>CS/A65 KEY+RS232</TITLE>
+<META NAME="keywords" CONTENT="CSA65 6502 shugart floppy 1581">
+<TITLE>DRVIO board</TITLE>
 <LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
 </HEAD>
 <BODY>
@@ -29,13 +29,13 @@
 <li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
 <li class="dir"><a href="../shug/index.html">PC floppy</a></li>
 <li class="dir"><a href="../drvio/index.html">DRVIO floppy and IEC</a></li>
+
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
 <li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
 <li class="separator">Special purpose</li>
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
 <li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
 <li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
-
 <li class="separator">Deprecated boards</li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
@@ -59,126 +59,136 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 KEY+RS232</H1>
-<P>This board implements a simple matrix keyboard interface
-		that is Commodore PET compatible but can also use a C64
-		keyboard. It also implements a RS232
-		interface using a 6551 ACIA.
+<H1>DRVIO board</H1>
+<P>
+<p>This board implements a shugart bus interface as used 
+		in the standard PC floppy disk drives (5.25" and 3.5")
+		in a way that is compatible with the Commodore VC1581
+		disk drive. I.e. it is planned that this board, together with
+		the <a href="../petcpu/index.html">PETCPU</a> board, make up
+		a VC1581 replacement. 
+	    </p>
+<p>
+		To accomodate this, the ICs can be addressed either via
+		the bus I/O area, or via a mapping into the 1Mbyte bus
+		memory address space - so it can mimick the 1581 address
+		space. 
+	    </p>
+<p>
+		Additionally, the board contains a Commodore IEC bus interface,
+		as well as an infrared signal generator.
+	    </p>
 	</P>
 <h3>News:</h3>
-<ul class="news">
-<li>
-<small>2006-11-01</small>
-                        Board is deprecated. Use PETIO board instead.
-                </li>
-<li>
-<small>2006-11-01</small>
-                        Added driver code.
-                </li>
-</ul>
+<ul class="news"><li>
+<small>2006-11-24</small>
+                        Published the board
+                </li></ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
 <li><a href="#driver">Driver</a></li>
-<dir>
-<li><a href="#driver1">OS/A65 Keyboard driver</a></li>
-<li><a href="#driver2">OS/A65 ACIA RS232 driver</a></li>
-</dir>
+<dir><li><a href="#driver1">PETCPU test</a></li></dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir><li>
-<a href="#board1">1.0B</a> (ok)</li></dir>
+<a href="#board1">1.0A</a> (prototype with bugs)</li></dir>
 </dir>
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
-<H3><A NAME="driver1">OS/A65 Keyboard driver</A></H3>
+<H3><A NAME="driver1">PETCPU test</A></H3>
 <P>
-                        This driver handles the keyboard included
-                        in this board.
-                        It provides these methods
-                        <ul>
-<li>
-<code>inikbd</code> - initialize the keyboard</li>
-                        <li>
-<code>getkey</code> - scan the keyboard</li>
-                        </ul>
+<p>
+			This file includes a small test program that
+			does a "readaddress" command on the WDC and either
+			prints the sector header (in reverse) or the 
+			WDC status register in case of an error.
+			</p>
+<p>This driver runs on a PETCPU with the Commodore
+			PET ROMs (just 'dL"test1"' :-) and expects the 
+			card I/O at $E8A0 (WD177x) and $E8B0 (CIA).
+			</p>
                 </P>
 <TABLE>
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
 <TD>
-<A HREF="con_csa.a65">con_csa.a65</A>(excerpt from console driver)</TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="kdefs.i65">kdefs.i65</A>(terminal codes definitions)</TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="pia6521.i65">pia6521.i65</A>(PIA register definitions)</TD>
-</TR>
-</TABLE>
-<H3><A NAME="driver2">OS/A65 ACIA RS232 driver</A></H3>
-<P>
-                        This driver handles the ACIA RS232 hardware included
-                        in this board. As this board does not use the standard
-			ACIA handshake lines but lines from the VIA, this is
-			not a general ACIA driver. In addition it includes
-			the ACIA driver for the original BIOS V1.x board.
-                </P>
-<TABLE>
-<TR>
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="oa1ds.a65">oa1ds.a65</A>(ACIA driver)</TD>
+<A HREF="test2.tar.gz">test2.tar.gz</A></TD>
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.0B</A></H3>
-<P>Status: ok</P>
+<H3><A NAME="board1">Version: 1.0A</A></H3>
+<P>Status: prototype with bugs</P>
 <TABLE>
 <TR>
-<TD><IMG SRC="../../imgs/note_deprecated.gif" ALT="deprecated"></TD>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board is deprecated. Please use the PETIO board instead.
+			This is a preliminary release. Subject to change without notice
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 3.5" PC disk drives with DD (double density
+			disks)
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			Using this board with HD-drives (i.e. 1.44M 3.5"
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			I found that modern 3.5" disk drives do not
+			drive the DENSEL shugart bus signal (and not need it either).
+			Thus the selection of HD/DD disks will change from
+			shugart bus drive to I/O port driven.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change.
+		</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board lacks a feature to drive the ATN line - 
+			so it cannot be used as a IEC bus master. This feature will be added if possible.
 		</TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csakeydesc.txt">csakeydesc.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD>
-<A HREF="csakeyparts.txt">csakeyparts.txt</A></TD>
+<A HREF="csa_drvio_v1.0a.sch">csa_drvio_v1.0a.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csakey.fig">csakey.fig</A></TD>
+<A HREF="csa_drvio_v1.0a-sch.png">csa_drvio_v1.0a-sch.png</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csakey.png">csakey.png</A></TD>
+<A HREF="csa_drvio_v1.0a.brd">csa_drvio_v1.0a.brd</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csakey.ps.gz">csakey.ps.gz</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
-<TD>
-<A HREF="csakey.jpg">csakey.jpg</A>(ACIA missing, but (so far undocumented) I2C testbed added)</TD>
+<A HREF="csa_drvio_v1.0a-brd.png">csa_drvio_v1.0a-brd.png</A></TD>
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2006-11-01.</P>
+<P>Last modified: 2006-11-24.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>
