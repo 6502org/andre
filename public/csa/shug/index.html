@@ -71,14 +71,37 @@
 <H2>Table of content</H2>
 <dir>
 <li><a href="#driver">Driver</a></li>
-<dir><li><a href="#driver1">OS/A65 shugart bus floppy driver</a></li></dir>
+<dir>
+<li><a href="#driver1">PETCPU test</a></li>
+<li><a href="#driver2">OS/A65 shugart bus floppy driver</a></li>
+</dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir><li>
 <a href="#board1">1.0B</a> (ok)</li></dir>
 </dir>
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
-<H3><A NAME="driver1">OS/A65 shugart bus floppy driver</A></H3>
+<H3><A NAME="driver1">PETCPU test</A></H3>
+<P>
+<p>
+			This file includes a small test program that
+			does a "readaddress" command on the WDC and either
+			prints the sector header (in reverse) or the 
+			WDC status register in case of an error.
+			</p>
+<p>This driver runs on a PETCPU with the Commodore
+			PET ROMs (just 'dL"test1"' :-) and expects the 
+			card I/O at $E8C0 (WD177x) and $E8D0 (VIA).
+			</p>
+                </P>
+<TABLE>
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test1.tar.gz">test1.tar.gz</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">OS/A65 shugart bus floppy driver</A></H3>
 <P>
                         This driver handles the WD1770/1772 shugart bus floppy device.
 			It is included in the <code>fsibm</code> filesystem code
