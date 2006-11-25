@@ -11,6 +11,10 @@ the TV set, the CD player etc lying around on the table?
 Well, in 1990 I thought about that and implemented an infrared 
 remote control feature in my selfbuilt 6502 system. And here is
 the description.
+</p><p>
+Note: This article originally is from 1997 or 1998. Today I would look
+into a solution with the NE555 timer chip to generate the actually 38k 
+infrared frequency.
 </p>
 <h2>Theory</h2>
 <p>

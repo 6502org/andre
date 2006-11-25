@@ -120,5 +120,6 @@
 		<file ltype="schem" ptype="fig">csavdc.fig</file>
 		<file ltype="schem" ptype="psgz">csavdc.ps.gz</file>
 		<file ltype="photo" ptype="jpg">csavdc.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The flipside - just for the fun of it... :-)">csavdcflip.jpg</file>
 	</rev>
 </board>

@@ -27,6 +27,7 @@ DIV#content {
   padding: 0 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
   text-align: left;
+  /* background-color: #dddddd; */
 }
 
 DIV#menu {
@@ -34,6 +35,7 @@ DIV#menu {
   margin: 0; padding: 0;
   list-style-position:outside;
 /*  position: fixed; */
+  /* background-color: #dddddd; */
 }
 
 P.copyright {
@@ -111,9 +113,21 @@ LI.openfile {
 	list-style-image:url(imgs/openfile.gif);
 }
 
+
 table.memmap {
 	text-align:center;
-	caption-side:bottom;
+	empty-cells:show;
+	margin:5px;
+}
+table.memmap td {
+	width:14mm;
+}
+table.memmap th {
+	width:14mm;
+}
+/*
+table.memmap {
+	text-align:center;
 	empty-cells:show;
 	border-style:solid;
 	border-spacing:0px;
@@ -135,5 +149,5 @@ table.memmap th.separator {
 	background-color: #ffffff;
 	border-style:none;
 }
-
+*/
 

@@ -102,23 +102,28 @@
 </xsl:text>
 <P>Status: <xsl:value-of select="status"/></P><xsl:text>
 </xsl:text>
-<TABLE>
+<xsl:if test="note">
+<H4>Notes</H4>
+<TABLE class="notes">
 <xsl:for-each select="note">
 <TR><TD><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
 </xsl:text><TD><xsl:copy-of select="text()|*"/></TD></TR><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- note -->
 </TABLE>
-<TABLE>
+</xsl:if>
+<xsl:if test="file">
+<H4>Files</H4>
+<TABLE class="files">
 <xsl:apply-templates select="file"/>
-</TABLE><xsl:text>
+</TABLE></xsl:if><xsl:text>
 </xsl:text>
 </xsl:template>
 
 <xsl:template match="driver">
 <H3><A NAME="driver{position()}"><xsl:value-of select="name"/></A></H3>
 <P><xsl:copy-of select="desc/*|desc/text()"/></P>
-<TABLE><xsl:apply-templates select="file"/></TABLE>
+<TABLE class="files"><xsl:apply-templates select="file"/></TABLE>
 </xsl:template>
 
 <xsl:template match="file">

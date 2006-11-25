@@ -39,10 +39,89 @@
                 <file ltype="driver" ptype="tgz">test2.tar.gz</file>
         </driver>
 	<rev>
+		<version>1.0B</version>
+		<status>prototype</status>
+		<note type="warn">
+			The layout has not been tested, only the schematics
+			has been implemented by modifying my Rev.A board 
+			to Rev.B. The differences are:
+			<ul>
+			<li>The infrared sender is off after reset (reversed 
+				signal polarity)</li>
+			<li>Moved the INTR and DRQ lines to bits 7 and 6 
+				respectively on the control port </li>
+			<li>The HD/DD selection is now made via control
+				port and defaults to DD after reset.</li>
+			<li>The drive select signals are switched, to enable
+				drive 0 (SELA) on reset, that is controlled
+				by the VC1581 (via MTR A).</li>
+			<li>ATN can be pulled low via control port, so the 
+				board can be used as IEC controller (off after
+				reset)</li>
+			</ul>
+		</note>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 3.5&quot; PC disk drives with DD (double density
+			disks)
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<note type="msg">
+			Here is a summary of the jumper settings:
+			<table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>PETCPU setting</th></tr>
+
+	<tr><td rowspan="2">JP1</td><td rowspan="2">I/O address selection</td><td>1-2</td><td>$E8A*/$E8B*</td><td/><td>*</td></tr>
+	<tr><td>2-3</td><td>$E8E*/$E8F*</td></tr>
+
+	<tr><td>JP2</td><td>n/a</td></tr>
+
+	<tr><td rowspan="3">JP3</td><td rowspan="3">VC1581 disk unit selection: 8</td><td>1-2</td><td>+2</td><td/><td rowspan="3">n/a</td></tr>
+	<tr><td>3-4</td><td>+1</td></tr>
+	<tr><td>1-2,3-4</td><td>+3</td></tr>
+
+	<tr><td>JP4</td><td>IEC bus reset</td><td>1-2</td><td>when set, reset IEC bus with bus reset.</td></tr>
+
+	<tr><td rowspan="3">JP5</td><td rowspan="3">TOD input selection</td><td>1-2</td><td>50Hz bus signal</td><td/><td rowspan="3">n/a</td></tr>
+	<tr><td>2-3</td><td>Phi2 input (VC1581 setting for WD1770)</td></tr>
+	<tr><td>not equiped</td><td>No input (VC1581 setting for WD1772)</td><td>*</td></tr>
+
+	<tr><td rowspan="2">JP6</td><td rowspan="2">DD/HD selection</td><td>1-2</td><td>Double density disks (DD) only</td><td>*</td></tr>
+	<tr><td>2-3</td><td>Double/High density (DD/HD) selection via control port</td><td/><td>*</td></tr>
+
+	<tr><td>JP7</td><td>Connector for infrared LEDs.</td></tr>
+
+	<tr><td rowspan="2">JP8</td><td rowspan="2">4k/8k Memory selection</td><td>1-2</td><td>$4***/$6***</td><td/><td rowspan="2">n/a</td></tr>
+	<tr><td>2-3</td><td>$4***+$5***/$6***+$7***</td><td>*</td></tr>
+
+	<tr><td rowspan="4">JP9</td><td rowspan="4">Memory mapped address selection</td><td>1-2</td><td>$54***/$56***</td></tr>
+	<tr><td>3-4</td><td>$34***/$36***</td></tr>
+	<tr><td>5-6</td><td>$04***/$06***</td></tr>
+	<tr><td>7-8</td><td>no memory mapping</td><td/><td>*</td></tr>
+
+			</table>
+		</note>
+                <file ltype="schem" ptype="esch">csa_drvio_v1.1a.sch</file>
+                <file ltype="schem" ptype="png">csa_drvio_v1.1a-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_drvio_v1.1a.brd</file>
+                <file ltype="layout" ptype="png">csa_drvio_v1.1a-brd.png</file>
+                <file ltype="photo" ptype="png" note="Picture of setup with PETCPU system">petcpudrv.jpg</file>
+                <file ltype="photo" ptype="png" note="Jumper settings for PETCPU setting">petcpujump.jpg</file>
+	</rev>
+	<rev>
 		<version>1.0A</version>
 		<status>prototype with bugs</status>
+		<note type="stop">
+			This board is superseded by the 1.0B version.
+		</note>
 		<note type="warn">
-			This is a preliminary release. Subject to change without notice
+			The drive select signals are driven the wrong way round.
+			I.e. in a VC1581 setup after reset, the wrong drive
+			is selected and the drive would not work.
 		</note>
 		<note type="msg">
 			This board implements a (shugart-type i.e PC-type) 

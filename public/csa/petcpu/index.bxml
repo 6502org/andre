@@ -23,6 +23,76 @@
 		<note type="warn">
 			The RS232 interface has not yet been tested.
 		</note>
+		<note type="msg">
+			This table describes the jumper settings available on
+			the board
+                        <table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>PETCPU setting</th></tr>
+
+<tr><td rowspan="2">JP1</td><td rowspan="2">1/2MHz system clock switch</td><td>1-2</td><td>2 MHz</td><td>*</td><td>8032 (experimental)</td></tr>
+<tr><td>2-3</td><td>1MHz</td><td/><td>4032</td></tr>
+
+<tr><td rowspan="2">JP2</td><td rowspan="2">I/O size selector A8</td><td>1-2</td><td>A8=0</td></tr>
+<tr><td>2-3</td><td>A8 don't care</td><td/><td>*</td></tr>
+
+<tr><td rowspan="2">JP3</td><td rowspan="2">I/O size selector A9</td><td>1-2</td><td>A9=0</td></tr>
+<tr><td>2-3</td><td>A9 don't care</td><td/><td>*</td></tr>
+
+<tr><td rowspan="2">JP4</td><td rowspan="2">I/O size selector A10</td><td>1-2</td><td>A10=0</td></tr>
+<tr><td>2-3</td><td>A10 don't care</td><td/><td>*</td></tr>
+
+<tr><td rowspan="2">JP5</td><td rowspan="6">ROM size selection. JP5,6, and 7 select the lowest address where ROM is selected (from 64k down). A15 is always high</td><td>1-2</td><td>A14 high</td></tr>
+<tr><td>2-3</td><td>A14 low</td><td/><td>*</td></tr>
+<tr><td rowspan="2">JP6</td><td>1-2</td><td>A13 high</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>A13 low</td></tr>
+<tr><td rowspan="2">JP7</td><td>1-2</td><td>A12 high</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>A12 low</td></tr>
+
+<tr><td rowspan="2">JP8</td><td rowspan="2">External (bus) memory A17</td><td>1-2</td><td>+128k</td></tr>
+<tr><td>2-3</td><td>+0k</td><td/><td>*</td></tr>
+
+<tr><td rowspan="2">JP9</td><td rowspan="2">External (bus) memory A16</td><td>1-2</td><td>+0k</td></tr>
+<tr><td>2-3</td><td>+64k</td><td/><td>*</td></tr>
+
+<tr><td rowspan="2">JP14</td><td rowspan="2">I/O select enable</td><td>1-2</td><td>/IOSEL enabled</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>/IOSEL disabled</td><td>*</td></tr>
+
+<tr><td rowspan="2">JP15</td><td rowspan="6">RAM size selection. JP15,16, and 17 select the highest address where RAM is selected (from 0k up). A15 is always low</td><td>1-2</td><td>A14 high</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>A14 low</td></tr>
+<tr><td rowspan="2">JP16</td><td>1-2</td><td>A13 high</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>A13 low</td></tr>
+<tr><td rowspan="2">JP17</td><td>1-2</td><td>A12 high</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>A12 low</td></tr>
+
+<tr><td rowspan="2">JP18</td><td rowspan="2">External (bus) memory A15 invert</td><td>1-2</td><td>invert A15 on bus</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>do not invert A15</td></tr>
+
+<tr><td rowspan="2">JP19</td><td rowspan="2">External (bus) memory A12 invert</td><td>1-2</td><td>invert A12 on bus</td><td/><td>*</td></tr>
+<tr><td>2-3</td><td>do not invert A12</td></tr>
+
+<tr><td rowspan="2">JP20</td><td rowspan="2">8/32k RAM switch</td><td>1-2</td><td>8k RAM (6264)</td></tr>
+<tr><td>2-3</td><td>32k RAM (62256)</td><td>*</td><td>*</td></tr>
+
+<tr><td rowspan="2">JP21</td><td rowspan="2">Enable on-board RAM</td><td>1-2</td><td>disable on-board RAM (use bus memory only)</td><td/><td rowspan="2">depends on whether you have on-board RAM</td></tr>
+<tr><td>2-3</td><td>enable on-board RAM, use bus memory only above address set with JP15/16/17.</td><td>*</td></tr>
+
+<tr><td rowspan="3">JP22</td><td rowspan="3">ROM address A18</td><td>1-2</td><td>0</td><td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td></tr>
+<tr><td>3-4</td><td>Control port D3</td></tr>
+<tr><td>5-6</td><td>1</td></tr>
+
+<tr><td rowspan="3">JP23</td><td rowspan="3">ROM address A17</td><td>1-2</td><td>0</td><td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td></tr>
+<tr><td>3-4</td><td>Control port D2</td></tr>
+<tr><td>5-6</td><td>1</td></tr>
+
+<tr><td rowspan="3">JP24</td><td rowspan="3">ROM address A16</td><td>1-2</td><td>0</td><td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td></tr>
+<tr><td>3-4</td><td>Control port D1</td></tr>
+<tr><td>5-6</td><td>1</td></tr>
+
+<tr><td rowspan="3">JP25</td><td rowspan="3">ROM address A15</td><td>1-2</td><td>0</td><td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td></tr>
+<tr><td>3-4</td><td>Control port D0</td></tr>
+<tr><td>5-6</td><td>1</td></tr>
+
+</table>
+		</note>
 		<file ltype="schem" ptype="esch">csa_petcpu_v1.1b.sch</file>
 		<file ltype="schem" ptype="png">csa_petcpu_v1.1b-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_petcpu_v1.1b.brd</file>
