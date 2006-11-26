@@ -95,8 +95,8 @@
 			new CS/A board - with 74ALS technology I decided to
 			better restrict the timing on the video board 
 			(which was not the cause of the problem), so 
-			a patched the board. The results can be found in
-			version 1.3F.
+			I patched the board. The results can be found in
+			version 1.4.
 		</note>
 		<file ltype="schem" ptype="png">csa_vdc_v1.3e-sch.png</file>
 		<file ltype="schem" ptype="esch">csa_vdc_v1.3e.sch</file>

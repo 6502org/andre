@@ -50,7 +50,8 @@
 </xsl:text>
 <META NAME="keywords" CONTENT="{keywords}"/>
 <TITLE><xsl:value-of select="name"/></TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 </HEAD><xsl:text>
 </xsl:text><BODY>
 @MENU@
@@ -106,7 +107,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <xsl:for-each select="note">
-<TR><TD><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
+<TR><TD class="noteicon"><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
 </xsl:text><TD><xsl:copy-of select="text()|*"/></TD></TR><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- note -->
@@ -166,7 +167,8 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 </head>
 <xsl:text>
 </xsl:text>

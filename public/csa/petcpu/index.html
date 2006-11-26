@@ -4,7 +4,8 @@
 
 <META NAME="keywords" CONTENT="CSA65 6502 PET CPU">
 <TITLE>CS/A65 PETCPU</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
 <BODY>
 <DIV ID="menu">
@@ -85,7 +86,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			This schematics has been tested by modifying the
 			1.1A board version, but the layout itself has not
@@ -95,13 +96,13 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			The RS232 interface has not yet been tested.
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			This table describes the jumper settings available on
 			the board
@@ -135,11 +136,11 @@
 <td rowspan="2">I/O size selector A8</td>
 <td>1-2</td>
 <td>A8=0</td>
+<td rowspan="6">don't care</td>
 </tr>
 <tr>
 <td>2-3</td>
 <td>A8 don't care</td>
-<td></td>
 <td>*</td>
 </tr>
 
@@ -152,7 +153,6 @@
 <tr>
 <td>2-3</td>
 <td>A9 don't care</td>
-<td></td>
 <td>*</td>
 </tr>
 
@@ -165,7 +165,6 @@
 <tr>
 <td>2-3</td>
 <td>A10 don't care</td>
-<td></td>
 <td>*</td>
 </tr>
 
@@ -178,7 +177,7 @@
 <tr>
 <td>2-3</td>
 <td>A14 low</td>
-<td></td>
+<td>*</td>
 <td>*</td>
 </tr>
 <tr>
@@ -191,6 +190,7 @@
 <tr>
 <td>2-3</td>
 <td>A13 low</td>
+<td>*</td>
 </tr>
 <tr>
 <td rowspan="2">JP7</td>
@@ -202,6 +202,7 @@
 <tr>
 <td>2-3</td>
 <td>A12 low</td>
+<td>*</td>
 </tr>
 
 <tr>
@@ -209,6 +210,7 @@
 <td rowspan="2">External (bus) memory A17</td>
 <td>1-2</td>
 <td>+128k</td>
+<td>*</td>
 </tr>
 <tr>
 <td>2-3</td>
@@ -226,7 +228,7 @@
 <tr>
 <td>2-3</td>
 <td>+64k</td>
-<td></td>
+<td>*</td>
 <td>*</td>
 </tr>
 
@@ -255,12 +257,13 @@
 <tr>
 <td>2-3</td>
 <td>A14 low</td>
+<td>*</td>
 </tr>
 <tr>
 <td rowspan="2">JP16</td>
 <td>1-2</td>
 <td>A13 high</td>
-<td></td>
+<td>*</td>
 <td>*</td>
 </tr>
 <tr>
@@ -271,7 +274,7 @@
 <td rowspan="2">JP17</td>
 <td>1-2</td>
 <td>A12 high</td>
-<td></td>
+<td>*</td>
 <td>*</td>
 </tr>
 <tr>
@@ -290,6 +293,7 @@
 <tr>
 <td>2-3</td>
 <td>do not invert A15</td>
+<td>*</td>
 </tr>
 
 <tr>
@@ -303,6 +307,7 @@
 <tr>
 <td>2-3</td>
 <td>do not invert A12</td>
+<td>*</td>
 </tr>
 
 <tr>
@@ -337,7 +342,31 @@
 <td rowspan="3">ROM address A18</td>
 <td>1-2</td>
 <td>0</td>
-<td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td>
+<td rowspan="12" colspan="2">depends on the ROM size and where the ROM content is in the ROM IC. For example I have a 64k ROM, and the PET ROM at $0000-$7fff, and the VC1581 ROM at $8000-$ffff. This results in these jumper settings:
+<table>
+<tr>
+<td></td>
+<td>JP22</td>
+<td>JP23</td>
+<td>JP24</td>
+<td>JP25</td>
+</tr>
+<tr>
+<td>PET 4032</td>
+<td>1-2</td>
+<td>5-6</td>
+<td>1-2</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td>VC1581</td>
+<td>1-2</td>
+<td>5-6</td>
+<td>1-2</td>
+<td>5-6</td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
 <td>3-4</td>
@@ -353,7 +382,6 @@
 <td rowspan="3">ROM address A17</td>
 <td>1-2</td>
 <td>0</td>
-<td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td>
 </tr>
 <tr>
 <td>3-4</td>
@@ -369,7 +397,6 @@
 <td rowspan="3">ROM address A16</td>
 <td>1-2</td>
 <td>0</td>
-<td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td>
 </tr>
 <tr>
 <td>3-4</td>
@@ -385,7 +412,6 @@
 <td rowspan="3">ROM address A15</td>
 <td>1-2</td>
 <td>0</td>
-<td rowspan="3" colspan="2">depends on where the ROM content is in the ROM IC</td>
 </tr>
 <tr>
 <td>3-4</td>
@@ -433,7 +459,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			This board has been tested and I found a severe bug
 			in the timing in combination with the NMOS 6502: 
@@ -444,7 +470,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			The RS232 interface has not yet been tested.
 		</TD>

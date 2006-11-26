@@ -4,7 +4,8 @@
 
 <META NAME="keywords" CONTENT="CSA65 6502 self-built computer">
 <TITLE>CS/A65 computer</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 </HEAD>
 <BODY>
 <DIV ID="menu">
@@ -66,7 +67,7 @@ that in itself is a complete, single-board computer.
 <h3>News:</h3>
 <ul class="news">
 <li>
-<small>2006-11-25</small>
+<small>2006-11-26</small>
 			Introduce the <a href="drvio/index.html">DRVIO</a> board with VC1581 compatible disk and bus interfaces. Add tables with jumper settings for <a href="petcpu/index.html">PETCPU</a>.
                 </li>
 <li>
@@ -99,6 +100,7 @@ that in itself is a complete, single-board computer.
 <li><a href="#special">Special purpose boards</a></li>
 <li><a href="#deprecated">Deprecated boards</a></li>
 <li><a href="#memmap">Memory Map</a></li>
+<li><a href="#numbering">Board numbering scheme</a></li>
 </dir>
 </DIV>
 <H2><a name="disclaimer">Disclaimer</a></H2>
@@ -299,7 +301,7 @@ Commodore PET compatible 	</p>
 	  <br><br>
 </li>
 <li class="subitem">
-<a href="drvio/index.html">VC1581 I/O</a> 
+<a href="drvio/index.html">DRVIO floppy and IEC</a> 
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip in a way that is compatible with the 
 		Commodore VC1581 disk drive.
@@ -421,6 +423,22 @@ like these, why I moved some of the lines around...)
 <td>UART</td>
 <td></td>
 </tr>
+<tr> <th>Main BIOS</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Control, UART (opt)</td>
+<td></td>
+<td>Control, UART (opt)</td> <td></td> </tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th>
 <td></td>
@@ -628,9 +646,9 @@ like these, why I moved some of the lines around...)
 <td></td>
 <td></td>
 <td></td>
+<td>Control, UART (opt)</td>
 <td></td>
-<td></td>
-<td>Control reg, UART</td> <td></td> </tr>
+<td>Control, UART (default)</td> <td></td> </tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th>
 <td></td>
@@ -676,8 +694,43 @@ like these, why I moved some of the lines around...)
 	So my prototype has a jumper now.</p>
 	</p>
 <ul></ul>
+<H2><a name="numbering">Board numbering scheme</a></H2>
+<p><p>The boards are numbered with a major and a minor version number,
+		plus a letter denoting the revision of the board. So for
+		example a video board is numbered "1.3E", means that 
+		it is major version 1, minor version 3, and the fifth revision
+		(E).
+		</p><p>
+		The revisions are changed when a compatible modification has
+		been made - this can be a redraw of the schematics (e.g.
+		with Eagle instead of xfig), or a minor bugfix (like 
+		fixing the reset behaviour). It is also used when during
+		development the initial bugs are shaken out (which may
+		involve incompatible changes, though, see the DRVIO board...)
+		</p><p>
+		The minor version is increased when there is a 
+		software-compatible extensions of the previous board. For
+		example the 1.4 version of the VDC board, although the
+		video connector has changed (composite is gone, but VCC
+		is there now) it can be used very much like the V1.3
+		versions (software-wise).
+		</p><p>
+		The major version number is increased by major and 
+		incompatible changes. 
+		For example the BIOS board is in its third major version:
+		the first version used an ACIA as RS232 interface, the
+		second one an UART instead. The third version is a complete
+		redesign with the possibility to provide up to 512k RAM
+		and/or ROM. It could be used like a version 2 board, but
+		is a major change anyway, therefore a new major version.
+		</p><p>
+		I try to keep the numbering consistent, but I am only
+		human ;-)
+		</p>
+	</p>
+<ul></ul>
 <DIV ID="footer">
-<P>Last modified: 2006-11-23.</P>
+<P>Last modified: 2006-11-26.</P>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
 </DIV>

@@ -2,7 +2,7 @@
 <board>
 	<name>DRVIO board</name>
 	<keywords>CSA65 6502 shugart floppy 1581</keywords>
-        <lastmodified>2006-11-24</lastmodified>
+        <lastmodified>2006-11-26</lastmodified>
 	<desc><p>This board implements a shugart bus interface as used 
 		in the standard PC floppy disk drives (5.25&quot; and 3.5&quot;)
 		in a way that is compatible with the Commodore VC1581
@@ -20,7 +20,7 @@
 	    </p>
 	</desc>
         <news>
-                <item date="2006-11-24">
+                <item date="2006-11-26">
                         Published the board
                 </item>
         </news>
@@ -58,6 +58,8 @@
 			<li>ATN can be pulled low via control port, so the 
 				board can be used as IEC controller (off after
 				reset)</li>
+			<li>A 47k resistor between CIA pin 3 (PA1) and GND, to 
+				simulate a drive ready.</li>
 			</ul>
 		</note>
 		<note type="msg">
@@ -73,16 +75,16 @@
 		</note>
 		<note type="msg">
 			Here is a summary of the jumper settings:
-			<table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>PETCPU setting</th></tr>
+			<table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>standard setting</th></tr>
 
-	<tr><td rowspan="2">JP1</td><td rowspan="2">I/O address selection</td><td>1-2</td><td>$E8A*/$E8B*</td><td/><td>*</td></tr>
+	<tr><td rowspan="2">JP1</td><td rowspan="2">I/O address selection</td><td>1-2</td><td>$E8A*/$E8B*</td><td rowspan="2">don't care</td><td>*</td></tr>
 	<tr><td>2-3</td><td>$E8E*/$E8F*</td></tr>
 
 	<tr><td>JP2</td><td>n/a</td></tr>
 
-	<tr><td rowspan="3">JP3</td><td rowspan="3">VC1581 disk unit selection: 8</td><td>1-2</td><td>+2</td><td/><td rowspan="3">n/a</td></tr>
-	<tr><td>3-4</td><td>+1</td></tr>
-	<tr><td>1-2,3-4</td><td>+3</td></tr>
+	<tr><td rowspan="3">JP3</td><td rowspan="3">VC1581 disk unit selection: 8 when no jumper set.</td><td>1-2</td><td>10</td><td rowspan="3">As fits your setup. I have 3-4 for device number 9</td><td rowspan="3">n/a</td></tr>
+	<tr><td>3-4</td><td>9</td></tr>
+	<tr><td>1-2,3-4</td><td>11</td></tr>
 
 	<tr><td>JP4</td><td>IEC bus reset</td><td>1-2</td><td>when set, reset IEC bus with bus reset.</td></tr>
 
@@ -99,24 +101,26 @@
 	<tr><td>2-3</td><td>$4***+$5***/$6***+$7***</td><td>*</td></tr>
 
 	<tr><td rowspan="4">JP9</td><td rowspan="4">Memory mapped address selection</td><td>1-2</td><td>$54***/$56***</td></tr>
-	<tr><td>3-4</td><td>$34***/$36***</td></tr>
+	<tr><td>3-4</td><td>$34***/$36***</td><td>*</td></tr>
 	<tr><td>5-6</td><td>$04***/$06***</td></tr>
 	<tr><td>7-8</td><td>no memory mapping</td><td/><td>*</td></tr>
 
 			</table>
 		</note>
-                <file ltype="schem" ptype="esch">csa_drvio_v1.1a.sch</file>
-                <file ltype="schem" ptype="png">csa_drvio_v1.1a-sch.png</file>
-                <file ltype="layout" ptype="ebrd">csa_drvio_v1.1a.brd</file>
-                <file ltype="layout" ptype="png">csa_drvio_v1.1a-brd.png</file>
-                <file ltype="photo" ptype="png" note="Picture of setup with PETCPU system">petcpudrv.jpg</file>
+                <file ltype="schem" ptype="esch">csa_drvio_v1.0b.sch</file>
+                <file ltype="schem" ptype="png">csa_drvio_v1.0b-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_drvio_v1.0b.brd</file>
+                <file ltype="layout" ptype="png">csa_drvio_v1.0b-brd.png</file>
+                <file ltype="photo" ptype="png" note="Picture of setup with PETCPU system. Boards from left to right: DRVIO, PETCPU, PETIO, VDC">petcpudrv.jpg</file>
                 <file ltype="photo" ptype="png" note="Jumper settings for PETCPU setting">petcpujump.jpg</file>
+                <file ltype="photo" ptype="png" note="Picture of setup as VC1581 together with PETCPU board.">vc1581drv.jpg</file>
 	</rev>
 	<rev>
 		<version>1.0A</version>
 		<status>prototype with bugs</status>
 		<note type="stop">
-			This board is superseded by the 1.0B version.
+			This board is superseded by the 1.0B version and will
+			not be supported by any drivers.
 		</note>
 		<note type="warn">
 			The drive select signals are driven the wrong way round.
@@ -141,7 +145,7 @@
 			shugart bus drive to I/O port driven.
 		</note>
 		<note type="warn">
-			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change.
+			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change, as it is currently enabled after reset.
 		</note>
 		<note type="warn">
 			The board lacks a feature to drive the ATN line - 

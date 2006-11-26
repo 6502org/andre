@@ -2,13 +2,13 @@
 <board>
 	<name>CS/A65 computer</name>
 	<keywords>CSA65 6502 self-built computer</keywords>
-        <lastmodified>2006-11-23</lastmodified>
+        <lastmodified>2006-11-26</lastmodified>
 	<desc>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard.
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
-                <item date="2006-11-25">
+                <item date="2006-11-26">
 			Introduce the <a href="drvio/index.html">DRVIO</a> board with VC1581 compatible disk and bus interfaces. Add tables with jumper settings for <a href="petcpu/index.html">PETCPU</a>.
                 </item>
                 <item date="2006-11-23">
@@ -195,7 +195,7 @@ Commodore PET compatible 	</desc>
 		the WD1772 chip. It also contains a small printer interface.
 	  </subitem>
 
-          <subitem name="VC1581 I/O" link="drvio/index.html">
+          <subitem name="DRVIO floppy and IEC" link="drvio/index.html">
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip in a way that is compatible with the 
 		Commodore VC1581 disk drive.
@@ -291,6 +291,7 @@ like these, why I moved some of the lines around...)
 <tr> <th></th><th>$80*</th> <th>$81*</th> <th>$82*</th> <th>$83*</th> <th>$84*</th> <th>$85*</th> <th>$86*</th> <th>$87*</th> <th>$88*</th> <th>$89*</th> <th>$8a*</th> <th>$8b*</th> <th>$8c*</th> <th>$8d*</th> <th>$8e*</th> <th>$8f*</th> </tr>
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>PETCPU</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>UART</td><td></td></tr>
+<tr> <th>Main BIOS</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control, UART (opt)</td><td/><td>Control, UART (opt)</td> <td></td> </tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (default)</td><td>CRTC, Control (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (default)</td><td>PIA2 (default)</td><td></td><td>VIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
@@ -324,7 +325,7 @@ like these, why I moved some of the lines around...)
 <tr> <th></th><th>$f0*</th> <th>$f1*</th> <th>$f2*</th> <th>$f3*</th> <th>$f4*</th> <th>$f5*</th> <th>$f6*</th> <th>$f7*</th> <th>$f8*</th> <th>$f9*</th> <th>$fa*</th> <th>$fb*</th> <th>$fc*</th> <th>$fd*</th> <th>$fe*</th> <th>$ff*</th> </tr>
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>Main CPU</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control reg, CPU addr</td> <td></td> <td>MMU</td> </tr>
-<tr> <th>Main BIOS</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control reg, UART</td> <td></td> </tr>
+<tr> <th>Main BIOS</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control, UART (opt)</td><td/><td>Control, UART (default)</td> <td></td> </tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (opt since 1.4)</td><td>CRTC, Control (opt since 1.4)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (opt)</td><td>PIA2 (opt)</td><td></td><td>VIA (opt)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
@@ -336,7 +337,42 @@ like these, why I moved some of the lines around...)
 	So my prototype has a jumper now.</p>
 	</desc>
 	</section>
- <!--driver>
+	<section toc="numbering" name="Board numbering scheme">
+       	<desc><p>The boards are numbered with a major and a minor version number,
+		plus a letter denoting the revision of the board. So for
+		example a video board is numbered "1.3E", means that 
+		it is major version 1, minor version 3, and the fifth revision
+		(E).
+		</p><p>
+		The revisions are changed when a compatible modification has
+		been made - this can be a redraw of the schematics (e.g.
+		with Eagle instead of xfig), or a minor bugfix (like 
+		fixing the reset behaviour). It is also used when during
+		development the initial bugs are shaken out (which may
+		involve incompatible changes, though, see the DRVIO board...)
+		</p><p>
+		The minor version is increased when there is a 
+		software-compatible extensions of the previous board. For
+		example the 1.4 version of the VDC board, although the
+		video connector has changed (composite is gone, but VCC
+		is there now) it can be used very much like the V1.3
+		versions (software-wise).
+		</p><p>
+		The major version number is increased by major and 
+		incompatible changes. 
+		For example the BIOS board is in its third major version:
+		the first version used an ACIA as RS232 interface, the
+		second one an UART instead. The third version is a complete
+		redesign with the possibility to provide up to 512k RAM
+		and/or ROM. It could be used like a version 2 board, but
+		is a major change anyway, therefore a new major version.
+		</p><p>
+		I try to keep the numbering consistent, but I am only
+		human ;-)
+		</p>
+	</desc>
+	</section>
+	 <!--driver>
                 <name>driver</name>
                 <desc>
                 </desc>

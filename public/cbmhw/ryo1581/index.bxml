@@ -1,0 +1,84 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Roll your own VC1581">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>2006</yearstart>
+    <yearend>2006</yearend>
+    <email>@EMAIL@</email>
+  </author>
+  <keywords>Commodore disk drives VC1581</keywords>
+  <metadesc>A new implementation of the Commodore VC1581</metadesc>
+  <overview>
+	<p>This page describes how you can build your own VC1581 using
+	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p><p>
+	</p><p>
+	Basically what you do is to combine the <a href="../../csa/petcpu/index.html">PETCPU</a> and the
+	<a href="../../csa/drvio/index.html">DRVIO</a> boards 
+	into one computer, put the drive ROM into a ROM for the PETCPU ROM socket
+	and there you are. The following sections describe the special settings
+	on the different boards.
+	</p>
+  </overview>
+  <news>
+    <item date="2006-11-26">
+	Published the page!
+    </item>
+  </news>
+  <itemlist name="Board settings">
+    <description>
+	This section describe the CS/A65 boards making up the VC1581.
+	Here is a <a href="vc1581drv.jpg">picture</a> of the two boards on 
+	a backplane. 
+    </description>
+    <items>
+     <subitem name="PETCPU board" link="../../csa/petcpu/index.html">
+	The PETCPU board must be set to a maximum of 8k (or 16k) RAM 
+	on the board itself, and a 32k ROM, with bus /IOSEL disabled.
+	(Note: the area $E800-$F000 in the VC1581 ROM is unused, so the
+	bus I/O area could actually be used).
+	Further jumper settings are described on the <a href="../../csa/petcpu/index.html">board page</a>.
+     </subitem>
+     <subitem name="DRVIO board" link="../../csa/drvio/index.html">
+	For the use of the DRVIO board some features had to be implemented. 
+	First of all, the VC1581 does not handle the drive select signal.
+	As the DRVIO board handles two drives, the additional control port
+	selects drive 0 after reset, and any one of the two drives 
+	is always selected. The VC1581 does also not handle the 
+	density selection, so the DRVIO board handles the density with the
+	control port, and double density (for VC1581) is selected on reset.
+	The VC1581 reads the drive ready signal - that does not exist for
+	new PC floppy drives. A 2k2 Ohm resistor constantly pulls the 
+	CIA PA1 input low.
+	The board jumper settings are documented on the <a href="../../csa/drvio/index.html">board page</a>.
+     </subitem>
+     <!--item name="">
+      <subitem name="" link=""></subitem>
+     </item-->
+    </items>
+    <!--disclaimer name="">
+    </disclaimer-->
+  </itemlist>
+  <itemlist name="ROMs">
+    <description>
+	I used the 2nd edition of the original Commodore VC1581 ROMs, 
+	that you can get on the <a href="@CBMARC@/firmware/drives/new/1581/index.html">CBM archive page</a>.
+    </description>
+  </itemlist>
+  <itemlist name="Pictures">
+    <description>
+	Some pictures :-)
+    </description>
+    <items>
+     <subitem name="A working VC1581 replica" link="vc1581drv.jpg">
+     </subitem>
+     <subitem name="A simple test" link="vc1581screen.jpg">
+     </subitem>
+    </items>
+  </itemlist>
+  <disclaimer name="Disclaimer">
+@DISCLAIMER@
+  </disclaimer>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

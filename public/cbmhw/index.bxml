@@ -12,6 +12,9 @@
 	and devices for Commodore 8-bit computer.
   </overview>
   <news>
+    <item date="26-11-2006">
+	There is a new section where you can build your own, new VC1581!
+    </item>
     <item date="21. October 2006">
 	There is a new section where you can build your own, new PET!
     </item>
@@ -37,7 +40,12 @@
 	A set of IEC and IEEE488 interfaces for the Commodore computers.
       </subitem>
       <subitem name="Roll-your-own FAT40" link="ryofat40/index.html">
-	Build yourself a completely new Commodore PET 4032 (aka Fat40 with CRTC).
+	Build yourself a completely new Commodore PET 4032 (aka Fat40 with 
+	CRTC).
+      </subitem>
+      <subitem name="Roll-your-own VC1581" link="ryo1581/index.html">
+	Build yourself a completely new Commodore VC1581, using two
+	CS/A65 boards and a standard 3.5" disk drive.
       </subitem>
     </items>
     <disclaimer name="Disclaimer">

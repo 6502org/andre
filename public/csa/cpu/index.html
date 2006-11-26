@@ -4,7 +4,8 @@
 
 <META NAME="keywords" CONTENT="CSA65 6502 CPU MMU">
 <TITLE>CS/A65 CPU</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
 <BODY>
 <DIV ID="menu">
@@ -90,7 +91,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			Version 2.0H implements all the features mentioned
 			above. There is an Eagle(tm) schematics and 
@@ -99,13 +100,13 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			This board has not yet been tested.
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			The TTL types are mostly 'ALS technology, which is 
 			faster and less power-hungry than 'LS. In one place,
@@ -116,7 +117,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			This board implements new features, in that bus
 			errors like writing on a write protected page, 
@@ -165,7 +166,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			Version 2.0G implements all the features mentioned
 			above. There is an Eagle(tm) schematics and 
@@ -174,7 +175,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			This version has a severe bug (that can be fixed,
 			though): the mmu inputs RS0-RS3 are connected to
@@ -217,7 +218,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>This version implements an additional
 			write protection circuit. I.e. an additional
 			mmu bit is used to disable the memory access 
@@ -225,7 +226,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>This schematics is only available
 			as a "diff" to the 1.2C version.
 		</TD>
@@ -259,7 +260,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>This is the original cpu board. It implements
 			most features, but not the bus error detection
 			circuits.

@@ -4,7 +4,8 @@
 
 <META NAME="keywords" CONTENT="CSA65 6502 shugart floppy 1581">
 <TITLE>DRVIO board</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
 <BODY>
 <DIV ID="menu">
@@ -81,7 +82,7 @@
 	</P>
 <h3>News:</h3>
 <ul class="news"><li>
-<small>2006-11-24</small>
+<small>2006-11-26</small>
                         Published the board
                 </li></ul>
 <DIV ID="toc">
@@ -125,7 +126,7 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			The layout has not been tested, only the schematics
 			has been implemented by modifying my Rev.A board 
@@ -143,11 +144,13 @@
 			<li>ATN can be pulled low via control port, so the 
 				board can be used as IEC controller (off after
 				reset)</li>
+			<li>A 47k resistor between CIA pin 3 (PA1) and GND, to 
+				simulate a drive ready.</li>
 			</ul>
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			This board implements a (shugart-type i.e PC-type) 
 			floppy disk controller. The board has been tested
@@ -156,7 +159,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			Using this board with HD-drives (i.e. 1.44M 3.5"
 			floppies overclocks the WDC1772 chip used in this
@@ -164,7 +167,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			Here is a summary of the jumper settings:
 			<table border="1" class="jumpers">
@@ -174,7 +177,7 @@
 <th>Setting</th>
 <th>Meaning</th>
 <th>VC1581 setting</th>
-<th>PETCPU setting</th>
+<th>standard setting</th>
 </tr>
 
 	<tr>
@@ -182,7 +185,7 @@
 <td rowspan="2">I/O address selection</td>
 <td>1-2</td>
 <td>$E8A*/$E8B*</td>
-<td></td>
+<td rowspan="2">don't care</td>
 <td>*</td>
 </tr>
 	<tr>
@@ -197,19 +200,19 @@
 
 	<tr>
 <td rowspan="3">JP3</td>
-<td rowspan="3">VC1581 disk unit selection: 8</td>
+<td rowspan="3">VC1581 disk unit selection: 8 when no jumper set.</td>
 <td>1-2</td>
-<td>+2</td>
-<td></td>
+<td>10</td>
+<td rowspan="3">As fits your setup. I have 3-4 for device number 9</td>
 <td rowspan="3">n/a</td>
 </tr>
 	<tr>
 <td>3-4</td>
-<td>+1</td>
+<td>9</td>
 </tr>
 	<tr>
 <td>1-2,3-4</td>
-<td>+3</td>
+<td>11</td>
 </tr>
 
 	<tr>
@@ -279,6 +282,7 @@
 	<tr>
 <td>3-4</td>
 <td>$34***/$36***</td>
+<td>*</td>
 </tr>
 	<tr>
 <td>5-6</td>
@@ -300,32 +304,37 @@
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csa_drvio_v1.1a.sch">csa_drvio_v1.1a.sch</A></TD>
+<A HREF="csa_drvio_v1.0b.sch">csa_drvio_v1.0b.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csa_drvio_v1.1a-sch.png">csa_drvio_v1.1a-sch.png</A></TD>
+<A HREF="csa_drvio_v1.0b-sch.png">csa_drvio_v1.0b-sch.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csa_drvio_v1.1a.brd">csa_drvio_v1.1a.brd</A></TD>
+<A HREF="csa_drvio_v1.0b.brd">csa_drvio_v1.0b.brd</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csa_drvio_v1.1a-brd.png">csa_drvio_v1.1a-brd.png</A></TD>
+<A HREF="csa_drvio_v1.0b-brd.png">csa_drvio_v1.0b-brd.png</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
-<A HREF="petcpudrv.jpg">petcpudrv.jpg</A>(Picture of setup with PETCPU system)</TD>
+<A HREF="petcpudrv.jpg">petcpudrv.jpg</A>(Picture of setup with PETCPU system. Boards from left to right: DRVIO, PETCPU, PETIO, VDC)</TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="petcpujump.jpg">petcpujump.jpg</A>(Jumper settings for PETCPU setting)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="vc1581drv.jpg">vc1581drv.jpg</A>(Picture of setup as VC1581 together with PETCPU board.)</TD>
 </TR>
 </TABLE>
 <H3><A NAME="board2">Version: 1.0A</A></H3>
@@ -333,13 +342,14 @@
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
 <TD>
-			This board is superseded by the 1.0B version.
+			This board is superseded by the 1.0B version and will
+			not be supported by any drivers.
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			The drive select signals are driven the wrong way round.
 			I.e. in a VC1581 setup after reset, the wrong drive
@@ -347,7 +357,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
 			This board implements a (shugart-type i.e PC-type) 
 			floppy disk controller. The board has been tested
@@ -356,7 +366,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			Using this board with HD-drives (i.e. 1.44M 3.5"
 			floppies overclocks the WDC1772 chip used in this
@@ -364,7 +374,7 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			I found that modern 3.5" disk drives do not
 			drive the DENSEL shugart bus signal (and not need it either).
@@ -373,13 +383,13 @@
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change.
+			The Infrared signal generation will be changed to a NE555 based solution. Signal polarity may change, as it is currently enabled after reset.
 		</TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			The board lacks a feature to drive the ATN line - 
 			so it cannot be used as a IEC bus master. This feature will be added if possible.
@@ -410,7 +420,7 @@
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2006-11-24.</P>
+<P>Last modified: 2006-11-26.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>
