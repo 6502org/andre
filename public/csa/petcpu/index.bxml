@@ -2,7 +2,7 @@
 <board>
 	<name>CS/A65 PETCPU</name>
 	<keywords>CSA65 6502 PET CPU</keywords>
-        <lastmodified>2006-10-14</lastmodified>
+        <lastmodified>2006-12-09</lastmodified>
 	<desc>This board implements a 6502 processor board for the 
 		CS/A65 bus system. It in addition to the 
 		<a href="../cpu65b/index.html">CPU65b</a> board it allows
@@ -10,6 +10,29 @@
 		This can be utilized to access the video board to implement
 		a video interface.
 	</desc>
+	<news>
+		<item date="2006-12-09">
+			Tested the RS232 interface and added a test driver 
+			for it.
+		</item>
+	</news>
+        <driver>
+                <name>RS232 test</name>
+                <desc><p>
+                        This file includes a small test program for the
+			RS232 interface. It opens the RS232 interface with
+			9600 baud, and mirrors everything it receives from
+			RS232 back to RS232.
+			Additionally it sends everything typed in on the
+			screen to the RS232.
+			The screen also works as buffer area, so it is easy
+			to monitor the progress. It can be loaded into a
+			PET fat40 setup
+                        (just 'dL"petuart"' :-) and RUN.
+                        </p>
+                </desc>
+                <file ltype="driver" ptype="tgz">petuart.tar.gz</file>
+        </driver>
 	<rev>
 		<version>1.1B</version>
 		<status>untested</status>
@@ -19,9 +42,6 @@
 			been tested. It mainly adds a driver for the Phi2
 			signal, and has been tested with the MOS6502 (1MHz), 
 			Rockwell R6502AD and R65C02P4 (1 and 2MHz each). 
-		</note>
-		<note type="warn">
-			The RS232 interface has not yet been tested.
 		</note>
 		<note type="msg">
 			This table describes the jumper settings available on
@@ -114,9 +134,6 @@
 			sufficient power on the bus, so the board works with 
 			the CMOS 6502 version only. Please see the 1.1B
 			version for a comparison.
-		</note>
-		<note type="warn">
-			The RS232 interface has not yet been tested.
 		</note>
 		<file ltype="schem" ptype="esch">csa_petcpu_v1.1a.sch</file>
 		<file ltype="schem" ptype="png">csa_petcpu_v1.1a-sch.png</file>

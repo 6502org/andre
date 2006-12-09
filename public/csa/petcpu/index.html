@@ -68,9 +68,17 @@
 		This can be utilized to access the video board to implement
 		a video interface.
 	</P>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2006-12-09</small>
+			Tested the RS232 interface and added a test driver 
+			for it.
+		</li></ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
+<li><a href="#driver">Driver</a></li>
+<dir><li><a href="#driver1">RS232 test</a></li></dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
@@ -80,6 +88,29 @@
 </dir>
 </dir>
 </DIV>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">RS232 test</A></H3>
+<P>
+<p>
+                        This file includes a small test program for the
+			RS232 interface. It opens the RS232 interface with
+			9600 baud, and mirrors everything it receives from
+			RS232 back to RS232.
+			Additionally it sends everything typed in on the
+			screen to the RS232.
+			The screen also works as buffer area, so it is easy
+			to monitor the progress. It can be loaded into a
+			PET fat40 setup
+                        (just 'dL"petuart"' :-) and RUN.
+                        </p>
+                </P>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="petuart.tar.gz">petuart.tar.gz</A></TD>
+</TR>
+</TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
 <H3><A NAME="board1">Version: 1.1B</A></H3>
 <P>Status: untested</P>
@@ -93,12 +124,6 @@
 			been tested. It mainly adds a driver for the Phi2
 			signal, and has been tested with the MOS6502 (1MHz), 
 			Rockwell R6502AD and R65C02P4 (1 and 2MHz each). 
-		</TD>
-</TR>
-<TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>
-			The RS232 interface has not yet been tested.
 		</TD>
 </TR>
 <TR>
@@ -469,12 +494,6 @@
 			version for a comparison.
 		</TD>
 </TR>
-<TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>
-			The RS232 interface has not yet been tested.
-		</TD>
-</TR>
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
@@ -505,7 +524,7 @@
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2006-10-14.</P>
+<P>Last modified: 2006-12-09.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>

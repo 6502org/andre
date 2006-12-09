@@ -10,6 +10,7 @@ that in itself is a complete, single-board computer.
         <news>
                 <item date="2006-12-09">
 			Added a Motivation section. Why do I actually do all this....?
+			Also tested the <a href="petcpu/index.html">PETCPU</a> RS232 interface and added a test driver for it.
                 </item>
                 <item date="2006-11-26">
 			Introduce the <a href="drvio/index.html">DRVIO</a> board with VC1581 compatible disk and bus interfaces. Add tables with jumper settings for <a href="petcpu/index.html">PETCPU</a>.
