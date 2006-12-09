@@ -8,6 +8,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2006-12-09">
+			Added a Motivation section. Why do I actually do all this....?
+                </item>
                 <item date="2006-11-26">
 			Introduce the <a href="drvio/index.html">DRVIO</a> board with VC1581 compatible disk and bus interfaces. Add tables with jumper settings for <a href="petcpu/index.html">PETCPU</a>.
                 </item>
@@ -29,6 +32,28 @@ are provided 'as is', without warranty of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
 servicing, repair or correction.</P>
+	</desc></section>
+	<section toc="motivation" name="Motivation"><desc><p>
+		Why do I do all this? Good question. It all started with 
+		modifications to my trusty old Commodore 64 (that I still own
+		but rarely use, though). Together with a friend I developed
+		a phone switching system so you could use multiple phones
+		on a single phone line, with features like call forwarding,
+		or conferencing. My friend built several revisions of the 
+		6502-based hardware, while I wrote several revisions of 
+		the software. It was much fun to do, but it never reached
+		production status, though. When I started studying, I decided
+		to build my own system with advanced features - and the 
+		result was the original CS/A65 computer. </p>
+		<p>One motivation was to actually implement and try out
+		(then and now) 
+		advanced features in microprocessor architecture. You
+		can see that in the use of the MMU, or the planned coprocessor
+		board. I also wanted it to be easily understandable, so 
+		I decided not to use programmable logic chips but implement
+		everything in standard logic chips. 
+		Although nowadays FPGAs look very interesting (and advanced) :-)
+		</p>
 	</desc></section>
 	<section toc="dist" name="Distribution"><desc>
 <p>The boards, i.e. the schematics, and layout artworks are distributed
@@ -245,9 +270,9 @@ computers memory into the main memory map.
 	<section toc="deprecated" name="Deprecated boards">
 	<desc>These boards are deprecated and I will not support them
 		further. 
-(well, they managed to spread the IEEE488
+(well, Commodore managed to spread the IEEE488
 interface across 3 ICs, which was not nice for building it on PCBs
-like these, why I moved some of the lines around...)
+like these, why I moved some of the lines around those days...)
 	</desc>
 
           <subitem name="64k CPU" link="cpu65b/index.html">
