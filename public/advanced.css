@@ -42,7 +42,8 @@ DIV#menu {
   margin: 0; padding: 0;
   list-style-position:outside;
 /*  position: fixed; */
-  background-color: #dddddd; 
+  background-color: #ffffff;
+/*  background-color: #dddddd; */
 }
 
 P.copyright {
