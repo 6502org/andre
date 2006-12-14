@@ -2,16 +2,22 @@
 <board>
 	<name>CS/A65 SCSI interface</name>
 	<keywords>CSA65 6502 SCSI</keywords>
-        <lastmodified>2006-10-14</lastmodified>
-	<desc>This board implements a SCSI interface for the CS/A65
+        <lastmodified>2006-12-14</lastmodified>
+	<desc><p>This board implements a SCSI interface for the CS/A65
 		computer. It implements a mechanism to use the
 		asynchronous mode on parallel SCSI cables - that
 		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.
 		This interface can be used to attach disk drives 
 		and other SCSI devices. It has only been tested with 
 		SCSI disks, though (yet).
+		</p><p>
+		Since revision 1.1 it also includes an I2C controller.
+		</p>
 	</desc>
         <news>
+                <item date="2006-12-14">
+                        Added new board revision (with I2C interface) and new driver code.
+                </item>
                 <item date="2006-11-01">
                         Added driver code.
                 </item>
@@ -84,6 +90,43 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </p></subsection>
 	</section>
         <driver>
+                <name>OS/A65 I2C driver</name>
+                <desc>
+                        This test driver handles the I2C interface, and
+			writes a consecutive sequence of numbers to I2C
+			address $40 where I have a parallel port 
+			PCF8574 with LEDs on the outputs for testing. 
+.
+                </desc>
+                <file ltype="driver" ptype="tgz" >i2c-0.2.tar.gz</file>
+        </driver>
+        <driver>
+                <name>PETCPU fat40 I2C driver</name>
+                <desc>
+                        This test driver handles the I2C interface, and
+			writes a consecutive sequence of numbers to I2C
+			address $40 where I have a parallel port 
+			PCF8574 with LEDs on the outputs for testing. 
+			It can be run
+			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
+                </desc>
+                <file ltype="driver" ptype="tgz" >peti2c.tar.gz</file>
+        </driver>
+        <driver>
+                <name>PETCPU fat40 SCSI driver</name>
+                <desc><p>
+                        This driver handles the base SCSI operations 
+			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
+			</p><p>
+			Note: This driver is newer than the OS/A65 driver below.
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >petscsi.tar.gz</file>
+                <file ltype="photo" ptype="jpg" note="Sample device scan output">scsi-device-list-small.jpg</file>
+                <file ltype="photo" ptype="jpg" note="Sample partition scan output">scsi-partition-list-small.jpg</file>
+                <file ltype="photo" ptype="jpg" note="My SCSI test setup (still with the old board, though)">scsi-test-setup.jpg</file>
+        </driver>
+        <driver>
                 <name>OS/A65 SCSI driver</name>
                 <desc>
                         This driver handles the base SCSI operations.
@@ -110,6 +153,30 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
                 <file ltype="driver" ptype="a65" note="partition access">paccess.a65</file>
                 <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
         </driver>
+	<rev>
+		<version>1.1A</version>
+		<status>ok</status>
+		<note type="msg"><p>
+			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
+			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
+			interface. </p><p>The 
+			following restrictions apply to the SCSI interface:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul></p><p>
+			The I2C interface is implemented using a Philips PCF8584 I2C controller. This controller only works relyably at 1MHz, so the
+			board implements a mechanism to assert the RDY line
+			to hold the CPU for a single cycle. This feature is 
+			jumperable.
+			</p>
+		</note>
+		<file ltype="schem" ptype="png">csa_scsi_v1.1a-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_scsi_v1.1a.sch</file>
+		<file ltype="layout" ptype="png">csa_scsi_v1.1a-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_scsi_v1.1a.brd</file>
+	</rev>
 	<rev>
 		<version>1.0A</version>
 		<status>ok</status>

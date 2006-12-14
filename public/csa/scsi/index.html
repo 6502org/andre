@@ -31,7 +31,7 @@
 <li class="dir"><a href="../shug/index.html">PC floppy</a></li>
 <li class="dir"><a href="../drvio/index.html">DRVIO floppy and IEC</a></li>
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
-<li class="dir"><a href="../scsi/index.html">SCSI board</a></li>
+<li class="dir"><a href="../scsi/index.html">SCSI/I2C board</a></li>
 
 <li class="separator">Special purpose</li>
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
@@ -61,19 +61,30 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 SCSI interface</H1>
-<P>This board implements a SCSI interface for the CS/A65
+<P>
+<p>This board implements a SCSI interface for the CS/A65
 		computer. It implements a mechanism to use the
 		asynchronous mode on parallel SCSI cables - that
 		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.
 		This interface can be used to attach disk drives 
 		and other SCSI devices. It has only been tested with 
 		SCSI disks, though (yet).
+		</p>
+<p>
+		Since revision 1.1 it also includes an I2C controller.
+		</p>
 	</P>
 <h3>News:</h3>
-<ul class="news"><li>
+<ul class="news">
+<li>
+<small>2006-12-14</small>
+                        Added new board revision (with I2C interface) and new driver code.
+                </li>
+<li>
 <small>2006-11-01</small>
                         Added driver code.
-                </li></ul>
+                </li>
+</ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
@@ -86,10 +97,19 @@
 <li><a href="#drvs">Drivers</a></li>
 </dir>
 <li><a href="#driver">Driver</a></li>
-<dir><li><a href="#driver1">OS/A65 SCSI driver</a></li></dir>
+<dir>
+<li><a href="#driver1">OS/A65 I2C driver</a></li>
+<li><a href="#driver2">PETCPU fat40 I2C driver</a></li>
+<li><a href="#driver3">PETCPU fat40 SCSI driver</a></li>
+<li><a href="#driver4">OS/A65 SCSI driver</a></li>
+</dir>
 <li><a href="#boards">Board Revisions</a></li>
-<dir><li>
-<a href="#board1">1.0A</a> (ok)</li></dir>
+<dir>
+<li>
+<a href="#board1">1.1A</a> (ok)</li>
+<li>
+<a href="#board2">1.0A</a> (ok)</li>
+</dir>
 </dir>
 </DIV>
 <H2><a name="hwarc">Hardware Architecture</a></H2>
@@ -168,7 +188,70 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </p>
 <ul></ul>
 <H2><A NAME="driver">Driver</A></H2>
-<H3><A NAME="driver1">OS/A65 SCSI driver</A></H3>
+<H3><A NAME="driver1">OS/A65 I2C driver</A></H3>
+<P>
+                        This test driver handles the I2C interface, and
+			writes a consecutive sequence of numbers to I2C
+			address $40 where I have a parallel port 
+			PCF8574 with LEDs on the outputs for testing. 
+.
+                </P>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="i2c-0.2.tar.gz">i2c-0.2.tar.gz</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">PETCPU fat40 I2C driver</A></H3>
+<P>
+                        This test driver handles the I2C interface, and
+			writes a consecutive sequence of numbers to I2C
+			address $40 where I have a parallel port 
+			PCF8574 with LEDs on the outputs for testing. 
+			It can be run
+			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
+                </P>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="peti2c.tar.gz">peti2c.tar.gz</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver3">PETCPU fat40 SCSI driver</A></H3>
+<P>
+<p>
+                        This driver handles the base SCSI operations 
+			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
+			</p>
+<p>
+			Note: This driver is newer than the OS/A65 driver below.
+			</p>
+                </P>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="petscsi.tar.gz">petscsi.tar.gz</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="scsi-device-list-small.jpg">scsi-device-list-small.jpg</A>(Sample device scan output)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="scsi-partition-list-small.jpg">scsi-partition-list-small.jpg</A>(Sample partition scan output)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="scsi-test-setup.jpg">scsi-test-setup.jpg</A>(My SCSI test setup (still with the old board, though))</TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver4">OS/A65 SCSI driver</A></H3>
 <P>
                         This driver handles the base SCSI operations.
 			It consists of these files:
@@ -227,7 +310,57 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.0A</A></H3>
+<H3><A NAME="board1">Version: 1.1A</A></H3>
+<P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+<p>
+			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
+			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
+			interface. </p>
+<p>The 
+			following restrictions apply to the SCSI interface:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul></p>
+<p>
+			The I2C interface is implemented using a Philips PCF8584 I2C controller. This controller only works relyably at 1MHz, so the
+			board implements a mechanism to assert the RDY line
+			to hold the CPU for a single cycle. This feature is 
+			jumperable.
+			</p>
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_scsi_v1.1a-sch.png">csa_scsi_v1.1a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_scsi_v1.1a.sch">csa_scsi_v1.1a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_scsi_v1.1a-brd.png">csa_scsi_v1.1a-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_scsi_v1.1a.brd">csa_scsi_v1.1a.brd</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.0A</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -278,7 +411,7 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2006-10-14.</P>
+<P>Last modified: 2006-12-14.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>

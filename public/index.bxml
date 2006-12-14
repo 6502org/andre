@@ -25,6 +25,11 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2006-12-14">
+	Added a new <a href="csa/index.html">CSA</a> SCSI board, that now 
+	includes an I2C controller, and also a test driver for the PETCPU
+	RS232 interface and confirmation that this interface works.
+    </item>
     <item date="2006-11-26">
 	Added a section to <a href="cbmhw/ryo1581/index.html">build your own, new, Commodore VC1581</a> using a PETCPU and DRVIO CS/A65 board.
     </item>
