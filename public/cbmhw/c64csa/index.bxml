@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<board>
+	<name>C64 &lt;-&gt; CS/A65 bus adapter</name>
+	<keywords>C64 CSA65 6502 CPU</keywords>
+        <lastmodified>2006-12-16</lastmodified>
+	<desc><p>
+	This is the description of an adapter to use most CS/A boards in a C64. A lot of CS/A boards, including a video card, serial interfaces, floppy controller and an SCSI card can be found on the <a href="../../csa/index.html">CS/A65 homepage</a>.
+	</p>
+	<p>
+The interface itself is, in fact, pretty simple. It is a board that is plugged into the C64 expansion port. On the other side it provides a socket for a CS/A bus card. Two things have to be considered for the schematics:
+<ul>
+    <li> The C64 Video chip releases the bus with rising Phi2. This is too late for the 6522. Thus the rising edge of Phi2 must be delayed to the CS/A bus, to be sure. The CS/A bus is specified to run up to 2 MHz, so there is no speed problem.</li>
+    <li> The I/O area in the C64 is 256 byte only. To cover the whole CS/A bus address space (1M memory and 4k I/O) additional address lines have to be generated. This is taken care of with a VIA 6522 on the adapter. More in the description. </li>
+	</ul>
+	</p>
+	</desc>
+	<news>
+		<item date="2006-12-16">
+			Added an Eagle schematics board version.
+		</item>
+	</news>
+        <!--driver>
+                <name></name>
+                <desc>
+                </desc>
+                <file ltype="driver" ptype="tgz"></file>
+        </driver-->
+	<rev>
+		<version>1.0C</version>
+		<status>ok</status>
+		<note type="warn">
+			This board only works with a C64 - not with a C128!
+		</note>
+		<note type="warn">
+			The layout could be better. If you have long plugs
+			for the video and IEC, they may conflict with the
+			CS/A card in the adapter board.
+		</note>
+		<file ltype="schem" ptype="esch">c64_csadapter-v1.0c.sch</file>
+		<file ltype="schem" ptype="png">c64_csadapter-v1.0c-sch.png</file>
+		<file ltype="layout" ptype="ebrd">c64_csadapter-v1.0c.brd</file>
+		<file ltype="layout" ptype="png">c64_csadapter-v1.0c-brd.png</file>
+		<file ltype="photo" ptype="jpg">c64_csadapter.jpg</file>
+	</rev>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="warn">
+			This board only works with a C64 - not with a C128!
+		</note>
+		<file ltype="photo" ptype="jpg">c64csa.jpg</file>
+		<file ltype="desc" ptype="txt">c64csadesc.txt</file>
+		<file ltype="parts" ptype="txt">c64csaparts.txt</file>
+		<file ltype="schem" ptype="png">c64csa.png</file>
+		<file ltype="schem" ptype="psgz">c64csa.ps.gz</file>
+	</rev>
+	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
+</board>
