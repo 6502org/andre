@@ -1,0 +1,202 @@
+
+Description for CS/A Copro65 board, version 1.0B
+------------------------------------------------
+
+whatsit : 6502 Coprocessor board with local CS/A bus connector.
+I/O     : $F00-$F0F Copro control port
+Mem     : $3****, $5**** or $6**** 64k memory (RAM/ROM) shared with Copro
+
+I/O(Copro) : $F00-$F0F Copro control port
+             $E800-$EFFF I/O on secondary CS/A bus connector
+Mem(Copro) : $0000-$7FFF 32k RAM, $8000-$E7FF + $F000-$FFFF 30k RAM or ROM
+
+This is a very special board, as it has a full 6502-based computer in itself.
+The 64k memory of the coprocessor is shared between the coprocessor and the 
+processor on the main bus.
+
+  CS/A bus
+    ||
+    ||  +--------+
+    ||  |  CS/A  |
+    ||==|  main  |
+    ||  |  CPU   |
+    ||  +--------+
+    ||
+    ||
+    ||  +--------+  +-------+  +--
+    ||  | 64k    |  | Copro |  | external I/O
+    ||==| shared |==|  CPU  |==| connector
+    ||  | Mem    |  |       |  | (e.g. Floppy, or SCSI, or serial)
+    ||  +--------+  +-------+  +--
+    ||
+    ||
+
+This allows very flexible use of the coprocessor CPU, as it can use
+any of the available I/O Cards. For example it could be used as
+a SCSI subprocessor with the CS/A SCSI board, or as TCP/IP subprocessor
+with a serial line (UART) or even Ethernet board as I/O.
+Communication takes place via the shared memory.
+
+Another means of communication is the CPU control port. This port is
+available from both CPUs and can signal IRQ, NMI, RESET, or RDY conditions
+to the coprocessor. Thus the coprocessor can even stop himself.
+The control port is protected in a way that a write fails if the other
+processor has written to the port after the last read from the first 
+processor. The write does not fail silently, instead reading the
+port afterwards indicates the failure with a special bit.
+This algorithm is called "optimistic locking" (almost half the
+schematics of the addon-board is used for this feature).
+
+The schematics are gate-optimized, i.e. I don't think that any
+of the logic ICs has an unused gate left....
+The schematics is separated into two parts. The main part is the
+part for the CPU, the memory, control port, and all the busses.
+The second part - implemented in an addon-board has all the
+control logic.
+
+Schematics - Part A
+===================
+
+The first part of the schematics is basically all the busses:
+main data and address bus, copro data and address bus, and memory
+data and address bus in between.
+IC 13 (the '138 on the main bus side) selects the memory area for 
+the 64k shared memory on the main CPU address map. IC10 selects
+$F0* from the main bus I/O area for the control port.
+IC3,4 and 8 are the data and address bus drivers that separate the main bus
+from the memory bus. 
+
+IC1 and IC2 are the shared memory. IC1 is a 32k static RAM.
+IC2 can be made a 32k EPROM or a 32k static RAM. If it is a RAM,
+it can be write-protected with a bit in the CPU control port
+(it is actually per default after reset).
+
+IC5 and IC16 make up the CPU control port. It is located in the memory
+data bus as it uses the same data bus drivers. IC16 is a resetable 
+register, and it is reset at main bus reset. If reset, it also
+sets RESET and RDY condition on the coprocessor (D0=/RESET, D1=/IRQ,
+D2=/NMI and D3=RDY of the coprocessor). So the coprocessor is 
+stopped completely and restarts when the control port is set to 
+appropriate values by the main CPU.
+D4 is the write protect bit for the upper 32k of RAM. 
+D5 is (yet) unused.
+D6 (Copro) and D7 (main CPU) signal, when read, the failure of a previous 
+write from the related CPU.  See part B for a description of this
+mechanism.
+
+IC6,7 and 9 are the address and data bus buffers that separate the memory
+bus from the coprocessor bus. 
+
+U1 is the coprocessor itself.
+
+IC14 selects the I/O area at copro addresses $E800-$EFFF. 
+IC12 then selects $EF0* from this area for the control port.
+
+All timing and control is done in the following part, implemented
+in the addon-board.
+
+
+Addon-board - Part B
+====================
+
+timing control
+--------------
+
+This part of the schematics generates all the timing signals for the
+latches and the memory. The problem is with synchronising the two
+CPUs. Both want to have a Phi0 clock input and generate Phi1 and Phi2,
+where all external timing goes with Phi2 (the falling edge actually).
+
+There once were 6502 versions that took Phi1 and Phi2 as input, but even
+when they were available even Commodore didn't use them for their
+disk drives (that have a 6502 and a 6504 working in parallel).
+
+Thus there is an elaborate signal generation that tries to delay
+the falling edge of Phi2 - the Phi2, main CPU or Copro that's active - as 
+little as possible. On the fly it generates enable signals for the
+various latches.
+
+Now for the parts:
+
+2Phi2 is a signal that goes high at each edge of the main (bus) Phi2,
+and low approx. 100ns after that. It can directly be used as dRAM
+control for example. Here it is used to sample the bus Phi2 at
+its falling edge. The sampling is done by IC10A.
+The result is an approx. 100ns delayed bus Phi2 (X and /X).
+This is used to switch between bus Phi2 (BPhi2) and Coprocessor Phi2
+(CPPhi2) to generate the BE (bus CPU) and CPE (copro CPU) signals.
+Those signals transition from high to low only one gate delay
+after their corresponding Phi2 signal went low. Both are combined
+by IC13C to CP2PHI2, a combined clock signal.
+CP2Phi2 is the used for example to generate the enable signals for the
+bus drivers (with IC10B).
+
+In this diagram CPPhi2 is intentionally drawn "out of phase" to clearify
+how this circuitry works.
+
+BPhi2      --+                                 +---------------------------------+
+             +---------------------------------+                                 +------
+
+2Phi2        +-----------+                     +-----------+                     +------
+           --+           +---------------------+           +---------------------+ 
+
+X          --------------+                                 +----------------------------
+                         +---------------------------------+                          
+   
+BE=X and   --+                                             +---------------------+
+BPhi2        +---------------------------------------------+                     +------  
+
+
+CPPhi2          +--------------------------------+                                  +---
+           -----+                                +----------------------------------+
+
+CPE=/X                   +-----------------------+         
+and CPPhi2 --------------+                       +--------------------------------------
+
+
+CP2Phi2      +-----------+                       +---------+                     +------
+           --+           +-----------------------+         +---------------------+
+
+
+/BAE         +-----------------------------------+                               +------
+           --+                                   +-------------------------------+
+
+CP2Phi2 is used to disable memory address selection via IC6 at its
+rising edge This is also the signal
+to take over the data from the bus. The respective Phi2 signals have
+passed only three ICs till they reach the RAM, so that should be fast 
+enough (if fast types like ALS types are used).
+/BAE is generated by sampling X at the rising edges of C2Phi2. 
+The rising edges of C2Phi2 are the falling edges of both Phi2 signals,
+so /BAE switches every time an access is finished. This is exactly
+what we want for enabling of the address latches.
+
+IC7 selects the respective Data latch enabled signals, the 
+shared memory select signals and the R/-W signals for each 
+half-Phi2 cycle. 
+IC6 decodes which RAM or ROM chip to use, and IC11D and IC13D implement
+the write protection.
+
+Control Port Access
+-------------------
+
+The control port has a very special feature. One CPU can read it, modify
+the value read and the write the value back. But the port is protected by
+an optimistic lock: the write fails if between the read and the write access 
+the other CPU has written to the port. 
+This failure condition can be checked with the BIT operation, as 
+D6 and D7 are used for the failure bit of Copro and main CPU resp.
+
+IC1 generates 4 signals (two of each chip half) for read or write from
+either CPU. A read access (/CPREGR or /BREGR) sets the corresponding
+RS-flipflops built with IC2. Therefore, when a write access (/CPREGW or 
+/BREGW) occurs, the error condition flipflops are unaffected but the 
+access signal is generated with IC9B.
+A successful write access from one processor resets the flipflop
+built with IC2 for the other CPU. If the other processor then tries to 
+write, the write is blocked by IC5 and instead the flipflop in IC4 is set.
+This output is cleared on a read access. To save the flipflop state
+during the read access (so it can actually be read), it is saved in 
+the latch in IC3 with the rising edge of BPhi2/CPPhi2.
+
+

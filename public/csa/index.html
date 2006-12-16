@@ -67,6 +67,10 @@ that in itself is a complete, single-board computer.
 <h3>News:</h3>
 <ul class="news">
 <li>
+<small>2006-12-16</small>
+			Added a new working revision of the <a href="copro/index.html">coprocessor board</a>!
+                </li>
+<li>
 <small>2006-12-14</small>
 			Added a new revision of the <a href="scsi/index.html">SCSI board</a> that now also includes an I2C controller.
                 </li>
@@ -418,7 +422,7 @@ like these, why I moved some of the lines around those days...)
 		in the C64 for example. In addition both busses can be used
 		not only as master, but also as drive so that the CS/A65
 		computer can be used as drive by the PET or C64. This 
-		board is replaced by the PETIO and (yet to be released)
+		board is replaced by the PETIO and 
 		DRVIO boards.
 	  <br><br>
 </li>
@@ -631,7 +635,7 @@ like these, why I moved some of the lines around those days...)
 <td>VIA</td>
 <td colspan="14"></td>
 </tr>
-<tr> <th colspan="17" class="separator">Emulation boards</th> </tr>
+<tr> <th colspan="17" class="separator">Special purpose boards</th> </tr>
 <tr> <th>keyemu</th>
 <td colspan="16">shared RAM keybd1</td>
 </tr>
@@ -660,7 +664,7 @@ like these, why I moved some of the lines around those days...)
 <caption>Table for $d** I/O addresses</caption>
 <tr> <th></th>
 <th>$d0*</th> <th>$d1*</th> <th>$d2*</th> <th>$d3*</th> <th>$d4*</th> <th>$d5*</th> <th>$d6*</th> <th>$d7*</th> <th>$d8*</th> <th>$d9*</th> <th>$da*</th> <th>$db*</th> <th>$dc*</th> <th>$dd*</th> <th>$de*</th> <th>$df*</th> </tr>
-<tr> <th colspan="17" class="separator">Emulation boards</th> </tr>
+<tr> <th colspan="17" class="separator">Special purpose boards</th> </tr>
 <tr> <th>keyemu</th>
 <td colspan="16">shared RAM keybd2</td>
 </tr>
@@ -739,6 +743,25 @@ like these, why I moved some of the lines around those days...)
 <td></td>
 <td></td>
 </tr>
+<tr> <th colspan="17" class="separator">Special purpose boards</th> </tr>
+<tr> <th>COPRO</th>
+<td>Control register</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </table>
 <p>Note: The <a href="key/index.html">csakey</a> schematics actually shows
 	$e9x only, while my implementation has $e1x for PET compatibility
@@ -784,7 +807,7 @@ like these, why I moved some of the lines around those days...)
 	</p>
 <ul></ul>
 <DIV ID="footer">
-<P>Last modified: 2006-12-09.</P>
+<P>Last modified: 2006-12-16.</P>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
 </DIV>

@@ -2,7 +2,7 @@
 <board>
 	<name>CS/A65 Copro</name>
 	<keywords>CSA65 6502 coprocessor</keywords>
-        <lastmodified>2006-10-13</lastmodified>
+        <lastmodified>2006-12-16</lastmodified>
 	<desc>This board implements a 6502 coprocessor board for the 
 		CS/A65 bus system. The coprocessor runs in parallel to the
 		main bus CPU, with the same clock frequency as the bus itself.
@@ -15,6 +15,56 @@
 		another CS/A65 I/O board can be plugged in that the 
 		coprocessor can handle independently from the bus I/O.
 	</desc>
+        <news>
+                <item date="2006-12-16">
+                        Published the new, tested and working(!) revision of the board.
+                </item>
+        </news>
+        <driver>
+                <name>Copro test suite</name>
+                <desc><p>This test suite contains four tests that each use
+			the coprocessor in a different way. The first test
+			simply sets the shared memory to new values, the other
+			tests use an I/O board (here a DRVIO board) to toggle
+			I/O lines (here the two LED lines of the DRVIO board).
+			These tests test the I/O and the interrupt abilities.
+                        </p>
+                </desc>
+                <file ltype="driver" ptype="tgz">copro.tar.gz</file>
+        </driver>
+        <diagram>
+                <file>copro-diag.gif</file>
+                <desc>Block diagram of the coprocessor board. The coprocessor
+		and the CS/A bus CPU access the shared memory and I/O register
+		using time sharing: during Phi2 the bus CPU has access, and
+		during Phi1 the coprocessor has access.
+                </desc>
+        </diagram>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg"><p>
+			This board has been fully tested in a test 
+			setup. The driver above contains the test
+			programs.</p><p>
+			The board itself consists of two boards, where
+			the smaller one is piggy-backed on top of the
+			main Euro-card-sized board. The smaller one
+			is called the "addon" board.
+			</p>
+		</note>
+		<file ltype="desc" ptype="txt">csacoprodesc-v1.0b.txt</file>
+		<file ltype="schem" ptype="png">csa_copro-v1.0b-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_copro-v1.0b.sch</file>
+		<file ltype="schem" ptype="png" note="The addon board">csa_copro_addon-v1.0b-sch.png</file>
+		<file ltype="schem" ptype="esch" note="The addon board">csa_copro_addon-v1.0b.sch</file>
+		<file ltype="layout" ptype="png">csa_copro-v1.0b-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_copro-v1.0b.brd</file>
+		<file ltype="layout" ptype="png" note="The addon board">csa_copro_addon-v1.0b-brd.png</file>
+		<file ltype="layout" ptype="ebrd" note="The addon board">csa_copro_addon-v1.0b.brd</file>
+		<file ltype="photo" ptype="jpg" note="The complete coprocessor board; the separate wire comes from a test I made when I only thought I had a bug - which turned out to have been an incorrectly set jumper, so I fixed it to the original schematics.">copro.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The two coprocessor boards; note that I have used two 32k RAM chips in the tests.">copro-separated-sameside.jpg</file>
+	</rev>
 	<rev>
 		<version>1.0</version>
 		<status>draft</status>
