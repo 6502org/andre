@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
+<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
 <!--BASE HREF="http://www.6502.org/users/andre/petindex/links.html"-->
 <TITLE>PET index - links</TITLE>

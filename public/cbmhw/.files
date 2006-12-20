@@ -1,6 +1,7 @@
 d ryofat40 Build your own PET replica!
 d ryo1581 Build your own VC1581 replica!
 d c64csa CS/A adapter for C64
+d petcsa CS/A adapter for PETs
 d kernal C64 kernal modifications
 d scsi CBM SCSI interfaces
 d ieee488 IEEE488 interfaces

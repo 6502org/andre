@@ -221,6 +221,7 @@
    </xsl:for-each>
   <xsl:apply-templates select="disclaimer"/>
 </xsl:for-each>
+<xsl:apply-templates select="oldnews"/>
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
 </DIV></body></html>
@@ -234,8 +235,23 @@
  <h3>News:</h3>
  <ul class="news">
  <xsl:for-each select="item">
+  <xsl:if test="not(@state) or @state='old'">
   <li>
   <xsl:if test="@state='old'"><xsl:attribute name="class">oldnews</xsl:attribute></xsl:if>
+  <small><xsl:value-of select="@date"/></small>
+  <xsl:copy-of select="*|text()"/>
+  </li>
+  </xsl:if>
+ </xsl:for-each>
+ </ul>
+</xsl:template>
+
+<xsl:template match="oldnews">
+ <h2>Old News:</h2>
+ <ul class="oldnews">
+ <xsl:for-each select="item[@state!='off']">
+  <li>
+  <xsl:attribute name="class">oldnews</xsl:attribute>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<board>
+	<name>Commodore PET &lt;-&gt; CS/A65 bus adapter</name>
+	<keywords>Commodore PET CSA65 6502 CPU</keywords>
+        <lastmodified>2006-12-20</lastmodified>
+	<desc><p>
+	This is the description of an adapter to use CS/A boards in a Commodore PET. A lot of CS/A boards, including a video card, serial interfaces, floppy controller and an SCSI card can be found on the <a href="../../csa/index.html">CS/A65 homepage</a>.
+	</p>
+	<p>
+The interface itself is, in fact, pretty simple. It is a board that is plugged 
+underneath the 6502 CPU of the PET. On the other side it provides a socket for a CS/A bus card. Two things have to be considered for the schematics:
+<ul>
+    <li>The PET only has two free memory areas, $9*** and $A***, so additional
+	memory address lines have to be generated separately.</li>
+    <li> The I/O area is pretty cramped. Especially when you look at the
+	original I/O area address decoding: PIA1 is selected when A4 is high,
+	PIA2 when A5 is high, VIA when A6 is high and CRTC when A7 is high -
+	which means that on some addresses multiple chips are selected. Only
+	$E80* is left open. So this area is used to map the control registers.</li>
+	</ul>
+	</p>
+	</desc>
+	<news>
+		<item date="2006-12-20">
+			Published the board.
+		</item>
+	</news>
+        <!--driver>
+                <name></name>
+                <desc>
+                </desc>
+                <file ltype="driver" ptype="tgz"></file>
+        </driver-->
+	<rev>
+		<version>1.1a</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board has been tested with a 8296 only.
+		</note>
+		<note type="warn">
+			It seems that the board requires a separate power 
+			supply. When POKEing data into the BIOS memory, 
+			it works when between pokes there is enough time
+			(e.g. a PRINT statement), but misses some writes
+			when not.
+		</note>
+		<note type="warn">
+			The layout could be better. In a 8296 it reaches
+			over the main board power connector. I had to use
+			a stack of 40-pin sockets underneath to reach the
+			necessary height.
+		</note>
+		<file ltype="desc" ptype="txt">petcsadesc-v1.1.txt</file>
+		<file ltype="schem" ptype="esch">pet_csadapter-v1.1a.sch</file>
+		<file ltype="schem" ptype="png">pet_csadapter-v1.1a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">pet_csadapter-v1.1a.brd</file>
+		<file ltype="layout" ptype="png">pet_csadapter-v1.1a-brd.png</file>
+		<file ltype="photo" ptype="jpg" note="The original 8296 board">8296board.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The board with adapter and DRVIO board">8296board+drvio.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The board with adapter and BIOS board">8296board+bios.jpg</file>
+	</rev>
+	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
+</board>

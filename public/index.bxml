@@ -25,6 +25,9 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2006-12-20">
+	Added a prototype <a href="cbmhw/petcsa/index.html">PET CS/A65 adapter</a> board, so that PETs can use CS/A65 boards as well.
+    </item>
     <item date="2006-12-16">
 	Finally! Added a new <a href="csa/copro/index.html">CSA coprocessor</a> board, 
 	that allows simultanous multiprocessing :-)
@@ -35,29 +38,31 @@ improve messaging and communication throughput, add C support and more.
 	includes an I2C controller, and also a test driver for the PETCPU
 	RS232 interface and confirmation that this interface works.
     </item>
-    <item date="2006-11-26">
+    <item date="2006-11-26" state="old">
 	Added a section to <a href="cbmhw/ryo1581/index.html">build your own, new, Commodore VC1581</a> using a PETCPU and DRVIO CS/A65 board.
     </item>
-    <item date="2006-11-24">
+    <item date="2006-11-24" state="old">
 	Updated the CS/A computer with <a href="csa/index.html#memmap">a memory map</a>, also added a new <a href="csa/drvio/index.html">I/O
 	board</a> for PC floppies and serial IEC bus. Also added tables with
 	jumper settings for the <a href="csa/petcpu/index.html">PETCPU</a> board.
     </item>
-    <item date="2006-11-21">
+    <item date="2006-11-21" state="old">
 	Better graphical look-and-feel by using nicer icons. 
 	Also overhauled layout of the <a href="hwinfo/crtc/index.html">CRTC info</a> pages and actually linked the CRTC raster effects test programs. Additionally I have added more information about the PET 8032 and 8296 use of the CRTC to
 	the <a href="petindex/crtc.html">PETindex CRTC page</a>.
     </item>
-    <item date="2006-11-20">
+    <item date="2006-11-20" state="old">
 	Updated the <a href="petindex/index.html">PETindex</a> to version 1.1 by adding more information
 	on the SuperPET and 8x96 boards. 
     </item>
-    <item date="2006-11-12">
+    <item date="2006-11-12" state="old">
 	I have added ROMs and jumper settings to the <a href="cbmhw/ryofat40/index.html">Roll-you-own-PET</a> page.
     </item>
-    <item date="2006-11-12">
+    <item date="2006-11-12" state="old">
 	There are three new articles in the <a href="icap/index.html">Knowledge bits</a> section. One article explains virtual address spaces and how to implement them with a 6502, one describes the use of a UART chip for an RS232 interface with a 6502, and the third article explains an infrared remote control using a VIA 6522.
     </item>
+  </news>
+  <oldnews>
     <item date="2006-11-01" state="old">
 	I have added the <a href="icap/index.html">article page</a> with
 	for now one article how to generate the RDY signal for a slow device.
@@ -72,7 +77,7 @@ improve messaging and communication throughput, add C support and more.
 	boards I have added the driver code as extracted
 	from the GeckOS operating system.
     </item>
-<!--
+
     <item date="2006-11-01" state="old">
 	The <a href="csa/index.html">CS/A65</a> part has been completely
 	overhauled, and some boards have been updated and new boards have been 
@@ -92,8 +97,7 @@ improve messaging and communication throughput, add C support and more.
      Some of those pages have been rewritten into XML that is transformed
      into HTML by using an XSL transformation.
     </item>
--->
-  </news>
+  </oldnews>
   <itemlist name="Quickfinder">
     <description>
     </description>
@@ -136,11 +140,11 @@ selfbuilt 6502s.
 to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
      </item>
     </items>
+  </itemlist>
     <disclaimer name="Disclaimer">
 @DISCLAIMER@
     </disclaimer>
-  </itemlist>
   <closing>
-Last updated 2006-11-23.
+Last updated 2006-12-20.
   </closing>
 </webpage>

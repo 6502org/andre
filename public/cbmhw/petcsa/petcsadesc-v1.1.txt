@@ -1,0 +1,39 @@
+Description for PET CS/A board adapter, version 1.1
+---------------------------------------------------
+
+whatsit : Adapter to use CS/A65 boards in a Commodore PET
+I/O     : CS/A bus address lines $E808, Control port $E809
+Mem     : 4k window into CS/A bus at $9*** or $A*** (jumperable)
+
+The board goes between the PET 6502 and the main PET board.
+It uses the PET "/NOROM" line on pin 5 of the CPU socket, that allows
+to disable the ROMs on the main PET board. This pin is unused by
+the CPU, so this is a feature Commodore explicitely enabled for
+such an expansion board like the one described here - this feature
+is for example also used by the SuperPET expansion boards.
+
+IC1 selects the I/O area $E80* for the control ports, and IC8
+generates the select lines with the correct timing for IC3
+(address line buffer) and IC4 (control port). Those two ports
+can only be written to.
+
+IC2 selects the memory window, jumperable to $9*** or $A*** with
+JP1. IC7A, IC7B and IC5A then generate the /NOROM signal when the
+mapping is enabled.
+
+IC10A generates the CS/A65 bus select lines /MEMSEL and /IOSEL
+using the control bits from the control port IC4.
+
+Memory Map:
+
+$E808 (59400): 
+	CS/A bus address lines A12-A19
+$E809 (59401):
+	bit 0: 1= enable the bus extension
+	bit 1: 0= select CS/A bus memory
+		  i.e. map the CS/A bus memory selected by $E808 into
+		  PET address space
+	       1= select CS/A bus I/O area
+		  i.e. map the CS/A bus I/O area into PET address space
+
+

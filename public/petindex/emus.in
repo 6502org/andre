@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
+<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
 <TITLE>PET index - PET emulators</TITLE>
 </HEAD>
 <BODY>

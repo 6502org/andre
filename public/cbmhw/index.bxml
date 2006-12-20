@@ -12,13 +12,16 @@
 	and devices for Commodore 8-bit computer.
   </overview>
   <news>
+    <item date="2006-12-20">
+	I have added a PET CS/A adapter, to use CS/A boards in a PET
+    </item>
     <item date="2006-12-16">
 	I have added a new version of the C64 CS/A adapter, with eagle schematics.
     </item>
-    <item date="2006-11-26">
+    <item date="2006-11-26" state="old">
 	There is a new section where you can build your own, new VC1581!
     </item>
-    <item date="21. October 2006">
+    <item date="21. October 2006" state="old">
 	There is a new section where you can build your own, new PET!
     </item>
   </news>
@@ -32,6 +35,10 @@
       <subitem name="C64 CS/A65 adapter" link="c64csa/index.html"> 
 	An adapter to use the <a href="../csa/index.html">CS/A65</a> 
 	boards on a C64.
+      </subitem>
+      <subitem name="PET CS/A65 adapter" link="petcsa/index.html"> 
+	An adapter to use the <a href="../csa/index.html">CS/A65</a> 
+	boards on a Commodore PET.
       </subitem>
       <subitem name="C64 kernal" link="kernal/index.html">
 	C64 kernal mods I made.

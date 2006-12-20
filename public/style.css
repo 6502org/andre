@@ -48,6 +48,7 @@ DIV#menu {
   list-style-position:outside;
 /*  position: fixed; */
   /* background-color: #dddddd; */
+	font-size:smaller;
 }
 
 P.copyright {

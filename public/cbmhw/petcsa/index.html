@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="C64 CSA65 6502 CPU">
-<TITLE>C64 &lt;-&gt; CS/A65 bus adapter</TITLE>
+<META NAME="keywords" CONTENT="Commodore PET CSA65 6502 CPU">
+<TITLE>Commodore PET &lt;-&gt; CS/A65 bus adapter</TITLE>
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
@@ -18,8 +18,8 @@
 <li class="dir"><a href="../ryofat40/index.html">Build your own PET replica!</a></li>
 <li class="dir"><a href="../ryo1581/index.html">Build your own VC1581 replica!</a></li>
 <li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
-
 <li class="dir"><a href="../petcsa/index.html">CS/A adapter for PETs</a></li>
+
 <li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
 <li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
 <li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
@@ -42,121 +42,110 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>C64 &lt;-&gt; CS/A65 bus adapter</H1>
+<H1>Commodore PET &lt;-&gt; CS/A65 bus adapter</H1>
 <P>
 <p>
-	This is the description of an adapter to use most CS/A boards in a C64. A lot of CS/A boards, including a video card, serial interfaces, floppy controller and an SCSI card can be found on the <a href="../../csa/index.html">CS/A65 homepage</a>.
+	This is the description of an adapter to use CS/A boards in a Commodore PET. A lot of CS/A boards, including a video card, serial interfaces, floppy controller and an SCSI card can be found on the <a href="../../csa/index.html">CS/A65 homepage</a>.
 	</p>
 	<p>
-The interface itself is, in fact, pretty simple. It is a board that is plugged into the C64 expansion port. On the other side it provides a socket for a CS/A bus card. Two things have to be considered for the schematics:
+The interface itself is, in fact, pretty simple. It is a board that is plugged 
+underneath the 6502 CPU of the PET. On the other side it provides a socket for a CS/A bus card. Two things have to be considered for the schematics:
 <ul>
-    <li> The C64 Video chip releases the bus with rising Phi2. This is too late for the 6522. Thus the rising edge of Phi2 must be delayed to the CS/A bus, to be sure. The CS/A bus is specified to run up to 2 MHz, so there is no speed problem.</li>
-    <li> The I/O area in the C64 is 256 byte only. To cover the whole CS/A bus address space (1M memory and 4k I/O) additional address lines have to be generated. This is taken care of with a VIA 6522 on the adapter. More in the description. </li>
+    <li>The PET only has two free memory areas, $9*** and $A***, so additional
+	memory address lines have to be generated separately.</li>
+    <li> The I/O area is pretty cramped. Especially when you look at the
+	original I/O area address decoding: PIA1 is selected when A4 is high,
+	PIA2 when A5 is high, VIA when A6 is high and CRTC when A7 is high -
+	which means that on some addresses multiple chips are selected. Only
+	$E80* is left open. So this area is used to map the control registers.</li>
 	</ul>
 	</p>
 	</P>
 <h3>News:</h3>
 <ul class="news"><li>
-<small>2006-12-16</small>
-			Added an Eagle schematics board version.
+<small>2006-12-20</small>
+			Published the board.
 		</li></ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
 <li><a href="#boards">Board Revisions</a></li>
-<dir>
-<li>
-<a href="#board1">1.0C</a> (ok)</li>
-<li>
-<a href="#board2">1.0B</a> (ok)</li>
-</dir>
+<dir><li>
+<a href="#board1">1.1a</a> (prototype)</li></dir>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.0C</A></H3>
-<P>Status: ok</P>
+<H3><A NAME="board1">Version: 1.1a</A></H3>
+<P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board only works with a C64 - not with a C128!
+			This board has been tested with a 8296 only.
 		</TD>
 </TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			The layout could be better. If you have long plugs
-			for the video and IEC, they may conflict with the
-			CS/A card in the adapter board.
+			It seems that the board requires a separate power 
+			supply. When POKEing data into the BIOS memory, 
+			it works when between pokes there is enough time
+			(e.g. a PRINT statement), but misses some writes
+			when not.
 		</TD>
 </TR>
-</TABLE>
-<H4>Files</H4>
-<TABLE class="files">
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD>
-<A HREF="c64_csadapter-v1.0c.sch">c64_csadapter-v1.0c.sch</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD>
-<A HREF="c64_csadapter-v1.0c-sch.png">c64_csadapter-v1.0c-sch.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="c64_csadapter-v1.0c.brd">c64_csadapter-v1.0c.brd</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="c64_csadapter-v1.0c-brd.png">c64_csadapter-v1.0c-brd.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
-<TD>
-<A HREF="c64_csadapter.jpg">c64_csadapter.jpg</A></TD>
-</TR>
-</TABLE>
-<H3><A NAME="board2">Version: 1.0B</A></H3>
-<P>Status: ok</P>
-<H4>Notes</H4>
-<TABLE class="notes">
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board only works with a C64 - not with a C128!
+			The layout could be better. In a 8296 it reaches
+			over the main board power connector. I had to use
+			a stack of 40-pin sockets underneath to reach the
+			necessary height.
 		</TD>
 </TR>
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
-<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
-<TD>
-<A HREF="c64csa.jpg">c64csa.jpg</A></TD>
-</TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
 <TD>
-<A HREF="c64csadesc.txt">c64csadesc.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD>
-<A HREF="c64csaparts.txt">c64csaparts.txt</A></TD>
+<A HREF="petcsadesc-v1.1.txt">petcsadesc-v1.1.txt</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="c64csa.png">c64csa.png</A></TD>
+<A HREF="pet_csadapter-v1.1a.sch">pet_csadapter-v1.1a.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="c64csa.ps.gz">c64csa.ps.gz</A></TD>
+<A HREF="pet_csadapter-v1.1a-sch.png">pet_csadapter-v1.1a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="pet_csadapter-v1.1a.brd">pet_csadapter-v1.1a.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="pet_csadapter-v1.1a-brd.png">pet_csadapter-v1.1a-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="8296board.jpg">8296board.jpg</A>(The original 8296 board)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="8296board+drvio.jpg">8296board+drvio.jpg</A>(The board with adapter and DRVIO board)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="8296board+bios.jpg">8296board+bios.jpg</A>(The board with adapter and BIOS board)</TD>
 </TR>
 </TABLE>
 <h2>Disclaimer</h2>
@@ -164,7 +153,7 @@ All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
 <DIV ID="footer">
-<P>Last modified: 2006-12-16.</P>
+<P>Last modified: 2006-12-20.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>

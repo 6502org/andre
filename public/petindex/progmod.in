@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <META NAME="author" CONTENT="Andr&eacute; Fachat">
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
+<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
 <!--BASE HREF="http://www.6502.org/users/andre/petindex/progmod.html"-->
 <TITLE>PET index - programming model</TITLE>
 </HEAD>
