@@ -12,7 +12,10 @@
 	that you may find useful.
   </overview>
   <news>
-    <item date="2006-11-12">
+    <item date="2006-11-12" >
+	Added the OS/A65 (GeckOS) article.
+    </item>
+    <item date="2006-11-12" state="old">
 	Added the MMU, UART and remote control articles.
     </item>
     <item date="2006-11-01" state="old">
@@ -30,6 +33,8 @@
       <subitem name="UART serial interface" link="c64ser.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
       </subitem>
       <subitem name="Infrared remote control" link="remote.html"> - control your home equipment with your 6502 :-) (1997)
+      </subitem>
+      <subitem name="OS/A65 Multitasking/Multithreading Operating System" link="osa65.html"> - An article describing the <a href="../osa/index.html">GeckOS</a> operating system (1996)
       </subitem>
      <!--item name="Commodore 8-bit stuff">
       <subitem name="PETindex" link="petindex/index.html"> - a list of hardware

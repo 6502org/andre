@@ -2,3 +2,4 @@ f mmu65.html MMU for a 6502
 f c64ser.html UART serial interface
 f rdy.html RDY generation
 f remote.html Infrared remote control
+f osa65.html OS/A65 Operating System

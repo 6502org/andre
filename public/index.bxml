@@ -25,8 +25,10 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
-    <item date="2006-12-20">
-	Added a prototype <a href="cbmhw/petcsa/index.html">PET CS/A65 adapter</a> board, so that PETs can use CS/A65 boards as well.
+    <item date="2006-12-21">
+	Added a prototype <a href="cbmhw/petcsa/index.html">PET CS/A65 adapter</a> board, so that PETs can use CS/A65 boards as well. 
+	Also added an <a href="icap/osa65.html">old article</a> about the
+	<a href="osa/index.html">GeckOS</a> operating system.
     </item>
     <item date="2006-12-16">
 	Finally! Added a new <a href="csa/copro/index.html">CSA coprocessor</a> board, 

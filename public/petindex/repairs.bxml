@@ -1,0 +1,178 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Commodore PET repair info">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore hardware repair</keywords>
+  <metadesc>Commodore hardware repair descriptions</metadesc>
+  <overview><p>
+	This page contains an overview over hardware defects,
+	how to detect them and how to fix them.
+	</p><p>Note: this is a work in progress!</p>
+  </overview>
+  <news>
+    <item date="2006-12-21">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+  <itemlist name="Generic Advice">
+    <description>
+	This section contains generic advice.
+    </description>
+    <items>
+      <subitem name="Tools" >
+	In general you should have good tools if you endeavor to analyze
+	and fix a hardware problem with your PET. My main tool is a 
+	Voltmeter, and I regularly use an old oscilloscope (all tubes,
+	must be the same age as the first PET.... :-)
+	<br/>
+	Even without an oscilloscope you can use the Voltmeter to check
+	lines like Phi2 or address lines. If the Voltmeter shows Phi2
+	at constant 5V, it's dead. Same for 0V. Instead the Voltmeter should
+	be somewhere around 2-3V, as it averages Phi2 high and low.
+	<br/>
+	Additionally I have a simple "CPU emulator": A small board to plug
+	into the CPU socket, where I can set all address lines and the
+	R/-W line with dip switches. I use this to check address line
+	decoding.
+	<br/>
+	A reset switch comes in handy as well.
+      </subitem>
+      <subitem name="Be Careful" >
+	If handled improperly the PET electronics can be damaged. So please
+	minimize the risk of static electricity.
+	<br/>
+	The monitor can be damaged by switching it on and off very often
+	during testing. Consider using a separate monitor with the signal
+      </subitem>
+      <subitem name="Prepare" >
+	Prepare for your job. Read all about the symptoms you find on the
+	net, so you don't start in the wrong place.
+	<br/>
+	Print out the schematics. That helps.
+      </subitem>
+      <subitem name="First Job" >
+	When you get a PET to repair, first see if there is any apparent
+	damage. This includes the inside. Check that all necessary ROMs are 
+	present.
+	<br/>
+	PETs are notoriously known for socketed chips moving out of their
+	sockets. So one thing to do is to take the chips out and reseat
+	them properly. Take care to put them back in in the correct 
+	orientation.
+      </subitem>
+    </items>
+  </itemlist>
+  <itemlist name="PET's dead">
+    <description>
+	This section describes situations where the PET seems to be "dead".
+	<br/>
+	Apparently the new "CRTC" PET are more difficult than the older 
+	ones, as the CRTC must be programmed to generate a valid video
+	signal. Older PET would show at least garbage even if the CPU
+	was dead.
+    </description>
+    <items>
+      <subitem name="Initial Check">
+	Before you check anything else, check that there is power on 
+	the board e.g. by measuring 5V on the userport, then check
+	Phi2. If both are ok, then check what the CPU interrupt lines 
+	(IRQ, NMI, RES) do, and then the address lines. This should give
+	you an idea if it is a very basic problem or maybe something with
+	the ROMs for example.
+      </subitem>
+      <subitem name="CRTC PET">
+	In the CRTC PET a "dead" PET may not be completely dead. The CPU
+	must program the CRTC to actually generate a valid video signal.
+	So if the CPU is running and the PET still does not work, check
+	the ROM contents and the address decoding (either with the CPU
+	emulator or by monitoring the ROM select lines, esp. after reset.
+      </subitem>
+      <subitem name="8296(D)">
+	The 8296 and 8296-D (that use the same board, so I'll use 8296 only)
+	are notoriously known for broken PLA chips. To check that measure
+	the output pins of UE5 and UE6 with the scope. If they are constant
+	around 1-3V, but not clean TTL signals (0V or 5V) they are broken.
+	Build a replacement e.g. as described on 
+	<a href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">this
+	page</a> (in German, but should be easy to understand in english as well). 
+	Or use the info on <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/8296/index.html">this page</a>, including a GAL replacement
+	of the UE5 PLA.
+      </subitem>
+    </items>
+  </itemlist>
+  <itemlist name="Funny characters on the screen">
+    <description>
+	This section has descriptions of symptoms with "funny characters"
+	on the screen.
+    </description>
+    <items>
+      <subitem name="Non-CRTC-PET"> 
+	Here the screen displays the screen memory content even without 
+	the CPU doing anything. Therefore a "working" screen with constant funny
+	characters only says that the video circuitry seems to work.
+	<br/>
+	It might be a video or general memory problem. This can for example
+	be checked by swapping memory chips around. See also the first
+	link below.
+	<br/>
+	If that does not help, go to the "PET's dead" section.
+      </subitem>
+      <subitem name="Flickering screen">
+	If the screen is flickering in the sense that characters are changing
+	shape all the time, i.e. their pixel representation is not constant
+	or does not correspond to any know CBM character, then there is
+	a problem with the character generation. Try to reseat the 
+	character ROM, check its content.
+      </subitem>
+    </items>  
+  </itemlist>
+  <itemlist name="Monitor and other weird symptoms">
+    <description><p>
+	This section has an assorted list of symptoms...
+	</p>
+    </description>
+    <items>
+      <subitem name="Monitor after reset"> 
+	When the PET comes up with the built-in monitor (TIM) instead of
+	the BASIC prompt, check the value of the stack pointer. If it is
+	very low (e.g. "01") then there is a stack overflow, probably 
+	caused by too many interrupts. Check the "VDRIVE" signal on 
+	the keyboard PIA or VIA IC. If it shows the vertical sync video
+	signal, only that it is not between 0V and 5V, but between around 
+	0V and 1V, then the VIA may be broken and pulling the signal low,
+	so that the PIA has problems detecting the interrupt.
+      </subitem>
+      <subitem name="No 'chirp' after reset"> 
+	The 12" models have a piezo beeper and since BASIC4 they "chirp"
+	when reset. If such a model does not do this, check the 
+	beeper signal. If it does not exist, there may be problems with the
+	VIA. 
+	<br/>
+	In my case I had the 8296 boot either with chirp into the 
+	TIM monitor or without chirp into the BASIC prompt, and I found
+	a broken VIA.
+      </subitem>
+    </items>  
+   </itemlist>
+   <itemlist name="Links">
+    <description><p>
+	This section has links to descriptions of how hardware
+	issues with the PET have been resolved.
+	</p>
+    </description>
+    <items>
+      <subitem name="PET restoration" link="http://www.geocities.com/davegostelow/PETrestore/PETrestore.html"> of an original PET 2001-8 by Dave Gostelow
+      </subitem>
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

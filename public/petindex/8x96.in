@@ -20,35 +20,12 @@ had a 8250 disk drive builtin.
 In this document you find:
 </P>
 <P><UL>
-<LI><a href="#1">General Info</a> about the 8296</LI>
 <LI><a href="#2">General memory mapping</a> info for both machines, 8096 and 8296 </LI>
+<LI><a href="#1">General Info</a> about the 8296</LI>
 <LI><a href="#3">8296-D Information</a></LI>
 <LI><a href="#4">Original Docs and LOS-96 Operating System</a></LI>
 </UL>
 
-<H2><a name="1">8296 Information</a></H2>
-<P>
-The 8296 is a complete redesign of the PET universal board.
-It fits into the separate keyboard case, and directly holds 
-128k RAM, of which 96k can be used as in the 8096. In addition,
-using "user jumpers" on the motherboard, the ROM can be 
-completely switched off to access the RAM "under the ROM",
-so that the complete 128k RAM are accessible. The "user jumpers"
-could be set to connect to the userport, so this could even be done
-under program control.
-</P><P>
-For the other features of the 8296, please have a look at the 
-<A HREF="orig/8296supplement.html">8296 supplement</A>
-to the 8032 manual.
-</P><P>
-The 8296 uses three PLAs to reduce the number of logic chips considerably.
-The PLAs have been read out and the equations have been reverse engineered.
-You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> and the images and equations in <A HREF="local/8296desc3.tar.gz">8296desc3.tar.gz</A>.
-</P>
-<P>More info can also be found in the <A HREF="@CBMARC@/firmware/computers/pet/8296/index.html">8296 firmware page</A> on the CBM archive.</P>
-<P>The <a href="crtc.html">CRTC page</a> contains a block schematics on
-how the video circuitry works, that also shows how the memory is used.
-</P>
 <H2><a name="2">8x96 memory mapping</a></H2><P>
 The 64k RAM of the 8096 can replace the upper 32k address range. 
 The mapping is best depicted with this table
@@ -150,6 +127,29 @@ on the /Expansion Memory Board only/ are write protected.
 The screen is not write protected if screen peek through is enabled.
 When equal to 0, the addresses are not write protected.
 </PRE>
+<H2><a name="1">8296 Information</a></H2>
+<P>
+The 8296 is a complete redesign of the PET universal board.
+It fits into the separate keyboard case, and directly holds 
+128k RAM, of which 96k can be used as in the 8096. In addition,
+using "user jumpers" on the motherboard, the ROM can be 
+completely switched off to access the RAM "under the ROM",
+so that the complete 128k RAM are accessible. The "user jumpers"
+could be set to connect to the userport, so this could even be done
+under program control.
+</P><P>
+For the other features of the 8296, please have a look at the 
+<A HREF="orig/8296supplement.html">8296 supplement</A>
+to the 8032 manual.
+</P><P>
+The 8296 uses three PLAs to reduce the number of logic chips considerably.
+The PLAs have been read out and the equations have been reverse engineered.
+You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> and the images and equations in <A HREF="local/8296desc3.tar.gz">8296desc3.tar.gz</A>.
+</P>
+<P>More info can also be found in the <A HREF="@CBMARC@/firmware/computers/pet/8296/index.html">8296 firmware page</A> on the CBM archive.</P>
+<P>The <a href="crtc.html">CRTC page</a> contains a block schematics on
+how the video circuitry works, that also shows how the memory is used.
+</P>
 
 <H2><a name="3">8296-D</a></H2>
 <P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
