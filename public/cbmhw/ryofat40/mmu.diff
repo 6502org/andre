@@ -1,0 +1,20 @@
+--- pet-fat40-1mhz-n.hex	2006-12-22 21:52:08.000000000 +0100
++++ pet-fat40-1mhz-n-mmu.hex	2006-12-22 21:52:15.000000000 +0100
+@@ -2014,8 +2014,8 @@
+ 00007dd0  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+ 00007de0  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+ 00007df0  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+-00007e00  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+-00007e10  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
++00007e00  78 d8 a9 00 8d d0 ef a0  0f 98 99 f0 ef 88 10 f9  |x...............|
++00007e10  a9 11 8d f8 ef a9 18 8d  e0 ef 4c 16 fd aa aa aa  |..........L.....|
+ 00007e20  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+ 00007e30  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+ 00007e40  aa aa aa aa aa aa aa aa  aa aa aa aa aa aa aa aa  |................|
+@@ -2045,5 +2045,5 @@
+ 00007fc0  4c 60 f5 4c dd f2 4c af  f7 4c fe f7 4c a6 f2 4c  |L`.L..L..L..L..L|
+ 00007fd0  15 f2 4c 66 f2 4c 01 f4  4c dd f6 4c f6 f4 4c c3  |..Lf.L..L..L..L.|
+ 00007fe0  f6 4c 43 f3 4c 05 f2 4c  a2 f2 4c 68 f7 aa aa aa  |.LC.L..L..Lh....|
+-00007ff0  aa aa aa aa aa aa aa aa  aa aa 49 fd 16 fd 42 e4  |..........I...B.|
++00007ff0  aa aa aa aa aa aa aa aa  aa aa 49 fd 00 fe 42 e4  |..........I...B.|
+ 00008000
