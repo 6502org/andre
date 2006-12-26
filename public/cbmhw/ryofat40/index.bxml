@@ -134,6 +134,11 @@
      <subitem name="Fat40 4032 graphics keyboard 1MHz" link="roms/pet-fat40-1mhz-n-mmu.bin">
 	This is the 1MHz ROM that produces roughly PAL compatible video output in the MMU version.
      </subitem>
+     <subitem name="Fat40 4032 graphics keyboard 1MHz @MON" link="roms/pet-fat40-1mhz-n-mmu+mon.bin">
+	This is the same ROM as above, only that it includes a PET version
+	of the <a href="../../misc/index.html">@MON</a> machine language
+	monitor at $A000, to start with "SYS 40960".
+     </subitem>
      <subitem name="ROM diff" link="mmu.diff">This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
      </subitem>
      <subitem name="Patch source" link="initcsa.a65">This is the source for the ROM patch (excluding the modified reset vector.
