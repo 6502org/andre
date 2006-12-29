@@ -202,7 +202,6 @@
     </xsl:if>
    <ul>
     <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-    <xsl:apply-templates select="subitem"/>
     <xsl:for-each select="item">
       <li>
 	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
@@ -217,6 +216,7 @@
       </li>
       <br/>
     </xsl:for-each>
+    <xsl:apply-templates select="subitem"/>
    </ul>
    </xsl:for-each>
   <xsl:apply-templates select="disclaimer"/>

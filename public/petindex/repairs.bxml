@@ -23,6 +23,11 @@
 	This section contains generic advice.
     </description>
     <items>
+     <item name="Tools">
+	<description>
+	In general you should have good tools if you endeavor to analyze
+	and fix a hardware problem (not only(!)) with your PET ...
+	</description>
       <subitem name="Tools" >
 	In general you should have good tools if you endeavor to analyze
 	and fix a hardware problem with your PET. My main tool is a 
@@ -41,6 +46,44 @@
 	<br/>
 	A reset switch comes in handy as well.
       </subitem>
+      <subitem name="Tools II" >
+	Here a comment from William Levak: <p>
+I used to repair PET's with an oscilloscope and voltmeter. The kind of
+oscilloscope used on old analog TV's is perfect, because the video
+circuits are similar. These oscilloscopes were available in kit form from
+Heathkit, Knight, RCA, and a number of other sources. These oscilloscope
+kits were sold in the millions, and can still be found on the used
+electronics market. If you get a used one, the capacitors will probably
+need to be replaced, as they were the old paper type capacitors. They
+tend to go bad, especially if left sitting unused for years.
+</p><p>
+More recently though, I use a logic probe for the circuit board. Video
+problems can usually be deduced from the appearance of the display.
+</p>
+      </subitem>
+      <subitem name="Tools III" >
+Another comment from William:
+<p>
+Commodore made a diagnostic device for the PET. It consisted of a 40 pin
+clip that attached to the CPU. This was connected by ribbon cable to a
+small circuit board that contained a ROM and a reset switch. When
+pressed, the address bus was forced to $9xxx, causing the computer to
+initialize from the ROM on the diagnostic device. A diagnostic routine
+was then loaded to low memory on the computer and the 40 pin clip removed.
+</p><p>
+This device is not very complicated. I have never traced out the circuit,
+but it should not be difficult to do. I think the ROM images are in the
+CBM archive. There are two of these devices, one for PET's with the CRTC,
+and one for those without the CRTC. This device was not intended for the
+original PET's (which have their own built in diagnostic routine), but
+with a few changes to the system board, it will run on those too.
+</p><p>
+Ther are connectors with jumpers on them that need to be put on the
+keyboard and user ports. These are simple enough to be made by almost
+anyone.
+</p>
+      </subitem>
+	</item>
       <subitem name="Be Careful" >
 	If handled improperly the PET electronics can be damaged. So please
 	minimize the risk of static electricity.
@@ -155,6 +198,17 @@
 	In my case I had the 8296 boot either with chirp into the 
 	TIM monitor or without chirp into the BASIC prompt, and I found
 	a broken VIA.
+      </subitem>
+      <subitem name="SYNTAX ERROR on every command and screen scrolling problems">
+	I read of a case where on every command entered the system reacted
+	with a "SYNTAX ERROR". Also when scrolling the screen, some
+	characters change. This is a problem when the main CPU reads the	
+	video screen. When a command is entered, it is read from screen,
+	not from some buffer memory. Also when the screen is scrolled,
+	the data is read from the screen and written back to it.
+	So both problems came from the same source, the bus driver
+	that separated the video RAM from the CPU bus. It had a broken
+	driver in one of the lines. 
       </subitem>
     </items>  
    </itemlist>

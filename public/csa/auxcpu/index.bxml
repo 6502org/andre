@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 Auxiliary CPU</name>
+	<keywords>CSA65 6502 CPU</keywords>
+        <lastmodified>2006-12-27</lastmodified>
+	<desc><p>This board implements an auxiliary processor for the
+		CS/A65 bus system. The auxiliary CPU watches the bus 
+		error conditions signaled via the NOEXEC, WPROT
+		and NOTMAPD lines, and in such a case takes over the bus
+		to resolve the problem.
+		</p><p>
+		The auxiliary CPU does not have a full MMU, and
+		it does not have own memory either. It uses
+		32k on the bus for the top and bottom
+		16k of its address space. Two areas of 4k can be mapped 
+		similar to the
+		MMU, and two areas of 4k are set for the bus I/O and the 
+		secondary bus I/O.
+		</p><p>
+		The auxiliary board has a separate bus socket where
+		another CS/A65 I/O board can be plugged in that the 
+		processor can handle independently from the bus I/O.
+		</p>
+	</desc>
+        <news>
+                <item date="2006-12-27">
+                        Published the board.
+                </item>
+        </news>
+        <driver>
+                <name>AUXCPU test suite</name>
+                <desc><p>This test suite contains xxxx tests that each use
+			</p><p>
+			The tests run in a "Fat40" setup, but with main CPU
+			and BIOS boards, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
+			This way the operating system does not fiddle around
+			with the MMU registers necessary for the test.
+                        </p>
+                </desc>
+                <file ltype="driver" ptype="tgz">auxcpu.tar.gz</file>
+        </driver>
+        <!--diagram>
+                <file>copro-diag.gif</file>
+                <desc>Block diagram of the coprocessor board. The coprocessor
+		and the CS/A bus CPU access the shared memory and I/O register
+		using time sharing: during Phi2 the bus CPU has access, and
+		during Phi1 the coprocessor has access.
+                </desc>
+        </diagram-->
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg"><p>
+			This board has been fully tested in a test 
+			setup. The driver above contains the test
+			programs.</p><p>
+			The board itself consists of two boards, where
+			the smaller one is piggy-backed on top of the
+			main Euro-card-sized board. The smaller one
+			is called the "addon" board.
+			</p>
+		</note>
+		<file ltype="desc" ptype="txt">csaauxcpudesc-v1.0b.txt</file>
+		<file ltype="schem" ptype="png">csa_auxcpu-v1.0b-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_auxcpu-v1.0b.sch</file>
+		<file ltype="schem" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-sch.png</file>
+		<file ltype="schem" ptype="esch" note="The addon board">csa_auxcpu_addon-v1.0b.sch</file>
+		<file ltype="layout" ptype="png">csa_auxcpu-v1.0b-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_auxcpu-v1.0b.brd</file>
+		<file ltype="layout" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-brd.png</file>
+		<file ltype="layout" ptype="ebrd" note="The addon board">csa_auxcpu_addon-v1.0b.brd</file>
+		<file ltype="photo" ptype="jpg" note="The complete auxcpu board.">auxcpu.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The two auxcpucessor boards.">auxcpu-separated-sameside.jpg</file>
+	</rev>
+</board>

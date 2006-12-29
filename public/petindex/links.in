@@ -14,10 +14,11 @@
 <H2>Other PET Documents</H2>
 
 <P><UL>
-<LI><A NAME="petfaq"></A><A HREF="local/petfaq.html">Petfaq.html</A> or on the web <A HREF="http://www.portcommodore.com/petfaq.php">petfaq</A>.
+<LI><A NAME="petfaq"></A><A HREF="http://www.portcommodore.com/petfaq.php">Pet FAQ</A> - a lot of other PET information.
 </LI><LI><A NAME="petdoc"></A><A HREF="local/PETdoc.txt">PETdoc</A>
 </LI><LI><A NAME="petio"></A><A HREF="local/pet-io-2.txt">pet-io.txt</A>
 </LI><LI><A NAME="prodlist"></A>Canonical <A HREF="local/cbm-model-list.1.0.txt">list of Commodore products</A>
+</LI><LI><A NAME="portcommodore"></A><A HREF="http://www.portcommodore.com/petindex.php">Larry's PET/CBM Pages</A> with more links, BASIC Quick Reference, the Pet FAQ (see above) and more <a href="http://www.portcommodore.com/interfaces.php">Interfacing Info</a>.
 </LI></UL>
 
 <H2><A NAME="schematics"></A>Schematics</H2>
