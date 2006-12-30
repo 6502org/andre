@@ -337,6 +337,7 @@ like these, why I moved some of the lines around those days...)
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>PETCPU</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>UART</td><td></td></tr>
 <tr> <th>Main BIOS</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control, UART (opt)</td><td/><td>Control, UART (opt)</td> <td></td> </tr>
+<tr> <th>AUXCPU</th><td/><td/><td/><td/><td/><td>AUXCPU control (default)</td><td/><td>AUXCPU control (opt)</td><td/><td/><td/><td/><td/><td/><td></td><td></td></tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (default)</td><td>CRTC, Control (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (default)</td><td>PIA2 (default)</td><td></td><td>VIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
