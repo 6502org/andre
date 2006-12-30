@@ -2,11 +2,12 @@
 <board>
 	<name>CS/A65 Auxiliary CPU</name>
 	<keywords>CSA65 6502 CPU</keywords>
-        <lastmodified>2006-12-27</lastmodified>
+        <lastmodified>2006-12-30</lastmodified>
 	<desc><p>This board implements an auxiliary processor for the
 		CS/A65 bus system. The auxiliary CPU watches the bus 
-		error conditions signaled via the NOEXEC, WPROT
-		and NOTMAPD lines, and in such a case takes over the bus
+		error conditions signaled via the NOEXEC (no execution allowed,
+		which is checked with the CPU's SYNC line), WPROT (write protection)
+		and NOTMAPD (page not mapped) lines, and in such a case takes over the bus
 		to resolve the problem.
 		</p><p>
 		The auxiliary CPU does not have a full MMU, and
@@ -29,15 +30,52 @@
         </news>
         <driver>
                 <name>AUXCPU test suite</name>
-                <desc><p>This test suite contains xxxx tests that each use
+                <desc><p>This test suite contains nine tests that for the
+			auxcpu board:
 			</p><p>
 			The tests run in a "Fat40" setup, but with main CPU
 			and BIOS boards, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
 			This way the operating system does not fiddle around
 			with the MMU registers necessary for the test.
                         </p>
+			<ul>
+			<li>auxcpu1: Tests basic functionality. Loads a program
+				for the auxcpu, and starts it with the "external trigger"
+				functionality. Auxcpu flashes the BIOS board LED
+				and the DRVIO LEDs if the DRVIO board is plugged into
+				the secondary bus of the auxcpu. Does not give control
+				back to the maincpu.</li>
+			<li>auxcpu2: Same as auxcpu1, only instead of static RAM from
+				the BIOS board, uses dRAM from the VDC board, to
+				see if the timing is ok there too.</li>
+			<li>auxcpu3: blinks the LEDs as well, but after each flash the
+				control is given back to the maincpu that does the 
+				actual wait loop until triggering the next flash in 
+				the auxcpu.</li>
+			<li>auxcpu4: Tests the write protect (WPROT) handling. Maps a page
+				as write protected, and writes to it. The auxcpu prints
+				the fault address on the screen.</li>
+			<li>auxcpu4a: Same as auxcpu4, only that the screen memory 
+				is mapped using not the MAPRAM, but MAP0 register.</li>
+			<li>auxcpu5: Tests the NOEXEC handling. Maps a page
+				as NOEXEC, and jumps to it. The auxcpu prints
+				the fault address on the screen and lets the maincpu return.</li>
+			<li>auxcpu6: Tests the "not mapped" handling. Maps a page
+				as not mapped, and reads it. The auxcpu prints
+				the fault address on the screen.</li>
+			<li>auxcpu7: Combines NOEXEC, WPROT, and NOTMAPD handling Maps a page
+				as not mapped, no execute, and write protected, and accesses it. 
+				The auxcpu prints the fault address on the screen.</li>
+			<li>auxcpu8: Tests the trace feature. Enables trace and prints the next
+				five opcode addresses and opcodes on the screen.
+				</li>
+			<li>auxcpu9: Same as auxcpu7, only that the auxcpu also triggers
+				an intterupt for the maincpu.</li>
+			</ul>
                 </desc>
                 <file ltype="driver" ptype="tgz">auxcpu.tar.gz</file>
+                <file ltype="photo" ptype="jpg" note="Sample trace output (The first poke is specific for my setup - I'm still using an old charrom - you can ignore it)">trace.jpg</file>
+                <file ltype="memmap" ptype="jpg" note="This shows the memory mapping used in the test cases.">memsetup.gif</file>
         </driver>
         <!--diagram>
                 <file>copro-diag.gif</file>
@@ -48,19 +86,68 @@
                 </desc>
         </diagram-->
 	<rev>
-		<version>1.0B</version>
+		<version>1.0C</version>
 		<status>ok</status>
-		<note type="msg"><p>
-			This board has been fully tested in a test 
+		<note type="warn">
+			In this board the schematics has been tested, the layout has not been tested, though.
+		</note>
+		<note type="msg">
+			This board has been tested in a test 
 			setup. The driver above contains the test
-			programs.</p><p>
+			programs.
+		</note>
+		<note type="msg">
 			The board itself consists of two boards, where
 			the smaller one is piggy-backed on top of the
 			main Euro-card-sized board. The smaller one
 			is called the "addon" board.
+		</note>
+		<note type="msg">
+			The two timing diagrams show the timing of various signals on
+			the schematics during the operation. They should help in understanding the
+			boards.
+		</note>
+		<note type="msg">Please note that it still uses the v1.0b version of the addon board.
+		</note>
+		<file ltype="desc" ptype="txt">csaauxcpudesc-v1.0c.txt</file>
+		<file ltype="schem" ptype="png">csa_auxcpu-v1.0c-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_auxcpu-v1.0c.sch</file>
+		<file ltype="schem" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-sch.png</file>
+		<file ltype="schem" ptype="esch" note="The addon board">csa_auxcpu_addon-v1.0b.sch</file>
+		<file ltype="layout" ptype="png">csa_auxcpu-v1.0c-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_auxcpu-v1.0c.brd</file>
+		<file ltype="layout" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-brd.png</file>
+		<file ltype="layout" ptype="ebrd" note="The addon board">csa_auxcpu_addon-v1.0b.brd</file>
+		<file ltype="photo" ptype="jpg" note="The complete auxcpu board.">auxcpubrds.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The two auxcpucessor boards.">auxcpubrds-separate.jpg</file>
+		<file ltype="timing" ptype="jpg" note="Timing sheet 1">timing1.jpg</file>
+		<file ltype="timing" ptype="jpg" note="Timing sheet 2">timing2.jpg</file>
+	</rev>
+	<rev>
+		<version>1.0B</version>
+		<status>prototype with bugs</status>
+		<note type="warn"><p>
+			The following bugs have been found:
+			<ul>
+			<li>The address selection goes to $e8d*/e8f* instead of $e85*/e87*</li>
+			<li>The /MEMSEL and /IOSEL lines on IC1 are messed up.</li>
+			<li>There is no interrupt generation feature.</li>
+			</ul>
+			It seems that over checking and fixing the timing generation I forgot to check
+			the more trivial parts. The complicated parts all worked out of the box... :-)
 			</p>
 		</note>
-		<file ltype="desc" ptype="txt">csaauxcpudesc-v1.0b.txt</file>
+		<note type="msg">
+			This board has been tested in a test 
+			setup. The driver above contains the test
+			programs.
+		</note>
+		<note type="msg">
+			The board itself consists of two boards, where
+			the smaller one is piggy-backed on top of the
+			main Euro-card-sized board. The smaller one
+			is called the "addon" board.
+		</note>
 		<file ltype="schem" ptype="png">csa_auxcpu-v1.0b-sch.png</file>
 		<file ltype="schem" ptype="esch">csa_auxcpu-v1.0b.sch</file>
 		<file ltype="schem" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-sch.png</file>
@@ -69,7 +156,7 @@
 		<file ltype="layout" ptype="ebrd">csa_auxcpu-v1.0b.brd</file>
 		<file ltype="layout" ptype="png" note="The addon board">csa_auxcpu_addon-v1.0b-brd.png</file>
 		<file ltype="layout" ptype="ebrd" note="The addon board">csa_auxcpu_addon-v1.0b.brd</file>
-		<file ltype="photo" ptype="jpg" note="The complete auxcpu board.">auxcpu.jpg</file>
-		<file ltype="photo" ptype="jpg" note="The two auxcpucessor boards.">auxcpu-separated-sameside.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The complete auxcpu board.">auxcpubrds.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The two auxcpucessor boards.">auxcpubrds-separate.jpg</file>
 	</rev>
 </board>
