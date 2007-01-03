@@ -19,28 +19,86 @@
   </news>
   <toc/>
   <itemlist name="Generic Advice">
-    <description>
+    <desc>
 	This section contains generic advice.
-    </description>
+    </desc>
     <items>
-      <subitem name="Tools" >
+     <item name="Tools">
+	<desc>
 	In general you should have good tools if you endeavor to analyze
-	and fix a hardware problem with your PET. My main tool is a 
-	Voltmeter, and I regularly use an old oscilloscope (all tubes,
-	must be the same age as the first PET.... :-)
-	<br/>
-	Even without an oscilloscope you can use the Voltmeter to check
+	and fix a hardware problem (not only(!)) with your PET ...
+	</desc>
+      <subitem name="Generic Tools" >
+	<div class="rightimg">
+	<image src="imgs/osci.jpg"/><br/>
+		<caption>My trusty old Oscilloscope I got in used condition
+		in 1986 from a swap for then 160DM (about 80€) - all 
+		tubes and still works :-)</caption>
+	</div>
+	My main tool is a 
+	Voltmeter, and I regularly use an old oscilloscope. A logic
+	probe is also very helpful if you don't have an oscilloscope. It
+	should at least be able to detect hi, lo, open, and clocking.
+	<p>Here a comment from William Levak: </p><p class="quote">
+I used to repair PET's with an oscilloscope and voltmeter. The kind of
+oscilloscope used on old analog TV's is perfect, because the video
+circuits are similar. These oscilloscopes were available in kit form from
+Heathkit, Knight, RCA, and a number of other sources. These oscilloscope
+kits were sold in the millions, and can still be found on the used
+electronics market. If you get a used one, the capacitors will probably
+need to be replaced, as they were the old paper type capacitors. They
+tend to go bad, especially if left sitting unused for years.
+</p>	
+	<p>Even without an oscilloscope or logic probe 
+	you can use the Voltmeter to check
 	lines like Phi2 or address lines. If the Voltmeter shows Phi2
 	at constant 5V, it's dead. Same for 0V. Instead the Voltmeter should
 	be somewhere around 2-3V, as it averages Phi2 high and low.
-	<br/>
-	Additionally I have a simple "CPU emulator": A small board to plug
+	</p>
+      </subitem>
+      <subitem name="6502 and PET Specific Tools" > Here some
+	more specific tools, that you can actually build yourself if needed:
+	<p>
+	I have a simple "CPU emulator": A small board to plug
 	into the CPU socket, where I can set all address lines and the
 	R/-W line with dip switches. I use this to check address line
 	decoding.
-	<br/>
+	</p><p>
 	A reset switch comes in handy as well.
+	</p>
+Quote from Olaf Seibert from the PETdoc document:
+<p class="quote">
+If you hold down the diagnostic
+sense line (user port pin 5), you'll end up in the monitor instead
+of doing the full reset thingie. A PET at our school's computer club
+had a smart thing with a switch wired to reset, and diag through a
+condensator. If you flicked it quicky it would reset; if you kept the
+switch in the alternate position a few seconds it would decharge the
+condensator, pull down diag, and when switched back you came back in
+the monitor.</p>
+Another comment from William:
+<p class="quote">
+Commodore made a diagnostic device for the PET. It consisted of a 40 pin
+clip that attached to the CPU. This was connected by ribbon cable to a
+small circuit board that contained a ROM and a reset switch. When
+pressed, the address bus was forced to $9xxx, causing the computer to
+initialize from the ROM on the diagnostic device. A diagnostic routine
+was then loaded to low memory on the computer and the 40 pin clip removed.
+</p><p class="quote">
+This device is not very complicated. I have never traced out the circuit,
+but it should not be difficult to do. I think the ROM images are in the
+CBM archive. There are two of these devices, one for PET's with the CRTC,
+and one for those without the CRTC. This device was not intended for the
+original PET's (which have their own built in diagnostic routine), but
+with a few changes to the system board, it will run on those too.
+</p><p class="quote">
+There are connectors with jumpers on them that need to be put on the
+keyboard and user ports. These are simple enough to be made by almost
+anyone.
+</p>
+<p>Note: the diagnostic devices and their use are described in the <a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">"Testing the PET Computer" manual</a>, unfortunately the manual assumes you already have them, so it lacks the details. I could find neither the schematics nor the ROMs and test programs on the net, sorry. So if you can provide this info, this would be very helpful!</p>
       </subitem>
+	</item>
       <subitem name="Be Careful" >
 	If handled improperly the PET electronics can be damaged. So please
 	minimize the risk of static electricity.
@@ -67,14 +125,14 @@
     </items>
   </itemlist>
   <itemlist name="PET's dead">
-    <description>
+    <desc>
 	This section describes situations where the PET seems to be "dead".
 	<br/>
 	Apparently the new "CRTC" PET are more difficult than the older 
 	ones, as the CRTC must be programmed to generate a valid video
 	signal. Older PET would show at least garbage even if the CPU
 	was dead.
-    </description>
+    </desc>
     <items>
       <subitem name="Initial Check">
 	Before you check anything else, check that there is power on 
@@ -105,10 +163,10 @@
     </items>
   </itemlist>
   <itemlist name="Funny characters on the screen">
-    <description>
+    <desc>
 	This section has descriptions of symptoms with "funny characters"
 	on the screen.
-    </description>
+    </desc>
     <items>
       <subitem name="Non-CRTC-PET"> 
 	Here the screen displays the screen memory content even without 
@@ -131,10 +189,9 @@
     </items>  
   </itemlist>
   <itemlist name="Monitor and other weird symptoms">
-    <description><p>
+    <desc>
 	This section has an assorted list of symptoms...
-	</p>
-    </description>
+    </desc>
     <items>
       <subitem name="Monitor after reset"> 
 	When the PET comes up with the built-in monitor (TIM) instead of
@@ -156,15 +213,27 @@
 	TIM monitor or without chirp into the BASIC prompt, and I found
 	a broken VIA.
       </subitem>
+      <subitem name="SYNTAX ERROR on every command and screen scrolling problems">
+	I read of a case where on every command entered the system reacted
+	with a "SYNTAX ERROR". Also when scrolling the screen, some
+	characters change. This is a problem when the main CPU reads the	
+	video screen. When a command is entered, it is read from screen,
+	not from some buffer memory. Also when the screen is scrolled,
+	the data is read from the screen and written back to it.
+	So both problems came from the same source, the bus driver
+	that separated the video RAM from the CPU bus. It had a broken
+	driver in one of the lines. 
+      </subitem>
     </items>  
    </itemlist>
    <itemlist name="Links">
-    <description><p>
+    <desc>
 	This section has links to descriptions of how hardware
 	issues with the PET have been resolved.
-	</p>
-    </description>
+    </desc>
     <items>
+      <subitem name="Diagnostic Manuals" link="http://www.commodore.ca/manuals/default.htm">commodore.ca has a number of diagnostic manuals. 
+      </subitem>
       <subitem name="PET restoration" link="http://www.geocities.com/davegostelow/PETrestore/PETrestore.html"> of an original PET 2001-8 by Dave Gostelow
       </subitem>
     </items>

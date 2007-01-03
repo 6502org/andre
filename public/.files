@@ -2,7 +2,7 @@ s Commodore
 d petindex CBM PETindex
 d cbmhw CBM hardware and mods
 s Hardware
-d csa CS/A65 and Gecko computer
+d csa CS/A65 Caspaer and Gecko computer
 d hwinfo ICs and Standards Info
 s Software
 d osa GeckOS operating system

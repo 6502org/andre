@@ -20,8 +20,8 @@
     </item>
   </news-->
   <toc/>
-  <itemlist name="Introduction" toc="intro">
-    <description>
+  <section name="Introduction" toc="intro">
+    <desc>
 <p>
 In 1989, I first thought about building a self-designed computer.  I 
 already had some experience with 6502 based computers. A friend of mine 
@@ -36,16 +36,16 @@ wanted to go a step further and do a real multitasking, microkernel
 design OS. This constrained the hardware design to allow memory mapping 
 of key memory locations, including the 6502 zero-page and stack.
 </p>
-    </description>
-  </itemlist>
-  <itemlist name="What Should a Real OS Do?" toc="realos">
-    <description><p>
+    </desc>
+  </section>
+  <section name="What Should a Real OS Do?" toc="realos">
+    <desc><p>
 A real operating system has four major parts that handle the 
 input/output, filesystems, memory management and process handling.  At 
 the very least, a "real" OS includes some form of multitasking :-)
 </p>
-    </description>
-    <items><item name="Process Management" toc="procs"><description>
+    </desc>
+    <subsection name="Process Management" toc="procs"><desc>
 <p>
 Process management forms one block of an OS. A multitasking operating 
 system requires more administration than a single-tasking OS. A process, 
@@ -76,7 +76,7 @@ preferred, as cooperative multitasking fails when a single process
 forgets or is unable to relinquish control of the CPU.  If such a 
 scenario occurs, the computer is "blocked".
 </p>
-</description></item><item name="I/O" toc="io"><description>
+</desc></subsection><subsection name="I/O" toc="io"><desc>
 <p>
 As the second part, I/O provides a uniform interface to all peripherals, 
 including character devices (serial lines, parallel printers), or block 
@@ -93,7 +93,7 @@ data corruption by an interrupt routine and a program (or the kernel)
 using the same memory locations at the same time. So, even if you don't 
 like interrupts, you have to use them.
 </p>
-</description></item><item name="Filesystem" toc="fs"><description>
+</desc></subsection><subsection name="Filesystem" toc="fs"><desc>
 <p>
 As the third part, the filesystem provides user-level abstraction of I/O. 
 Files store information of any kind. It is the most visible part of the 
@@ -111,7 +111,7 @@ their respective followers. Since a filesystem keeps all internal
 structures to itself, it is possible to mount differently structured 
 filesystems in one system.
 </p>
-</description></item><item name="Memory Management" toc="mmu"><description>
+</desc></subsection><subsection name="Memory Management" toc="mmu"><desc>
 <p>
 As the final part, memory management keeps track of which parts of the 
 memory are in use and which are not. Memory can be allocated when needed 
@@ -143,7 +143,7 @@ then virtual addresses are a very nice feature. You can hide the pages
 used by other tasks or map the same memory to several tasks, making it 
 shared memory.
 </p>
-</description></item><item name="In the CBMs..." toc="cbm"><description>
+</desc></subsection><subsection name="In the CBMs..." toc="cbm"><desc>
 <p>
 These inclusion of these features implies that all resources can be 
 assigned equally to each task. As there are problems with this in the 
@@ -185,11 +185,11 @@ CPUs was done to save 1541.  In its effort to cut costs, Commodore forced
 the single CPU of the 1541 to multitask, creating a bare operating system 
 to support drive operation.
 </p>
-    </description>
-    </item></items>
-  </itemlist>
-  <itemlist name="Modern Kernel Design" toc="design">
-    <description><p>
+    </desc>
+    </subsection>
+  </section>
+  <section name="Modern Kernel Design" toc="design">
+    <desc><p>
 Early operating systems started with a monolithic approach. i.e. all the 
 system functions were provided with one big binary. Modern UNIX systems- 
 even Linux, which is not derived from the original UNIX source- use this 
@@ -213,16 +213,15 @@ don't allow alternate OS system to run alongside or instead of themselves.
 On the other hand, the GNU Hurd operating system exploits the mach design
 to allow any server to be replaced by another.
 </p>
-    </description>
-  </itemlist>
-  <itemlist name="The OS/A65 Operating System" toc="osa">
-    <description><p>
+    </desc>
+  </section>
+  <section name="The OS/A65 Operating System" toc="osa">
+    <desc><p>
 Now let's get from theory to practice...
 </p>
-    </description>
-    <items>
-     <item name="The Kernel Implementation" toc="kernel">
-    <description><p>
+    </desc>
+     <subsection name="The Kernel Implementation" toc="kernel">
+    <desc><p>
 When it comes to hardware design, the 6502 has a big advantage: It is a 
 very simple CPU. With only a few support ICs, it is possible to build a 
 fully functional computer (neglecting video and sound capabilities). On 
@@ -313,10 +312,10 @@ tasks, and even between tasks and devices. Each task has a standard
 input, output, and error streams opened upon creation, analogous to the 
 stream in UNIX systems. The shell can even redirect or pipe the output.
 </p>
-    </description>
-    </item>
-  <item name="Program examples" toc="examples">
-    <description><p>
+    </desc>
+    </subsection>
+  <subsection name="Program examples" toc="examples">
+    <desc><p>
 The shell is a good example to show some of the capabilities of the 
 system. As already mentioned, each task has three specially assigned 
 streams. Filesystem tasks don't use them (and have them set to an ignored 
@@ -341,10 +340,10 @@ which is recognized by the other end when there's nothing more to read.
 This works for read only and write only opens, but not for read/write 
 opens.
 </p>
-    </description>
-   </item>
-  <item name="Problems" toc="problems">
-    <description><p>
+    </desc>
+   </subsection>
+  <subsection name="Problems" toc="problems">
+    <desc><p>
 Bootstrapping was the first major problem. How do you start a new 
 computer and debug its OS if don't have an OS on the computer?  From 
 earlier systems I already had a small monitor program - directly burned 
@@ -363,13 +362,12 @@ MMU, this is not a problem after all. But it showed out to be a
 significant problem when porting the OS to systems without MMU, like the 
 C64 (see below).
 </p>
-    </description>
-    </item>
-   </items>
-  </itemlist>
+    </desc>
+    </subsection>
+  </section>
 
-  <itemlist name="Operating without an MMU" toc="nommu">
-    <description><p>
+  <section name="Operating without an MMU" toc="nommu">
+    <desc><p>
 After the system worked well with an MMU, I decided to build a stripped 
 down version for systems without an MMU to better fit some `embedded 
 applications' I had in mind. The system without an MMU is much more a 
@@ -391,11 +389,11 @@ manipulate the protected data at a time. Semaphores originate from the
 railways, where it is important not to have two trains on the same rail, 
 running in opposite directions...
 </p>
-    </description>
-  </itemlist>
+    </desc>
+  </section>
 
-  <itemlist name="Port to the C64" toc="c64">
-    <description><p>
+  <section name="Port to the C64" toc="c64">
+    <desc><p>
 In addition to lacking an MMU, the Commodore 64 posed other porting 
 problems. Only small changes had to be made to the kernel.  The C64 
 kernel required an interrupt source for task switching. The video device 
@@ -412,10 +410,10 @@ Therefore, some routines have been changed, while others can only be
 protected by a semaphore.
 
 </p>
-    </description>
-  </itemlist>
-  <itemlist name="Port to the C128" toc="c128">
-    <description><p>
+    </desc>
+  </section>
+  <section name="Port to the C128" toc="c128">
+    <desc><p>
 Well, the C128 has more memory and even the capability of remapping the 
 stack and zero page to other locations. In a simple expansion of the C64 
 version, this could be a way to raise the limited stack size to the full 
@@ -428,10 +426,10 @@ relocated to fit the new address range. Unfortunately, plans to extend
 the system calls or add relocation capabilities do not exist at this 
 time.
 </p>
-    </description>
-  </itemlist>
-  <itemlist name="Conclusion" toc="conclusion">
-    <description><p>
+    </desc>
+  </section>
+  <section name="Conclusion" toc="conclusion">
+    <desc><p>
 The OS/A65 operating system provides multitasking and multithreading 
 capabilities with a modern kernel design for a 6502 CPU. The OS can be 
 used from embedded applications to desktop systems. A shell provides 
@@ -442,8 +440,8 @@ way I wanted them designed. I also learned a lot about operating system
 design - maybe you have learned a bit as well. If you are interested in 
 it, more information is available at 
 <a href="../osa/index.html">the GeckOS page</a></p>
-    </description>
-  </itemlist>
+    </desc>
+  </section>
   <disclaimer name="Disclaimer">
 @DISCLAIMER@
   </disclaimer>

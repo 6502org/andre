@@ -1,4 +1,20 @@
 
+.rightimg {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+li li {
+	margin-top: 10px;
+}
+
+.quote {
+	font-style: italic;
+}
+
 BODY { 
 	background-color: #ffffff;
 	color: #000000;

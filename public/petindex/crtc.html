@@ -37,7 +37,7 @@
 </ul>
 <li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <li class="dir"><a href="../hwinfo/index.html">ICs and Standards Info</a></li>
 <li class="separator">Software</li>
 <li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
@@ -97,6 +97,7 @@ computer page or in the PET schematics on the
 </dir>
 </DIV>
 <h2><a name="crtc">CRTC use in the PET</a></h2>
+<p>
 <P>
 There are a few things that might be different from other implementations
 in the PET. The CRTC has been used in 40 columns and 80 columns models.
@@ -127,8 +128,9 @@ blanks the scanlines for the scanlines beyond the 8th.
 Without that and only RA0-2 used for character ROM address the
 same character would be redisplayed from the start.
 </P>
-    <H3><a name="fat40">PET 4032 'Fat40'</a></H3>
-	<description>
+    </p>
+<H3><a name="fat40">PET 4032 'Fat40'</a></H3>
+<p>
 <P>The so-called 'Fat40' is a 4032 model that has a 12" screen
 and a "universal board" - a board that can be used for the 8032 or the
 4032. Thus it uses the CRTC as video chip. A separate static memory
@@ -177,17 +179,16 @@ PIA1 CB1 line to
 generate system interrupts with the frame rate. Also the state
 of this line can be checked with VIA PB5.
 </P>
-	</description>
-	<H3><a name="8032">PET 8032</a></H3>
-	<description>
+	</p>
+<H3><a name="8032">PET 8032</a></H3>
+<p>
 <P>The universal board can also be used in the 8032. As the 8032 also
 runs on 1MHz only, there is a problem with the memory bandwidth.
 The memory used was static RAM with a maximum access frequency of
 2MHz. As half the cycles were reserved for the CPU (Phi2 high),
 only 1MHz video RAM bandwidth was left, which is only enough for
 40 columns a line - with an 8 bit graphics data bus.
-</P>
-<P>In the 8032, however, Commodore decided to use a 16 bit
+</P><P>In the 8032, however, Commodore decided to use a 16 bit
 graphics data bus. How does this work? The video memory is separated
 into to areas of 1kByte each, that the CPU can write to independetly
 with 8 bit access. One area is for even addresses, the other for
@@ -237,14 +238,13 @@ PET 8032 CRTC usage block diagram
 <P>This diagram shows how the RAM and latches are doubled for even and odd addresses.
 It also makes it clear that it is a relatively simple addition to the 4032 to display
 80 columns. This is one reason why universal boards are actually feasible.
-</P>
-<P>This setup also explains why even the 80 columns PET actually initialize the
+</P><P>This setup also explains why even the 80 columns PET actually initialize the
 CRTC video chip with 40 columns - as the video RAM bus width is 16bit instead of 8bit,
 each of the CRTC character actually is two characters on the screen.
 </P>
-	</description>
-	<H3><a name="8296">PET 8296</a></H3>
-	<description>
+	</p>
+<H3><a name="8296">PET 8296</a></H3>
+<p>
 <P>The 8296 is a different beast altogether. Here the separate static video memory is
 completely gone. All the memory of the system (actually 128k, of which 96k can be
 used as main memory and 4k as video memory) is put into two dynamic RAM banks of
@@ -293,8 +293,9 @@ that the memory is accessed faster than 2MHz. In fact it is accessed
 faster, with approx. 4Mhz, as can be seen in the description of the UC2
 PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
-	</description>
-	<h2><a name="timing">PET timing examples</a></h2>
+	</p>
+<h2><a name="timing">PET timing examples</a></h2>
+<p>
 <P>
 The following table shows some timing examples for the PET CRTC
 as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
@@ -337,7 +338,8 @@ time/fram [ms]
 framerate [Hz]
  fram/time             50      50      50      50      47       47
 </PRE>
-	<h2>Disclaimer</h2>
+	</p>
+<h2>Disclaimer</h2>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

@@ -28,7 +28,7 @@ DO NOT RUN those programs! They are provided for educational purposes only! Ther
   </news-->
   <toc/>
   <itemlist name="Vertical Retrace" toc="crtc1">
-    <description>
+    <desc>
 <p>
 Those two programs demonstrate the timing of the vertical retrace
 for upper/lowercase and graphics modes respectively.
@@ -67,7 +67,7 @@ cycles/frame = cycles/rasterline *
 and you get the number of cycles the raster interrupt is triggered
 _before_ the first screen cycle.
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc1.a65</file>
      <file ltype="src" ptype="a65" >crtc2.a65</file>
@@ -75,7 +75,7 @@ _before_ the first screen cycle.
   </itemlist>
 
   <itemlist name="Uncompensated HSync" toc="crtc3">
-    <description>
+    <desc>
 <p>
 This program moves the next-to-last line two character to the right.
 It does this by setting the VIA interrupt to somewhere in the
@@ -95,13 +95,13 @@ line of digits with the distortion.
 </p><p>
 <a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="30%"/></a>
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc3.a65</file>
     </items>
   </itemlist>
   <itemlist name="Compensated HSync" toc="crtc4">
-    <description>
+    <desc>
 <p>
 Those two programs implement the side-shift by adjusting the 
 line length of the line before the shift, such that the hsync
@@ -123,7 +123,7 @@ use of IEEE488 during the demo (crashes :-(
 </p><p>
 <a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="30%"/></a>
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc4.a65</file>
      <file ltype="src" ptype="a65" >crtc5.a65</file>
@@ -131,7 +131,7 @@ use of IEEE488 during the demo (crashes :-(
   </itemlist>
 
   <itemlist name="Chars per line" toc="crtc6">
-    <description>
+    <desc>
 <p>
 Those test programs demonstrate the rasterline timing with 
 respect to the number of visible chars/line. One first remark:
@@ -169,7 +169,7 @@ Of those chars only the last rasterline is seen, as the next line
 continues where the last rasterline of the previous line ends.
 crtc9 then does the correct timing.
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc6.a65</file>
      <file ltype="src" ptype="a65" >crtc7.a65</file>
@@ -179,7 +179,7 @@ crtc9 then does the correct timing.
   </itemlist>
 
   <itemlist name="Character Height" toc="crtc10">
-    <description>
+    <desc>
 <p>
 Those three programs try to change the character height in the next 
 to last character line. The first attempt sets the character height
@@ -224,7 +224,7 @@ adjust the vertical timing, though, so the total frame
 timing is different (4 rasterlines short). However, the 
 interrupt timing is not changed, so this works.
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc10.a65</file>
      <file ltype="src" ptype="a65" >crtc11.a65</file>
@@ -233,7 +233,7 @@ interrupt timing is not changed, so this works.
   </itemlist>
 
   <itemlist name="Vertical boarders" toc="crtc13">
-    <description>
+    <desc>
 <p>
 This test one opens the vertical borders by writing a value into
 the vertical displayed rows register that is lower than the 
@@ -251,7 +251,7 @@ This effect can actually much easier be done by
 a POKE 59520, 6: POKE 59521, 64 :-)
 (If you use VICE, do a PRINT CHR$(142) before the pokes).
 </p>
-    </description>
+    </desc>
     <items>
      <file ltype="src" ptype="a65" >crtc13.a65</file>
     </items>

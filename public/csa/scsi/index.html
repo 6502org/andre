@@ -15,8 +15,9 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <ul class="menu1" >
+<li class="file"><a href="../memmap.html">Memory Map</a></li>
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
@@ -25,6 +26,7 @@
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
+<li class="dir"><a href="../auxcpu/index.html">Auxiliary CPU</a></li>
 <li class="separator">I/O boards</li>
 <li class="dir"><a href="../vdc/index.html">Video board</a></li>
 <li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
@@ -61,19 +63,18 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 SCSI interface</H1>
-<P>
-<p>This board implements a SCSI interface for the CS/A65
+
+<p><p>This board implements a SCSI interface for the CS/A65
 		computer. It implements a mechanism to use the
 		asynchronous mode on parallel SCSI cables - that
 		is defined even in the <a href="../../hwinfo/scsi.html">SCSI-III standard</a>.
 		This interface can be used to attach disk drives 
 		and other SCSI devices. It has only been tested with 
 		SCSI disks, though (yet).
-		</p>
-<p>
+		</p><p>
 		Since revision 1.1 it also includes an I2C controller.
 		</p>
-	</P>
+	</p>
 <h3>News:</h3>
 <ul class="news">
 <li>
@@ -127,7 +128,6 @@ interface from the german elektor magazin (around '88 or so).
 It has been reworked to get more SCSI-II compliance, but it is still
 not there. It works, however, with my Seagate ST1096N harddisk :-)
 		</p></p>
-<ul></ul>
 <H2><a name="swarc">Software Architecture</a></H2>
 <p><p>The software architecture is kept as flexible as possible.
 Three levels work together, the hardware driver, the partition
@@ -136,7 +136,7 @@ block numbers in the device, and the third level which is the
 filesystem code.
 </p></p>
 <H3><a name="hwlay">Hardware layer</a></H3>
-<p>
+<p><p>
 The hardware layer is a low level driver that can detect the
 devices connected to the SCSI bus, inquire the device (it returns
 the type etc), get the blocksize and read or write single blocks.
@@ -149,9 +149,9 @@ for another interface, that I implemented in the VICE
 emulator, not in hardware. You write the block number to some
 I/O locations and get the right block memory mapped. This code
 shows how easy it is to replace the hardware level if necessary.
-</p>
+</p></p>
 <H3><a name="part">Partition layer</a></H3>
-<p>
+<p><p>
 The partition level consists of three parts, where only two
 are implemented so far.
 First in the file <code>part.i65</code>
@@ -166,18 +166,18 @@ table appropriately.
 The third part would be an <code>fdisk</code> program that uses the low
 level routines to manipulate the partition tables. But here I still
 rely on the Linux counterpart I already have :-)
-</p>
+</p></p>
 <H3><a name="fs">Filesystem level</a></H3>
-<p>
+<p><p>
 The upper level is the filesystem level. It contains code to handle
 directories, files, allocation tables etc.
 This is not contained in the basic SCSI drivers, because it is
 heavily depending on the operating system.
 It should be easy to implement any filesystem you like on the level
 provided by the partition code.
-</p>
+</p></p>
 <H3><a name="drvs">Drivers</a></H3>
-<p>
+<p><p>
 The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
 system</a>. An example of a filesystem
 implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
@@ -185,17 +185,16 @@ that implement a fileserver task for the GeckOS/A65 operating
 system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 (no FAT32 and no long filenames). But be warned, it is an early
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
-</p>
-<ul></ul>
+</p></p>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">OS/A65 I2C driver</A></H3>
-<P>
+<p>
                         This test driver handles the I2C interface, and
 			writes a consecutive sequence of numbers to I2C
 			address $40 where I have a parallel port 
 			PCF8574 with LEDs on the outputs for testing. 
 .
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -204,14 +203,14 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <H3><A NAME="driver2">PETCPU fat40 I2C driver</A></H3>
-<P>
+<p>
                         This test driver handles the I2C interface, and
 			writes a consecutive sequence of numbers to I2C
 			address $40 where I have a parallel port 
 			PCF8574 with LEDs on the outputs for testing. 
 			It can be run
 			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -220,15 +219,13 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <H3><A NAME="driver3">PETCPU fat40 SCSI driver</A></H3>
-<P>
-<p>
+<p><p>
                         This driver handles the base SCSI operations 
 			in a <a href="../../cbmhw/ryofat40/index.html">PETCPU fat40</a> setup. 
-			</p>
-<p>
+			</p><p>
 			Note: This driver is newer than the OS/A65 driver below.
 			</p>
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -252,7 +249,7 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <H3><A NAME="driver4">OS/A65 SCSI driver</A></H3>
-<P>
+<p>
                         This driver handles the base SCSI operations.
 			It consists of these files:
                         <ul>
@@ -281,7 +278,7 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 			<li>
 <code>writeblock</code> - write a block</li>
 			</ul>
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
