@@ -8,7 +8,7 @@
     <homepage>@WEBROOT@</homepage>
   </author>
   <keywords></keywords>
-  <metadesc></metadesc>
+  <meta></metadesc>
   <overview>
   </overview>
   <news>
@@ -17,13 +17,13 @@
   </news>
   <toc/>
   <itemlist name="" toc="">
-    <description>
-    </description>
+    <!--desc>
+    </desc-->
     <items>
      <subitem name="" link=""></subitem>
      <item name="" toc="">
-      <description>
-      </description>
+      <!--desc>
+      </desc-->
       <subitem name="" link=""></subitem>
      </item>
     </items>

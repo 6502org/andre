@@ -17,8 +17,8 @@ On these pages you will find quite some software I made around the
     </item>
   </news>
   <itemlist name="Crossdevelopment">
-    <description>
-    </description>
+    <!--desc>
+    </desc-->
     <items>
       <subitem name="xa65" link="@XA@">6502 crossassembler<br/>
 This is the 6502 crossassembler I developed to use with my seflbuilt
@@ -38,8 +38,8 @@ Cameron Kaiser. The new website (with current versions) is
    </items>
   </itemlist>
   <itemlist name="C64 development">
-    <description>These programs are not under development anymore.
-    </description>
+    <desc>These programs are not under development anymore.
+    </desc>
      <items>
       <subitem name="@basic">My own basic extension for the C64.
 Provides list-scroll, builtin micromonitor, disk-basic, and some more
@@ -64,8 +64,8 @@ computers. A special version for the CBM&nbsp;600 (aka B128) is available.</subi
      </items>
    </itemlist>
    <itemlist name="Other programs">
-    <description>Here is some other stuff that might be of interest.
-    </description>
+    <desc>Here is some other stuff that might be of interest.
+    </desc>
     <items>
       <subitem name="BDOS+">This program reads and writes
 PC floppy disks on a C128 with a VC1571 disk drive.

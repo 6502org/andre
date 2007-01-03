@@ -33,8 +33,7 @@
                 <desc><p>This test suite contains nine tests that for the
 			auxcpu board:
 			</p><p>
-			The tests run in a "Fat40" setup, but with main CPU
-			and BIOS boards, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
+			The tests run in a <a href="../index.html#caspaer">Caspaer</a> setup, but with Commodore PET ROMs, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
 			This way the operating system does not fiddle around
 			with the MMU registers necessary for the test.
                         </p>

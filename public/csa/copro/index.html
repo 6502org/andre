@@ -15,8 +15,9 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <ul class="menu1" >
+<li class="file"><a href="../memmap.html">Memory Map</a></li>
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
@@ -62,7 +63,8 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 Copro</H1>
-<P>This board implements a 6502 coprocessor board for the 
+
+<p>This board implements a 6502 coprocessor board for the 
 		CS/A65 bus system. The coprocessor runs in parallel to the
 		main bus CPU, with the same clock frequency as the bus itself.
 		The bus CPU and the coprocessor can communicate via a 
@@ -73,7 +75,7 @@
 		The coprocessor board has a separate bus socket where
 		another CS/A65 I/O board can be plugged in that the 
 		coprocessor can handle independently from the bus I/O.
-	</P>
+	</p>
 <h3>News:</h3>
 <ul class="news"><li>
 <small>2006-12-16</small>
@@ -96,15 +98,14 @@
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">Copro test suite</A></H3>
-<P>
-<p>This test suite contains four tests that each use
+<p><p>This test suite contains four tests that each use
 			the coprocessor in a different way. The first test
 			simply sets the shared memory to new values, the other
 			tests use an I/O board (here a DRVIO board) to toggle
 			I/O lines (here the two LED lines of the DRVIO board).
 			These tests test the I/O and the interrupt abilities.
                         </p>
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -230,11 +231,11 @@
 </TR>
 </TABLE>
 <H2><A name="blkdiag">Block diagram</A></H2>
-<img src="copro-diag.gif" alt="block diagram"><P><desc>Block diagram of the coprocessor board. The coprocessor
+<img src="copro-diag.gif" alt="block diagram"><p>Block diagram of the coprocessor board. The coprocessor
 		and the CS/A bus CPU access the shared memory and I/O register
 		using time sharing: during Phi2 the bus CPU has access, and
 		during Phi1 the coprocessor has access.
-                </desc></P>
+                </p>
 <DIV ID="footer">
 <P>Last modified: 2006-12-16.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>

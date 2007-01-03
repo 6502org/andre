@@ -23,8 +23,8 @@
     </item>
   </news>
   <itemlist name="Quickfinder">
-    <description>
-    </description>
+    <!--desc>
+    </desc-->
     <items>
       <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
       </subitem>

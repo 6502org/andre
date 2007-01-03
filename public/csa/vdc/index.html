@@ -15,8 +15,9 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <ul class="menu1" >
+<li class="file"><a href="../memmap.html">Memory Map</a></li>
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
@@ -62,13 +63,14 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 Video board</H1>
-<P>This board implements the a video board for the CS/A65 bus.
+
+<p>This board implements the a video board for the CS/A65 bus.
 		The board uses 64k dynamic RAM that is accessed in a
 		time-shared way, by the CPU at Phi2 high, and by the
 		video at Phi2 low. Due to this interlock the board can
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
-	</P>
+	</p>
 <h3>News:</h3>
 <ul class="news"><li>
 <small>2006-11-01</small>
@@ -93,7 +95,7 @@
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">OS/A65 VDC hardware driver</A></H3>
-<P>This is the video-specific hardware part of the 
+<p>This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -110,7 +112,7 @@
 			The console can actually work in 40 columns (1MHz CPU clock) and
 			80 columns mode (2MHz CPU clock). This is detected by 
 			checking bit 7 of the <code>freq</code> variable.
-		</P>
+		</p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -294,7 +296,7 @@
 </TR>
 </TABLE>
 <H2><A name="blkdiag">Block diagram</A></H2>
-<img src="vdc.gif" alt="block diagram"><P><desc>Block diagram of the vdc board. Only some relevant info
+<img src="vdc.gif" alt="block diagram"><p>Block diagram of the vdc board. Only some relevant info
 			is shown. It is actually a pretty simple design, if
 			it were not for the timing...
 			The CPU accesses the memory during Phi2 high, so 
@@ -308,7 +310,7 @@
 			is then shifted out to the video output.
 			More on how the CRTC works can be found on the
 			<a href="../../hwinfo/crtctest/index.html">CRTC page</a>.
-		</desc></P>
+		</p>
 <DIV ID="footer">
 <P>Last modified: 2006-11-01.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>

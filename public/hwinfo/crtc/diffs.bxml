@@ -34,9 +34,9 @@
   </news-->
   <toc/>
   <itemlist name="Pinout" toc="pinout">
-    <description>
+    <desc>
 	Although the pin naming is different, the pinout itself is the same for all chips, and all pins have the same meaning.
-    </description>
+    </desc>
     <!--items>
      <subitem name="" link=""></subitem>
      <item name="">
@@ -47,7 +47,7 @@
     </disclaimer-->
   </itemlist>
   <itemlist name="Status Register" toc="statusreg">
-    <description>
+    <desc>
 	The Status register is read when the register select (RS) pin is low (when writing to this address, the index in the CRTC register file is written).
 	<pre>
 Commodore 6545-1, Rockwell 6545-1
@@ -80,7 +80,7 @@ Motorola 6845, 6845-1, Hitachi 46505
     before vertical retrace ends to ensure that critical timings for
     refresh RAM is met."
 	</pre>
-    </description>
+    </desc>
     <!--items>
      <subitem name="" link=""></subitem>
      <item name="">
@@ -92,7 +92,7 @@ Motorola 6845, 6845-1, Hitachi 46505
   </itemlist>
 
   <itemlist name="Register File" toc="registers">
-    <description>
+    <desc>
 	The following registers are basically the same for all chips (see notes):
 	<pre>
 R0	Horizontal Total (-1)
@@ -121,7 +121,7 @@ R17	Lightpen address low (8 bit)
     All others can only read R14-R17.
 	</pre>
 	Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
-    </description>
+    </desc>
     <!--items>
      <subitem name="" link=""></subitem>
      <item name="">
@@ -132,13 +132,13 @@ R17	Lightpen address low (8 bit)
     </disclaimer-->
   </itemlist>
   <itemlist name="The major differences in the register file" toc="regdiffs">
-    <description>
+    <desc>
 	The following items describe the major register file differences.
-    </description>
+    </desc>
     <items>
      <!--subitem name="" link=""></subitem-->
      <item name="R3, sync widths" toc="diffr3">
-      	<description>
+      	<desc>
 <pre>
 Motorola 6845, Hitachi 46505:
 
@@ -150,11 +150,11 @@ Commodore 6545-1, Rockwell 6545 and 6545-1, Motorola 6845-1:
 	Bits 0-3: horizontal sync width in character times. Value=0 -> 16
 	Bits 4-7: vertical sync width in rasterlines. Value=0 -> 16
 </pre>
-	</description>
+	</desc>
       <!--subitem name="" link=""></subitem-->
      </item>
      <item name="R8, Mode Control" toc="diffr8">
-      	<description>
+      	<desc>
 <pre>
 Commodore 6545-1 and Rockwell 6545-1:
 
@@ -230,21 +230,21 @@ Motorola 6845-1
 </p><p>
 Now lets explain certain features that are mentioned in the table.
 </p>
-	</description>
+	</desc>
       </item>
     </items>
     <!--disclaimer name="">
     </disclaimer-->
   </itemlist>
   <itemlist name="Different Modes of Operation" toc="opmodes">
-    <description>
+    <desc>
 	The following sections explain the different modes of operation
 	of the different models.
-    </description>
+    </desc>
     <items>
      <!--subitem name="" link=""></subitem-->
      <item name="Straight binary vs. row/column addressing" toc="rowcol">
-	<description>
+	<desc>
 	<p>
 	The memory address counter can be set to two different modes. In the "straight binary" mode the counter is a normal 14 bit binary counter. The characters displayed on screen are taken from a consecutive area when MA0-MA13 are used as memory address.
 	</p><p>
@@ -254,22 +254,22 @@ In row/column mode MA0-MA7 dubs as the column counter CC0-CC7 and presents the v
 	a power of two long, in general
 	256 bytes (or less, depending on how many address bits are used).
 	</p>
-	</description>
+	</desc>
       <!--subitem name="" link=""></subitem-->
      </item>
      <item name="Interlace and Video modes (All but Commodore)" toc="interlace">
-	<description>
+	<desc>
 	<p>
 In the interlace mode the vertical sync signal is alternately delayed or not delayed for half of a rasterline time. This results in that every even-numbered frame is slightly shifted up or down as compared to the odd-numbered frame. This allows to fill up the double number of rasterlines, where two rasterlines always have the same content. The total frame time would then be double the "normal" CRTC frame time, as the second CRTC frame is used to fill the rasterlines "in between". So two identical CRTC frames, slightly shifted, make up a full frame on the display.
 	</p><p>
 This is different in the "interlace &amp; video" mode. Here the rasterline counter for each char increases by two. Thus in the first of the two interlaced CRTC frames the even rasterlines are drawn and in the second the odd ones. This effectively doubles the vertical resolution of the monitor: One character still is e.g. 8 rasterlines high, but the even 4 rasterlines are drawn in the first frame, and the odd 4 rasterlines in the second.
 There are certain restrictions on the register values for interlace and interlace &amp; video mode, please refer to the Motorola documentation. The most important is that the vertical display register (R6) must hold half the number of displayed characterlines.
 	</p>
-	</description>
+	</desc>
       <!--subitem name="" link=""></subitem-->
      </item>
      <item name="Shared and Transparent Addressing (Rockwell 6545 only)" toc="transparent">
-	<description>
+	<desc>
 	<p>
 This mode is set with R8 bit 3. Writing a 0 sets the shared adressing mode. In this mode the CRTC assumes that the CPU has an independent means of accessing the video memory - sharing the memory. A very common method is to switch the memory addresses from CRTC during Phi2/E low to CPU during Phi2/E high.
 	</p><p>
@@ -289,7 +289,7 @@ After each update access the address in the update register is incremented by 1.
 Interestingly the Commodore 8563 VDC chip used in the C128 computer seems to be a direct descendant of the CRTC. The first 20 registers (with the exception of the mode register, R8) are the same as the Rockwell 6545 registers. Specifically the VDC only allows the transparent addressing. Therefore even R31 is kept - here the data to be transferred to/from the video memory must be written to/read from. Because this access is horribly slow, the VDC can also do copy operations in the video RAM by itself.
 	</p><p>
 	</p>
-	</description>
+	</desc>
       <!--subitem name="" link=""></subitem-->
      </item>
     </items>

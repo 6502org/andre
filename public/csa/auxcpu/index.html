@@ -15,8 +15,9 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <ul class="menu1" >
+<li class="file"><a href="../memmap.html">Memory Map</a></li>
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
@@ -62,15 +63,14 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 Auxiliary CPU</H1>
-<P>
-<p>This board implements an auxiliary processor for the
+
+<p><p>This board implements an auxiliary processor for the
 		CS/A65 bus system. The auxiliary CPU watches the bus 
 		error conditions signaled via the NOEXEC (no execution allowed,
 		which is checked with the CPU's SYNC line), WPROT (write protection)
 		and NOTMAPD (page not mapped) lines, and in such a case takes over the bus
 		to resolve the problem.
-		</p>
-<p>
+		</p><p>
 		The auxiliary CPU does not have a full MMU, and
 		it does not have own memory either. It uses
 		32k on the bus for the top and bottom
@@ -78,13 +78,12 @@
 		similar to the
 		MMU, and two areas of 4k are set for the bus I/O and the 
 		secondary bus I/O.
-		</p>
-<p>
+		</p><p>
 		The auxiliary board has a separate bus socket where
 		another CS/A65 I/O board can be plugged in that the 
 		processor can handle independently from the bus I/O.
 		</p>
-	</P>
+	</p>
 <h3>News:</h3>
 <ul class="news"><li>
 <small>2006-12-27</small>
@@ -106,13 +105,10 @@
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">AUXCPU test suite</A></H3>
-<P>
-<p>This test suite contains nine tests that for the
+<p><p>This test suite contains nine tests that for the
 			auxcpu board:
-			</p>
-<p>
-			The tests run in a "Fat40" setup, but with main CPU
-			and BIOS boards, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
+			</p><p>
+			The tests run in a <a href="../index.html#caspaer">Caspaer</a> setup, but with Commodore PET ROMs, as described in <a href="../../cbmhw/ryofat40/index.html">Roll-Your-Own-Fat40</a>.
 			This way the operating system does not fiddle around
 			with the MMU registers necessary for the test.
                         </p>
@@ -150,7 +146,7 @@
 			<li>auxcpu9: Same as auxcpu7, only that the auxcpu also triggers
 				an intterupt for the maincpu.</li>
 			</ul>
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>

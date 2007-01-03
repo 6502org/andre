@@ -15,8 +15,9 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <ul class="menu1" >
+<li class="file"><a href="../memmap.html">Memory Map</a></li>
 <li class="separator">Specifications</li>
 <li class="file"><a href="../bus.html">Bus V1.0</a></li>
 <li class="file"><a href="../bus-1.1.html">Bus V1.1</a></li>
@@ -62,9 +63,10 @@
 </DIV>
 <DIV ID="content">
 <H1>CS/A65 PC floppy interface</H1>
-<P>This board implements a shugart bus interface as used 
+
+<p>This board implements a shugart bus interface as used 
 		in the standard PC floppy disk drives (5.25" and 3.5").
-	</P>
+	</p>
 <h3>News:</h3>
 <ul class="news"><li>
 <small>2006-11-01</small>
@@ -85,18 +87,16 @@
 </DIV>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">PETCPU test</A></H3>
-<P>
-<p>
+<p><p>
 			This file includes a small test program that
 			does a "readaddress" command on the WDC and either
 			prints the sector header (in reverse) or the 
 			WDC status register in case of an error.
-			</p>
-<p>This driver runs on a PETCPU with the Commodore
+			</p><p>This driver runs on a PETCPU with the Commodore
 			PET ROMs (just 'dL"test1"' :-) and expects the 
 			card I/O at $E8C0 (WD177x) and $E8D0 (VIA).
 			</p>
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -105,7 +105,7 @@
 </TR>
 </TABLE>
 <H3><A NAME="driver2">OS/A65 shugart bus floppy driver</A></H3>
-<P>
+<p>
                         This driver handles the WD1770/1772 shugart bus floppy device.
 			It is included in the <code>fsibm</code> filesystem code
 			and provides the interface the filesystem expects.
@@ -124,7 +124,7 @@
                         </ul>
 			The driver calls the method <code>dchanged</code> to
 			signal that a disk has been changed.
-                </P>
+                </p>
 <TABLE class="files">
 <TR>
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>

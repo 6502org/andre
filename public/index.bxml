@@ -105,8 +105,8 @@ improve messaging and communication throughput, add C support and more.
     </item>
   </oldnews>
   <itemlist name="Quickfinder">
-    <description>
-    </description>
+    <!--desc>
+    </desc-->
     <items class="quickfinder">
      <item name="Commodore 8-bit stuff" class="cbm">
       <subitem name="PETindex" link="petindex/index.html"> - a list of hardware

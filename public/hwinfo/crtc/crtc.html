@@ -18,7 +18,7 @@
 <li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <li class="dir"><a href="../../hwinfo/index.html">ICs and Standards Info</a></li>
 <ul class="menu1" >
 <li class="dir"><a href="../crtc/index.html">CRTC 6545/6845</a></li>
@@ -90,6 +90,7 @@ computer page or in the PET schematics on the
 </dir>
 </DIV>
 <h2><a name="desc">General Description</a></h2>
+<p>
 <P>
 The CRTC has a bus interface compatible to the 6502 bus system,
 providing two registers, an address register and a value register.
@@ -114,8 +115,9 @@ will only go into the most common one, which is also used in the
 PET line of computers, the normal non-interlaced
 sync mode.
 </P>
-    <H3><a name="timing">Timing</a></H3>
-      <description>
+    </p>
+<H3><a name="timing">Timing</a></H3>
+<p>
 <P>
 The word <EM>Line</EM> in a video context can have two meanings: The
 line of characters being displayed as text or a rasterline.
@@ -123,8 +125,7 @@ A rasterline is a horizontal line of pixels that can either be
 black or white (or on or off, or in newer systems have <EM>one</EM>
 color). A character line consists of several rasterlines, i.e. all
 characters in one line have the same height.
-</P>
-<P>
+</P><P>
 The horizontal (line-) timing is determined by the character clock
 (that defines the length of one character and in which all line
 timing is measured) and the following registers:</P>
@@ -167,8 +168,7 @@ the memory address of the start of the line is presented, and for
 each following CCLK cycle the MA0-13 address lines are increased
 by one. Memory addresses are only valid, to be displayed addresses
 when the Display Enable signal is active (high).
-</P>
-<P>
+</P><P>
 A character line now consists of a number of scanlines
 </P>
 <PRE>
@@ -180,8 +180,7 @@ As each scanline of one single character line should read the
 character value from the same position in memory, the address
 shown on the MA0-13 lines repeat each other for each scanline.
 Therefore the same memory location is being read.
-</P>
-<P>
+</P><P>
 To display different lines on screen the Row Address lines RA0-4
 are used. They give the number of the scanline within the current
 character line. Thus by selecting a different character to raster
@@ -241,9 +240,9 @@ After the number of rasterlines (as given by R4 and R5) is displayed
 all counters are reset, the start of line character memory address
 is reset to the value of R12/R13 and the whole thing starts again.
 </P>
-      </description>
-     <H3><a name="cursor">Cursor Control</a></H3>
-      <description>
+      </p>
+<H3><a name="cursor">Cursor Control</a></H3>
+<p>
 <P>
 The CRTC can generate a hardware cursor signal
 </P>
@@ -267,8 +266,9 @@ lines MA0-13 match the number set in R14/R15, and the scanline of the
 character is in the range of R10/R11 and a valid active cursor
 mode is selected.
 </P>
-      </description>
-     <h2><a name="pet">Example CRTC use in the Commodore PET</a></h2>
+      </p>
+<h2><a name="pet">Example CRTC use in the Commodore PET</a></h2>
+<p>
 <P>
 This is an example of how the CRTC can be used in a computer. For more
 accurate information see the <a href="../../petindex/crtc.html">PETindex CRTC page</a>.
@@ -325,8 +325,12 @@ shift register that makes a pixel stream rather than a byte stream.
 When Phi2 is high then the Mux selects the CPU address lines for the
 video RAM, allowing normal CPU memory accesses.
 </P>
-      <H3><a name="petiming">PET timing examples</a></H3>
-      <description>
+<P>More examples, for example how a 1MHz CRTC can produce 80 column display
+by doubling the memory bandwidth can be seen in the <a href="../../petindex/crtc.html">Petindex CRTC page</a>.
+</P>
+      </p>
+<H3><a name="petiming">PET timing examples</a></H3>
+<p>
 <P>
 The following table shows some timing examples for the PET CRTC
 as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
@@ -369,8 +373,8 @@ time/fram [ms]
 framerate [Hz]
  fram/time             50      50      50      50      47       47
 </PRE>
-      </description>
-	<h2>Disclaimer</h2>
+      </p>
+<h2>Disclaimer</h2>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

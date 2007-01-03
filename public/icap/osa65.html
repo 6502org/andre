@@ -18,7 +18,7 @@
 <li class="dir"><a href="../petindex/index.html">CBM PETindex</a></li>
 <li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <li class="dir"><a href="../hwinfo/index.html">ICs and Standards Info</a></li>
 <li class="separator">Software</li>
 <li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
@@ -75,29 +75,31 @@
 </DIV>
 <h2><a name="intro">Introduction</a></h2>
 <p>
+<p>
 In 1989, I first thought about building a self-designed computer.  I 
 already had some experience with 6502 based computers. A friend of mine 
 and I had been trying to build a telephone line switch computer based on 
 the 6502. Although the project never succeeded (well, to a certain extent 
 it worked, but then we always got new ideas...), the project gave me an 
 idea of what an OS should be capable of.
-</p>
-<p>
+</p><p>
 With my homebrew computer, I not only wanted to implement one of those 
 'simple' OSes as in the C64 or other 6502 based computer, but I also 
 wanted to go a step further and do a real multitasking, microkernel 
 design OS. This constrained the hardware design to allow memory mapping 
 of key memory locations, including the 6502 zero-page and stack.
 </p>
-    <h2><a name="realos">What Should a Real OS Do?</a></h2>
-<p>
+    </p>
+<h2><a name="realos">What Should a Real OS Do?</a></h2>
+<p><p>
 A real operating system has four major parts that handle the 
 input/output, filesystems, memory management and process handling.  At 
 the very least, a "real" OS includes some form of multitasking :-)
 </p>
-    <ul>
+    </p>
+<ul>
 <li>
-<strong><a name="procs">Process Management</a></strong><br><br>
+<strong><a name="procs">Process Management</a></strong><br><br><p>
 <p>
 Process management forms one block of an OS. A multitasking operating 
 system requires more administration than a single-tasking OS. A process, 
@@ -118,8 +120,7 @@ the tasks and not enough time executing the tasks.  The same concepts
 hold true for multiprocessor  computers, except that such a machine can 
 achieve parallel operation on as many tasks as there are CPUs in the 
 system.
-</p>
-<p>
+</p><p>
 A scheduler interrupts the CPU after a certain time to allow the CPU to 
 be assigned to another task. If the scheduler interrupts the task itself 
 to schedule a new task, the system is called preemptive. If the task has 
@@ -129,9 +130,10 @@ preferred, as cooperative multitasking fails when a single process
 forgets or is unable to relinquish control of the CPU.  If such a 
 scenario occurs, the computer is "blocked".
 </p>
+</p>
 </li>
 <br><li>
-<strong><a name="io">I/O</a></strong><br><br>
+<strong><a name="io">I/O</a></strong><br><br><p>
 <p>
 As the second part, I/O provides a uniform interface to all peripherals, 
 including character devices (serial lines, parallel printers), or block 
@@ -148,9 +150,10 @@ data corruption by an interrupt routine and a program (or the kernel)
 using the same memory locations at the same time. So, even if you don't 
 like interrupts, you have to use them.
 </p>
+</p>
 </li>
 <br><li>
-<strong><a name="fs">Filesystem</a></strong><br><br>
+<strong><a name="fs">Filesystem</a></strong><br><br><p>
 <p>
 As the third part, the filesystem provides user-level abstraction of I/O. 
 Files store information of any kind. It is the most visible part of the 
@@ -168,9 +171,10 @@ their respective followers. Since a filesystem keeps all internal
 structures to itself, it is possible to mount differently structured 
 filesystems in one system.
 </p>
+</p>
 </li>
 <br><li>
-<strong><a name="mmu">Memory Management</a></strong><br><br>
+<strong><a name="mmu">Memory Management</a></strong><br><br><p>
 <p>
 As the final part, memory management keeps track of which parts of the 
 memory are in use and which are not. Memory can be allocated when needed 
@@ -188,8 +192,7 @@ management unit (MMU). Software called a memory mapper is used to load
 and change the table. It loads the table with the values set up for each 
 task.  So the same opcode address in two different tasks accesses very 
 different memory locations in the RAM.
-</p>
-<p>
+</p><p>
 More sophisticated memory managers even do swapping. The memory manager 
 allows a task to allocate more memory than actually available. If a 
 memory location that is not available is accessed, the CPU is trapped 
@@ -203,9 +206,10 @@ then virtual addresses are a very nice feature. You can hide the pages
 used by other tasks or map the same memory to several tasks, making it 
 shared memory.
 </p>
+</p>
 </li>
 <br><li>
-<strong><a name="cbm">In the CBMs...</a></strong><br><br>
+<strong><a name="cbm">In the CBMs...</a></strong><br><br><p>
 <p>
 These inclusion of these features implies that all resources can be 
 assigned equally to each task. As there are problems with this in the 
@@ -217,8 +221,7 @@ some I/O registers).  These register accesses are trapped and appropriate
 action is taken. This means that the task can behave as if it owns the 
 entire machine.  This also means it must load its own OS to handle disk 
 and other I/O (the second part of the "VM/*" naming scheme).
-</p>
-<p>
+</p><p>
 
 The Commodore PET and its successors, the VIC, C64 and 128, already 
 contain some functionality of a "real" OS.  On these machines, a single 
@@ -232,8 +235,7 @@ memory is assigned to the single running process. (Although sometimes the
 need for multiple $cXXX pages seems pressing.)  The filesystem, an 
 important part of an OS, is put into the floppy drive on Commodore 8-bit 
 computers and is accessed via standard I/O over the IEEE bus.
-</p>
-<p>
+</p><p>
 
 One interesting exception is the old (IEEE488) Commodore disk drives. 
 These drives have not one but two processors: one 6502 and a 6504 that 
@@ -249,17 +251,17 @@ CPUs was done to save 1541.  In its effort to cut costs, Commodore forced
 the single CPU of the 1541 to multitask, creating a bare operating system 
 to support drive operation.
 </p>
-    </li>
+    </p>
+</li>
 <br>
 </ul>
 <h2><a name="design">Modern Kernel Design</a></h2>
-<p>
+<p><p>
 Early operating systems started with a monolithic approach. i.e. all the 
 system functions were provided with one big binary. Modern UNIX systems- 
 even Linux, which is not derived from the original UNIX source- use this 
 concept.
-</p>
-<p>
+</p><p>
 A modern kernel instead has a microkernel design. A microkernel only 
 provides the means of communication between different processes, not 
 doing much itself. Some implementations even have the scheduler (!) or 
@@ -268,8 +270,7 @@ processes to find out about free memory pages and which task to start
 next. This reduces the size of the kernel and allows greater flexibility.  
 On the downside, the microkernel designs forces more messages to be 
 transferred, slowing down operation somewhat.
-</p>
-<p>
+</p><p>
 One `famous' microkernel implementation is the current Mach microkernel. 
 This kernel, and its derivatives, has been ported to many platforms. The 
 PowerPC Platform OS/2 is based on a mach derived microkernel, as well as 
@@ -279,13 +280,15 @@ don't allow alternate OS system to run alongside or instead of themselves.
 On the other hand, the GNU Hurd operating system exploits the mach design
 to allow any server to be replaced by another.
 </p>
-    <h2><a name="osa">The OS/A65 Operating System</a></h2>
-<p>
+    </p>
+<h2><a name="osa">The OS/A65 Operating System</a></h2>
+<p><p>
 Now let's get from theory to practice...
 </p>
-    <ul>
+    </p>
+<ul>
 <li>
-<strong><a name="kernel">The Kernel Implementation</a></strong><br><br><p>
+<strong><a name="kernel">The Kernel Implementation</a></strong><br><br><p><p>
 When it comes to hardware design, the 6502 has a big advantage: It is a 
 very simple CPU. With only a few support ICs, it is possible to build a 
 fully functional computer (neglecting video and sound capabilities). On 
@@ -295,8 +298,7 @@ can hold a complete 16 bit 6502 memory location. Even the stack pointer
 is 8 bits, restricting the stack to the 256 bytes from $0100 to $01ff. 
 The stack size and the absolute addresses are a severe limitation if you 
 intend to develop a multitasking OS on this machine.
-</p>
-<p>
+</p><p>
 Because I was developing a new system, I could do anything I wanted to 
 get around this problem. I solved the stack problem by using an MMU, a 
 Memory Management Unit. (Although the used chip, the 74ls610 is stated to 
@@ -308,8 +310,7 @@ used as the upper 8 address bits, extending the total accessible memory
 to 1 MByte. The CPU could switch each 4 kByte page to any of the 256 
 pages available by changing the register values in the MMU. Oops - just 
 introduced virtual addresses to the 6502 ;-)
-</p>
-<p>
+</p><p>
 
 For each task, new memory is allocated and saved in the task's page 
 table. When a task is activated, the MMU registers are loaded with these 
@@ -317,8 +318,7 @@ values, giving each task its own memory environment. In the described OS,
 the memory `manager' is part of the kernel, although a quite independent 
 part. The virtual addresses in the opcodes are translated to the real 
 addresses through the contents of the MMU registers.
-</p>
-<p>
+</p><p>
 
 The tasks are handled by the environment routines. These routines set up 
 the environment tables used by the scheduler. The (round robin) scheduler 
@@ -327,8 +327,7 @@ Preemptive multitasking is achieved by using the interrupt to switch
 between different tasks. The most important routines are the two kernel 
 entry and exit routines. These sub-routines have to switch the pages and 
 the stack pointer as well as preserve all other register values. 
-</p>
-<p>
+</p><p>
 
 The tasks providing filesystem services register with the filesystem 
 manager. They are then assigned drive numbers.  Although UNIX filesystems 
@@ -340,8 +339,7 @@ when passing the message through to the filesystem task.  Currently
 `fsiec' for IEEE488 (parallel IEC-bus) interfaced CBM disk drives, 
 `fsibm' (for PC style disks) and `fsdev' for using devices as files are 
 provided.
-</p>
-<p>
+</p><p>
 
 The interface to the hardware is provided by the devices. Devices are 
 simply stripped off tasks and are called as subroutines only.  A device-
@@ -369,8 +367,7 @@ structure can be seen in Fig.1.
 Fig.1: General OS structure. The devices and tasks make up the features 
 of the system, while the kernel provides communications. 
 (fsm = filesystem manager, env = environment handling, task switcher)
-</p>
-<p>
+</p><p>
 In addition to executing code within the task, tasks also need to 
 execute to communicate with other tasks or components of the OS. To 
 communicate between tasks, a send/receive interface is provided. Using a 
@@ -382,9 +379,10 @@ tasks, and even between tasks and devices. Each task has a standard
 input, output, and error streams opened upon creation, analogous to the 
 stream in UNIX systems. The shell can even redirect or pipe the output.
 </p>
-    </li>
+    </p>
+</li>
 <br><li>
-<strong><a name="examples">Program examples</a></strong><br><br><p>
+<strong><a name="examples">Program examples</a></strong><br><br><p><p>
 The shell is a good example to show some of the capabilities of the 
 system. As already mentioned, each task has three specially assigned 
 streams. Filesystem tasks don't use them (and have them set to an ignored 
@@ -397,8 +395,7 @@ devices.  Normally the standard input and output streams used by the
 shell itself are registered for the new task. However, if given on the 
 command line, other files can be opened and the streams for these files 
 used as stdio streams.
-</p>
-<p>
+</p><p>
 When a file has to be opened, an OPEN message is sent to the filesystem 
 manager. This part of the kernel translates the drive number and forwards 
 the message to the filesystem task. The filesystem then tries to open the 
@@ -410,9 +407,10 @@ which is recognized by the other end when there's nothing more to read.
 This works for read only and write only opens, but not for read/write 
 opens.
 </p>
-    </li>
+    </p>
+</li>
 <br><li>
-<strong><a name="problems">Problems</a></strong><br><br><p>
+<strong><a name="problems">Problems</a></strong><br><br><p><p>
 Bootstrapping was the first major problem. How do you start a new 
 computer and debug its OS if don't have an OS on the computer?  From 
 earlier systems I already had a small monitor program - directly burned 
@@ -420,8 +418,7 @@ into an EPROM - able to load binaries through a serial line. Getting the
 MMU (74ls610) was the second problem, because it was on the CoCom list, 
 and it was not allowed to export to eastern countries. (Although I don't 
 live in an eastern country, this posed some difficulties...)
-</p>
-<p>
+</p><p>
 After defining the necessary interfaces between kernel and tasks and 
 kernel and devices, the design was quite straightforward, actually. One 
 problem was the small number of registers in the 6502. For some of the 
@@ -432,11 +429,12 @@ MMU, this is not a problem after all. But it showed out to be a
 significant problem when porting the OS to systems without MMU, like the 
 C64 (see below).
 </p>
-    </li>
+    </p>
+</li>
 <br>
 </ul>
 <h2><a name="nommu">Operating without an MMU</a></h2>
-<p>
+<p><p>
 After the system worked well with an MMU, I decided to build a stripped 
 down version for systems without an MMU to better fit some `embedded 
 applications' I had in mind. The system without an MMU is much more a 
@@ -445,8 +443,7 @@ share the same memory, thus being able to change variables and data of
 other threads. But, on the other hand, two identical programs cannot run 
 at the same time as with an MMU, unless they know they will together 
 ahead of time.
-</p>
-<p>
+</p><p>
 The problem lies within the limited stack size of the 6502. Without an 
 MMU, it is not possible to remap memory pages, especially the page with 
 the stack in it. So the stack is divided into several parts, limiting the 
@@ -459,8 +456,9 @@ manipulate the protected data at a time. Semaphores originate from the
 railways, where it is important not to have two trains on the same rail, 
 running in opposite directions...
 </p>
-    <h2><a name="c64">Port to the C64</a></h2>
-<p>
+    </p>
+<h2><a name="c64">Port to the C64</a></h2>
+<p><p>
 In addition to lacking an MMU, the Commodore 64 posed other porting 
 problems. Only small changes had to be made to the kernel.  The C64 
 kernel required an interrupt source for task switching. The video device 
@@ -477,8 +475,9 @@ Therefore, some routines have been changed, while others can only be
 protected by a semaphore.
 
 </p>
-    <h2><a name="c128">Port to the C128</a></h2>
-<p>
+    </p>
+<h2><a name="c128">Port to the C128</a></h2>
+<p><p>
 Well, the C128 has more memory and even the capability of remapping the 
 stack and zero page to other locations. In a simple expansion of the C64 
 version, this could be a way to raise the limited stack size to the full 
@@ -491,8 +490,9 @@ relocated to fit the new address range. Unfortunately, plans to extend
 the system calls or add relocation capabilities do not exist at this 
 time.
 </p>
-    <h2><a name="conclusion">Conclusion</a></h2>
-<p>
+    </p>
+<h2><a name="conclusion">Conclusion</a></h2>
+<p><p>
 The OS/A65 operating system provides multitasking and multithreading 
 capabilities with a modern kernel design for a 6502 CPU. The OS can be 
 used from embedded applications to desktop systems. A shell provides 
@@ -503,7 +503,8 @@ way I wanted them designed. I also learned a lot about operating system
 design - maybe you have learned a bit as well. If you are interested in 
 it, more information is available at 
 <a href="../osa/index.html">the GeckOS page</a></p>
-    <h2>Disclaimer</h2>
+    </p>
+<h2>Disclaimer</h2>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

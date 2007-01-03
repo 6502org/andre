@@ -36,7 +36,7 @@
 <li class="link"><a href="../../icap/c64ser.html">UART serial interface</a></li>
 </ul>
 <li class="separator">Hardware</li>
-<li class="dir"><a href="../../csa/index.html">CS/A65 and Gecko computer</a></li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
 <li class="dir"><a href="../../hwinfo/index.html">ICs and Standards Info</a></li>
 <li class="separator">Software</li>
 <li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
@@ -74,26 +74,45 @@
 <ul class="news">
 <li>
 <small>2006-12-22</small>
-	Added the version using the CPU and BIOS boards instead of the PETCPU board.
+	Added the version using the CPU and BIOS boards instead of the PETCPU board ("Caspaer" setup).
     </li>
 <li>
 <small>2006-11-12</small>
 	Added the ROMs.
     </li>
 </ul>
-<h2>PETCPU Setup</h2>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#">Fat40 Setup</a></li>
+<dir>
+<li><a href="#">Board Settings</a></li>
+<li><a href="#">ROMs</a></li>
+</dir>
+<li><a href="#">Caspaer Setup</a></li>
+<dir>
+<li><a href="#">Board Settings</a></li>
+<li><a href="#">ROMs</a></li>
+</dir>
+</dir>
+</DIV>
+<h2>Fat40 Setup</h2>
+<p>
+	<a href="fat40.jpg"><img class="rightimg" src="fat40-small.jpg"></a>
 	This section describes a setup using the three PETCPU, PETIO
 	and VDC boards.
-    <ul>
+    </p>
+<ul>
 <li>
-<strong>Board Settings</strong><br><br><p>
+<strong>Board Settings</strong><br><br><p><p>
 	This section describe the CS/A65 boards making up the PET 4032.
 	Here is a <a href="fat40.jpg">picture</a> of the three boards on 
 	a backplane. Note the separate cable between the VDC and the 
 	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
 	from VDC to PETIO and the character ROM selection.
 	from PETIO to VDC.</p>
-    <ul>
+    </p>
+<ul>
 <li class="subitem">
 <a href="../../csa/petcpu/index.html">PETCPU board</a> 
 	The PETCPU board must be set to a maximum of 32k RAM on the board
@@ -130,13 +149,14 @@
 </ul>
 </li>
 <br><li>
-<strong>ROMs</strong><br><br><p>
+<strong>ROMs</strong><br><br><p><p>
 	In this section you can find the ROMs for the PET. They basically
 	are the original PET ROMs, only that I have modified the 
 	CRTC timing parameters. Please note that the 2MHz (8032) version
 	is experimental only, as the IEEE488 timing seems to be flakey
 	now.</p>
-    <ul>
+    </p>
+<ul>
 <li class="subitem">
 <a href="roms/pet-fat40-1mhz-n.bin">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output.
@@ -151,19 +171,22 @@
 </li>
 <br>
 </ul>
-<h2>MMU Setup</h2>This section contains a description of a setup
+<h2>Caspaer Setup</h2>
+<p>This section contains a description of a setup
 	using the main CPU (including MMU) and BIOS board instead of the
 	PETCPU board as above.
-	<ul>
+	</p>
+<ul>
 <li>
-<strong>Board Settings</strong><br><br><p>
+<strong>Board Settings</strong><br><br><p><p>
 	This section describe the CS/A65 boards making up the PET 4032
 	in a setup with the CPU+BIOS board combination. 
 	Please note that the separate cable between the VDC and the 
 	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
 	is still required as above.
 	</p>
-    <ul>
+    </p>
+<ul>
 <li class="subitem">
 <a href="../../csa/cpu/index.html">CSACPU board</a> 
 	The CPU board must be set to 1MHz. The ROM patch below expects
@@ -187,14 +210,15 @@
 </ul>
 </li>
 <br><li>
-<strong>ROMs</strong><br><br><p>
+<strong>ROMs</strong><br><br><p><p>
 	The ROMs are basically the same ROMs as above, i.e. including
 	the modified CRTC timing parameters.
 	In addition, the CPU must set the MMU and BIOS board to correct
 	values on Reset. This is done by a small patch that is included
 	in the ROM listed below.
 	</p>
-    <ul>
+    </p>
+<ul>
 <li class="subitem">
 <a href="roms/pet-fat40-1mhz-n-mmu.bin">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output in the MMU version.

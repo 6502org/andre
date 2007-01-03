@@ -19,15 +19,15 @@
   </news>
   <toc/>
   <itemlist name="Generic Advice">
-    <description>
+    <desc>
 	This section contains generic advice.
-    </description>
+    </desc>
     <items>
      <item name="Tools">
-	<description>
+	<desc>
 	In general you should have good tools if you endeavor to analyze
 	and fix a hardware problem (not only(!)) with your PET ...
-	</description>
+	</desc>
       <subitem name="Generic Tools" >
 	<div class="rightimg">
 	<image src="imgs/osci.jpg"/><br/>
@@ -125,14 +125,14 @@ anyone.
     </items>
   </itemlist>
   <itemlist name="PET's dead">
-    <description>
+    <desc>
 	This section describes situations where the PET seems to be "dead".
 	<br/>
 	Apparently the new "CRTC" PET are more difficult than the older 
 	ones, as the CRTC must be programmed to generate a valid video
 	signal. Older PET would show at least garbage even if the CPU
 	was dead.
-    </description>
+    </desc>
     <items>
       <subitem name="Initial Check">
 	Before you check anything else, check that there is power on 
@@ -163,10 +163,10 @@ anyone.
     </items>
   </itemlist>
   <itemlist name="Funny characters on the screen">
-    <description>
+    <desc>
 	This section has descriptions of symptoms with "funny characters"
 	on the screen.
-    </description>
+    </desc>
     <items>
       <subitem name="Non-CRTC-PET"> 
 	Here the screen displays the screen memory content even without 
@@ -189,10 +189,9 @@ anyone.
     </items>  
   </itemlist>
   <itemlist name="Monitor and other weird symptoms">
-    <description><p>
+    <desc>
 	This section has an assorted list of symptoms...
-	</p>
-    </description>
+    </desc>
     <items>
       <subitem name="Monitor after reset"> 
 	When the PET comes up with the built-in monitor (TIM) instead of
@@ -228,11 +227,10 @@ anyone.
     </items>  
    </itemlist>
    <itemlist name="Links">
-    <description><p>
+    <desc>
 	This section has links to descriptions of how hardware
 	issues with the PET have been resolved.
-	</p>
-    </description>
+    </desc>
     <items>
       <subitem name="Diagnostic Manuals" link="http://www.commodore.ca/manuals/default.htm">commodore.ca has a number of diagnostic manuals. 
       </subitem>
