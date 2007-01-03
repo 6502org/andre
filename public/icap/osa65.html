@@ -97,9 +97,8 @@ input/output, filesystems, memory management and process handling.  At
 the very least, a "real" OS includes some form of multitasking :-)
 </p>
     </p>
-<ul>
-<li>
-<strong><a name="procs">Process Management</a></strong><br><br><p>
+<H3><a name="procs">Process Management</a></H3>
+<p>
 <p>
 Process management forms one block of an OS. A multitasking operating 
 system requires more administration than a single-tasking OS. A process, 
@@ -131,9 +130,8 @@ forgets or is unable to relinquish control of the CPU.  If such a
 scenario occurs, the computer is "blocked".
 </p>
 </p>
-</li>
-<br><li>
-<strong><a name="io">I/O</a></strong><br><br><p>
+<H3><a name="io">I/O</a></H3>
+<p>
 <p>
 As the second part, I/O provides a uniform interface to all peripherals, 
 including character devices (serial lines, parallel printers), or block 
@@ -151,9 +149,8 @@ using the same memory locations at the same time. So, even if you don't
 like interrupts, you have to use them.
 </p>
 </p>
-</li>
-<br><li>
-<strong><a name="fs">Filesystem</a></strong><br><br><p>
+<H3><a name="fs">Filesystem</a></H3>
+<p>
 <p>
 As the third part, the filesystem provides user-level abstraction of I/O. 
 Files store information of any kind. It is the most visible part of the 
@@ -172,9 +169,8 @@ structures to itself, it is possible to mount differently structured
 filesystems in one system.
 </p>
 </p>
-</li>
-<br><li>
-<strong><a name="mmu">Memory Management</a></strong><br><br><p>
+<H3><a name="mmu">Memory Management</a></H3>
+<p>
 <p>
 As the final part, memory management keeps track of which parts of the 
 memory are in use and which are not. Memory can be allocated when needed 
@@ -207,9 +203,8 @@ used by other tasks or map the same memory to several tasks, making it
 shared memory.
 </p>
 </p>
-</li>
-<br><li>
-<strong><a name="cbm">In the CBMs...</a></strong><br><br><p>
+<H3><a name="cbm">In the CBMs...</a></H3>
+<p>
 <p>
 These inclusion of these features implies that all resources can be 
 assigned equally to each task. As there are problems with this in the 
@@ -252,9 +247,6 @@ the single CPU of the 1541 to multitask, creating a bare operating system
 to support drive operation.
 </p>
     </p>
-</li>
-<br>
-</ul>
 <h2><a name="design">Modern Kernel Design</a></h2>
 <p><p>
 Early operating systems started with a monolithic approach. i.e. all the 
@@ -286,9 +278,8 @@ to allow any server to be replaced by another.
 Now let's get from theory to practice...
 </p>
     </p>
-<ul>
-<li>
-<strong><a name="kernel">The Kernel Implementation</a></strong><br><br><p><p>
+<H3><a name="kernel">The Kernel Implementation</a></H3>
+<p><p>
 When it comes to hardware design, the 6502 has a big advantage: It is a 
 very simple CPU. With only a few support ICs, it is possible to build a 
 fully functional computer (neglecting video and sound capabilities). On 
@@ -380,9 +371,8 @@ input, output, and error streams opened upon creation, analogous to the
 stream in UNIX systems. The shell can even redirect or pipe the output.
 </p>
     </p>
-</li>
-<br><li>
-<strong><a name="examples">Program examples</a></strong><br><br><p><p>
+<H3><a name="examples">Program examples</a></H3>
+<p><p>
 The shell is a good example to show some of the capabilities of the 
 system. As already mentioned, each task has three specially assigned 
 streams. Filesystem tasks don't use them (and have them set to an ignored 
@@ -408,9 +398,8 @@ This works for read only and write only opens, but not for read/write
 opens.
 </p>
     </p>
-</li>
-<br><li>
-<strong><a name="problems">Problems</a></strong><br><br><p><p>
+<H3><a name="problems">Problems</a></H3>
+<p><p>
 Bootstrapping was the first major problem. How do you start a new 
 computer and debug its OS if don't have an OS on the computer?  From 
 earlier systems I already had a small monitor program - directly burned 
@@ -430,9 +419,6 @@ significant problem when porting the OS to systems without MMU, like the
 C64 (see below).
 </p>
     </p>
-</li>
-<br>
-</ul>
 <h2><a name="nommu">Operating without an MMU</a></h2>
 <p><p>
 After the system worked well with an MMU, I decided to build a stripped 

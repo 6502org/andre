@@ -12,6 +12,9 @@
 	that you may find useful.
   </overview>
   <news>
+    <item date="2007-01-03" >
+	Added the article on <a href="mp.html">hardware aspects of multitasking and multiprocessing</a>.
+    </item>
     <item date="2006-11-12" >
 	Added the OS/A65 (GeckOS) article.
     </item>
@@ -26,6 +29,9 @@
     <!--desc>
     </desc-->
     <items>
+      <subitem name="Hardware aspects of multitasking and -processing" link="mp.html"> - Describe hardware requirements for a multitasking and multiprocessing
+	system and how to implement them with a 6502 (01/2007)
+      </subitem>
       <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
       </subitem>
       <subitem name="6502 MMU" link="mmu65.html"> - How a virtual address space works and how to implement it for a 6502 computer (1997).
@@ -46,6 +52,6 @@ information and links to the old CBM PET machines</subitem>
     </disclaimer>
   </itemlist>
   <closing>
-<BR/>Last updated 2006-11-12.
+<BR/>Last updated 2007-01-03.
   </closing>
 </webpage>

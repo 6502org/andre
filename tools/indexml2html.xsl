@@ -212,7 +212,7 @@
 </p>
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
-<xsl:for-each select="itemlist">
+<xsl:for-each select="itemlist|section">
   <h2><xsl:call-template name="aname"/></h2>
   <xsl:apply-templates select="desc"/>
   <xsl:apply-templates select="subsection"/>
