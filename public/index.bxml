@@ -22,6 +22,9 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2007-01-12">
+	Added a page with <a href="petindex/repairs.html">PET repair information</a>.
+    </item>
     <item date="2007-01-03">
 	Added an <a href="csa/auxcpu/index.html">Auxiliary CS/A65 CPU</a> board, that can handle bus error conditions
 	on the main cpu bus, as well as an article on the

@@ -243,7 +243,7 @@ between the read and write operation by another thread, that can modify
 the memory location.
 </p>
 </desc></subsection>
-<subsection name="Semaphores" toc="memsync">
+<subsection name="Semaphores" toc="sem">
 <desc><p>
 <div class="rightimg" width="300px">
 Pseudocode implementation of a semaphore:
