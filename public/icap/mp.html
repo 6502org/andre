@@ -1,0 +1,457 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="6502 multiprocessing operating system design">
+<meta name="keywords" content="6502 operating system multitasking multithreading multiprocessing">
+<title>Context-Switching and Thread-Synchronization with a 6502</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+</head>
+<body>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../petindex/index.html">CBM PETindex</a></li>
+<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
+<li class="dir"><a href="../hwinfo/index.html">ICs and Standards Info</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../icap/index.html">Articles</a></li>
+<ul class="menu1" >
+<li class="file"><a href="mmu65.html">MMU for a 6502</a></li>
+<li class="file"><a href="c64ser.html">UART serial interface</a></li>
+<li class="file"><a href="rdy.html">RDY generation</a></li>
+<li class="file"><a href="remote.html">Infrared remote control</a></li>
+<li class="file"><a href="osa65.html">OS/A65 Operating System</a></li>
+</ul>
+<li class="separator">Misc</li>
+<li class="file"><a href="../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<h1>Context-Switching and Thread-Synchronization with a 6502</h1>
+<p class="copyright">(C)
+2007-2007 André  Fachat</p> 
+<p><p>
+	In this article I want to show how modern computer system design
+	can be implemented with the simple 6502 CPU that was never designed
+	for multiprocessing or multithreading. 
+	</p><p>
+	The focus is on the specific hardware requirements that modern 
+	system design has to implement features like on-demand swapping and
+	paging, or safe thread synchronization.
+	For this purpose I briefly discuss multithreading, multitasking and 
+	multiprocessing, and then investigate context switching and 
+	thread synchronization with their hardware requirements.
+	</p><p>
+	For both main topics - context switching and thread synchronization - 
+	I show a hardware solution implementing up-to-date techniques
+	with the 6502.
+	</p>
+  </p>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#cswitch">Context switching</a></li>
+<dir>
+<li><a href="#cswperf">Context Switching Performance</a></li>
+<li><a href="#cswswap">Page Metadata</a></li>
+<li><a href="#cswondem">On-Demand Mapping - Swapping</a></li>
+<li><a href="#cswreqs">System Requirements</a></li>
+</dir>
+<li><a href="#cswitch65">Context Switching with the 6502</a></li>
+<dir>
+<li><a href="#cswitch65">65816</a></li>
+<li><a href="#auxcpu">CS/A Auxiliary CPU</a></li>
+</dir>
+<li><a href="#sync">Task and Thread Synchronization</a></li>
+<dir>
+<li><a href="#memsync">Shared Memory Synchronization</a></li>
+<li><a href="#sem">Semaphores</a></li>
+<li><a href="#irq">Disabling Interrupts</a></li>
+<li><a href="#rmw">Atomic Read-Modify-Write</a></li>
+<li><a href="#opt">Optimistic Locking</a></li>
+</dir>
+<li><a href="#sync65">Thread Synchronization with the 6502</a></li>
+<dir>
+<li><a href="#sync816">65816</a></li>
+<li><a href="#copro">CS/A Coprocessor</a></li>
+</dir>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#links">Links</a></li>
+</dir>
+</DIV>
+<h2><a name="intro">Introduction</a></h2>
+<p>
+<p>In the beginning of computing computers had a single CPU,
+and could run a single program. Those computers, however, were quite
+expensive and the CPU often had to wait for I/O. Thus the systems
+were modified such that multiple programs could run on the same machine,
+where when one program for example waited for an I/O operation, another
+program would run - the first multitasking [1].
+</p><p>
+Later lightweight processes, or "threads" were introduced. 
+A single program could have multiple of those threads
+running quasi-parallel within the same program - multithreading [2].
+</p><p>
+Some systems had multiple processors that shared the same memory. 
+Those multiple processors could be used to run different programs
+and threads in parallel [3,4].
+</p><p>
+The first programs could basically assume to "own" the whole computer
+(this is still true for Commodore 64 programs for example). 
+However, to achieve multitasking, each program (task) had to have separate
+control data and had to be protected in some way from other tasks. 
+This is done for example by virtual addresses for each task, with
+a mapping from virtual to physical address space such that a task can not
+access - and overwrite - another tasks memory [5]. This memory mapping is part
+of a task's "context". When a task is stopped to start another task,
+the "context" is switched by - among other things - setting the new 
+task's memory mapping. 
+</p><p>
+A thread is defined as a "thread of execution" in a program. A task
+is defined to contain a number of threads, but having at least one thread.
+Switching between threads does not involve switching the memory mapping
+and other task context, but only switching between the thread context.
+The thread context mainly consists of the CPU registers and is thus more
+easily exchanged than a task context.
+</p><p>
+Now how about multiple processors? Each processor can at any one time
+execute a single thread of execution (Hyperthreading left aside, that can
+be seen as multiprocessing, and is handled as such by the operating systems).
+In a system with multiple tasks, each processor could for example 
+run a thread from a different task.
+If only a single tasks has some work to do, however, multiple processors
+could run multiple threads from the same tasks.
+</p><p>
+<img src="mp/threads.gif"><br>
+The diagram shows the relationship between processors, threads, and tasks.
+</p>
+    </p>
+<h2><a name="cswitch">Context switching</a></h2>
+<p><p>
+<div class="rightimg" width="300px">Example for switching from userspace thread to kernel and back:
+<ol>
+<li>Save the interrupted address on stack</li>
+<li>Save the CPU registers on stack</li>
+<li>Change the memory mapping to the kernel environment</li>
+<li>In the thread scheduler select the next active thread</li>
+<li>Change the memory mapping to the thread's task's memory environment</li>
+<li>Reload the CPU registers from the stack</li>
+<li>return to the interrupted address</li>
+</ol>
+</div>
+When a thread is interrupted for example by a timer to switch to another
+thread or tasks, as it has used up its time slice, 
+it has to "switch context". In general this means the
+CPU changes into the operating system kernel, a special environment with
+(in general) elevated privileges. In the kernel the next thread is selected
+and the CPU switches back to the new thread. 
+</p>
+</p>
+<H3><a name="cswperf">Context Switching Performance</a></H3>
+<p>
+A memory mapping on a modern processor can be rather large. A 32bit 
+processor with a mapping in pages of 4k has about one million mapping entries,
+to map 2^20 pages of 4k (2^12) from virtual to physical memory. 
+This mapping is called the "page table(s)" [6].
+Now assume that the thread just loops and uses only a few pages of memory for
+its time slice. It would thus be a waste to load the full memory mapping
+on every context switch. Modern processors hold the translation table
+in memory, and a single register holds the address of the current translation
+table. They also use a translation lookaside buffer as cache to speed up 
+lookup of physical addresses.
+</p>
+<H3><a name="cswswap">Page Metadata</a></H3>
+<p><p>
+The page tables can hold more information than the simple physical address.
+An entry in this table can hold information whether the page is dirty for
+example, i.e. whether it has been written to since an earlier point in time.
+It can also hold a flag whether that page is actually present in physical
+memory. When a processor accesses such a "non-existent" page, it in general 
+faults to a segmentation fault, aborting the thread or task. 
+</p><p>
+Newer processors also hold a state bit that defines whether a memory page contains executable code or not. This feature has been implemented to protect the stack area from executable code being maliciously injected by buffer overflows.
+</p></p>
+<H3><a name="cswondem">On-Demand Mapping - Swapping</a></H3>
+<p><p>
+The metadata can be used dynamically handle the memory mapping. For example
+if all tasks together require more virtual memory than is physically available,
+the operating system can use disk memory to save infrequently used pages
+of memory, and use the page table metadata to mark those pages for a task. When
+a thread then runs on such a page, the page is read from disk into physical
+memory, possibly replacing another page that is then written to disk. This
+process is called "swapping". 
+</p><p>
+The dirty flag when available can be used to avoid writing back a page to 
+disk if it still is on disk and has not been modified in memory.
+</p><p>
+If an executable is loaded from disk, the operating system may even resolve
+to "lazy-loading" a binary. I.e. only loading those pages from disk where
+the CPU faulted on an unmapped page when the fault occurs.
+</p></p>
+<H3><a name="cswreqs">System Requirements</a></H3>
+<p><p>
+To enable on-demand mapping, two major requirements have to be fulfilled 
+by the system:
+<ul>
+<li>The system must be able to detect memory faults. I.e. it must have
+metadata in the page table that describe whether the page exists, is
+modified, or an executable for example. It must detect the fault conditions
+appropriately (e.g. a write access to a write protected page).</li>
+<li>The CPU must be able to handle the memory faults appropriately. This especially means that on a memory fault the CPU must be able to interrupt the opcode, handle the fault for example by swapping pages, and return to exactly the
+state it had before the fault, to continue the opcode. Modern processors
+are able to rollback a partially executed opcode to the state just before
+the opcode to achieve this. I.e. when the fault occurs in the middle of an
+opcode, the processor will rollback the opcode if possible, handle the
+fault, and re-execute the opcode again - this time without error. 
+An older workstation used a 68000 CPU that did not have that feature, but
+used a second CPU to handle the exception.</li>
+</ul>
+</p></p>
+<h2><a name="cswitch65">Context Switching with the 6502</a></h2>
+<p>
+The (NMOS) 6502 is a very old CPU. It has not been designed with multitasking
+in mind. It thus lacks the second essential requirement: it can not stop or 
+rollback the execution of an opcode, handle an exception (interrupt) and 
+continue with the opcode. Two workaround exists:
+</p>
+<H3><a name="cswitch65">65816</a></H3>
+<p>
+The 65816 [12], a expanded and compatible successor to the 6502 has an "ABORTB" 
+input, that allows it to handle a memory fault: When the ABORTB input is
+used, the current opcode is finished, but without modifying the internal 
+registers. After the opcode an interrupt is executed, and when the
+interrupt is handled, returns to the interrupted opcode.
+</p>
+<H3><a name="auxcpu">CS/A Auxiliary CPU</a></H3>
+<p>
+The <a href="../csa/index.html">CS/A65</a> computer system implements
+the two essential requirements itself outside the CPU:
+<ul>
+<li>The system uses a memory management unit (MMU) to map the 64k virtual CPU address space to a 1M physical address space. But the MMU also contains metadata for each page: a flag whether the page is present or not (NOTMAPD), write protected (WPROT), or does not contain executable code (NOEXEC).
+The CPU board then checks each access against these metadata bits and generates
+error signals on the CS/A65 bus.
+</li>
+<li>The AUXCPU board listens to these error conditions, and when such a condition occurs, stops the main CPU in the middle of the opcode during the faulted
+memory access. It then takes over the bus and can handle the memory fault
+appropriately. When it is done it has removed the error condition and
+returns control to the main CPU, that continues the opcode exactly at the
+position that has originally faulted.
+</li>
+</ul>
+</p>
+<h2><a name="sync">Task and Thread Synchronization</a></h2>
+<p><p>
+Running multiple threads and tasks in a system is only half fun if
+they can not communicate with each other. This communication is necessary
+for example when one task needs to wait for the result of another task's
+computation.
+</p><p>
+Tasks can communicate with each other 
+via operating system channels like signals (sending 
+an interrupt to another task), semaphores, or I/O channels like sockets.
+In this article, however, I want to concentrate on shared memory communication,
+which is a simple technique, and works between threads of a tasks, 
+as well as tasks when the tasks have shared memory.
+</p><p>
+Also I ignore the cache topic, as it is not (yet?) relevant for a 6502,
+as memory today is as fast as the CPU so a cache is not needed. Using
+a cache introduces another plethora of possible problems and issues with
+interprocess communication, so it is a good thing we do not need it.
+</p>
+</p>
+<H3><a name="memsync">Shared Memory Synchronization</a></H3>
+<p><p>
+When two threads communicate via a shared memory location, the problems
+only occur when both threads have write access to the location. 
+If only a single thread writes, and the other thread only reads this
+location, no problem occurs. 
+</p><p>
+Even when both threads write to a memory location, it can work if this
+access is "interleaved". For example thread A sets the location to 1 only
+if it is 0, while thread B sets the same location only sets it to 0 when 
+the value of the location is 1.
+</p><p>
+If, however, both threads need to access and especially modify 
+the memory location in the same state, there is a problem. 
+A "race condition" can occur [7]. If the
+CPU for example does a read-modify-write operation, it can be interrupted
+between the read and write operation by another thread, that can modify
+the memory location.
+</p>
+</p>
+<H3><a name="sem">Semaphores</a></H3>
+<p><p>
+<div class="rightimg" width="300px">
+Pseudocode implementation of a semaphore:
+<pre>
+initialize(s) {
+	s = 1;
+}
+// atomic
+P(s) {
+	while (s == 0);
+	s = 0;
+}
+V(s) {
+	s = 1;
+}
+</pre>
+</div>
+A common example is the implementation of a binary semaphore [8,9]. A binary semaphore
+has two operations, "P" and "V" on its state. A P() operation reserves the semaphore if it is not reserved. If it is already reserved, 
+the operation blocks until the semaphore is freed with the V() operation 
+and then reserved the semaphore. With semaphores blocks of code can be protected from other threads - any thread that tries to enter this code block 
+blocks on the P() operation, until the thread leaves the code block via the V() operation.
+</p><p>
+But how is a semaphore implemented? The semaphore is a shared memory location
+initialized to 1, and the P() operation checks if the value is larger than zero, and sets it to 0 if so. If the value already is zero, it waits until it becomes zero. The V() operation sets the value to 0.
+</p><p>
+The P() operation reads a
+value from memory, operates on it, and writes a new value back.
+The crucial point is that the P() operation must be atomic. I.e. 
+it must not happen that after reading the value the thread is interrupted,
+another thread executes and passes the P() operation, and when the 
+first thread continues also passes the P() operation, as it has already
+read the value before the second thread.
+</p><p>
+Now that we drilled down to more elementary operations, how can this be 
+implemented?
+</p>
+</p>
+<H3><a name="irq">Disabling Interrupts</a></H3>
+<p>
+The P() operation can disable the interrupts for a
+period as short as possible to avoid that another thread gets scheduled.
+This is a viable solution in a single-processor system. In a multiprocessor
+system, however, still another CPU could run into the P() operation.
+</p>
+<H3><a name="rmw">Atomic Read-Modify-Write</a></H3>
+<p>
+In a multiprocessor system an atomic read-modify-write operation can be used
+[10].
+Often a "test-and-set" or a "compare-and-swap" operation is supported. 
+This, however, needs to be supported by the hardware. The CPU 
+performs two memory operations that must be handled as a single operation.
+I.e. in a multiprocessor system no other processor must be able
+to access the memory location during that atomic operation of the first
+processor. This is done by "locking" the memory bus. I.e. during an atomic
+operation no other CPU may use the memory bus and thus ensures the atomicity.
+The locking, however, due to its global operation reduces performance and 
+increases hardware complexity.
+</p>
+<H3><a name="opt">Optimistic Locking</a></H3>
+<p><p>
+The pattern I describe here is know as "optimistic locking" in version control
+systems, or as load-link/store-conditional opcode pair [11]. The first operation
+load-link (LL) reads a memory location and reserves it. The store-conditional
+(CC) operation then stores a new value to the memory location if and only if
+no update has occured on the memory location. 
+</p><p>
+This is implemented in a way that the CPU monitors the memory bus to see
+if another CPU modifies the same location.
+</p>
+</p>
+<h2><a name="sync65">Thread Synchronization with the 6502</a></h2>
+<p>
+Again the (NMOS) 6502 not been designed with multitasking
+in mind. Although it does have read-modify-write operations (the rotate
+or increment
+operations when used on memory locations for example), it does not lock
+out other CPUs, it can not even signal this Read-Modify-Write operation
+to external circuitry that could emulate the lock.
+</p>
+<H3><a name="sync816">65816</a></H3>
+<p>
+The 65816 has a "ML" output line. This line is active during a
+read-modify-write operation, and can thus be used by an external 
+circuitry to enforce an atomic operation.
+</p>
+<H3><a name="copro">CS/A Coprocessor</a></H3>
+<p><p>
+The <a href="../csa/index.html">CS/A65</a> computer system implements
+a <a href="../csa/copro/index.html">coprocessor board</a> with 64k memory that are shared between the 
+main CPU and the coprocessor.
+</p><p>
+The control port on the coprocessor board is protected by a LL/SC 
+functionality. When it is read by the main CPU, it can be written to
+by the main CPU if and only if there has been no update from the coprocessor
+in the meantime, and vice versa.
+</p><p>
+This way proper synchronization is achieved - with additional hardware 
+effort though.
+</p>
+</p>
+<h2><a name="summary">Summary</a></h2>
+<p>
+In this article I have given a brief summary on context switching and
+task synchronization and what type of hardware support is required to
+support this functionality. With the CS/A65 boards I have shown that it
+is possible even with the original 6502 to implement the basic functionality
+required.
+</p>
+<h2><a name="links">Links</a></h2>
+<ul>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Computer_multitasking">[1] Wikipedia on multitasking</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29">[2] Wikipedia on threads</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Multiprocessing">[3] Wikipedia on multiprocessing</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Concurrent_computing">[4] Wikipedia on concurrent computing</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Paging">[5] Wikipedia on paging</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Page_table">[6] Wikipedia on page tables</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Race_condition">[7] Wikipedia on race conditions</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29">[8] Wikipedia on semaphores</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Mutex">[9] Wikipedia on mutexes</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Atomic_operations">[10] Wikipedia on atomic operations</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://en.wikipedia.org/wiki/Load-Link/Store-Conditional">[11] Wikipedia on lock-free read/modify/write</a> <br><br>
+</li>
+<li class="subitem">
+<a href="http://www.65xx.com/wdc/w65c816s.cfm">[12] The 65816</a> <br><br>
+</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>
+All Copyrights are acknowledged.
+The information here is provided under the terms of the
+GNU Public License version 2 unless noted otherwise.
+  </p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</body>
+</html> 
+
