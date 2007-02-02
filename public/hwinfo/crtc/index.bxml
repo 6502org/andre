@@ -13,10 +13,11 @@
 	The pages linked here describe the operation of the CRTC 6545/6845
 	chips.
   </overview>
-  <!--news>
-    <item date="2006-11-20">
+  <news>
+    <item date="2007-02-02">
+	Added information on the CRTC status register.
     </item>
-  </news-->
+  </news>
   <itemlist name="Quickfinder">
     <desc>
     </desc>

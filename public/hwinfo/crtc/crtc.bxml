@@ -47,13 +47,22 @@ computer page or in the PET schematics on the
     <desc>
 <P>
 The CRTC has a bus interface compatible to the 6502 bus system,
-providing two registers, an address register and a value register.
+using only two addresses.
+</P><P>
+The first address doubles as address register when writing and as 
+status register when reading. I.e. reading the status register at
+address 0 gives the internal status of the CRTC as described below.
+Writing to the address register at address 0 links the value register
+at address 1 to the corresponding register in the internal register file.
+</P><P>
 Writing the index number of the internal CRTC register file to the
 address register provides access to the corresponding register
 in the register file. I.e. to write #13 to register #6 you have to
 store 13 to the address register and then 6 to the value register.
-This procedure is the same for all registers.
-Therefore all mentionings of "register" will in the following
+This procedure is the same for all registers (except of course the status
+register).
+Therefore all mentionings of "register" (except for the status) 
+will in the following
 denote internal CRTC register numbers, the value you write to the
 address register.
 </P>
@@ -70,6 +79,33 @@ PET line of computers, the normal non-interlaced
 sync mode.
 </P>
     </desc>
+     <subsection name="Status Register" toc="sr">A
+	<desc>
+	The status register can be read by the CPU at CRTC address 0
+	and is thus not part of the internal CRTC register file
+	but can be read by the CPU at any time.
+<PRE>
+Bit     Description
+----------------------------------
+ 7      UR - Update ready (Rockwell R6545 only)
+          0     Register 31 has been either read or written by the CPU
+          1     an update strobe has occured
+ 6      LRF - LPEN Register Full 
+          0     Register 16 or 17 has been read by the CPU
+          1     LPEN strobe has occured
+ 5      VRT - Vertical retrace 
+          0     Scan is currently not in the vertical blanking position
+          1     [MOS6545] Scan is currently in its vertical blanking time 
+          1     [R6545] Scan is currently in its vertical re-trace time.
+                   Note: this bit goes to a 1 one when vertical re-trace starts.
+                   It goes to a 0 five character clock times before vertical
+                   re-trace ends to ensure that critical timings for refresh
+                   RAM operations are met.
+</PRE>
+Please note that the UR is not available on all models, and VRT bit is handled 
+differently by different models. 
+	</desc>
+     </subsection>
      <subsection name="Timing" toc="timing">
       <desc>
 <P>
