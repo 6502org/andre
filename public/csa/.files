@@ -8,6 +8,7 @@ d bios CS/A65 BIOS
 d petcpu 64k PET CPU
 d gecko Gecko
 d auxcpu Auxiliary CPU
+d pwr Power Supply
 s I/O boards
 d vdc Video board
 d petio CBM PET I/O

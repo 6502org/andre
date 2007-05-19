@@ -14,6 +14,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2007-05-19">
+			Long time waited for - a power supply board (using a PC power supply as original source): the <a href="pwr/index.html">PWR</a> board.
+                </item>
                 <item date="2007-01-02">
 			Added a description of the <a href="#caspaer">Caspaer</a> setup.
                 </item>

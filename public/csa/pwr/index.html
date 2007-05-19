@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 BIOS UART">
-<TITLE>CS/A65 BIOS</TITLE>
+<META NAME="keywords" CONTENT="CSA65 6502 Power supply 3.3V">
+<TITLE>CS/A65 Power supply</TITLE>
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
@@ -24,11 +24,11 @@
 <li class="separator">Main boards</li>
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
-
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="dir"><a href="../auxcpu/index.html">Auxiliary CPU</a></li>
 <li class="dir"><a href="../pwr/index.html">Power Supply</a></li>
+
 <li class="separator">I/O boards</li>
 <li class="dir"><a href="../vdc/index.html">Video board</a></li>
 <li class="dir"><a href="../petio/index.html">CBM PET I/O</a></li>
@@ -63,18 +63,27 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 BIOS</H1>
+<H1>CS/A65 Power supply</H1>
 
-<p>This board implements basic memory and I/O functionality
-		for the CS/A65 computer. 
-The BIOS board complements the MMU CPU board in that it provides
-some RAM, ROM, and basic I/O (a RS232 interface, that is).
-It also has a special I/O port that allows the CPU to read the IRQ line,
-or the state of a pushbutton. Also a 50 Hz interrupt is provided that
-can be switched on and off with this port, as well as a system LED.
-The I/O mapping can be changed from the BIOS port as well.
-The older version 1 used a 6551 ACIA for the RS232 interface, but now I
-use a 16550 UART (with FIFO).
+<p><p>This board implements the basic power supply 
+		facilities, using a standard PC power supply as 
+		actual supply. It has a 3.3V power generation, 
+		a 50Hz signal,
+		as well as battery backup (incl. Li-ion battery charging
+		circuit
+		</p><p>
+		Additionally it includes a Reset circuit and a 16MHz clock
+		source, as well as (since 1.1) an I2C realtime clock and 
+		flash ROM.
+		</p><p>
+		The 3.3V generation uses a standard LM317 voltage generator.
+		The 50Hz generation uses the CMOS (this is important) version
+		of the LMC555. Both schematics come from
+		www.elektronik-compendium.de.
+		</p><p>
+		The Li-ion battery charger is a standard schematics from the
+		datasheet of the used MAX712 battery charger.
+		</p>
 	</p>
 <DIV ID="toc">
 <H2>Table of content</H2>
@@ -82,88 +91,30 @@ use a 16550 UART (with FIFO).
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">3.0B</a> (ok)</li>
+<a href="#board1">1.1B</a> (prototype)</li>
 <li>
-<a href="#board2">2.0B</a> (ok)</li>
-<li>
-<a href="#board3">1.x</a> (ok)</li>
+<a href="#board2">1.1A</a> (prototype with bugs)</li>
 </dir>
-<li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 3.0B</A></H3>
-<P>Status: ok</P>
+<H3><A NAME="board1">Version: 1.1B</A></H3>
+<P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>This is the new version of the board,
-			using larger (up to 512k) RAM and ROM sockets.
-			For this board also Eagle(tm) schematics and layout
-			files are available
+<TD>
+			This board has all features. It fixes the bugs in the
+			1.1A version: no /RESET pullup, wrong R17 value for the
+			3.3V generation, and decoupling capacitors for the
+			I2C ICs.
 		</TD>
 </TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
-<TD>At this time only the basic RAM, ROM, and 
-			IRQ/Port functionality has been tested. RS232 is 
-			as of now untested.
-		</TD>
-</TR>
-<TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD>The TTL parts mainly consist of the 'ALS (advanced
-			Low-Power Shottky) TTL types, except where available.
-		</TD>
-</TR>
-</TABLE>
-<H4>Files</H4>
-<TABLE class="files">
-<TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
 <TD>
-<A HREF="csa_bios_v3.0b-desc.txt">csa_bios_v3.0b-desc.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b-parts.txt">csa_bios_v3.0b-parts.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b.sch">csa_bios_v3.0b.sch</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b-sch.png">csa_bios_v3.0b-sch.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b.brd">csa_bios_v3.0b.brd</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b-lay.png">csa_bios_v3.0b-lay.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
-<TD>
-<A HREF="csa_bios_v3.0b.jpg">csa_bios_v3.0b.jpg</A></TD>
-</TR>
-</TABLE>
-<H3><A NAME="board2">Version: 2.0B</A></H3>
-<P>Status: ok</P>
-<H4>Notes</H4>
-<TABLE class="notes">
-<TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
-<TD> This is the old version of the board,
-			using small (up to 32k) RAM and ROM sockets.
+			The layout is untested.
 		</TD>
 </TR>
 </TABLE>
@@ -172,54 +123,66 @@ use a 16550 UART (with FIFO).
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csabios2.png">csabios2.png</A></TD>
+<A HREF="csa_pwr-v1.1b.sch">csa_pwr-v1.1b.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="csabios2.ps.gz">csabios2.ps.gz</A></TD>
+<A HREF="csa_pwr_v1.1b-sch.png">csa_pwr_v1.1b-sch.png</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csabios2desc.txt">csabios2desc.txt</A></TD>
+<A HREF="csa_pwr-v1.1b.brd">csa_pwr-v1.1b.brd</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="csabios2parts.txt">csabios2parts.txt</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
-<TD>
-<A HREF="csabios2.jpg">csabios2.jpg</A>(The ROM is currently missing)</TD>
+<A HREF="csa_pwr_v1.1b-brd.png">csa_pwr_v1.1b-brd.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board3">Version: 1.x</A></H3>
-<P>Status: ok</P>
+<H3><A NAME="board2">Version: 1.1A</A></H3>
+<P>Status: prototype with bugs</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD> 
-			This is the very first version, using an ACIA
-			for the serial interface. It is (here) only
-			documented as a photo.
+			Watch out, this board has a wrong resistor R17 value
+			and other bugs, see description of 1.1B.
 		</TD>
 </TR>
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
 <TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_pwr-v1.1a.sch">csa_pwr-v1.1a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_pwr_v1.1a-sch.png">csa_pwr_v1.1a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_pwr-v1.1a.brd">csa_pwr-v1.1a.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_pwr_v1.1a-brd.png">csa_pwr_v1.1a-brd.png</A></TD>
+</TR>
+<TR>
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
-<A HREF="csabios.jpg">csabios.jpg</A></TD>
+<A HREF="csa_pwr_v1.1a.png">csa_pwr_v1.1a.png</A></TD>
 </TR>
 </TABLE>
-<H2><A name="blkdiag">Block diagram</A></H2>
-<img src="bios.gif" alt="block diagram"><p>This diagram shows an overview on the board architecture</p>
 <DIV ID="footer">
-<P>Last modified: 2006-10-13.</P>
+<P>Last modified: 2007-05-19.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>
