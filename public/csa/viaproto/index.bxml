@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 VIA prototyping board</name>
+	<keywords>CSA65 6502 VIA 6522</keywords>
+	<lastmodified>2007-05-26</lastmodified>
+	<desc><p>This board is a simple prototyping board
+		that you can use to prototype circuits with the VIA. Note 
+		that it's untested.</p>
+	</desc>
+	<!--diagram>
+		<file>bios.gif</file>
+		<desc>itecture</desc>
+	</diagram-->
+	<rev>
+		<version>1.0A</version>
+		<status>untested prototype</status>
+		<note type="msg">
+			This is simply a CS/A board with a VIA and address 
+			decoding for it. Empty places for 14/16 pin 
+			standard logic ICs (TTL with power on 7/14 resp. 8/16)
+			are included for convenience.
+		</note>
+		<note type="warn">
+			The board is untested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_viaproto-v1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa_viaproto_v1.0a-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_viaproto-v1.0a.brd</file>
+		<file ltype="layout" ptype="png">csa_viaproto_v1.0a-brd.png</file>
+	</rev>
+</board>

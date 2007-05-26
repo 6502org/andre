@@ -14,23 +14,26 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2007-05-26">
+			A <a href="viaproto/index.html">VIA prototyping board</a> to test VIA-related circuits.
+                </item>
                 <item date="2007-05-19">
 			Long time waited for - a power supply board (using a PC power supply as original source): the <a href="pwr/index.html">PWR</a> board.
                 </item>
-                <item date="2007-01-02">
+                <item date="2007-01-02" state="old">
 			Added a description of the <a href="#caspaer">Caspaer</a> setup.
                 </item>
-                <item date="2006-12-30">
+                <item date="2006-12-30" state="old">
 			Added an <a href="auxcpu/index.html">auxiliary CPU board</a>, to enable paging and swapping with the 6502!
                 </item>
-                <item date="2006-12-16">
+                <item date="2006-12-16" state="old">
 			Added a new working revision of the <a href="copro/index.html">coprocessor board</a>!
-                </item>
-                <item date="2006-12-14" state="old">
-			Added a new revision of the <a href="scsi/index.html">SCSI board</a> that now also includes an I2C controller.
                 </item>
         </news>
 	<oldnews>
+                <item date="2006-12-14" state="old">
+			Added a new revision of the <a href="scsi/index.html">SCSI board</a> that now also includes an I2C controller.
+                </item>
                 <item date="2006-12-09" state="old">
 			Added a Motivation section. Why do I actually do all this....?
 			Also tested the <a href="petcpu/index.html">PETCPU</a> RS232 interface and added a test driver for it.

@@ -37,7 +37,10 @@
 <tr> <th>PC floppy</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD1770 (opt)</td><td>VIA (opt)</td><td>WD1770 (default)</td><td>VIA (default)</td></tr>
 <tr> <th>DRVIO</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD177x, Control (default)</td><td>CIA (default)</td><td></td><td></td><td>WD177x, Control (opt)</td><td>CIA (opt)</td></tr>
 <tr> <th>DUART</th><td/><td/><td/><td/><td/><td>UART1, UART2</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
-<tr> <th>SCSI</th><td/><td/><td/><td/><td/><td/><td/><td>SCSI</td><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+<tr> <th>SCSI</th><td/><td/><td/><td>SCSI (opt)</td><td/><td/><td/><td>SCSI (Default)</td><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+<tr> <th>Ramdisk</th><td/><td/><td/><td></td><td/><td/><td>Ramdisk (default)</td><td>Ramdisk (opt)</td><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+<tr> <th colspan="17" class="separator">Special purpose boards</th> </tr>
+<tr> <th>VIA Prototyping</th><td/><td/><td/><td/><td/><td>VIA (alt1)</td><td/><td></td><td/><td/><td/><td/><td/><td>VIA (alt2)</td><td/><td/></tr>
 <tr> <th colspan="17" class="separator">Deprecated boards</th> </tr>
 <tr> <th>csakey</th><td/><td>PIA1, ACIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td>PIA1, ACIA (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>csaiec</th><td/><td/><td>PIA</td><td/><td>VIA</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>

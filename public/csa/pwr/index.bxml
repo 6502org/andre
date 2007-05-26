@@ -34,7 +34,8 @@
 			This board has all features. It fixes the bugs in the
 			1.1A version: no /RESET pullup, wrong R17 value for the
 			3.3V generation, and decoupling capacitors for the
-			I2C ICs.
+			I2C ICs. Also it has the addresses of the I2C chips
+			fixed (in V1.1A they have the same I2C address...)
 		</note>
 		<note type="warn">
 			The layout is untested.
@@ -55,6 +56,6 @@
 		<file ltype="schem" ptype="png">csa_pwr_v1.1a-sch.png</file>
 		<file ltype="layout" ptype="esch">csa_pwr-v1.1a.brd</file>
 		<file ltype="layout" ptype="png">csa_pwr_v1.1a-brd.png</file>
-		<file ltype="photo" ptype="png">csa_pwr_v1.1a.png</file>
+		<file ltype="photo" ptype="png" note="Without the battery, though">csa_pwr_v1.1a.png</file>
 	</rev>
 </board>

@@ -2,8 +2,8 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 processor">
-<TITLE>CS/A65 CPU65b</TITLE>
+<META NAME="keywords" CONTENT="CSA65 6502 VIA 6522">
+<TITLE>CS/A65 VIA prototyping board</TITLE>
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 </HEAD>
@@ -40,9 +40,9 @@
 <li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
 <li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
 <li class="dir"><a href="../viaproto/index.html">VIA prototyping</a></li>
+
 <li class="separator">Deprecated boards</li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
-
 <li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
 <li class="dir"><a href="../iec/index.html">IEEE488 and CBM IEC</a></li>
 <li class="separator">Other links</li>
@@ -64,76 +64,66 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>CS/A65 CPU65b</H1>
+<H1>CS/A65 VIA prototyping board</H1>
 
-<p>This board implements a 6502 processor board for the 
-		CS/A65 bus system. Compared to the main cpu, however,
-		it only utilizes 64k memory without an MMU, and can
-		thus only use the I/O address space on the CS/A65 bus.
+<p><p>This board is a simple prototyping board
+		that you can use to prototype circuits with the VIA. Note 
+		that it's untested.</p>
 	</p>
-<h3>News:</h3>
-<ul class="news"><li>
-<small>2006-11-01</small>
-                        Board is deprecated. Use PETCPU board instead.
-                </li></ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir><li>
-<a href="#board1">2.0B</a> (draft)</li></dir>
+<a href="#board1">1.0A</a> (untested prototype)</li></dir>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 2.0B</A></H3>
-<P>Status: draft</P>
+<H3><A NAME="board1">Version: 1.0A</A></H3>
+<P>Status: untested prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
-			This board is derived from the Gecko board,
-			in that the Gecko I/O circuitry have been removed.
+			This is simply a CS/A board with a VIA and address 
+			decoding for it. Empty places for 14/16 pin 
+			standard logic ICs (TTL with power on 7/14 resp. 8/16)
+			are included for convenience.
 		</TD>
 </TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This schematics has not been tested.
-		</TD>
-</TR>
-<TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_deprecated.gif" ALT="deprecated"></TD>
-<TD>
-			This board is deprecated. Please use the PETCPU board instead.
+			The board is untested.
 		</TD>
 </TR>
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
 <TR>
-<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="cpu65bdesc.txt">cpu65bdesc.txt</A></TD>
+<A HREF="csa_viaproto-v1.0a.sch">csa_viaproto-v1.0a.sch</A></TD>
 </TR>
 <TR>
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
-<A HREF="cpu65b.fig">cpu65b.fig</A></TD>
+<A HREF="csa_viaproto_v1.0a-sch.png">csa_viaproto_v1.0a-sch.png</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="cpu65b.png">cpu65b.png</A></TD>
+<A HREF="csa_viaproto-v1.0a.brd">csa_viaproto-v1.0a.brd</A></TD>
 </TR>
 <TR>
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
-<A HREF="cpu65b.ps.gz">cpu65b.ps.gz</A></TD>
+<A HREF="csa_viaproto_v1.0a-brd.png">csa_viaproto_v1.0a-brd.png</A></TD>
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2006-10-13.</P>
+<P>Last modified: 2007-05-26.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>

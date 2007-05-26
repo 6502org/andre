@@ -40,6 +40,7 @@
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
 <li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
 <li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
+<li class="dir"><a href="../viaproto/index.html">VIA prototyping</a></li>
 <li class="separator">Deprecated boards</li>
 <li class="dir"><a href="../cpu65b/index.html">64k CPU</a></li>
 <li class="dir"><a href="../key/index.html">Keyboard and RS232</a></li>
@@ -74,10 +75,19 @@
 		SCSI disks, though (yet).
 		</p><p>
 		Since revision 1.1 it also includes an I2C controller.
+		</p><p>
+		Since revision 1.2 it also includes an I2C flash ROM, as
+		well as a possibly battery buffered I2C RTC (clock) with
+		some additional buffered RAM.
 		</p>
 	</p>
 <h3>News:</h3>
 <ul class="news">
+<li>
+<small>2007-05-26</small>
+                        Added new board revision (with I2C flash and RTC/RAM).
+			It also adds the missing pullups for I2C SDA and SCL.
+                </li>
 <li>
 <small>2006-12-14</small>
                         Added new board revision (with I2C interface) and new driver code.
@@ -108,9 +118,11 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.1A</a> (ok)</li>
+<a href="#board1">1.2B</a> (untested)</li>
 <li>
-<a href="#board2">1.0A</a> (ok)</li>
+<a href="#board2">1.1A</a> (ok)</li>
+<li>
+<a href="#board3">1.0A</a> (ok)</li>
 </dir>
 </dir>
 </DIV>
@@ -308,10 +320,65 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.1A</A></H3>
+<H3><A NAME="board1">Version: 1.2B</A></H3>
+<P>Status: untested</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+<p>
+			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
+			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
+			interface. </p>
+<p>The 
+			following restrictions apply to the SCSI interface:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul></p>
+<p>
+			The I2C interface is implemented using a Philips PCF8584 I2C controller. This controller only works relyably at 1MHz, so the
+			board implements a mechanism to assert the RDY line
+			to hold the CPU for a single cycle. This feature is 
+			jumperable.
+			</p>
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_scsi_v1.2b-sch.png">csa_scsi_v1.2b-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_scsi_v1.2b.sch">csa_scsi_v1.2b.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_scsi_v1.2b-brd.png">csa_scsi_v1.2b-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_scsi_v1.2b.brd">csa_scsi_v1.2b.brd</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.1A</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>Only recently I found that the pull-up resistors for I2C SDA and SCL are missing. Add a 10k resistor from each of those lines to VCC
+		</TD>
+</TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
 <TD>
@@ -358,7 +425,7 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
 <A HREF="csa_scsi_v1.1a.brd">csa_scsi_v1.1a.brd</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.0A</A></H3>
+<H3><A NAME="board3">Version: 1.0A</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">

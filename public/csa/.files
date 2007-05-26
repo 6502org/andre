@@ -20,6 +20,7 @@ s Special purpose
 d copro Coprocessor board
 d cpuemu Emulate a 6502
 d keyemu Emulate a keyboard
+d viaproto VIA prototyping
 s Deprecated boards
 d cpu65b 64k CPU
 d key Keyboard and RS232

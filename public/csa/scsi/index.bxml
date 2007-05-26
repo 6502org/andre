@@ -12,9 +12,17 @@
 		SCSI disks, though (yet).
 		</p><p>
 		Since revision 1.1 it also includes an I2C controller.
+		</p><p>
+		Since revision 1.2 it also includes an I2C flash ROM, as
+		well as a possibly battery buffered I2C RTC (clock) with
+		some additional buffered RAM.
 		</p>
 	</desc>
         <news>
+                <item date="2007-05-26">
+                        Added new board revision (with I2C flash and RTC/RAM).
+			It also adds the missing pullups for I2C SDA and SCL.
+                </item>
                 <item date="2006-12-14">
                         Added new board revision (with I2C interface) and new driver code.
                 </item>
@@ -154,8 +162,34 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
                 <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
         </driver>
 	<rev>
+		<version>1.2B</version>
+		<status>untested</status>
+		<note type="msg"><p>
+			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
+			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
+			interface. </p><p>The 
+			following restrictions apply to the SCSI interface:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul></p><p>
+			The I2C interface is implemented using a Philips PCF8584 I2C controller. This controller only works relyably at 1MHz, so the
+			board implements a mechanism to assert the RDY line
+			to hold the CPU for a single cycle. This feature is 
+			jumperable.
+			</p>
+		</note>
+		<file ltype="schem" ptype="png">csa_scsi_v1.2b-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_scsi_v1.2b.sch</file>
+		<file ltype="layout" ptype="png">csa_scsi_v1.2b-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_scsi_v1.2b.brd</file>
+	</rev>
+	<rev>
 		<version>1.1A</version>
 		<status>ok</status>
+		<note type="warn">Only recently I found that the pull-up resistors for I2C SDA and SCL are missing. Add a 10k resistor from each of those lines to VCC
+		</note>
 		<note type="msg"><p>
 			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
 			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
