@@ -2,16 +2,16 @@
 <board>
 	<name>CS/A65 Computer Board Memory Map</name>
 	<keywords>CSA65 6502 self-built computer memory map</keywords>
-        <lastmodified>2007-01-02</lastmodified>
+        <lastmodified>2007-05-26</lastmodified>
 	<desc>
 	This page gives a memory map of the currently available boards,
 	so you can plan which boards can be combined in what ways.
 	</desc>
-        <news>
+        <!--news>
                 <item date="2007-01-02">
 		Separated this page out from the main page.
                 </item>
-        </news>
+        </news-->
 	<section toc="iomap" name="I/O Memory Map">
        	<desc><p>
 		This section summarizes the I/O memory addresses used by
