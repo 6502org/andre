@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="Logic probe">
+<TITLE>Logic Probe</TITLE>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
+<li class="dir"><a href="../../hwinfo/index.html">ICs and Standards Info</a></li>
+<li class="dir"><a href="../../mischw/index.html">Other hardware (e.g. tools)</a></li>
+<ul class="menu1" >
+<li class="separator">Hardware Tools</li>
+<li class="dir"><a href="../probe/index.html">Logic probe</a></li>
+
+</ul>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icap/index.html">Articles</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>Logic Probe</H1>
+
+<p><p>
+		This page describes a logic probe that can be used to
+		analyze and debug TTL circuits.
+		</p><p>
+		The logic probe is a small device with a sampling tip,
+		and a number of LEDs that indicate the state of the signal
+		connected to the sampling tip. Two "direct" LEDs show whether the
+		signal is high (red LED), low (green LED), of unconnected
+		(no LED). If the signal switches quickly between the two
+		states, both LEDs seem to be on continuously (although
+		they aren't). 
+		</p><p>
+		A pulse logic detects transition to a state (HIGH or LOW) and
+		generates a ca. 0.5sec pulse lighting up separate "pulse" LEDs.
+		So a state change can be detected, even if it is only a 
+		short pulse invisible on the direct LEDs.
+		</p><p>
+		Additionally a second signal input can be used to latch
+		the main signal at a low-high or low-high transition of 
+		the latch input.
+		</p>
+	</p>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir>
+<li>
+<a href="#board1">1.0C</a> (prototype)</li>
+<li>
+<a href="#board2">1.0A</a> (prototype with bugs)</li>
+</dir>
+</dir>
+</DIV>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.0C</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This board has the connectors fixed, as well as the
+			inversion of the latch LEDs.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The layout is untested.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			I have yet to determine whether I have a problem with
+			my selfbuilt computer, or the probe is not good enough
+			for higher signal frequencies. Probably have to reduce
+			the input resistor network values to reduce the RC
+			constant.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="logic_probe-v1.0c.sch">logic_probe-v1.0c.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="logic_probe-v1.0c-sch.png">logic_probe-v1.0c-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="logic_probe-v1.0c.brd">logic_probe-v1.0c.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="logic_probe-v1.0c-brd.png">logic_probe-v1.0c-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.0A</A></H3>
+<P>Status: prototype with bugs</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD> 
+			Watch out, this board has the signal and latch
+			input connectors exchanged, as well as the 
+			latch LEDs are inverted.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			I have yet to determine whether I have a problem with
+			my selfbuilt computer, or the probe is not good enough
+			for higher signal frequencies. Probably have to reduce
+			the input resistor network values to reduce the RC
+			constant.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="logic_probe-v1.0a.sch">logic_probe-v1.0a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="logic_probe-v1.0a-sch.png">logic_probe-v1.0a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="logic_probe-v1.0a.brd">logic_probe-v1.0a.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="logic_probe-v1.0a-brd.png">logic_probe-v1.0a-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="logic_probe_v1.0a.png">logic_probe_v1.0a.png</A>(signal tip, pwr and latch input are connected via Cinch plugs.)</TD>
+</TR>
+</TABLE>
+<DIV ID="footer">
+<P>Last modified: 2007-05-28.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

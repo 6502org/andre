@@ -22,6 +22,10 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2007-05-28">
+	The new <a href="mischw/index.html">Miscellaneous Hardware</a> 
+	page has a logic probe.
+    </item>
     <item date="2007-05-26">
 	The <a href="csa/index.html">CS/A65</a> computer now has a power supply adapter for PC power supplies, and a VIA prototyping board.
     </item>
