@@ -1,0 +1,19 @@
+
+        *=$fe00
+
+        sei
+        cld
+        lda #0
+        sta $efd0       ; reset MMU control
+        ldy #$0f
+l1      tya
+        sta $eff0,y
+        dey
+        bpl l1
+        lda #$11        ; map video memory
+        sta $eff8
+        lda #%00011000
+        sta $efe0       ; BIOS card control, unmap I/O at $d***
+        jmp $fd16
+
+

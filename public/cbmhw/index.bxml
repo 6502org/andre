@@ -26,8 +26,8 @@
     </item>
   </news>
   <itemlist name="Quickfinder">
-    <description>
-    </description>
+    <desc>
+    </desc>
     <items>
       <subitem name="Mods" link="hwmods.html">
 	The hardware modifications I made for my Commodore equipment.

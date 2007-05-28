@@ -11,15 +11,14 @@
 On these pages you will find quite some software I made around the
 6502 and the Commodore 8-bit machines.
   </overview>
-<!--
   <news>
-    <item date="">
+    <item date="2006-12-27">
+	Added the PET version of @MON.
     </item>
   </news>
--->
   <itemlist name="Crossdevelopment">
-    <description>
-    </description>
+    <!--desc>
+    </desc-->
     <items>
       <subitem name="xa65" link="@XA@">6502 crossassembler<br/>
 This is the 6502 crossassembler I developed to use with my seflbuilt
@@ -39,8 +38,8 @@ Cameron Kaiser. The new website (with current versions) is
    </items>
   </itemlist>
   <itemlist name="C64 development">
-    <description>These programs are not under development anymore.
-    </description>
+    <desc>These programs are not under development anymore.
+    </desc>
      <items>
       <subitem name="@basic">My own basic extension for the C64.
 Provides list-scroll, builtin micromonitor, disk-basic, and some more
@@ -50,19 +49,23 @@ or <a href="@CBMARC@/c64/programming/atbasic.lzh">atbasic.lzh</a>.</subitem>
       <subitem name="@mon">My own machine language monitor. Probably not as good
 as others, but I am used to it and I like it. You find it at
 <a href="@CBMARC@/c64/programming/atmon.tar.gz">@CBMARC@/c64/programming/atmon.tar.gz</a>
-or <a href="@CBMARC@/c64/programming/atbasic.lzh">atmon.lzh</a>.</subitem>
+or <a href="@CBMARC@/c64/programming/atbasic.lzh">atmon.lzh</a>.<br/>
+At this time I have ported the monitor to the Basic 4 PET machines with 40
+and 80 columns. The new version needs to be assembled with the xa 
+cross-assembler. You find the source in <a href="apmon-v112.tar.gz">apmon-v112.tar.gz</a>.
+      </subitem>
       <subitem name="@ass">My own C64 native assembler.
 You need it for some
 of the projects on this page. You find it at
 <a href="@CBMARC@/c64/programming/atass.tar.gz">@CBMARC@/c64/programming/atass.tar.gz</a>or <a href="@CBMARC@/c64/programming/atbasic.lzh">atass.lzh</a>.</subitem>
       <subitem name="BASMON">: This small monitor program is written in BASIC,
-uses some of the kernal code and should runs on the C64 and the PET
+uses some of the kernal code and should run on the C64 and the PET
 computers. A special version for the CBM&nbsp;600 (aka B128) is available.</subitem>
      </items>
    </itemlist>
    <itemlist name="Other programs">
-    <description>Here is some other stuff that might be of interest.
-    </description>
+    <desc>Here is some other stuff that might be of interest.
+    </desc>
     <items>
       <subitem name="BDOS+">This program reads and writes
 PC floppy disks on a C128 with a VC1571 disk drive.

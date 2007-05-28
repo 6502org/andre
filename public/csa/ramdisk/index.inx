@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="CSA65 6502 ramdisk SIM">
+<TITLE>CS/A65 ramdisk</TITLE>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css">
+</HEAD>
+<BODY>
+@MENU@
+<DIV ID="content">
+<H1>CS/A65 ramdisk</H1>
+
+<p>
+		This board uses the (now outdated) 30-pin SIMM memory modules
+		to build a RAM disk with up to 16Mbyte. The memory
+		is accessible via a single register, using an auto-increment
+		byte address counter (8-bit byte address within page only).
+	</p>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir>
+<li>
+<a href="#board1">1.0C</a> (buggy)</li>
+<li>
+<a href="#board2">1.0B</a> (buggy)</li>
+<li>
+<a href="#board3">1.0A</a> (buggy)</li>
+</dir>
+</dir>
+</DIV>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.0C</A></H3>
+<P>Status: buggy</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board timing is not yet fully working.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0c.sch">csa_ramdisk-v1.0c.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0c.brd">csa_ramdisk-v1.0c.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0c-brd.png">csa_ramdisk_v1.0c-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.0B</A></H3>
+<P>Status: buggy</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board timing is not yet fully working.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0b.sch">csa_ramdisk-v1.0b.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0b-sch.png">csa_ramdisk_v1.0b-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0b.brd">csa_ramdisk-v1.0b.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board3">Version: 1.0A</A></H3>
+<P>Status: buggy</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board timing is not yet fully working.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board has a timing problem. The delayed
+			2Phi2 signal used with RWDATA by IC6C to generate the 
+			input to IC12A comes to fast. This is fixed in V1.0B.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="%up%imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The dynamic RAM draws a lot of power. The CSA PWR
+			board checks the supply voltage, so if this board
+			is plugged in, the supply voltage drops below
+			the RESET watcher threshold, and /RESET is asserted.
+			V1.0B contains an additional power supply plug.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0a.sch">csa_ramdisk-v1.0a.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0a-sch.png">csa_ramdisk_v1.0a-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0a.brd">csa_ramdisk-v1.0a.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0a-brd.png">csa_ramdisk_v1.0a-brd.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="ramdisk_v1.0a-1.png">ramdisk_v1.0a-1.png</A>(On the left you can see the floppy-type power connector cable I soldered to the bottom)</TD>
+</TR>
+<TR>
+<TD><IMG SRC="%up%imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</A></TD>
+</TR>
+</TABLE>
+<DIV ID="footer">
+<P>Last modified: 2007-05-28.</P>
+@FOOTER@
+</DIV>
+</DIV>
+</BODY>
+</HTML>

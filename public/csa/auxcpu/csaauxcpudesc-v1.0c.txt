@@ -1,0 +1,104 @@
+
+Description for CS/A AUXCPU board, version 1.0C
+------------------------------------------------
+
+whatsit : 6502 Auxiliary CPU board with local CS/A bus connector.
+I/O     : $850-$85f (alternatively $870-$87f) AUXCPU control and status ports
+Mem     : n/a
+
+I/O(Auxcpu) : $7000-$7FFF maps to the main bus I/O (twice, at $7000 and at $7800)
+              $6000-$6FFF I/O on secondary CS/A bus connector (twice)
+Mem(Auxcpu) : $0000-$3FFF maps to 16k page in main bus memory set via MAPRAM
+              $4000-$4FFF maps to 4k page in main bus memory set via MAP0
+              $5000-$5FFF maps to 4k page in main bus memory set via MAP1
+              $C000-$FFFF maps to 16k page in main bus memory set via MAPROM
+
+This is a very special board, as it has 6502 processor that can take over
+the CS/A bus from the main CPU.
+
+  CS/A bus
+    ||
+    ||  +--------+
+    ||  |  CS/A  |
+    ||==|  main  |
+    ||  |  CPU   |
+    ||  +--------+
+    ||
+    ||
+    ||  +-------+  +--
+    ||  |  AUX  |  | external (secondary) I/O
+    ||==|  CPU  |==| connector
+    ||  |       |  | (e.g. Floppy, or SCSI, or serial)
+    ||  +-------+  +--
+    ||
+    ||
+
+The Auxiliary board can take over the bus from the main CPU when 
+specific error conditions are detected. The bus lines NOTMAPD,
+WPROTERR, and NOEXECERR are monitored for this purpose. Also
+a trace step function is included, using the SYNC line of the
+main CPU to detect opcode fetches.
+
+When an error condition or trace step is detected, the main bus
+RDY line is asserted, so the main CPU stops execution. One cycle
+after that the RDY line of the auxiliary CPU is deasserted, and
+the bus drivers are switched to the auxcpu so that it continues
+in its own program. When the auxcpu has finished its task, it returns
+control back to the maincpu. To achieve this successfully for a
+bus error condition, the bus error condition must have been solved,
+otherwise the auxcpu would directly be called again.
+
+Memory Map
+==========
+
+The auxiliary CPU has the following memory map:
+
+$0000-$3FFF maps to 16k page in main bus memory set via MAPRAM
+$4*** maps to 4k page in main bus memory set via MAP0
+$5*** maps to 4k page in main bus memory set via MAP1
+$6*** maps to the secondary bus I/O area
+$7*** maps to the main bus I/O area
+$8000-$BFFF open - this area must not be used, as the
+	(in this version) /MEMSEL is asserted, but address lines
+	are open!
+$C000-$FFFF maps to 16k page in main bus memory set via MAPROM
+
+
+I/O
+===
+
+The Auxiliary CPU is controlled via a number of registers in the 
+main bus I/O range, so that they can be accessed by the maincpu
+as well as the auxiliary CPU.
+
+The I/O area normally maps to $e85*, but can optionally be moved
+to $e87* via jumper JP1. 
+
+The CTRL register is set to 0 on all bits after RESET.
+
+Register  Acces    Name     Bits
+--------------------------------
+0         write    MAPRAM   2-7 map to bus A14-A19 in auxcpu $0000-$3FFF
+1         write    MAPROM   2-7 map to bus A14-A19 in auxcpu $C000-$FFFF
+2         write    MAP0     0-7 map to bus A12-A19 in auxcpu $4***
+3         write    MAP1     0-7 map to bus A12-A19 in auxcpu $5***
+4         rd/wr    CTRL     0   WPROT     when set, enable write protection handling
+                            1   NOEXEC    when set, enable no execute handling
+                            2   NOTMAPD   when set, enable not mapped handling
+                            3   EXT       when set, enable external trigger (via JP2)
+                            4   STEPEN    when set, trace step the main CPU
+                            5   reserved (0)
+                            6   BIRQEN    when set, assert /IRQ line for the main CPU
+                            7   reserved (0)
+5         read     STAT     0   WPROT     when set a write protection error has occured
+                            1   NOEXEC    when set a no execute error has occured
+                            2   NOTMAPD   when set a not mapped error has occured 
+                            3   EXT       when set an external trigger has occured
+                            4   SYNCERR   a trace step is executed
+                            5   reserved (1)
+                            6   BIRQ      the state of the bus IRQ line
+                            7   BNMI      the state of the bus NMI line
+6         -        reserved
+7         write    DONE     -   writing to this address gives control back to main CPU
+
+
