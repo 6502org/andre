@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 ramdisk</name>
+	<keywords>CSA65 6502 ramdisk SIM</keywords>
+        <lastmodified>2007-05-28</lastmodified>
+	<desc>
+		This board uses the (now outdated) 30-pin SIMM memory modules
+		to build a RAM disk with up to 16Mbyte. The memory
+		is accessible via a single register, using an auto-increment
+		byte address counter (8-bit byte address within page only).
+	</desc>
+	<!--diagram>
+		<file>keyemu.gif</file>
+		<desc>The block diagram shows the dual access to the 
+			shared memory.
+		</desc>
+	</diagram-->
+	<rev>
+		<version>1.0B</version>
+		<status>buggy</status>
+		<note type="warn">
+			The board timing is not yet fully working.
+		</note>
+		<note type="warn">
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v1.0b.sch</file>
+		<file ltype="schem" ptype="png">csa_ramdisk_v1.0b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v1.0b.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk_v1.0b-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>buggy</status>
+		<note type="warn">
+			The board timing is not yet fully working.
+		</note>
+		<note type="warn">
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</note>
+		<note type="warn">
+			The board has a timing problem. The delayed
+			2Phi2 signal used with RWDATA by IC6C to generate the 
+			input to IC12A comes to fast. This is fixed in V1.0B.
+		</note>
+		<note type="warn">
+			The dynamic RAM draws a lot of power. The CSA PWR
+			board checks the supply voltage, so if this board
+			is plugged in, the supply voltage drops below
+			the RESET watcher threshold, and /RESET is asserted.
+			V1.0B contains an additional power supply plug.
+		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa_ramdisk_v1.0a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v1.0a.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk_v1.0a-brd.png</file>
+		<file ltype="photo" ptype="jpg" note="On the left you can see the floppy-type power connector cable I soldered to the bottom">ramdisk_v1.0a-1.png</file>
+		<file ltype="photo" ptype="jpg">ramdisk_v1.0a-2.png</file>
+	</rev>
+</board>

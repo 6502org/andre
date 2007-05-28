@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 Power supply</name>
+	<keywords>CSA65 6502 Power supply 3.3V</keywords>
+	<lastmodified>2007-05-19</lastmodified>
+	<desc><p>This board implements the basic power supply 
+		facilities, using a standard PC power supply as 
+		actual supply. It has a 3.3V power generation, 
+		a 50Hz signal,
+		as well as battery backup (incl. Li-ion battery charging
+		circuit
+		</p><p>
+		Additionally it includes a Reset circuit and a 16MHz clock
+		source, as well as (since 1.1) an I2C realtime clock and 
+		flash ROM.
+		</p><p>
+		The 3.3V generation uses a standard LM317 voltage generator.
+		The 50Hz generation uses the CMOS (this is important) version
+		of the LMC555. Both schematics come from
+		www.elektronik-compendium.de.
+		</p><p>
+		The Li-ion battery charger is a standard schematics from the
+		datasheet of the used MAX712 battery charger.
+		</p>
+	</desc>
+	<!--diagram>
+		<file>bios.gif</file>
+		<desc>itecture</desc>
+	</diagram-->
+	<rev>
+		<version>1.1B</version>
+		<status>prototype</status>
+		<note type="msg">
+			This board has all features. It fixes the bugs in the
+			1.1A version: no /RESET pullup, wrong R17 value for the
+			3.3V generation, and decoupling capacitors for the
+			I2C ICs. Also it has the addresses of the I2C chips
+			fixed (in V1.1A they have the same I2C address...)
+		</note>
+		<note type="warn">
+			The layout is untested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr-v1.1b.sch</file>
+		<file ltype="schem" ptype="png">csa_pwr_v1.1b-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr-v1.1b.brd</file>
+		<file ltype="layout" ptype="png">csa_pwr_v1.1b-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.1A</version>
+		<status>prototype with bugs</status>
+		<note type="warn"> 
+			Watch out, this board has a wrong resistor R17 value
+			and other bugs, see description of 1.1B.
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr-v1.1a.sch</file>
+		<file ltype="schem" ptype="png">csa_pwr_v1.1a-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr-v1.1a.brd</file>
+		<file ltype="layout" ptype="png">csa_pwr_v1.1a-brd.png</file>
+		<file ltype="photo" ptype="png" note="Without the battery, though">csa_pwr_v1.1a.png</file>
+	</rev>
+</board>
