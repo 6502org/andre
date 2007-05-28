@@ -35,7 +35,7 @@
 <li class="dir"><a href="../drvio/index.html">DRVIO floppy and IEC</a></li>
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
 <li class="dir"><a href="../scsi/index.html">SCSI/I2C board</a></li>
-<li class="dir"><a href="../ramdisk/index.html">RAM-disk</a></li>
+<li class="dir"><a href="../ramdisk/index.html">RAMDisk</a></li>
 
 <li class="separator">Special purpose</li>
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
@@ -80,14 +80,60 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.0B</a> (buggy)</li>
+<a href="#board1">1.0C</a> (buggy)</li>
 <li>
-<a href="#board2">1.0A</a> (buggy)</li>
+<a href="#board2">1.0B</a> (buggy)</li>
+<li>
+<a href="#board3">1.0A</a> (buggy)</li>
 </dir>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.0B</A></H3>
+<H3><A NAME="board1">Version: 1.0C</A></H3>
+<P>Status: buggy</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The board timing is not yet fully working.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0c.sch">csa_ramdisk-v1.0c.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk-v1.0c.brd">csa_ramdisk-v1.0c.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_ramdisk_v1.0c-brd.png">csa_ramdisk_v1.0c-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.0B</A></H3>
 <P>Status: buggy</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -131,7 +177,7 @@
 <A HREF="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.0A</A></H3>
+<H3><A NAME="board3">Version: 1.0A</A></H3>
 <P>Status: buggy</P>
 <H4>Notes</H4>
 <TABLE class="notes">

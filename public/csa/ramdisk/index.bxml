@@ -16,6 +16,24 @@
 		</desc>
 	</diagram-->
 	<rev>
+		<version>1.0C</version>
+		<status>buggy</status>
+		<note type="warn">
+			The board timing is not yet fully working.
+		</note>
+		<note type="warn">
+			This board currently has a problem with the
+			counter on read accesses. Spurious read strobes
+			appear that increase the counter on read accesses
+			(but not on write accesses). I do not yet have
+			found the source of this problem.
+		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v1.0c.sch</file>
+		<file ltype="schem" ptype="png">csa_ramdisk_v1.0c-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v1.0c.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk_v1.0c-brd.png</file>
+	</rev>
+	<rev>
 		<version>1.0B</version>
 		<status>buggy</status>
 		<note type="warn">
