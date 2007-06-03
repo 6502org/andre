@@ -78,22 +78,62 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.1C</a> (untested)</li>
+<a href="#board1">1.1D</a> (untested)</li>
 <li>
-<a href="#board2">1.1B</a> (prototype with bug)</li>
+<a href="#board2">1.1C</a> (ok)</li>
+<li>
+<a href="#board3">1.1B</a> (prototype with bug)</li>
 </dir>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.1C</A></H3>
+<H3><A NAME="board1">Version: 1.1D</A></H3>
 <P>Status: untested</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_note.gif" ALT="note"></TD>
+<TD>
+		This board has an additional diode (e.g. 1N4148) to 
+		accomodate for the 
+		WDC65SC22's totem-pole /IRQ output, as opposed to the orginal's
+		open-collector output. Additionally it clears the board
+		area under the piezo beeper.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_petio_v1.1d.sch">csa_petio_v1.1d.sch</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_petio_v1.1d-sch.png">csa_petio_v1.1d-sch.png</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_petio_v1.1d.brd">csa_petio_v1.1d.brd</A></TD>
+</TR>
+<TR>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_petio_v1.1d-lay.png">csa_petio_v1.1d-lay.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.1C</A></H3>
+<P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
 			This board has the keyboard connector bug from revision
-			1.1B fixed, but is otherwise completely untested.
+			1.1B fixed.
 		</TD>
 </TR>
 </TABLE>
@@ -130,7 +170,7 @@
 <A HREF="csa_petio_v1.1c-lay.png">csa_petio_v1.1c-lay.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.1B</A></H3>
+<H3><A NAME="board3">Version: 1.1B</A></H3>
 <P>Status: prototype with bug</P>
 <H4>Notes</H4>
 <TABLE class="notes">

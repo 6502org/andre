@@ -14,6 +14,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2007-06-03">
+			A new <a href="petio/index.html">PETIO</a> board revision, which adds a diode for the WDC65C22's /IRQ output.
+                </item>
                 <item date="2007-05-26">
 			A <a href="viaproto/index.html">VIA prototyping board</a> to test VIA-related circuits.
                 </item>
@@ -293,6 +296,13 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		trace of the main CPU.
 	  </subitem>
 
+          <subitem name="Power board" link="pwr/index.html">
+		This board provides basic services, using power from a 
+		PC power supply. It includes voltage monitor, 3.3V generation,
+		battery buffered power, as well as I2C controlled 
+		clock, RAM, and an I2C flash ROM.
+	  </subitem>
+
 	</subsection>
 	<subsection toc="ioboards" name="I/O boards">
 	<desc>Many of the I/O boards are designed to be at least to some extent
@@ -363,6 +373,11 @@ computers memory into the main memory map.
 		It features two shared memory areas, where the memory
 		is shared between the main CPU and the keyboard matrix
 		select and detect lines.
+	  </subitem>
+
+          <subitem name="VIA prototyping" link="viaproto/index.html">
+		This board has a VIA, with address decoding and a large
+		area ready for prototyping.
 	  </subitem>
 
 	</subsection>
