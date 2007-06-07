@@ -22,6 +22,11 @@ improve messaging and communication throughput, add C support and more.
 
   </overview>
   <news>
+    <item date="2007-06-07">
+        A new <a href="csa/spi/index.html">SPI</a> page for the
+	CS/A computer, with
+        a schematics and driver to handle MMC and SD-Cards.
+    </item>
     <item date="2007-05-28">
 	The new <a href="mischw/index.html">Miscellaneous Hardware</a> 
 	page has a logic probe.
@@ -140,6 +145,10 @@ to this page.</subitem>
 	items and standards used in these pages. Examples are 
 	<a href="hwinfo/crtctest/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
 	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
+      </subitem>
+      <subitem name="Hardware Tools and Stuff" 
+		link="mischw/index.html">: Miscellaneous hardware stuff. 
+	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
       </subitem>
      </item>
      <item name="6502 software stuff" class="sw">

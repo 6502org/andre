@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 SPI Interface</name>
+	<keywords>CSA65 6502 VIA 6522 SPI MMC SD-Card</keywords>
+	<lastmodified>2007-06-07</lastmodified>
+	<desc><p>This page is actually not about a complete board, but it 
+		documents the ways I use to connect SPI devices
+		to the 6502. The first part actually is the interface
+		to the SPI interface of MMC and SD-Cards.</p>
+	</desc>
+	<!--diagram>
+		<file>bios.gif</file>
+		<desc>itecture</desc>
+	</diagram-->
+        <section toc="modes" name="SPI"><desc>
+                <p>SPI means "Serial Peripheral Interface Bus" and is a very
+		simple four-wire protocol. Some of the advantages are:
+		<ul>
+		<li>Each signal is single direction, there are no bi-directional signals</li>
+		<li>It is a synchronous bus and clock is controlled by a single source.</li>
+		<li>It is byte-oriented</li>
+		</ul>
+		One of its disadvantages is: it is not exactly well specified:
+		</p><p>
+		There are these four lines:
+		<table border="1"><tr><th>Signal</th><th>Direction</th><th>Description</th></tr>
+		<tr><td>/SEL</td><td>SPI Master -&gt; SPI Slave</td><td>If low, the selected device is selected. A master may have multiple of those outputs, but a slave has only one input</td></tr>
+		<tr><td>CLK</td><td>SPI Master -&gt; SPI Slave</td><td>Clock for data transfers</td></tr>
+		<tr><td>MOSI</td><td>SPI Master -&gt; SPI Slave</td><td>Data from master to slave</td></tr>
+		<tr><td>MISO</td><td>SPI Slave -&gt; SPI Master</td><td>Data from slave to master</td></tr>
+		</table>
+		Beyond that the CLK levels and at which CLK transition the data
+		is transferred is not defined!
+                </p></desc>
+	        <subsection toc="modes" name="SPI Modes"><desc>
+                	<p>
+			For this reason there are different possibilities:
+			<ul><li>CPOL=0/1: base value of the clock. I.e. the level of the CLK signal when no data transfer is going on.</li>
+			<li>CPHA=0/1: The transition of the clock (leading or trailing edge) on which the data is transferred</li>
+			</ul>
+			This results in the fact that there are four SPI modes,
+			<table border="1"><tr><th>Mode</th><th>CPOL</th><th>CPHA</th></tr>
+			<tr><td>0</td><td>0</td><td>0</td></tr>
+			<tr><td>1</td><td>0</td><td>1</td></tr>
+			<tr><td>2</td><td>1</td><td>0</td></tr>
+			<tr><td>3</td><td>1</td><td>1</td></tr>
+			</table>
+			Unfortunately some devices only understand a single 
+			mode, and different from other devices, so a master
+			should be able to handle all modes.
+                	</p></desc>
+        	</subsection>
+	        <subsection toc="spilinks" name="Links"><desc>
+			<ul><li><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> has some more detailled info</li>
+			</ul>
+			</desc>
+        	</subsection>
+        </section>
+        <section toc="mmcsdc" name="MMC and SD-Cards"><desc>
+                <p>
+		MMC-Card and SD-Cards are cheap means of getting large amounts
+		of storage memory nowadays. And they are getting larger and
+		cheaper every day. Those cards are based on flash memory
+		and can be found in digital cameras, navigation systems, 
+		and many more.
+		</p>
+		<p>Unfortunately the MMC- and SD-Card protocols are not free,
+		 however a certain amount of intelligence has been gathered
+		and is available on the web:
+		<ul><li><a href="http://en.wikipedia.org/wiki/MultiMediaCard">Wikipedia on MMCs</a></li>
+		<li><a href="http://en.wikipedia.org/wiki/Secure_Digital_card">Wikipedia on Secure Digital Cards</a></li>
+		<li><a href="http://elm-chan.org/docs/mmc/mmc_e.html">How to use MMC/SDC</a></li>
+		</ul>
+		as well as in datasheets for MMC or SD-Cards found on the 
+		producers homepages.
+                </p></desc>
+	        <subsection toc="spimodes" name="MMC/SD SPI mode"><desc><p>
+			Newer MMC and especially SD-Cards use a mode
+			where more than a single bit is transferred per
+			clock. In fact the cards have four data lines that
+			are used in native mode. This mode is however
+			more complicated. But, we are lucky, all cards
+			still support the SPI mode, that they can enter
+			upon startup when instructed to do so. And this is
+			what the driver does.
+			</p><p>
+			One problem I had in the beginning was that the
+			datasheets mentioned the data transfer on the 
+			rising edge of the clock, but not what 
+			clock level would be correct. By experimentation
+			I found that MMCs and SD-Cards use mode 0.
+			</p></desc>
+        	</subsection>
+        </section>
+        <section toc="sdc65" name="MMC and SD-Cards in a 6502 system"><desc>
+	<p>
+		In a 6502 system several issues have to be considered:
+	</p>
+	</desc>
+		<subsection toc="65volt" name="Operating Voltage">
+		<desc><p>
+			The MMC and SD-Cards can operate with different 
+			operation voltages, but not with voltages as high as
+			5 Volt. 
+		</p><p>Fortunately I had, with my new PWR board, a 3.3V
+			power supply I could use. Doing the signal voltage
+			conversion was more difficult. As shown on
+			<a href="http://www.cip.physik.uni-muenchen.de/~wwieser/elec/avr/usb/levelcv.html">USB-based Atmel/AVR Programmer: Level Converter</a>,
+			a 74VHC04 could be used to handle 5 Volt inputs even
+			when powered with 3.3V - and giving 3.3V to the output.
+			This IC, however, is SMD and hard to get, so I went for
+			the slower (in terms of operating frequency) solution
+			with open collector drivers as you can see in the 
+			schematics.
+		</p><p>
+			Fortunately the MMC boards are CMOS devices, and 
+			CMOS devices have a higher "high level" compared to
+			standard TTL (see for example <a href="http://www.interfacebus.com/voltage_threshold.html">Logic Voltage Thresholds for TTL, CMOS, ...</a>). 
+			Thus an output of a 3.3V-driven CMOS IC can still drive
+			3V, which for a 5V TTL chips easily is a high level.				Therefore a 74LS* IC should suffice. According to the
+			Level converter page above I successfully used a 
+			74HCT family IC.
+		</p></desc>
+        	</subsection>
+		<subsection toc="65clk" name="SPI Mode">
+		<desc><p>The MMC and SD-Cards operate with SPI mode 0.
+			First I thought I could use the VIA 6522 shift
+			register (SR) to handle the SPI port. As it turned out,
+			however, the VIA SR transfers data out at the 
+			first (falling) transition of its clock, so it can be
+			latched by the second (rising) edge by the receiver.
+			This would be SPI mode 3. You could reverse clock,
+			but you cannot make the VIA shift our earlier. So there
+			is no way to use the VIA SR. Instead I now use a 
+			bit-banging approach with CLK and MOSI.
+			</p><p>
+			For MISO, hoever, I decided to use an external shift
+			register. This approach seemed to make sense 
+			with the VIA SR, as transfers work in both directions
+			at the same time. Now it is just a convenience.
+		</p></desc>
+        	</subsection>
+	</section>
+        <driver>
+                <name>OS/A65 SPI driver</name>
+                <desc><p>
+			This is a test driver for the SPI schematics below.
+			It initializes the card, reads the operations conditions
+			register, the card id data, and can read and write
+			a block.
+			</p><p>Please note that it is clutterd with debug code.
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >sdcard.tar.gz</file>
+        </driver>
+	<rev>
+		<version>1.0A</version>
+		<status>prototype</status>
+		<note type="msg">
+			I have built this schematics on a prototyping board,
+			so there is no board layout for it.
+		</note>
+		<note type="msg">
+			You may not the input shift register. This is not 
+			really necessary if you bit-bang the input as well.
+			It is convenient, however, and a remainder of an 
+			earlier approach using the VIA shift register
+			(which did not work unfortunately).
+		</note>
+		<note type="msg">
+			For hot-plugging another capacitor may be needed
+			in the power supply lines for the card.
+		</note>
+		<file ltype="schem" ptype="esch">csa_viaspi-v1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa_viaspi_v1.0a-sch.png</file>
+	</rev>
+</board>

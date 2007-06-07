@@ -16,6 +16,7 @@ d shug PC floppy
 d drvio DRVIO floppy and IEC
 d duart Double UART (RS232)
 d scsi SCSI/I2C board
+d spi MMC/SD-Card
 s Special purpose
 d copro Coprocessor board
 d cpuemu Emulate a 6502
