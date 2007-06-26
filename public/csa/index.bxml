@@ -14,9 +14,12 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.
 	</desc>
         <news>
+                <item date="2007-06-27">
+			A new version of the <a href="gecko/index.html">Gecko</a> board, including a PET ROM version using an RS232 interface as editor.
+                </item>
                 <item date="2007-06-07">
 			A new <a href="spi/index.html">SPI</a> page, with
-			a schematics and driver to handle MMC and SD-Cards.
+			a schematics and driver to handle MMC- (and SD-) Cards.
                 </item>
                 <item date="2007-06-03">
 			A new <a href="petio/index.html">PETIO</a> board revision, which adds a diode for the WDC65C22's /IRQ output.
