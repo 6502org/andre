@@ -26,9 +26,11 @@ use a 16550 UART (with FIFO).
 			For this board also Eagle(tm) schematics and layout
 			files are available
 		</note>
-		<note type="warn">At this time only the basic RAM, ROM, and 
-			IRQ/Port functionality has been tested. RS232 is 
-			as of now untested.
+		<note type="warn">The RS232 functionality works, although it
+			seems larger capacitors for the RS232 voltage generation
+			could be needed, as my test board looses characters.
+			The same schematics works fine in the Gecko board,
+			though.
 		</note>
 		<note type="msg">The TTL parts mainly consist of the 'ALS (advanced
 			Low-Power Shottky) TTL types, except where available.
