@@ -23,7 +23,7 @@ improve messaging and communication throughput, add C support and more.
   </overview>
   <news>
     <item date="2007-06-27">
-        A new version of the <a href="gecko/index.html">Gecko</a> board, including a PET ROM version using an RS232 interface as editor.
+        A new version of the <a href="csa/gecko/index.html">Gecko</a> board, including a PET ROM version using an RS232 interface as editor.
     </item>
     <item date="2007-06-07">
         A new <a href="csa/spi/index.html">SPI</a> page for the
