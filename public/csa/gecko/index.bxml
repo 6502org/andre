@@ -79,13 +79,19 @@ I/O space</LI>
 			I.e. it replaces the standard PET Basic4 editor
 			ROM with a new ROM that uses the RS232 interface
 			instead. This version uses the VIA T1 interrupt
-			to implement the system interrupt. The ESC key	
+			to implement the system interrupt. The Backspace key	
 			is used as STOP, and due to character code conversion
 			(or lack thereof) input must be in capital characters.
+			</p><p>
+			The archive contains the source code for the new
+			editor ROM, and two binaries. One "uarted" is the real 
+			Gecko editor ROM, the other "lduarted" is a PET BASIC executable
+			that loads into the Fat40 setup of the CS/A65
+			computer and uses the BIOS card's RS232 interface.
 			</p>
                 </desc>
                 <file ltype="driver" ptype="tgz" >gecko-uarted.tar.gz</file>
-                <file ltype="photo" ptype="png" >serialpet.png</file>
+                <file ltype="photo" ptype="png" note="Output of a PET via RS232">serialpet.png</file>
         </driver>
         <driver>
                 <name>Infrared Driver</name>
