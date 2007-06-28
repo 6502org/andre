@@ -12,9 +12,17 @@
 		SCSI disks, though (yet).
 		</p><p>
 		Since revision 1.1 it also includes an I2C controller.
+		</p><p>
+		Since revision 1.2 it also includes an I2C flash ROM, as
+		well as a possibly battery buffered I2C RTC (clock) with
+		some additional buffered RAM.
 		</p>
 	</desc>
         <news>
+                <item date="2007-05-26">
+                        Added new board revision (with I2C flash and RTC/RAM).
+			It also adds the missing pullups for I2C SDA and SCL.
+                </item>
                 <item date="2006-12-14">
                         Added new board revision (with I2C interface) and new driver code.
                 </item>
@@ -44,7 +52,7 @@ level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the
 filesystem code.
 </p></desc>
-	<subsection toc="hwlay" name="Hardware layer"><p>
+	<subsection toc="hwlay" name="Hardware layer"><desc><p>
 The hardware layer is a low level driver that can detect the
 devices connected to the SCSI bus, inquire the device (it returns
 the type etc), get the blocksize and read or write single blocks.
@@ -57,7 +65,7 @@ for another interface, that I implemented in the VICE
 emulator, not in hardware. You write the block number to some
 I/O locations and get the right block memory mapped. This code
 shows how easy it is to replace the hardware level if necessary.
-</p></subsection><subsection toc="part" name="Partition layer"><p>
+</p></desc></subsection><subsection toc="part" name="Partition layer"><desc><p>
 The partition level consists of three parts, where only two
 are implemented so far.
 First in the file <code>part.i65</code>
@@ -72,14 +80,14 @@ table appropriately.
 The third part would be an <code>fdisk</code> program that uses the low
 level routines to manipulate the partition tables. But here I still
 rely on the Linux counterpart I already have :-)
-</p></subsection><subsection toc="fs" name="Filesystem level"><p>
+</p></desc></subsection><subsection toc="fs" name="Filesystem level"><desc><p>
 The upper level is the filesystem level. It contains code to handle
 directories, files, allocation tables etc.
 This is not contained in the basic SCSI drivers, because it is
 heavily depending on the operating system.
 It should be easy to implement any filesystem you like on the level
 provided by the partition code.
-</p></subsection><subsection toc="drvs" name="Drivers"><p>
+</p></desc></subsection><subsection toc="drvs" name="Drivers"><desc><p>
 The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
 system</a>. An example of a filesystem
 implementation can be found in <code>oa-2.0.8/sysapps/fs/fsibm*</code>,
@@ -87,7 +95,7 @@ that implement a fileserver task for the GeckOS/A65 operating
 system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 (no FAT32 and no long filenames). But be warned, it is an early
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
-</p></subsection>
+</p></desc></subsection>
 	</section>
         <driver>
                 <name>OS/A65 I2C driver</name>
@@ -154,8 +162,34 @@ beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
                 <file ltype="driver" ptype="a65" note="hardware driver">csascsi1.a65</file>
         </driver>
 	<rev>
+		<version>1.2B</version>
+		<status>untested</status>
+		<note type="msg"><p>
+			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
+			well as an <a href="../../hwinfo/i2c.html">I2C</a> 
+			interface. </p><p>The 
+			following restrictions apply to the SCSI interface:
+			<ul>
+				<li>Can only be used as controller, not device</li>
+				<li>Controller SCSI ID always 7</li>
+				<li>Can not share the bus with another controller</li>
+			</ul></p><p>
+			The I2C interface is implemented using a Philips PCF8584 I2C controller. This controller only works relyably at 1MHz, so the
+			board implements a mechanism to assert the RDY line
+			to hold the CPU for a single cycle. This feature is 
+			jumperable.
+			</p>
+		</note>
+		<file ltype="schem" ptype="png">csa_scsi_v1.2b-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_scsi_v1.2b.sch</file>
+		<file ltype="layout" ptype="png">csa_scsi_v1.2b-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_scsi_v1.2b.brd</file>
+	</rev>
+	<rev>
 		<version>1.1A</version>
 		<status>ok</status>
+		<note type="warn">Only recently I found that the pull-up resistors for I2C SDA and SCL are missing. Add a 10k resistor from each of those lines to VCC
+		</note>
 		<note type="msg"><p>
 			This board implements a <a href="../../hwinfo/scsi.html">SCSI-I</a> controller, as 
 			well as an <a href="../../hwinfo/i2c.html">I2C</a> 

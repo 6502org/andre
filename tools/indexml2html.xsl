@@ -37,6 +37,9 @@
 <xsl:if test="diagram">
 <li><a href="#blkdiag">Block diagram</a></li>
 </xsl:if>
+<xsl:if test="oldnews">
+<li><a href="#oldnews">Old News</a></li>
+</xsl:if>
 </dir>
 </DIV>
 </xsl:template>
@@ -57,7 +60,8 @@
 @MENU@
 <DIV ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
-</xsl:text><P><xsl:copy-of select="desc/*|desc/text()"/></P><xsl:text>
+</xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
+</xsl:text><xsl:apply-templates select="desc"/><xsl:text>
 </xsl:text>
 <xsl:apply-templates select="news"/>
 <xsl:call-template name="toc"/>
@@ -73,8 +77,9 @@
 <xsl:if test="diagram">
 <H2><A name="blkdiag">Block diagram</A></H2>
 <img src="{diagram/file}" alt="block diagram"/>
-<P><xsl:copy-of select="diagram/desc"/></P>
+<xsl:apply-templates select="diagram/desc"/>
 </xsl:if>
+<xsl:apply-templates select="oldnews"/>
 <xsl:apply-templates select="disclaimer"/>
 <DIV ID="footer">
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
@@ -84,18 +89,30 @@
 </BODY></HTML>
 </xsl:template>
 
+
+<xsl:template match="desc">
+<p><xsl:copy-of select="*|text()"/></p>
+</xsl:template>
+
 <xsl:template match="section">
 <H2><a name="{@toc}"><xsl:value-of select="@name"/></a></H2>
-<xsl:if test="desc"><p><xsl:copy-of select="desc/*|desc/text()"/></p></xsl:if>
+<xsl:apply-templates select="desc"/>
 <xsl:apply-templates select="subsection"/>
+<xsl:if test="subitem">
 <ul>
 <xsl:apply-templates select="subitem"/>
 </ul>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="subsection">
 <H3><a name="{@toc}"><xsl:value-of select="@name"/></a></H3>
-<xsl:copy-of select="*|text()"/>
+<xsl:apply-templates select="desc"/>
+<xsl:if test="subitem">
+<ul>
+<xsl:apply-templates select="subitem"/>
+</ul>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="rev">
@@ -123,7 +140,7 @@
 
 <xsl:template match="driver">
 <H3><A NAME="driver{position()}"><xsl:value-of select="name"/></A></H3>
-<P><xsl:copy-of select="desc/*|desc/text()"/></P>
+<xsl:apply-templates select="desc"/>
 <TABLE class="files"><xsl:apply-templates select="file"/></TABLE>
 </xsl:template>
 
@@ -150,6 +167,10 @@
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<xsl:template match="copyright">
+<h3>(C) <xsl:value-of select="start"/><xsl:text> - </xsl:text><xsl:value-of select="end"/><xsl:text> </xsl:text><xsl:value-of select="author"/></h3>
+</xsl:template>
 
 <xsl:template match="webpage">
 <html><head>
@@ -191,9 +212,9 @@
 </p>
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
-<xsl:for-each select="itemlist">
+<xsl:for-each select="itemlist|section">
   <h2><xsl:call-template name="aname"/></h2>
-  <xsl:apply-templates select="description"/>
+  <xsl:apply-templates select="desc"/>
   <xsl:apply-templates select="subsection"/>
    <xsl:for-each select="items[item|subitem|file]">
     <xsl:if test="file">
@@ -202,13 +223,12 @@
     </xsl:if>
    <ul>
     <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-    <xsl:apply-templates select="subitem"/>
     <xsl:for-each select="item">
       <li>
 	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
 	<strong><xsl:call-template name="aname"/></strong><br/>
         <br/>
-          <xsl:apply-templates select="description"/>
+          <xsl:apply-templates select="desc"/>
 	  <xsl:if test="subitem">
 	<ul>
           <xsl:apply-templates select="subitem"/>
@@ -217,6 +237,7 @@
       </li>
       <br/>
     </xsl:for-each>
+    <xsl:apply-templates select="subitem"/>
    </ul>
    </xsl:for-each>
   <xsl:apply-templates select="disclaimer"/>
@@ -247,7 +268,7 @@
 </xsl:template>
 
 <xsl:template match="oldnews">
- <h2>Old News:</h2>
+ <h2><a name="oldnews">Old News:</a></h2>
  <ul class="oldnews">
  <xsl:for-each select="item[@state!='off']">
   <li>
@@ -262,10 +283,6 @@
 <xsl:template match="disclaimer">
     <h2><xsl:value-of select="@name"/></h2>
     <p><xsl:copy-of select="*|text()"/></p>
-</xsl:template>
-
-<xsl:template match="description">
-    <xsl:copy-of select="*|text()"/>
 </xsl:template>
 
 <xsl:template match="closing">

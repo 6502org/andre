@@ -24,6 +24,7 @@ In this document you find:
 <LI><a href="#1">General Info</a> about the 8296</LI>
 <LI><a href="#3">8296-D Information</a></LI>
 <LI><a href="#4">Original Docs and LOS-96 Operating System</a></LI>
+<LI><a href="#5">Further links</a></LI>
 </UL>
 
 <H2><a name="2">8x96 memory mapping</a></H2><P>
@@ -176,6 +177,11 @@ The LOS-96 software can be found in <A HREF="soft/los96-disk.tar.gz">los96-disk.
 which is the same as on the CBM archive, but includes a VICE PET emulator .x64 disk
 image with the stuff.
 </LI></UL>
+<H2><a name="5">More links</a></H2>
+<ul>
+<li><a href="http://www.sothius.com/hypertxt/welcome.html?./additional/cbm8296addition.html">Sothius' 8296 page</a>.</li>
+<li><a href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">PLA replacement</a> with an EPROM (German).</li>
+</ul>
 <HR><P>
 Back to the <A HREF="index.html">PET index</A>
 <P>PET index V1.0 (c) 1999-2005 A. Fachat

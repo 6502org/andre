@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<board>
+	<name>Logic Probe</name>
+	<keywords>Logic probe</keywords>
+	<lastmodified>2007-05-28</lastmodified>
+	<desc><p>
+		This page describes a logic probe that can be used to
+		analyze and debug TTL circuits.
+		</p><p>
+		The logic probe is a small device with a sampling tip,
+		and a number of LEDs that indicate the state of the signal
+		connected to the sampling tip. Two "direct" LEDs show whether the
+		signal is high (red LED), low (green LED), of unconnected
+		(no LED). If the signal switches quickly between the two
+		states, both LEDs seem to be on continuously (although
+		they aren't). 
+		</p><p>
+		A pulse logic detects transition to a state (HIGH or LOW) and
+		generates a ca. 0.5sec pulse lighting up separate "pulse" LEDs.
+		So a state change can be detected, even if it is only a 
+		short pulse invisible on the direct LEDs.
+		</p><p>
+		Additionally a second signal input can be used to latch
+		the main signal at a low-high or low-high transition of 
+		the latch input.
+		</p>
+	</desc>
+	<!--diagram>
+		<file>bios.gif</file>
+		<desc>itecture</desc>
+	</diagram-->
+	<rev>
+		<version>1.0C</version>
+		<status>prototype</status>
+		<note type="msg">
+			This board has the connectors fixed, as well as the
+			inversion of the latch LEDs.
+		</note>
+		<note type="warn">
+			The layout is untested.
+		</note>
+		<note type="warn">
+			The built in op-amp has a delay time of at least 300ns
+			as far as I understand. So this probe is unfortunately
+			not good enough for clocks, and only possibly working
+			for address and select lines.
+		</note>
+		<file ltype="schem" ptype="esch">logic_probe-v1.0c.sch</file>
+		<file ltype="schem" ptype="png">logic_probe-v1.0c-sch.png</file>
+		<file ltype="layout" ptype="esch">logic_probe-v1.0c.brd</file>
+		<file ltype="layout" ptype="png">logic_probe-v1.0c-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>prototype with bugs</status>
+		<note type="warn"> 
+			Watch out, this board has the signal and latch
+			input connectors exchanged, as well as the 
+			latch LEDs are inverted.
+		</note>
+		<note type="warn">
+			I have yet to determine whether I have a problem with
+			my selfbuilt computer, or the probe is not good enough
+			for higher signal frequencies. Probably have to reduce
+			the input resistor network values to reduce the RC
+			constant.
+		</note>
+		<file ltype="schem" ptype="esch">logic_probe-v1.0a.sch</file>
+		<file ltype="schem" ptype="png">logic_probe-v1.0a-sch.png</file>
+		<file ltype="layout" ptype="esch">logic_probe-v1.0a.brd</file>
+		<file ltype="layout" ptype="png">logic_probe-v1.0a-brd.png</file>
+		<file ltype="photo" ptype="png" note="signal tip, pwr and latch input are connected via Cinch plugs.">logic_probe_v1.0a.png</file>
+	</rev>
+</board>

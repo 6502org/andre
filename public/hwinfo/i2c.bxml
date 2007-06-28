@@ -18,8 +18,8 @@
     </item>
   </news-->
   <itemlist name="I2C Links">
-    <!--description>
-    </description-->
+    <!--desc>
+    </desc-->
     <items>
      <subitem name="ELektronik-KOmpendium" link="http://www.elektronik-kompendium.de/public/borchers/i2c/main.htm">
 	This page contains a very good introduction to the I2C bus - although

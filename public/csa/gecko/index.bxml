@@ -1,0 +1,196 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160; "> ]>
+<board>
+	<name>CS/A65 Gecko</name>
+	<keywords>CSA65 6502 Infrared</keywords>
+        <lastmodified>2007-06-27</lastmodified>
+        <copyright>
+                <author>Andr&eacute; Fachat</author>
+                <start>1997</start>
+                <end>2007</end>
+        </copyright>
+	<desc><p>In 1997 I started developing an extra CPU board for my
+		<a href="../index.html">CS/A65</a> system, but now without
+		an MMU and with additional I/O on board. This resulted
+		in the <em>Gecko</em> board. Some of its features are:</p>
+		<UL>
+<LI>A&nbsp;fast serial <strong>RS232</strong> interface, using the 16550 UART&nbsp;with
+FIFO, known from the PC&nbsp;world.</LI>
+
+<LI>A <strong>serial IEC</strong> bus interface to the Commodore C64 and VC1541</LI>
+
+<LI>An interface to infrared LEDs to <strong>remote control</strong> devices like
+CD player or TV sets</LI>
+
+<LI>A small <strong>keyboard</strong> interface</LI>
+
+<LI>Up to 30 kByte ROM and 32 kByte RAM, with up to 2 kByte fully decoded
+I/O space</LI>
+
+<LI>Bus interface to standard CS/A peripheral interface cards</LI>
+<LI>When used as a slave board to a normal CS/A65 system, the ROM can be reprogrammed in-system (when using an IC like the 29C010).</LI>
+</UL>
+		<p>Software support is available with my <a href="../../osa/index.html">GeckOS</a> operating system, as well as with the drivers
+		provided on this page.</p>
+		<p>An old description up to version 2.1 can be found in
+			<a href="indexold.html">the old page</a></p>.
+	</desc>
+        <news>
+                <item date="2007-06-27">
+			Added a new re-design of the Gecko board. See the 
+			board description below.
+                </item>
+                <item date="2007-06-27">
+			I have relicensed the board to use the same license
+			as the other boards (previously it was non-commercial
+			only)
+                </item>
+        </news>
+	<section toc="overview" name="System Overview"><desc>
+		<p>The System is built from a 6502 with some RAM and ROM.
+		Additionally it contains a UART 16550A for an RS232 interface,
+		as well as a VIA 6522 for some other I/O:</p>
+		<ul>
+		<li>Infrared sender - to control stereo equipment, VCRs, TV sets etc</li>
+		<li>4 bit in/4 bit out - for example for a small keyboard</li>
+		<li>Commodore IEC bus - master or slave, so it can be used as
+			controller or as device (drive)</li>
+		</ul><p>
+		The system also contains a CS/A65 bus adapter, so it can be
+		plugged into a CS/A65 bus. In this bus it can either take
+		the role of the master (using all the ICs) but only for the
+		bus' I/O area. But it can also take the role as an I/O/Memory
+		board itself. Here a number of ICs must be removed
+		and some jumpers set specifically.
+		</p>
+	</desc>
+	</section>
+	<section toc="drivers" name="Driver Setup"><desc>
+		Most of the drivers have been tested using the 
+		board in the slave mode - using the PET setup of the
+		CS/A65 computer (The PET setup uses the IEEE488
+		interface to load the files).
+		</desc>
+	</section>
+        <driver>
+                <name>Serial PET</name>
+                <desc><p>
+			This driver implements a normal PET ROM - but
+			using the Serial (RS232) interface as terminal.
+			I.e. it replaces the standard PET Basic4 editor
+			ROM with a new ROM that uses the RS232 interface
+			instead. This version uses the VIA T1 interrupt
+			to implement the system interrupt. The Backspace key	
+			is used as STOP, and due to character code conversion
+			(or lack thereof) input must be in capital characters.
+			</p><p>
+			The archive contains the source code for the new
+			editor ROM, and two binaries. One "uarted" is the real 
+			Gecko editor ROM, the other "lduarted" is a PET BASIC executable
+			that loads into the Fat40 setup of the CS/A65
+			computer and uses the BIOS card's RS232 interface.
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >gecko-uarted.tar.gz</file>
+                <file ltype="photo" ptype="png" note="Output of a PET via RS232">serialpet.png</file>
+        </driver>
+        <driver>
+                <name>Infrared Driver</name>
+                <desc>
+			The infrared device is controlled by VIA PB7.
+			This driver implements a small PET program 
+			that allows to send infrared commands to a 
+			TV set and a Sony stereo. Other commands
+			can be implemented as well.
+                </desc>
+                <file ltype="driver" ptype="tgz" >geckoir.tar.gz</file>
+                <file ltype="photo" ptype="jpg" >geckoir.jpg</file>
+        </driver>
+        <driver>
+                <name>IEC Driver</name>
+                <desc>
+			This driver (PET program) reads the drive 
+			status of a Commodore IEC disk drive.
+                </desc>
+                <file ltype="driver" ptype="tgz" >geckoiec.tar.gz</file>
+        </driver>
+        <driver>
+                <name>Keyboard driver</name>
+                <desc>
+			This driver (PET program) uses the 4 bit in/4  bit out
+			port to handle a small keyboard. The keyboard
+			uses a 74LS145 4-to-10 open collector decoder
+			(similar to the PET keyboard) to select one of 
+			ten keyboard columns, with 4 keyboard rows as 
+			input bits. 
+                </desc>
+                <file ltype="driver" ptype="tgz" >minikey.tar.gz</file>
+                <file ltype="photo" ptype="jpg" >minikey1.jpg</file>
+                <file ltype="photo" ptype="jpg" >minikey2.jpg</file>
+        </driver>
+	<rev>
+		<version>3.0D</version>
+		<status>schematics tested</status>
+		<note type="msg"><p>
+			In addition to the 3.0C version this implements the
+			ability to reprogram the ROM in-system - in case it
+			is a 29C010 for example. Unfortunately this only
+			works when the board is used as a slave, and only
+			when the board I/O is mapped into the bus I/O
+			area and not into the memory area.
+		</p></note>
+		<file ltype="schem" ptype="png">csa_gecko_v3.0d-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_gecko_v3.0d.sch</file>
+		<file ltype="layout" ptype="png">csa_gecko_v3.0d-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_gecko_v3.0d.brd</file>
+	</rev>
+	<rev>
+		<version>3.0C</version>
+		<status>schematics tested</status>
+		<note type="msg">
+			This board fixes the bugs in the 3.0A version.
+		</note>
+		<file ltype="schem" ptype="png">csa_gecko_v3.0c-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_gecko_v3.0c.sch</file>
+		<file ltype="layout" ptype="png">csa_gecko_v3.0c-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_gecko_v3.0c.brd</file>
+	</rev>
+	<rev>
+		<version>3.0A</version>
+		<status>tested with bugs</status>
+		<note type="msg">
+			This board is the redesign of the original 
+			Gecko board. It misses some important jumpers 
+			to use the board as an I/O/Memory board slave in a
+			CS/A65 system. Also it misses the /IRQ diode for the
+			WDC VIA, and Pin2 of IC9A is wrong.
+		</note>
+		<file ltype="schem" ptype="png">csa_gecko_v3.0a-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_gecko_v3.0a.sch</file>
+		<file ltype="layout" ptype="png">csa_gecko_v3.0a-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_gecko_v3.0a.brd</file>
+	</rev>
+	<rev>
+		<version>2.1A</version>
+		<status>ok</status>
+		<note type="msg">
+			This is the Gecko 2.1 version that adds 
+			the ability to use the board as I/O or memory
+			board (slave) in a CS/A65 system.
+		</note>
+		<file ltype="schem" ptype="fig">gecko2.fig</file>
+		<file ltype="schem" ptype="psgz">gecko2.ps.gz</file>
+		<file ltype="schem" ptype="png">gecko2.png</file>
+		<file ltype="parts" ptype="txt">geckoparts.txt</file>
+		<file ltype="desc" ptype="txt">geckodesc.txt</file>
+	</rev>
+	<rev>
+		<version>2.0A</version>
+		<status>ok</status>
+		<note type="msg">
+			This is the original Gecko 2.0 version
+		</note>
+		<file ltype="schem" ptype="fig">gecko.fig</file>
+		<file ltype="schem" ptype="psgz">gecko.ps.gz</file>
+		<file ltype="schem" ptype="png">gecko.png</file>
+	</rev>
+</board>

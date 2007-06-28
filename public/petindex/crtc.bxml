@@ -40,7 +40,7 @@ computer page or in the PET schematics on the
   </news>
   <toc/>
   <itemlist name="CRTC use in the PET" toc="crtc">
-    <description>
+    <desc>
 <P>
 There are a few things that might be different from other implementations
 in the PET. The CRTC has been used in 40 columns and 80 columns models.
@@ -71,9 +71,9 @@ blanks the scanlines for the scanlines beyond the 8th.
 Without that and only RA0-2 used for character ROM address the
 same character would be redisplayed from the start.
 </P>
-    </description>
+    </desc>
 	<subsection name="PET 4032 'Fat40'" toc="fat40">
-	<description>
+	<desc>
 <P>The so-called 'Fat40' is a 4032 model that has a 12&quot; screen
 and a "universal board" - a board that can be used for the 8032 or the
 4032. Thus it uses the CRTC as video chip. A separate static memory
@@ -122,10 +122,10 @@ PIA1 CB1 line to
 generate system interrupts with the frame rate. Also the state
 of this line can be checked with VIA PB5.
 </P>
-	</description>
+	</desc>
 	</subsection>
 	<subsection name="PET 8032" toc="8032">
-	<description>
+	<desc>
 <P>The universal board can also be used in the 8032. As the 8032 also
 runs on 1MHz only, there is a problem with the memory bandwidth.
 The memory used was static RAM with a maximum access frequency of
@@ -186,10 +186,10 @@ It also makes it clear that it is a relatively simple addition to the 4032 to di
 CRTC video chip with 40 columns - as the video RAM bus width is 16bit instead of 8bit,
 each of the CRTC character actually is two characters on the screen.
 </P>
-	</description>
+	</desc>
 	</subsection>
 	<subsection name="PET 8296" toc="8296">
-	<description>
+	<desc>
 <P>The 8296 is a different beast altogether. Here the separate static video memory is
 completely gone. All the memory of the system (actually 128k, of which 96k can be
 used as main memory and 4k as video memory) is put into two dynamic RAM banks of
@@ -238,11 +238,11 @@ that the memory is accessed faster than 2MHz. In fact it is accessed
 faster, with approx. 4Mhz, as can be seen in the description of the UC2
 PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
-	</description>
+	</desc>
 	</subsection>
   </itemlist>
   <itemlist name="PET timing examples" toc="timing">
-	<description>
+	<desc>
 <P>
 The following table shows some timing examples for the PET CRTC
 as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
@@ -285,7 +285,7 @@ time/fram [ms]
 framerate [Hz]
  fram/time             50      50      50      50      47       47
 </PRE>
-	</description>
+	</desc>
   </itemlist>
   <disclaimer name="Disclaimer">
 	@DISCLAIMER@

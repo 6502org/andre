@@ -1,0 +1,42 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp " "> ]>
+<webpage name="Andr&eacute;'s 8-bit misc pages">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>6502,8-bit,hardware</keywords>
+  <metadesc>Miscellaneous hardware stuff</metadesc>
+  <overview>
+	This page is the place for general hardware stuff and tools.
+	It currently contains a logic probe.
+  </overview>
+  <news>
+    <item date="2007-05-28">
+	Page started
+    </item>
+  </news>
+  <itemlist name="Hardware Tools">
+    <desc>
+	This section contains tools that help building - and debugging -
+	hardware.
+    </desc>
+    <items>
+      <subitem name="probe" link="probe/index.html">Logic probe<br/>
+	This is a logic probe, that is it determines the logical state of a 
+	hardware signal, in this case TTL.
+	Additionally it has a "pulse" circuit, that can indicate signal 
+	states even when the actual pulses on the hardware signal are too
+	short to be noticed. And it has a latch, so that a signal can 
+	be sampled at a high-low or low-high transition of a second signal.
+      </subitem>
+   </items>
+  </itemlist>
+  <disclaimer name="Disclaimer">
+@DISCLAIMER@
+  </disclaimer>
+  <closing>
+Contents last modified 28 May 2007
+@FOOTER@
+  </closing>
+</webpage>

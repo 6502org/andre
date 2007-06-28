@@ -12,8 +12,8 @@
 	and special ICs I use in my designs.
   </overview>
   <itemlist name="Quickfinder">
-    <description>
-    </description>
+    <desc>
+    </desc>
     <items>
      <item name="ICs">
       <subitem name="CRTC" link="crtc/index.html">
