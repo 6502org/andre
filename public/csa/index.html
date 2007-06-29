@@ -75,6 +75,10 @@ that in itself is a complete, single-board computer.
 <h3>News:</h3>
 <ul class="news">
 <li>
+<small>2007-06-29</small>
+			The <a href="vdc/index.html">Video</a> board page has helper circuits to convert the output to composite video.
+                </li>
+<li>
 <small>2007-06-27</small>
 			A new version of the <a href="gecko/index.html">Gecko</a> board, including a PET ROM version using an RS232 interface as editor.
                 </li>
@@ -240,7 +244,8 @@ that has most of the stuff. However there is a separate
 <H3><a name="schem">Schematics</a></H3>
 <p>
 <p>
-In the older schematics there are no decoupling capacitors (or what are they called?)
+In the older schematics there are no bypass capacitors (buffering the supply
+voltage for each IC separately)
 that should be from Vcc to GND for each IC. Sometimes they are mentioned
 in the parts list, though. Also there is no 100uF capacitor at the CS/A
 bus connector between Vcc and GND, to buffer the supply voltage for the

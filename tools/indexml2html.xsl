@@ -147,7 +147,7 @@
 <xsl:template match="file">
 <xsl:variable name="note"><xsl:if test="@note">(<xsl:value-of select="@note"/>)</xsl:if></xsl:variable>
 <xsl:text>
-</xsl:text><TR><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
+</xsl:text><TR CLASS="R{position() mod 2}"><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
 </xsl:text><!-- <TD><xsl:value-of select="@ptype"/></TD><xsl:text>
 </xsl:text>--><TD><A HREF="{.}"><xsl:value-of select="."/></A><xsl:value-of select="$note"/></TD><xsl:text>
 </xsl:text></TR>

@@ -133,29 +133,20 @@ table.memmap td {
 table.memmap th {
 	width:14mm;
 }
-/*
-table.memmap {
-	text-align:center;
+
+table.files {
+	text-align:left;
 	empty-cells:show;
-	border-style:solid;
-	border-spacing:0px;
-	margin:5px;
+	background-color: #dddddd;
+	margin:10px;
+	padding:5px;
 }
 
-table.memmap td {
-	border-width:1px;
-	border-style:solid;
-	width:14mm;
-}
-table.memmap th {
-	border-width:1px;
-	border-style:solid;
-	width:14mm;
+table.files td {
+	padding:5px;
 }
 
-table.memmap th.separator {
+table.files tr.R0 {
 	background-color: #ffffff;
-	border-style:none;
 }
-*/
 

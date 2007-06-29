@@ -56,22 +56,22 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0c.sch">csa_ramdisk-v1.0c.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0c.brd">csa_ramdisk-v1.0c.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0c-brd.png">csa_ramdisk_v1.0c-brd.png</A></TD>
@@ -100,22 +100,22 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0b.sch">csa_ramdisk-v1.0b.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0b-sch.png">csa_ramdisk_v1.0b-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0b.brd">csa_ramdisk-v1.0b.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</A></TD>
@@ -162,32 +162,32 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0a.sch">csa_ramdisk-v1.0a.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0a-sch.png">csa_ramdisk_v1.0a-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0a.brd">csa_ramdisk-v1.0a.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0a-brd.png">csa_ramdisk_v1.0a-brd.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="%up%imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="ramdisk_v1.0a-1.png">ramdisk_v1.0a-1.png</A>(On the left you can see the floppy-type power connector cable I soldered to the bottom)</TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="%up%imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</A></TD>
