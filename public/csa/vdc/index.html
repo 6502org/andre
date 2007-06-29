@@ -77,6 +77,12 @@
 	</p>
 <h3>News:</h3>
 <ul class="news"><li>
+<small>2007-06-29</small>
+                        Added helper boards that convert the video signals
+			to composite video.
+                </li></ul>
+<h3>News:</h3>
+<ul class="news"><li>
 <small>2006-11-01</small>
                         Added driver code.
                 </li></ul>
@@ -88,11 +94,15 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.4A</a> (untested)</li>
+<a href="#board1">Composite Video (pet revealed) 1.0C</a> (ok)</li>
 <li>
-<a href="#board2">1.3E</a> (prototype)</li>
+<a href="#board2">Composite Video (pucoe) 1.0C</a> (ok)</li>
 <li>
-<a href="#board3">1.3C</a> (prototype with bugs)</li>
+<a href="#board3">1.4A</a> (untested)</li>
+<li>
+<a href="#board4">1.3E</a> (prototype)</li>
+<li>
+<a href="#board5">1.3C</a> (prototype with bugs)</li>
 </dir>
 <li><a href="#blkdiag">Block diagram</a></li>
 </dir>
@@ -118,14 +128,119 @@
 			checking bit 7 of the <code>freq</code> variable.
 		</p>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
 <TD>
 <A HREF="con_csa.a65">con_csa.a65</A>(VDC driver excerpt)</TD>
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.4A</A></H3>
+<H3><A NAME="board1">Version: Composite Video (pet revealed) 1.0C</A></H3>
+<P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			To use the vdc board with a standard TV set for
+			example, a so-called "composite video" signal
+			must be generated, that includes all three
+			video, horizontal sync and vertical sync signals.
+			This board is derived from the "Composite Video Circuit"
+			from the book "The PET revealed".
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This circuit produces a not so bright picture
+			on my TV set, and I did not investigate how improve
+			brightness (might even be my TV).
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="comp_pet_revealed_v1.0c-sch.png">comp_pet_revealed_v1.0c-sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="comp_pet_revealed_v1.0c.sch">comp_pet_revealed_v1.0c.sch</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="comp_pet_revealed_v1.0c-brd.png">comp_pet_revealed_v1.0c-brd.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="comp_pet_revealed_v1.0c.brd">comp_pet_revealed_v1.0c.brd</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="composite2.jpg">composite2.jpg</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: Composite Video (pucoe) 1.0C</A></H3>
+<P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			To use the vdc board with a standard TV set for
+			example, a so-called "composite video" signal
+			must be generated, that includes all three
+			video, horizontal sync and vertical sync signals.
+			This board is derived from the "PET Video Mixer"
+			by the PET users club of England.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			The original board did not have R2 and R5, and 
+			produces a very bright picture on my TV set.
+			Therefore I introduced R2 and R5 to adjust brightness
+			This modification is untested, though.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="comp_pucoe_v1.0c-sch.png">comp_pucoe_v1.0c-sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="comp_pucoe-v1.0c.sch">comp_pucoe-v1.0c.sch</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="comp_pucoe_v1.0c-brd.png">comp_pucoe_v1.0c-brd.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="comp_pucoe-v1.0c.brd">comp_pucoe-v1.0c.brd</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
+<TD>
+<A HREF="composite1.jpg">composite1.jpg</A>(This picture shows an older version without R2/R5)</TD>
+</TR>
+</TABLE>
+<H3><A NAME="board3">Version: 1.4A</A></H3>
 <P>Status: untested</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -163,38 +278,38 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a-sch.png">csa_vdc_v1.4a-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a.sch">csa_vdc_v1.4a.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a-brd.png">csa_vdc_v1.4a-brd.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.3E</A></H3>
+<H3><A NAME="board4">Version: 1.3E</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -217,33 +332,33 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_vdc_v1.3e-sch.png">csa_vdc_v1.3e-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_vdc_v1.3e.sch">csa_vdc_v1.3e.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_vdc_v1.3e-lay.png">csa_vdc_v1.3e-lay.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_vdc_v1.3e.brd">csa_vdc_v1.3e.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board3">Version: 1.3C</A></H3>
+<H3><A NAME="board5">Version: 1.3C</A></H3>
 <P>Status: prototype with bugs</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -263,37 +378,37 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
 <TD>
 <A HREF="csavdcdesc.txt">csavdcdesc.txt</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
 <TD>
 <A HREF="csavdcparts.txt">csavdcparts.txt</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csavdc.png">csavdc.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csavdc.fig">csavdc.fig</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csavdc.ps.gz">csavdc.ps.gz</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="csavdc.jpg">csavdc.jpg</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="csavdcflip.jpg">csavdcflip.jpg</A>(The flipside - just for the fun of it... :-))</TD>

@@ -11,6 +11,12 @@
 		a line at 2MHz system clock.
 	</desc>
         <news>
+                <item date="2007-06-29">
+                        Added helper boards that convert the video signals
+			to composite video.
+                </item>
+        </news>
+        <news>
                 <item date="2006-11-01">
                         Added driver code.
                 </item>
@@ -53,6 +59,51 @@
 			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
 		</desc>
 	</diagram>
+	<rev>
+		<version>Composite Video (pet revealed) 1.0C</version>
+		<status>ok</status>
+		<note type="msg">
+			To use the vdc board with a standard TV set for
+			example, a so-called "composite video" signal
+			must be generated, that includes all three
+			video, horizontal sync and vertical sync signals.
+			This board is derived from the "Composite Video Circuit"
+			from the book "The PET revealed".
+		</note>
+		<note type="msg">
+			This circuit produces a not so bright picture
+			on my TV set, and I did not investigate how improve
+			brightness (might even be my TV).
+		</note>
+		<file ltype="schem" ptype="png">comp_pet_revealed_v1.0c-sch.png</file>
+		<file ltype="schem" ptype="esch">comp_pet_revealed_v1.0c.sch</file>
+		<file ltype="layout" ptype="png">comp_pet_revealed_v1.0c-brd.png</file>
+		<file ltype="layout" ptype="ebrd">comp_pet_revealed_v1.0c.brd</file>
+		<file ltype="photo" ptype="jpg">composite2.jpg</file>
+	</rev>
+	<rev>
+		<version>Composite Video (pucoe) 1.0C</version>
+		<status>ok</status>
+		<note type="msg">
+			To use the vdc board with a standard TV set for
+			example, a so-called "composite video" signal
+			must be generated, that includes all three
+			video, horizontal sync and vertical sync signals.
+			This board is derived from the "PET Video Mixer"
+			by the PET users club of England.
+		</note>
+		<note type="msg">
+			The original board did not have R2 and R5, and 
+			produces a very bright picture on my TV set.
+			Therefore I introduced R2 and R5 to adjust brightness
+			This modification is untested, though.
+		</note>
+		<file ltype="schem" ptype="png">comp_pucoe_v1.0c-sch.png</file>
+		<file ltype="schem" ptype="esch">comp_pucoe-v1.0c.sch</file>
+		<file ltype="layout" ptype="png">comp_pucoe_v1.0c-brd.png</file>
+		<file ltype="layout" ptype="ebrd">comp_pucoe-v1.0c.brd</file>
+		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
+	</rev>
 	<rev>
 		<version>1.4A</version>
 		<status>untested</status>
