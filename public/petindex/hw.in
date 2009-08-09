@@ -38,6 +38,7 @@ output to connect normal monitors to it. These links show two circuits
 (PET library from "THE PET REVEALED" by Nick Hampshire, p117f, 1979, whereas
 oldcomputers.net claims their circuit is untested). Another sample
 circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
+I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.html">VDC page</a> to include schematics and boards for adapted versions of the abovementioned two composite video circuits to work with my CS/A computer (which comes close to the PET in this respect).
 </DD>
 </DL>
 <H2>System Projects</H2>
