@@ -36,75 +36,58 @@
 <DIV ID="content">
 <h1>André 's 8-bit pages</h1>
 <p class="copyright">(C)
-1989-2007 André  Fachat</p> 
+1989-2009 André  Fachat</p> 
 <p>
 <p>On these pages you will find quite some information concerning selfbuilt
 8-bit computers of the 6502 line. Also some stuff for old Commodore
 machines with this CPU is there, like new C64 kernals, VC1541 modifications
 etc. A selfbuilt operating system
 features Multitasking, dynamic memory management, a standard library
-and internet access.</p><p>
-I plan to update the GeckOS operating system to
-improve messaging and communication throughput, add C support and more.
-</p>
+and internet access.</p>
+<h3>In the works...</h3><p>
+These are the things I currently have in the works - although actually in the works for about two years now...</p>
+<ul>
+<li>65816 CPU board - a board using the 65816, with up to 2MByte fast RAM, and using the CS/A bus. Almost done (I hope) - still ironing out some timing issues</li>
+<li>A ramdisk board for a RAM disk with up to 16MByte dRAM, using the old 8-bit SIMM RAM modules. Somewhat done - still quite some timing issues though.</li>
+<li>A board with an Ethernet and two USB connections. I have the board and the parts, but I think I still need to get more up to date with SMD soldering...</li>
+<li>I plan to update the GeckOS operating system to
+improve messaging and communication throughput, add C support and more. 
+This is currently planned only.</li>
+<li>A "Blitter" board - to transfer bulk data from one memory location to another - planned.</li>
+</ul>
 
   </p>
 <h3>News:</h3>
 <ul class="news">
 <li>
+<small>2009-12-13</small>
+	A bit late, but actually in october 2009 the <a href="csa/index.html">CS/A65</a> 
+	had its 20th anniversary! I had hoped to have a 65816 CPU board ready
+	that I have in the making, but I am still working out some timing
+	issues. Stay tuned!
+    </li>
+<li class="oldnews">
 <small>2007-06-29</small>
         The <a href="csa/vdc/index.html">Video</a> board page has helper circuits to convert the output to composite video.
     </li>
-<li>
+<li class="oldnews">
 <small>2007-06-27</small>
         A new version of the <a href="csa/gecko/index.html">Gecko</a> board, including a PET ROM version using an RS232 interface as editor.
     </li>
-<li>
+<li class="oldnews">
 <small>2007-06-07</small>
         A new <a href="csa/spi/index.html">SPI</a> page for the
 	CS/A computer, with
         a schematics and driver to handle MMC and SD-Cards.
     </li>
-<li>
+<li class="oldnews">
 <small>2007-05-28</small>
 	The new <a href="mischw/index.html">Miscellaneous Hardware</a> 
 	page has a logic probe.
     </li>
-<li>
+<li class="oldnews">
 <small>2007-05-26</small>
 	The <a href="csa/index.html">CS/A65</a> computer now has a power supply adapter for PC power supplies, and a VIA prototyping board.
-    </li>
-<li class="oldnews">
-<small>2007-01-12</small>
-	Added a page with <a href="petindex/repairs.html">PET repair information</a>.
-    </li>
-<li class="oldnews">
-<small>2007-01-03</small>
-	Added an <a href="csa/auxcpu/index.html">Auxiliary CS/A65 CPU</a> board, that can handle bus error conditions
-	on the main cpu bus, as well as an article on the
-	<a href="icap/mp.html">hardware aspects of multitasking and multiprocessing</a> explaining the reasoning behind the board.
-    </li>
-<li class="oldnews">
-<small>2006-12-21</small>
-	Added a prototype <a href="cbmhw/petcsa/index.html">PET CS/A65 adapter</a> board, so that PETs can use CS/A65 boards as well. 
-	Also added an <a href="icap/osa65.html">old article</a> about the
-	<a href="osa/index.html">GeckOS</a> operating system.
-    </li>
-<li class="oldnews">
-<small>2006-12-16</small>
-	Finally! Added a new <a href="csa/copro/index.html">CSA coprocessor</a> board, 
-	that allows simultanous multiprocessing :-)
-	Also added a new <a href="cbmhw/c64csa/index.html">C64 adapter</a> to use CS/A boards.
-    </li>
-<li class="oldnews">
-<small>2006-12-14</small>
-	Added a new <a href="csa/index.html">CSA</a> SCSI board, that now 
-	includes an I2C controller, and also a test driver for the PETCPU
-	RS232 interface and confirmation that this interface works.
-    </li>
-<li class="oldnews">
-<small>2006-11-26</small>
-	Added a section to <a href="cbmhw/ryo1581/index.html">build your own, new, Commodore VC1581</a> using a PETCPU and DRVIO CS/A65 board.
     </li>
 </ul>
 <h2>Quickfinder</h2>
@@ -175,6 +158,38 @@ to the 6502. Features cross assembler, C64 basic extension, etc.<br><br>
 </ul>
 <h2><a name="oldnews">Old News:</a></h2>
 <ul class="oldnews">
+<li class="oldnews">
+<small>2007-01-12</small>
+	Added a page with <a href="petindex/repairs.html">PET repair information</a>.
+    </li>
+<li class="oldnews">
+<small>2007-01-03</small>
+	Added an <a href="csa/auxcpu/index.html">Auxiliary CS/A65 CPU</a> board, that can handle bus error conditions
+	on the main cpu bus, as well as an article on the
+	<a href="icap/mp.html">hardware aspects of multitasking and multiprocessing</a> explaining the reasoning behind the board.
+    </li>
+<li class="oldnews">
+<small>2006-12-21</small>
+	Added a prototype <a href="cbmhw/petcsa/index.html">PET CS/A65 adapter</a> board, so that PETs can use CS/A65 boards as well. 
+	Also added an <a href="icap/osa65.html">old article</a> about the
+	<a href="osa/index.html">GeckOS</a> operating system.
+    </li>
+<li class="oldnews">
+<small>2006-12-16</small>
+	Finally! Added a new <a href="csa/copro/index.html">CSA coprocessor</a> board, 
+	that allows simultanous multiprocessing :-)
+	Also added a new <a href="cbmhw/c64csa/index.html">C64 adapter</a> to use CS/A boards.
+    </li>
+<li class="oldnews">
+<small>2006-12-14</small>
+	Added a new <a href="csa/index.html">CSA</a> SCSI board, that now 
+	includes an I2C controller, and also a test driver for the PETCPU
+	RS232 interface and confirmation that this interface works.
+    </li>
+<li class="oldnews">
+<small>2006-11-26</small>
+	Added a section to <a href="cbmhw/ryo1581/index.html">build your own, new, Commodore VC1581</a> using a PETCPU and DRVIO CS/A65 board.
+    </li>
 <li class="oldnews">
 <small>2006-11-24</small>
 	Updated the CS/A computer with <a href="csa/index.html#memmap">a memory map</a>, also added a new <a href="csa/drvio/index.html">I/O

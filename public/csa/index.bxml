@@ -6,12 +6,12 @@
 	<copyright>
 		<author>Andr&eacute; Fachat</author>
 		<start>1989</start>
-		<end>2007</end>
+		<end>2009</end>
 	</copyright>
-	<desc>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard. 
+	<desc><p><img src="../imgs/news.gif"/> 20th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p><p>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard. 
 The boards can be used in different setups, but the <a href="#caspaer">Caspaer</a> is the standard (extensible) base setup.
 A special place has the <a href="gecko/index.html">Gecko</a>
-that in itself is a complete, single-board computer.
+that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
                 <item date="2007-06-29">
