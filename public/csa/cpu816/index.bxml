@@ -1,0 +1,397 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A 65816 CPU</name>
+	<keywords>CSA65 65816 CPU</keywords>	
+	<lastmodified>2010-01-01</lastmodified>
+	<desc>This board implements a 65816 CPU board for the CS/A computer.
+		The CPU runs on eight times the bus clock speed, i.e. for a 
+		1 MHz bus, the CPU runs on 8 MHz. Currently only 1 MHz bus/8 MHz CPU
+		is supported though.
+		It features up to 2 MByte fast RAM that is used at CPU speed.
+		To access the bus memory and I/O, the CPU is slowed down to bus
+		clock speed with the RDY pin.
+		<div class="rightimg">
+                		<a href="CSA%20CPU816%20setup.PNG"><img width="200px" src="CSA CPU816 setup.PNG"/></a><br/>A 65816 setup with BIOS, VDC, PETIO and PWR boards.
+       	        </div>
+	</desc>
+	<!--
+	<diagram>
+		<file>cpu.gif</file>
+		<desc>Block diagram of the cpu board. It shows the MMU,
+			but also the port to read the CPU address.
+			Please note that the MMU and the port can be
+			accessed from the bus alone, if the cpu is decoupled
+			from the bus with the drivers. This can be used
+			when the cpu is stopped with the RDY e.g. by
+			a bus error.
+		</desc>
+	</diagram>
+	-->
+	<section toc="making" name="Making of">
+		<desc><p>
+			The 65816 board took a long time in the making. First of all, to get the
+			amount of memory I had imagined, I had to resort to using SMD chips for the
+			memory - something I had not done before, but it worked out well.
+			</p><p>
+			Also, to get the necessary short delay times in the logic signals, I also
+			had to use a GAL programmable logic IC. I did not want to use such an IC
+			for a long time, as it requires a separate programmer. Also I wanted to 
+			build the systems in a ways that are easily understandable from the schematics -
+			in a GAL you can hide a lot of 'magic'.
+			</p><p>
+			Then of course there were the first bugs of the <quote>brown paper bag</quote>
+			quality - for example I completely forgot the logic about the <code>XBE</code>
+			signal, i.e. IC21D, IC20B and IC21C. 
+			This of course made the data bus driver for the CS/A bus a continous driver.
+			<div class="rightimg">
+                		<img src="Bank0 adapter.PNG"/><br/>A '573 replacement fixed for bank 0 - an essential debug tool.
+        	        </div>
+			And I was wondering why it worked with the Bank0 adapter replacement for IC 10 
+			(the typical 65816 design address latch for A16-23) but not with the real '573...
+			</p><p>
+			The suspicions I had made me introduce the RS-Flipflop with IC16A/IC16B as well -
+			it enables the slow memory handling only after the first valid CPU vector pull, 
+			i.e. when it reads the RESET vector.
+			</p><p>
+			One remarkable thing - once I created the <code>XBE</code> signal the system worked
+			relatively stable in 1MHz mode, i.e. the circuit to slow down the CPU was essentially
+			already working right from the start. Even accessing fast memory and executing
+			code in fast memory was working - but it was not finished yet...
+			</p><p>
+			I found that when writing data from slow memory to fast memory, I had stray writes
+			into the corresponding slow memory. E.g. writing to $082000 also wrote the fast bank
+			number into $002000. Later I found out that when writing to any slow memory, the
+			bank address was ORd with the actual data and stored in the memory too.
+			</p><p>
+			After a number of timing diagrams drawn - thinking about all the min and max delay
+			times makes me wonder why these computers actually work at all... - and corresponding
+			changes in the circuit, I finally found that the new 65816 was so fast in changing
+			the data lines after <code>Phi2</code> (in this schematic <code>8Phi2</code>) going
+			high, that these changes propagated onto the CS/A data bus before the <code>Phi2</code>
+			and select lines had a chance to finalize the actually correct memory transfer.
+			</p><p>
+			One of the changes made was actually replacing the original <code>74LS293</code>-based
+			timing signal generation. The '293 is an asynchronous counter, which I ignored in my
+			previous designs. I wanted to replace it with a '163, but the '193 was the only 
+			synchronous counter my local chip dealer had in stock where I could get it on short
+			notice. 
+			In the beginning the <code>/MEMSEL</code> and <code>/IOSEL</code> lines were qualified
+			by <code>DRDY</code> - which of course does not work when the slow access happens during
+			<code>Phi2</code> high: the real access would be at the next <code>Phi2</code> high 
+			phase, but the select line would already be assigned. Just another of those brown
+			paper bags... So I had to introduce <code>DSL</code> to qualify the select lines.
+			As a final change I used the <code>C8Phi2</code> instead of <code>/8Phi2</code> as input
+			to IC12B to move the falling edge of <code>/DSL</code> a little earlier, and it 
+			worked!
+			</p><p>
+			Unfortunately my IEEE488 interface broke over the years, so I had to actually resort
+			to the 'good old days' method of entering data into a computer: entering code as 
+			hex values! Using my 6502 <code>@ASS</code> assembler that I had put into the 
+			used PET Fat40 ROM image did not help, as it does not understand 65816 code.
+			Finally I built a patched Fat40 ROM that starts up in slow (1 MHz) mode, but switches 
+			to fast (8 MHz) mode by entering <code>SYS65080</code>, see the drivers section below.
+			</p><p>
+			By the way, the PET bell tone becomes a very short chirp when run in 8MHz speed :-)
+			</p>
+		</desc>
+	</section>
+	<section toc="discussion" name="Discussion">
+		<desc><p>
+			In this section I want to discuss various parts of the schematics
+			</p><p>
+			<code>IC13 (V6)</code> in the schematics is the new synchronous clock counter
+			to create the 8 MHz <code>8Phi2</code> and <code>Phi2</code> from the 16 MHz clock.
+			As both the output signals are inverted, the counter actually counts downward
+			to ensure that <code>Phi2</code> phase changes happen at high-low transitions of
+			<code>8Phi2</code>.
+			</p><p>
+			<code>IC15C</code> and <code>IC6C</code> delay <code>8Phi2</code> and <code>Phi2</code>
+			respectively. <code>IC15B</code> also delays <code>8Phi2</code>, but for the CS/A bus -
+			this way the board-internal and the bus <code>8Phi2</code> signals are decoupled.
+			</p><p>
+			<code>IC14</code> and <code>IC6A</code> generate the CS/A <code>2Phi2</code> signal,
+			which is used for DRAM control for example on the VDC board. 
+			Together with <code>IC19A</code> and <code>IC19D</code> the shift register 
+			<code>IC14</code> doubles as signal generator for the <code>Q3</code> and <code>Q7</code>
+			signals that are used to control the slowdown of the CPU (see timing section below).
+			</p><p>
+			<code>IC21C</code>, <code>IC20B</code> and <code>IC21D</code> generate the <code>XBE</code>
+			signal that enables the data bus driver <code>IC8</code> between the CPU data bus and
+			the CS/A data bus during a slow access.
+			</p><p>
+			<code>ICs 5, 7, 9</code> are the address and control line bus drivers for the CS/A
+			bus. They can be disabled by the <code>/BE</code> bus signal so that an external
+			CPU could take over the bus. The main signals used by the <a href="../auxcpu/index.html">AUXCPU</a> board to take over the bus,
+			namely <code>NOTMAPD</code>, <code>NOEXEC</code>, <code>WPROT</code> and <code>SYNC</code>
+			are not used here though.
+			</p><p>
+			<code>IC19B</code>, <code>IC19C</code>, <code>IC17</code>, the RS flip-flops
+			<code>IC20C/IC20D</code> and <code>IC16C/IC16D</code>, <code>IC12B</code> 
+			and <code>IC18</code> implement the timing to slow down the CPU during a slow access.
+			They mainly create the <code>RDY</code> signal that slows down the CPU, and the
+			<code>/SL</code> that is active during the actual slow access cycle, see timing below.
+			</p><p>
+			<code>IC10</code> is the typical 65816 data bus latch to create the address lines
+			<code>A16-23</code>. <code>IC20A</code> creates the latch signal using the
+			<code>8Phi2</code> cpu clock and the <code>/RDY</code> line to ensure the address
+			is not latched when the CPU is waiting for a data transfer.
+			</p><p>
+			The RS flip-flop <code>IC16A/IC16B</code> detects the first valid vector pull - i.e.
+			when the CPU reads the reset vector. This is (may be?) necessary to avoid that 
+			bogus slow memory access cycles are executed before a valid address is used.
+			In particular it is avoided that the first vector is read in the middle of a slow
+			memory access (as <code>RDY</code> is not obeyed during <code>/RES</code>, the first
+			cylce does not wait for a previous - bogus - access to finish).
+			</p><p>
+			The RS flip-flop <code>IC21A/IC21B</code> is used to determine the BOOT mapping.
+			During boot, the CS/A bus (slow) memory is mapped into the low 64k address. This
+			allows to boot the CPU using the standard BIOS ROM. But accessing the fourth RAM
+			IC (<code>/RSEL3</code>, meaning banks <code>$18-$1f</code>) switches the configuration
+			so that bank 0 is now filled with fast RAM - except the I/O area at <code>$e800-$efff</code>
+			and the video memory area at <code>$8000-$87ff</code>. The select signals for these
+			memory areas are provided by <code>IC4</code>.
+			</p><p>
+			<code>IC11</code> is the programmable logic IC that does a lot of the 
+			address decoding.
+			</p><p>
+			Finally <code>ICs 1, 2, 3, 23</code> are the 4 512k static RAM chips that provide
+			the onboard 2 MByte fast RAM.
+			</p>
+		</desc>
+	</section>
+	<section toc="timinglo" name="Timing - low resolution">
+		<desc><p>
+		This section describes the basic <quote>low-res</quote> timing for the different timing
+		signals that control the access to the slow memory. Please use the 
+		<a href="timing1.png">first timing diagram</a> as sample reference.
+		I used this diagram to find out where the bank address could possibly be written
+		into the slow memory as a stray write.
+		</p><p>
+		In the first line you see <code>8Phi2</code>, the main CPU clock signal. As you can see
+		a single cycle is covered by 1cm paper (one square is 5mm by 5mm). The <code>Phi2</code>
+		signal in the next line visualizes the actual speed difference between the 65816 and the
+		bus (slow memory) access. 
+		</p><p>
+		What is shown in the diagram is actually five memory accesses - the first slow, then three
+		fast ones, and then a slow one again (Note that the comments on the top of the diagram are
+		not entirely consistent).
+		</p><p>
+		The next two lines show the signals <code>Q3</code> and <code>Q7</code>. These signal control
+		the start and end of the actual slow access respectively. They are generated by ORing the
+		correct outputs of the shift register <code>IC14</code> that shifts <code>Phi2</code> with 
+		the clock <code>8Phi2</code>.
+		</p><p>
+		When the 65816 puts a <quote>slow</quote> address on the address lines, it can do so
+		at any of the eight <code>8Phi2</code> cycles that make up one <code>Phi2</code> cycle.
+		When that happens, the GAL <code>IC11</code> generates the <code>/SLOWMEM</code> signal.
+		<code>/SLOWMEM</code> is clocked by <code>8Phi2</code> to create <code>RRDY</code> - any
+		floating address lines should have stabilized then. When <code>RRDY</code> becomes active,
+		the <code>IC20C/IC20D</code> flip-flop deasserts <code>RDY</code>. This happens directly
+		after <code>8Phi2</code> went high, so <code>RDY</code> always goes high when <code>8Phi2</code>
+		is high. This now just stops the CPU without setting any select signals, which has to be
+		done in a controlled manor.
+		</p><p>
+		The actual slow cylce is then initiated by <code>Q3</code>. When <code>RDY</code> is deasserted
+		during <code>Q3</code>, <code>XQ3</code> is asserted and sampled at the falling edge of 
+		<code>8Phi2</code>. This asserts <code>/RSL</code>, and the flip-flop <code>IC16C/IC16D</code>
+		asserts <code>/SL</code>. <code>/SL</code> is in turn used by the GAL to activate the
+		slow memory select lines <code>/IOSEL</code> and <code>/MEMSEL</code>.
+		</p><p>
+		The initial <quote>brown paper bag</quote> version did not use <quote>/SL</quote> to create the
+		slow memory select lines but <code>DRDY</code>. This resulted in the select lines being 
+		asserted even when the slow access was initiated by the cpu just in the middle of a
+		slow <code>Phi2</code> high phase. In the diagram there is one slow access, then three fast
+		accesses, then one slow access. The slow access is started right after <code>Q3</code>, so
+		it has to wait for the next <code>Q3</code> in the next <code>Phi2</code> high phase
+		to actually start. The initial version would have asserted the select lines nevertheless.
+		That is why now <code>/SL</code> is used to generate the select lines.
+		</p><p>
+		<code>Q7</code> then initiates the end of the slow cycle (when <code>/SL</code> is asserted).
+		<code>XQ7</code> is sampled by <code>IC17B</code> at the rising edge of <code>8Phi2</code> -
+		the rising edge of the cpu's clock cycle that actually ends the slow memory access. 
+		This leads to <code>/SSL</code> and <code>SRDY</code> becoming active, asserting <code>RDY</code>
+		and ending the <code>/SL</code> phase.
+		At the end of this <code>8Phi2</code> high phase, the memory access is finished.
+		</p><p>
+		To complete the select cycle, the select signals must be released when <code>Phi2</code>
+		goes low. This is done by using <code>DSL</code>, the delayed <code>/SL</code> signal,
+		to create a GAL-internal <code>SLOWSEL</code> signal that times the select signals.
+		</p><p>
+		In principle that timing diagram governs the 65816 memory accesses. In principle the gate 
+		delay times are accounted for and all signals are sufficiently sampled with either 
+		<code>8Phi2</code> or <code>/8Phi2</code>.
+		</p><p>
+		A glimpse of what could happen can be seen in the <code>/SLOWMEM</code> signal. This signal
+		is derived from the address lines, <code>A16-23</code> amongst them. Due to the data bus
+		multiplexing of the 65816, <code>A16-23</code> partially contain invalid addresses, as the
+		actual data is still sent from the cpu. The address value and with it <code>/SLOWMEM</code>
+		should be stabilized before <code>8Phi2</code> actually goes high, therefore <code>/SLOWMEM</code>
+		is sampled with the rising edge of <code>8Phi2</code>. But it has to be clear that there
+		can be and are timing related effects on the signals. 
+		</p><p>
+		More on these timing effects can be seen in the next section.
+		</p></desc>
+	</section>
+	<section toc="timinghi" name="Timing - high resolution">
+		<desc><p>
+		This section describes the timing of the board in a higher resolution. Please use the 
+		<a href="timing2.png">second timing diagram</a> as reference. Its purpose was to determine
+		why I still had stray writes at the end of a slow memory access.
+		</p><p>
+		As you can see in the first line, the scale is much different from the first timing
+		diagram. Each millimeter in the diagram represents a single nanosecond (squares on the paper
+		are 5mm by 5mm). The first line shows the <code>8Phi2</code> signal - basically a single 
+		clock cycle, with the high phase first. The second line shows the end of the
+		<code>Phi2</code> cycle, with its high-to-low transition. What you can immediately see
+		is that the signals (except <code>8Phi2</code>) have uncertainty intervals. 
+		These intervals represent the difference between the <quote>min</quote> and <quote>max</quote>
+		delay times given in the datasheets of the relevant ICs. If a signal as an uncertainty
+		when it is used as input to an IC, the output has this uncertainty plus the one from the
+		IC added. 
+		</p><p>
+		Note that this is probably a bit too much on the safe side. The uncertainties have a certain
+		independent part, for example production tolerances. But they also have a certain dependent
+		part, like temperature dependency (most ICs react similar on the same temperature changes).
+		While the dependent parts actually add up, the uncertainties of the independent parts would
+		have to be added as square root of the sum of squares.
+		But as it is not clear how much of the delay is dependent and how much is independent, it 
+		can only be added up.
+		</p><p>
+		A single ALS TTL logic gate typically has a delay of 2-12 ns (for a '02). As you can see the 
+		range is great compared to the absolute delay. Having two gates behind each other 
+		already results in a delay of 4-24 ns and so on. This can quickly add up to a relevant 
+		value. Also compare these values to the 65 ns that a <code>8Phi2</code> signal stays high
+		or low at 8 MHz. There quickly is not much time left.
+		</p><p>
+		In the diagram you can see this in the <code>RDY</code>generation. <code>SRDY</code> has a 
+		delay of 2-14ns from <code>8Phi2</code> caused by a 74ALS74. <code>/RDY</code> is derived from
+		<code>SRDY</code> by a 74ALS02, which adds 2-12ns. Now <code>RDY</code> is not simply 'just'
+		the negative from <code>/RDY</code>, but is created by another 74ALS02, which again adds
+		2-12ns!
+		</p><p>
+		The whole thing becomes interesting when you look at the cpu's D0-D7 signals. 
+		As the cpu runs at 8 MHz, the data value only stays up to (guaranteed) 10ns after 
+		<code>8Phi2</code> going low. Add the 3-10ns delay of a 74ALS245 and you can only see
+		the data values of a write for 13-20ns on the CS/A data bus (notwithstanding any 
+		parasitive capacitances). What is worse is, that the 65816 then starts writing out
+		the bank address of the next access on the cpu's data bus lines. 33ns from 
+		<code>8Phi2</code> going low the bank address is stable - which means they must have
+		been put on the bus some time earlier.
+		</p><p>
+		This also actually means that signals <code>MA16-23</code> can contain the data 
+		values instead of the address values, as <code>LATCH</code> enables the '573 latch
+		2-12ns after <code>8Phi2</code> goes low.
+		</p><p>
+		<code>/SL</code> goes high 2-11ns from <code>SRDY</code>. <code>DSL</code>, however, 
+		goes low 2-14ns after <code>/8Phi2</code> goes high, which is already 2-10ns behind
+		<code>8Phi2</code> going low (Note: this diagram is before the last change where <code>DSL</code>
+		generation uses <code>C8Phi2</code> instead of <code>/8Phi2</code>). 
+		I.e. <code>DSL</code> goes low 4-24ns after <code>8Phi2</code>
+		goes low. The GAL that derives <code>/MEMSEL</code> from <code>DSL</code> adds another
+		up to 15ns delay. It is good that <code>XBE</code> also uses <code>LATCH</code> to 
+		disconnect the CS/A bus from the cpu's data bus - but this also explains why 
+		earlier attempts to remove the <code>LATCH</code> use from <code>XBE</code> failed.
+		</p><p>
+		In the diagram you can see that the <code>/MEMSEL</code> line can go high as late as 42ns
+		after <code>8Phi2</code> going low. This was the reason for me to change the CLK input
+		of <code>IC12B</code> from <code>/8Phi2</code> to <code>C8Phi2</code>, which actually is
+		the source of <code>8Phi2</code> (via <code>IC15C</code>). 
+		</p><p>
+		What this diagram shows is that contrary to 1MHz or 2MHz circuits, faster circuits have 
+		much harder timing requirements and when with 1MHz you may get away with the proverbial murder,
+		with higher clock frequences the timing police will get you...
+		</p></desc>
+	</section>
+	<section toc="future" name="Notes and possible future enhancements">
+		<desc><p>
+		This section describes some notes and possible future enhancements of the board
+		</p><p>
+		1) <code>DRDY</code> is only used to disable <code>/SLOWMEM</code>, so that <code>RRDY</code>
+		is only a pulse that can be sampled at the rising edge of <code>8Phi2</code> (it has been used
+		for other purposes in the first - faulty - design). Maybe it can be replaced with <code>RDY</code>.
+		</p><p>
+		2) The GAL used is way too small. It could also replace <code>IC4</code>, as well as generate
+		the <code>XBE</code> signal (replacing <code>IC21C, IC20B, IC21D</code>). It could also use
+		the 65816's <code>VPB</code>, <code>VPA</code> and <code>VDA</code> lines to determine a 
+		correct cpu memory access - and so for example avoid initiating a slow memory access for a 
+		typical 6502 bogus memory access!
+		</p><p>
+		3) Similar to the PET 8296 the whole timing generation could be <quote>modernized</quote>.
+		The 8296 uses a '163 synchronous timer, the input of which is given to a small PROM,
+		and the output of that PROM again is clocked by the 16MHz clock. This results in absolutely
+		synchronous clock signals, which makes timing much easier. In the current design 
+		we would need a register clocked at <code>8Phi2</code> and another one at <code>/8Phi2</code>.
+		Other approaches could reduce this requirement, though.
+		</p><p>
+		4) Currently <code>BRDY</code>, the CS/A bus <code>RDY</code> line is sampled at the end of
+		<code>Q7</code>, when <code>XQ7</code> is sampled by <code>8Phi2</code>, 65ns before 
+		<code>Phi2</code> goes low. This may or may not be a problem for slow memory that uses
+		<code>RDY</code>. In fact this feature has not been tested for now.
+		</p></desc>
+	</section>
+	<driver>
+		<name>Simple test suite</name>
+		<desc>These tests test the basic functionality of the board, and also do some timing
+			measurement to actually see if the access is fast or not.
+			Note that these tests are small as I had to enter them with the hex editor.
+			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
+			switch to allow 65816 code.
+		</desc>
+		<file ltype="driver" ptype="a65" note="Copies 4k from (slow) ROM to fast RAM and back to slow RAM. I used it to investigate the stray writes which appeared in the slow memory when writing to the fast memory.">pettest1.a65</file>
+		<file ltype="driver" ptype="a65" note="Check if CPU executes code in fast RAM by copying a long ump back to slow memory and executing it">pettest2.a65</file>
+		<file ltype="driver" ptype="a65" note="Executes a longer loop in fast memory">pettest2a.a65</file>
+		<file ltype="driver" ptype="a65" note="Executes a loop in slow memory and in fast memory, and times both with the VIA timer">pettest4.a65</file>
+		<file ltype="driver" ptype="a65" note="Use the VIA timer to time exactly one (fast) memory access">pettest4a.a65</file>
+	</driver>
+	<driver>
+		<name>PET Fat40 ROM patch</name>
+		<desc><p>This patch lets the PET copy the PET ROM from the slow ROM on the BIOS card to the
+		(mirrored) fast bank 0 RAM when it boots. Additional code at address 65080 then switches
+		from BOOT mode into normal mode, i.e. unmaps the slow CS/A memory from bank 0 and jumps
+		into the copied PET ROM Reset. Besides this code some BIOS card, VDC card and CRTC registers are 
+		initialized differently to setup the correct video address and memory setup.
+		</p><p>
+		To enter the fast mode, enter <code>SYS 65080</code> in the PET Basic editor.
+		</p><p>
+		Note that the binary image also contains an @MON monitor program adapted for the PET
+		(including screen up/down scroll etc - but without 65816 opcodes) at $A000-AFFF. It is started
+		with <code>SYS 40960</code>.
+		</p></desc>
+		<file ltype="driver" ptype="a65" note="CS/A Fat40 65816 setup ROM Patch to apply to a normal 40col CRTC PET ROM">petpatch2.a65</file>
+		<file ltype="driver" ptype="rom" note="Precompiled CS/A Fat40 65816 setup ROM (32k)">fat40_816v4.bin</file>
+	</driver>
+	<rev>
+		<version>1.1E</version>
+		<status>prototype</status>
+		<note type="msg">
+			The shown schematics has been implemented by patching up
+			an older 1.1 board version. However, as there are too many differences,
+			and I haven't yet done a new board layout, there is no board schematics.
+			With the lessons learned from this version, I'd also rather make
+			a new 1.2 version with a complete new layout.
+		</note>
+		<note type="warn">
+			There could be an issue with the VDC memory access. I am not sure if this
+			is an issue with the 65816 board or the VDC board and the RAM chip it currently
+			uses. I will check the VDC board with my newly acquired skills in drawing 
+			timing diagrams though. The issue shows is seldom stray writes into the 
+			video memory when scrolling the PET screen. May have been a bad soldering joint
+			though, I currently cannot reproduce it.
+		</note>
+		<note type="msg">
+			The TTL types are mostly 'ALS. Please refer to the parts list and not
+			to the schematics for the TTL technology type.
+		</note>
+		<file ltype="photo" ptype="png" note="65816 prototype board from top with replaced ICs ...">CPU816 top.PNG</file>
+		<file ltype="photo" ptype="png" note="... and from the back - where you can clearly see its status too">CPU816 back.PNG</file>
+		<file ltype="photo" ptype="png" note="A simple delay loop on the 1MHz PET (CS/A version)">PET Loop slow.PNG</file>
+		<file ltype="photo" ptype="png" note="And the same delay loop after switching to 8MHz :-)">PET Loop fast.PNG</file>
+		<file ltype="parts" ptype="txt">csa_cpu816-v1.1e-parts.txt</file>
+		<file ltype="schem" ptype="esch">csa_cpu816-v1.1e.sch</file>
+		<file ltype="schem" ptype="png">csa_cpu816-v1.1e-sch.png</file>
+		<file ltype="logic" ptype="pld" note="The GAL20V8 source">CPU816 V04.PLD</file>
+		<file ltype="logic" ptype="jed" note="The GAL20V8 compiled logic file">CPU816V4.jed</file>
+		<file ltype="timing" ptype="png" note="Sample low-res timing diagram">timing1.png</file>
+		<file ltype="timing" ptype="png" note="Sample high-res timing diagram">timing2.png</file>
+	</rev>
+</board>

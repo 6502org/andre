@@ -1,0 +1,154 @@
+
+NAME		CPU816V4;
+PARTNO		GAL;
+REVISION	04;
+DATE		2.11.2009
+DESIGNER	A.FACHAT;
+COMPANY	None;
+LOCATION	None;
+ASSEMBLY	None;
+//DEVICE 	g20v8a;
+DEVICE 	g20v8as;
+
+//Inputs:
+
+PIN 1 = !SL;
+PIN 2 = A16;
+PIN 3 = A17;
+PIN 4 = A18;
+PIN 5 = A19;
+PIN 6 = A20;
+PIN 7 = A21;
+PIN 8 = SRDY;
+PIN 9 = 8PHI2;
+PIN 10 = BOOT;
+PIN 11 = !IOMEM;
+PIN 13 = !VIDMEM;
+PIN 14 = DRDY;
+PIN 23 = INIT;
+
+//Outputs:
+
+PIN 15 = !RSEL0;
+PIN 16 = !RSEL1;
+PIN 17 = !RSEL2;
+PIN 18 = !RSEL3;
+PIN 19 = XMA16;
+PIN 20 = !IOSEL;
+PIN 21 = !MEMSEL;
+PIN 22 = !SLOWMEM;
+
+// replacement for A23 input
+
+A22 = 'b'0;
+A23 = 'b'0;
+
+//Equations
+
+// Intermediate
+
+// RAM0 @ $000000-$07ffff
+// and    $800000-$87ffff
+// only indirectly used
+
+RAM0 =
+        !A23 & !A22 & !A21 & !A20 & !A19
+	;
+
+// Low 64k
+
+LOW64K =
+	 RAM0 & !A18 & !A17 & !A16
+	;
+
+// slowsel to determine when to select slow memory
+
+SLOWSEL = 
+	 SL # SRDY
+	;
+// outputs
+
+// RSEL0 @ $000000-$07ffff when /BOOT, where lowest 64k
+//                        have window for I/O resp. video,
+// and @ $300000-$37ffff without windows so ROM can be copied and 
+//		then mapped away
+
+RSEL0 =
+	 8PHI2 & !A23 & !A22 & A21 & A20 & !A19
+        # 8PHI2 & RAM0 & A16
+        # 8PHI2 & RAM0 & A17
+        # 8PHI2 & RAM0 & A18
+        # 8PHI2 & !BOOT & LOW64K & !IOMEM & !VIDMEM
+	;
+
+// RAM1 @ $080000-$0fffff
+
+RSEL1 =
+        8PHI2 & !A23 & !A22 & !A21 & !A20 & A19
+	;
+
+// RAM1 @ $100000-$17ffff
+
+RSEL2 = 
+        8PHI2 & !A23 & !A22 & !A21 & A20 & !A19
+       ;
+
+// RAM1 @ $180000-$1fffff
+
+RSEL3 =
+        8PHI2 & !A23 & !A22 & !A21 & A20 & A19
+       ;
+
+
+// I/O area in lowest 64k (via IOMEM)
+// 	$00E800-$00EFFF
+//	$80E800-$80EFFF (via RAM0)
+// no matter whether boot or not
+
+IOSELX = 
+        LOW64K & IOMEM
+       ;
+
+IOSEL 	=
+	 SLOWSEL & IOSELX
+	;
+
+// memory in separate 1M area
+// @ $200000-$2fffff
+// plus video area in lowest 64k
+//	@ $008000-$0087FF
+//	@ $808000-$8087FF (via RAM0)
+// plus boot (lowest 64k)
+
+MEMSELX =
+	 // lowest 64k video memory when in non-boot
+        LOW64K & !BOOT & VIDMEM
+	 // standard $200000-$2fffff
+        # !A23 & !A22 & A21 & !A20
+	 // boot situation - lowest 64k except io
+	 # LOW64K & BOOT & !IOMEM
+       ;
+
+MEMSEL	=
+	 SLOWSEL & MEMSELX
+	;
+
+// active when slow memory selected
+
+SLOWMEM =
+        IOSELX & DRDY & !INIT
+        # MEMSELX & DRDY & !INIT
+       ;
+
+// translate MA16 for access to the video RAM 
+// from 
+//	$008000-$0087FF or
+//	$808000-$8087FF to
+//	$X18000-$X187FF
+
+XMA16 = 
+        LOW64K & VIDMEM
+	 # A16
+	;
+
+
