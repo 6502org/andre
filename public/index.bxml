@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2009</yearend>
+    <yearend>2010</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
@@ -19,7 +19,6 @@ and internet access.</p>
 <h3>In the works...</h3><p>
 These are the things I currently have in the works - although actually in the works for about two years now...</p>
 <ul>
-<li>65816 CPU board - a board using the 65816, with up to 2MByte fast RAM, and using the CS/A bus. Almost done (I hope) - still ironing out some timing issues</li>
 <li>A ramdisk board for a RAM disk with up to 16MByte dRAM, using the old 8-bit SIMM RAM modules. Somewhat done - still quite some timing issues though.</li>
 <li>A board with an Ethernet and two USB connections. I have the board and the parts, but I think I still need to get more up to date with SMD soldering...</li>
 <li>I plan to update the GeckOS operating system to
@@ -30,6 +29,11 @@ This is currently planned only.</li>
 
   </overview>
   <news>
+    <item date="2010-01-01">
+        Finally here it is!
+        I managed to build the <a href="csa/cpu816/index.html">65816 CPU board</a> for the CS/A65.
+        The CPU runs at 8 MHz and makes a PET real fast :-)
+    </item>
     <item date="2009-12-13">
 	A bit late, but actually in october 2009 the <a href="csa/index.html">CS/A65</a> 
 	had its 20th anniversary! I had hoped to have a 65816 CPU board ready
