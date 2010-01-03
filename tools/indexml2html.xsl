@@ -255,14 +255,18 @@
 <xsl:template match="news">
  <h3>News:</h3>
  <ul class="news">
- <xsl:for-each select="item">
-  <xsl:if test="not(@state) or @state='old'">
+ <xsl:for-each select="item[@state='hot']">
+  <li class="hotnews">
+  <small><xsl:value-of select="@date"/></small>
+  <xsl:copy-of select="*|text()"/>
+  </li>
+ </xsl:for-each>
+ <xsl:for-each select="item[@state='old' or not(@state)]">
   <li>
   <xsl:if test="@state='old'"><xsl:attribute name="class">oldnews</xsl:attribute></xsl:if>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>
-  </xsl:if>
  </xsl:for-each>
  </ul>
 </xsl:template>

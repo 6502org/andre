@@ -29,7 +29,10 @@ This is currently planned only.</li>
 
   </overview>
   <news>
-    <item date="2010-01-01">
+    <item date="2010-01-03">
+	Fixed a number of links all over the place.
+    </item>
+    <item date="2010-01-01" state="hot">
         Finally here it is!
         I managed to build the <a href="csa/cpu816/index.html">65816 CPU board</a> for the CS/A65.
         The CPU runs at 8 MHz and makes a PET real fast :-)
@@ -167,7 +170,7 @@ to this page.</subitem>
       <subitem name="Hardware info" 
 		link="hwinfo/index.html">: Information on various 
 	items and standards used in these pages. Examples are 
-	<a href="hwinfo/crtctest/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
+	<a href="hwinfo/crtc/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
 	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
       </subitem>
       <subitem name="Hardware Tools and Stuff" 
@@ -192,6 +195,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
 @DISCLAIMER@
     </disclaimer>
   <closing>
-Last updated 2006-12-20.
+Last updated 2010-01-03.
   </closing>
 </webpage>

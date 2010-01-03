@@ -157,7 +157,7 @@ systems and how to program it.
 <h2>References</h2>
 <p>Here are the schematics and source code for the interface</p>
 <ul>
-<li><a href="c64ser/c64ser2.gif">c64ser2.gif</a> is the C64 interface on top of the SID chip (Source: <a href="c64ser2.fig">c64ser2.fig</a></li>
+<li><a href="c64ser/c64ser2.gif">c64ser2.gif</a> is the C64 interface on top of the SID chip (Source: <a href="c64ser/c64ser2.fig">c64ser2.fig</a></li>
 <li><a href="c64ser/c64ser.a65">c64ser.a65</a> is a C64 demo program with a UART driver as commented source code.</li>
 <li><a href="c64ser/c64ser.o65">c64ser.o65</a> is the C64 demo program as loadable binary.</li>
 <li><a href="c64ser/c64ser2.a65">c64ser2.a65</a> is the UART driver from GeckOS/A65.</li>

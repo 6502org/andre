@@ -14,19 +14,15 @@
                 		<a href="CSA%20CPU816%20setup.PNG"><img width="200px" src="CSA CPU816 setup.PNG"/></a><br/>A 65816 setup with BIOS, VDC, PETIO and PWR boards.
        	        </div>
 	</desc>
-	<!--
 	<diagram>
-		<file>cpu.gif</file>
-		<desc>Block diagram of the cpu board. It shows the MMU,
-			but also the port to read the CPU address.
-			Please note that the MMU and the port can be
-			accessed from the bus alone, if the cpu is decoupled
-			from the bus with the drivers. This can be used
-			when the cpu is stopped with the RDY e.g. by
-			a bus error.
+		<file>diagram.gif</file>
+		<desc>Block diagram of the cpu board. 
+		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
+		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
+		control logic - which is the most complex part here... RDY is used to slow down the CPU during CS/A bus access, which 
+		happens at 1MHz speed instead of the 8MHz CPU speed. 
 		</desc>
 	</diagram>
-	-->
 	<section toc="making" name="Making of">
 		<desc><p>
 			The 65816 board took a long time in the making. First of all, to get the
@@ -356,6 +352,8 @@
 		Note that the binary image also contains an @MON monitor program adapted for the PET
 		(including screen up/down scroll etc - but without 65816 opcodes) at $A000-AFFF. It is started
 		with <code>SYS 40960</code>.
+		</p><p>
+		Also note that IEEE488 has not been tested yet (due to my broken lpt-ieee488 interface).
 		</p></desc>
 		<file ltype="driver" ptype="a65" note="CS/A Fat40 65816 setup ROM Patch to apply to a normal 40col CRTC PET ROM">petpatch2.a65</file>
 		<file ltype="driver" ptype="rom" note="Precompiled CS/A Fat40 65816 setup ROM (32k)">fat40_816v4.bin</file>

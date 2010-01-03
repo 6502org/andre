@@ -11,7 +11,7 @@
 	<rev>
 		<version>1.1D</version>
 		<status>untested</status>
-		<note type="note">
+		<note type="msg">
 		This board has an additional diode (e.g. 1N4148) to 
 		accomodate for the 
 		WDC65SC22's totem-pole /IRQ output, as opposed to the orginal's
@@ -21,7 +21,7 @@
 		<file ltype="schem" ptype="esch">csa_petio_v1.1d.sch</file>
 		<file ltype="schem" ptype="png">csa_petio_v1.1d-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_petio_v1.1d.brd</file>
-		<file ltype="layout" ptype="png">csa_petio_v1.1d-lay.png</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.1d-brd.png</file>
 	</rev>
 	<rev>
 		<version>1.1C</version>

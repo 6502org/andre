@@ -119,8 +119,8 @@ program, is implemented in the CS/A65 Gecko computer, a simple
 <ul>
 <li><a href="remote/irtx.a65">irtx.a65</a> driver source code</a></li>
 <li><a href="remote/irtx.def">irtx.def</a> remote signal definitions</a></li>
-<li><a href="remote/diagram.gif">diagram.gif</a> schematics (<a href="diagram.fig">source</a>)</li>
-<li><a href="remote/signal.gif">signal.gif</a> remote signal description (<a href="signal.fig">source</a>)</li>
+<li><a href="remote/diagram.gif">diagram.gif</a> schematics (<a href="remote/diagram.fig">source</a>)</li>
+<li><a href="remote/signal.gif">signal.gif</a> remote signal description (<a href="remote/signal.fig">source</a>)</li>
 </ul>
 <hr>
 <p>(C) 1997,2006 Andr&eacute; Fachat</p>

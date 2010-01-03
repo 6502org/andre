@@ -99,6 +99,9 @@ UL.news {
 LI.oldnews {
 	list-style-image:url(imgs/oldnews.gif);
 }
+LI.hotnews {
+	list-style-image:url(imgs/hotnews.gif);
+}
 
 LI.homepage {
 	list-style-image:url(imgs/dir.gif);

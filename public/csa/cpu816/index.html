@@ -96,6 +96,7 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir><li>
 <a href="#board1">1.1E</a> (prototype)</li></dir>
+<li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
 <H2><a name="making">Making of</a></H2>
@@ -442,6 +443,8 @@
 		Note that the binary image also contains an @MON monitor program adapted for the PET
 		(including screen up/down scroll etc - but without 65816 opcodes) at $A000-AFFF. It is started
 		with <code>SYS 40960</code>.
+		</p><p>
+		Also note that IEEE488 has not been tested yet (due to my broken lpt-ieee488 interface).
 		</p></p>
 <TABLE class="files">
 <TR CLASS="R1">
@@ -547,6 +550,13 @@
 <A HREF="timing2.png">timing2.png</A>(Sample high-res timing diagram)</TD>
 </TR>
 </TABLE>
+<H2><A name="blkdiag">Block diagram</A></H2>
+<img src="diagram.gif" alt="block diagram"><p>Block diagram of the cpu board. 
+		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
+		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
+		control logic - which is the most complex part here... RDY is used to slow down the CPU during CS/A bus access, which 
+		happens at 1MHz speed instead of the 8MHz CPU speed. 
+		</p>
 <DIV ID="footer">
 <P>Last modified: 2010-01-01.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>

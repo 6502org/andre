@@ -46,27 +46,28 @@ and the 510-520 (also known as P500)</P>
 <P><UL>
 <LI>The <A HREF="versions.html">PET model index</A>
 <P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> 
-<P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
+<P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET 
 <P></LI><LI><A HREF="pinouts.html">Pinouts</A> of various PET connectors
 <P></LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
 <P></LI><LI>Hardware <A HREF="progmod.html">Programming</A> information
 <P></LI><LI><A HREF="roms.html">ROM</A> description
-<P></LI><LI><A HREF="crtc.html">CRTC 6545 operation</A> (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
+<P></LI><LI><A HREF="crtc.html">CRTC 6545 operation</A>
 <P></LI><LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page
-<P></LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s) (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
-<P></LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96) (<img src="../imgs/news.gif" alt="UPDATED"/> NOV 2006)
+<P></LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s)
+<P></LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96)
 <P></LI><LI><A HREF="hw.html">Hardware</A> projects around the PET
 <P></LI><LI><A HREF="sw.html">Software</A> projects and archives
 <P></LI><LI><A HREF="emus.html">PET emulators</A> run PET programs on other hardware
 <P></LI><LI><A HREF="transfer.html">Transfer</A> projects to transfer files from the PET to the PC and back.
-<P></LI><LI><A HREF="repairs.html">Repair</A> information for the PET (<img src="../imgs/news.gif" alt="NEW"/> JAN 2007).
-<P></LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics)
+<P></LI><LI><A HREF="repairs.html">Repair</A> information for the PET
+<P></LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics) (<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010)
+
 </LI></UL>
 <HR>
 <P>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
 Ruud Baltissen and all the others that provided this information.
 </P><P>
-Last changed 20. November 2006 A.Fachat
+Last changed 03. January 2010 A.Fachat
 </P></DIV>
 </BODY>
 </HTML>
