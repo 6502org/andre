@@ -1,0 +1,111 @@
+
+                              @mon 
+ 
+            by A. Fachat (fachat@galileo.rhein-neckar.de)
+----------------------------------------------------------------------
+     @mon is covered by the GNU public License, see file COPYING
+
+
+0) Preface 
+   The Programm @mon is a machine language monitor. 
+   I have written this programm some years ago and I do not support 
+   it any more. I do also not take any warranty for this programm or its
+   use in any form.  
+
+1) How to use
+   To use the monitor you have to load the programm into memory as
+   a machine programm and save it from overwriting by poking something
+   to the basic end pointer, except if you put it to $c000.
+   You call the monitor by typing "SYS start-address" in the BASIC editor.
+   After being called first, the monitor catches the BRK interrupt pointer
+   and starts after a break with the register contents in the monitor 
+   registers.
+
+   Note that for M, B, D, C, and F a "shifted" command input directly sends 
+   the command output to the printer device.
+
+2) Commands
+   adr and adr? are  two byte Hex addresses, byte is a Hex value
+       M adr1 [adr2]         Hex+ASCII dump from adr1 (to adr2)
+       B adr1 [adr2]         Binary dump (Sprite format)
+       D adr1 [adr2]         Assembler listing
+       R                     Show internal registers
+
+       A adr                 Assembler from adr
+       O adr1 adr2 byte      Fill (Occupy) memory from adr1 to adr2 with byte
+       C adr1 adr2 adr3      Compare memory from adr1 to adr2 with memory 
+                             beginning at adr3
+       T adr1 adr2 adr3      Transfer memory from adr1 to adr2 to memory 
+                             starting at adr3
+       U adr1 adr2 adr3 adr4 adr5 
+                             recalculates all two-byte addresses in the
+                             area from adr4 to adr5 that point to the
+                             memory from adr1 to adr2 to new addresses
+                             in memory starting at adr3
+       G adr                 jump to adr, set CPU registers with the
+                             values of the internal Registers
+       I byte1 byte2         Sets output to Disk to device byte1 and
+                             output to printer to device byte2
+			     defaults to 8 for disk and 4 for printer.
+       L "filename" [adr]    Load File "filename" from disk device (see
+                             command "I") (to adr)
+       S "filename" adr1 adr2
+                             Saves memory from adr1 to adr2 to a file,
+                             the contents of the memory is preceded by
+                             the adr1 (load address)
+       #decimal_number       prints the hex, decimal and binary values of
+                             the given decimal number
+       $hex_number           see "#"
+       %binary_number        see "#"
+       ? adr1 operator adr2
+                             performs arithmetik operation, valid operators
+                             are:
+                               +   addition
+                               -   substraction
+                               *   multiplication
+                               /   division
+       T adr                 trace walk. Available on the C64 only.
+			     You can control it with the following
+                             keys:
+                               F1  don't execute the next command
+                               F3  fast execution: don't wait for a keypress
+                               F5  slow execution (as F3)
+                               F7  one step ahead
+                               J   execute subroutine to the next rts
+                               run/stop
+                                   as the name says...
+                             The trace walk is not very reliable, I didn't
+                             know about 'bad rasterlines' and so, so you
+                             may be trapped in the routine itself. But,
+                             BTW, don't care for "SEI", the NMI timer gives
+                             the signal. 
+       F adr1 adr2 byte [byte2 [...]]
+       F adr1 adr2 "TEXT"    search for text or bytes between adr1 and adr2
+       FR adr1 adr2          search for relative jumps 
+       FA adr1 adr2 xxx      search for a special addressing mode:
+                             you give the adressing mode in the same syntax
+                             as in the assembler, instead of the real address
+                             you may replace some or all of the Hex digits 
+                             by an asterix ('*').
+                             example:
+                             FA A437 A500 $A32*,X
+                             .,A43D LDA $A326,X
+                             .,A442 LDA $A327,X
+                             . 
+                                                   
+       X                     exit the programm 
+                             The BRK vector is being kept.
+
+3) Scrolling editor
+
+   All dumps may be changed by overwriting. The M, B and D dumps have a 
+   screen scroll function, i.e. if you move the cursor of the screen to
+   the top or the bottom, you get the listing scrolled.
+
+4) Output Redirection
+
+   The Commands M, B, D, C and F can be redirected to the printer
+   device (set with the I command) when the command is entered
+   shifted.
+
+

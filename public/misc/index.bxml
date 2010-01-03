@@ -57,7 +57,7 @@ cross-assembler. You find the source in <a href="apmon-v112.tar.gz">apmon-v112.t
       <subitem name="@ass">My own C64 native assembler.
 You need it for some
 of the projects on this page. You find it at
-<a href="@CBMARC@/c64/programming/atass.tar.gz">@CBMARC@/c64/programming/atass.tar.gz</a>or <a href="@CBMARC@/c64/programming/atbasic.lzh">atass.lzh</a>.</subitem>
+<a href="@CBMARC@/c64/programming/atass.tar.gz">@CBMARC@/c64/programming/atass.tar.gz</a>or <a href="@CBMARC@/c64/programming/atass.lzh">atass.lzh</a>.</subitem>
       <subitem name="BASMON">: This small monitor program is written in BASIC,
 uses some of the kernal code and should run on the C64 and the PET
 computers. A special version for the CBM&nbsp;600 (aka B128) is available.</subitem>
@@ -71,7 +71,7 @@ computers. A special version for the CBM&nbsp;600 (aka B128) is available.</subi
 PC floppy disks on a C128 with a VC1571 disk drive.
 I once published a version in the 64er magazin as <em>project of the month</em>.
 Nowadays I would suggest using the transfer tools from
-<a href="@CBMARC@/transfer/index.html">@CBMARC@/transfer/</a>.</subitem>
+<a href="@CBMARC@/crossplatform/transfer/index.html">@CBMARC@/transfer/</a>.</subitem>
       <subitem name="xcbm">This was my first attempt in writing a C64/PET
 emulator running on Unix before I joined the VICE team. It basically
 emulates the
