@@ -33,7 +33,7 @@
 </DIV>
 <DIV ID="content">
 <h1>RDY-Generation for CMOS 65C02 Microprocessors</h1>
-<p>(C) 2006 A. Fachat</p>
+<p>(C) 2006-2010 A. Fachat</p>
 <p>This article describes a generic schematics for the generation of the RDY 
 line used by the 65C02 processor to hold bus accesses when the device is not
 ready.
@@ -42,8 +42,7 @@ ready.
 faster than the one or two MHz the 6502 runs at. Well, actually I recently
 found a chip that was too slow for my 2&nbsp;MHz 65C02 system, so I 
 developed this schematics.
-</p>
-<p>Please note that the schematics works for a CMOS 65C02 only - not an
+</p><p>Please note that the schematics works for a CMOS 65C02 only - not an
 NMOS&nbsp;6502. This is due to two facts:
 </p><ol>
 <li>The NMOS version requires that the RDY signal is asserted during Phi1,
@@ -58,7 +57,11 @@ in total in a 6502 - and only stops on the next read cylce.
 This schematics does not handle the write problem with the NMOS chips,
 it simply asserts RDY for all accesses.</li>
 </ol>
-<p>This schematics describes how I attached the Philips P8584 I2C controller
+<div class="sidenote">
+2010-01-03: Note that this IC is clocked by the select line and has no
+extra Phi2 line. So there is a need to deassert the select line when Phi2
+goes low - otherwise the schematics could be much simpler!
+</div><p>This schematics describes how I attached the Philips P8584 I2C controller
 to a 65C02 system. I found that the chip worked well with the system running
 on 1&nbsp;MHz, but not on 2&nbsp;MHz. It only started working when I used
 RDY to halt the CPU for a cycle when accessing the chip.

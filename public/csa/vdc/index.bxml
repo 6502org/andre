@@ -11,13 +11,11 @@
 		a line at 2MHz system clock.
 	</desc>
         <news>
-                <item date="2007-06-29">
+                <item date="2007-06-29" state="old">
                         Added helper boards that convert the video signals
 			to composite video.
                 </item>
-        </news>
-        <news>
-                <item date="2006-11-01">
+                <item date="2006-11-01" state="old">
                         Added driver code.
                 </item>
         </news>

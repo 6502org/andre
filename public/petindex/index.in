@@ -9,8 +9,8 @@
 <BODY>
 @MENU@
 <DIV ID="content">
-<H1>PET index V1.1</H1>
-<P>In this 1.1 release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
+<H1>PET index</H1>
+<P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
 images for the 8x96.</P>
 <P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>
 <P>This file is intended to be an index about the

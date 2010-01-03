@@ -26,6 +26,12 @@ TCP/IP and SCSI support.</DD>
 <DT><A HREF="8x96.html">LOS-96</A></DT>
 <DD>This 'operating system' from Commodore is actually an improved BASIC, that
 allows to utilize the additional memory found in the 8x96 models.</DD>
+<DT><A HREF="../csa/gecko/index.html">Gecko Serial PET driver</A></DT>
+<DD>The CS/A Gecko board has a driver that patches up a PET 'Fat40' ROM such that it uses an UART RS232 interface
+as editor ROM - and not the usual screen area anymore. The page contains a screenshot of a serial terminal 
+with the commodore BASIC startup message :-)</DD>
+<DT><A HREF="../misc/index.html">Machine language monitor</A></DT>
+<DD>Here is the @MON machine language monitor ported to the CRTC PET (40 and 80 cols). Features builtin 6502 assembler, autoscrolling etc
 </DL>
 <H2>Software Archives</H2>
 <P>This section contains links to archives with PET software.</P>

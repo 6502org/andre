@@ -157,7 +157,7 @@ I/O space</LI>
 	<rev>
 		<version>3.0A</version>
 		<status>tested with bugs</status>
-		<note type="msg">
+		<note type="stop">
 			This board is the redesign of the original 
 			Gecko board. It misses some important jumpers 
 			to use the board as an I/O/Memory board slave in a

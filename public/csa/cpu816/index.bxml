@@ -11,7 +11,7 @@
 		To access the bus memory and I/O, the CPU is slowed down to bus
 		clock speed with the RDY pin.
 		<div class="rightimg">
-                		<a href="CSA%20CPU816%20setup.PNG"><img width="200px" src="CSA CPU816 setup.PNG"/></a><br/>A 65816 setup with BIOS, VDC, PETIO and PWR boards.
+                		<a href="CSA%20CPU816%20setup.PNG"><img width="200px" src="CSA CPU816 setup.PNG"/></a><br/>A 65816 setup with BIOS, VDC, PETIO and PWR boards. Note that the CPU816 board is green, as opposed to the other boards it has protective paint on it so the SMD soldering would work.
        	        </div>
 	</desc>
 	<diagram>
