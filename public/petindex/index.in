@@ -10,9 +10,9 @@
 @MENU@
 <DIV ID="content">
 <H1>PET index</H1>
-<P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
+<!--P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
 images for the 8x96.</P>
-<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P>
+<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P-->
 <P>This file is intended to be an index about the
 PET line of Commodore computers. It is compiled out of several
 resources found on the internet. As there are a number of sites
@@ -45,10 +45,12 @@ and the 510-520 (also known as P500)</P>
 <H2>The parts of the index</H2>
 <P><UL>
 <LI>The <A HREF="versions.html">PET model index</A>
-<P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> 
+<P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> (<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010: harddisk info)
+
 <P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET 
 <P></LI><LI><A HREF="pinouts.html">Pinouts</A> of various PET connectors
 <P></LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
+<P></LI><LI><A HREF="extensions.html">Extensions</A> extensions of the PET (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010)
 <P></LI><LI>Hardware <A HREF="progmod.html">Programming</A> information
 <P></LI><LI><A HREF="roms.html">ROM</A> description
 <P></LI><LI><A HREF="crtc.html">CRTC 6545 operation</A>

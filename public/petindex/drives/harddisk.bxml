@@ -1,0 +1,124 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Commodore IEEE488 Harddisk information">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore IEEE488 harddisk D9060 D9090</keywords>
+  <metadesc>Commodore IEEE488 harddisk descriptions</metadesc>
+  <overview><p>
+	This page has information about the Commodore harddisk drives
+	D9090 and D9060.
+	</p><p>Note: this is a work in progress!</p>
+  </overview>
+  <news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+  <section name="General Information">
+    <desc><p>
+The Commodore hard disk drives were available in two versions, the D9060 with 5 MByte and the D9090 with 7.5 MByte.
+The controller hardware of both drives were basically identical, but the actual disk drives were different. The smaller
+drives have a TM602S drive with 2 platters, while the larger drives have a TM603S drive with 3 platters.
+    </p><p>
+The DOS used is version 3.0 that supports relative files as large as the disk, but still no subdirectories or partitions.
+    </p></desc>
+    <extlink name="DOS images and source code on the CBM archive" link="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/9090/index.html"/>
+  </section>
+  <section name="Hardware">
+    <desc><p>
+	The harddisks have a very special hardware. As a disk drive the more or less 'standard' ST-506 interface disks are used.
+	But these disks are not accessed by the normal disk controller. Instead there is a hard disk controller in between as can
+	be seen in the image.
+	</p><p><a href="arch/hdarch.png"><img width="400px" src="arch/hdarch.png"/></a></p><p>
+	The 'DOS Board' still has the very same architecture as the other IEEE488 disk drives: One CPU is used for the DOS,
+	handling the IEEE488 communication, and a second(!) 6502 is used to talk to the disk controller:
+	<pre>
+		IEEE488 ---> DOS 6502 --->  shared memory ---> controller 6502 ---> SASI interface ---> disk controller ---> ST-506 interface ---> drive
+	</pre>
+    </p></desc>
+    <subsection name="Drive replacement">
+	<desc><p>As the old drives are sensitive to mechanical damage, for example there is no auto-parking etc, there is an idea to 
+	replace the original disk drive with a newer one. There are catches, though. Ethan Diks on the cbm-hackers mailing list
+	about someone asking to replace the disk with an Atari Megafile disk:
+	<pre>
+It is not enough to match merely the number of platters.  Back in the
+days of 10MB and 20MB disks, you had to match the number of platters,
+the number of cylinders (the disc can have more cylinders than the
+controller expects, of course), and two now-mysterious-and-forgotten
+parameters - reduced write current and write precompensation.  Without
+going into the details of RWC and Precomp (as they were often
+described at the time), they are numbers that relate to what cylinder
+the drive needs the controller to change how it writes to the platters
+(since that is all analog and entirely controlled by the controller,
+unlike IDE and embedded SCSI drives).  Even though the Seagate ST506
+and the Tandon TM602S have the same number of heads and about
+(exactly?) the same number of cylinders, you can *not* replace one for
+the other - their RWC and Precomp numbers are different and not
+mutually compatible.  There are also different, shall we call it,
+"versions" of the ST506 and ST412 ("MFM") interface implementation -
+not vastly different, but different enough that it matters when trying
+to put a newer drive on an older controller and vice versa.
+
+Now... *if* the Atari Megafile you mentioned happens to have a drive
+that will sufficiently imitate the TM602S (it will if, for example, it
+has a Seagate ST225 inside), then that will work.  Without knowing the
+drive model in the Megafile, it's impossible to determine in advance
+if is a good substitute or not.  Other drives will probably work, but
+I'd urge you to go find the specific numbers from a TM602S and check
+them against what you'd like to try as a replacement drive (the TM603S
+is identical except it has 6 heads instead of 4).  Of course, any of
+these parameters could be changed with enough understanding about the
+internals of the D90x0 drives, but I do not believe that there is that
+depth of knowledge anywhere at present.  With enough research and
+experimentation, many more adaptations and modern substitutions can be
+tried.
+
+I don't want to discourage you from trying new things, but I do want
+to caution you that drives from those days are much more complicated
+to set up to work reliably than drives are now.
+	</pre>
+	What we learn from this is that the Seagate ST225 is a viable 
+	replacement for the TM602S (5 MByte) drives in terms of the other physical
+	parameters.
+	</p></desc>
+    </subsection>
+    <subsection name="Drive replacement II">
+	<desc><p>As the old drives are becoming more and more difficult to 
+	obtain, another idea has appeared: replacing the disk controller
+	(behind the SASI interface) with a controller like a PIC or Atmel
+	controller and emulating a SASI drive. 
+	</p><p>SASI is a predecessor to
+	SCSI, only little information is available though.
+	Also a detailled analysis of the controller 6502 ROM must be
+	performed to find out what SASI commands are actually sent
+	to the controller.
+    	</p></desc>
+    </subsection>
+  </section>
+  <section name="Links">
+     <subsection name="D9060/D9090">
+      <extlink name="Example of diagnosing a D9090" link="http://vintagecomputer.net/browse_thread.cfm?id=298"></extlink>
+      <extlink name="Replacing the original drive with an ST225" link="http://vintagecomputer.net/browse_thread_record.cfm?id=35&amp;tid=1"/>
+      <extlink name="Diagnostic blink codes in the CBM archive" link="@CBMARC@/schematics/drives/old/9090/23.gif"/>
+      <extlink name="Schematics in the CBM archive" link="@CBMARC@/schematics/drives/old/9090/index.html"/>
+      <extlink name="DOS images and source code on the CBM archive" link="@CBMARC@/firmware/drives/old/9090/index.html"/>
+      <extlink name="Disk System User Reference Guide (pdf)" link="http://www.bombjack.org/commodore/commodore/Disk_System_User_Reference_Guide.pdf"/>
+     </subsection>
+     <subsection name="ST506 etc">
+      <extlink name="Wikipedia on ST-506" link="http://en.wikipedia.org/wiki/ST506"/>
+      <extlink name="Disk interface and encoding information" link="http://webpages.charter.net/dperr/diskguid.txt"/>
+      <extlink name="Tandy MFM Hard Disk Drive Reference" link="http://nemesis.lonestar.org/computers/tandy/hardware/storage/mfm.html"/>
+      <extlink name="Disk interface and encoding information" link="http://www.faculty.iu-bremen.de/birk/lectures/PC101-2003/11magmass/MASS%20STORAGE%20MAGNETIC%20MEDIA/Hard%20disk%20controllers%20%26%20interface.htm"/>
+     </subsection>
+  </section>
+  <disclaimer name="Disclaimer">
+@DISCLAIMER@
+  </disclaimer>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

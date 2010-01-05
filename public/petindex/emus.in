@@ -22,10 +22,17 @@ In VICE almost all PET computers are emulated (SuperPET 6809 mode is not support
 The VICE emulator runs on different platforms, notably the 
 Windows and Linux/Unix platforms are supprted, but others as well.
 </DD>
+
+<DT><A HREF="http://mess.redump.net/">MESS</A></DT>
+<DD>MESS emulates a very large number of (even non-Commodore) computers,
+amongst them also the PET computers. It even says to emulate the SuperPET.
+I have not tried it yet though.</DD>
+
 <DT><A HREF="@CBMARC@/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
 <DD>This is a different type of emulator - it runs on the C64, and 
 emulates the hardware only as far as it is able to catch hardware accesses
 using BASIC POKE and PEEK commands.</DD>
+
 <DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
 <DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
 It provides a very highly compatible system. In fact it runs a patched
@@ -35,7 +42,7 @@ and the CRTC still needs to be set to 80 columns and not 40 to display
 </DL>
 <HR>
 <P>Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
+<P>PET index V1.0 (c) 1998-2010 A. Fachat
 </DIV>
 </BODY>
 </HTML>

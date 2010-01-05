@@ -98,9 +98,10 @@
 <H2><a name="{@toc}"><xsl:value-of select="@name"/></a></H2>
 <xsl:apply-templates select="desc"/>
 <xsl:apply-templates select="subsection"/>
-<xsl:if test="subitem">
+<xsl:if test="subitem|extlink">
 <ul>
 <xsl:apply-templates select="subitem"/>
+<xsl:apply-templates select="extlink"/>
 </ul>
 </xsl:if>
 </xsl:template>
@@ -108,9 +109,10 @@
 <xsl:template match="subsection">
 <H3><a name="{@toc}"><xsl:value-of select="@name"/></a></H3>
 <xsl:apply-templates select="desc"/>
-<xsl:if test="subitem">
+<xsl:if test="subitem|extlink">
 <ul>
 <xsl:apply-templates select="subitem"/>
+<xsl:apply-templates select="extlink"/>
 </ul>
 </xsl:if>
 </xsl:template>
@@ -229,9 +231,10 @@
 	<strong><xsl:call-template name="aname"/></strong><br/>
         <br/>
           <xsl:apply-templates select="desc"/>
-	  <xsl:if test="subitem">
+	  <xsl:if test="subitem|extlink">
 	<ul>
           <xsl:apply-templates select="subitem"/>
+          <xsl:apply-templates select="extlink"/>
 	</ul>
 	  </xsl:if>
       </li>
@@ -294,6 +297,16 @@
     <xsl:copy-of select="*|text()"/>
 </xsl:template>
 
+<xsl:template match="extlink">
+	<li>
+	      <a href="{@link}" target="_blank" class="extlink">
+	      <xsl:value-of select="@name"/>
+	      </a><xsl:text> </xsl:text>
+  	      <xsl:copy-of select="*|text()"/>
+	</li>
+</xsl:template>
+
+<!-- deprecated use extlink instead -->
 <xsl:template match="subitem[@link]">
 	<li class="subitem">
 	      <a href="{@link}">

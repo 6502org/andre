@@ -1,0 +1,249 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Commodore PET extensions">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore hardware extensions</keywords>
+  <metadesc>Commodore hardware extension descriptions</metadesc>
+  <overview><p>
+	This page contains an overview over hardware extensions that 
+	were commercially available for the PET. The ones documented here
+	 are mostly graphics and sound boards. If you know of any more, 
+	let me know!</p>
+  </overview>
+  <news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+  <section name="Graphics Adapters">
+    <desc>
+	This section describes some graphics adapter extensions for the PET,
+	even for high resolution graphics!
+    </desc>
+     <subsection name="Petunia board">
+	<desc><p>
+	From the discussion on the cbm-hackers mailing list:
+	</p><p>
+'There was a video/audio board called Petunia, by HUH Electronics.  It
+connected to the cassette (for power) and user ports. [There is a] video
+only version, that is, they did not put the audio components on the board.
+I don't know what they were because the board is not marked, but there is
+only room for 2 16 pin ICs.  Assuming these were output drivers for the
+sound, it would have required software to program the 6522 parellel port
+in order to produce sound.'
+	</p><p>
+	Sorry no link available.
+	</p>
+	</desc>
+     </subsection>
+     <subsection name="Eltec graphics adapter">
+	<desc><p>The Eltec 'petGRAFIK' card is an addon board that creates 
+	a hi resolution screen with 256x220 pixels, that is overlaid over
+	the normal PET screen. Schematics, manual and programming info is 
+	available on the link.</p>
+	</desc>
+	<extlink name="Eltec petGRAFIK" link="http://www.cbmhardware.de/cbmwiki/index.php/Eltec_PET_Grafik">Website is in German</extlink>
+     </subsection>
+     <subsection name="MTU Visible Memory Board (K1008)">
+	<desc><p>From the cbm-hackers discussion:</p><p>
+'I have one of those MTU Visible Memory boards (K-1008) and it doesn't
+sound like either of the boards you're discussing; there were two models
+actually, the K1008 which was designed for a KIM but could be used in
+a PET with an adapter board, and the K1008-6 which was designed for
+the PET and added a few features. Both were 8K, 320x200 and could
+also be used as ordinary expansion RAM.'
+	</p><p>
+      	Sorry no link available
+	</p>
+	</desc>
+     </subsection>
+     <subsection name="Dubbel-W bord">
+	<desc><p>From the cbm-hackers announcement by Rhialto:</p><p>
+<pre>
+Thanks to a bunch of disk images that must have been made by Ruud
+(thanks!) [2], I came across some demo programs for a hi-res board for
+the PET. Then I remembered that I had some vague and confusing notes
+about its use, which I got when we had one on loan at the school's
+computer club (assuming the boards to be the same).
+
+Putting 1 and 1 together, the programs seemed to match the notes, and so
+with the help from the notes, and the realisation that the notes implied
+there was a PIA in the mix, I started to implement an emulation in VICE.
+First I got it working as a weird memory expansion, then with the help
+from the #vice-dev irc channel, I hooked it into graphics output. It was
+nearly working[4] on the first try :-) [5][6]
+
+So now this is in the svn version of VICE, and here[3] is a patch you
+can probably apply to 2.2 (which has just been released).
+
+Here are my notes:
+
+The DWW hires board[1] has a PIA at address 60200 = $EB28
+
+It seems that in the demo programs, the BASIC versions like to
+POKE in 60200, where the machine language programs use $EB00.
+
+60200 Port A or DDR A
+$EBx0 1  0 \
+      2  1 - RAM block at $EC00 (0-7)
+      4  2 /
+      8  3 charrom         0 = off 1 = on
+      16 4 hires           0 = on  1 = off
+      32 5 extra charrom   0 = on
+
+
+60201 Control Register A: bit #3 (worth 4) controls if 60200
+$EBx1 accesses the Data Direction Register A (0) or Port A (1).
+
+60202 Port B or DDR B
+$EBx2 0 = RAM is visible from $9000 - $AFFF
+      1 = RAM is bank-switched in blocks of 1 K in $EC00 - $EFFF
+
+      [Control Register B is never mentioned, so putting 1 in this
+       address would access the DDR, creating an output line, which
+       after RESET is default 0...]
+
+Typical initialisation sequence:
+
+    poke 60201,0        poke 60200,255          (all outputs)
+    poke 60201,4        poke 60200,24 or 25 (16 + 8 + 1)
+
+Demo programs on disk PBE-110A, 110B, 111A, and 111B.
+These disks can be found inside
+http://vintagecomputer.net/commodore/64/baltissen/Pbe.zip
+(PBE = PET Benelux Exchange, the Dutch PET user group)
+
+The memory mapping is a bit strange. It seems each 1 K block contains
+the pixeldata for 1 bit-line of each text line. This is probably so that
+the addressing of the RAM can borrow part of the addressing
+logic/signals of the text screen. (The screen addressing cycles through
+0-39, then increases the line (= byte offset) which is fetched from
+the character ROM; for the graphics, the screen position selects the
+byte in a KB and the char ROM offset selects which KB of graphics RAM).
+
+My notes say: to set a pixel:
+
+RE = INT(Y/8): LY = Y - 8*RE    (or Y AND 7)
+BY = INT(X/8): BI = X - 8*BY    (or X AND 7)
+
+when memory mapped to $9000:
+
+    L = 36864 + 1024 * LY + 40 * RE + BY
+    POKE L, PEEK(L) OR 2^BI
+
+when memory mapped to $EC00:
+
+    POKE 60200,LY + 40 (or 8?)
+    L = 60416 + RE * 40 + BY
+    POKE L, PEEK(L) OR 2^BI
+
+
+[1] Dubbel-W bord, designed by Ben de Winter and Pieter Wolvekamp
+
+[2] http://vintagecomputer.net/commodore/64/baltissen/Pbe.zip
+[3] http://www.falu.nl/~rhialto/dww-patch
+[4] http://www.falu.nl/~rhialto/dww1.png
+[5] http://www.falu.nl/~rhialto/dww2.png
+[6] http://www.falu.nl/~rhialto/dww3.png
+</pre>
+	</p><p>
+      	Sorry no link available
+	</p>
+	</desc>
+     </subsection>
+     <subsection name="Commodore PET graphics card">
+	<desc>This graphics card allowed for 512x512 pixel resolution in 8 colors or 
+		8 grey levels. Sold for the 8296, 8000 and 4000 series, and even,
+		according to the site, into the B700 series. ASCII characters available in
+		different sizes vertical and horizontal. Comes with extra BASIC commands.
+	</desc>
+	<extlink name="Commodore PET graphics card" link="http://www.cbmhardware.de/cbmwiki/index.php/PET-Grafikkarte_Commodore_ASSY_No._324402-01_f%C3%BCr_CBM_8296">Website is in German</extlink>
+     </subsection>
+  </section>
+
+  <section name="Composite Video">
+    <desc><p>
+	This section describes adapters for the PET userport to create 
+	composite video signals for a 'normal' video monitor.
+	</p><p>
+	The PET has the three signals vertical sync, horizontal sync and the video signal
+	on the userport. So some circuits were developed to produce a composite video signal from that.
+	</p>
+    </desc>
+     <subsection name="The PET Revealed">
+	<desc>
+	</desc>
+	<extlink name="composite video from 'The PET revealed'" link="http://petlibrary.tripod.com/COMPVID.HTM"/>
+     </subsection>
+     <subsection name="Witte Video interface">
+	<desc>A German company sold PET video adapters, see link</desc>
+	<extlink name="Witte Video interface" link="http://www.cbmhardware.de/cbmwiki/index.php/PET-CBM_Video_Interface">Website is in German</extlink>
+     </subsection>
+  </section>
+
+  <section name="Sound Adapters">
+    <desc>
+	This section describes some sound adapter extensions for the PET
+    </desc>
+     <subsection name="DAC on the userport">
+	<desc>
+		There is <quote>Visible Music Monitor</quote> program that requires an 
+		<quote>8 bit DAC (Digital Analog Converter) connected to the userport</quote>.
+		See the <a href="@CBMARC@/pet/audio/index.html">audio page</a> at the CBM archive.
+	</desc>
+     </subsection>
+   </section>
+
+   <section name="Memory extensions">
+    <desc>
+	The memory on the early PET was really limited and obviously several companies produced extension boards.
+    </desc>
+     <subsection name="Unknown brand">
+	<desc>
+		This one can be seen in Daves Old Computers collections
+	</desc>
+	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
+     </subsection>
+   </section>
+
+   <section name="Other CPUs">
+    <desc>
+	There have been attempts to use other CPUs in the PET.
+    </desc>
+     <subsection name="SuperPET">
+	<desc>Of course the first one to mention is the Waterloo SuperPET which was sold by Commodore.
+	</desc>
+	<subitem name="SuperPET" link="superpet.html"/>
+     </subsection>
+     <subsection name="Unknown brand Z80 CP/M card">
+	<desc>
+		This one can be seen in Daves Old Computers collections.
+		Look for "Commodore CBM 8032 (Later version)".  The board is mounted under the monitor.
+	</desc>
+	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
+	<extlink name="Ruud Baltissen has one too" link="http://www.baltissen.org/images/z80card.jpg"/>
+     </subsection>
+   </section>
+
+   <section name="Floppy drives">
+    <desc>
+	Some of the floppy drives used in the PET were not as intelligent as the Commodore ones and
+	a controller had to be added to the PET
+    </desc>
+     <subsection name="Unknown brand">
+	<desc>
+		This one can be seen in Daves Old Computers collections.
+	</desc>
+	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
+     </subsection>
+   </section>
+
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

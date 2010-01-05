@@ -29,7 +29,10 @@ This is currently planned only.</li>
 
   </overview>
   <news>
-    <item date="2010-01-03">
+    <item date="2010-01-04">
+	Added a PET extension page, as well as a page for the PET harddisks to the PETIndex. Fix an error in the keyboard matrix shown on the keyboard page.
+    </item>
+     <item date="2010-01-03">
 	Fixed a number of links all over the place.
     </item>
     <item date="2010-01-01" state="hot">

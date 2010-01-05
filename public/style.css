@@ -114,6 +114,16 @@ LI.subitem {
 	/*margin-left:18px;*/
 }
 
+LI.extlink {
+	list-style-position: outside;
+	list-style-image:url(imgs/icon_extlink.jpg);
+}
+
+A.extlink {
+    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
+    	padding-right: 16px;
+}
+
 UL.menu0 {
   font-size:small;
 }

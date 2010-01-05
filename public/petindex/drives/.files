@@ -3,5 +3,6 @@ d gallery Drive gallery
 d roms DOS ROMs
 d progs Drive utilities
 f drives.html Drives list
+f harddisk.html Harddisk info
 f writegap.html Write gap info
 

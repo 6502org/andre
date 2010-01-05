@@ -1,34 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/roms.html"-->
-<TITLE>PET index - roms</TITLE>
-</HEAD>
-<BODY>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="Commodore PET CBM ROM descriptions">
+<meta name="keywords" content="Commodore PET CBM ROM">
+<title>Commodore PET extensions</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+</head>
+<body>
 <DIV ID="menu">
 <ul><li class=homepage><a href=../index.html>Homepage</a></li>
 <ul class="menu0" >
 <li class="separator">Commodore</li>
 <li class="dir"><a href="../petindex/index.html">CBM PETindex</a></li>
 <ul class="menu1" >
+<li class="separator">General Info</li>
+<li class="dir"><a href="gallery/index.html">PET gallery</a></li>
 <li class="file"><a href="versions.html">PET versions</a></li>
-<li class="dir"><a href="drives/index.html">Disk drives</a></li>
 <li class="file"><a href="boards.html">Board versions</a></li>
 <li class="file"><a href="pinouts.html">Connectors</a></li>
 <li class="file"><a href="keyboards.html">Keyboards</a></li>
+<li class="file"><a href="extensions.html">Extensions</a></li>
+<li class="separator">Specials</li>
+<li class="file"><a href="superpet.html">SuperPET MMF9000</a></li>
+<li class="file"><a href="8x96.html">The 8096 and 8296 models</a></li>
+<li class="separator">Peripherals</li>
+<li class="dir"><a href="drives/index.html">Disk drives</a></li>
+<li class="separator">Programming</li>
 <li class="file"><a href="progmod.html">Hardware programming</a></li>
 <li class="file"><a href="roms.html">ROM descriptions</a></li>
 <li class="file"><a href="crtc.html">CRTC operation</a></li>
+<li class="separator">Quirks</li>
 <li class="file"><a href="poke.html">Killer poke</a></li>
-<li class="file"><a href="superpet.html">SuperPET MMF9000</a></li>
-<li class="file"><a href="8x96.html">The 8096 and 8296 models</a></li>
+<li class="separator">Links</li>
 <li class="file"><a href="hw.html">Hardware projects</a></li>
 <li class="file"><a href="sw.html">Software projects</a></li>
 <li class="file"><a href="emus.html">PET emulators</a></li>
 <li class="file"><a href="transfer.html">File transfers</a></li>
-<li class="dir"><a href="gallery/index.html">PET gallery</a></li>
 <li class="file"><a href="links.html">Links</a></li>
 </ul>
 <li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
@@ -49,22 +60,43 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>PET index - roms</H1>
-<P>There are basically two sections necessary - for the BASIC ROM version
-and for the so-called editor ROM.
-The ROMs can be found in the <A HREF="links.html#misc">archives</A>.
-</P>
-<H2>Differences in Software</H2>
+<h1>Commodore PET extensions</h1>
+<p class="copyright">(C)
+- André  Fachat</p> 
+<p><p>This page describes the different ROM versions.
+	There are basically two sections necessary - for the BASIC ROM version
+	and for the so-called editor ROM.
+	</p>
+  </p>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#">Differences in Software</a></li>
+<dir>
+<li><a href="#">Original ROMs ($C000-$FFFF)</a></li>
+<li><a href="#">Upgrade ROMs ($C000-$FFFF)</a></li>
+<li><a href="#">4.0 ROMs ($B000-$FFFF)</a></li>
+</dir>
+<li><a href="#">Editor ROM</a></li>
+<li><a href="#">Character ROM</a></li>
+</dir>
+</DIV>
+<h2>Differences in Software</h2>
+<p>
 <P>
 Basically there are three different ROM versions that came with the
 PET computers, the original ROMs, the upgrade ROMs and the 4.0 ROMs.
 Here are some of the peculiarities of the different ROM versions.
 (I wished I had more about that; see also the <A HREF="links.html#petfaq">petfaq</A>
 file)</P>
-<P>ROM images can be found in 
-<A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/">the CBM archive</A></P>
-<P><DL><DT>Original ROMs ($C000-$FFFF)</DT>
-<DD><P>Original ROMs, from $c000, powers up <CODE>*** COMMODORE BASIC ***</CODE>.
+<P>ROM images can be found in
+<A class="extlink" HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/">the CBM archive</A>
+</P>
+<P>A reverse engineered BASIC source code for versions 1,2 and 4 can be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/pet/index.html">CBM archive</A>.</P>
+    </p>
+<H3><a name="">Original ROMs ($C000-$FFFF)</a></H3>
+<p><p>
+Original ROMs, from $c000, powers up <CODE>*** COMMODORE BASIC ***</CODE>.
 To be found in the calculator-style keyboard machines. Horribly broken,
 especially the IEEE488 did not work. The
 very low level routines worked, but on top of that a lot had to be fixed.
@@ -72,69 +104,79 @@ In upper/lower case character mode (as opposed to upper case/graphics mode)
 the upper and lower characters were exchanged (SHIFT for lower case).
 Arrays could only be 256 elements in size.
 There are a lot of other bugs...
-</P><P>A <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html">disassambly</A> can be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/index.html">CBM archives</A></P>
-</DD>
-<DT>Upgrade ROMs ($C000-$FFFF)</DT>
-<DD><P>
-The `upgrade ROMs' were also known as 2.0 or 3.0 ROMs. Start at $c000, power
+	</p><p>
+Note that these ROMs had a kind of copy protection: the BASIC PEEK function could
+not read out the actual ROM values...
+	</p>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
+<H3><a name="">Upgrade ROMs ($C000-$FFFF)</a></H3>
+<p><p>
+	The `upgrade ROMs' were also known as 2.0 or 3.0 ROMs. Start at $c000, power
 up <CODE>### COMMODORE BASIC ###</CODE>
 Fix a lot of bugs and make IEEE488 work. Also adds a tiny machine monitor.
 Those ROMs have most bugs fixed, although there seem to be different levels
-of bug fixing (the 
-<A HREF="links.html#prodlist">products list</A>
+of bug fixing (the
+<A class="extlink" HREF="links.html#prodlist">products list</A>
 says something about ROM versions 2.0-2.3).
 Try and enter "WAIT 6502,1"...
-</P></DD>
-<DT>4.0 ROMs ($B000-$FFFF)</DT>
-<DD><P>
+</p>
+	</p>
+<H3><a name="">4.0 ROMs ($B000-$FFFF)</a></H3>
+<p><p>
 Power up with <CODE>*** COMMODORE BASIC 4.0 ***</CODE>.
 The 4.0 ROMs add the so-called DISK-BASIC with disk operation commands
 (DLOAD, DSAVE, COPY, SCRATCH, DS$ for the error channel etc). The editor
-ROM still differs from small screen and large screen versions (board #2 and 
+ROM still differs from small screen and large screen versions (board #2 and
 boards #3 and #4)...
-</P><P>A <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/petdis">disassambly</A> can be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/index.html">CBM archives</A>. There also is a <A HREF="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt">memory map</A>. 
-</P></DD>
-</DL>
-<P>A reverse engineered BASIC source code for versions 1,2 and 4 can be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/pet/index.html">CBM archive</A>.</P>
-
-<H2>Editor ROM</H2>
-<P>
-In addition to the BASIC (including the kernel) 
+	</p>
+	</p>
+<ul>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/petdis" target="_blank" class="extlink">4.0 ROMs disassembly</a> </li>
+<li>
+<a href="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt" target="_blank" class="extlink">4.0 ROMs memory map</a> </li>
+</ul>
+<h2>Editor ROM</h2>
+<p><p>
+In addition to the BASIC (including the kernel)
 there are different `editor' ROMs. Those ROMs occupy $e000-$e800
 and contain (in the 4.0 ROMs) the screen handling routines. The 4.0 ROMs
-can be found in machines with and without CRTC, so they had different 
+can be found in machines with and without CRTC, so they had different
 editor ROMs. Also the business and graphics keyboard differ in layout,
-so these editor ROMs differ too. The changes for business and graphics 
+so these editor ROMs differ too. The changes for business and graphics
 layout in the upgrade ROMs are in $e000-$e800 too.
 Later on there were nationalized keyboard versions with additional
 ROM in $e900-$efff. In fact the so-called 50Hz and 60Hz versions
-have different keyboard layouts and thus different editor ROMs. 
-</P><P>
+have different keyboard layouts and thus different editor ROMs.
+</p><p>
 For keyboards please have a look at <A HREF="keyboards.html">keyboards</A>
 section.
-</P>
-<H2>Character ROM</H2>
-<P>
-The character ROM is the ROM that is used to produce the characters on
+	</p></p>
+<h2>Character ROM</h2>
+<p><p>
+	The character ROM is the ROM that is used to produce the characters on
 the screen. Therefore the scan line number (0-7) is used as address for
 the ROM (A0-2), then the 7 lower bits of the byte read from the screen
 memory (A3-A9), then the VIA CA2 line as switch between upper/lower
 case mode and upper case/graphics mode (A10). This gives a charrom
 size of 2k.
-</P><P>
-You will notice that the highest data bit of the character read from 
-the screen RAM is not yet used. It is instead directly fed to an 
-exclusive-OR gate to invert the pixel stream from the character shift 
+</p><P>
+You will notice that the highest data bit of the character read from
+the screen RAM is not yet used. It is instead directly fed to an
+exclusive-OR gate to invert the pixel stream from the character shift
 register. This inverts the character by hardware.
-</P><P>
+</P><p>
 The newer models have another line from the CRTC to the character ROM,
 namely CRTC MA13 is used as A11 for the charrom. With this line
 you can switch to a completely different character set in the charrom.
 I assume this is used in nationalized machines with different charsets.
-</P>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+</p></p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</body>
+</html> 
+

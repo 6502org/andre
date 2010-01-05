@@ -40,11 +40,17 @@ PC as a harddisk for the PET. The PC software runs on Linux.
 into Commodore serial IEC. I.e. with this system the PET can use
 normal serial bus floppy disks like the VC1541 and company.
 </DD>
+
 <DT><A HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
 <DD>In this project by Ruud Baltissen the PC can be used "to simulate various IEEE drives".
 It uses a cable from the printerport, with only a little additional logic.
 The PC software runs under DOS/WIN98-DOS.
 </DD>
+
+<DT><A HREF="http://xs1541.t-winkler.net/index_en.html">xs1541</A> in english and the <a href="http://xs1541.t-winkler.net/">xs1541 german original</a>.</DT>
+<DD>This project uses an Atmel controller and connects the serial as well as the PET's parallel IEEE488 bus to a PC USB port! 
+Currently, however, only reading - transfer from disk to PC - is supported!</DD>
+
 </DL>
 <HR><P>
 Back to the <A HREF="index.html">PET index</A>
