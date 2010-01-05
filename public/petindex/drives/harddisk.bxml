@@ -18,7 +18,7 @@
     </item>
   </news>
   <toc/>
-  <section name="General Information">
+  <section toc="general" name="General Information">
     <desc><p>
 The Commodore hard disk drives were available in two versions, the D9060 with 5 MByte and the D9090 with 7.5 MByte.
 The controller hardware of both drives were basically identical, but the actual disk drives were different. The smaller
@@ -28,7 +28,7 @@ The DOS used is version 3.0 that supports relative files as large as the disk, b
     </p></desc>
     <extlink name="DOS images and source code on the CBM archive" link="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/old/9090/index.html"/>
   </section>
-  <section name="Hardware">
+  <section toc="hw" name="Hardware">
     <desc><p>
 	The harddisks have a very special hardware. As a disk drive the more or less 'standard' ST-506 interface disks are used.
 	But these disks are not accessed by the normal disk controller. Instead there is a hard disk controller in between as can
@@ -40,7 +40,7 @@ The DOS used is version 3.0 that supports relative files as large as the disk, b
 		IEEE488 ---> DOS 6502 --->  shared memory ---> controller 6502 ---> SASI interface ---> disk controller ---> ST-506 interface ---> drive
 	</pre>
     </p></desc>
-    <subsection name="Drive replacement">
+    <subsection toc="replace" name="Drive replacement">
 	<desc><p>As the old drives are sensitive to mechanical damage, for example there is no auto-parking etc, there is an idea to 
 	replace the original disk drive with a newer one. There are catches, though. Ethan Diks on the cbm-hackers mailing list
 	about someone asking to replace the disk with an Atari Megafile disk:
@@ -86,7 +86,7 @@ to set up to work reliably than drives are now.
 	parameters.
 	</p></desc>
     </subsection>
-    <subsection name="Drive replacement II">
+    <subsection toc="sasireplace" name="Drive replacement II">
 	<desc><p>As the old drives are becoming more and more difficult to 
 	obtain, another idea has appeared: replacing the disk controller
 	(behind the SASI interface) with a controller like a PIC or Atmel
@@ -99,8 +99,8 @@ to set up to work reliably than drives are now.
     	</p></desc>
     </subsection>
   </section>
-  <section name="Links">
-     <subsection name="D9060/D9090">
+  <section toc="links" name="Links">
+     <subsection toc="cbm" name="D9060/D9090">
       <extlink name="Example of diagnosing a D9090" link="http://vintagecomputer.net/browse_thread.cfm?id=298"></extlink>
       <extlink name="Replacing the original drive with an ST225" link="http://vintagecomputer.net/browse_thread_record.cfm?id=35&amp;tid=1"/>
       <extlink name="Diagnostic blink codes in the CBM archive" link="@CBMARC@/schematics/drives/old/9090/23.gif"/>
@@ -108,7 +108,7 @@ to set up to work reliably than drives are now.
       <extlink name="DOS images and source code on the CBM archive" link="@CBMARC@/firmware/drives/old/9090/index.html"/>
       <extlink name="Disk System User Reference Guide (pdf)" link="http://www.bombjack.org/commodore/commodore/Disk_System_User_Reference_Guide.pdf"/>
      </subsection>
-     <subsection name="ST506 etc">
+     <subsection toc="st506" name="ST506 etc">
       <extlink name="Wikipedia on ST-506" link="http://en.wikipedia.org/wiki/ST506"/>
       <extlink name="Disk interface and encoding information" link="http://webpages.charter.net/dperr/diskguid.txt"/>
       <extlink name="Tandy MFM Hard Disk Drive Reference" link="http://nemesis.lonestar.org/computers/tandy/hardware/storage/mfm.html"/>

@@ -85,20 +85,20 @@
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
-<li><a href="#">General Information</a></li>
-<li><a href="#">Hardware</a></li>
+<li><a href="#general">General Information</a></li>
+<li><a href="#hw">Hardware</a></li>
 <dir>
-<li><a href="#">Drive replacement</a></li>
-<li><a href="#">Drive replacement II</a></li>
+<li><a href="#replace">Drive replacement</a></li>
+<li><a href="#sasireplace">Drive replacement II</a></li>
 </dir>
-<li><a href="#">Links</a></li>
+<li><a href="#links">Links</a></li>
 <dir>
-<li><a href="#">D9060/D9090</a></li>
-<li><a href="#">ST506 etc</a></li>
+<li><a href="#cbm">D9060/D9090</a></li>
+<li><a href="#st506">ST506 etc</a></li>
 </dir>
 </dir>
 </DIV>
-<h2>General Information</h2>
+<h2><a name="general">General Information</a></h2>
 <p><p>
 The Commodore hard disk drives were available in two versions, the D9060 with 5 MByte and the D9090 with 7.5 MByte.
 The controller hardware of both drives were basically identical, but the actual disk drives were different. The smaller
@@ -106,7 +106,7 @@ drives have a TM602S drive with 2 platters, while the larger drives have a TM603
     </p><p>
 The DOS used is version 3.0 that supports relative files as large as the disk, but still no subdirectories or partitions.
     </p></p>
-<h2>Hardware</h2>
+<h2><a name="hw">Hardware</a></h2>
 <p><p>
 	The harddisks have a very special hardware. As a disk drive the more or less 'standard' ST-506 interface disks are used.
 	But these disks are not accessed by the normal disk controller. Instead there is a hard disk controller in between as can
@@ -118,7 +118,7 @@ The DOS used is version 3.0 that supports relative files as large as the disk, b
 		IEEE488 ---&gt; DOS 6502 ---&gt;  shared memory ---&gt; controller 6502 ---&gt; SASI interface ---&gt; disk controller ---&gt; ST-506 interface ---&gt; drive
 	</pre>
     </p></p>
-<H3><a name="">Drive replacement</a></H3>
+<H3><a name="replace">Drive replacement</a></H3>
 <p><p>As the old drives are sensitive to mechanical damage, for example there is no auto-parking etc, there is an idea to 
 	replace the original disk drive with a newer one. There are catches, though. Ethan Diks on the cbm-hackers mailing list
 	about someone asking to replace the disk with an Atari Megafile disk:
@@ -163,7 +163,7 @@ to set up to work reliably than drives are now.
 	replacement for the TM602S (5 MByte) drives in terms of the other physical
 	parameters.
 	</p></p>
-<H3><a name="">Drive replacement II</a></H3>
+<H3><a name="sasireplace">Drive replacement II</a></H3>
 <p><p>As the old drives are becoming more and more difficult to 
 	obtain, another idea has appeared: replacing the disk controller
 	(behind the SASI interface) with a controller like a PIC or Atmel
@@ -174,8 +174,8 @@ to set up to work reliably than drives are now.
 	performed to find out what SASI commands are actually sent
 	to the controller.
     	</p></p>
-<h2>Links</h2>
-<H3><a name="">D9060/D9090</a></H3>
+<h2><a name="links">Links</a></h2>
+<H3><a name="cbm">D9060/D9090</a></H3>
 <ul>
 <li>
 <a href="http://vintagecomputer.net/browse_thread.cfm?id=298" target="_blank" class="extlink">Example of diagnosing a D9090</a> </li>
@@ -190,7 +190,7 @@ to set up to work reliably than drives are now.
 <li>
 <a href="http://www.bombjack.org/commodore/commodore/Disk_System_User_Reference_Guide.pdf" target="_blank" class="extlink">Disk System User Reference Guide (pdf)</a> </li>
 </ul>
-<H3><a name="">ST506 etc</a></H3>
+<H3><a name="st506">ST506 etc</a></H3>
 <ul>
 <li>
 <a href="http://en.wikipedia.org/wiki/ST506" target="_blank" class="extlink">Wikipedia on ST-506</a> </li>

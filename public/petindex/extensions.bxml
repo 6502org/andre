@@ -19,12 +19,12 @@
     </item>
   </news>
   <toc/>
-  <section name="Graphics Adapters">
+  <section toc="graphics" name="Graphics Adapters">
     <desc>
 	This section describes some graphics adapter extensions for the PET,
 	even for high resolution graphics!
     </desc>
-     <subsection name="Petunia board">
+     <subsection toc="petunia" name="Petunia board">
 	<desc><p>
 	From the discussion on the cbm-hackers mailing list:
 	</p><p>
@@ -40,7 +40,7 @@ in order to produce sound.'
 	</p>
 	</desc>
      </subsection>
-     <subsection name="Eltec graphics adapter">
+     <subsection toc="eltec" name="Eltec graphics adapter">
 	<desc><p>The Eltec 'petGRAFIK' card is an addon board that creates 
 	a hi resolution screen with 256x220 pixels, that is overlaid over
 	the normal PET screen. Schematics, manual and programming info is 
@@ -48,7 +48,7 @@ in order to produce sound.'
 	</desc>
 	<extlink name="Eltec petGRAFIK" link="http://www.cbmhardware.de/cbmwiki/index.php/Eltec_PET_Grafik">Website is in German</extlink>
      </subsection>
-     <subsection name="MTU Visible Memory Board (K1008)">
+     <subsection toc="visible" name="MTU Visible Memory Board (K1008)">
 	<desc><p>From the cbm-hackers discussion:</p><p>
 'I have one of those MTU Visible Memory boards (K-1008) and it doesn't
 sound like either of the boards you're discussing; there were two models
@@ -61,7 +61,7 @@ also be used as ordinary expansion RAM.'
 	</p>
 	</desc>
      </subsection>
-     <subsection name="Dubbel-W bord">
+     <subsection toc="dubbelw" name="Dubbel-W bord">
 	<desc><p>From the cbm-hackers announcement by Rhialto:</p><p>
 <pre>
 Thanks to a bunch of disk images that must have been made by Ruud
@@ -155,7 +155,7 @@ when memory mapped to $EC00:
 	</p>
 	</desc>
      </subsection>
-     <subsection name="Commodore PET graphics card">
+     <subsection toc="petgraph" name="Commodore PET graphics card">
 	<desc>This graphics card allowed for 512x512 pixel resolution in 8 colors or 
 		8 grey levels. Sold for the 8296, 8000 and 4000 series, and even,
 		according to the site, into the B700 series. ASCII characters available in
@@ -165,7 +165,7 @@ when memory mapped to $EC00:
      </subsection>
   </section>
 
-  <section name="Composite Video">
+  <section toc="composite" name="Composite Video">
     <desc><p>
 	This section describes adapters for the PET userport to create 
 	composite video signals for a 'normal' video monitor.
@@ -174,22 +174,22 @@ when memory mapped to $EC00:
 	on the userport. So some circuits were developed to produce a composite video signal from that.
 	</p>
     </desc>
-     <subsection name="The PET Revealed">
+     <subsection toc="revealed" name="The PET Revealed">
 	<desc>
 	</desc>
 	<extlink name="composite video from 'The PET revealed'" link="http://petlibrary.tripod.com/COMPVID.HTM"/>
      </subsection>
-     <subsection name="Witte Video interface">
+     <subsection toc="witte" name="Witte Video interface">
 	<desc>A German company sold PET video adapters, see link</desc>
 	<extlink name="Witte Video interface" link="http://www.cbmhardware.de/cbmwiki/index.php/PET-CBM_Video_Interface">Website is in German</extlink>
      </subsection>
   </section>
 
-  <section name="Sound Adapters">
+  <section toc="sound" name="Sound Adapters">
     <desc>
 	This section describes some sound adapter extensions for the PET
     </desc>
-     <subsection name="DAC on the userport">
+     <subsection toc="dacuserport" name="DAC on the userport">
 	<desc>
 		There is <quote>Visible Music Monitor</quote> program that requires an 
 		<quote>8 bit DAC (Digital Analog Converter) connected to the userport</quote>.
@@ -198,11 +198,11 @@ when memory mapped to $EC00:
      </subsection>
    </section>
 
-   <section name="Memory extensions">
+   <section toc="memory" name="Memory extensions">
     <desc>
 	The memory on the early PET was really limited and obviously several companies produced extension boards.
     </desc>
-     <subsection name="Unknown brand">
+     <subsection toc="memunknown" name="Unknown brand">
 	<desc>
 		This one can be seen in Daves Old Computers collections
 	</desc>
@@ -210,16 +210,16 @@ when memory mapped to $EC00:
      </subsection>
    </section>
 
-   <section name="Other CPUs">
+   <section toc="cpu" name="Other CPUs">
     <desc>
 	There have been attempts to use other CPUs in the PET.
     </desc>
-     <subsection name="SuperPET">
+     <subsection toc="superpet" name="SuperPET">
 	<desc>Of course the first one to mention is the Waterloo SuperPET which was sold by Commodore.
 	</desc>
 	<subitem name="SuperPET" link="superpet.html"/>
      </subsection>
-     <subsection name="Unknown brand Z80 CP/M card">
+     <subsection toc="cpuunknown" name="Unknown brand Z80 CP/M card">
 	<desc>
 		This one can be seen in Daves Old Computers collections.
 		Look for "Commodore CBM 8032 (Later version)".  The board is mounted under the monitor.
@@ -229,12 +229,12 @@ when memory mapped to $EC00:
      </subsection>
    </section>
 
-   <section name="Floppy drives">
+   <section toc="floppies" name="Floppy drives">
     <desc>
 	Some of the floppy drives used in the PET were not as intelligent as the Commodore ones and
 	a controller had to be added to the PET
     </desc>
-     <subsection name="Unknown brand">
+     <subsection toc="floppiesunknown" name="Unknown brand">
 	<desc>
 		This one can be seen in Daves Old Computers collections.
 	</desc>

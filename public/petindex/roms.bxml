@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="Commodore PET extensions">
+<webpage name="Commodore PET ROM descriptions">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -18,7 +18,7 @@
     </item>
   </news-->
   <toc/>
-  <section name="Differences in Software">
+  <section toc="main" name="Differences in Software">
     <desc>
 <P>
 Basically there are three different ROM versions that came with the
@@ -30,7 +30,7 @@ file)</P>
 <A class="extlink" HREF="@CBMARC@/firmware/computers/pet/">the CBM archive</A></P>
 <P>A reverse engineered BASIC source code for versions 1,2 and 4 can be found in the <A HREF="@CBMARC@/src/pet/index.html">CBM archive</A>.</P>
     </desc>
-     <subsection name="Original ROMs ($C000-$FFFF)">
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
 	<desc><p>
 Original ROMs, from $c000, powers up <CODE>*** COMMODORE BASIC ***</CODE>.
 To be found in the calculator-style keyboard machines. Horribly broken,
@@ -48,7 +48,7 @@ not read out the actual ROM values...
 	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
      </subsection>
 
-     <subsection name="Upgrade ROMs ($C000-$FFFF)">
+     <subsection toc="upgrade" name="Upgrade ROMs ($C000-$FFFF)">
 	<desc><p>
 	The `upgrade ROMs' were also known as 2.0 or 3.0 ROMs. Start at $c000, power
 up <CODE>### COMMODORE BASIC ###</CODE>
@@ -62,7 +62,7 @@ Try and enter "WAIT 6502,1"...
 	</desc>
      </subsection>
 
-     <subsection name="4.0 ROMs ($B000-$FFFF)">
+     <subsection toc="basic4" name="4.0 ROMs ($B000-$FFFF)">
 	<desc><p>
 Power up with <CODE>*** COMMODORE BASIC 4.0 ***</CODE>.
 The 4.0 ROMs add the so-called DISK-BASIC with disk operation commands
@@ -77,7 +77,7 @@ boards #3 and #4)...
 
   </section>
 
-  <section name="Editor ROM">
+  <section toc="editor" name="Editor ROM">
 	<desc><p>
 In addition to the BASIC (including the kernel)
 there are different `editor' ROMs. Those ROMs occupy $e000-$e800
@@ -95,7 +95,7 @@ section.
 	</p></desc>
   </section>
 
-   <section name="Character ROM">
+   <section toc="charrom" name="Character ROM">
 	<desc><p>
 	The character ROM is the ROM that is used to produce the characters on
 the screen. Therefore the scan line number (0-7) is used as address for

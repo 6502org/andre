@@ -5,7 +5,7 @@
 
 <meta name="description" content="Commodore PET CBM ROM descriptions">
 <meta name="keywords" content="Commodore PET CBM ROM">
-<title>Commodore PET extensions</title>
+<title>Commodore PET ROM descriptions</title>
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
@@ -60,7 +60,7 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<h1>Commodore PET extensions</h1>
+<h1>Commodore PET ROM descriptions</h1>
 <p class="copyright">(C)
 - André  Fachat</p> 
 <p><p>This page describes the different ROM versions.
@@ -71,17 +71,17 @@
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
-<li><a href="#">Differences in Software</a></li>
+<li><a href="#main">Differences in Software</a></li>
 <dir>
-<li><a href="#">Original ROMs ($C000-$FFFF)</a></li>
-<li><a href="#">Upgrade ROMs ($C000-$FFFF)</a></li>
-<li><a href="#">4.0 ROMs ($B000-$FFFF)</a></li>
+<li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
+<li><a href="#upgrade">Upgrade ROMs ($C000-$FFFF)</a></li>
+<li><a href="#basic4">4.0 ROMs ($B000-$FFFF)</a></li>
 </dir>
-<li><a href="#">Editor ROM</a></li>
-<li><a href="#">Character ROM</a></li>
+<li><a href="#editor">Editor ROM</a></li>
+<li><a href="#charrom">Character ROM</a></li>
 </dir>
 </DIV>
-<h2>Differences in Software</h2>
+<h2><a name="main">Differences in Software</a></h2>
 <p>
 <P>
 Basically there are three different ROM versions that came with the
@@ -94,7 +94,7 @@ file)</P>
 </P>
 <P>A reverse engineered BASIC source code for versions 1,2 and 4 can be found in the <A HREF="http://www.zimmers.net/anonftp/pub/cbm/src/pet/index.html">CBM archive</A>.</P>
     </p>
-<H3><a name="">Original ROMs ($C000-$FFFF)</a></H3>
+<H3><a name="orig">Original ROMs ($C000-$FFFF)</a></H3>
 <p><p>
 Original ROMs, from $c000, powers up <CODE>*** COMMODORE BASIC ***</CODE>.
 To be found in the calculator-style keyboard machines. Horribly broken,
@@ -111,7 +111,7 @@ not read out the actual ROM values...
 	</p>
 <ul><li>
 <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
-<H3><a name="">Upgrade ROMs ($C000-$FFFF)</a></H3>
+<H3><a name="upgrade">Upgrade ROMs ($C000-$FFFF)</a></H3>
 <p><p>
 	The `upgrade ROMs' were also known as 2.0 or 3.0 ROMs. Start at $c000, power
 up <CODE>### COMMODORE BASIC ###</CODE>
@@ -123,7 +123,7 @@ says something about ROM versions 2.0-2.3).
 Try and enter "WAIT 6502,1"...
 </p>
 	</p>
-<H3><a name="">4.0 ROMs ($B000-$FFFF)</a></H3>
+<H3><a name="basic4">4.0 ROMs ($B000-$FFFF)</a></H3>
 <p><p>
 Power up with <CODE>*** COMMODORE BASIC 4.0 ***</CODE>.
 The 4.0 ROMs add the so-called DISK-BASIC with disk operation commands
@@ -138,7 +138,7 @@ boards #3 and #4)...
 <li>
 <a href="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt" target="_blank" class="extlink">4.0 ROMs memory map</a> </li>
 </ul>
-<h2>Editor ROM</h2>
+<h2><a name="editor">Editor ROM</a></h2>
 <p><p>
 In addition to the BASIC (including the kernel)
 there are different `editor' ROMs. Those ROMs occupy $e000-$e800
@@ -154,7 +154,7 @@ have different keyboard layouts and thus different editor ROMs.
 For keyboards please have a look at <A HREF="keyboards.html">keyboards</A>
 section.
 	</p></p>
-<h2>Character ROM</h2>
+<h2><a name="charrom">Character ROM</a></h2>
 <p><p>
 	The character ROM is the ROM that is used to produce the characters on
 the screen. Therefore the scan line number (0-7) is used as address for
