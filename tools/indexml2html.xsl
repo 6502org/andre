@@ -218,7 +218,7 @@
   <h2><xsl:call-template name="aname"/></h2>
   <xsl:apply-templates select="desc"/>
   <xsl:apply-templates select="subsection"/>
-   <xsl:for-each select="items[item|subitem|file]">
+  <xsl:for-each select="items[item|subitem|file]">
     <xsl:if test="file">
 	<h3>Files</h3>
 	<table><xsl:apply-templates select="file"/></table>
@@ -242,7 +242,12 @@
     </xsl:for-each>
     <xsl:apply-templates select="subitem"/>
    </ul>
-   </xsl:for-each>
+  </xsl:for-each>
+  <xsl:if test="extlink">
+   <ul>
+    <xsl:apply-templates select="extlink"/>
+   </ul>
+  </xsl:if>
   <xsl:apply-templates select="disclaimer"/>
 </xsl:for-each>
 <xsl:apply-templates select="oldnews"/>

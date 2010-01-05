@@ -325,7 +325,7 @@ case, with the extra keyboard connector to the front.
   </section>
 
   <section name="Links" toc="links">
-	<desc>Further links</desc>.
+	<desc>Further links.</desc>
 
 	<extlink name="General PET schematics archive on the CBM archive" link="@CBMARC@/schematics/computers/pet/index.html"/>
 	<extlink name="Reverse engineered PET PET 3008/PET 8032 schematics" link="@CBMARC@/schematics/computers/pet/re/index.html"/>

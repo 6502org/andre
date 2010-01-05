@@ -394,8 +394,8 @@
 		4) Currently <code>BRDY</code>, the CS/A bus <code>RDY</code> line is sampled at the end of
 		<code>Q7</code>, when <code>XQ7</code> is sampled by <code>8Phi2</code>, 65ns before 
 		<code>Phi2</code> goes low. This may or may not be a problem for slow memory that uses
-		<code>RDY</code>. In fact this feature has not been tested for now.
-		</p></p>
+		<code>RDY</code>.
+ 		</p></p>
 <H2><A NAME="driver">Driver</A></H2>
 <H3><A NAME="driver1">Simple test suite</A></H3>
 <p>These tests test the basic functionality of the board, and also do some timing
@@ -482,6 +482,13 @@
 			timing diagrams though. The issue shows is seldom stray writes into the 
 			video memory when scrolling the PET screen. May have been a bad soldering joint
 			though, I currently cannot reproduce it.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			Preliminary tests indicate that the <code>BRDY</code> handling is not yet correct, i.e.
+			when a CS/A bus board tries to slow down the CPU even more.
 		</TD>
 </TR>
 <TR>
