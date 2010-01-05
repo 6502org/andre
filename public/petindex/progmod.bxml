@@ -1,98 +1,24 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="author" content="André  Fachat">
-
-<meta name="description" content="Commodore PET CBM Hardware descriptions">
-<meta name="keywords" content="Commodore PET CBM Hardware">
-<title>Commodore PET Programming Model</title>
-<link rev="made" href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
-</head>
-<body>
-<DIV ID="menu">
-<ul><li class=homepage><a href=../index.html>Homepage</a></li>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir"><a href="../petindex/index.html">CBM PETindex</a></li>
-<ul class="menu1" >
-<li class="separator">General Info</li>
-<li class="dir"><a href="gallery/index.html">PET gallery</a></li>
-<li class="file"><a href="versions.html">PET versions</a></li>
-<li class="file"><a href="boards.html">Board versions</a></li>
-<li class="file"><a href="pinouts.html">Connectors</a></li>
-<li class="file"><a href="keyboards.html">Keyboards</a></li>
-<li class="file"><a href="extensions.html">Extensions</a></li>
-<li class="separator">Specials</li>
-<li class="file"><a href="superpet.html">SuperPET MMF9000</a></li>
-<li class="file"><a href="8x96.html">The 8096 and 8296 models</a></li>
-<li class="separator">Peripherals</li>
-<li class="dir"><a href="drives/index.html">Disk drives</a></li>
-<li class="separator">Programming</li>
-<li class="file"><a href="progmod.html">Hardware programming</a></li>
-<li class="file"><a href="roms.html">ROM descriptions</a></li>
-<li class="file"><a href="crtc.html">CRTC operation</a></li>
-<li class="separator">Quirks</li>
-<li class="file"><a href="poke.html">Killer poke</a></li>
-<li class="separator">Links</li>
-<li class="file"><a href="hw.html">Hardware projects</a></li>
-<li class="file"><a href="sw.html">Software projects</a></li>
-<li class="file"><a href="emus.html">PET emulators</a></li>
-<li class="file"><a href="transfer.html">File transfers</a></li>
-<li class="file"><a href="links.html">Links</a></li>
-</ul>
-<li class="dir"><a href="../cbmhw/index.html">CBM hardware and mods</a></li>
-<li class="separator">Hardware</li>
-<li class="dir"><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
-<li class="dir"><a href="../hwinfo/index.html">ICs and Standards Info</a></li>
-<li class="dir"><a href="../mischw/index.html">Other hardware (e.g. tools)</a></li>
-<li class="separator">Software</li>
-<li class="dir"><a href="../osa/index.html">GeckOS operating system</a></li>
-<li class="dir"><a href="../lib6502/index.html">Lib6502 standard</a></li>
-<li class="dir"><a href="../o65/index.html">O65 file format</a></li>
-<li class="dir"><a href="../misc/index.html">Misc software</a></li>
-<li class="separator">Knowledge Bits</li>
-<li class="dir"><a href="../icap/index.html">Articles</a></li>
-<li class="separator">Misc</li>
-<li class="file"><a href="../contact.html">Contact</a></li>
-</ul>
-</ul>
-</DIV>
-<DIV ID="content">
-<h1>Commodore PET Programming Model</h1>
-<p class="copyright">(C)
-- André  Fachat</p> 
-<p><p>	
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Commodore PET Programming Model">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>Commodore PET CBM Hardware</keywords>
+  <metadesc>Commodore PET CBM Hardware descriptions</metadesc>
+  <overview><p>	
 	Here you can find information you need to program the PET computer.
   </p>
-  </p>
-<DIV ID="toc">
-<H2>Table of content</H2>
-<dir>
-<li><a href="#memmap">Hardware Memory Map</a></li>
-<li><a href="#io">I/O Area</a></li>
-<dir>
-<li><a href="#pia1">$E810-$E81F - PIA 1</a></li>
-<li><a href="#pia2">$E820-$E82F - PIA 2</a></li>
-<li><a href="#via">$E840-$E84F - VIA</a></li>
-<li><a href="#crtc">$E880-$E88F - CRTC</a></li>
-</dir>
-<li><a href="#extended">Extended Models</a></li>
-<dir>
-<li><a href="#sp">SuperPET Models</a></li>
-<li><a href="#8x96">8x96 Models</a></li>
-<li><a href="#8296">8296 Models</a></li>
-</dir>
-<li><a href="#links">Links</a></li>
-<dir>
-<li><a href="#petio">PET I/O</a></li>
-<li><a href="#chipdata">Chip Data</a></li>
-</dir>
-</dir>
-</DIV>
-<h2><a name="memmap">Hardware Memory Map</a></h2>
-<p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+  <section toc="memmap" name="Hardware Memory Map">
+    <desc>
 <P>The memory map of the PET is pretty simple - if you do not consider
 the 8x96 and SuperPET models. We will therefore only discuss the models up
 to 8032 and the other two later.
@@ -127,9 +53,11 @@ open address or the $E*** ROM iff it is 4k.</DD>
 <DT>$F000-$FFFF</DT>
 <DD>Kernel ROM</DD>
 </DL>
-    </p>
-<h2><a name="io">I/O Area</a></h2>
-<p>
+    </desc>
+  </section>
+
+  <section toc="io" name="I/O Area">
+    <desc>
 <P>The I/O area in general is 2k from $E800 to $EFFF. Used, however, is
 only one page ($E800-$E8FF). In the board #4 the I/O size has been reduced
 to this page, allowing for more ROM space in $E900-$EFFF for nationalized
@@ -137,7 +65,7 @@ keyboard mappings.
 </P><P>
 The decoding has been done with minimal effort: The address lines
 A4-A7 are each directly used to select an I/O chip. Bit A4 must be set
-for the PIA 1, A5 must be set for PIA 2, A6 must be set for
+for the PIA&#160;1, A5 must be set for PIA&#160;2, A6 must be set for
 the VIA and A7 must be set for the CRCT (if available). This results
 in some addresses where more than one chip is selected. When reading
 them, all selected chips drive the data bus. As these chips have NMOS
@@ -146,9 +74,10 @@ this is not always the case and may depend on other bus loads or whatever.
 Below only the normal mappings are described. For the exact description
 see the <A HREF="links.html#petio">petio</A> file.
 </P>
-</p>
-<H3><a name="pia1">$E810-$E81F - PIA 1</a></H3>
-<p>
+</desc>
+
+	<subsection name="$E810-$E81F - PIA&#160;1" toc="pia1">
+		<desc>
 <p>PIA 1 is used for the keyboard, some tape I/O and the IEEE488
 EOI line. Also CB1 is used to generate the system interrupt - it is
 connected to the screen vertical blank signal and can generate IRQs
@@ -174,9 +103,11 @@ E813    CB2         output to cassette #1 motor: 0=on, 1=off
                     generate the 50 or 60 Hz IRQ. Also connected to
                     VIA PB5.
 </PRE>
-		</p>
-<H3><a name="pia2">$E820-$E82F - PIA 2</a></H3>
-<p>
+		</desc>
+	</subsection>
+
+	<subsection name="$E820-$E82F - PIA&#160;2" toc="pia2">
+		<desc>
 <p>PIA 2 has the 8 IEEE488 data lines (in and out) and some IEEE488 control lines.</p>
 <pre>
 Use of PIA 2 signals in a PET:
@@ -190,9 +121,11 @@ E822    PORT B      Output buffer for IEEE data lines
 E823    CB2         IEEE DAV out
         CB1         IEEE SRQ in
 </pre>
-		</p>
-<H3><a name="via">$E840-$E84F - VIA</a></H3>
-<p>
+		</desc>
+	</subsection>
+
+	<subsection name="$E840-$E84F - VIA" toc="via">
+		<desc>
 The VIA is used for the Userport, Tape and some IEEE488 control lines. CA2
 switches the character ROM between graphics and text mode.
 The original ROM PET 2001 in the text mode has upper and lower characters
@@ -260,9 +193,11 @@ case and graphics.
 
 </PRE>
 
-		</p>
-<H3><a name="crtc">$E880-$E88F - CRTC</a></H3>
-<p><p>
+		</desc>
+	</subsection>
+
+	<subsection name="$E880-$E88F - CRTC" toc="crtc">
+		<desc><p>
 The CRTC is only available in newer PETs, with the boards #3 and #4.
 It has only two registers, one to write the internal register number to
 and one for the internal register value. In the following only the internal
@@ -303,27 +238,32 @@ as character ROM addresses, the 8th bit is used to invert the character
 by hardware!
 </P><P>
 One character normally consists of 8 scanlines and during each of the scan
-lines the CRTC provides the same address, only its RA 0-4 count the
+lines the CRTC provides the same address, only its RA&#160;0-4 count the
 scan lines. RA 0-2 are given the the character generator ROM to display
 a different byte for each scan line. On the CRTC PET the upper/lower
 case mode sets the
 number of scan lines to 9 (or 10?) though. But the hardware automatically
 blanks the displayed character for all scan lines above the 8th...
 </P>
-		</p>
-<h2><a name="extended">Extended Models</a></h2>
-<H3><a name="sp">SuperPET Models</a></H3>
-<p>
+		</desc>
+	</subsection>
+
+  </section>
+
+  <section name="Extended Models" toc="extended">
+
+  <subsection name="SuperPET Models" toc="sp">
+    <desc>
 <p>The SuperPET also known as <quote>MicroMainFrame 9000</quote>, esp. in Europe, has 
 an extension board with a 6809 CPU, but also with additional I/O. In particular the
 SuperPET has an ACIA to implement a serial (RS232) interface. More details are on the
 SuperPET page here.</p>
-    </p>
-<ul><li class="subitem">
-<a href="superpet.html">SuperPET Page</a> <br><br>
-</li></ul>
-<H3><a name="8x96">8x96 Models</a></H3>
-<p>
+    </desc>
+    <subitem name="SuperPET Page" link="superpet.html"/>
+  </subsection>
+
+  <subsection name="8x96 Models" toc="8x96">
+    <desc>
 <P>The 8032 with 64k expansion board - which is the same as the 8096 model
 introduced memory mapping the upper 32k. Therefore a new write-only register
 was created, at $FFF0. By writing certain values into it, two 16k areas
@@ -340,12 +280,12 @@ run the LOS-96 operating system, an improved BASIC version.
 The description of the $FFF0 register is included in the 8096 addendum
 in the <A HREF="links.html#petio">petio</A> text.
 </P>
-    </p>
-<ul><li class="subitem">
-<a href="8x96.html">8x96 Page</a> <br><br>
-</li></ul>
-<H3><a name="8296">8296 Models</a></H3>
-<p>
+    </desc>
+    <subitem name="8x96 Page" link="8x96.html"/>
+  </subsection>
+
+  <subsection name="8296 Models" toc="8296">
+    <desc>
 <P>
 The 8296 includes the 8096 memory mapping in its own hardware already.
 Its RAM is organized in 2 banks of 64k, where the second bank is used
@@ -355,9 +295,9 @@ memory ($8000-$8FFF) is mapped read/write. By setting certain jumpers
 on the hardware the expansion ROM areas ($9000-$9FFF and $A000-$AFFF)
 can be switched off, mapping the RAM from the first bank there.
 </P><P>
-The CRTC in the 8296 uses the video address lines VA 0-11, giving
+The CRTC in the 8296 uses the video address lines VA&#160;0-11, giving
 8k of addressable (they are used as A1-A12 in 80 cols models!) video RAM.
-Only VA 12 is still used to switch the character ROM.
+Only VA&#160;12 is still used to switch the character ROM.
 The lower 4k ($8000-$8FFF) are usable anyway, only the upper 4k
 ($9000-$9FFF) can be used write-only without jumper settings or
 read/write with a jumper set (see <A HREF="links.html#petio">petio</A> text.
@@ -365,34 +305,29 @@ read/write with a jumper set (see <A HREF="links.html#petio">petio</A> text.
 <P>
 A full memory map of the CBM8296 is in this <A HREF="imgs/fullmemmap.gif">image</A>.
 </P>
-    </p>
-<ul><li class="subitem">
-<a href="8x96.html">8x96 Page</a> <br><br>
-</li></ul>
-<h2><a name="links">Links</a></h2>
-<p>Links to information about the I/O area.</p>
-<H3><a name="petio">PET I/O</a></H3>
-<ul><li class="subitem">
-<a href="local/pet-io-2.txt">petio.txt</a> <br><br>
-</li></ul>
-<H3><a name="chipdata">Chip Data</a></H3>
-<ul>
-<li class="subitem">
-<a href="local/64doc.txt">6502 programming info</a>  from the
-		<a class="extlink" target="_blank" href="http://www.viceteam.org">VICE team</a><br><br>
-</li>
-<li class="subitem">
-<a href="local/6522-VIA.txt.gz">6522 documentation</a> <br><br>
-</li>
-<li>
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html" target="_blank" class="extlink">Chipdata on the CBM archive</a> </li>
-<li>
-<a href="http://www.6502.org/documents/datasheets/" target="_blank" class="extlink">Chip datasheets on 6502.org</a> </li>
-</ul>
-<hr>
-<p>Return to <a href="../index.html">Homepage</a></p>
+    </desc>
+    <subitem name="8x96 Page" link="8x96.html"/>
+  </subsection>
+  </section>
 
-  </DIV>
-</body>
-</html> 
+  <section name="Links" toc="links">
+	<desc>Links to information about the I/O area.</desc>
 
+	<subsection name="PET I/O" toc="petio">
+	<subitem name="petio.txt" link="local/pet-io-2.txt"/>
+	</subsection>
+
+	<subsection name="Chip Data" toc="chipdata">
+	<extlink name="Chipdata on the CBM archive" link="@CBMARC@/documents/chipdata/index.html"/>
+	<extlink name="Chip datasheets on 6502.org" link="http://www.6502.org/documents/datasheets/"/>
+	<subitem name="6502 programming info" link="local/64doc.txt"> from the
+		<a class="extlink" target="_blank" href="http://www.viceteam.org">VICE team</a></subitem>
+	<subitem name="6522 documentation" link="local/6522-VIA.txt.gz"/>
+	</subsection>
+
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

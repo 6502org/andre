@@ -1,12 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/boards.html"-->
-<TITLE>PET index - boards</TITLE>
-</HEAD>
-<BODY>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="Commodore PET board descriptions">
+<meta name="keywords" content="Commodore PET mainboard board">
+<title>Commodore PET boards</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+</head>
+<body>
 <DIV ID="menu">
 <ul><li class=homepage><a href=../index.html>Homepage</a></li>
 <ul class="menu0" >
@@ -56,44 +60,69 @@
 </ul>
 </DIV>
 <DIV ID="content">
-<H1>PET index - boards</H1>
-<P>
-Here follows a description of the 4 major board revisions used in the 
+<h1>Commodore PET boards</h1>
+<p class="copyright">(C)
+- André  Fachat</p> 
+<p><p>	
+Here follows a description of the 4 major board revisions used in the
 Commodore PET line of computers. Please note that each board number
-describes a range of different boards - but the differences within 
+describes a range of different boards - but the differences within
 a number described here should be too small and too unimportant to mention.
-</P><P>
+</p><p>
 Special thanks goes to William M. Levak for some of the details, esp. the
 hint with the <EM>programmable</EM> 2316 select line, that made it a lot more
 understandable.
-</P>
-<P><DL>
-<DT>#1: 2000 series, ca 1977/78, Max RAM - 8k, expansion board to 32k</DT>
-<DD><P>This is the first and oldest board. The size of the ROMs was 2k,
+</p>
+  </p>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#main">Board descriptions</a></li>
+<dir>
+<li><a href="#1">#1: 2000 series, ca 1977/78, Max RAM - 8k, expansion board to 32k</a></li>
+<li><a href="#2">#2: European 3000 and 9" 4000 series, ca 1979/80, Max RAM - 32k</a></li>
+<li><a href="#3">#3: 4000/8000 series, ca 1981. Adds a CRTC video controller Max RAM - 32k</a></li>
+<li><a href="#4">#4: 4000/8000 board with 128k RAM, when? , with CRTC video controller</a></li>
+</dir>
+<li><a href="#addons">Add-on boards</a></li>
+<dir>
+<li><a href="#sp">SuperPET</a></li>
+<li><a href="#sp">8096 64k expansion</a></li>
+</dir>
+<li><a href="#links">Links</a></li>
+</dir>
+</DIV>
+<h2><a name="main">Board descriptions</a></h2>
+<p></p>
+<H3><a name="1">#1: 2000 series, ca 1977/78, Max RAM - 8k, expansion board to 32k</a></H3>
+<p>
+<P>This is the first and oldest board. The size of the ROMs was 2k,
 and the video RAM was as fast as the main memory. This meant that when
 the CPU accessed the video RAM the screen would show garbage for each
 used clock cycle - video "snow". Also there was no CRTC (Cathode Ray Tube
 Controller, short video controller) on the board, but all timing is
 done with discrete logic.
-Therefore there are two things built 
-into this board:
+Therefore there are two things built
+into this board:</P>
 <UL>
 <LI>The video can be disabled, effectively blanking the video screen.
 The signal line used for that was PIA1 CA2. This line was also used for
 the (in the ROM unfinished) IEEE488 support.
-</LI><LI>The screen "VIDON" signal (a line generated when the electron beam 
+</LI>
+<LI>The screen "VIDON" signal (a line generated when the electron beam
 is supposed to do the vertical retrace) is fed to PIA1 CB1. This signal
 is used to generate a system interrupt for each video frame - this is
 different (in later models only?) for european and american models.
-The software checks the same line on VIA PB5. Only if the beam is on 
-retrace the kernal writes something on the screen - this avoids the 
+The software checks the same line on VIA PB5. Only if the beam is on
+retrace the kernal writes something on the screen - this avoids the
 "snow" when accessing the screen when the electron beam is active.
-</LI></UL>
+</LI>
+</UL>
 <P>The board does not have a piezo beeper for VIA shift register output
 to sound.</P>
 <P>This board actually came in two flavours, one with the Commodore-specific
 ROM chips of the 6540 type (#1a), and one with the standard 2316 2k ROMs (#1b).
-When you look at the #1b schematics you may notice that some pairs of ROM 
+When you look at the #1b schematics you may notice that some pairs of ROM
 sockets have exactly the same wiring. Simply speaking, using "normal" ROMs
 one would expect both sockets to react at the same time. And also A11 is connected
 to the sockets, but should not be needed for a 2k ROM. But the used 2316 have
@@ -104,50 +133,57 @@ high-active for the upper part of the 4k. So you can even swap the two ROMs
 of such a pair. And when upgrading one can simply
 plug a 4k ROM in one of the sockets and leave the other one empty!
 </P>
-<P>The layout of the board is (from the petfaq, pictures courtesy Bo Zimmermann):
-<TABLE><TR><TD>
+<P>The layout of the board is (from the petfaq, pictures courtesy Bo Zimmermann):</P>
+<TABLE><TR>
+<TD>
 <PRE>
- 2000 series(9" CRT)           
-            IEEE user tape #2 
-     +------####-####--##-+   
-     !                    #   
-     !                    #   
+ 2000 series(9" CRT)
+            IEEE user tape #2
+     +------####-####--##-+
+     !                    #
+     !                    #
      !                    # exp
      !                    # bus
-     !                    #   
-     !                    #  
-     !                    !  
-     !       (2k) ROMS    !  
-     !      F F E D D C C !  
-     !      8 0 0 8 0 8 0 !  
-     !                    !  
-tape #       RAM MEMORY   !  
- #1  #                    !  
-     +--------------------+  
+     !                    #
+     !                    #
+     !                    !
+     !       (2k) ROMS    !
+     !      F F E D D C C !
+     !      8 0 0 8 0 8 0 !
+     !                    !
+tape #       RAM MEMORY   !
+ #1  #                    !
+     +--------------------+
 </PRE>
-</TD><TD>
+</TD>
+<TD>
 <IMG SRC="imgs/2001guts.gif">
-</TD></TR></TABLE>
-</DD>
-<P><DT>#2: European 3000 and 9" 4000 series, ca 1979/80, Max RAM - 32k</DT>
-<DD><P>This board is a considerable upgrade to the first one. The
+</TD>
+</TR></TABLE>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/2001/index.html" target="_blank" class="extlink">PET 2001 Board #1 schematics</a> </li></ul>
+<H3><a name="2">#2: European 3000 and 9" 4000 series, ca 1979/80, Max RAM - 32k</a></H3>
+<p>
+<P>This board is a considerable upgrade to the first one. The
 ROM size is 4k for one chip now (Except for the $E*** ROM, which is
 2k. A11 is connected to the additional select line of the 2k chips (programmed
 as low-active, see above) as compared
-to the 4k, so it is only selected in the lower half, i.e. $E000-$E7FF. 
+to the 4k, so it is only selected in the lower half, i.e. $E000-$E7FF.
 Putting a 4k ROM here gives a bus conflict in the I/O area. However there
-is a jumper to put the I/O area from $E8** to $88**, and then it would be 
+is a jumper to put the I/O area from $E8** to $88**, and then it would be
 feasible to use a 4k ROM. It seems CBM was looking for a way to get more
 ROM area, but probably found that moving the I/O to another location
-would break too many programs). 
+would break too many programs).
 Also the video RAM is faster so that
 the video access is done during the first half of the Phi2 CPU clock,
 while the CPU accesses the memory during the second half.
 It does not, however, add a CRTC controller and the piezo beeper.
 The VIDON signal still remains the same, but the screen can no longer
 be blanked by the PIA1 CA2 line.
-<P>The layout is (from the petfaq, pictures courtesy Bo Zimmermann):
-<TABLE><TR><TD>
+</P><P>The layout is (from the petfaq, pictures courtesy Bo Zimmermann):
+</P><TABLE><TR>
+<TD>
 <PRE>
     3000 &amp; 4000 series  (9" CRT)
              IEEE user tape #1
@@ -166,72 +202,79 @@ be blanked by the PIA1 CA2 line.
  tape #      RAM MEMORY    !
   #2  #                    !
       +--------------------+
-</PRE></TD><TD>
+</PRE>
+</TD>
+<TD>
 <IMG SRC="imgs/4008mb.gif">
-</TD></TR></TABLE>
+</TD>
+</TR></TABLE>
 <P>From the layout of the I/O and expansion ports it can be seen that
-the board can be / has been used in the same cases as the older board - 
+the board can be / has been used in the same cases as the older board -
 and this is the 9" case.
 </P>
-</DD>
-<P><DT>#3: 4000/8000 series, ca 1981. Adds a CRTC video controller 
-Max RAM - 32k</DT>
-<DD><P>This board finally adds a CRTC video controller and a piezo beeper
-for the VIA shift register output. 
-<P>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/2001N/index.html" target="_blank" class="extlink">PET 2001 Board #2 schematics</a> </li></ul>
+<H3><a name="3">#3: 4000/8000 series, ca 1981. Adds a CRTC video controller Max RAM - 32k</a></H3>
+<p>
+<P>This board finally adds a CRTC video controller and a piezo beeper
+for the VIA shift register output.
+</P><P>
 One other thing is that it replaced the VIDON line to generate the
-system interrupt with the vertical sync signal of the CRTC. The CRTC 
+system interrupt with the vertical sync signal of the CRTC. The CRTC
 is able to address 16k of memory. In the PET only 2k are used and A0
 is even generated by the 16 bit access to the video memory (The 80 cols
 CRTC has characters per line still set to 40), so the CRTC uses only
 10 address lines. The two uppermost CRTC address lines have now been
 used for control purposes: The MA13 line is an additional line to the
 character ROM, so that you can switch to another set of characters, if
-available. The MA12 line is used to invert the video output completely, 
+available. The MA12 line is used to invert the video output completely,
 i.e. then the electron beam is on even on the flyback (horizontal and
 vertical retrace). I assume this was to compensate for different
 video electronics.
-<P>
-The ROM size is still 4k. Although the $E*** ROM is labeled 2316 (2k) in 
+</P><P>
+The ROM size is still 4k. Although the $E*** ROM is labeled 2316 (2k) in
 the schematics, A11 is still connected to the /CS line, and the pin is
 even described as A11 for the 2k chip :-) However, the other select line
-/SELE is now masked at $E8**, such that it is active even in $E900-$EFFF 
+/SELE is now masked at $E8**, such that it is active even in $E900-$EFFF
 (as in older boards) but <EM>not</EM> $E8**
--&gt; I/O area size 256 byte only! But you only recognize this in a 
+-&gt; I/O area size 256 byte only! But you only recognize this in a
 machine with a 4k $E*** ROM, as, unlike ususally, the 2k ROM is not
 mirrored but leaves open addresses in $E900-$EFFF.
 </P><P>
 This board actually came in different flavours:
 </P>
-<P><UL>
+<UL>
 <LI>#3a as an early design could only be used for the for 80** series,
 i.e. it could only display 80 chars a line. So the first 12" models were
-all 80** machines. 
-<P></LI><LI>#3b is a later modification of the #3a board: 
+all 80** machines.
+</LI>
+<LI>#3b is a later modification of the #3a board:
 This board could be
 modified for 40 columns and 80 columns video output! As such it has
 been sold in the 4000 series ("fat-40") and the 8000 series.
-There was an upgrade from 4000 to 8000 and it consisted of an additional 
+There was an upgrade from 4000 to 8000 and it consisted of an additional
 2k video RAM and some jumper
 setting on the board to shift address lines (probably some resoldering
 of a few chips, see next board).
 As can be seen from the layout the board has been made for a different
 case, namely the 12" edgy (one-piece) case.
-This board even came in different flavours (with minor artwork differences), 
+This board even came in different flavours (with minor artwork differences),
 and the latter have been
 called <EM>Universal Dynamic PET</EM> board.
-</LI></UL>
+</LI>
+</UL>
 <P>
-On <A HREF="links.html#schematics">the CBM archive</A> there are schematics for the
+Below are links to schematics for the
 old 8032 (#3a) as well as two flavours of the universal dynamic board.
 </P><P>
 The first 8032 board (#3a) introduced a little-known feature - the <CODE>NOROM</CODE> line. It was a connection from CPU pin 5 - that is unconnected in the 6502 - and the chip select lines for the ROMs. If you would pull this line low, the chips would ignore any read request. This allowed to build CPU adapters (to be put between the CPU and the board) that replaced the builtin ROM with other
 memory mappings! This is in fact used by the SuperPET expansion and probably
 also by the 8096 64k expansion board.
 </P><P>
-At the end of its production cycle it has also been used in the new 
-separate keyboard cases, with turnable monitor. The problem was that 
-it didn't fit into the casing so they had to provide extra wires to 
+At the end of its production cycle it has also been used in the new
+separate keyboard cases, with turnable monitor. The problem was that
+it didn't fit into the casing so they had to provide extra wires to
 connect the board with the connector on the back. You can recognize this
 board by the real IEEE488 connector on the back, not the usual card edge
 connector.
@@ -243,8 +286,8 @@ The upgraded model is known as 8096 and although the ROM is the same
 as the 8032 (Basic 4) there is a BASIC extension (LOS 96) that uses
 this expansion memory (see also the <A HREF="8x96.html">8x96 page</A>).
 </P><P>
-Also available for this board was the <A HREF="superpet.html">SuperPET</A> 
-expansion board(s), to include a 6551 UART, 64k RAM (not compatible to 
+Also available for this board was the <A HREF="superpet.html">SuperPET</A>
+expansion board(s), to include a 6551 UART, 64k RAM (not compatible to
 the above extension) and a 6809 CPU with its own ROMs.
 </P><P>
 AT least the SuperPET extension uses the <CODE>/NOROM</CODE> line the disables
@@ -254,7 +297,8 @@ has the <CODE>/NOROM</CODE> line connected to an unused CPU pin, to make
 it available to the SuperPET board.
 </P>
 <P>The layout is (from the petfaq):</P>
-<TABLE><TR><TD>
+<TABLE><TR>
+<TD>
 <PRE>
  4000/8000 series (12" CRT)
             IEEE user tape #1
@@ -266,19 +310,30 @@ it available to the SuperPET board.
      !  M             9  #!
      !                A  #!
      !  M          R  B   !
-     !  E          O  C   ! 
-     !  M          M  D   ! 
+     !  E          O  C   !
+     !  M          M  D   !
      !  O          S  E   !
-     !  R             F   !  
-     !  Y                 !  
-     !                spkr!  
+     !  R             F   !
+     !  Y                 !
+     !                spkr!
      +--------------------+
 </PRE>
-</TD><TD>
-</TD></TR></TABLE>
-</DD>
-<P><DT>#4: 4000/8000 board with 128k RAM, when? , with CRTC video controller</DT>
-<DD><P>This board is a complete rebuild of the 8096, but using two banks
+</TD>
+<TD>
+</TD>
+</TR></TABLE>
+	</p>
+<ul>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/8032/index.html" target="_blank" class="extlink">PET 8032, board #3a</a> </li>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/univ/index.html" target="_blank" class="extlink">PET 8032, board #3b</a> </li>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/univ2/index.html" target="_blank" class="extlink">PET 8032, a newer flavour of board #3b</a> </li>
+</ul>
+<H3><a name="4">#4: 4000/8000 board with 128k RAM, when? , with CRTC video controller</a></H3>
+<p>
+<P>This board is a complete rebuild of the 8096, but using two banks
 of 64k dynamic RAM each that can be memory mapped as in the 8096. The
 only difference is that now even the video controller uses normal CPU
 memory (in the 128k RAM) for screen output, and it can access up to 8k
@@ -290,19 +345,20 @@ can be set to 40 or 80 chars per line (by resoldering two chips),
 but is in fact a 8296, used in 12" separate keyboard machines
 (I have yet to see a report for a 40 column machine with this board).
 Also the I/O area is only
-one page ($E800-$E8FF), and the area from $E900 to $EFFF is now used 
+one page ($E800-$E8FF), and the area from $E900 to $EFFF is now used
 as ROM for nationalized editors.
 </P><P>The CRTC MA13 line is still used as additional character ROM address
 line, while MA12 is not connected anymore. Interestingly the RAM is accessed
 with 4 MHz, where during Phi2 low the video logic reads in two bytes to allow
-for 80 columns display, while during Phi2 high the CPU only does a single 
+for 80 columns display, while during Phi2 high the CPU only does a single
 access.
-</P><P>The board now fits into the "round-edge", or "separate keyboard" PET 
+</P><P>The board now fits into the "round-edge", or "separate keyboard" PET
 case, with the extra keyboard connector to the front.
 </P>
 <P>The layout is (from the petfaq):</P>
 <TABLE>
-<TR><TD><PRE>
+<TR>
+<TD><PRE>
  8296 series (12" CRT)
             IEEE user tape #1
      +------####-####--##-+
@@ -321,20 +377,41 @@ case, with the extra keyboard connector to the front.
      !           spkr     !
      +----------------###-+
                      keyboard
-</PRE></TD><TD>
+</PRE></TD>
+<TD>
 <a href="imgs/8296-board-small.jpg"><IMG SRC="imgs/8296-board-mini.gif"></a>
-</TD><TD>
+</TD>
+<TD>
 <a href="imgs/8296d-board-small.jpg"><IMG SRC="imgs/8296d-board-mini.gif"></a>
-</TD></TR></TABLE>
-</DD>
-</DL>
-<P>The images show two versions, one with an on-board power supply
-and the other - from the 8296D - relying on a separate power supply.
-Commodore used the same board for both versions, only to equip them
-differently.</P>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+</TD>
+</TR>
+</TABLE>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/8296/index.html" target="_blank" class="extlink">PET 8296 board #4</a> </li></ul>
+<h2><a name="addons">Add-on boards</a></h2>
+<H3><a name="sp">SuperPET</a></H3>
+<p>The SuperPET is a set of add-on boards (resp. a single add-on board) for the 8032.
+	It has an own <a href="superpet.html">SuperPET page</a> here.
+	</p>
+<ul>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/SuperPET/index.html" target="_blank" class="extlink">SuperPET add-on boards to #3</a> </li>
+<li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/SuperPET/9000016.gif" target="_blank" class="extlink">SuperPET combined board</a> </li>
+</ul>
+<H3><a name="sp">8096 64k expansion</a></H3>
+<p><p>The 8096 was an extended 8032 PET - with an additional 64k memory expansion.
+	In later versions the memory expansion was integrated into the 8296 model, which
+	has an own <a href="8x96.html">8x96 page</a>.
+	</p><p>Sorry, no link available
+	</p></p>
+<h2><a name="links">Links</a></h2>
+<p>Further links</p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</body>
+</html> 
+
