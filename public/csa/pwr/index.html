@@ -87,6 +87,10 @@
 		</p><p>
 		The Li-ion battery charger is a standard schematics from the
 		datasheet of the used MAX712 battery charger.
+		</p><p>
+		2010-01-06: Since version 1.2 the board also contains an I2C master
+		with the related <code>RDY</code> generation as the P8584 I2C master
+		is not running faster than 1MHz.
 		</p>
 	</p>
 <DIV ID="toc">
@@ -95,14 +99,65 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.1B</a> (prototype)</li>
+<a href="#board1">1.2B</a> (prototype)</li>
 <li>
-<a href="#board2">1.1A</a> (prototype with bugs)</li>
+<a href="#board2">1.1B</a> (prototype)</li>
+<li>
+<a href="#board3">1.1A</a> (prototype with bugs)</li>
 </dir>
 </dir>
 </DIV>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.1B</A></H3>
+<H3><A NAME="board1">Version: 1.2B</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+<p>
+			This board adds an I2C master (with related <code>RDY</code> generation,
+			as the P8584 does not work on 2MHz).
+			</p>
+<p>
+			Also adds a jumper to decouple the 3.3V from the bus.
+			</p>
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The layout is untested (I have built it on a 1.2A version,
+			which is missing JP9 (decouple 3.3V), but also has a serious bug
+			in that it has traces on the top side under the TO220 parts!
+			Therefore I am not publishing the 1.2A version.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_pwr_v1.2b.sch">csa_pwr_v1.2b.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_pwr_v1.2b-sch.png">csa_pwr_v1.2b-sch.png</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_pwr_v1.2b.brd">csa_pwr_v1.2b.brd</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD>
+<A HREF="csa_pwr_v1.2b-brd.png">csa_pwr_v1.2b-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.1B</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -146,7 +201,7 @@
 <A HREF="csa_pwr_v1.1b-brd.png">csa_pwr_v1.1b-brd.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.1A</A></H3>
+<H3><A NAME="board3">Version: 1.1A</A></H3>
 <P>Status: prototype with bugs</P>
 <H4>Notes</H4>
 <TABLE class="notes">

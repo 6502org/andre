@@ -94,8 +94,12 @@
 <li><a href="#driver2">PET Fat40 ROM patch</a></li>
 </dir>
 <li><a href="#boards">Board Revisions</a></li>
-<dir><li>
-<a href="#board1">1.1E</a> (prototype)</li></dir>
+<dir>
+<li>
+<a href="#board1">1.1F</a> (prototype)</li>
+<li>
+<a href="#board2">1.1E</a> (prototype)</li>
+</dir>
 <li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
@@ -459,7 +463,33 @@
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
-<H3><A NAME="board1">Version: 1.1E</A></H3>
+<H3><A NAME="board1">Version: 1.1F</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			Compared to the 1.1E board this board adds a 2k2 pull-up resistor on <code>BRDY</code>. Now
+			the CS/A bus RDY handling works, i.e. a CS/A bus board can slow down the CPU even more
+			if necessary.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_cpu816-v1.1f.sch">csa_cpu816-v1.1f.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD>
+<A HREF="csa_cpu816-v1.1f-sch.png">csa_cpu816-v1.1f-sch.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.1E</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">

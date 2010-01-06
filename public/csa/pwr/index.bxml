@@ -21,12 +21,37 @@
 		</p><p>
 		The Li-ion battery charger is a standard schematics from the
 		datasheet of the used MAX712 battery charger.
+		</p><p>
+		2010-01-06: Since version 1.2 the board also contains an I2C master
+		with the related <code>RDY</code> generation as the P8584 I2C master
+		is not running faster than 1MHz.
 		</p>
 	</desc>
 	<!--diagram>
 		<file>bios.gif</file>
 		<desc>itecture</desc>
 	</diagram-->
+	<rev>
+		<version>1.2B</version>
+		<status>prototype</status>
+		<note type="msg"><p>
+			This board adds an I2C master (with related <code>RDY</code> generation,
+			as the P8584 does not work on 2MHz).
+			</p><p>
+			Also adds a jumper to decouple the 3.3V from the bus.
+			</p>
+		</note>
+		<note type="warn">
+			The layout is untested (I have built it on a 1.2A version,
+			which is missing JP9 (decouple 3.3V), but also has a serious bug
+			in that it has traces on the top side under the TO220 parts!
+			Therefore I am not publishing the 1.2A version.
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr_v1.2b.sch</file>
+		<file ltype="schem" ptype="png">csa_pwr_v1.2b-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr_v1.2b.brd</file>
+		<file ltype="layout" ptype="png">csa_pwr_v1.2b-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.1B</version>
 		<status>prototype</status>
