@@ -13,7 +13,7 @@
   </overview>
   <news>
     <item date="2010-01-07" >
-        Separated the <a href="index2.html">6502 hardware knowledge page</a> from this operating/system architecture knowledge page.
+        Separated the <a href="../icaphw/index.html">6502 hardware knowledge page</a> from this operating/system architecture knowledge page.
     </item>
     <item date="2007-01-03" >
 	Added the article on <a href="mp.html">hardware aspects of multitasking and multiprocessing</a>.

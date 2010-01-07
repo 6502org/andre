@@ -13,7 +13,7 @@
   </overview>
   <news>
     <item date="2010-01-07" >
-	Separated this page from the operating/system architecture knowledge page.
+	Separated this page from the <a href="../icapos/index.html">operating/system architecture knowledge page</a>.
     </item>
     <item date="2006-11-12" state="old">
 	Added the MMU, UART and remote control articles.

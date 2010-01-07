@@ -105,6 +105,10 @@ LI.cbm {
 	list-style-image:url(imgs/icon_cbm.jpg);
         margin-left:50px;
 }
+LI.icap {
+	list-style-image:url(imgs/icon_icap.jpg);
+        margin-left:50px;
+}
 UL.quickfinder LI.subitem {
 	list-style-image:none;
         margin-left:-40px;

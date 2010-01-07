@@ -11,6 +11,7 @@ d lib6502 Lib6502 standard
 d o65 O65 file format
 d misc Misc software
 s Knowledge Bits
-d icap Articles
+d icapos Computer/OS Architecture
+d icaphw 6502 Hardware Bits
 s Misc
 f contact.html Contact
