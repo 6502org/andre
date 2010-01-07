@@ -22,6 +22,10 @@ that in itself is a complete, single-board computer.</p>
 		<item date="2010-01-06">
 			Updated the <a href="pwr/index.html">power supply board</a> with a version with I2C master.
 		</item>
+		<item date="2010-01-07">
+			Tested the <a href="ramdisk/index.html">RAMDisk board</a> and found it working in some
+			configurations. 
+		</item>
         </news>
 	<oldnews>
                  <item date="2007-06-29" state="old">

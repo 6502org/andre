@@ -2,7 +2,7 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<META NAME="keywords" CONTENT="CSA65 6502 ramdisk SIM">
+<META NAME="keywords" CONTENT="CSA65 6502 ramdisk SIMM">
 <TITLE>CS/A65 ramdisk</TITLE>
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
@@ -24,6 +24,7 @@
 <li class="separator">Main boards</li>
 <li class="dir"><a href="../cpu/index.html">CS/A65 CPU</a></li>
 <li class="dir"><a href="../bios/index.html">CS/A65 BIOS </a></li>
+<li class="dir"><a href="../cpu816/index.html">65816 CPU</a></li>
 <li class="dir"><a href="../petcpu/index.html">64k PET CPU</a></li>
 <li class="dir"><a href="../gecko/index.html">Gecko</a></li>
 <li class="dir"><a href="../auxcpu/index.html">Auxiliary CPU</a></li>
@@ -35,9 +36,10 @@
 <li class="dir"><a href="../drvio/index.html">DRVIO floppy and IEC</a></li>
 <li class="dir"><a href="../duart/index.html">Double UART (RS232)</a></li>
 <li class="dir"><a href="../scsi/index.html">SCSI/I2C board</a></li>
-<li class="dir"><a href="../ramdisk/index.html">RAMDisk</a></li>
-
+<li class="dir"><a href="../spi/index.html">MMC/SD-Card</a></li>
 <li class="separator">Special purpose</li>
+<li class="dir"><a href="../ramdisk/index.html">SIMM RAMdisk</a></li>
+
 <li class="dir"><a href="../copro/index.html">Coprocessor board</a></li>
 <li class="dir"><a href="../cpuemu/index.html">Emulate a 6502</a></li>
 <li class="dir"><a href="../keyemu/index.html">Emulate a keyboard</a></li>
@@ -68,11 +70,19 @@
 <DIV ID="content">
 <H1>CS/A65 ramdisk</H1>
 
-<p>
+<p><p>
 		This board uses the (now outdated) 30-pin SIMM memory modules
 		to build a RAM disk with up to 16Mbyte. The memory
 		is accessible via a single register, using an auto-increment
 		byte address counter (8-bit byte address within page only).
+		</p><p>
+		The current status is that the board works in some specific 
+		configurations. I have currently only tested it with the
+		65816 CPU board, where it works with 3 modules with 1MByte each,
+		but not 4 modules. 
+		</p><p>
+		Further tests still have to be performed.
+		</p>
 	</p>
 <DIV ID="toc">
 <H2>Table of content</H2>
@@ -96,41 +106,44 @@
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			The board timing is not yet fully working.
+			With the 65816 CPU board the RAMDisk has been tested
+			and found working for up to 3 modules with 1MByte each.
+			With 4 modules certain RAMDisk addresses do not seem
+			to work properly. <br>Tests with larger modules (4M)
+			still have to be performed.
 		</TD>
 </TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board currently has a problem with the
+			With the standard CPU and PETCPU boards
+			this board currently has a problem with the
 			counter on read accesses. Spurious read strobes
 			appear that increase the counter on read accesses
-			(but not on write accesses). I do not yet have
-			found the source of this problem.
+			(but not on write accesses). 
+			<br>
+			This does not happen with the 65816 board.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			I have created this board by modifying the 1.0A board.
+			Currently no layout is available.
 		</TD>
 </TR>
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0c.sch">csa_ramdisk-v1.0c.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="csa_ramdisk-v1.0c.brd">csa_ramdisk-v1.0c.brd</A></TD>
-</TR>
-<TR>
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
-<TD>
-<A HREF="csa_ramdisk_v1.0c-brd.png">csa_ramdisk_v1.0c-brd.png</A></TD>
 </TR>
 </TABLE>
 <H3><A NAME="board2">Version: 1.0B</A></H3>
@@ -144,7 +157,7 @@
 		</TD>
 </TR>
 <TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
 <TD>
 			This board currently has a problem with the
 			counter on read accesses. Spurious read strobes
@@ -156,22 +169,22 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0b.sch">csa_ramdisk-v1.0b.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0b-sch.png">csa_ramdisk_v1.0b-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0b.brd">csa_ramdisk-v1.0b.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</A></TD>
@@ -188,7 +201,7 @@
 		</TD>
 </TR>
 <TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
 <TD>
 			This board currently has a problem with the
 			counter on read accesses. Spurious read strobes
@@ -198,7 +211,7 @@
 		</TD>
 </TR>
 <TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
 <TD>
 			The board has a timing problem. The delayed
 			2Phi2 signal used with RWDATA by IC6C to generate the 
@@ -206,7 +219,7 @@
 		</TD>
 </TR>
 <TR>
-<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD class="noteicon"><IMG SRC="../../imgs/note_stop.gif" ALT="stop"></TD>
 <TD>
 			The dynamic RAM draws a lot of power. The CSA PWR
 			board checks the supply voltage, so if this board
@@ -218,39 +231,39 @@
 </TABLE>
 <H4>Files</H4>
 <TABLE class="files">
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0a.sch">csa_ramdisk-v1.0a.sch</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0a-sch.png">csa_ramdisk_v1.0a-sch.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk-v1.0a.brd">csa_ramdisk-v1.0a.brd</A></TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD>
 <A HREF="csa_ramdisk_v1.0a-brd.png">csa_ramdisk_v1.0a-brd.png</A></TD>
 </TR>
-<TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="ramdisk_v1.0a-1.png">ramdisk_v1.0a-1.png</A>(On the left you can see the floppy-type power connector cable I soldered to the bottom)</TD>
 </TR>
-<TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_photo.gif" ALT="photo"></TD>
 <TD>
 <A HREF="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</A></TD>
 </TR>
 </TABLE>
 <DIV ID="footer">
-<P>Last modified: 2007-05-28.</P>
+<P>Last modified: 2010-01-07.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </DIV>

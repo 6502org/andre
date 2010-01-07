@@ -298,6 +298,40 @@
 		with higher clock frequences the timing police will get you...
 		</p></desc>
 	</section>
+	<section toc="memmap" name="Memory Map">
+		<desc>
+		<p>The memory map is relatively simple. There are two modes, <code>BOOT</code> and <code>/BOOT</code>.
+		During <code>BOOT</code> the lowest 64k RAM are mapped into the CS/A bus space. Of the lowest
+		64k, all but 2k at <code>$8000</code> are directly mapped on the bus. The 2k at
+		<code>$8000-$87ff</code> are not mapped into <code>$0xxxx</code> on the CS/A bus, but on 
+		<code>$1xxxx</code>. 
+		This allows to use the VDC board on <code>$1xxxx</code> and the <code>$8000-$87ff</code> area
+		as video memory. This setup is used as standard 'Fat40' setup, which can be achieved with the
+		65816 CPU as well.
+		</p><p>
+		Also the area at <code>$e800-efff</code> is setup as I/O area on the CS/A bus, which also
+		supports the 'Fat40' setup.
+		</p><p>
+		The 2 MByte fast memory are mapped into the CPU's <code>$00xxxx-$1fxxxx</code> area, except for
+		the first 64k as described above. After the first access to the highest memory chip, mapped
+		at <code>$18xxxx-$1fxxxx</code>, <code>BOOT</code> mode is left and <code>/BOOT</code> mode
+		is entered. This means that the first 64k are now also mapped into the fast memory -
+		except the video and I/O areas at <code>$008000-0087ff</code> and
+		<code>$00e800-00efff</code> respectively.
+		</p><p>
+		Above the fast memory, the area <code>$20xxxx-2fxxxx</code> is a mirror of the 1 MByte CS/A 
+		bus memory address space.
+		</p><p>
+		To be able to easily copy the boot ROM to fast memory in bank 0, the area
+		<code>$30xxxx-37xxxx</code> mirrors the first 512 kByte fast memory, but without the
+		low 64k windows. 
+		</p><p>
+		Due to the fact that the address decoding GAL has no inputs for <code>A22</code> and 
+		<code>A23</code>, the whole memory setup is mirrored at <code>$400000</code>,
+		<code>$800000</code> and <code>$c00000</code>.
+		</p>
+		</desc>
+	</section>
 	<section toc="future" name="Notes and possible future enhancements">
 		<desc><p>
 		This section describes some notes and possible future enhancements of the board
