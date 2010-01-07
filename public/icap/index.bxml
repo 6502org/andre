@@ -12,6 +12,9 @@
 	that you may find useful.
   </overview>
   <news>
+    <item date="2010-01-07" >
+        Separated the <a href="index2.html">6502 hardware knowledge page</a> from this operating/system architecture knowledge page.
+    </item>
     <item date="2007-01-03" >
 	Added the article on <a href="mp.html">hardware aspects of multitasking and multiprocessing</a>.
     </item>
@@ -32,26 +35,16 @@
       <subitem name="Hardware aspects of multitasking and -processing" link="mp.html"> - Describe hardware requirements for a multitasking and multiprocessing
 	system and how to implement them with a 6502 (01/2007)
       </subitem>
-      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
-      </subitem>
       <subitem name="6502 MMU" link="mmu65.html"> - How a virtual address space works and how to implement it for a 6502 computer (1997).
-      </subitem>
-      <subitem name="UART serial interface" link="c64ser.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
-      </subitem>
-      <subitem name="Infrared remote control" link="remote.html"> - control your home equipment with your 6502 :-) (1997)
       </subitem>
       <subitem name="OS/A65 Multitasking/Multithreading Operating System" link="osa65.html"> - An article describing the <a href="../osa/index.html">GeckOS</a> operating system (1996)
       </subitem>
-     <!--item name="Commodore 8-bit stuff">
-      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
-information and links to the old CBM PET machines</subitem>
-     </item-->
     </items>
     <disclaimer name="Disclaimer">
 @DISCLAIMER@
     </disclaimer>
   </itemlist>
   <closing>
-<BR/>Last updated 2007-01-03.
+<BR/>Last updated 2010-01-07.
   </closing>
 </webpage>

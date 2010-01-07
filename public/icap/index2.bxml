@@ -1,0 +1,43 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Knowledge Bits">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit,6502</keywords>
+  <metadesc>8-bit 6502 hardware knowledge</metadesc>
+  <overview>
+	These pages lists some articles explaining various bits and pieces
+	around 6502-related hardware that you may find useful.
+  </overview>
+  <news>
+    <item date="2010-01-07" >
+	Separated this page from the operating/system architecture knowledge page.
+    </item>
+    <item date="2006-11-12" state="old">
+	Added the MMU, UART and remote control articles.
+    </item>
+    <item date="2006-11-01" state="old">
+	Created this page.
+    </item>
+  </news>
+  <itemlist name="Quickfinder">
+    <!--desc>
+    </desc-->
+    <items>
+      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
+      </subitem>
+      <subitem name="UART serial interface" link="c64ser.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
+      </subitem>
+      <subitem name="Infrared remote control" link="remote.html"> - control your home equipment with your 6502 :-) (1997)
+      </subitem>
+    </items>
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  </itemlist>
+  <closing>
+<BR/>Last updated 2010-01-07.
+  </closing>
+</webpage>
