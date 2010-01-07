@@ -14,8 +14,26 @@
 		65816 CPU board, where it works with 3 modules with 1MByte each,
 		but not 4 modules. 
 		</p><p>
-		Further tests still have to be performed.
+		Further tests still have to be performed, but I am not sure how far
+		I will go into this with this design version. I had a discussion with
+		Bil Herd - yes, the designer of the Commodore 128 - who suggested 
+		some improvements:
 		</p>
+		<ul><li>Use a state machine and a GAL to create a simple DRAM controller
+			and not rely on gate delay times to create signals. 
+			I found the 8296 timing signal generation a good example for such a
+			system.</li>
+		<li>The board layout used could use some improvements in the layout of the
+			power supply lines, but also the address and data lines. </li>
+		<li>The board lacks series resistors, and termination resistors, so 
+			signal reflections could easily be a problem.</li>
+		<li>The /RAS signal is always sent to all modules - on a CPU read or write
+			cycle only the active module needs it. This could be a reason for
+			the problems below, which are possibly power supply related and
+			if all modules draw power at the same time the actual access might
+			fail.</li>
+		<li>Maybe even use an FPGA to implement a DRAM controller</li>
+		</ul>
 	</desc>
 	<!--diagram>
 		<file>keyemu.gif</file>
