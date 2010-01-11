@@ -321,7 +321,7 @@ A full memory map of the CBM8296 is in this <A HREF="imgs/fullmemmap.gif">image<
 	<extlink name="Chipdata on the CBM archive" link="@CBMARC@/documents/chipdata/index.html"/>
 	<extlink name="Chip datasheets on 6502.org" link="http://www.6502.org/documents/datasheets/"/>
 	<subitem name="6502 programming info" link="local/64doc.txt"> from the
-		<a class="extlink" target="_blank" href="http://www.viceteam.org">VICE team</a></subitem>
+		<a class="extlink" target="_blank" href="http://vice-emu.sourceforge.net/">VICE team</a></subitem>
 	<subitem name="6522 documentation" link="local/6522-VIA.txt.gz"/>
 	</subsection>
 

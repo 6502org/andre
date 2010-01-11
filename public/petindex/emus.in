@@ -15,7 +15,7 @@ that allow to run PET prgrams on other hardware. This page describes
 the different emulators available.
 </P>
 <P><DL>
-<DT><A HREF="http://www.viceteam.org">VICE</A></DT>
+<DT><A HREF="http://vice-emu.sourceforge.net/">VICE</A></DT>
 <DD>This is the VICE emulator, that not only emulates the
 PET, but also most other Commodore 8-bit machines (C64, VIC20, C128, CBM-II).
 In VICE almost all PET computers are emulated (SuperPET 6809 mode is not supported), together with the different IEEE488 disk drives.

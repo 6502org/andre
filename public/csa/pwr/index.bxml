@@ -48,9 +48,9 @@
 			Therefore I am not publishing the 1.2A version.
 		</note>
 		<file ltype="schem" ptype="esch">csa_pwr_v1.2b.sch</file>
-		<file ltype="schem" ptype="png">csa_pwr_v1.2b-sch.png</file>
+		<file ltype="schem" ptype="png">csa_pwr-v1.2b-sch.png</file>
 		<file ltype="layout" ptype="esch">csa_pwr_v1.2b.brd</file>
-		<file ltype="layout" ptype="png">csa_pwr_v1.2b-brd.png</file>
+		<file ltype="layout" ptype="png">csa_pwr-v1.2b-brd.png</file>
 	</rev>
 	<rev>
 		<version>1.1B</version>
