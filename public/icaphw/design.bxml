@@ -1,0 +1,2972 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Bil Herd helping me with his design knowledge">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>DRAM SIMM debug</keywords>
+  <metadesc>Bil Herd helping me with my RAMDisk DRAM design</metadesc>
+  <overview><p>
+	While creating and debugging my - still somewhat unfinished - <a href="../csa/ramdisk/index.html">CS/A RAMDisk board</a>,
+	I had the privilege and honor of a private discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal designer of the Commodore Plus/4 or the much more successful Commodore 128.
+	In that discussion he gave me tips and showed off his experience in designing systems for real mass-production.
+	This page summarizes the discussion to help others in designing reliable systems.
+	</p><p>
+	This page is organized in sections that roughly go as the discussion happened, but as discussion moved on, I'll summarize
+	some posts for specific topics. The discussion took place May to July 2007.
+	</p>
+  </overview>
+  <news>
+    <item date="2010-01-07">
+	Created this page
+    </item>
+  </news>
+  <toc/>
+  <section toc="beginning" name="The Beginning">
+    <desc>It all started on the cbm-hackers mailing list, when I made a comment that I used a buffer to increas the hold time of a data signal.
+	<p>
+    </p></desc>
+
+     <subsection toc="buffer" name="Buffer as hold time">
+	<desc><p>
+	This answer shows off the difficulties you run into when using buffers as delay. What I realized is of course in a mass-production 
+	setup, even very small error rates multiplied by the production numbers can give large numbers of actual errors happening.
+	</p><p>
+	A.: &quot;You can delay the data by feeding it through a buffer (e.g. 74ls245) first.&quot;
+	</p><p>
+	Bil: &quot;Bear in mind that I was from the production world where I had to pay strict attention to specs or get thousands of failures, not to mention the range of
+temperatures, voltages and related part specs that we had to account for. (as it was parts didn't always pay attention to specs and we would get
+thousands of failures).  You can often get designs to work just fine in low quantities at room temperature under a stable voltage... I.E. some things I
+couldn't do will work just fine for experimenters.
+	</p><p>
+Using a buffer to hold data valid longer was not a useful approach back then as there generally were no valid minimum times on a chip, I.E. your best off
+to assume that the output goes invalid almost immediately after the input goes invalid.  I think in terms of data valid propagation and invalid
+propagation, hoping a buffer reliably holds the exact same input after currents start dumping and nodes start discharging is a bad bet when multiplied
+times 100,000.  Signetics buffers used to Hi-Z with a vengeance as an example.
+	</p><p>
+A variation on this is where someone will but a buffer between the clock and data lines of a latch hoping to create hold time, problem is that variations
+in layout, pin capacitance, etc can result in -1 ns hold time worse case. (not only no delay but negative delay)
+	</p><p>
+You also slow things time by the TProp of the buffer so at best you pick up a hold of something like 3ns but slow things down by an additional 20ns.
+	</p><p>
+This was a recurring stickyness to 6502 designs, I used PHI0 (clock source instead of clock output)  a lot and thought about using long traces on data
+lines (joke) among other things... more than one engineer got everything else right except for this part.
+&quot;
+	</p>
+	</desc>
+     </subsection>
+   </section>
+   <section toc="dram" name="DRAM Design">
+	<desc>The discussion quickly went on about the design for using DRAMs - which are kind of monstrous beasts compared to other 8-bit 
+		technologies.</desc>
+     <subsection toc="drambasic" name="Basic DRAM design">
+	<desc>
+	<p>Here I learned the basics of DRAM design, unfortunately after the fact of the RAMDisk board design. And in Bil's speak I have not
+		yet earned the 'DRAM badge'. After all I only have the architectural issues right, the timing it seems probably only partly, but
+		with the environmental aspects I'm still somewhat lost...</p>
+	<p>Bil: &quot;
+There are three aspects to making DRAMs work; absolutely getting all of the timings correct, the environmental aspects of noises, glitches and
+terminations, the architectural issues such as access mode and DRAM organization, refresh, etc.
+</p><p>
+For DRAM timings you absolutely need a stable source of control signals; you need to be able to generate /RAS, /CAD, /WE and the direction controls.  You
+need to be able to multiplex the addresses to coincide with those major controls, and then you need to cleanly get the signals propagated into and out of
+the arrays.
+</p><p>
+Lastly, the logical function of DRAM's may not be the same.  The old CBM where the simplest use of drams, we didn't use nibble or page mode accesses, we
+didn't rely on self refresh devices.  With that said I don't know what the underlying architecture is of the SIMMS you mentioned.
+</p><p>
+I don't know what you are doing for DRAM timing signals, are you tapping the VIC chip's signals?
+</p><p>
+Brief tutorial on olde DRAM use, based on 25 year old memory:
+</p><p>
+/RAS and /CAS need to go high per the precharge specs
+</p><p>
+Address set up prior to /RAS per Row Address Setup Spec (I have seen this spec blown a lot)
+</p><p>
+/RAS goes low and addresses are held for Row Address Hold (RAH) time.
+Only after RAH can you flip the control signal for the address buss mux, we used to create a signal between /RAS and /CAS called MUX for this purpose.
+</p><p>
+Addresses, Data and /WE set up before /CAS.  You can delay some of this for a late write but you need to know what your doing so best is you declare a
+write cycle prior to /CAS falling.
+</p><p>
+For reads, data comes out one access time after TCAS (Time CAS Access), there is also a half dozen other specs that determine when data is valid, such as
+the shortest time from RAS, etc.
+</p><p>
+For a write cycle you have to hold write data per the specs, which are related to CAS not PHI.  As CAS is generally held later than PHI for writes you may
+end up latching the data.
+</p><p>
+Every now and then you need to generate refresh addresses for the dynamic part of DRAM.
+CAREFULL layout and series termination of signals is a must.  The one jumper on the C128 production was due to a single reflecting node on one address
+line when the Z80 was the active CPU.  The jumper is in parallel to a trace on the board that is otherwise perfectly fine except there is a glitch that
+"stands" on the line at a certain point in time under certain circumstances.  My boss didn't believe me and ran 10,000 units over the weekend to prove
+that this really did fix the "CPM Loading problem", it was more sensitive on one brand of multiplexers than the other.  Also had a problem early on when
+multiplexing from all ones to all zeros's except for one bit, the last bit would get drug to zero also.
+</p><p>
+As you can see DRAMS are dynamic creatures.  Makes static RAMS look like a pretty simple alternative.
+</p><p>
+I used to say that engineers should have to get certified to do certain parts of a design and that there should definitely be a DRAM badge/stamp before
+tackling DRAMS for production release.... tricky critters on the outside, very stable once you get your hands around it.  Think of an array of capacitors
+with leakage and you have a DRAM array.  BTW, I have never been to school for any of this (electronics or college, etc), it is careful study of the specs
+and then some lumps along the way.  We didn't have simulators back then, we started with timing analysis on graph paper and then later used visicalc type
+programs, there are about 16 specs you need to account for if memory serves.
+	&quot;</p>
+	<p>
+	Part of my anser then: &quot;
+Timing and
+architecture I think I can cope with.
+</p><p>
+But I grew up in a digital world ;-)
+so I do have problems with the noises and glitches.... :-(
+(I probably shouldn't say that too loud, as I am physicist by
+education, so I know the theory, but as you know "in theory
+there is no difference between theory and practice".... ;-)
+</p>
+<p>And part of Bil's answer: &quot;
+Sounds like you have the basics covered.  Problem with deriving mux through several inversions is that if the chip is fast, say 1ns, you have only 4ns, if
++it is slow, say 4 ns, you have 16; huge change as parts in a chip tend to track each other.
+
+The shift register approach is a very usable approach, saved my ass a few times (see the 8563 story).  I could even move a wire from tap to tap like
++adjusting the dwell in a car.  Problem is we used one half cycle of the 8mhs clock I think, and again frequencies are controlled but not duty cycles.
+
+I used to say it's all analog, we just call certain voltages after certain time periods a one or a zero but it was very analog to get there.  The insides
++of the old NMOS chips even more so, they would pick device sizes based on analog parameters to drive digital circuitry.
+&quot;</p>
+	</desc>
+     </subsection>
+     <subsection toc="tests" name="DRAM testing">
+	<desc><p>Bil then quickly came to the part of testing the DRAM. A sign of his ingenuity I think is the use of the light pen as scope trigger.
+	</p><p>Bil: &quot;
+An important part of any DRAM development is a GOOD DRAM test, the last thing you want to do is catch a dram problem by backtracking a crash.  The one
+problem I told you about where the one bit would get drug along with the rest (ground pin lift) was not caught in a DRAM test, it would just crash.  I
+noticed that it often put an "@" sign into a spot in the video memory early in the crash so I hooked a light pen to the scope and analyzer and held it up
+to the spot on the monitor where the @ sign would sometimes appear and triggered the equipment within one screen time of the write.  I got lucky and
+found the cause within 10 minutes.
+</p><p>
+So does your circuit work sometimes, most of the time, or not at all?  Do you have circuit timings and schematic I could glance at?  For a good
+description including the math of what I learned an intuitive feel for you might want to check out
+http://www.amazon.com/High-Speed-Digital-Design-Handbook-Black/dp/0133957241/ref=pd_bbs_sr_1/103-1146968-2278230?ie=UTF8&amp;s=books&amp;qid=1180370749&amp;sr=8-1  I
+have bought three of these books and give them away every couple of years to old friends, young engineers, etc.
+	&quot;</p>
+	<p>After I described my feeble basic tests, he went on</p>
+	<p>Bil: &quot; 
+It helps to know whether it is data or addresses that are the problem.  If you pound the same pattern into every location do you get other data values
+appearing or is it a matter that some locations never really see the address to write to the bad location.  If you write half of the memory and then read
+the other half does the untouched half ever change?  Does memory locations degrade the more you access the device?
+</p><p>
+If you really suspect the relationship to CAS, put the system into a memory write loop and then scope Cas against every data line and address line
+including /WE.  Check that addresses are valid and STABLE (if they oscillate during the setup time, you will get internal collisions in the column
+driving circuitry in the DRAMS) a Setup time before and stay valid for a hold time.  Do this and you can rule out the falling edge pretty easily
+depending on your scope and your eye.  If your timing analysis shows that LS should work and it works badly, this troubleshoot with LS in, it should make
+the problem easier top spot.
+</p><p>
+For rising edge CAS it's more about read data hold times (again written badly or read badly) and the precharge times.  It's a common mistake to not look
+at the entire cycle time which is precharge plus access time.
+</p><p>
+If you think you fixed it, hit it with cold spray and a heatgun.  Vary the voltage from 4.75 to 5.25.  These techniques simulate another 10ns of slop, in
+fact a lot of dram testors used to run the parts at 4.6v and 5.4 to catch failure modes easier.
+</p><p>
+When you scope you should get an area around /RAS and /CAS signals that is completely clear of any transitions including termination effects.  If your
+scope trace isn't perfectly clean (trigger on CAS and RAS) then you will probably have problems.
+	&quot;</p>
+	</desc>
+     </subsection>
+
+  </section>
+  <section toc="csa" name="Feedback on my designs">
+	<desc>The discussion so far was based on just mails and my description of my system. Finally Bil had a look at my <a href="../csa/vdc/index.html">VDC</a> and <a href="../csa/ramdisk/index.html">RAMDisk board</a> and gave some feedback</desc>
+
+     <subsection toc="vdc" name="VDC feedback">
+	<desc><p>Bil: &quot;Does the graphics card have any known issues?  What is the part number you use for DRAM on that?  I see some things I can make general comments about as
+kind of good practices but if you had beat the heck out of the card and had no known issues it would change some of my comments.  Have you run extensive
+tests on the memory on that card?
+&quot;</p>
+	<p>A: &quot;I did not do extensive testing in terms of heat fan, cold spray, different voltages etc. I did write some memory tests, though, checking RAM access.
+Although they were in your eyes probably not very sophisticated.
+</p><p>
+Currently it has no known issues. I use the 41464 type of 4x64kBit ICs and have tested two or three brands, with access times (IIRC) from 70 or 80ns,
+100ns and 120ns.  I do have two of those boards working fine this way (one as V1.3E patched up to 1.4A, one is a manually soldered version 1.3C - see the
+pictures :-)
+In http://www.6502.org/users/andre/csa/vdc/csa_vdc_v1.3e.jpg you can see the manufactured board version with the 100ns dRAMs. This one mostly uses 'ALS,
+while the old one uses 'LS only.
+&quot;</p>
+<p>Bil: &quot; I actually meant testing as in lots of dram patterns to make sure that its actually is running correctly. (dram testing can be a whole chapter by itself
+but filling an entire array and then checking and walking bit patterns are some of the basics)  We used to use a modulo other than a binary number as you
+could actually have stuck address lines and not know it if the low order data bits are the same regardless of the hi order address lines)
+</p><p>
+ The other techniques aren't really testing per se they are 'characterizing".
+</p><p>
+How many of the video card have you built?  You mentioned some tearing with heat?
+&quot;</p>
+<p>A: &quot; I did not do these sophisticated tests. I ran some basic tests (like filling with $00, $55, $aa, $ff and byte address within page a lot of times), then
+let it run with my multitasking operating system, which worked fine so I assumed the address decoding is ok (the memory is used in separate 4k blocks,
+and video is coming from it, so I assumed that address line mix-ups are discovered pretty quickly.
+I actually built two video boards, one soldering each connection with wires, the second by using an etched(?) PCB.
+</p><p>
+The video output started to show some horizontal wiggling about 1/2 pixel left/write when the old power supply (7805-based) got hot. I assume it's
+"beat"(?) - meaning the interference between two almost identical frequencies - 50Hz power line and 50Hz vertical video refresh, getting a problem when
+the 7805 got hot. But the dRAM did not seem to make problems. Although, thinking about it, seldom background processes (it's a multitasking OS) seemed to
+suddenly fail without reason in this situation, which could be caused by bad dRAM accesses on the video card.
+&quot;</p>
+
+	</desc>
+     </subsection>
+     <subsection toc="ramdisk" name="RAMDisk feedback">
+	<desc><p>Finally the discussion went on with the feedback to the RAMDisk board.
+		Here Bil showed me some more basics of timing design by actually doing the maths on the delay times.</p>
+<p>A: &quot; BTW, the RAMdisk schematics is online now: http://www.6502.org/users/andre/csa/ramdisk/index.html
+I switched IC6 (74*00) and IC12 (74*139) between 'LS, 'ALS and 'F, where 'LS was worst, 'ALS was bad, and 'F only had two addresses out of each 256 byte
+block (the same addresses for all blocks) with errors. The test was a simple write-page-then-read-page test where the value written was the index (byte
+address) in the page. As I said before, I ran out of time during the weekend to make more tests.
+&quot;</p>
+<p>Bil then gave feedback on the 1.0A RAMDisk board</p>
+<p>Bil: &quot; The main problem that I see is that you have many levels off TTL delays
+in critical signals.
+</p><p>
+If you look below, the delay from PHI2 to /CAS going low or high is
+between 38 and 176ns.  This means that CAS is still low up to 176 ns
+into the next cycle.  CAS could go low as fast as 38ns from PHI
+meanwhile data took up to 128 ns to get enabled from PHI (just traced
+one path of data enable as an example).  The Data could get enabled
+after /CAS has fallen plus a swing of 130ns is real hard to design the
+rest of the design for.  Best to keep RAS, MUX and CAS constrained to
+about 20ns of wiggle.  CAS could also come along before the column
+address is setup by a few ns, probably not a big problem but I show the
+example.
+</p><p>
+As you can see, stacking delays goes to pot fast, you literally need to
+keep everything to one delay and better yet if they track (if one delay
+get s longer so does the other from being in the same package). :-)
+</p><p>
+Also you must make sure that A22 and A23 never ever wiggle while the
+LS139 is enabled or you will glitch every DRAM bank as an example of a
+decoder in a gating path.
+</p><p>
+I recommend that you take a look at a simple device like a 22V10, feed
+it a higher frequency like 8mhz and use some state machines to create a
+nice tight DRAM controller.  If you don't have a higher freq then get
+something consistent by way of delay line to create the relationship
+between RAS, MUX and CAS.
+&quot;</p>
+<p>
+<table border="1"
+ style='width:482.0pt;margin-left:-.75pt;border-collapse:collapse'>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;border:
+  none;border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>Min</span></p>
+  </td>
+  <td     style='width:48.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>Max</span></p>
+  </td>
+  <td     style='width:48.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>BPHI2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>M2PHI2/RAS</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS243</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>18</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC13</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>/rdata, /wdadta</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS138</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+<span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>40</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>/RWDATA</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Data Buffer Enable</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS245</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>40</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC10</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time delay PHI2 to Data Enable</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>24</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>128</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>BHPHI2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>M2PHI2/RAS</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS243</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>18</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC13</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>ADDSEL</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS139</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>40</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC12</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time Delay Phi2 to CAS</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>38</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>176</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>M2PHIS2/RAS</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>ADDSEL</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>MADDR</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS257</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>21</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC18</span></p>
+  </td>
+  <td   colspan='2'   style='width:96.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time to invalid</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time Delay RAS Addr Hold</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>21</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>87</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>ADDSEL</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p ><span style='font-size:10.0pt;
+ '>7414</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>5</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>22</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC2</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS00</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>4</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>15</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS139</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>40</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>IC12</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time Delay Mux to CAS</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>19</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'  >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>92</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>ADDSEL</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>LS257</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>21</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>Time Delay Mux to CADD</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>6</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt' >
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>21</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+ </tr>
+ <tr  style='height:12.75pt'>
+  <td     style='width:146.0pt;padding:
+  0in 5.4pt 0in 5.4pt;height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p   style='text-align:center'>
+  <span style='font-size:10.0pt;'>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span style='font-size:10.0pt;
+ '>&#160;</span></p>
+  </td>
+  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
+  height:12.75pt'>
+  <p ><span>&#160;</span></p>
+  </td>
+ </tr>
+</table>
+</p>
+<p>I put my answers in the reply into the text, I am reproducing them here 
+slightly edited:</p><p>
+A:  first two remarks:<br/>
+- the bus runs with 2MHz at most. So a half-cycle (like Phi2 high) is about 250ns or larger.<br/>
+- Although the schematics mostly say it's an 'LS IC, it actually is an 'ALS except where noted on the web site. And 'ALS are faster and drive more inputs.
+</p><p>
+Seems I got careless thinking 'ALS is so much faster...&quot;
+</p><p>The following remark already refers to version 1.0C where I had <code>Phi2</code> 
+connected to IC6D: &quot;
+B2PHI2 goes high on each transition of Phi2, and low about 70ns after that
+(see the CPU board schematics). It is designed to be directly used as /RAS
+on dRAM chips, and that works with the video card.
+</p><p>
+With /CAS you have to trace both, falling and rising edge separately.
+On the RAMDisk, the delay of the hi-lo-transition of /CAS to rising Phi2 is about
+70ns plus your 38-176ns - which admittedly gives the dRAM a hard time if it is
+really 246ns after Phi2 going high. The rising transition of /CAS, though, has a
+shorter delay. Here BPHI2 -> MPHI2 -> IC6D ('00) -> IC12A ('138) -> /CAS, which gives
+between 14 and 73ns.
+&quot;</p>
+<p>About the 'wiggle' on the RAS, MUX, CAS lines: &quot;
+IIRC the dRAM (at least the ones for the video card) do the actual data transfer
+at the first rising edge of /CAS and /RAS, where here /RAS is faster (closer to falling PHI2)
+and /CAS basically has to fulfill the precharge condition for the next access.
+The data lines need not be stable during /CAS going low, only a preset time before
+the actual transfer (rising /RAS or rising /CAS, whatever comes first) for a write.
+&quot;</p>
+<p>My comment about the A22/A23 lines: &quot;
+A22 and A23 are stable from the 6502 during Phi2, and during Phi1 /CAS does not
+go low - I use /RAS-only refresh.
+&quot;</p>
+<p>A: &quot; On the bus I have 16MHz, as well as 8Phi2 - which is either 16M or 8M, depending
+on whether the bus runs at 2MHz or 1MHz (8Phi2 is used as pixel clock in the
+video card for example). IIRC I found the clock granularity of 8-times the clock
+barely good enough to handle the /RAS generation using a shift register.
+After all a clock cylce at 16M is 62,5ns - very long time within the 250ns access
+window.
+&quot;</p><p>
+Well, nowadays (i.e. when I write this in 2010) I would indeed do it differently. The <a href="../petindex/8x96.html">CBM8296</a> actually is
+a good example how to create a simple DRAM controller. A counter provides synchronous signals for 1, 2, 4, and 8 MHz - and those are fed
+into a PROM that produces DRAM control signals. In this case you can even use half-cycles of the top frequency. 
+In the case here, all frequencies would be multiplied by two (2 MHz CPU), and then signals can have a short about 31ns pulse width, not
+the 62.5ns as mentioned in the discussions.
+</p>
+	</desc>
+     </subsection>
+     <subsection toc="debugging" name="Debugging DRAM">
+<desc><p>Bil gave me some advice on how to debug DRAM memory and on the tools to use.</p>
+<p>First I described him the error patterns that I had: &quot;
+Hi Bil,
+</p><p>
+let me keep you up with my current state of affairs, with the
+RAMDisk board. As you might have seen, some other things have
+jumped up the pipeline before the RAMDisk. The Gecko actually worked
+as I like it - build - test - fix - ok :-)
+This RAMDisk is really giving me the headaches. Anyway, here is
+what I have done:
+</p><p>
+1) I wrote some test programs (not yet very sophisticated, but working
+The programs work (so far) in the lowest 64k of the RAMDisk.
+What I found out that there are only two addresses in a page, that
+give problems - $45 and $65. And that only on some of the pages,
+pages $1x, $5x, $9x, $dx.
+Interestingly the two addresses have different problems:
+</p><ol>
+<li>when writing the byte offset in the page (or its invers) into the byte,
+   both addresses show read mismatches. A printout of the values shows
+   that mostly the value is converted from $45->$65 for the $45 case.
+   $65 results in high nibble 2,4,6,a,e and low nibble 1,4,5,7,d
+   in combinations. When I write the invers of the value, interestingly
+   $45 (xor $ff) still gets $65 (xor $ff), while $65 is inconclusive.
+   For a further analysis I guess I have to save that
+   on disk and run an analyzer program on the PC on it, if necessary.</li>
+<li>when writing the page address into the byte (or its invers),
+   only $65 shows mismatch</li>
+<li>when I write the 256 pages once, and read them each 256 times, $45
+   consistently has an error count that is a multiple of 256, which
+   indicates a write error, while $65 has a error count where the low
+   byte is not 0, which proves a read problem.</li>
+<li>all other addresses are rock solid.</li>
+<li>same behaviour appears when using a different RAM module, or a
+   different bank in the same module.</li>
+</ol><p>
+I don't yet know what to make of that, though. The bit pattern don't
+make sense to me, esp. address bits 12/13 (that seem to have to be fixed
+to 1/0 to give problems) and bit 5 (that seems to give problems) are
+handled in different ICs.
+</p><p>
+2) I scoped the supply lines for the ICs and the DRAM modules. I found
+a jitter of up to .3 Volts on each line (GND and VCC). So I added
+a .1uF multilayer capacitor to the 'LS257 that generate the
+multiplexed RAM address lines, and a 1u MLC in parallel to the
+already existing capacitors in the DRAM supply lines. The jitter
+did not improve much, although I had one effect: before adding the caps
+the problems mentioned above in 1) were also seen in addresses $47 and
+$67, and sometimes $44, $48, $64 and $68 - which is fixed now.
+</p><p>
+What is your guess? Could it still be a timing issue or is it rather more
+of a supply voltage problem?
+What makes me wonder is that only very specific addresses are infected.
+&quot;</p>
+<p>Bil: &quot; 
+Troubleshooting by interpreting the data values and error patterns is tricky at best when you have only one type of error,  you may have a couple of
+errors going at the same time.
+</p><p>
+My advice would be top find one of those locations that has an error and do a tight loop writing and then immediately reading back.  Indicate how bad it
+is somehow, for example a variable on a screen that shows how many of the last 10 were correct.
+</p><p>
+This gives you one error condition for you to examine a couple of different ways.  You can scope and make sure everything meets spec and you can also add
+some capacitance and see if a certain signal makes it better or worse.  (sometimes worse is as good an indicator if in theory it shouldn't be affected).
+</p><p>
+With a tight loop going, I recommend that you start with the power supplies, but don't stop there unless you see something horrible (though if everything
+else is okay you may need to come back to them.)
+</p><p>
+If you have a good scope, I recommend a 250mhz (got mine off ebay until I broke down and got a DSO) scope.  Float the ground of the AC plug (very
+important) by either removing the ground prong on the AC plug or put a ground adapter that opens up the earth ground.  Now get right across each chip in
+question with as short of ground lead on the probe.  For this purpose do not just clip to ground somewhere, you want the scope to see what the chip sees.
+They even make very short ground leads that are stiff and basically as long as the probe tip for this reason.
+</p><p>
+Now you can leasurly scope everything while keeping an eye on the indicator that says it is still malfunctioning, this is very important as otherwise you
+are troubleshooting something that is basically working 99.9% of the time.  When you scope VCC/GND at this point you are looking for an upset, the ground
+lifting or the VCC ringing. A .3V lift when the output spec is .4v is a good example of the challenge in making a logical zero.  You can scope the '257's
+too but the result at this point would be that you can see the 257 mess up and you try to determine why, otherwise seeing power supply noise is learning
+what really hurts and what doesn't by removing it.
+</p><p>
+Now on DRAMs every GND and VCC pin should have connections in two directions, if either pin is on a stub (one direction of current flow) the stub will
+ring like a bell when the sudden rush of current hits it.  You can solder solid insulated wires at all of the VCC's and also the GND's and make a grid
+and rule out VCC and GND as the culprit.  I usually muck up at least one PCB and leave it that way so that I know if it makes it better or no difference
+for each problem I troubleshoot until I have everything fixed.  Also solder a .1 MLC directly diagonal on the bottom of the PCB across each DRAM and
+maybe the mux's.  Again leave them there for the duration.
+</p><p>
+Now if you have grided , scoped and bypassed the power supply you can then go after the signals.  Get a signal like RAS on one channel and trigger from
+it.  It should be clean with minimal ringing, again NO LONG GROUND LEADS on the scope, no more than two inches and it should ground right to the DRAM
+area .  Remember when doing timings on signals you count the part only after the ringing is below .2v or so.  I get suspicious any time something gets
+near .1v ring, in fact properly terminated the only ringing you should see should be kinda fuzzy and lost in the scope trace.
+</p><p>
+Now scope out each address line and other control signals while triggering on RAS.  If you are reading and writing in a very tight loop then a good
+percentage of the traces are from an error condition (troubleshooting for the one in 10,000 error sucks, I have done it by blasting the brightness and
+just knowing areas where ANY trace falling into is an error).  Addresses should be stable before and after RAS.  Now trigger on CAS.  If CAS is only
+triggered when there is a read or write to that DRAM then basically 50% of what you see is from an error cycle.  Check all signals again right at the RAS
+transition, NO address unknown states, no DRAM floats, in fact all signals that tristate should be pulling high, leaving them float in the middle WILL
+CAUSE DRAMS to oscillate inside (this is what the real problem with the CBM Z80 cartridge was).  Now trigger on WE.  ALL data lines need to be stable
+100% of the time on write cycles. If WE only goes when there is a write cycle to the bad area then you are looking right where the error is very likely.
+If you need to see just the following read cycle, make the write read two consecutive instructions and the delay from the write cycle on your scope.
+Otherwise you probably are seeing two important cycles in at least 20-30 for a normal loop that also counts how many errors.
+</p><p>
+You can also tack a 33 or 47pf cap to various lines to see if one is more sensitive then another.  If anything causes it to go from partially working to
+not working you my be getting close as that is a lot of cap but actually should work.  The cap can also quiet the line sort of (while yet adding it's own
+resonance etc, take everything with a grain of salt)
+</p><p>
+If you do it right, you should actually be able to see bad data coming out of the dram.  If so, look to see if you have bad data going in.  In a tight
+loop, it usually means that the culprit is a bad read or bad write or noise, things like refresh and other writes bleeding into the test location are
+temporarily eliminated.
+</p><p>
+So I recommend the tight loop test and looking at it carefully and a lot with hopefully the error condition being heavily exercised.  Once you fix one of
+the sources of errors, find another and start from the beginning. You may have several traces that are noisy, bad layout for some chips and timing that
+is sensitive to certain chips on certain signals.  Only when you have sporadic unexplained, seemingly random errors do you resort to troubleshooting the
+system as a whole, and then the same technique applies, I look first at all signals for health and cleanliness and then start eliminating contributing
+factors until left with a few culprits.  I use to use a wet fingertip as a sloppy capacitance test and kept a few sets of different drams and had the
+board socketed as it was significant if TI DRAMS changed the error vs. Micron.
+</p><p>
+Hope this helps.&quot;
+</p>
+</desc>
+
+     </subsection>
+  </section>
+  <section toc="practices" name="Further Best Practices">
+	<desc>Here Bil gave me some more about best practices</desc>
+	<subsection toc="board_design" name="Advice on board design">
+	   <desc><p>B: &quot;
+When driving DRAMs it is important to understand that these parts, let
+alone the arrays, have very large capacitance on the their inputs,
+particularly RAS and CAS.  You want to drive them with something capable
+of source 10-16ma as an example and then you want a series resistor near
+the source to absorb reflections, typ 22ohm.  
+&quot; [Later clarification: that is a resistor between the driver output
+and the DRAM input in the /RAS resp. /CAS line.  metal film or even carbon 
+is fine but carbon is a little obsolete I think.] &quot;
+Even more so due to the
+impedance changes you get going across connectors and onto the SIMS.
+Try to stay away form driving with an LS32 as an example (yes I have
+done it) Problem with an LS32 is low drive and if either input glitches
+above .8v you could lose the validity of the low output signal. (video
+card, scope the CAS very carefully for noise)
+</p><p>
+As long as you drive the addresses/data with buffers such as 257 and 245
+you should be fine, I use termination resistors on these also very close
+to the buffer.
+</p><p>
+I also buffer up one or two copies of the main clock (with series
+resistor) and route cleanly, don't rebuffer anywhere except all the way
+back at the source.
+</p><p>
+I assume you have a multilayer board with ground plane.  Near the Power
+connector you can put a 470u, 10u Tant, and a couple of .1 MLC's to make
+a "decoupling station".  Use .1 mlc caps EVERYWHERE.I would use 2 per
+SIMM, the 47uF wont catch fast glitches, in fact you might want to throw
+like a 1-2uF ant across each one if your paranoid like me.  To get real
+serious you start using inductors as well.
+</p><p>
+Recommend that you break the dwg up into a couple of functional dwg.  I
+always flow from left to right so I put the main connector on the left
+and then put all of your clock sources and address decode etc, you end
+up with a list of all control signals in one spot with the relationship
+between them easy to see.  Then if there is room on the right have an
+area for static address generation (banking and counters).  If out of
+room put the dynamic/multiplexing address stuff and DRAM on the next
+page.  I always strive to keep it that I have room for inputs to chips
+on the left and outputs on the right and I usually name a signal in two
+places rather than snake it through the jungle.
+</p><p>
+ From left to right you will be able to see the timing relationship of
+clocks, selects, counters, buffers, dram. The reason I mention drawing
+style is that the flow of time is very important (everyone gets hung up
+on logicas in trying to find the right combination of hi's and lo's and
+not the propagation of the logic), I have redrawn someone's schematic
+and they could see that something would get somewhere after instead of
+before and that they had an extra level of buffers/delays.
+</p><p>
+I also draw a timing diagram that shows the actual min and max of
+signals like RAS and DATA and the relationship between each other,
+literally for every calculation in the DRAM specsheet you can calculate
+what your circuit will do worse case. Many people get the timings right
+in the center of the cycle  but forget about the part that goes into the
+next cycle, in this case CAS hangs out for up to 176ns into the next
+cycle.
+</p><p>
+You might want to generate your counters in PALs once you start using
+them, you can do many cool things and fix many problems with the
+versatility.  If you learn the state machine systax you are one step
+closer to languages like Verilog and VHDL.
+</p><p>
+[...]
+</p><p>
+Hope I don't sound preachy! :-)
+	   &quot;</p><p>
+Not at all :-)</p></desc>
+	</subsection>
+	<subsection toc="physics" name="More Physics">
+		<desc><p>The mail with the practices lead into a discussion
+			more into the physics of a design. I probably should have
+			known a lot more than I did, as I am physicist by education.
+			I guess a mix of inexperience and 'it worked before' made me
+			not think about it. Here I got a lesson...
+			</p>
+<p>A: &quot; "Series resistors" similar to the ones mentioned above? I remember
+seeing these
+on the CBM boards :-)
+One question - would this resistor not increase the time for the signal
+to get the
+right value on the DRAM input, as it takes longer to load up the large
+capacitance
+you mentioned?
+&quot;</p><p>
+Bil: &quot; Good observation, yes you start to induce an RC component.  I have
+occasionally used 47ohm, (very fast crystal osc, and F/ALS) the highest
+practice is 68 ohm in my experience.  Not to be confused with bus
+terminators such as 220/330 pairs..
+</p><p>
+A series resistor works by acting as a voltage divider to the reflecting
+signal, I.E. some resistance to "bite" into after having reflected off
+of any impedance mismatch.  Transmission lines can only couple an amount
+of energy in relation to it's impedance in relation to the soutrce
+impedance.  The amount of mismatch in the driver and receiver impedances
+is reflected back since it is not absorbed.  When the end of a pcb trace
+is hit and there is no load resistance, the entire signal is reflected
+(infinite impedance at the end of the stub)
+&quot;</p><p>
+My comment on driving the clock only at the source:
+&quot; That's a difficult goal with a slot architecture. All signals are
+buffered on the
+CPU board, and most signals have input receivers on the boards, at least
+the ones that are sensitive or have a higher number of inputs.
+&quot; </p><p>
+Bil: &quot;
+ESPECIALLY when you want to keep the clock phases equal across the
+boards.  These days phase locked loops are used as integral parts  of
+clock generation circuits where the clock gets feedback from the board
+and the phase is changed to match the reference.  If it feels hard to
+distribute one clock due to load, think about all of the mins and maxes
+on clocks adding up.  It's a tough part of design, I have seen an entire
+designs basically fail due to bad clock distribution methodology.
+&quot;</p>
+<p>Now I had to confess I'm using double sided boards without a 
+ground plane: &quot; Ahm... Well... hm.. actually - no ground plane, sorry. Worked for me so
+far,
+and I know it's not production-ready. It's probably a wonder why my
+computer
+actually works... ;-)
+&quot;</p>
+<p>Bil: &quot; Okay, 2 layer works, used it for many many years.  The trick is to not
+have any stubs for power and ground traces, and DON'T feed power from
+one edge and ground from the other.  (called inter-digitated).  I always
+ran a ground ring around one side and a power ring around another, then
+run feeders across the board to connect from side to side, every chip
+can see the power supply or ground in two directions.  The closer the
+power feed is to the ground feed, the lower the mutual inductance.
+Higher inductance means higher impedance, higher impedance means less
+effective response to high frequency current needs and noise starts to
+modulate the power supply traces.
+&quot;</p><p>
+A:&quot; How many layers did the C128 board have?&quot;
+</p><p>
+Bil: &quot; 2 :)  CHEAP
+&quot;</p><p>
+Then some more about capacitors: &quot;
+I always have a 47u or 100u at the bus connector where the power lines
+are.
+Tantal capacitors are faster, right? Puh, I should know why different
+types of
+[ed: capacitors] are faster or slower, has to do with internal agility (ability
+to move)
+in the capacitor. That difference shows in the equivalent circuit
+diagram in the
+parasitic values..., right?
+&quot;
+</p><p>
+Bil: &quot; Yes to all.  Higher Effective Series Resistance (ESR) (Z goes up),
+higher inductance (Z goes up), more pronounced self-resonance formed by
+the capacitance and inductance (Z goes up), more leakage acts as a
+voltage divider.  Agile describes it nicely and intuitively as all of
+the corner frequency coming down gets into the frequency you are trying
+to filter.
+&quot;</p><p>
+A: &quot;What is a ".1 MLC"? I normally use 100n ceramic caps across all ICs.
+(And "ant" should mean "tantal", right ;-)
+&quot;</p><p>
+Bil: &quot;
+What kind of ceramics?  Some of those aren't really capacitors for our
+purposes (flat disc) &quot;[Oooops]&quot;.  MLC is Multilayer Ceramic, the little tiny ones
+that have very low self inductance and good tolerances.  I saw an entire
+computer fail that had Z5U ceramic because they lost more than 20% with
+a little temperature.  Tants are Tantalums, yup, excellent hi frequency
+response though I have seen many burst into flames over the years.  WILL
+burn if put in backwards.  I use safety glasses or put a piece of paper
+over a pcb that I power up for the first time because of it.  (flaming
+tantalum metal in the eye... yuck)
+&quot;</p><p>
+A: &quot; What is a "dwg"? (remember, English is not my mother language)
+&quot;</p><p>
+Bil: &quot; I have been accused of not speaking good English also. :)  dwg is
+drawing, I didn't even realize I shortened it.
+&quot;</p><p>
+I continue explaining that my version of Eagle (the non-profit version)
+only allows a single sheet for a schematics.</p><p>
+Bil: &quot; Your comment about Eagle allowing only one page would explain the
+compactness.
+&quot; </p><p>
+Now I comment on the timing diagrams: &quot; Yes, I already do relationships, where I draw small errors from one
+signal to
+the next (or even from multiple input signals to an output). That's how
+I made the
+schematics for the auxiliary processor and coprocessor boards, and make
+them
+work almost on the first try :-) (I'm still proud of that one :-)
+&quot;</p><p>
+Bil: &quot; Good.  Remember it's about the min and max delays of all series
+components, not just a logical thinksheet.  You sometimes end up with a
+line for each gate delay, sometimes you can lump several into one
+relationship  Good practice for drams is to replicate the entire dram
+timing detail (not the one that shows the different kinds of cycles but
+the one that shows the complete details for a read and a write) and
+write out your calculated result for every single parameter.  It becomes
+second nature after a couple.
+&quot;</p><p>At least this I learned and used it in the 65816 board. Then the discussion
+went into the programmable logic.
+</p><p>
+A: &quot; As I said, I want people to understand what I do, so I did not use them
+[ed: programmable logic like GALs] before.
+But that'll change with the 65816 board, where I use the 22V10.
+</p><p>
+And for next year I plan to make a FPGA board, and put some 6502 into
+that :-))
+The first plan is to make a "PET on a chip", then go beyond :-)
+&quot;
+</p><p>
+Bil: &quot; Jerry Ellsworth did the C64 on a chip.  FPGA's are COOL! You can
+simulate your problems so it is cheaper, easier and faster than building
+circuits and troubleshooting them.  I got lazy I would actually not
+check enough for errors because it was so easy to recompile and test
+again.
+&quot;</p></desc>
+	</subsection>
+   </section>
+   <section toc="final" name="Final words">
+	<subsection toc="status" name="RAMDisk Status"><desc>
+<p>Well, unfortunately so far I did not have the time and tools yet to actually do the measurements suggested. But I accidently found that removing one module removes the errors. Which seems to indicate that there is "environmental" issue with the power supply. 
+As the discussion has taken place "after the fact" of my current design, I am not sure if I will actually build a new design with all the things I have learned (like DRAM timing signals, series/terminator resistors etc). What I have learned however is the min/max timing calculations, which helped me
+solve the timing problems with my 65816 board.</p>
+	</desc>
+	</subsection>
+	<subsection toc="license" name="Permission">
+	<desc><p>Finally I asked Bil if I could put these comments up on a web page</p>
+<p>A: &quot; Would you actually mind if I write your comments up and put them on some
+kind
+of "design guidelines" page as part of my web site? I would feel
+honored.
+(of course they will be credited to you and I will put a preliminary
+version onto
+an unlinked page or send it to you so you can check)
+&quot;</p><p>
+Bil: &quot; No problem, I may occasionally use the wrong phrase or get the wording
+of a fact wrong as it has been many many years since I worked too
+actively with most of this, this is all form memory.
+&quot;
+</p></desc>
+</subsection>
+  </section>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

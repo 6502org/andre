@@ -78,9 +78,12 @@
 		byte address counter (8-bit byte address within page only).
 		</p><p>
 		The current status is that the board works in some specific 
-		configurations. I have currently only tested it with the
+		configurations. I built the board over two years ago and 
+		encountered a number of errors (see notes below). 
+		Only recently I have tested it with the
 		65816 CPU board, where it works with 3 modules with 1MByte each,
-		but not 4 modules. 
+		but not 4 modules. I still have to retest with other CPU boards and 
+		3 modules only.
 		</p><p>
 		Further tests still have to be performed, but I am not sure how far
 		I will go into this with this design version. I had a discussion with
@@ -103,6 +106,8 @@
 			fail.</li>
 		<li>Maybe even use an FPGA to implement a DRAM controller</li>
 		</ul>
+		<p>See the <a href="../../icaphw/design.html">this page</a> for the full discussion</p>
+		<p>I am currently looking into a CPLD-based design for this board.</p>
 	</p>
 <DIV ID="toc">
 <H2>Table of content</H2>
@@ -136,14 +141,51 @@
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			With the standard CPU and PETCPU boards
-			this board currently has a problem with the
-			counter on read accesses. Spurious read strobes
-			appear that increase the counter on read accesses
-			(but not on write accesses). 
-			<br>
-			This does not happen with the 65816 board.
-		</TD>
+<p>This is the current set of errors.
+			The spurious counter pulses seem gone:</p>
+<p>
+1) I wrote some test programs (not yet very sophisticated, but working
+The programs work (so far) in the lowest 64k of the RAMDisk.
+What I found out that there are only two addresses in a page, that
+give problems - $45 and $65. And that only on some of the pages,
+pages $1x, $5x, $9x, $dx.
+Interestingly the two addresses have different problems:
+</p>
+<ol>
+<li>when writing the byte offset in the page (or its invers) into the byte,
+   both addresses show read mismatches. A printout of the values shows
+   that mostly the value is converted from $45-&gt;$65 for the $45 case.
+   $65 results in high nibble 2,4,6,a,e and low nibble 1,4,5,7,d
+   in combinations. When I write the invers of the value, interestingly
+   $45 (xor $ff) still gets $65 (xor $ff), while $65 is inconclusive.
+   For a further analysis I guess I have to save that
+   on disk and run an analyzer program on the PC on it, if necessary.</li>
+<li>when writing the page address into the byte (or its invers),
+   only $65 shows mismatch</li>
+<li>when I write the 256 pages once, and read them each 256 times, $45
+   consistently has an error count that is a multiple of 256, which
+   indicates a write error, while $65 has a error count where the low
+   byte is not 0, which proves a read problem.</li>
+<li>all other addresses are rock solid.</li>
+<li>same behaviour appears when using a different RAM module, or a
+   different bank in the same module.</li>
+</ol>
+<p>
+I don't yet know what to make of that, though. The bit pattern don't
+make sense to me, esp. address bits 12/13 (that seem to have to be fixed
+to 1/0 to give problems) and bit 5 (that seems to give problems) are
+handled in different ICs.
+</p>
+<p>
+2) I scoped the supply lines for the ICs and the DRAM modules. I found
+a jitter of up to .3 Volts on each line (GND and VCC). So I added
+a .1uF multilayer capacitor to the 'LS257 that generate the
+multiplexed RAM address lines, and a 1u MLC in parallel to the
+already existing capacitors in the DRAM supply lines. The jitter
+did not improve much, although I had one effect: before adding the caps
+the problems mentioned above in 1) were also seen in addresses $47 and
+$67, and sometimes $44, $48, $64 and $68 - which is fixed now.
+</p>		</TD>
 </TR>
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>

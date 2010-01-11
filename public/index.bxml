@@ -28,6 +28,9 @@ This is currently planned only.</li>
 
   </overview>
   <news>
+    <item date="2010-01-12" state="hot">
+        During the developement of my <a href="csa/ramdisk/index.html">RAMDisk</a> board I had a very good discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal design er of the Commodore Plus/4, C16/C116, and the much more successful Commodore 128, in which I learned a lot about hardware design in a mass production setup. Here is a summary of our <a href="icaphw/design.html">discussion about the use of DRAM and schematics and board design in general</a>.
+    </item>
     <item date="2010-01-06">
 	Added a <a href="petindex/extensions.html">PET extension page</a>, as well as a page for the <a href="petindex/drives/harddisk.html">PET harddisks</a> to the PETindex. Fix an error in the keyboard matrix shown on the keyboard page. Improve layout of some PETindex pages.
     </item>
