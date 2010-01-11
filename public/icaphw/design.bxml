@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="Bil Herd helping me with his design knowledge">
+<webpage name="Bil Herd helping me out - a lesson in hardware design">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -15,6 +15,11 @@
 	</p><p>
 	This page is organized in sections that roughly go as the discussion happened, but as discussion moved on, I'll summarize
 	some posts for specific topics. The discussion took place May to July 2007.
+	</p><p>
+	So far the RAMDisk board has not been finished, and the PET-on-a-chip (on an FPGA that is) has not appeared yet, but
+	I still have things on the TODO list...
+	</p><p>
+	Many thanks to Bil for his understanding and help in these issues!
 	</p>
   </overview>
   <news>
@@ -32,10 +37,11 @@
 	<desc><p>
 	This answer shows off the difficulties you run into when using buffers as delay. What I realized is of course in a mass-production 
 	setup, even very small error rates multiplied by the production numbers can give large numbers of actual errors happening.
-	</p><p>
-	A.: &quot;You can delay the data by feeding it through a buffer (e.g. 74ls245) first.&quot;
-	</p><p>
-	Bil: &quot;Bear in mind that I was from the production world where I had to pay strict attention to specs or get thousands of failures, not to mention the range of
+	</p>
+	<div class="interview"><p class="first">
+	<span class="me">Me:</span> You can delay the data by feeding it through a buffer (e.g. 74ls245) first.</p>
+	<p class="first">
+	<span class="other">Bil:</span> Bear in mind that I was from the production world where I had to pay strict attention to specs or get thousands of failures, not to mention the range of
 temperatures, voltages and related part specs that we had to account for. (as it was parts didn't always pay attention to specs and we would get
 thousands of failures).  You can often get designs to work just fine in low quantities at room temperature under a stable voltage... I.E. some things I
 couldn't do will work just fine for experimenters.
@@ -52,8 +58,7 @@ You also slow things time by the TProp of the buffer so at best you pick up a ho
 	</p><p>
 This was a recurring stickyness to 6502 designs, I used PHI0 (clock source instead of clock output)  a lot and thought about using long traces on data
 lines (joke) among other things... more than one engineer got everything else right except for this part.
-&quot;
-	</p>
+	</p></div>
 	</desc>
      </subsection>
    </section>
@@ -65,7 +70,8 @@ lines (joke) among other things... more than one engineer got everything else ri
 	<p>Here I learned the basics of DRAM design, unfortunately after the fact of the RAMDisk board design. And in Bil's speak I have not
 		yet earned the 'DRAM badge'. After all I only have the architectural issues right, the timing it seems probably only partly, but
 		with the environmental aspects I'm still somewhat lost...</p>
-	<p>Bil: &quot;
+	<div class="interview">
+	<p class="first"><span class="other">Bil:</span>
 There are three aspects to making DRAMs work; absolutely getting all of the timings correct, the environmental aspects of noises, glitches and
 terminations, the architectural issues such as access mode and DRAM organization, refresh, etc.
 </p><p>
@@ -110,9 +116,9 @@ tackling DRAMS for production release.... tricky critters on the outside, very s
 with leakage and you have a DRAM array.  BTW, I have never been to school for any of this (electronics or college, etc), it is careful study of the specs
 and then some lumps along the way.  We didn't have simulators back then, we started with timing analysis on graph paper and then later used visicalc type
 programs, there are about 16 specs you need to account for if memory serves.
-	&quot;</p>
-	<p>
-	Part of my anser then: &quot;
+	</p>
+	<p class="first">
+	<span class="me">Part of my anser then:</span>
 Timing and
 architecture I think I can cope with.
 </p><p>
@@ -122,21 +128,23 @@ so I do have problems with the noises and glitches.... :-(
 education, so I know the theory, but as you know "in theory
 there is no difference between theory and practice".... ;-)
 </p>
-<p>And part of Bil's answer: &quot;
+<p class="first"><span class="other">And part of Bil's answer:</span>
 Sounds like you have the basics covered.  Problem with deriving mux through several inversions is that if the chip is fast, say 1ns, you have only 4ns, if
-+it is slow, say 4 ns, you have 16; huge change as parts in a chip tend to track each other.
+it is slow, say 4 ns, you have 16; huge change as parts in a chip tend to track each other.
 
 The shift register approach is a very usable approach, saved my ass a few times (see the 8563 story).  I could even move a wire from tap to tap like
-+adjusting the dwell in a car.  Problem is we used one half cycle of the 8mhs clock I think, and again frequencies are controlled but not duty cycles.
+adjusting the dwell in a car.  Problem is we used one half cycle of the 8mhs clock I think, and again frequencies are controlled but not duty cycles.
 
 I used to say it's all analog, we just call certain voltages after certain time periods a one or a zero but it was very analog to get there.  The insides
-+of the old NMOS chips even more so, they would pick device sizes based on analog parameters to drive digital circuitry.
-&quot;</p>
+of the old NMOS chips even more so, they would pick device sizes based on analog parameters to drive digital circuitry.
+</p></div>
 	</desc>
      </subsection>
      <subsection toc="tests" name="DRAM testing">
 	<desc><p>Bil then quickly came to the part of testing the DRAM. A sign of his ingenuity I think is the use of the light pen as scope trigger.
-	</p><p>Bil: &quot;
+	</p>
+	<div class="interview">
+	<p class="first"><span class="other">Bil:</span>
 An important part of any DRAM development is a GOOD DRAM test, the last thing you want to do is catch a dram problem by backtracking a crash.  The one
 problem I told you about where the one bit would get drug along with the rest (ground pin lift) was not caught in a DRAM test, it would just crash.  I
 noticed that it often put an "@" sign into a spot in the video memory early in the crash so I hooked a light pen to the scope and analyzer and held it up
@@ -148,8 +156,8 @@ description including the math of what I learned an intuitive feel for you might
 http://www.amazon.com/High-Speed-Digital-Design-Handbook-Black/dp/0133957241/ref=pd_bbs_sr_1/103-1146968-2278230?ie=UTF8&amp;s=books&amp;qid=1180370749&amp;sr=8-1  I
 have bought three of these books and give them away every couple of years to old friends, young engineers, etc.
 	&quot;</p>
-	<p>After I described my feeble basic tests, he went on</p>
-	<p>Bil: &quot; 
+	<p class="first">After I described my feeble basic tests, he went on:</p>
+	<p class="first"><span class="other">Bil:</span> 
 It helps to know whether it is data or addresses that are the problem.  If you pound the same pattern into every location do you get other data values
 appearing or is it a matter that some locations never really see the address to write to the bad location.  If you write half of the memory and then read
 the other half does the untouched half ever change?  Does memory locations degrade the more you access the device?
@@ -168,7 +176,7 @@ fact a lot of dram testors used to run the parts at 4.6v and 5.4 to catch failur
 </p><p>
 When you scope you should get an area around /RAS and /CAS signals that is completely clear of any transitions including termination effects.  If your
 scope trace isn't perfectly clean (trigger on CAS and RAS) then you will probably have problems.
-	&quot;</p>
+	</p></div>
 	</desc>
      </subsection>
 
@@ -177,11 +185,13 @@ scope trace isn't perfectly clean (trigger on CAS and RAS) then you will probabl
 	<desc>The discussion so far was based on just mails and my description of my system. Finally Bil had a look at my <a href="../csa/vdc/index.html">VDC</a> and <a href="../csa/ramdisk/index.html">RAMDisk board</a> and gave some feedback</desc>
 
      <subsection toc="vdc" name="VDC feedback">
-	<desc><p>Bil: &quot;Does the graphics card have any known issues?  What is the part number you use for DRAM on that?  I see some things I can make general comments about as
+	<desc>
+	<div class="interview">
+<p class="first"><span class="other">Bil:</span>Does the graphics card have any known issues?  What is the part number you use for DRAM on that?  I see some things I can make general comments about as
 kind of good practices but if you had beat the heck out of the card and had no known issues it would change some of my comments.  Have you run extensive
 tests on the memory on that card?
-&quot;</p>
-	<p>A: &quot;I did not do extensive testing in terms of heat fan, cold spray, different voltages etc. I did write some memory tests, though, checking RAM access.
+</p>
+	<p class="first"><span class="me">Me:</span>I did not do extensive testing in terms of heat fan, cold spray, different voltages etc. I did write some memory tests, though, checking RAM access.
 Although they were in your eyes probably not very sophisticated.
 </p><p>
 Currently it has no known issues. I use the 41464 type of 4x64kBit ICs and have tested two or three brands, with access times (IIRC) from 70 or 80ns,
@@ -189,16 +199,16 @@ Currently it has no known issues. I use the 41464 type of 4x64kBit ICs and have 
 pictures :-)
 In http://www.6502.org/users/andre/csa/vdc/csa_vdc_v1.3e.jpg you can see the manufactured board version with the 100ns dRAMs. This one mostly uses 'ALS,
 while the old one uses 'LS only.
-&quot;</p>
-<p>Bil: &quot; I actually meant testing as in lots of dram patterns to make sure that its actually is running correctly. (dram testing can be a whole chapter by itself
+</p>
+<p class="first"><span class="other">Bil:</span>I actually meant testing as in lots of dram patterns to make sure that its actually is running correctly. (dram testing can be a whole chapter by itself
 but filling an entire array and then checking and walking bit patterns are some of the basics)  We used to use a modulo other than a binary number as you
 could actually have stuck address lines and not know it if the low order data bits are the same regardless of the hi order address lines)
 </p><p>
  The other techniques aren't really testing per se they are 'characterizing".
 </p><p>
 How many of the video card have you built?  You mentioned some tearing with heat?
-&quot;</p>
-<p>A: &quot; I did not do these sophisticated tests. I ran some basic tests (like filling with $00, $55, $aa, $ff and byte address within page a lot of times), then
+</p>
+<p class="first"><span class="me">Me:</span>I did not do these sophisticated tests. I ran some basic tests (like filling with $00, $55, $aa, $ff and byte address within page a lot of times), then
 let it run with my multitasking operating system, which worked fine so I assumed the address decoding is ok (the memory is used in separate 4k blocks,
 and video is coming from it, so I assumed that address line mix-ups are discovered pretty quickly.
 I actually built two video boards, one soldering each connection with wires, the second by using an etched(?) PCB.
@@ -207,20 +217,22 @@ The video output started to show some horizontal wiggling about 1/2 pixel left/w
 "beat"(?) - meaning the interference between two almost identical frequencies - 50Hz power line and 50Hz vertical video refresh, getting a problem when
 the 7805 got hot. But the dRAM did not seem to make problems. Although, thinking about it, seldom background processes (it's a multitasking OS) seemed to
 suddenly fail without reason in this situation, which could be caused by bad dRAM accesses on the video card.
-&quot;</p>
+</p>
+</div>
 
 	</desc>
      </subsection>
      <subsection toc="ramdisk" name="RAMDisk feedback">
 	<desc><p>Finally the discussion went on with the feedback to the RAMDisk board.
 		Here Bil showed me some more basics of timing design by actually doing the maths on the delay times.</p>
-<p>A: &quot; BTW, the RAMdisk schematics is online now: http://www.6502.org/users/andre/csa/ramdisk/index.html
+<div class="interview">
+<p class="first"><span class="me">Me:</span>BTW, the RAMdisk schematics is online now: http://www.6502.org/users/andre/csa/ramdisk/index.html
 I switched IC6 (74*00) and IC12 (74*139) between 'LS, 'ALS and 'F, where 'LS was worst, 'ALS was bad, and 'F only had two addresses out of each 256 byte
 block (the same addresses for all blocks) with errors. The test was a simple write-page-then-read-page test where the value written was the index (byte
 address) in the page. As I said before, I ran out of time during the weekend to make more tests.
-&quot;</p>
-<p>Bil then gave feedback on the 1.0A RAMDisk board</p>
-<p>Bil: &quot; The main problem that I see is that you have many levels off TTL delays
+</p>
+<p class="first">Bil then gave feedback on the 1.0A RAMDisk board</p>
+<p class="first"><span class="other">Bil:</span>The main problem that I see is that you have many levels off TTL delays
 in critical signals.
 </p><p>
 If you look below, the delay from PHI2 to /CAS going low or high is
@@ -247,2325 +259,133 @@ it a higher frequency like 8mhz and use some state machines to create a
 nice tight DRAM controller.  If you don't have a higher freq then get
 something consistent by way of delay line to create the relationship
 between RAS, MUX and CAS.
-&quot;</p>
+</p>
 <p>
 <table border="1"
  style='width:482.0pt;margin-left:-.75pt;border-collapse:collapse'>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;border:
-  none;border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;border:none;
-  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;border:none;
-  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>Min</span></p>
-  </td>
-  <td     style='width:48.0pt;border:none;
-  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>Max</span></p>
-  </td>
-  <td     style='width:48.0pt;border:none;
-  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;border:none;
-  border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;border: none;border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>Min</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>Max</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> 
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>BPHI2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>BPHI2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>M2PHI2/RAS</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS243</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>18</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC13</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>M2PHI2/RAS</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS243</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>18</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC13</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>/rdata, /wdadta</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS138</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-<span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>40</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>/rdata, /wdadta</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS138</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>40</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>/RWDATA</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>/RWDATA</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Data Buffer Enable</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS245</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>40</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC10</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Data Buffer Enable</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS245</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>40</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC10</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time delay PHI2 to Data Enable</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>24</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>128</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time delay PHI2 to Data Enable</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>24</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>128</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>BHPHI2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>BHPHI2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>M2PHI2/RAS</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS243</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>18</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC13</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>M2PHI2/RAS</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS243</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>18</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC13</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>ADDSEL</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>ADDSEL</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS139</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>40</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC12</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS139</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>40</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC12</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time Delay Phi2 to CAS</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>38</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>176</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time Delay Phi2 to CAS</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>38</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>176</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>M2PHIS2/RAS</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>M2PHIS2/RAS</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>ADDSEL</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>ADDSEL</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>MADDR</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS257</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>21</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC18</span></p>
-  </td>
-  <td   colspan='2'   style='width:96.0pt;
-  padding:0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time to invalid</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>MADDR</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS257</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>21</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC18</span></p> </td> <td   colspan='2'   style='width:96.0pt; padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time to invalid</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time Delay RAS Addr Hold</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>21</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>87</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time Delay RAS Addr Hold</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>21</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>87</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>ADDSEL</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>ADDSEL</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p ><span style='font-size:10.0pt;
- '>7414</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>5</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>22</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC2</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p ><span style='font-size:10.0pt; '>7414</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>5</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>22</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC2</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS00</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>4</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>15</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS00</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>4</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>15</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS139</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>40</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>IC12</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS139</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>40</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>IC12</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time Delay Mux to CAS</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>19</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'  >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>92</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time Delay Mux to CAS</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>19</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'  > <p   style='text-align:center'> <span style='font-size:10.0pt;'>92</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>ADDSEL</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>LS257</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>21</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>ADDSEL</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>LS257</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>21</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>Time Delay Mux to CADD</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>6</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt' >
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>21</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>Time Delay Mux to CADD</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>6</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt' > <p   style='text-align:center'> <span style='font-size:10.0pt;'>21</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td>
  </tr>
- <tr  style='height:12.75pt'>
-  <td     style='width:146.0pt;padding:
-  0in 5.4pt 0in 5.4pt;height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p   style='text-align:center'>
-  <span style='font-size:10.0pt;'>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span style='font-size:10.0pt;
- '>&#160;</span></p>
-  </td>
-  <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt;
-  height:12.75pt'>
-  <p ><span>&#160;</span></p>
-  </td>
+ <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span>&#160;</span></p> </td>
  </tr>
 </table>
 </p>
-<p>I put my answers in the reply into the text, I am reproducing them here 
-slightly edited:</p><p>
-A:  first two remarks:<br/>
+<p class="first">I put my answers in the reply into the text, I am reproducing them here 
+slightly edited:</p>
+<p class="first">
+<span class="me">Me:</span>  first two remarks:<br/>
 - the bus runs with 2MHz at most. So a half-cycle (like Phi2 high) is about 250ns or larger.<br/>
 - Although the schematics mostly say it's an 'LS IC, it actually is an 'ALS except where noted on the web site. And 'ALS are faster and drive more inputs.
 </p><p>
-Seems I got careless thinking 'ALS is so much faster...&quot;
-</p><p>The following remark already refers to version 1.0C where I had <code>Phi2</code> 
-connected to IC6D: &quot;
+Seems I got careless thinking 'ALS is so much faster...
+</p>
+<p class="first"><span class="me">The following remark already refers to version 1.0C where I had <code>Phi2</code> 
+connected to IC6D:</span> 
 B2PHI2 goes high on each transition of Phi2, and low about 70ns after that
 (see the CPU board schematics). It is designed to be directly used as /RAS
 on dRAM chips, and that works with the video card.
@@ -2576,25 +396,26 @@ On the RAMDisk, the delay of the hi-lo-transition of /CAS to rising Phi2 is abou
 really 246ns after Phi2 going high. The rising transition of /CAS, though, has a
 shorter delay. Here BPHI2 -> MPHI2 -> IC6D ('00) -> IC12A ('138) -> /CAS, which gives
 between 14 and 73ns.
-&quot;</p>
-<p>About the 'wiggle' on the RAS, MUX, CAS lines: &quot;
+</p>
+<p class="first"><span class="me">About the 'wiggle' on the RAS, MUX, CAS lines: </span>
 IIRC the dRAM (at least the ones for the video card) do the actual data transfer
 at the first rising edge of /CAS and /RAS, where here /RAS is faster (closer to falling PHI2)
 and /CAS basically has to fulfill the precharge condition for the next access.
 The data lines need not be stable during /CAS going low, only a preset time before
 the actual transfer (rising /RAS or rising /CAS, whatever comes first) for a write.
-&quot;</p>
-<p>My comment about the A22/A23 lines: &quot;
+</p>
+<p class="first"><span class="me">My comment about the A22/A23 lines:</span>
 A22 and A23 are stable from the 6502 during Phi2, and during Phi1 /CAS does not
 go low - I use /RAS-only refresh.
-&quot;</p>
-<p>A: &quot; On the bus I have 16MHz, as well as 8Phi2 - which is either 16M or 8M, depending
+</p>
+<p class="first"><span class="me">Me:</span>On the bus I have 16MHz, as well as 8Phi2 - which is either 16M or 8M, depending
 on whether the bus runs at 2MHz or 1MHz (8Phi2 is used as pixel clock in the
 video card for example). IIRC I found the clock granularity of 8-times the clock
 barely good enough to handle the /RAS generation using a shift register.
 After all a clock cylce at 16M is 62,5ns - very long time within the 250ns access
 window.
-&quot;</p><p>
+</p>
+</div><p>
 Well, nowadays (i.e. when I write this in 2010) I would indeed do it differently. The <a href="../petindex/8x96.html">CBM8296</a> actually is
 a good example how to create a simple DRAM controller. A counter provides synchronous signals for 1, 2, 4, and 8 MHz - and those are fed
 into a PROM that produces DRAM control signals. In this case you can even use half-cycles of the top frequency. 
@@ -2605,7 +426,8 @@ the 62.5ns as mentioned in the discussions.
      </subsection>
      <subsection toc="debugging" name="Debugging DRAM">
 <desc><p>Bil gave me some advice on how to debug DRAM memory and on the tools to use.</p>
-<p>First I described him the error patterns that I had: &quot;
+<div class="interview">
+<p class="first"><span class="me">First I described him the error patterns that I had:</span>
 Hi Bil,
 </p><p>
 let me keep you up with my current state of affairs, with the
@@ -2657,8 +479,8 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 What is your guess? Could it still be a timing issue or is it rather more
 of a supply voltage problem?
 What makes me wonder is that only very specific addresses are infected.
-&quot;</p>
-<p>Bil: &quot; 
+</p>
+<p class="first"><span class="other">Bil:</span> 
 Troubleshooting by interpreting the data values and error patterns is tricky at best when you have only one type of error,  you may have a couple of
 errors going at the same time.
 </p><p>
@@ -2718,8 +540,9 @@ system as a whole, and then the same technique applies, I look first at all sign
 factors until left with a few culprits.  I use to use a wet fingertip as a sloppy capacitance test and kept a few sets of different drams and had the
 board socketed as it was significant if TI DRAMS changed the error vs. Micron.
 </p><p>
-Hope this helps.&quot;
+Hope this helps.
 </p>
+</div>
 </desc>
 
      </subsection>
@@ -2727,15 +550,17 @@ Hope this helps.&quot;
   <section toc="practices" name="Further Best Practices">
 	<desc>Here Bil gave me some more about best practices</desc>
 	<subsection toc="board_design" name="Advice on board design">
-	   <desc><p>B: &quot;
+	   <desc>
+<div class="interview">
+<p class="first"><span class="other">Bil:</span>
 When driving DRAMs it is important to understand that these parts, let
 alone the arrays, have very large capacitance on the their inputs,
 particularly RAS and CAS.  You want to drive them with something capable
 of source 10-16ma as an example and then you want a series resistor near
 the source to absorb reflections, typ 22ohm.  
-&quot; [Later clarification: that is a resistor between the driver output
+[Later clarification: that is a resistor between the driver output
 and the DRAM input in the /RAS resp. /CAS line.  metal film or even carbon 
-is fine but carbon is a little obsolete I think.] &quot;
+is fine but carbon is a little obsolete I think.]
 Even more so due to the
 impedance changes you get going across connectors and onto the SIMS.
 Try to stay away form driving with an LS32 as an example (yes I have
@@ -2793,7 +618,7 @@ closer to languages like Verilog and VHDL.
 [...]
 </p><p>
 Hope I don't sound preachy! :-)
-	   &quot;</p><p>
+	   </p></div><p>
 Not at all :-)</p></desc>
 	</subsection>
 	<subsection toc="physics" name="More Physics">
@@ -2803,7 +628,8 @@ Not at all :-)</p></desc>
 			I guess a mix of inexperience and 'it worked before' made me
 			not think about it. Here I got a lesson...
 			</p>
-<p>A: &quot; "Series resistors" similar to the ones mentioned above? I remember
+<div class="interview">
+<p class="first"><span class="me">Me:</span>"Series resistors" similar to the ones mentioned above? I remember
 seeing these
 on the CBM boards :-)
 One question - would this resistor not increase the time for the signal
@@ -2811,8 +637,8 @@ to get the
 right value on the DRAM input, as it takes longer to load up the large
 capacitance
 you mentioned?
-&quot;</p><p>
-Bil: &quot; Good observation, yes you start to induce an RC component.  I have
+</p><p class="first">
+<span class="other">Bil:</span> Good observation, yes you start to induce an RC component.  I have
 occasionally used 47ohm, (very fast crystal osc, and F/ALS) the highest
 practice is 68 ohm in my experience.  Not to be confused with bus
 terminators such as 220/330 pairs..
@@ -2825,14 +651,14 @@ impedance.  The amount of mismatch in the driver and receiver impedances
 is reflected back since it is not absorbed.  When the end of a pcb trace
 is hit and there is no load resistance, the entire signal is reflected
 (infinite impedance at the end of the stub)
-&quot;</p><p>
-My comment on driving the clock only at the source:
-&quot; That's a difficult goal with a slot architecture. All signals are
+</p><p class="first">
+<span class="me">My comment on driving the clock only at the source:</span>
+That's a difficult goal with a slot architecture. All signals are
 buffered on the
 CPU board, and most signals have input receivers on the boards, at least
 the ones that are sensitive or have a higher number of inputs.
-&quot; </p><p>
-Bil: &quot;
+</p><p class="first">
+<span class="other">Bil:</span> 
 ESPECIALLY when you want to keep the clock phases equal across the
 boards.  These days phase locked loops are used as integral parts  of
 clock generation circuits where the clock gets feedback from the board
@@ -2840,15 +666,15 @@ and the phase is changed to match the reference.  If it feels hard to
 distribute one clock due to load, think about all of the mins and maxes
 on clocks adding up.  It's a tough part of design, I have seen an entire
 designs basically fail due to bad clock distribution methodology.
-&quot;</p>
-<p>Now I had to confess I'm using double sided boards without a 
-ground plane: &quot; Ahm... Well... hm.. actually - no ground plane, sorry. Worked for me so
+</p>
+<p class="first"><span class="me">Now I had to confess I'm using double sided boards without a 
+ground plane:</span>Ahm... Well... hm.. actually - no ground plane, sorry. Worked for me so
 far,
 and I know it's not production-ready. It's probably a wonder why my
 computer
 actually works... ;-)
-&quot;</p>
-<p>Bil: &quot; Okay, 2 layer works, used it for many many years.  The trick is to not
+</p>
+<p class="first"><span class="other">Bil:</span> Okay, 2 layer works, used it for many many years.  The trick is to not
 have any stubs for power and ground traces, and DON'T feed power from
 one edge and ground from the other.  (called inter-digitated).  I always
 ran a ground ring around one side and a power ring around another, then
@@ -2858,12 +684,12 @@ power feed is to the ground feed, the lower the mutual inductance.
 Higher inductance means higher impedance, higher impedance means less
 effective response to high frequency current needs and noise starts to
 modulate the power supply traces.
-&quot;</p><p>
-A:&quot; How many layers did the C128 board have?&quot;
-</p><p>
-Bil: &quot; 2 :)  CHEAP
-&quot;</p><p>
-Then some more about capacitors: &quot;
+</p><p class="first">
+<span class="me">Me:</span> How many layers did the C128 board have?
+</p><p class="first">
+<span class="other">Bil:</span> 2 :)  CHEAP
+</p><p class="first">
+<span class="me">Then some more questions from me about capacitors: </span>
 I always have a 47u or 100u at the bus connector where the power lines
 are.
 Tantal capacitors are faster, right? Puh, I should know why different
@@ -2873,21 +699,20 @@ to move)
 in the capacitor. That difference shows in the equivalent circuit
 diagram in the
 parasitic values..., right?
-&quot;
-</p><p>
-Bil: &quot; Yes to all.  Higher Effective Series Resistance (ESR) (Z goes up),
+</p><p class="first">
+<span class="other">Bil:</span> Yes to all.  Higher Effective Series Resistance (ESR) (Z goes up),
 higher inductance (Z goes up), more pronounced self-resonance formed by
 the capacitance and inductance (Z goes up), more leakage acts as a
 voltage divider.  Agile describes it nicely and intuitively as all of
 the corner frequency coming down gets into the frequency you are trying
 to filter.
-&quot;</p><p>
-A: &quot;What is a ".1 MLC"? I normally use 100n ceramic caps across all ICs.
+</p><p class="first">
+<span class="me">Me:</span> What is a ".1 MLC"? I normally use 100n ceramic caps across all ICs.
 (And "ant" should mean "tantal", right ;-)
-&quot;</p><p>
-Bil: &quot;
+</p><p class="first">
+<span class="other">Bil:</span>
 What kind of ceramics?  Some of those aren't really capacitors for our
-purposes (flat disc) &quot;[Oooops]&quot;.  MLC is Multilayer Ceramic, the little tiny ones
+purposes (flat disc) [Oooops].  MLC is Multilayer Ceramic, the little tiny ones
 that have very low self inductance and good tolerances.  I saw an entire
 computer fail that had Z5U ceramic because they lost more than 20% with
 a little temperature.  Tants are Tantalums, yup, excellent hi frequency
@@ -2895,26 +720,26 @@ response though I have seen many burst into flames over the years.  WILL
 burn if put in backwards.  I use safety glasses or put a piece of paper
 over a pcb that I power up for the first time because of it.  (flaming
 tantalum metal in the eye... yuck)
-&quot;</p><p>
-A: &quot; What is a "dwg"? (remember, English is not my mother language)
-&quot;</p><p>
-Bil: &quot; I have been accused of not speaking good English also. :)  dwg is
+</p><p class="first">
+<span class="me">Me:</span> What is a "dwg"? (remember, English is not my mother language)
+</p><p class="first">
+<span class="other">Bil:</span> I have been accused of not speaking good English also. :)  dwg is
 drawing, I didn't even realize I shortened it.
-&quot;</p><p>
+</p><p class="first">
 I continue explaining that my version of Eagle (the non-profit version)
-only allows a single sheet for a schematics.</p><p>
-Bil: &quot; Your comment about Eagle allowing only one page would explain the
+only allows a single sheet for a schematics.</p><p class="first">
+<span class="other">Bil:</span> Your comment about Eagle allowing only one page would explain the
 compactness.
-&quot; </p><p>
-Now I comment on the timing diagrams: &quot; Yes, I already do relationships, where I draw small errors from one
+</p><p class="first">
+<span class="me">Now I comment on the timing diagrams:</span> Yes, I already do relationships, where I draw small errors from one
 signal to
 the next (or even from multiple input signals to an output). That's how
 I made the
 schematics for the auxiliary processor and coprocessor boards, and make
 them
 work almost on the first try :-) (I'm still proud of that one :-)
-&quot;</p><p>
-Bil: &quot; Good.  Remember it's about the min and max delays of all series
+</p><p class="first">
+<span class="other">Bil:</span> Good.  Remember it's about the min and max delays of all series
 components, not just a logical thinksheet.  You sometimes end up with a
 line for each gate delay, sometimes you can lump several into one
 relationship  Good practice for drams is to replicate the entire dram
@@ -2922,24 +747,24 @@ timing detail (not the one that shows the different kinds of cycles but
 the one that shows the complete details for a read and a write) and
 write out your calculated result for every single parameter.  It becomes
 second nature after a couple.
-&quot;</p><p>At least this I learned and used it in the 65816 board. Then the discussion
+</p>
+<p class="first">At least this I learned and used it in the 65816 board. Then the discussion
 went into the programmable logic.
-</p><p>
-A: &quot; As I said, I want people to understand what I do, so I did not use them
+</p><p class="first">
+<span class="me">Me:</span> As I said, I want people to understand what I do, so I did not use them
 [ed: programmable logic like GALs] before.
 But that'll change with the 65816 board, where I use the 22V10.
 </p><p>
 And for next year I plan to make a FPGA board, and put some 6502 into
 that :-))
 The first plan is to make a "PET on a chip", then go beyond :-)
-&quot;
-</p><p>
-Bil: &quot; Jerry Ellsworth did the C64 on a chip.  FPGA's are COOL! You can
+</p><p class="first">
+<span class="other">Bil:</span> Jerry Ellsworth did the C64 on a chip.  FPGA's are COOL! You can
 simulate your problems so it is cheaper, easier and faster than building
 circuits and troubleshooting them.  I got lazy I would actually not
 check enough for errors because it was so easy to recompile and test
 again.
-&quot;</p></desc>
+</p></div></desc>
 	</subsection>
    </section>
    <section toc="final" name="Final words">
@@ -2951,19 +776,20 @@ solve the timing problems with my 65816 board.</p>
 	</subsection>
 	<subsection toc="license" name="Permission">
 	<desc><p>Finally I asked Bil if I could put these comments up on a web page</p>
-<p>A: &quot; Would you actually mind if I write your comments up and put them on some
+<div class="interview">
+<p class="first"><span class="me">Me:</span> Would you actually mind if I write your comments up and put them on some
 kind
 of "design guidelines" page as part of my web site? I would feel
 honored.
 (of course they will be credited to you and I will put a preliminary
 version onto
 an unlinked page or send it to you so you can check)
-&quot;</p><p>
-Bil: &quot; No problem, I may occasionally use the wrong phrase or get the wording
+</p><p class="first">
+<span class="other">Bil:</span> No problem, I may occasionally use the wrong phrase or get the wording
 of a fact wrong as it has been many many years since I worked too
 actively with most of this, this is all form memory.
-&quot;
-</p></desc>
+
+</p></div></desc>
 </subsection>
   </section>
   <closing>

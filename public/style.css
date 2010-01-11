@@ -148,6 +148,21 @@ LI.hotnews {
 	list-style-image:url(imgs/hotnews.gif);
 }
 
+DIV.interview {
+	margin-left:1em;
+}
+
+DIV.interview p.first {
+	text-indent:-1em;
+}
+
+DIV.interview .me {
+	font-weight:bold;
+}
+DIV.interview .other {
+	font-weight:bold;
+}
+
 LI.homepage {
 	list-style-image:url(imgs/dir.gif);
 	font-size:large;

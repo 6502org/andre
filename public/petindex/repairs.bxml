@@ -18,12 +18,12 @@
     </item>
   </news>
   <toc/>
-  <itemlist name="Generic Advice">
+  <itemlist toc="generic" name="Generic Advice">
     <desc>
 	This section contains generic advice.
     </desc>
     <items>
-     <item name="Tools">
+     <item toc="tools" name="Tools">
 	<desc>
 	In general you should have good tools if you endeavor to analyze
 	and fix a hardware problem (not only(!)) with your PET ...
@@ -134,7 +134,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
       </subitem>
     </items>
   </itemlist>
-  <itemlist name="PET's dead">
+  <itemlist toc="dead" name="PET's dead">
     <desc>
 	This section describes situations where the PET seems to be "dead".
 	<br/>
@@ -172,7 +172,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
       </subitem>
     </items>
   </itemlist>
-  <itemlist name="Funny characters on the screen">
+  <itemlist toc="funny" name="Funny characters on the screen">
     <desc>
 	This section has descriptions of symptoms with "funny characters"
 	on the screen and other video problems.
@@ -203,7 +203,7 @@ version of the video board for the original PET that went bad frequently.</p>
       </subitem>
     </items>  
   </itemlist>
-  <itemlist name="Monitor and other weird symptoms">
+  <itemlist toc="monitor" name="Monitor and other weird symptoms">
     <desc>
 	This section has an assorted list of symptoms...
     </desc>
@@ -241,7 +241,7 @@ version of the video board for the original PET that went bad frequently.</p>
       </subitem>
     </items>  
    </itemlist>
-   <itemlist name="Links">
+   <itemlist toc="links" name="Links">
     <desc>
 	This section has links to descriptions of how hardware
 	issues with the PET have been resolved.

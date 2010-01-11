@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <board>
-	<name>CS/A65 ramdisk</name>
+	<name>CS/A65 RAMDisk</name>
 	<keywords>CSA65 6502 ramdisk SIMM</keywords>
         <lastmodified>2010-01-07</lastmodified>
 	<desc><p>

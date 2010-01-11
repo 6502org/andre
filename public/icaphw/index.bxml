@@ -29,7 +29,9 @@
     <!--desc>
     </desc-->
     <items>
-      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006)
+      <subitem name="Hardware design lesson" link="design.html"> - the designer of the Commodore 128 talks with me about hardware design (2010).
+      </subitem>
+      <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006).
       </subitem>
       <subitem name="UART serial interface" link="c64ser.html"> - use an UART chip for a high speed RS232 using its builtin FIFO buffer in a 6502 system (1997).
       </subitem>
