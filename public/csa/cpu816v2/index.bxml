@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <board>
-	<name>CS/A 65816 CPU</name>
+	<name>CS/A 65816 V2 CPU</name>
 	<keywords>CSA65 65816 CPU</keywords>	
 	<lastmodified>2010-04-11</lastmodified>
 	<desc><p>This board implements a 65816 CPU board for the CS/A computer.
@@ -189,6 +189,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		<file ltype="schem" ptype="png">csa_cpu816-v2.0b-sch.png</file>
 		<file ltype="schem" ptype="esch">csa_cpu816-v2.0b.brd</file>
 		<file ltype="schem" ptype="png">csa_cpu816-v2.0b-brd.png</file>
+		<file ltype="parts" ptype="txt">csa_cpu816-v2.0b.parts</file>
 		<file ltype="logic" ptype="vhd" note="CPLD VHDL source">csa_cpu816-v2.0b.vhd</file>
 		<file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">csa_cpu816-v2.0b.ucf</file>
 		<file ltype="logic" ptype="jed" note="CPLD compiled source">csa_cpu816-v2.0b.jed</file>

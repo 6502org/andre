@@ -1,0 +1,23 @@
+Partlist CSA_CPU816_V2.0B
+
+U1       W65C816SP (40pin DIL)    
+
+	Note: RAM is what I used, other types should work as well
+	Note: I used 2 DIP and 2 SOP as first try in using SMD
+IC6      512k Flash ROM Atmel AT29C010A 70ns
+IC2      512k RAM 628512 55ns (624008, 32p DIP32) BSI BS62LV4006PIP55 
+IC3,23   512k RAM 628512 55ns (624008, 32p SOP32) 
+
+IC1	 Xilinx XC9572-15 (15ns Xilinx CPLD, 72 Macrocells)
+IC5,9    74HCT245N       
+IC7,8    74ALS245N
+IC10     74HCT573N  
+IC15     74LS14N       - Note a 74ALS14 is too fast!   
+
+IC11	 74HCT688
+
+V6	 74HCT193
+QG1      16MHz Oscillator module
+
+P1       CSABUS            
+

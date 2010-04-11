@@ -29,32 +29,35 @@ This is currently planned only.</li>
   </overview>
   <news>
     <item date="2010-04-11">
+	Added a page for the <a href="mischw/xilinx/index.html">Xilinx tools</a> I am using for my newest designs
+    </item>
+    <item date="2010-04-11">
 	Updated the <a href="petindex/extensions.html">PET extensions</a> page.
     </item>
     <item date="2010-04-11" state="hot">
-	I finally made my first CPLD design work. See the <a href="csa/cpu816/index.html">CSA 65816 CPU</a> page.
+	I finally made my first CPLD design work. See the <a href="csa/cpu816v2/index.html">CSA 65816 CPU</a> page.
 	It currently runs at 1MHz, but that is stable!
     </item>
     <item date="2010-01-12" state="hot">
         During the developement of my <a href="csa/ramdisk/index.html">RAMDisk</a> board I had a very good discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal design er of the Commodore Plus/4, C16/C116, and the much more successful Commodore 128, in which I learned a lot about hardware design in a mass production setup. Here is a summary of our <a href="icaphw/design.html">discussion about the use of DRAM and schematics and board design in general</a>.
     </item>
-    <item date="2010-01-06">
+    <item date="2010-01-06" state="old">
 	Added a <a href="petindex/extensions.html">PET extension page</a>, as well as a page for the <a href="petindex/drives/harddisk.html">PET harddisks</a> to the PETindex. Fix an error in the keyboard matrix shown on the keyboard page. Improve layout of some PETindex pages.
     </item>
-    <item date="2010-01-04,2010-01-06">
+    <item date="2010-01-04,2010-01-06" state="old">
 	Add block diagram and memory map for <a href="csa/cpu816/index.html">65816 CS/A board</a>. 
 	Added V1.2B of the <a href="csa/pwr/index.html">power supply board</a>.
 	Added a (partially working) <a href="csa/ramdisk/index.html">RAMdisk board</a> using old 30pin SIMM dRAM modules.
     </item>
-    <item date="2010-01-03, 2010-01-07">
+    <item date="2010-01-03, 2010-01-07" state="old">
 	Fixed a number of links all over the place. Separated the knowledge bits section into two subsections.
     </item>
-    <item date="2010-01-01">
+    <item date="2010-01-01" state="old">
         Finally here it is!
         I managed to build the <a href="csa/cpu816/index.html">65816 CPU board</a> for the CS/A65.
         The CPU runs at 8 MHz and makes a PET real fast :-)
     </item>
-    <item date="2009-12-13">
+    <item date="2009-12-13" state="old">
 	A bit late, but actually in october 2009 the <a href="csa/index.html">CS/A65</a> 
 	had its 20th anniversary! I had hoped to have a 65816 CPU board ready
 	that I have in the making, but I am still working out some timing
@@ -192,7 +195,8 @@ to this page.</subitem>
       </subitem>
       <subitem name="Hardware Tools and Stuff" 
 		link="mischw/index.html">: Miscellaneous hardware stuff. 
-	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
+	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a> and a page
+	about the <a href="mischw/xilinx/index.html">Xilinx tools</a> I am using for my newest designs.
       </subitem>
      </item>
      <item name="6502 software stuff" class="sw">
