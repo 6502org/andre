@@ -1,0 +1,49 @@
+
+// execute an opcode in fast memory
+
+// write a long jump instruction to fast memory
+// check if the long jump is actually there (by reading it)
+// and execute it
+
+	*=$1000
+
+	sei
+	
+	; native mode
+	clc
+	xce
+	; index 16bit
+	rep #%00010000
+	.xl
+
+	; setup return jmp
+	lda #$5c	; JMP absolute long (interbank)
+	sta @$080000
+	lda #<retjmp	; low byte return addr
+	sta @$080001
+	lda #>retjmp	; page return addr
+	sta @$080002
+	lda #0		; bank return addr
+	sta @$080003
+
+	; copy the jump back to $2000. if unsure, uncomment the
+	; long jump below and first check if the memory actually contains 
+	; the return jump
+	ldx #3
+l1
+	lda @$080000,x
+	sta $2000,x
+	dex
+	bpl l1
+
+	; execute far jmp with direct jmp back to retjmp
+	jmp @$080000
+
+retjmp
+	; emulation mode
+	.xs
+	sec
+	xce
+	cli
+	rts
+

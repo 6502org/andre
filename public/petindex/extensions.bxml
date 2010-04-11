@@ -14,6 +14,10 @@
 	let me know!</p>
   </overview>
   <news>
+    <item date="2010-04-11">
+	Added the 8296GD, the MTU K1002 sound adapter, and updated the
+	Commodore graphics card adapter.
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
@@ -156,14 +160,28 @@ when memory mapped to $EC00:
 	</desc>
      </subsection>
      <subsection toc="petgraph" name="Commodore PET graphics card">
-	<desc>This graphics card allowed for 512x512 pixel resolution in 8 colors or 
+	<desc><p>This graphics card came in two versions, one black and white and one color.
+		They allowed for 512x512 pixel resolution - not exactly clear if the color version had the same 
+		resolution, though. The color version had 8 colors or 
 		8 grey levels. Sold for the 8296, 8000 and 4000 series, and even,
 		according to the site, into the B700 series. ASCII characters available in
-		different sizes vertical and horizontal. Comes with extra BASIC commands.
+		different sizes vertical and horizontal. Comes with extra BASIC commands.</p>
+		<p> Here is a comment from Steve Gray: 
+I have the PET series version. There are aparently two variation, with the difference being the power section. The CBM-II version comes in an external box with cartridge (http://www.wfking.de/hires.htm). I've also seen the board installed internally in the CBM710/720 machines. I haven't seen a colour version.  The documentation says the GPU chip is capable of doing colour but it's not implemented. Also, there are two versions of the chip. One does 512x256 (mine has this) and the other is 512x512. I'm not sure if Commodore ever made one with the 512x512 chip, or if you could simply swap one chip for the other.
+		</p>
 	</desc>
 	<extlink name="Commodore PET graphics card" link="http://www.cbmhardware.de/cbmwiki/index.php/PET-Grafikkarte_Commodore_ASSY_No._324402-01_f%C3%BCr_CBM_8296">Website is in German</extlink>
+	<extlink name="Commodore CBM-II graphics card" link="http://www.wfking.de/hires.htm"></extlink>
      </subsection>
-  </section>
+     <subsection toc="8296gd" name="Commodore 8296GD">
+	<desc><p>The PET prattle #1 mentions a 8296GD - a 8296D with a built in graphics card.</p>
+		<p>Again a comment from Steve Gray:
+Commodore also made a board specifically for the 8296. There is a PET Prattle article that says they released a machine with this called the 8296GD (it also had the build in drives). http://www.icpug.org.uk/national/archives/020227ar.htm..  It uses the 8296's built-in ram by piggybacking on the CRTC controller and CHRGEN chips with a ribbon cable going to the main board, plus a ROM in one of the option rom sockets. I've never seen a picture of it online but I have one picture if you are interested.
+		</p>
+	</desc>
+	<extlink name="PET prattle #1" link="http://www.icpug.org.uk/national/archives/020227ar.htm"></extlink>
+     </subsection>
+   </section>
 
   <section toc="composite" name="Composite Video">
     <desc><p>
@@ -178,6 +196,14 @@ when memory mapped to $EC00:
 	<desc>
 	</desc>
 	<extlink name="composite video from 'The PET revealed'" link="http://petlibrary.tripod.com/COMPVID.HTM"/>
+	<extlink name="updated version" link="http://www.6502.org/users/andre/csa/vdc/index.html"/>
+     </subsection>
+     <subsection toc="pcuoe" name="PET user group of england">
+	<desc>
+	</desc>
+	<extlink name="composite video from 'PET user group of england'" link="http://www.classiccmp.org/pipermail/cctech/2008-October/098537.html"/>
+	<extlink name="schematics of composite video" link="http://oldcomputers.net/pics/pet-video.jpg"/>
+	<extlink name="updated version" link="http://www.6502.org/users/andre/csa/vdc/index.html"/>
      </subsection>
      <subsection toc="witte" name="Witte Video interface">
 	<desc>A German company sold PET video adapters, see link</desc>
@@ -189,12 +215,23 @@ when memory mapped to $EC00:
     <desc>
 	This section describes some sound adapter extensions for the PET
     </desc>
+     <subsection toc="userport" name="Userport beep">
+	<desc>
+		There are a number of schematics available to actually connect the shift register output on the
+		PET userport with a speaker. This has been used in the early PETs, where there was no beeper yet.
+	</desc>
+     </subsection>
      <subsection toc="dacuserport" name="DAC on the userport">
 	<desc>
 		There is <quote>Visible Music Monitor</quote> program that requires an 
 		<quote>8 bit DAC (Digital Analog Converter) connected to the userport</quote>.
 		See the <a href="@CBMARC@/pet/audio/index.html">audio page</a> at the CBM archive.
 	</desc>
+     </subsection>
+     <subsection toc="mtuk1002" name="MTU K1002 DAC sound adapter">
+	<desc>From Mike's web site (see link): The K-1002-2 is an 8-bit audio Digital-to-Analog Converter for the Commodore PET. It connects to the user port and second cassette port.
+	</desc>
+	<extlink name="MTU K1002 sound adapter" link="http://mikenaberezny.com/hardware/peripherals/mtu-k-1002-2-dac/"/>
      </subsection>
    </section>
 

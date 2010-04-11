@@ -1,0 +1,40 @@
+
+// time a single memory access with the VIA timer
+
+
+VIA	=$e840
+T2L	=VIA + 8
+T2H	=VIA + 9
+ACR	=VIA + 11
+
+; define the memory address to access under timer
+FAST	=$081100
+
+	*=$1000
+
+	sei
+	
+	; native mode
+	clc
+	xce
+
+	lda ACR
+	and #%11011111
+	sta ACR
+start	
+	lda #0
+	sta T2L
+	sta T2H
+
+	lda @FAST
+
+	lda T2L
+;	ldx T2H
+end
+	; emulation mode
+	.xs
+	sec
+	xce
+	cli
+	brk
+

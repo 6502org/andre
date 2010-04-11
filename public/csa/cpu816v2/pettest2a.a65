@@ -1,0 +1,51 @@
+
+// execute a longer loop in fast memory
+
+// copy the whole code into fast memory
+// jump to the copied loop, execute it
+// and jump back to the slow code
+
+// uses different addresses in slow ($1000) and fast ($2000)
+// memory to avoid stray write problems
+
+	*=$1000
+
+	sei
+	
+	; native mode
+	clc
+	xce
+	; index 16bit
+	rep #%00010000
+	.xl
+
+	; setup return jmp
+	ldx #$0fff
+l0	lda $1000,x
+	sta @$082000,x
+	dex
+	bpl l0
+
+	; execute far jmp with direct jmp back to retjmp
+	jmp @$081000+code
+
+retjmp
+	; emulation mode
+	.xs
+	sec
+	xce
+	cli
+	brk
+
+code	.(
+	.xl
+	ldx #$0fff
+l1
+	lda @$08f000,x
+	sta @$083000,x
+	dex
+	bpl l1
+	jmp @retjmp
+	.xs
+codeend	.)
+

@@ -1,0 +1,94 @@
+
+/*
+	This patch copies the PET ROM into the 65816 
+	high-speed memory, switches the 
+	memory configuration and then 
+	executes the PET on the high speed memory
+*/
+
+	*=$fe00
+
+	sei
+	cld
+	lda #2		; setup video base address
+	sta $e888
+
+	lda #%00011000
+	sta $efe0	; BIOS card control, unmap I/O at $d***
+
+; copy the PET ROM
+
+	; native mode
+	clc
+	xce
+	; index register to 16 bit
+	rep #%00010000
+	.xl
+	; data (accumulator) to 8 bit
+	sep #%00100000
+	.as
+	
+
+	; copy 4k kernel $f000-$ffff
+	ldx #$0fff
+l1
+	lda @$00f000,x
+	sta @$30f000,x
+	dex
+	bpl l1
+
+	; copy rest of ROM $a000-$e7ff
+	ldx #$47ff
+l2	lda @$00a000,x
+	sta @$30a000,x
+	dex
+	bpl l2
+
+	; switch CSA816 bank
+	; by accessing bank 3 (the 4th 0.5 MByte)
+	; if you uncomment this, the system will automatically
+	; go into fast mode on reset
+	;lda @$180000
+	
+	; index registers to 8 bit 
+	; sep #%00010000
+	.xs
+	; is included in emulation mode
+	; emulation mode
+	sec
+	xce
+
+; reset	
+	jmp $fd16	; PET Reset
+
+	; filler
+	.dsb 65080-*, 0
+
+; sys 65080 jumps here and switches to fast mode
+
+	sei
+	lda @$180000
+	jmp $fd16
+
+/*
+	CRTC patches
+
+	*=$e7bb
+	.byt $20	; cursor control - disable hardware cursor
+
+	*=$e7bd
+	.byt $00	; memory base address - originally $10
+
+	*=$e7bd
+	.byt $20	; cursor control - disable hardware cursor
+
+	*=$e7cf
+	.byt $00	; memory base address - originally $10
+
+
+	RESET vector patch
+
+	*=$fffc
+	.word $fe00
+*/
+

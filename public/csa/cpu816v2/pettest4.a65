@@ -1,0 +1,84 @@
+
+// execute a loop in slow memory and also in fast memory.
+// time both loop executions and store the result in $2000-$2003
+
+// showed that stray writes also happened to the VIA timer registers
+
+ 
+VIA	=$e840
+T2L	=VIA + 8
+T2H	=VIA + 9
+ACR	=VIA + 11
+
+; define for including fast code check, undefine for slow only
+; address of code in fast memory
+FAST	=$081100
+
+	*=$1000
+
+	sei
+	
+	; native mode
+	clc
+	xce
+
+	lda ACR
+	and #%11011111
+	sta ACR
+	
+	jmp @start	; jmp long, so it can be patched to mirror RAM at @$30xxxx
+start	
+	lda #0
+	sta T2L
+	sta T2H
+
+	; delay loop to check
+	ldx #0
+l1 	dex
+	bne l1
+	lda T2L
+	ldx T2H
+end
+	sta $2000
+	stx $2001
+
+	jmp @end2	; jmp long from mirror RAM to bank 0
+end2
+
+#ifldef FAST
+
+len = end - start
+	
+	; copy over the loop from "start" to "end" to fast RAM
+	ldx #len-1
+l2	lda start,x
+	sta @FAST,x
+	dex
+	bpl l2
+
+	; add long jump back to this slow code
+	lda #$5c
+	sta @FAST+len
+	lda #<done
+	sta @FAST+len+1
+	lda #>done
+	sta @FAST+len+2
+	lda #0
+	sta @FAST+len+3
+
+	; execute fast loop
+	jmp @FAST
+
+	; returns here
+done
+	sta $2002
+	stx $2003
+#endif
+
+	; emulation mode
+	.xs
+	sec
+	xce
+	cli
+	brk
+

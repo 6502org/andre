@@ -28,6 +28,13 @@ This is currently planned only.</li>
 
   </overview>
   <news>
+    <item date="2010-04-11">
+	Updated the <a href="petindex/extensions.html">PET extensions</a> page.
+    </item>
+    <item date="2010-04-11" state="hot">
+	I finally made my first CPLD design work. See the <a href="csa/cpu816/index.html">CSA 65816 CPU</a> page.
+	It currently runs at 1MHz, but that is stable!
+    </item>
     <item date="2010-01-12" state="hot">
         During the developement of my <a href="csa/ramdisk/index.html">RAMDisk</a> board I had a very good discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal design er of the Commodore Plus/4, C16/C116, and the much more successful Commodore 128, in which I learned a lot about hardware design in a mass production setup. Here is a summary of our <a href="icaphw/design.html">discussion about the use of DRAM and schematics and board design in general</a>.
     </item>
@@ -42,7 +49,7 @@ This is currently planned only.</li>
     <item date="2010-01-03, 2010-01-07">
 	Fixed a number of links all over the place. Separated the knowledge bits section into two subsections.
     </item>
-    <item date="2010-01-01" state="hot">
+    <item date="2010-01-01">
         Finally here it is!
         I managed to build the <a href="csa/cpu816/index.html">65816 CPU board</a> for the CS/A65.
         The CPU runs at 8 MHz and makes a PET real fast :-)
