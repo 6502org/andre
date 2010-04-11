@@ -54,7 +54,7 @@ entity csacpu816v2 is
            cpuaddr_64k : in  STD_LOGIC_VECTOR (23 downto 16);
 			  cpuaddr_2k : in STD_LOGIC_VECTOR (15 downto 11);
 			  cpuaddr_0 : in STD_LOGIC_VECTOR (3 downto 0);
-			  cpuaddr_myio : in STD_LOGIC;
+			  ncpuaddr_myio : in STD_LOGIC;
 			  cpudata : inout STD_LOGIC_VECTOR (7 downto 0);
            latchen : out  STD_LOGIC;
 			  
@@ -100,7 +100,6 @@ architecture Behavioral of csacpu816v2 is
 		signal sf:		std_logic := '0';
 		signal sg:		std_logic := '0';
 		signal sh:		std_logic := '0';
-		signal sa2:		std_logic := '0';
 				
 		-- originally GAL-internal signals
 		signal slowsel: std_logic := '0';
@@ -117,12 +116,11 @@ architecture Behavioral of csacpu816v2 is
 		signal nc8phi2: std_logic := '0';
 		signal cpuclkint: std_logic := '0';
 		
-		signal phi0D2: std_logic := '0';
-		
 		-- internal state
       -- signal clkdiv: std_logic_vector (1 downto 0);   -- clock divisor index
-      signal slowonly: std_logic := '1';                 -- when 1 then only slow access is allowed
+      signal slowonly: std_logic := '0';                 -- when 1 then only slow access is allowed
       signal slow64k: std_logic := '1';                  -- when 1 low 64k are mapped to PET (otherwise I/O, video only)
+		signal bogusok: std_logic := '1';						-- when 1, bogus CPU accesses are passed to the bus
 		
       --      writes are passed through to fast RAM (with slow access)
       signal bootrom: std_logic := '0';                  -- when 1, map expansion ROM to low 64k; initialied to jumper
@@ -136,7 +134,6 @@ begin
 	
 	nc8phi2 <= not(c8phi2);
 	cpuclkint <= nc8phi2 or not(rdyint);
-	phi0D2 <= sb;
 	
 	-- shift register
 	DoSr: process(nc8phi2, phi2)
@@ -162,7 +159,7 @@ begin
 	
 	-- use '1' to emulate the bogus 6502 CPU accesses
 	-- actually the PET beep is already noticably "faster" just without the bogus accesses
-	validaddr <= cpuvda or cpuvpa;
+	validaddr <= bogusok or cpuvda or cpuvpa;
 	
 	-- logic equations internal signals
 	q3 <= sb or sh;
@@ -409,7 +406,8 @@ begin
 	 DoWriteAccess: process(cpuclkint, reset, bootromin)
 	 begin
 				if (reset = '0') then
-						  slowonly <= '1';
+						  bogusok <= '1';
+						  slowonly <= '0';
 						  slow64k <= '1';
 						  bootrom <= bootromin;
 						  prgrom <= '0';
@@ -417,15 +415,18 @@ begin
 				elsif (falling_edge(cpuclkint) and cpurnw = '0') then
 						  if (islow64k = '1'
 								and isio = '1'
-								and cpuaddr_myio = '1'
+								and ncpuaddr_myio = '0'
 								and cpuaddr_0 = "1111"
 								) then
 								-- write $00efff
 								wprotect <= cpudata(3 downto 2);
-								slowonly <= cpudata(4);
+								--slowonly <= cpudata(4);
+								bogusok <= cpudata(4);
 								slow64k <= cpudata(5);
 								bootrom <= cpudata(6);
 								prgrom <= cpudata(7);
+								
+								diag <= cpudata(0);
 						  end if;
 				end if;
 	 end process DoWriteAccess;
@@ -440,7 +441,7 @@ begin
 --				elsif (rising_edge(phi0D2) and cpurnw = '1') then
 --						  if (islow64k = '1'
 --								and isio = '1'
---								and cpuaddr_myio = '1'
+--								and ncpuaddr_myio = '0'
 --								and cpuaddr_0 = "1111"
 --								) then
 --								-- read $00efff

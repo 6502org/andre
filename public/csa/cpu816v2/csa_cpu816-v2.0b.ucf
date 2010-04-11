@@ -43,7 +43,7 @@ NET "RESET"							LOC = "P56";
 
 NET "CPURDY"						LOC = "P19";
 NET "CPURNW"						LOC = "P48";
-NET "CPUADDR_MYIO"				LOC = "P26";
+NET "NCPUADDR_MYIO"				LOC = "P26";
 NET "C8PHI2"						LOC = "P9";
 
 NET "BOOTROMIN"					LOC = "P40";

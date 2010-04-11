@@ -49,7 +49,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			and simply recreate the same schematics basically in the CPLD. As a programming language
 			I decided not to use the schematics, but go for VHDL.
 			</p><p>
-			This resulted in the CPLD programming environment giving some warnings about flip-flops it
+			This resulted in the CPLD programming environment giving some warnings about latches it
 			detected, as well as combinatorial feedback loops. But yes, that's how the version 1 works,
 			using well-placed and controlled flip-flops, and also feedback loops. So I ignored the 
 			warnings.
@@ -169,12 +169,11 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
 			switch to allow 65816 code.
+                <div class="rightimg">
+                                <a href="csa_fastpetloop.png"><img width="200px" src="csa_fastpetloop.png"/></a><br/>Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then 
+	                </div>
 		</desc>
-		<file ltype="driver" ptype="a65" note="Copies 4k from (slow) ROM to fast RAM and back to slow RAM. I used it to investigate the stray writes which appeared in the slow memory when writing to the fast memory.">pettest1.a65</file>
-		<file ltype="driver" ptype="a65" note="Check if CPU executes code in fast RAM by copying a long ump back to slow memory and executing it">pettest2.a65</file>
-		<file ltype="driver" ptype="a65" note="Executes a longer loop in fast memory">pettest2a.a65</file>
-		<file ltype="driver" ptype="a65" note="Executes a loop in slow memory and in fast memory, and times both with the VIA timer">pettest4.a65</file>
-		<file ltype="driver" ptype="a65" note="Use the VIA timer to time exactly one (fast) memory access">pettest4a.a65</file>
+		<file ltype="driver" ptype="a65" note="copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM ">test1.a65</file>
 	</driver>
 	<rev>
 		<version>2.0B</version>
