@@ -12,9 +12,9 @@
 		clock speed with the RDY pin.
 		</p><p>
 		This board is almost all in standard logic, only for the timing-critical parts I had to use
-		a GAL. The board has been superseded by <a href="indexv2.html">CPU816 V2</a> which uses a CPLD
-		as main logic element. If you don't have access to a Xilinx CPLD environment, you may still
-		want to look at the version 1 page here.</p>
+		a GAL. The board has been superseded by <a href="../cpu816v2/index.html">CPU816 V2</a> which uses a CPLD
+		as main logic element. If you don't have access to a Xilinx CPLD environment or don't want to use them, 
+		you may still want to look at the version 1 page here.</p>
 	</desc>
 	<diagram>
 		<file>diagram.gif</file>
