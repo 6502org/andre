@@ -184,6 +184,17 @@ LI.openfile {
 	list-style-image:url(imgs/openfile.gif);
 }
 
+table.content {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.content td {
+	padding:3px;
+}
+table.content th {
+	padding:5px;
+}
 
 table.memmap {
 	text-align:center;
@@ -192,9 +203,11 @@ table.memmap {
 }
 table.memmap td {
 	width:14mm;
+	padding:3px;
 }
 table.memmap th {
 	width:14mm;
+	padding:5px;
 }
 /*
 table.memmap {
