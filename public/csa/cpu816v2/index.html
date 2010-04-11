@@ -93,6 +93,8 @@
 		(the 65816 runs with 3.3V, although a bit slower).
 		And even as I am getting used to soldering SMDs, I still think of it as a feature, that except 1MByte of RAM 
 		the board is in classic through-hole technique, and can be run without SMD parts.
+		</p><p>
+		With this board I was able to achieve a <b>speed increase of over 8 times</b> compared to the 1MHz system :-)
 		</p>
 	</p>
 <DIV ID="toc">
@@ -128,7 +130,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			and simply recreate the same schematics basically in the CPLD. As a programming language
 			I decided not to use the schematics, but go for VHDL.
 			</p><p>
-			This resulted in the CPLD programming environment giving some warnings about flip-flops it
+			This resulted in the CPLD programming environment giving some warnings about latches it
 			detected, as well as combinatorial feedback loops. But yes, that's how the version 1 works,
 			using well-placed and controlled flip-flops, and also feedback loops. So I ignored the 
 			warnings.
@@ -158,6 +160,9 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			</p><p>
 			By the way, the PET bell tone already becomes noticably faster even if you only speed up the 
 			bogus 6502 CPU cycles (which results in them not showing on the 1MHz bus).
+                <div class="rightimg">
+			<a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"></a><br><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
+	                </div>
 			</p>
 		</p>
 <H2><a name="memmap">Memory Map</a></H2>
@@ -358,32 +363,15 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
 			switch to allow 65816 code.
+                <div class="rightimg">
+                                <a href="csa_fastloop.png"><img width="200px" src="csa_fastloop.png"></a><br>Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then copying (SYS33792 where I assembled the test to), then POKEing the control register to fast speed and measuring again.
+	                </div>
 		</p>
 <TABLE class="files">
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
 <TD>
-<A HREF="pettest1.a65">pettest1.a65</A>(Copies 4k from (slow) ROM to fast RAM and back to slow RAM. I used it to investigate the stray writes which appeared in the slow memory when writing to the fast memory.)</TD>
-</TR>
-<TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="pettest2.a65">pettest2.a65</A>(Check if CPU executes code in fast RAM by copying a long ump back to slow memory and executing it)</TD>
-</TR>
-<TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="pettest2a.a65">pettest2a.a65</A>(Executes a longer loop in fast memory)</TD>
-</TR>
-<TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="pettest4.a65">pettest4.a65</A>(Executes a loop in slow memory and in fast memory, and times both with the VIA timer)</TD>
-</TR>
-<TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="pettest4a.a65">pettest4a.a65</A>(Use the VIA timer to time exactly one (fast) memory access)</TD>
+<A HREF="test1.a65">test1.a65</A>(copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM )</TD>
 </TR>
 </TABLE>
 <H2><A NAME="boards">Board revisions</A></H2>
