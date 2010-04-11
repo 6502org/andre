@@ -91,6 +91,9 @@
 		(probably as "new old stock") in PLCC packages. Although - after looking again into the WDC datasheets -
 		I could have probably done a 3.3V design with voltage converters to the bus 
 		(the 65816 runs with 3.3V, although a bit slower).
+                <div class="rightimg">
+                                <a href="csa_fastloop.png"><img width="200px" src="csa_fastloop.png"></a><br>Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then copying (SYS33792 where I assembled the test to), then POKEing the control register to fast speed and measuring again.
+	                </div>
 		And even as I am getting used to soldering SMDs, I still think of it as a feature, that except 1MByte of RAM 
 		the board is in classic through-hole technique, and can be run without SMD parts.
 		</p><p>
@@ -160,9 +163,6 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			</p><p>
 			By the way, the PET bell tone already becomes noticably faster even if you only speed up the 
 			bogus 6502 CPU cycles (which results in them not showing on the 1MHz bus).
-                <div class="rightimg">
-			<a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"></a><br><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
-	                </div>
 			</p>
 		</p>
 <H2><a name="memmap">Memory Map</a></H2>
@@ -364,7 +364,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
 			switch to allow 65816 code.
                 <div class="rightimg">
-                                <a href="csa_fastloop.png"><img width="200px" src="csa_fastloop.png"></a><br>Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then copying (SYS33792 where I assembled the test to), then POKEing the control register to fast speed and measuring again.
+			<a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"></a><br><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
 	                </div>
 		</p>
 <TABLE class="files">
