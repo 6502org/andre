@@ -81,6 +81,14 @@ DIV#menu {
   font-size:smaller;
 }
 
+/*
+DIV.overview {
+	font-size:larger;
+	font-weight:bold;
+	background-color: #ffdddd;
+}
+*/
+
 P.copyright {
 	font-size:larger;
 	font-weight:bold;

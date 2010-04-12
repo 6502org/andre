@@ -61,8 +61,8 @@
 <DIV ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
-</xsl:text><xsl:apply-templates select="desc"/><xsl:text>
-</xsl:text>
+</xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
+</xsl:text></div>
 <xsl:apply-templates select="news"/>
 <xsl:call-template name="toc"/>
 <xsl:apply-templates select="section"/>
@@ -209,9 +209,9 @@
 <xsl:text> 
 </xsl:text>
 </xsl:for-each>
-<p>
+<div class="overview">
 <xsl:copy-of select="overview/*|overview/text()"/>
-</p>
+</div>
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
