@@ -129,7 +129,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	<br/>
 	PETs are notoriously known for socketed chips moving out of their
 	sockets. So one thing to do is to take the chips out and reseat
-	them properly. Take care to put them back in in the correct 
+	them properly. Take care to put them back in in the correct place and
 	orientation.
       </subitem>
     </items>
@@ -196,15 +196,27 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	a problem with the character generation. Try to reseat the 
 	character ROM, check its content.
       </subitem>
-      <subitem name="Video board">
+      <subitem name="Vertical lines on the screen">
+	<div class="rightimg">
+	<a href="imgs/vertlines.png"><image src="imgs/vertlines.png"/></a><br/>
+		<caption>Vertical lines from a broken character ROM</caption>
+	</div>
+	A more specific case is that of constant vertical lines all over the screen, 
+	in the same position for each character row. An example can be seen 
+	on <a class="extlink" href="http://www.fcet.staffs.ac.uk/atm2/pet/">this page</a>.
+	The specific problem could have been the character ROM or the shift register
+	receiving the data from the character ROM. In this case it was the character ROM.
+	Thanks to Alasdair Macdonald for reporting this and providing the picture!
+      </subitem>
+       <subitem name="Video board">
 A comment by William Levak: <p class="quote">
 When you get to the video board, there were 2 capacitors on the original
 version of the video board for the original PET that went bad frequently.</p>
       </subitem>
-    </items>  
+   </items>  
   </itemlist>
   <itemlist toc="monitor" name="Monitor and other weird symptoms">
-    <desc>
+    <cdonalddesc>
 	This section has an assorted list of symptoms...
     </desc>
     <items>
