@@ -12,6 +12,9 @@
 	around 6502-related hardware that you may find useful.
   </overview>
   <news>
+    <item date="2010-04-12" >
+	Added a page about the <a href="xilinx/index.html">Xilinx CPLD tools</a> I am using for my newest designs.
+    </item>
     <item date="2010-01-12" state="hot">
 	During the developement of my <a href="../csa/ramdisk/index.html">RAMDisk</a> board I had a very good discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal design er of the Commodore Plus/4, C16/C116, and the much more successful Commodore 128, in which I learned a lot about hardware design in a mass production setup. Here is a summary of our <a href="design.html">discussion about the use of DRAM and schematics and board design in general</a>.
     </item>
@@ -30,6 +33,8 @@
     </desc-->
     <items>
       <subitem name="Hardware design lesson" link="design.html"> - the designer of the Commodore 128 talks with me about hardware design (2010).
+      </subitem>
+      <subitem name="Xilinx tools" link="xilinx/index.html"> - My experience with the Xilinx CPLD design tools
       </subitem>
       <subitem name="RDY generation" link="rdy.html"> - generate RDY for slow devices (CMOS CPUs only, 2006).
       </subitem>

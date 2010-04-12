@@ -71,10 +71,16 @@
 	</p><p>Note: this is a work in progress!</p>
   </p>
 <h3>News:</h3>
-<ul class="news"><li>
+<ul class="news">
+<li>
+<small>2010-04-12</small>
+	Added the vertical lines screen problem with link to the solution.
+    </li>
+<li class="oldnews">
 <small>2006-12-21</small>
 	Started this page
-    </li></ul>
+    </li>
+</ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
 <dir>
@@ -213,7 +219,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	<br>
 	PETs are notoriously known for socketed chips moving out of their
 	sockets. So one thing to do is to take the chips out and reseat
-	them properly. Take care to put them back in in the correct 
+	them properly. Take care to put them back in in the correct place and
 	orientation.
       <br><br>
 </li>
@@ -287,6 +293,22 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	or does not correspond to any know CBM character, then there is
 	a problem with the character generation. Try to reseat the 
 	character ROM, check its content.
+      <br><br>
+</li>
+<li>
+<strong>Vertical lines on the screen</strong>: 
+	<div class="rightimg">
+	<a href="imgs/vertlines.png"><image src="imgs/vertlines.png"></image></a><br>
+		<caption>Vertical lines from a broken character ROM</caption>
+	</div>
+	A more specific case is that of constant vertical lines all over the screen, 
+	in the same position for each character row. An example can be seen 
+	on <a class="extlink" href="http://www.fcet.staffs.ac.uk/atm2/pet/">this page</a>.
+	The specific problem could have been the character ROM or the shift register
+	receiving the data from the character ROM. In this case it was the character ROM.
+	Note that the vertical lines only show where characters should be, not the borders
+	and even not in between the characters. That would be a different error.
+	Thanks to Alasdair Macdonald for reporting this and providing the picture!
       <br><br>
 </li>
 <li>

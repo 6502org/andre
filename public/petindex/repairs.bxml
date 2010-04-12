@@ -13,7 +13,10 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
-    <item date="2006-12-21">
+    <item date="2010-04-12">
+	Added the vertical lines screen problem with link to the solution.
+    </item>
+    <item date="2006-12-21" state="old">
 	Started this page
     </item>
   </news>
@@ -206,6 +209,8 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	on <a class="extlink" href="http://www.fcet.staffs.ac.uk/atm2/pet/">this page</a>.
 	The specific problem could have been the character ROM or the shift register
 	receiving the data from the character ROM. In this case it was the character ROM.
+	Note that the vertical lines only show where characters should be, not the borders
+	and even not in between the characters. That would be a different error.
 	Thanks to Alasdair Macdonald for reporting this and providing the picture!
       </subitem>
        <subitem name="Video board">
@@ -216,7 +221,7 @@ version of the video board for the original PET that went bad frequently.</p>
    </items>  
   </itemlist>
   <itemlist toc="monitor" name="Monitor and other weird symptoms">
-    <cdonalddesc>
+    <desc>
 	This section has an assorted list of symptoms...
     </desc>
     <items>
