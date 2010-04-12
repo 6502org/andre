@@ -11,7 +11,7 @@
 		To access the ROM, the bus memory or the I/O, the CPU is slowed down to bus
 		clock speed with the RDY pin.
 		</p><p>
-		This board uses a <a href="../../mischw/xilinx/index.html">Xilinx CPLD</a> as the main
+		This board uses a <a href="../../icaphw/xilinx/index.html">Xilinx CPLD</a> as the main
 	        logic element. Basically all of the logic shown in the <a href="../cpu816/index.html">version 1 board</a>
 		has been moved into this chip. If you don't have access to a programmer, or don't want to use a CPLD
 		you can still look at the <a href="../cpu816/index.html">version 1 board</a> - it only has a GAL 
