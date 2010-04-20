@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<META NAME="keywords" CONTENT="Commodore PET 6502 65816 CPU">
+<TITLE>Commodore PET 65816 CPU card</TITLE>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+</HEAD>
+<BODY>
+<DIV ID="menu">
+<ul><li class=homepage><a href=../../index.html>Homepage</a></li>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir"><a href="../../petindex/index.html">CBM PETindex</a></li>
+<li class="dir"><a href="../../cbmhw/index.html">CBM hardware and mods</a></li>
+<ul class="menu1" >
+<li class="dir"><a href="../pet816/index.html">Speed up your PET!</a></li>
+
+<li class="dir"><a href="../ryofat40/index.html">Build your own PET replica!</a></li>
+<li class="dir"><a href="../ryo1581/index.html">Build your own VC1581 replica!</a></li>
+<li class="dir"><a href="../c64csa/index.html">CS/A adapter for C64</a></li>
+<li class="dir"><a href="../petcsa/index.html">CS/A adapter for PETs</a></li>
+<li class="dir"><a href="../kernal/index.html">C64 kernal modifications</a></li>
+<li class="dir"><a href="../scsi/index.html">CBM SCSI interfaces</a></li>
+<li class="dir"><a href="../ieee488/index.html">IEEE488 interfaces</a></li>
+<li class="file"><a href="../hwmods.html">My Hardware mods</a></li>
+<li class="link"><a href="../../icap/c64ser.html">UART serial interface</a></li>
+</ul>
+<li class="separator">Hardware</li>
+<li class="dir"><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a></li>
+<li class="dir"><a href="../../hwinfo/index.html">ICs and Standards Info</a></li>
+<li class="dir"><a href="../../mischw/index.html">Other hardware (e.g. tools)</a></li>
+<li class="separator">Software</li>
+<li class="dir"><a href="../../osa/index.html">GeckOS operating system</a></li>
+<li class="dir"><a href="../../lib6502/index.html">Lib6502 standard</a></li>
+<li class="dir"><a href="../../o65/index.html">O65 file format</a></li>
+<li class="dir"><a href="../../misc/index.html">Misc software</a></li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir"><a href="../../icapos/index.html">Computer/OS Architecture</a></li>
+<li class="dir"><a href="../../icaphw/index.html">6502 Hardware Bits</a></li>
+<li class="separator">Misc</li>
+<li class="file"><a href="../../contact.html">Contact</a></li>
+</ul>
+</ul>
+</DIV>
+<DIV ID="content">
+<H1>Commodore PET 65816 CPU card</H1>
+
+<div class="overview">
+<p><p>
+			Finally I've made it! This the first version of the PET 65816 CPU card! It speeds up your PET to up to 12.5MHz
+			(at least that's the plan for the final stage, but it currently looks good!).
+			The board uses a 65816 CPU that runs at up to 12.5MHz, plus a Xilinx CPLD as logic glue. It includes
+			up to 1MByte fast RAM (run at CPU speed) plus 512k parallel Flash ROM, that can be used as boot ROM.
+	</p>
+	<div class="rightimg">
+<a href="pet816_8296a.png"><img width="150" src="pet816_8296a.png"></a><br>The board installed in a Commodore 8296 
+		                </div>	<p>
+The interface itself is, in fact, pretty simple. It is a board that is plugged 
+in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
+parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is all-through-hole - i.e. no SMD parts! I call that 
+a feature in these days.
+	</p><p>
+		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
+		easier to handle when you have to change things often. But it also now runs in the 8296. 
+	</p><p>
+		The board has been tested with some simple tests. Copying data from slow to fast RAM and back, copying the 
+		PET ROM to the fast RAM "under" the ROM and switch to fast mode. Run code in fast RAM.
+		One test works in the CS/A board, but still fails in the
+		8296 - copying the ROM to the RAM "under" the ROM seems to produce strange results. 
+		This might have to do with the fact that the I/O area in the 8296 is only 256 bytes long, or
+		with other parts of the "modern" architecture of the 8296. Tests with older PETs will follow.
+	</p>
+	<div class="rightimg">
+<a href="pet816_proto.png"><img width="150" src="pet816_proto.png"></a><br>The PET816 board 
+		</div>	<p>
+		As you can see there is still some manual soldering on the 65816 board. In the beginning I had used some 
+		wrong driver ICs that only allowed to tri-state the address bus - once I replaced them with 74LS273 registers
+		with reset, I didn't have any more problems. I haven't done an updated layout yet, but will do one 
+		when I have improved the board more. I'm planning to pull the 74ALS573 high address byte latch into the CPLD, 
+		as well as the other support chips.</p>
+	</p>
+</div>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2010-04-20</small>
+			Published the board.
+		</li></ul>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#driver">Driver</a></li>
+<dir><li><a href="#driver1">Prototype tests</a></li></dir>
+<li><a href="#boards">Board Revisions</a></li>
+<dir><li>
+<a href="#board1">1.0b</a> (prototype)</li></dir>
+</dir>
+</DIV>
+<H2><A NAME="driver">Driver</A></H2>
+<H3><A NAME="driver1">Prototype tests</A></H3>
+<p><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
+				switch to enable 65816 code.</p>
+			<div class="rightimg">
+<a href="pet816_test2.png"><img width="150" src="pet816_test2.png"></a><br>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
+				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
+				More measurements and explanations to follow.
+		</div>	                </p>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test1.a65">test1.a65</A>(Copy system ROM to fast RAM)</TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test2.a65">test2.a65</A>(Execute and time a loop in fast and slow memory)</TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test3.a65">test3.a65</A>(Copy 4k memory to fast RAM and back)</TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test4.a65">test4.a65</A>(XOR mirrored system memory with bank 0)</TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. In the testbench directory, type 'make test2' to simulate the timing (requires linux with ghdl and gtkwave installed))</TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
+</TR>
+</TABLE>
+<H2><A NAME="boards">Board revisions</A></H2>
+<H3><A NAME="board1">Version: 1.0b</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board has been only barely tested
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.0b.sch">pet_cpu816-v1.0b.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.0b-sch.png">pet_cpu816-v1.0b-sch.png</A></TD>
+</TR>
+</TABLE>
+<h2>Disclaimer</h2>
+All Copyrights are acknowledged.
+The information here is provided under the terms of the
+GNU Public License version 2 unless noted otherwise.
+<DIV ID="footer">
+<P>Last modified: 2010-04-20.</P>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+</DIV>
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,38 @@
+
+	*=$1000
+
+	sei
+	
+	; native mode
+	clc
+	xce
+	; index 16bit
+	rep #%00010000
+	.xl
+	
+	; copy from $000000 (ROM) to $00e7ff 
+	.(
+	ldx #0
+l1
+	lda $0000,x
+	sta @$E00000,x
+	inx
+	beq e
+	cpx #$e800
+	bne l1
+	ldx #$e900
+	bne l1
+e
+	.)
+
+	; emulation mode
+	sec
+	xce
+
+	lda #0
+	sta $ebbf
+
+	cli
+	rts
+
+

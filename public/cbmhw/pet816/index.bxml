@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<board>
+	<name>Commodore PET 65816 CPU card</name>
+	<keywords>Commodore PET 6502 65816 CPU</keywords>
+        <lastmodified>2010-04-20</lastmodified>
+	<desc><p>
+			Finally I've made it! This the first version of the PET 65816 CPU card! It speeds up your PET to up to 12.5MHz
+			(at least that's the plan for the final stage, but it currently looks good!).
+			The board uses a 65816 CPU that runs at up to 12.5MHz, plus a Xilinx CPLD as logic glue. It includes
+			up to 1MByte fast RAM (run at CPU speed) plus 512k parallel Flash ROM, that can be used as boot ROM.
+	</p>
+	<div class="rightimg"><a href="pet816_8296a.png"><img width="150" src="pet816_8296a.png"/></a><br/>The board installed in a Commodore 8296 
+		                </div>	<p>
+The interface itself is, in fact, pretty simple. It is a board that is plugged 
+in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
+parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is all-through-hole - i.e. no SMD parts! I call that 
+a feature in these days.
+	</p><p>
+		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
+		easier to handle when you have to change things often. But it also now runs in the 8296. 
+	</p><p>
+		The board has been tested with some simple tests. Copying data from slow to fast RAM and back, copying the 
+		PET ROM to the fast RAM "under" the ROM and switch to fast mode. Run code in fast RAM.
+		One test works in the CS/A board, but still fails in the
+		8296 - copying the ROM to the RAM "under" the ROM seems to produce strange results. 
+		This might have to do with the fact that the I/O area in the 8296 is only 256 bytes long, or
+		with other parts of the "modern" architecture of the 8296. Tests with older PETs will follow.
+	</p>
+	<div class="rightimg"><a href="pet816_proto.png"><img width="150" src="pet816_proto.png"/></a><br/>The PET816 board 
+		</div>	<p>
+		As you can see there is still some manual soldering on the 65816 board. In the beginning I had used some 
+		wrong driver ICs that only allowed to tri-state the address bus - once I replaced them with 74LS273 registers
+		with reset, I didn't have any more problems. I haven't done an updated layout yet, but will do one 
+		when I have improved the board more. I'm planning to pull the 74ALS573 high address byte latch into the CPLD, 
+		as well as the other support chips.</p>
+	</desc>
+	<news>
+		<item date="2010-04-20">
+			Published the board.
+		</item>
+	</news>
+        <driver>
+                <name>Prototype tests</name>
+		<desc><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
+				switch to enable 65816 code.</p>
+			<div class="rightimg"><a href="pet816_test2.png"><img width="150" src="pet816_test2.png"/></a><br/>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
+				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
+				More measurements and explanations to follow.
+		</div>	                </desc>
+                <file ltype="driver" ptype="a65" note="Copy system ROM to fast RAM">test1.a65</file>
+                <file ltype="driver" ptype="a65" note="Execute and time a loop in fast and slow memory">test2.a65</file>
+                <file ltype="driver" ptype="a65" note="Copy 4k memory to fast RAM and back">test3.a65</file>
+                <file ltype="driver" ptype="a65" note="XOR mirrored system memory with bank 0">test4.a65</file>
+		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. In the testbench directory, type 'make test2' to simulate the timing (requires linux with ghdl and gtkwave installed)">PET816_1.0.tar.bz2</file>
+		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
+        </driver>
+	<rev>
+		<version>1.0b</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board has been only barely tested
+		</note>
+		<file ltype="schem" ptype="esch">pet_cpu816-v1.0b.sch</file>
+		<file ltype="schem" ptype="png">pet_cpu816-v1.0b-sch.png</file>
+	</rev>
+	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
+</board>
