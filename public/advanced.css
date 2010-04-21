@@ -1,4 +1,28 @@
 
+.rightimg {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+.sidenote {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+li li {
+	margin-top: 10px;
+}
+
+.quote {
+	font-style: italic;
+}
+
 BODY { 
 	background-color: #ffffff;
 	color: #000000;
@@ -20,6 +44,11 @@ TD.noteicon {
 	padding:5px;
 }
 
+/*
+TABLE.notes TR {
+	background-color: #eeeeee;
+}
+*/
 
 H2 {
 	border-top: 2px solid;
@@ -30,21 +59,46 @@ DIV#footer {
 }
 
 DIV#content {
-  margin-left: 22em;
+  margin-left: 20em;
   padding: 0 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
   text-align: left;
   /* background-color: #dddddd; */
 }
 
+DIV#content table {
+	width:auto;
+}
+
 DIV#menu {
-  float: left; width: 22em;
+  float: left; width: 25em;
   margin: 0; padding: 0;
+  margin-left: -2em;
+  margin-top: -1.7em;
   list-style-position:outside;
 /*  position: fixed; */
-  background-color: #ffffff;
-/*  background-color: #dddddd; */
+  background-color: #dddddd; 
+  font-size:smaller;
 }
+
+DIV.rightbar {
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 25em;
+  margin-top: -1.7em;
+  margin-right: -2em;
+  background-color: #dddddd; 
+  font-size:smaller;
+}
+
+/*
+DIV.overview {
+	font-size:larger;
+	font-weight:bold;
+	background-color: #ffdddd;
+}
+*/
 
 P.copyright {
 	font-size:larger;
@@ -70,6 +124,10 @@ LI.cbm {
 	list-style-image:url(imgs/icon_cbm.jpg);
         margin-left:50px;
 }
+LI.icap {
+	list-style-image:url(imgs/icon_icap.jpg);
+        margin-left:50px;
+}
 UL.quickfinder LI.subitem {
 	list-style-image:none;
         margin-left:-40px;
@@ -79,18 +137,24 @@ LI.subitem {
 	/*margin-left:18px;*/
 }
 
+LI.extlink {
+	list-style-position: outside;
+	list-style-image:url(imgs/icon_extlink.jpg);
+}
+
+A.extlink {
+    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
+    	padding-right: 16px;
+}
+
 UL.menu0 {
   font-size:small;
-  padding-left:20px;
 }
 UL.menu1 {
-  padding-left:20px;
 }
 UL.menu2 {
-  padding-left:20px;
 }
 UL.menu3 {
-  padding-left:20px;
 }
 
 UL.news {
@@ -103,27 +167,53 @@ LI.hotnews {
 	list-style-image:url(imgs/hotnews.gif);
 }
 
+DIV.interview {
+	margin-left:1em;
+}
+
+DIV.interview p.first {
+	text-indent:-1em;
+}
+
+DIV.interview .me {
+	font-weight:bold;
+}
+DIV.interview .other {
+	font-weight:bold;
+}
+
 LI.homepage {
-	list-style-image:url(imgs/dir.gif);
+	list-style-image:url(imgs/dir.png);
 	font-size:large;
 }
 
 LI.file {
-	list-style-image:url(imgs/file.gif);
+	list-style-image:url(imgs/file.png);
 }
 
 LI.link {
-	list-style-image:url(imgs/link.gif);
+	list-style-image:url(imgs/link.png);
 }
 
 LI.dir {
-	list-style-image:url(imgs/dir.gif);
+	list-style-image:url(imgs/dir.png);
 }
 
 LI.openfile {
-	list-style-image:url(imgs/openfile.gif);
+	list-style-image:url(imgs/openfile.png);
 }
 
+table.content {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.content td {
+	padding:3px;
+}
+table.content th {
+	padding:5px;
+}
 
 table.memmap {
 	text-align:center;
@@ -132,24 +222,35 @@ table.memmap {
 }
 table.memmap td {
 	width:14mm;
+	padding:3px;
 }
 table.memmap th {
 	width:14mm;
+	padding:5px;
 }
-
-table.files {
-	text-align:left;
+/*
+table.memmap {
+	text-align:center;
 	empty-cells:show;
-	background-color: #dddddd;
-	margin:10px;
-	padding:5px;
+	border-style:solid;
+	border-spacing:0px;
+	margin:5px;
 }
 
-table.files td {
-	padding:5px;
+table.memmap td {
+	border-width:1px;
+	border-style:solid;
+	width:14mm;
+}
+table.memmap th {
+	border-width:1px;
+	border-style:solid;
+	width:14mm;
 }
 
-table.files tr.R0 {
+table.memmap th.separator {
 	background-color: #ffffff;
+	border-style:none;
 }
+*/
 

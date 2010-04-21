@@ -55,7 +55,7 @@
 			up to 1MByte fast RAM (run at CPU speed) plus 512k parallel Flash ROM, that can be used as boot ROM.
 	</p>
 	<div class="rightimg">
-<a href="pet816_8296a.png"><img width="150" src="pet816_8296a.png"></a><br>The board installed in a Commodore 8296 
+<a href="pet816_8296a.png"><img width="200" src="pet816_8296a_small.png"></a><br>The board installed in a Commodore 8296 
 		                </div>	<p>
 The interface itself is, in fact, pretty simple. It is a board that is plugged 
 in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
@@ -73,7 +73,7 @@ a feature in these days.
 		with other parts of the "modern" architecture of the 8296. Tests with older PETs will follow.
 	</p>
 	<div class="rightimg">
-<a href="pet816_proto.png"><img width="150" src="pet816_proto.png"></a><br>The PET816 board 
+<a href="pet816_proto.png"><img width="200" src="pet816_proto_small.png"></a><br>The PET816 board 
 		</div>	<p>
 		As you can see there is still some manual soldering on the 65816 board. In the beginning I had used some 
 		wrong driver ICs that only allowed to tri-state the address bus - once I replaced them with 74LS273 registers
@@ -102,7 +102,7 @@ a feature in these days.
 <p><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
 				switch to enable 65816 code.</p>
 			<div class="rightimg">
-<a href="pet816_test2.png"><img width="150" src="pet816_test2.png"></a><br>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
+<a href="pet816_test2.png"><img width="200" src="pet816_test2_small.png"></a><br>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
 				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
 				More measurements and explanations to follow.
 		</div>	                </p>

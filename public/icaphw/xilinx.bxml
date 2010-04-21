@@ -16,8 +16,8 @@
 		area of CPLDs or FPGAs, there are no manufacturer-independent standards in the sense that you
 		could simply replace an FPGA from one manufacturer with one from another manufacturer.
 		Possible manufacturers are <a class="extlink" href="http://www.xilinx.com">Xilinx</a>,
-		<a href="http://www.lattice.com">Lattice</a>, <a href="http://www.atmel.com">Atmel</a>, 
-		<a href="http://www.altera.com">Altera</a>, and possibly others.
+		<a class="extlink" href="http://www.lattice.com">Lattice</a>, <a class="extlink" href="http://www.atmel.com">Atmel</a>, 
+		<a class="extlink" href="http://www.altera.com">Altera</a>, and possibly others.
 		Therefore I was looking around and, depending on availability (at my favourite parts suppliers)
 		and the licencing and availability of a free development environment, I decided to use the Xilinx
 		versions, as they were still availably in 5V, through-hole parts, and the ISE Webkit was available
@@ -62,6 +62,41 @@
 				</p><p>I chose VHDL, as it supposedly has a stricter type system. I want my designs to "fail fast", as the later you find a bug, the higher the cost and a strict type system helps to find problems earlier in the design process.
 				</p><p>
 		</p></desc>
+	</section>
+	<section toc="sim" name="VHDL simulation">
+		<desc><p>
+				Once you have your design ready, you want to test it. As VHDL is also designed as a simulation language,
+				with the right tools you can simulate your design. Fortunately there are easy to use, free tools available.
+				I found the GHDL compiler - an extension to the gcc (GNU compiler collection) - together with the
+				GTKWave viewer a very useful combination (sources see links)
+				</p><p>
+				In the simulation, you basically do what you do with your normal hardware designs - you 
+				wire it up to a testbench, feed it the right (test) inpt signals, and watch the output or
+				scope the signals. In VHDL, you thus create a testbench component that includes your CPLD
+				design as a component. In your testbench you create the test signals using timing statements
+				like <code>wait for 5 ns</code> to generate the input signals.
+				</p><p>
+				Running the simulation then is a matter of compiling the design with for example the <code>ghdl</code>
+				VHDL compiler, and then running it for a given simulation time. The output is stored in an output file
+				and contains the values of all the internal signals as defined in your VHDL. Using the GTKWave 
+				viewer you can then view the signals as they are on the time axis, zooming in and out as needed.
+				See the links for a simple tutorial including a Makefile how to wire the tools together.
+				</p><p>
+				I am not (yet) very experienced with simulation. In my <a href="../cbmhw/pet816/index.html">PET816</a> 65816
+				CPU board though I am using a testbench and intensive simulation - which made my scope almost unemployed...
+				</p><p>
+				What I also found a great help was to actually emulate the 6502 CPU just as well during the simulation.
+				One testbench includes a <code>free6502</code> VHDL core. There it is nice to actually see - in the
+				GTKWave viewer - the CPU reading the RESET vector, then the first opcode at $FD16 - of course I 
+				simulated the PET kernal in VHDL as well - execute it, fetch the next one and so on...
+				The main simulation tests I did with an own, fake 6502 core that has the same interface, but
+				that automatically does a specific sequence of memory accesses. These memory accesses test the
+				various features of the CPLD in the PET816 board, even including a write to the control register!
+			</p>
+		</desc>
+		<extlink name="GHDL homepage" link="http://ghdl.free.fr/"/>
+		<extlink name="GTKWave homepage" link="http://gtkwave.sourceforge.net/"/>
+		<extlink name="Simulation tutorial with GHDL" link="http://mbmn.net/uer/tutorials/vhdl-with-ghdl/"/>	
 	</section>
 		<section toc="lessons" name="Lessons learned">
 			<desc><p>

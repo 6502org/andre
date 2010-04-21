@@ -74,12 +74,26 @@ DIV#menu {
   float: left; width: 25em;
   margin: 0; padding: 0;
   margin-left: -2em;
-  margin-top: 1em;
   list-style-position:outside;
-/*  position: fixed; */
-  /* background-color: #dddddd; */
+/*  position: fixed; 
+  margin-top: -1.7em;
+  background-color: #dddddd; 
+ */
   font-size:smaller;
 }
+
+/*
+DIV.rightbar {
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 25em;
+  margin-top: -1.7em;
+  margin-right: -2em;
+  background-color: #dddddd; 
+  font-size:smaller;
+}
+*/
 
 /*
 DIV.overview {
@@ -172,24 +186,24 @@ DIV.interview .other {
 }
 
 LI.homepage {
-	list-style-image:url(imgs/dir.gif);
+	list-style-image:url(imgs/dir.png);
 	font-size:large;
 }
 
 LI.file {
-	list-style-image:url(imgs/file.gif);
+	list-style-image:url(imgs/file.png);
 }
 
 LI.link {
-	list-style-image:url(imgs/link.gif);
+	list-style-image:url(imgs/link.png);
 }
 
 LI.dir {
-	list-style-image:url(imgs/dir.gif);
+	list-style-image:url(imgs/dir.png);
 }
 
 LI.openfile {
-	list-style-image:url(imgs/openfile.gif);
+	list-style-image:url(imgs/openfile.png);
 }
 
 table.content {
