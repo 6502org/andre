@@ -24,7 +24,7 @@ li li {
 }
 
 BODY { 
-	background-color: #ffffff;
+	background-color: #dddddd;
 	color: #000000;
 	font-family: "Arial";
 	font-size: 80%;
@@ -63,7 +63,7 @@ DIV#content {
   padding: 0 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
   text-align: left;
-  /* background-color: #dddddd; */
+  background-color: #ffffff; 
 }
 
 DIV#content table {

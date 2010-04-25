@@ -201,7 +201,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
       </subitem>
       <subitem name="Vertical lines on the screen">
 	<div class="rightimg">
-	<a href="imgs/vertlines.png"><image src="imgs/vertlines.png"/></a><br/>
+	<a href="imgs/vertlines.png"><image src="imgs/vertlines_small.png"/></a><br/>
 		<caption>Vertical lines from a broken character ROM</caption>
 	</div>
 	A more specific case is that of constant vertical lines all over the screen, 
@@ -270,7 +270,10 @@ version of the video board for the original PET that went bad frequently.</p>
       </subitem>
       <subitem name="Larry's portcommodore 8-bit troubleshooting list" link="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:commodore_troubleshooting">
       </subitem>
-      <subitem name="Analysis of a PET video problem" link="http://www.xs4all.nl/~lagendr/Diverse/PET2001.htm">
+      <!-- 404 on 25apr2010 subitem name="Analysis of a PET video problem" link="http://www.xs4all.nl/~lagendr/Diverse/PET2001.htm">
+      </subitem-->
+      <subitem name="Description of a PET repair" link="http://www.cosam.org/computers/cbm/pet/index.html">
+	<desc>Interesting description to solve several problems with a non-working PET</desc>
       </subitem>
     </items>
     <disclaimer name="Disclaimer">
