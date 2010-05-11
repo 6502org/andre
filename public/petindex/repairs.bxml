@@ -266,6 +266,8 @@ version of the video board for the original PET that went bad frequently.</p>
     <items>
       <subitem name="Diagnostic Manuals" link="http://www.commodore.ca/manuals/default.htm">commodore.ca has a number of diagnostic manuals. 
       </subitem>
+      <subitem name="PET memory test program" link="http://www.commodore.ca/manuals/PET_RAM_test.htm">commodore.ca has memory test program for an 8k PET, which could probably be adapted for larger memory sizes.
+      </subitem>
       <subitem name="PET restoration"> of an original PET 2001-8 by Dave Gostelow - 20100103 obviously gone, if you know its new home, let me know
       </subitem>
       <subitem name="Larry's portcommodore 8-bit troubleshooting list" link="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:commodore_troubleshooting">

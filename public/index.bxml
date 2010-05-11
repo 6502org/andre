@@ -29,6 +29,9 @@ This is currently planned only.</li>
   </overview>
   <news>
     <item date="2010-05-11">
+	Added some links and updates to the <a href="petindex/index.html">PETindex page</a>
+    </item>
+    <item date="2010-05-11">
 	Added a patched PET BASIC4 kernal ROM to enable the CS/A PET replica to run at 2MHz
     </item>
     <item date="2010-04-21">
