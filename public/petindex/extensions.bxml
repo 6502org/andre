@@ -14,6 +14,10 @@
 	let me know!</p>
   </overview>
   <news>
+    <item date="2010-05-11">
+	Added the PET RAM expansion, the PET EPROM adapter, as well as the 
+	CPU speeders section.
+    </item>
     <item date="2010-04-11">
 	Added the 8296GD, the MTU K1002 sound adapter, and updated the
 	Commodore graphics card adapter.
@@ -245,6 +249,20 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	</desc>
 	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
      </subsection>
+	<subsection toc="petram" name="PET RAM expansion">
+	<desc>
+		The board described here allows to expand the PET - among others - to be expanded with extra memory.
+		It is placed under the CPU. schematics, layout and source are available!
+	</desc>
+	<extlink name="PET RAM expansion" link="http://freenet-homepage.de/x1541/hardware/petram.html"/>
+	<extlink name="flasher program" link="@CBMARC@/documents/projects/memory/index.html"/>
+     </subsection>
+	<subsection toc="eprom" name="PET EPROM adapter">
+	<desc>
+		An adapter for the PET2001 to install additional ROM sets of 16k - installed under the CPU
+	</desc>
+	<extlink name="PET EPROM adapter" link="@CBMARC@/documents/projects/memory/pet/index.html"/>
+     </subsection>
    </section>
 
    <section toc="cpu" name="Other CPUs">
@@ -276,6 +294,24 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 		This one can be seen in Daves Old Computers collections.
 	</desc>
 	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
+     </subsection>
+   </section>
+
+   <section toc="speeder" name="CPU speeders">
+    <desc>
+	This section has CPU speeders for the PET
+    </desc>
+     <subsection toc="caspaer2mhz" name="PET replica with 2MHz">
+	<desc>
+		This is the CS/A caspaer setup PET replica, running at 2MHz
+	</desc>
+	<extlink name="Roll your own FAT40" link="../cbmhw/ryofat40/index.html"/>
+     </subsection>
+     <subsection toc="65816board" name="A 65816 CPU replacement">
+	<desc>
+		The board described here replaces the 6502 with a 65816 running at up to 10MHz
+	</desc>
+	<extlink name="65816 CPU board" link="../cbmhw/pet816/index.html"/>
      </subsection>
    </section>
 

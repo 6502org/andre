@@ -78,6 +78,10 @@
 <h3>News:</h3>
 <ul class="news">
 <li>
+<small>2010-05-11</small>
+	Added beta version of patched PET BASIC4 ROM to run on CS/A in 2MHz
+    </li>
+<li>
 <small>2006-12-22</small>
 	Added the version using the CPU and BIOS boards instead of the PETCPU board ("Caspaer" setup).
     </li>
@@ -221,6 +225,10 @@
 	In addition, the CPU must set the MMU and BIOS board to correct
 	values on Reset. This is done by a small patch that is included
 	in the ROM listed below.
+	</p><p>
+	Unfortunately the IEEE488 interface - despite its timing-resistance - does
+	not - as it comes with the PET - work at higher speeds than 1MHz CPU clock.
+	I have now also patched the ROM to work in the Caspaer setup with 2MHz.
 	</p>
     </p>
 <ul>
@@ -237,11 +245,32 @@
      <br><br>
 </li>
 <li class="subitem">
+<a href="roms/csabiospet2mhz_n_ieee.bin">Fat40 8032 graphics keyboard 2MHz @MON</a> 
+	This is the same ROM as above, with the patched IEEE488 and video timing to run at 2MHz.
+     <br><br>
+</li>
+<li class="subitem">
 <a href="mmu.diff">ROM diff</a> This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
      <br><br>
 </li>
 <li class="subitem">
 <a href="initcsa.a65">Patch source</a> This is the source for the ROM patch (excluding the modified reset vector.
+     <br><br>
+</li>
+<li>
+<strong>IEEE488 patch</strong>: This is the IEEE488 patch that makes the IEEE488 work at 2Mhz (beta).
+	<pre>
+	*=$f0d8
+	jsr $fe20
+
+        *=$fe20
+        lda #4
+l1      sec
+        sbc #1
+        bne l1
+        lda $e840
+        rts
+	</pre>
      <br><br>
 </li>
 </ul>
