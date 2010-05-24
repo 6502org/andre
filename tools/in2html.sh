@@ -76,7 +76,7 @@ for i in $root/*.inx; do
 		doinsert1 $i $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			echo "<DIV ID=\"menu\">" >> $t2
+			echo "<DIV class=\"top\" ID=\"menu\">" >> $t2
 			cat $root/.files.xml >> $t2
 			echo "</DIV>" >> $t2
 			doinsert2 $i $t2 "@MENU@"

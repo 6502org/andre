@@ -58,7 +58,7 @@
 </HEAD><xsl:text>
 </xsl:text><BODY>
 @MENU@
-<DIV ID="content"><xsl:text>
+<DIV class="top" ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
 </xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
@@ -197,7 +197,7 @@
 </xsl:text>
 <body>
 @MENU@
-<DIV ID="content">
+<DIV class="top" ID="content">
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">
