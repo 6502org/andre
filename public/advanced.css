@@ -24,25 +24,17 @@ li li {
 }
 
 BODY {
-	background-color:
-	    -webkit-gradient(
-    		linear,
-        	bottom,
-	    	top,
-	        color-stop(0.12, rgb(139,58,39)),
-		color-stop(0.56, rgb(167,87,67)),
-		color-stop(0.59, rgb(0,0,0))
-		)
-	    -moz-linear-gradient(
-	    	center bottom,
-	        rgb(139,58,39) 12%,
-	        rgb(167,87,67) 56%,
-	        rgb(0,0,0) 59%
-		)
-	    ;
-	/*background-color: color-gradient-linear(90deg, 5px rgba(100,100,100, 0.5));*/
-	/*background-color: #dddddd;*/
-	color: #000000;
+ /* non CSS3 browsers */
+ background-color: #dddddd;
+ /* W3C Spec */
+ background: linear-gradient(top, #ddd 0, #fff 100%);
+ /* browser */
+ background: -moz-linear-gradient(top, #ddd 0, #fff 100%);
+ background: -webkit-gradient(linear,
+  left top, left bottom,
+  color-stop(0, #ddd),
+  color-stop(1, #fff));
+	
 	font-family: "Arial";
 	font-size: 80%;
 }
