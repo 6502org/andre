@@ -1,21 +1,25 @@
-<html><head><base target="_top">
-<meta content="André  Fachat" name="author">
-<meta content="text/html; charset=iso8859-1" http-equiv="content-type">
-<meta content="SCSI interface" name="description">
-<meta content="SCSI interface" name="keywords">
-<title>SCSI information</title>
-<link href="mailto:@EMAIL@" rev="made">
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
-</head>
-<body>
-@MENU@
-<DIV ID="content">
-<h1>SCSI interface information</h1><p class="copyright">(C)
-1997-2006 Andr&eacute;  Fachat 
-&lt;<a href="mailto:@EMAIL@">@EMAIL@</a>&gt; 
-</p> 
-<h2>SCSI Standard</h2><p>
-SCSI means "Small Computer System Interface". It is an
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="SCSI interface information">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>SCSI</keywords>
+  <metadesc>SCSI</metadesc>
+  <!--overview><p>	</p>
+  </overview-->
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+  <section toc="main" name="SCSI Standard">
+    <desc> 
+<p>CSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
 disks, scanners, CD-ROMs etc. As such it is very flexible.
 </p><p>
@@ -35,12 +39,12 @@ The commands are transferred in a standard way,
 which makes the transport level flexible.
 And once you know how to send one command, you can easily send
 any other. To send a command you can have a look at the software
-from this site, that includes SCSI drivers for the 6502 in 
+from this site, that includes SCSI drivers for the 6502 in
 the <a href="../osa/index.html">GeckOS</a> operating system.
 </p><p>
 The SCSI-II standard is refered to as
 <em>ANSI X3.131-1990 Small Computer Systems Interface-2 (SCSI-II)</em>.
-The SCSI-I standard is X3.131-1986. 
+The SCSI-I standard is X3.131-1986.
 The <a href="http://www.t10.org/scsi-3.htm">SCSI-III</a> standard still specifies the asynchronous mode
 for parallel cable transfer, which is used in my current designs.
 In the resources section below are links to the standards and to a very good article on SCSI.
@@ -56,20 +60,19 @@ All code references relative to the main source directory, usually under
 <code>/usr/src/linux/</code>, of linux kernel version 2.0.36 (although
 the linux version should not matter that much here).
 </p>
-<h3>Resources</h3>
-<ul>
-<li>The <a href="http://www.t10.org/scsi-3.htm">SCSI-III</a> standard
-<li>The <a href="http://www.t10.org/ftp/t10/drafts/s2/s2-r10l.pdf">SCSI-II</a>
-standard (as <a href="http://www.adobe.com">PDF</a>)
-<li>A very good <a href="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html">IBM developerWorks article</a> on SCSI by Peter Seebach.
-<li><a href="http://en.wikipedia.org/wiki/Scsi">Wikipedia on SCSI</a>.
-</ul>
-<h2>Disclaimer</h2>
-<p>
-All Copyrights are acknowledged. There is no warranty attached to the informatio
-n on these pages.
-</p>
-<hr/>
-Contents last modified 2006-11-02.
+   </desc>
+  </section>
+  <section toc="resources" name="Resources">
+	<desc><p>The SCSI standard is now managed by the Technical Committee T10, that unfortunately have decided to give access
+		to the standards only after registration as I understand. Here are some links anyway.
+	</p>
+	</desc>
+	<extlink name="The SCSI Standards" link="http://www.t10.org/scsi-3.htm">The T10 web site</extlink>
+	<extlink name="SCSI introduction" link="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html">A very good IBM developerworks article on SCSI</extlink>
+	<extlink name="Wikipedia on SCSI" link="http://en.wikipedia.org/wiki/Scsi"/>
+  </section>
+
+  <closing>
 @FOOTER@
-  </DIV></body></html>
+  </closing>
+</webpage>

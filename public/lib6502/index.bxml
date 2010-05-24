@@ -1,0 +1,62 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="lib6502 standard">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>6502,standard,library</keywords>
+  <metadesc>6502 standard library</metadesc>
+  <overview><p>The lib6502 standard library for 6502 systems is far from being
+complete. The current version is
+<strong><a href="lib6502.html">lib6502.html</a></strong>, but older
+versions can be obtained from below.
+	</p>
+<p>
+The standard is now heading not only for source compatibility,
+but also for binary compatibility. It is still possible to claim
+source compatibility, but when using the values (for error codes,
+function codes,...) (- not yet all -) given in this lib, the files should be
+binary compatible.
+</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+  <section toc="main" name="Releases">
+    <desc>
+<ul>
+<li><a href="lib6502-0.6.html.gz">lib6502-0.6.html.gz</a> (current)</li>
+</ul>
+Changes of the library definition are in <a href="changes.txt">changes.txt</a>.
+<ul>
+<li><a href="lib6502-0.5.html.gz">lib6502-0.5.html.gz</a></li>
+<li><a href="lib6502-0.4.html.gz">lib6502-0.4.html.gz</a></li>
+<li><a href="lib6502-0.3.html.gz">lib6502-0.3.html.gz</a></li>
+</ul>
+    </desc>
+
+  </section>
+  <section toc="dist" name="Distribution">
+    <desc>
+<p>
+The name lib6502 for a 6502 library is copyrighted by me. It may be used by systems and applications without restriction, as long as the libraries named with this name obey the definitions stated in this document.
+</p>
+    </desc>
+
+  </section>
+  <section toc="disc" name="Disclaimer">
+    <desc>
+<p>All Copyrights are acknowledged. The information here is provided under the terms of the GNU Public License version 2 unless noted otherwise. </p>
+    </desc>
+
+  </section>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

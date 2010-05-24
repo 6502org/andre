@@ -23,8 +23,25 @@ li li {
 	font-style: italic;
 }
 
-BODY { 
-	background-color: #dddddd;
+BODY {
+	background-color:
+	    -webkit-gradient(
+    		linear,
+        	bottom,
+	    	top,
+	        color-stop(0.12, rgb(139,58,39)),
+		color-stop(0.56, rgb(167,87,67)),
+		color-stop(0.59, rgb(0,0,0))
+		)
+	    -moz-linear-gradient(
+	    	center bottom,
+	        rgb(139,58,39) 12%,
+	        rgb(167,87,67) 56%,
+	        rgb(0,0,0) 59%
+		)
+	    ;
+	/*background-color: color-gradient-linear(90deg, 5px rgba(100,100,100, 0.5));*/
+	/*background-color: #dddddd;*/
 	color: #000000;
 	font-family: "Arial";
 	font-size: 80%;
@@ -54,16 +71,21 @@ H2 {
 	border-top: 2px solid;
 }
 
+DIV.top {
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+  background-color: #ffffff; 
+}
+
 DIV#footer {
 	border-top: 2px solid;
 }
 
 DIV#content {
   margin-left: 20em;
-  padding: 0 1em;
+  padding: 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
   text-align: left;
-  background-color: #ffffff; 
 }
 
 DIV#content table {
@@ -73,11 +95,12 @@ DIV#content table {
 DIV#menu {
   float: left; width: 25em;
   margin: 0; padding: 0;
+  padding-right: 1em;
   margin-left: -2em;
-  margin-top: -1.7em;
+/*  margin-top: -1.7em;*/
   list-style-position:outside;
 /*  position: fixed; */
-  background-color: #dddddd; 
+/*  background-color: #dddddd; */
   font-size:smaller;
 }
 
