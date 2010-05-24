@@ -1,6 +1,16 @@
-<html><head><title>6502 virtual addresses</title>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
-</head><body>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="Virtual address space for 6502 microprocessors">
+<meta name="keywords" content="6502 virtual-memory virtual-addresses">
+<title>Virtual Address space for 6502 Microprocessors</title>
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+</head>
+<body>
 <DIV class="top" ID="menu">
 <ul><li class=homepage><a href=../index.html>Homepage</a></li>
 <ul class="menu0" >
@@ -29,9 +39,11 @@
 </ul>
 </ul>
 </DIV>
-<DIV ID="content">
+<DIV class="top" ID="content">
 <h1>Virtual Address space for 6502 Microprocessors</h1>
-<p>(C) 1997,2006 Andr&eacute; Fachat, originally published in TCJ</p>
+<p class="copyright">(C)
+1997-2010 André  Fachat</p> 
+<div class="overview">
 <p>
 In this article I want to give an overview of virtual memory handling
 for small computers. There also is an example of how to use this
@@ -43,15 +55,31 @@ then I thought that the memory managemet should be better than the
 Commodore stuff. I then stumbled accross the 74LS610, a memory mapper
 and decided to use this chip.
 </p>
-<h2>Virtual Addresses</h2>
-<p>
+  </div>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#virtaddr">Virtual Addresses</a></li>
+<li><a href="#whatfor">What's it for?</a></li>
+<li><a href="#ls610">The 74LS610</a></li>
+<li><a href="#6502mmu">The MMU in 6502 systems</a></li>
+<li><a href="#schem">The Schematics</a></li>
+<li><a href="#prog">Programming the MMU</a></li>
+<li><a href="#uses">MMU uses</a></li>
+<li><a href="#wprot">Write Protection</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#refs">References</a></li>
+</dir>
+</DIV>
+<h2><a name="virtaddr">Virtual Addresses</a></h2>
+<p> <p>
 Before I go into the depths of the actual design, I want to say more
 about virtual addresses. What is a virtual address actually? Well, when using
 an address in an opcode of an assembly program, we normally consider
 this a physical address, i.e. the real address the data is in memory.
-This is true for simple CPUs, but not for CPUs with a virtual address space. 
+This is true for simple CPUs, but not for CPUs with a virtual address space.
 Here
-the address used in an opcode - or even the PC (program counter) 
+the address used in an opcode - or even the PC (program counter)
 when loading an opcode
 itself - is only a virtual address, an index into a special table. This
 table then holds the real, physical address of the data to be loaded or
@@ -69,8 +97,9 @@ of the 16 entries. When reading the byte at $2345, then the
 second entry in the mapping table is taken. It might contain more
 address bits or even special bits that could indicate write protection.
 </p>
-<h2>What's it for?</h2>
-<p>
+    </p>
+<h2><a name="whatfor">What's it for?</a></h2>
+<p> <p>
 For small systems using virtual addresses is a nice way to expand address
 space.  Of course the real, usable address space at any one moment is
 not larger than without virtual memory. Only by changing
@@ -83,11 +112,11 @@ concept, the CPU can be signaled when a 'forbidden' address space is
 accessed, like a read-only block is written to or a user program tries
 to read system memory.
 </p>
-<img src="mmu65/mmu65a.gif" alt="address mapping example"/>
+<img src="mmu65/mmu65a.gif" alt="address mapping example">
 <p>
 But the memory mapping is used not only for permissions. A program on
 a Unix system, for example, always runs at a fixed address.  This fixed
-address is in a virtual address space, of course. 
+address is in a virtual address space, of course.
 This way each process can have
 its own address space in virtual memory, which is then distributed in
 the physical memory as the operating system memory manager decides. Two
@@ -97,9 +126,10 @@ even use 'copy-on-write' pages, i.e. pages (blocks) that are copied when
 a write to this block occurs. The mapping is then changed such that the
 copied and modified block is only seen in the modifying process, while
 the other process(es) still see the unmodified block.
-<p>
-<h2>The 74LS610</h2>
-<p>
+</p>
+    </p>
+<h2><a name="ls610">The 74LS610</a></h2>
+<p> <p>
 The MMU (as I will call this chip throughout this text) is a 16 times
 12 bit register. The MMU internally has only one address decoder. That
 means that only one access (CPU read/write or Memory Mapping) may occur
@@ -122,8 +152,9 @@ lines MO0-7 are set to zero, while MA0-3 are fed through to MO8-11.
 So after power-up reset the default should be to have -MM high, then
 initialize the MMU and only then enable it.
 </p>
-<h2>The MMU in 6502 systems</h2>
-<p>
+    </p>
+<h2><a name="6502mmu">The MMU in 6502 systems</a></h2>
+<p> <p>
 I have taken an excerpt (diagram 2) from the schematics of my selfbuilt
 computer to show you how to use this chip. I am only using 8 of the 12
 bits in each register, as I can only access 8 bits at once with the 6502.
@@ -137,11 +168,12 @@ I have patched the MMU in the CPU address lines A12-15, thus making one
 memory block 4kByte in size. The MMU gives the mapped address lines
 BA12-BA19, allowing up to one Megabyte of memory to be addressed.
 Each of the 16 4kByte blocks in a 6502 address space can then be
-independently mapped to any of the 256 4kByte Blocks in 1 MByte 
+independently mapped to any of the 256 4kByte Blocks in 1 MByte
 address space.
 </p>
-<h2>The Schematics</h2>
-<p>Note: this part describes this <a href="mmu65/mmu65b.gif">schematics</a>.</p>
+    </p>
+<h2><a name="schem">The Schematics</a></h2>
+<p> <p>Note: this part describes this <a href="mmu65/mmu65b.gif">schematics</a>.</p>
 <p>
 The connector on the left of the diagram 2 is the bus connector.
 The CPU-side interface to read and write the MMU registers is put
@@ -174,8 +206,9 @@ Of course the BD0-7 Bus Data lines and the control lines are connected
 to the CPU as well (via drivers), I have only taken the relevant part
 for the MMU.
 </p>
-<h2>Programming the MMU</h2>
-<p>
+    </p>
+<h2><a name="prog">Programming the MMU</a></h2>
+<p> <p>
 Using this chip now is quite simple, if you take care of a few things.
 To change the address mapping of a certain memory block, you just write
 the appropriate block number into the MMU register. You have to take care
@@ -189,8 +222,9 @@ RESET (MMU disabled) and after the MMU has been enabled by this store.
 The other MMU registers are still undefined and thus need to be filled after
 that first write.
 </p>
-<h2>MMU uses</h2>
-<p>
+    </p>
+<h2><a name="uses">MMU uses</a></h2>
+<p> <p>
 Of course, just having an MMU in a computer is not really satisfactory
 without real use of it. One possible (but not outstanding) use is to
 map certain memory blocks to allow a single process to access a RAM disk
@@ -237,8 +271,9 @@ the usual addresses, but now in virtual address space. Only the blocks
 where the ROMs are were replaced with RAM blocks from my selfbuilt
 computer and these blocks were loaded with copies of the new ROMs.
 </p>
-<h2>Write protection</h2>
-<p>Note: this part describes the <a href="mmu65/mmu65c.gif">write protect schematics</a>.</p>
+    </p>
+<h2><a name="wprot">Write Protection</a></h2>
+<p> <p>Note: this part describes the <a href="mmu65/mmu65c.gif">write protect schematics</a>.</p>
 <p>
 What do you need for additional features? You need more data bits. But
 the 6502 only has an 8 bit wide data bus and all of the bits are used
@@ -305,8 +340,9 @@ then R/-W is low (write) anyway, and XORing it with COLL makes it high
 on the bus, as well as the CPU. But the CPU bus driver is disabled,
 so noone cares, and the memory is not changed.
 </p>
-<h2>Conclusion</h2>
-<p>
+    </p>
+<h2><a name="conclusion">Conclusion</a></h2>
+<p> <p>
 Virtual memory might not be useful for most of the 'DIY' stuff.  In most
 cases a simple bank switching (which also just is a kind of virtual
 memory management) will still be enough when simple address space
@@ -316,25 +352,30 @@ protects processes from disturbing each other, or allows easy debugging.
 The 74LS610 is an easy (albeit not the fastest) way to introduce virtual
 memory to small or DIY systems.
 </p>
-<h2>References</h2>
-<p>Here are schematics and code</p>
+    </p>
+<h2><a name="refs">References</a></h2>
+<p> <p>Here are schematics and code</p>
 <ul>
-<li><a href="mmu65/mmu65.a65">mmu65.a65</a> Source code for the GeckOS/A65 
+<li>
+<a href="mmu65/mmu65.a65">mmu65.a65</a> Source code for the GeckOS/A65
 memory environment switcher.</li>
-<li><a href="mmu65/mmu65b.gif">mmu65b.gif</a> Schematics for the 
-basic use of a 74LS610.</li> 
-<li><a href="mmu65/mmu65c.gif">mmu65c.gif</a> Schematics for the 
-use of a 74LS610 with write protect bit included.</li> 
+<li>
+<a href="mmu65/mmu65b.gif">mmu65b.gif</a> Schematics for the
+basic use of a 74LS610.</li>
+<li>
+<a href="mmu65/mmu65c.gif">mmu65c.gif</a> Schematics for the
+use of a 74LS610 with write protect bit included.</li>
 <li>The <a href="../csa/index.html">CS/A65</a> computer. Please note
-that the latest version of the CPU board makes an even better use of the 
+that the latest version of the CPU board makes an even better use of the
 MMU with its bus error condition detection.</li>
 <li>The <a href="../osa/index.html">GeckOS/A65</a> operating system</li>
 <li>More <a href="../hwinfo/ls610/index.html">74LS610</a> information.</li>
 </ul>
+    </p>
 <hr>
-<p>(C) 1997,2006 Andr&eacute; Fachat</p>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
-</DIV>
-</body></html>
+  </DIV>
+</body>
+</html> 
 
