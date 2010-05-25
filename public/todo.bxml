@@ -1,0 +1,130 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Andr&eacute;'s 8-bit TODO-List">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <!--keywords></keywords>
+  <metadesc></metadesc-->
+  <overview><p>
+This is my rough TODO-List for my 8-bit projects... Don't actually expect me to get anything of this finished soon...</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="osa" name="GeckOS">
+    <desc> <p>The operating system needs a definitive overhaul. These are the things to do:
+</p>
+<ul>
+<li>no-copy (where possible) block transfer replacement for the streams API</li>
+<li>support for the 65816 boards I recently did</li>
+<li>support for Ethernet and USB devices, ethernet using the uIP stac</li>
+<li>support for cc65 C-based programs</li>
+</ul>
+    </desc>
+  </section>
+
+  <section toc="csa" name="CS/A65">
+    <desc> <p>My current CS/A projects...
+    </p></desc>
+
+     <subsection toc="cpu816" name="65816 CPU board">
+	<desc><p>
+	After designing and testing the PET816 board (65816 CPU board for the CBM PETs or other 6502 computers) I decided to adapt the
+	CPLD code to be compatible with the PET816 board - more features and common drivers are easier to do.
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
+     <subsection toc="petcpu" name="PETCPU board">
+	<desc><p>
+	During my tests for the PET816 board in the PETCPU board, I found timing issues between the PETCPU and VDC boards. Need to fixup the PETCPU board. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
+     <subsection toc="csacpu" name="CS/A CPU on 2MHz">
+	<desc><p>
+	During my tests for the PET816 board in a 2MHz CS/A computer, I found timing issues with the 2MHz mode - need to be figured out. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
+     <subsection toc="etholi" name="Olimex Ethernet board">
+	<desc><p>
+	I have made a design for a board with the Olimex Ethernet controller board - basically similar to the Netusb board, but needing voltage converters as the Olimex parts is only available in 3.3V... Board and parts are here, but nothing done yet... 
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
+     <subsection toc="netusb" name="Netusb">
+	<desc><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
+  </section>
+
+  <section toc="fpga" name="65000 FPGA">
+    <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement. 
+</p>
+	</desc>
+	<subsection toc="65002" name="65002"><desc><p>Design goals for the 65002 CPU replacement are:</p>
+<ul>
+<li>Provide original 6502 (legal) opcodes; optionally some of the illegal ones (SAX, LAX) as they fit</li>
+<li>16bit ALU - make it a 6502 as it could have been ...</li>
+<li>eliminate bogus memory cycles</li>
+<li>abort-ability - i.e. ability to abort an opcode in mid-process and roll it back</li>
+<li>No mode bits - as opposed to the 65816 an opcode should have exactly one meaning (except for the original BCD bit)</li>
+<li>Not sure yet if I extend the original registers to 16 bit, or simply add a set of new 16 bit registers</li>
+<li>Prefix opcodes for specific (e.g. 16bit) arithmetic functions, vector ops, and cpu control</li>
+</ul>
+    </desc>
+    </subsection>
+	<subsection toc="65010" name="65010"><desc><p>Design goals for the 65010 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65002 CPU from above</li>
+<li>Add vector operations to the CPU core, like vector add. Allow different address offsets for source and target (from 0 up to 256)</li>
+<li>Include for example blitter functions</li>
+<li>possibly requires extra registers, depending on whether new 16bit registers are added or existing registers extended</li>
+</ul>
+    </desc>
+    </subsection>
+	<subsection toc="65020" name="65020"><desc><p>Design goals for the 65020 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65010 CPU from above (maybe optionally 65002 also)</li>
+<li>Add MMU functionality - similar to the CS/A CPU board, but using a page table register and dynamic page table lookup fetch</li>
+<li>Use 16bit page table entries, with e.g. 12 bit address extension and 4 bit special bits (read-only, no-execute, not-mapped, privileged)</li>
+<li>Basic "ring 0" functionality - separation of OS and user spaces</li>
+<li>Optionally 16bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16bit</li>
+</ul>
+    </desc>
+    </subsection>
+	<subsection toc="65030" name="65030"><desc><p>This one is really sketchy for now...Design goals for the 65030 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65020 CPU from above</li>
+<li>Add multi-core functionality - coordinating/synchronizing multiple cores in a single FPGA</li>
+<li>Possibly/optionally include L1 read caches in addition to the 16bit memory interface. Not sure if L1 is shared between cores or not</li>
+<li>Possibly/optionally include cache coherency protocol between multiple FPGAs</li>
+</ul>
+    </desc>
+    </subsection>
+	<subsection toc="io" name="652xx"><desc><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
+    </desc>
+    </subsection>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

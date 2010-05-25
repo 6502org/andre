@@ -258,29 +258,4 @@ table.memmap th {
 	width:14mm;
 	padding:5px;
 }
-/*
-table.memmap {
-	text-align:center;
-	empty-cells:show;
-	border-style:solid;
-	border-spacing:0px;
-	margin:5px;
-}
-
-table.memmap td {
-	border-width:1px;
-	border-style:solid;
-	width:14mm;
-}
-table.memmap th {
-	border-width:1px;
-	border-style:solid;
-	width:14mm;
-}
-
-table.memmap th.separator {
-	background-color: #ffffff;
-	border-style:none;
-}
-*/
 
