@@ -57,7 +57,10 @@
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 </HEAD><xsl:text>
 </xsl:text><BODY>
+<div id="leftcol">
 @MENU@
+</div> <!-- leftcol -->
+<div id="midcol">
 <DIV class="top" ID="content"><xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
@@ -84,8 +87,9 @@
 <DIV ID="footer">
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
 @FOOTER@
-</DIV>
-</DIV>
+</DIV> <!-- footer -->
+</DIV> <!-- content -->
+</div> <!-- midcol -->
 </BODY></HTML>
 </xsl:template>
 
@@ -196,7 +200,10 @@
 <xsl:text>
 </xsl:text>
 <body>
+<div id="leftcol">
 @MENU@
+</div> <!-- leftcol -->
+<div id="midcol">
 <DIV class="top" ID="content">
 <h1><xsl:value-of select="@name"/></h1>
 
@@ -211,7 +218,7 @@
 </xsl:for-each>
 <div class="overview">
 <xsl:copy-of select="overview/*|overview/text()"/>
-</div>
+</div> <!-- overview -->
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
@@ -253,7 +260,9 @@
 <xsl:apply-templates select="oldnews"/>
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
-</DIV></body></html>
+</DIV> <!-- content -->
+</div> <!-- midcol -->
+</body></html>
 <xsl:text> 
 </xsl:text>
 </xsl:template>
