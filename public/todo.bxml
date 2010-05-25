@@ -124,7 +124,19 @@ This is my rough TODO-List for my 8-bit projects... Don't actually expect me to 
     </subsection>
   </section>
 
-  <closing>
+  <section toc="xs1541" name="XS1541">
+    <desc> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
+create a new firmware for the XS1541 to provide the lptieee functionality...
+</p>
+	</desc>
+  </section>
+
+  <section toc="web" name="Web design overhaul">
+    <desc> <p>I have a major web design overhaul in the making. I still have to convert a number of pages to the current XML/XSL page generation before I can update the design on all pages - but when that is done, design changes work easily for all pages :-)
+</p>
+	</desc>
+  </section>
+	  <closing>
 @FOOTER@
   </closing>
 </webpage>
