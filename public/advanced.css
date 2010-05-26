@@ -25,16 +25,17 @@ li li {
 
 BODY {
  /* non CSS3 browsers */
- background-color: #dddddd;
- /* W3C Spec */
- background: linear-gradient(top, #ddd 0, #fff 100%);
- /* browser */
+ background-color: #000;
+ /* W3C Spec *
+ background: linear-gradient(top, #ddd 0, #fff 100%); */
+ /* browser * requires IE code in addition! 
+  * ende der Seite unten nicht klar definiert (left/righcol gehen raus!?)
  background: -moz-linear-gradient(top, #ddd 0, #fff 100%);
  background: -webkit-gradient(linear,
   left top, left bottom,
   color-stop(0, #ddd),
   color-stop(1, #fff));
-	
+*/	
 	font-family: "Arial";
 	font-size: 80%;
 }
@@ -67,7 +68,7 @@ DIV.top {
 -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
   background-color: #ffffff; 
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   padding: 1em;
 }
 
@@ -86,17 +87,20 @@ DIV#content {
 }
 
 DIV#menu {
+  padding-right: 1em; 
+  list-style-position:outside;
+}
+
+DIV#leftcol {
   float: left; 
   width: 23em;
   margin: 0; padding: 0;
-  padding-right: 1em;
-  list-style-position:outside;
   font-size:smaller;
 }
 
 DIV#rightcol {
   float: right; 
-  width: 24em;
+  width: 23em;
   margin: 0; padding: 0;
   font-size:smaller;
 }
@@ -104,6 +108,10 @@ DIV#rightcol {
 DIV#oldnews {
 	height: 50em;
 	overflow: scroll;
+ /* FF/GC add the scrollbar to the width, so we need to compensate by making it
+  * smaller. IE8 includes the scrollbar, so the box is less width than in the
+  * other browsers */
+  width: 21.2em;
 }
 
 DIV.rightbar {
