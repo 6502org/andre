@@ -36,6 +36,16 @@
 </ul>
 </ul>
 </DIV>
+	</div>
+<div id="rightcol">
+<div class="top" id="google"><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Google Search my site"><input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+<div class="top" id="twitter">
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+<div class="top" id="forum"><p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p></div>
 </div>
 <div id="midcol"><DIV class="top" ID="content">
 <h1>André 's 8-bit TODO-List</h1>
@@ -56,6 +66,7 @@ This is my rough TODO-List for my 8-bit projects... Don't actually expect me to 
 <li><a href="#csacpu">CS/A CPU on 2MHz</a></li>
 <li><a href="#etholi">Olimex Ethernet board</a></li>
 <li><a href="#netusb">Netusb</a></li>
+<li><a href="#blitter">Blitter</a></li>
 </dir>
 <li><a href="#fpga">65000 FPGA</a></li>
 <dir>
@@ -107,6 +118,17 @@ This is my rough TODO-List for my 8-bit projects... Don't actually expect me to 
 <p><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
 	</p>
 	</p>
+<H3><a name="blitter">Blitter</a></H3>
+<p><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
+		had everything explicitely, like adder/incrementer separately for source and target address. 
+		The whole first layout draft took full two pages of a eurocard (160x100mm) - SMD!
+		</p><p>
+		I have redesigned the blitter using a design approach similar to a CPU - with registers and a single ALU
+		to add the address increment for both, source and target addresses. The first layout draft 
+		fits well on a single side of a eurocard, although still all SMD (except two GALs used as 
+		"microcode"...). The control logic still has to be designed, but I think it'll fit one eurocard side.
+	</p>
+	</p>
 <h2><a name="fpga">65000 FPGA</a></h2>
 <p> <p>I'm working on a design for an FPGA-based 6502 CPU replacement. 
 </p>
@@ -154,6 +176,8 @@ This is my rough TODO-List for my 8-bit projects... Don't actually expect me to 
 <H3><a name="io">652xx</a></H3>
 <p><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
     </p>
+<ul><li>
+<a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li></ul>
 <h2><a name="xs1541">XS1541</a></h2>
 <p> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
 create a new firmware for the XS1541 to provide the lptieee functionality...

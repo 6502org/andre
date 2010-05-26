@@ -67,6 +67,8 @@ DIV.top {
 -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
   background-color: #ffffff; 
+  margin-bottom: 1.5em;
+  padding: 1em;
 }
 
 DIV#footer {
@@ -76,7 +78,6 @@ DIV#footer {
 DIV#content {
   margin-left: 20em;
   margin-right: 20em;
-  padding: 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
   text-align: left;
 }
@@ -95,11 +96,6 @@ DIV#rightcol {
   width: 24em;
   margin: 0; padding: 0;
   font-size:smaller;
-}
-
-DIV#rightcol div {
-  padding: 1em;
-  margin-bottom: 2em;
 }
 
 DIV#oldnews {
