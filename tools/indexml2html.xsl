@@ -57,11 +57,11 @@
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 </HEAD><xsl:text>
 </xsl:text><BODY>
-<div id="leftcol">
-@MENU@
-</div> <!-- leftcol -->
+<xsl:call-template name="commoncol"/>
 <div id="midcol">
-<DIV class="top" ID="content"><xsl:text>
+<DIV class="top" ID="content">
+@BREAD@
+<xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
 </xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
@@ -93,6 +93,34 @@
 </BODY></HTML>
 </xsl:template>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<xsl:template name="commoncol">
+	<div id="leftcol">
+@MENU@
+	</div> <!-- leftcol -->
+	<div id="rightcol">
+	        <div class="top" id="google">
+	                <form method="get" action="http://www.google.com/search">
+       		                <input type="text" name="q" size="20" maxlength="255" value="" />
+	                        <input type="submit" value="Google Search my site" />
+	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
+	                </form>
+	        </div>
+		<div class="top" id="twitter">
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a>
+		</div>
+		<div class="top" id="forum">
+			<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+			<xsl:for-each select="//forum[@type='6502.org']">
+				<p>Discuss this page's content on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+			</xsl:for-each>
+		</div>
+	</div>
+</xsl:template>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="desc">
 <p><xsl:copy-of select="*|text()"/></p>
@@ -200,11 +228,10 @@
 <xsl:text>
 </xsl:text>
 <body>
-<div id="leftcol">
-@MENU@
-</div> <!-- leftcol -->
+<xsl:call-template name="commoncol"/>
 <div id="midcol">
 <DIV class="top" ID="content">
+@BREAD@
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">

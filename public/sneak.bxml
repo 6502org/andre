@@ -84,7 +84,7 @@ This is my rough TODO-List for my 8-bit projects... Don't actually expect me to 
 		"microcode"...). The control logic still has to be designed, but I think it'll fit one eurocard side.
 	</p>
 	</desc>
-	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+	<extlink name="Blitter theory" link="http://6502org.wikidot.com/blitter-theory-part-1"/>
      </subsection>
 
   </section>

@@ -54,10 +54,11 @@ TABLE.notes TR {
 DIV#rightcol {
   /* hide right col in standard style */
   display: none;
-  float: right;
-  width: 24em;
-  margin: 0; padding: 0;
-  font-size:smaller;
+}
+
+DIV#breadcrumbs {
+  /* hide right col in standard style */
+  display: none;
 }
 
 

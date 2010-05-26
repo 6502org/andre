@@ -75,10 +75,13 @@ DIV#footer {
 	border-top: 2px solid;
 }
 
-DIV#content {
+DIV#midcol {
   margin-left: 20em;
   margin-right: 20em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+}
+
+DIV#content {
   text-align: left;
 }
 

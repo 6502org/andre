@@ -20,7 +20,7 @@ echo "making web: " $dir
 echo "bindir= " $bin
 
 ############################################
-# 1) create the menu
+# 1) create the menu and breadcrumb files
 
 $bin/files2menu.sh $dir
 

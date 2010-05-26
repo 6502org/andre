@@ -18,6 +18,40 @@ fi
 
 #echo "Run: " $0 $root $up $upn $parent
 
+function buildbread () {
+
+	#echo "buildbread rroot=" $1 ", level="$2 ", <p/>"
+
+	if [ -f $1/../.name.xml ]; then
+		buildbread $1/.. ../$2
+	else
+		if [ -f $1/.name.xml ]; then 
+			echo "<a href=\"../"$2"index.html\">Homepage</a>"
+		else
+			echo "Homepage"
+		fi;
+	fi;
+
+#	if [ -f $1/.name.xml ]; then 
+	    if [ "x$2" = "x" ]; then
+		# bottom level
+		echo -n '&gt;&gt; '
+		cat $1/.name.xml
+	    else
+		# not bottom level
+		echo -n '&gt;&gt;'" <a href=\""$2"index.html\">"
+		cat $1/.name.xml
+		echo -n "</a>"
+	    fi;
+#	fi;
+}
+
+id=`echo "$root" \
+	| sed -e 's%^.%m%g' \
+	| sed -e 's%/%_%g'`
+
+#echo "ID=" $id;
+
 if [ -f $root/.files ]; then
     cat $root/.files \
 	| awk -v upn="$upn" ' \
@@ -25,10 +59,11 @@ if [ -f $root/.files ]; then
 		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
 		/^f / { print "<li class=\"file\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^l / { print "<li class=\"link\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^d / { print "<li class=\"dir\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>@" $2 "@"; }\
+		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>@" $2 "@"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml
+    
 else
     echo "" > $root/.files.xml
 #    echo "<li class=\"openfile\">index.html</li>" > $root/.files.xml
@@ -44,7 +79,9 @@ if [ -f $root/../.files.xml2 ]; then
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
 		| sed -e "s@%up%@../%up%@g" \
 		> $root/.files.xml2
-	cat $root/.files.xml >> $root/.files.xml2
+	cat $root/.files.xml \
+		| sed -e "s@%id%@$id@g" \
+		>> $root/.files.xml2
 	cat $root/../.files.xml2 \
 		| awk -v m="$parent" '
 			BEGIN { pp=0; } 
@@ -54,9 +91,11 @@ if [ -f $root/../.files.xml2 ]; then
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
 		| sed -e "s@%up%@../%up%@g" \
 		>> $root/.files.xml2
+
 else
-	echo "<ul><li class="homepage"><a href="%up%index.html">Homepage</a></li>" > $root/.files.xml2
+	echo "<ul><li class="homepage" id="m_homepage"><a href="%up%index.html">Homepage</a></li>" > $root/.files.xml2
 	cat $root/.files.xml \
+		| sed -e "s@%id%@$id@g" \
 		>> $root/.files.xml2
 		#| sed -e "s@%up%@../%up%@g" \
 	echo "</ul>" >> $root/.files.xml2
@@ -64,9 +103,22 @@ fi
 
 if [ -f $root/.files ]; then
     for i in `cat $root/.files | grep "^d " | cut -d " " -f 2`; do
+
+	# extract name
+	name=`cat $root/.files | grep "^d $i " | cut -d " " -f 3-`;
+	#echo "i=" $i ", name="$name;
+	echo $name > $root/$i/.name.xml;
+	
+	# build breadcrumbs from name
+	buildbread $root/$i > $root/$i/.bread.xml
+
+	# recursively continue
 	#  if [ "x$i" != "x" -a -f $root/$i/.files ]; then 
 	"$0" $root/$i $up../ $(($upn+1)) $i
 	#  fi
+
+	# cleanup name.xml
+	rm -f $root/$i/.name.xml
     done;
 fi
 

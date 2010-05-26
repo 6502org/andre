@@ -68,6 +68,7 @@ for i in $root/*.inx; do
 	t2=${i}_2;
 	t3=${i}_3;
 	t4=${i}_4;
+	t5=${i}_5;
 	to=`dirname $i`/`basename $i .inx`.html;
 	if [ -f $i ]; then
 		#echo "from " $i " to " $t2
@@ -90,8 +91,20 @@ for i in $root/*.inx; do
 			doinsert2 $t2 $t3 "@DISCLAIMER@" 
 		fi
 
-		#echo "from " $t3 " to " $t4
-		cat $t3 \
+		# insert breadcrumb
+		doinsert1 $t3 $t4 "@BREAD@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			echo "<DIV ID=\"breadcrumbs\">" >> $t4
+			cat $root/.bread.xml \
+				| sed -e "s@%up%@.@g" \
+				>> $t4
+			echo "</DIV>" >> $t4
+			doinsert2 $t3 $t4 "@BREAD@"
+		fi
+
+		#echo "from " $t4 " to " $t5
+		cat $t4 \
 			| awk '/@FOOTER@/ { print "<p>Return to <a href=\"%up%index.html\">Homepage</a></p>"; }
 				{ print $0; }' \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
@@ -99,18 +112,18 @@ for i in $root/*.inx; do
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \
-			> $t4
+			> $t5
 
-		#echo "from " $t4 " to " $to
+		#echo "from " $t5 " to " $to
 		if [ ! -f $to ]; then
-			cp $t4 $to;
+			cp $t5 $to;
 		else
-			diff -q $to $t4
+			diff -q $to $t5
 			if [ $? -eq 1 ]; then
-				cp $t4 $to;
+				cp $t5 $to;
 			fi
 		fi;
-		rm $i $t2 $t3 $t4
+		rm $i $t2 $t3 $t4 $t5
 	fi;
 done
 
@@ -118,6 +131,7 @@ if [ -f $root/.files ]; then
     for i in `cat $root/.files | grep "^d " | cut -d " " -f 2`; do
 	"$0" $root/$i $up../ $(($upn+1)) $i
 	rm -f $root/$i/.files.xml
+	rm -f $root/$i/.bread.xml
     done;
 fi
 
