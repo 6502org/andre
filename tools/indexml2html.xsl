@@ -97,7 +97,10 @@
 
 <xsl:template name="commoncol">
 	<div id="leftcol">
-@MENU@
+		@MENU@
+		<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE8 and Google Chrome 5 on Windows, as well as Firefox 3.5 and konqueror 4.3.5 on Linux
+		</div>
 	</div> <!-- leftcol -->
 	<div id="rightcol">
 	        <div class="top" id="google">

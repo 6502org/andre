@@ -61,6 +61,11 @@ DIV#breadcrumbs {
   display: none;
 }
 
+DIV#browser {
+  /* hide right col in standard style */
+  display: none;
+}
+
 
 H2 {
 	border-top: 2px solid;
