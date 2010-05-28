@@ -15,10 +15,6 @@
 	padding: 5px;
 }
 
-li li {
-	margin-top: 10px;
-}
-
 .quote {
 	font-style: italic;
 }
@@ -26,9 +22,15 @@ li li {
 BODY { 
 	background-color: #ffffff;
 	color: #000000;
-	font-family: "Arial";
+	font-family: "Sans Serif";
 	font-size: 80%;
 }
+
+a:visited { color:#000080; text-decoration:none }
+a:link { color:#0000ff; text-decoration:none }
+a:active { color:#8888ff; text-decoration:none }
+a:focus { color:#888888; text-decoration:none }
+a:hover { color:#ff0000; text-decoration:none }
 
 TABLE {
 	font-size: 90%;
@@ -87,17 +89,41 @@ DIV#content table {
 	width:auto;
 }
 
+/********************** Menu formatting *********************/
+
 DIV#menu {
-  float: left; width: 25em;
+  float: left; width: 20em;
   margin: 0; padding: 0;
-  margin-left: -2em;
-  list-style-position:outside;
-/*  position: fixed; 
-  margin-top: -1.7em;
-  background-color: #dddddd; 
- */
-  font-size:smaller;
 }
+
+DIV#menu ul {
+  list-style-type:none;
+  margin-left: -2em;
+  font-size:small;
+}
+
+DIV#menu img {
+	margin-right:0.5em;
+}
+
+UL.menu0 {
+}
+UL.menu1 {
+}
+UL.menu2 {
+}
+UL.menu3 {
+}
+
+LI.separator {
+	font-size:larger;
+	font-weight:bold;
+	list-style-type:none;
+/*        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+}
+
+
+/****************** End Menu formatting *********************/
 
 /*
 DIV.rightbar {
@@ -123,13 +149,6 @@ DIV.overview {
 P.copyright {
 	font-size:larger;
 	font-weight:bold;
-}
-
-LI.separator {
-	font-size:larger;
-	font-weight:bold;
-	list-style-type:none;
-        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
 }
 
 LI.hw {
@@ -167,16 +186,6 @@ A.extlink {
     	padding-right: 16px;
 }
 
-UL.menu0 {
-  font-size:small;
-}
-UL.menu1 {
-}
-UL.menu2 {
-}
-UL.menu3 {
-}
-
 UL.news {
 	list-style-image:url(imgs/news.gif);
 }
@@ -203,24 +212,24 @@ DIV.interview .other {
 }
 
 LI.homepage {
-	list-style-image:url(imgs/dir.png);
+/*	list-style-image:url(imgs/dir.png); */
 	font-size:large;
 }
 
 LI.file {
-	list-style-image:url(imgs/file.png);
+/*	list-style-image:url(imgs/file.png); */
 }
 
 LI.link {
-	list-style-image:url(imgs/link.png);
+/*	list-style-image:url(imgs/link.png); */
 }
 
 LI.dir {
-	list-style-image:url(imgs/dir.png);
+/*	list-style-image:url(imgs/dir.png); */
 }
 
 LI.openfile {
-	list-style-image:url(imgs/openfile.png);
+/*	list-style-image:url(imgs/openfile.png); */
 }
 
 table.content {

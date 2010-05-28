@@ -2,6 +2,7 @@
 
 bin="$0"
 root="$1" 
+xup="$2"
 up=""
 upn=0
 parent=""
@@ -54,12 +55,13 @@ id=`echo "$root" \
 
 if [ -f $root/.files ]; then
     cat $root/.files \
-	| awk -v upn="$upn" ' \
+	| awk -v upn="$upn" -v xup="$xup" ' \
 		BEGIN { print "<ul class=\"menu" upn "\" >"; } \
 		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
-		/^f / { print "<li class=\"file\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^l / { print "<li class=\"link\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a></li>@" $2 "@"; }\
+		/^f / { print "<li class=\"file\"><img src=\"%xup%imgs/file.png\"/> <a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^l / { print "<li class=\"link\"><img src=\"%xup%imgs/link.png\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><img src=\"%xup%imgs/dir.png\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
+			print "@" $2 "@</li>"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml
@@ -93,12 +95,12 @@ if [ -f $root/../.files.xml2 ]; then
 		>> $root/.files.xml2
 
 else
-	echo "<ul><li class="homepage" id="m_homepage"><a href="%up%index.html">Homepage</a></li>" > $root/.files.xml2
+	echo "<a class=\"m_homepage\" href=\"%up%index.html\">Homepage</a>" > $root/.files.xml2
 	cat $root/.files.xml \
 		| sed -e "s@%id%@$id@g" \
 		>> $root/.files.xml2
 		#| sed -e "s@%up%@../%up%@g" \
-	echo "</ul>" >> $root/.files.xml2
+	echo "" >> $root/.files.xml2
 fi
 
 if [ -f $root/.files ]; then
@@ -125,6 +127,7 @@ fi
 cat $root/.files.xml2 \
 	| sed -e "s/@[a-zA-Z0-9]*@//g" \
 	| sed -e "s@%up%@@g" \
+	| sed -e "s@%xup%@$xup@g" \
 	> $root/.files.xml
 
 # test 
