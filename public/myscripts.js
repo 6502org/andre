@@ -1,20 +1,28 @@
 
 function hideMenu() {
-	alert("hide");
 	$(this).children("ul").hide();
 	bindPlus(this);
+	return false;
 }
 
 function showMenu( e ) {
 	ul = $(this).children("ul");
 	if ($(ul).size() == 0) {
 		// load
-		alert("not ok");
+		alert("load file; " + "menu.xml");
+		target = this;
+		$.get('menu.xml', function(data, status) {
+		    alert("status=" + status + ", data=" + data);
+		    $(target).append(data);
+		    alert('Load was performed.');
+		    bindMenu(target);
+		    bindMinus(target);
+		});
 	} else {
-		alert("ok");
 		$(this).children("ul").show();
 		bindMinus(this);
 	}
+	return false;
 }
 
 function bindPlus( el ) {
@@ -34,18 +42,24 @@ function bindMinus( el ) {
 }
 
 function bindMenu( el ) {
-   $(el).find("li.dir").each( function(index, el) {
-	   if ( $(el).find("ul").size() != 0) {
+
+   	$(el).find("li.dir").each( function(index, el) {
+	   if ( $(el).children("ul").size() != 0) {
 	   	bindMinus(el);
 	   } else {
 	   	bindPlus(el);
 	   }
-   });
+   	});
+}
 
-   // bind 
+function setupAjax() {
+	$("div#menu").ajaxError( function(ev, req, opts, error) {
+		alert("req.url=" + opts.url + ", ajaxError:" + error);
+	});
 }
 
 $(document).ready(function(){
 	bindMenu($("div#menu"));
+	setupAjax();
 });
 
