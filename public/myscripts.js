@@ -1,35 +1,45 @@
 
-function hideMenu( id ) {
-	e = $("#" + id);
-	$(e).next().hide();
-	img = $(e).find("img");
-	$(img).attr("src", "imgs/plus.png");
-	$(img).attr("onClick", "showMenu('" + id + "')");
-	$(img).removeClass("menuovlm");
-	$(img).addClass("menuovlp");
+function hideMenu() {
+	alert("hide");
+	$(this).children("ul").hide();
+	bindPlus(this);
 }
 
 function showMenu( e ) {
-	e = $("#" + id);
-	$(e).next().show();
-	img = $(e).find("img");
-	$(img).attr("src", "imgs/minus.png");
-	$(img).attr("onClick", "hideMenu('" + id + "')");
-	$(img).removeClass("menuovlp");
-	$(img).addClass("menuovlm");
+	ul = $(this).children("ul");
+	if ($(ul).size() == 0) {
+		// load
+		alert("not ok");
+	} else {
+		alert("ok");
+		$(this).children("ul").show();
+		bindMinus(this);
+	}
+}
+
+function bindPlus( el ) {
+   	$(el).removeClass();
+   	$(el).addClass("dirp");
+	$(el).children("img").attr("src", "imgs/dirp.png");
+	$(el).unbind();
+	$(el).click( showMenu );
+}
+
+function bindMinus( el ) {
+   	$(el).removeClass();
+   	$(el).addClass("dirm");
+	$(el).children("img").attr("src", "imgs/dirm.png");
+	$(el).unbind();
+	$(el).click( hideMenu );
 }
 
 function bindMenu( el ) {
    $(el).find("li.dir").each( function(index, el) {
-	   if ( $(el).next().not("li").size() == 0) {
-	   	id = $(el).attr('id');
-	   	$(el).prepend("<img onClick=\"showMenu('" + id + "');\" class=\"menuovlp\" src=\"imgs/plus.png\"/>");
+	   if ( $(el).find("ul").size() != 0) {
+	   	bindMinus(el);
+	   } else {
+	   	bindPlus(el);
 	   }
-   });
-   $(el).find("li.dir + ul").each( function(index, el) {
-	   li = $(el).prev();
-	   id = $(li).attr('id');
-	   $(li).prepend("<img onClick=\"hideMenu('" + id + "')\" class=\"menuovlm\" src=\"imgs/minus.png\"/>");
    });
 
    // bind 
