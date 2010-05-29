@@ -54,8 +54,8 @@
 </xsl:text><BODY>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
-<DIV class="top" ID="content">
 @BREAD@
+<DIV class="top" ID="content">
 <xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
@@ -214,8 +214,8 @@
 <body>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
-<DIV class="top" ID="content">
 @BREAD@
+<DIV class="top" ID="content">
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">

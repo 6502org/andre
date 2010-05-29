@@ -96,7 +96,7 @@ for i in $root/*.inx; do
 		v=$?
 		if [ $v -eq 1 ]; then
 			if [ -f $root/.bread.xml ]; then
-				echo "<DIV ID=\"breadcrumbs\">" >> $t4
+				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t4
 				cat $root/.bread.xml \
 					| sed -e "s@%up%@.@g" \
 					>> $t4

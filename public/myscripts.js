@@ -102,7 +102,7 @@ function doInit() {
 
 // done to check advanced stylesheet
 function doTimer() {
-	if ($("div#breadcrumbs:visible").size() > 0) {
+	if ($("div#twitter:visible").size() > 0) {
 		doInit();
 	} else {
 		setTimeout( doTimer, 1000);

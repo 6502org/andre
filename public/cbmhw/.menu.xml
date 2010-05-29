@@ -1,19 +1,19 @@
 <ul class="menu1" >
-<li class="dir" id="m_cbmhw_pet816"><img src="%xup%imgs/dir.png"/><a href="%up%pet816/index.html">Speed up your PET!</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%pet816/index.html">Speed up your PET!</a>
 </li>
 <li class="dir" id="m_cbmhw_ryofat40"><img src="%xup%imgs/dir.png"/><a href="%up%ryofat40/index.html">Build your own PET replica!</a>
 </li>
 <li class="dir" id="m_cbmhw_ryo1581"><img src="%xup%imgs/dir.png"/><a href="%up%ryo1581/index.html">Build your own VC1581 replica!</a>
 </li>
-<li class="dir" id="m_cbmhw_c64csa"><img src="%xup%imgs/dir.png"/><a href="%up%c64csa/index.html">CS/A adapter for C64</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%c64csa/index.html">CS/A adapter for C64</a>
 </li>
-<li class="dir" id="m_cbmhw_petcsa"><img src="%xup%imgs/dir.png"/><a href="%up%petcsa/index.html">CS/A adapter for PETs</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%petcsa/index.html">CS/A adapter for PETs</a>
 </li>
-<li class="dir" id="m_cbmhw_kernal"><img src="%xup%imgs/dir.png"/><a href="%up%kernal/index.html">C64 kernal modifications</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%kernal/index.html">C64 kernal modifications</a>
 </li>
-<li class="dir" id="m_cbmhw_scsi"><img src="%xup%imgs/dir.png"/><a href="%up%scsi/index.html">CBM SCSI interfaces</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%scsi/index.html">CBM SCSI interfaces</a>
 </li>
-<li class="dir" id="m_cbmhw_ieee488"><img src="%xup%imgs/dir.png"/><a href="%up%ieee488/index.html">IEEE488 interfaces</a>
+<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%ieee488/index.html">IEEE488 interfaces</a>
 </li>
 <li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%hwmods.html">My Hardware mods</a></li>
 <li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../icap/c64ser.html">UART serial interface</a></li>
