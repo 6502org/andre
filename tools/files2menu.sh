@@ -71,6 +71,11 @@ else
 #    echo "<li class=\"openfile\">index.html</li>" > $root/.files.xml
 fi
 
+cat $root/.files.xml \
+	| sed -e "s@%id%@$id@g" \
+	| sed -e "s/@[a-zA-Z0-9]*@//g" \
+	> $root/.menu.xml
+
 if [ -f $root/../.files.xml2 ]; then
 	cat $root/../.files.xml2 \
 		| awk -v m="$parent" '

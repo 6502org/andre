@@ -47,14 +47,9 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="board">
-<HTML><HEAD><xsl:text>
-</xsl:text>
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
-</xsl:text>
-<META NAME="keywords" CONTENT="{keywords}"/>
-<TITLE><xsl:value-of select="name"/></TITLE>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
+<HTML><HEAD>
+	<xsl:call-template name="head"/>
+	<TITLE><xsl:value-of select="name"/></TITLE>
 </HEAD><xsl:text>
 </xsl:text><BODY>
 <xsl:call-template name="commoncol"/>
@@ -210,23 +205,9 @@
 </xsl:template>
 
 <xsl:template match="webpage">
-<html><head>
-<xsl:text>
-</xsl:text>
-<meta name="author" content="{author/name}"/><xsl:text>
-</xsl:text>
-<meta http-equiv="content-type" content="text/html; charset=iso8859-1"/><xsl:text>
-</xsl:text>
-<meta name="description" content="{metadesc}"/><xsl:text>
-</xsl:text>
-<meta name="keywords" content="{keywords}"/><xsl:text>
-</xsl:text>
-<title><xsl:value-of select="@name"/></title><xsl:text>
-</xsl:text>
-<link rev="made" href="mailto:{author/email}"/><xsl:text>
-</xsl:text>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
+<html><head> 
+	<xsl:call-template name="head"/>
+	<title><xsl:value-of select="@name"/></title>
 </head>
 <xsl:text>
 </xsl:text>
@@ -375,6 +356,30 @@
 
 <xsl:template match="*|@*|text()|comment()">
    <xsl:copy></xsl:copy>
+</xsl:template>
+
+<xsl:template name="head">
+<xsl:text>
+</xsl:text>
+<meta name="author" content="{author/name}"/><xsl:text>
+</xsl:text>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1"/><xsl:text>
+</xsl:text>
+<meta name="description" content="{metadesc}"/><xsl:text>
+</xsl:text>
+<meta name="keywords" content="{keywords}"/><xsl:text>
+</xsl:text>
+<link rev="made" href="mailto:{author/email}"/><xsl:text>
+</xsl:text>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
+<script src="%up%jquery-1.4.2.min.js"></script>
+<script src="%up%myscripts.js"></script>
+<script>myUp="%up%";</script>
+<xsl:text>
+</xsl:text>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
+</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
