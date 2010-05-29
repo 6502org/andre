@@ -1,7 +1,7 @@
-d arch Drive architecture
-d gallery Drive gallery
-d roms DOS ROMs
-d progs Drive utilities
+p arch Drive architecture
+p gallery Drive gallery
+p roms DOS ROMs
+p progs Drive utilities
 f drives.html Drives list
 f harddisk.html Harddisk info
 f writegap.html Write gap info

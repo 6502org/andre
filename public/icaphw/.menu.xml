@@ -1,7 +1,7 @@
 <ul class="menu1" >
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%design.html">Hardware design lesson</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%xilinx.html">Xilinx CPLD tools</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%c64ser.html">UART serial interface</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%rdy.html">RDY generation</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%remote.html">Infrared remote control</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%design.html">Hardware design lesson</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%xilinx.html">Xilinx CPLD tools</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%c64ser.html">UART serial interface</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%rdy.html">RDY generation</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%remote.html">Infrared remote control</a></li>
 </ul>

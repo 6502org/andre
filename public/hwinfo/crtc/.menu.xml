@@ -1,8 +1,8 @@
 <ul class="menu2" >
-<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%internals/index.html">CRTC internals</a>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%internals/index.html">CRTC internals</a>
 </li>
-<li class="pdir"><img src="%xup%imgs/file.png"/><a href="%up%pet/index.html">CBM PET test programs</a>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%pet/index.html">CBM PET test programs</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%crtc.html">CRTC operation</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%diffs.html">Differences between models</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%crtc.html">CRTC operation</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%diffs.html">Differences between models</a></li>
 </ul>
