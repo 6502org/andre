@@ -18,7 +18,7 @@ BODY {
 5
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#dddddd')"; /* IE8 */
 
-	font-family: "Arial";
+	font-family: "Arial","Sans Serif";
 	font-size: 80%;
 }
 
@@ -89,6 +89,11 @@ DIV#menu ul {
   list-style-type:none;
   margin-left: -2em;
   font-size:small;
+}
+
+/* IE6 hack - may it go away soon! */
+* html div#menu ul {
+  	margin-left: 1em;
 }
 
 DIV#menu li {

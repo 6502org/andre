@@ -22,7 +22,7 @@
 BODY { 
 	background-color: #ffffff;
 	color: #000000;
-	font-family: "Sans Serif";
+	font-family: "Arial", "Sans Serif";
 	font-size: 80%;
 }
 
@@ -100,6 +100,11 @@ DIV#menu ul {
   list-style-type:none;
   margin-left: -2em;
   font-size:small;
+}
+
+/* IE6 hack - may it go away soon! */
+* html div#menu ul {
+  	margin-left: 0.5em;
 }
 
 DIV#menu img {
