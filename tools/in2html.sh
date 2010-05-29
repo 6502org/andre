@@ -95,11 +95,15 @@ for i in $root/*.inx; do
 		doinsert1 $t3 $t4 "@BREAD@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			echo "<DIV ID=\"breadcrumbs\">" >> $t4
-			cat $root/.bread.xml \
-				| sed -e "s@%up%@.@g" \
-				>> $t4
-			echo "</DIV>" >> $t4
+			if [ -f $root/.bread.xml ]; then
+				echo "<DIV ID=\"breadcrumbs\">" >> $t4
+				cat $root/.bread.xml \
+					| sed -e "s@%up%@.@g" \
+					>> $t4
+				echo "</DIV>" >> $t4
+			else
+				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
+			fi;
 			doinsert2 $t3 $t4 "@BREAD@"
 		fi
 
@@ -128,7 +132,7 @@ for i in $root/*.inx; do
 done
 
 if [ -f $root/.files ]; then
-    for i in `cat $root/.files | grep "^d " | cut -d " " -f 2`; do
+    for i in `cat $root/.files | grep "^[pd] " | cut -d " " -f 2`; do
 	"$0" $root/$i $up../ $(($upn+1)) $i
 	rm -f $root/$i/.files.xml
 	rm -f $root/$i/.bread.xml

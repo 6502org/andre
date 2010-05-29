@@ -1,0 +1,5 @@
+<ul class="menu1" >
+<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%mp.html">6502 Multitasking</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%mmu65.html">MMU for a 6502</a></li>
+<li class="file"><img src="%xup%imgs/file.png"/> <a href="%up%osa65.html">OS/A65 Operating System</a></li>
+</ul>

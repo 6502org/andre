@@ -1,5 +1,5 @@
-d internals CRTC internals
-d pet CBM PET test programs
+p internals CRTC internals
+p pet CBM PET test programs
 f crtc.html CRTC operation
 f diffs.html Differences between models
 

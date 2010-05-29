@@ -272,11 +272,12 @@ DIV.interview .other {
 	font-weight:bold;
 }
 
+/*
 LI.homepage {
 	list-style-image:url(imgs/dir.png);
 	font-size:large;
 }
-/*
+
 LI.file {
 	list-style-image:url(imgs/file.png);
 }

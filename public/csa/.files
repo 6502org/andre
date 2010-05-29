@@ -3,34 +3,34 @@ s Specifications
 f bus.html Bus V1.0
 f bus-1.1.html Bus V1.1
 s Main boards
-d cpu CS/A65 CPU
-d bios CS/A65 BIOS 
-d cpu816v2 65816 CPU V2
-d petcpu 64k PET CPU
-d gecko Gecko
-d auxcpu Auxiliary CPU
-d pwr Power Supply
+p cpu CS/A65 CPU
+p bios CS/A65 BIOS 
+p cpu816v2 65816 CPU V2
+p petcpu 64k PET CPU
+p gecko Gecko
+p auxcpu Auxiliary CPU
+p pwr Power Supply
 s I/O boards
-d vdc Video board
-d petio CBM PET I/O
-d shug PC floppy
-d drvio DRVIO floppy and IEC
-d duart Double UART (RS232)
-d scsi SCSI/I2C board
-d spi MMC/SD-Card
+p vdc Video board
+p petio CBM PET I/O
+p shug PC floppy
+p drvio DRVIO floppy and IEC
+p duart Double UART (RS232)
+p scsi SCSI/I2C board
+p spi MMC/SD-Card
 s Special purpose
-d ramdisk SIMM RAMDisk
-d copro Coprocessor board
-d cpuemu Emulate a 6502
-d keyemu Emulate a keyboard
-d viaproto VIA prototyping
+p ramdisk SIMM RAMDisk
+p copro Coprocessor board
+p cpuemu Emulate a 6502
+p keyemu Emulate a keyboard
+p viaproto VIA prototyping
 s Deprecated boards
-d cpu816 65816 CPU V1
-d cpu65b 64k CPU
-d key Keyboard and RS232
-d iec IEEE488 and CBM IEC
+p cpu816 65816 CPU V1
+p cpu65b 64k CPU
+p key Keyboard and RS232
+p iec IEEE488 and CBM IEC
 s Other links
-d gallery Gallery
-d emu VICE emu of CS/A65
+p gallery Gallery
+p emu VICE emu of CS/A65
 l ../cbmhw/c64csa/index.html C64 CS/A adapter
 

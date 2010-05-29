@@ -6,10 +6,10 @@ d csa CS/A65 Caspaer and Gecko computer
 d hwinfo ICs and Standards Info
 d mischw Other hardware (e.g. tools)
 s Software
-d osa GeckOS operating system
-d lib6502 Lib6502 standard
-d o65 O65 file format
-d misc Misc software
+p osa GeckOS operating system
+p lib6502 Lib6502 standard
+p o65 O65 file format
+p misc Misc software
 s Knowledge Bits
 d icapos Computer/OS Architecture
 d icaphw 6502 Hardware Bits

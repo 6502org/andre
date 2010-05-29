@@ -62,6 +62,8 @@ if [ -f $root/.files ]; then
 		/^l / { print "<li class=\"link\"><img src=\"%xup%imgs/link.png\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><img src=\"%xup%imgs/dir.png\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
 			print "@" $2 "@</li>"; }\
+		/^p / { print "<li class=\"pdir\"><img src=\"%xup%imgs/file.png\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
+			print "</li>"; }\
 		END { print "</ul>"; } \
 	' \
 	> $root/.files.xml
@@ -71,10 +73,13 @@ else
 #    echo "<li class=\"openfile\">index.html</li>" > $root/.files.xml
 fi
 
-cat $root/.files.xml \
+# .menu.xml only needed when there actually is a menu. current directory must not have "d" but "p" in .files entry!
+if [ -f $root/.files ]; then
+   cat $root/.files.xml \
 	| sed -e "s@%id%@$id@g" \
 	| sed -e "s/@[a-zA-Z0-9]*@//g" \
 	> $root/.menu.xml
+fi;
 
 if [ -f $root/../.files.xml2 ]; then
 	cat $root/../.files.xml2 \
@@ -109,10 +114,10 @@ else
 fi
 
 if [ -f $root/.files ]; then
-    for i in `cat $root/.files | grep "^d " | cut -d " " -f 2`; do
+    for i in `cat $root/.files | grep "^[pd] " | cut -d " " -f 2`; do
 
 	# extract name
-	name=`cat $root/.files | grep "^d $i " | cut -d " " -f 3-`;
+	name=`cat $root/.files | grep "^[pd] $i " | cut -d " " -f 3-`;
 	#echo "i=" $i ", name="$name;
 	echo $name > $root/$i/.name.xml;
 	
