@@ -42,7 +42,7 @@ DIV#footer {
 
 DIV#midcol {
   margin-left: 20em;
-  margin-right: 20em;
+  margin-right: 18.3em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
 }
 
@@ -59,7 +59,7 @@ DIV#leftcol {
 
 DIV#rightcol {
   float: right; 
-  width: 23em;
+  width: 20.3em;
   margin: 0; padding: 0;
   font-size:smaller;
 }
@@ -70,7 +70,7 @@ DIV#oldnews {
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE8 includes the scrollbar, so the box is less width than in the
   * other browsers */
-  width: 21.2em;
+  width: 18.5em;
 }
 
 /********************** Menu formatting *********************/

@@ -160,12 +160,72 @@ function collapseAll( ) {
 	});
 }
 
+// ----------------------------------------------------------------------------------------------------------
+// filter
+
+var currentFilter = "";
+
+function processFilter( target, data ) {
+
+	// include loaded menu
+	processMenu( target, data );
+
+	// trigger further expand
+	triggerExpand( target );
+}
+
+function triggerFilter( parent ) {
+	$(parent).find("li.dirp").each( function ( i, e ) {
+		loadMenu( e, processFilter );
+	});
+}
+
+function changeFilter( val ) {
+	currentFilter = val;
+
+	triggerFilter($("div#menu"));
+}
+
+function checkValue() {
+	var t = $("div#menu input");
+
+	var val = $(t).attr("value");
+	if (val.length == 0) {
+		if (currentFilter != "") {
+			changeFilter(val);
+		}
+	} else
+	if (val.length > 1) {
+		if (currentFilter != val) {
+			changeFilter(val);
+		}
+	}
+}
+
+function monitorFilter() {
+	checkValue();
+	setTimeout(monitorFilter, 40);
+}
+
 function setupFilter() {
-	$("div#menu").prepend( "<img id=\"expand\" src=\"" + myUp + "imgs/expand.png\"/>"
+	$("div#menu").prepend( "<form action=\"#\"><img id=\"expand\" src=\"" + myUp + "imgs/expand.png\"/>"
 			+ "<img id=\"collapse\" src=\"" + myUp + "imgs/collapse.png\"/>"
+			+ "<input size=\"10\" name=\"filter\" value=\"filter\" type=\"text\"> "
+		        + "<img id=\"cancel\" src=\"" + myUp + "imgs/cancel.png\"></form>"
 			+ "<br/>");
 	$("div#menu img#expand").click( expandAll );
 	$("div#menu img#collapse").click( collapseAll );
+
+	$("div#menu img#cancel").click( function() {
+			$("div#menu input").attr("value", "");
+		});
+
+	$("div#menu input").focusin( function( ) {
+			$(this).attr("value", "");
+			$(this).unbind("focusin");
+			setTimeout(monitorFilter, 40);
+		});
+		
 }
 
 // ----------------------------------------------------------------------------------------------------------
