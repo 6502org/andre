@@ -22,17 +22,36 @@ function hideMenu() {
 	return false;
 }
 
-function processMenu( data, path, root ) {
+// process the retrieved menu part
+// as string, then append to target
+function processMenu( target, data, path, root ) {
 
-	var spl = data.split("%");
-	l = spl.length;
-	for (i = 0; i < l; i++) {
-		t = spl[i];
-		if (t == "xup") spl[i] = root;
-		if (t == "up") spl[i] = root + path + "/";
+	rpath = root + path + "/";
+
+	if (typeof data == 'string') {
+		// filesystem local tests
+		var spl = data.split("%");
+		l = spl.length;
+		for (i = 0; i < l; i++) {
+			t = spl[i];
+			if (t == "xup") spl[i] = root;
+			if (t == "up") spl[i] = rpath;
+		}
+		data = dumpArrayToString(spl, "", 0);
+
+		// append data (as string) to target
+		$(target).append(data);
+//	} else {
+//		// DOM from remote Ajax
+//		$(data).find("img").each( function(i,e) {
+//			var src = $(e).attr("src");
+//			$(e).attr("src", root + src.substring(5));
+//		});
+//		$(data).find("a").each( function(i,e) {
+//			var href = $(e).attr("href");
+//			$(e).attr("href", rpath + href.substring(4));
+//		});
 	}
-
-	return dumpArrayToString(spl, "", 0);
 }
 
 function showMenu( ) {
@@ -43,15 +62,13 @@ function showMenu( ) {
 
 	ul = $(r).children("ul");
 	if ($(ul).size() == 0) {
-		// load
-		target = r;
-		$.get(root + path + '/.menu.xml', function(data, status) {
-		    data = processMenu(data, path, root);
-		    //alert("status=" + status + ", data=" + data);
-		    $(target).append(data);
-		    bindMenu(target);
-		    bindMinus(target);
-		});
+		// load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
+		// XML DOM tree) directly into the html document
+		$.get(root + path + '/.menu.xml', function(data) {
+		  processMenu(r, data, path, root);
+		  bindMenu(r);
+		  bindMinus(r);
+		}, "html" );
 	} else {
 		$(r).children("ul").show();
 		bindMinus(r);
@@ -116,5 +133,6 @@ $(document).ready(function(){
 	// replace with "doInit();" once it is public
 	doTimer();
 });
+
 
 
