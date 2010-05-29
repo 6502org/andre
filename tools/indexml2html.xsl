@@ -94,7 +94,7 @@
 	<div id="leftcol">
 		@MENU@
 		<div class="top" id="browser">
-			Site has been tested with Firefox 3.6, IE6, IE8 and Google Chrome 5 on Windows, as well as Firefox 3.5 and konqueror 4.3.5 on Linux
+			Site has been tested with Firefox 3.6, IE6, IE8 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
 		</div>
 	</div> <!-- leftcol -->
 	<div id="rightcol">
@@ -114,6 +114,7 @@
 			<xsl:for-each select="//forum[@type='6502.org']">
 				<p>Discuss this page's content on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
 			</xsl:for-each>
+			<p>(Forum registration required to post)</p>
 		</div>
 	</div>
 </xsl:template>
