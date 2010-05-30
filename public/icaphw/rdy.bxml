@@ -1,17 +1,21 @@
-<html><head><title>RDY-Generation for CMOS 65C02</title>
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
-</head><body>
-@MENU@
-<DIV ID="content">
-<h1>RDY-Generation for CMOS 65C02 Microprocessors</h1>
-<p>(C) 2006-2010 A. Fachat</p>
-<p>This article describes a generic schematics for the generation of the RDY 
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="RDY-Generation for CMOS 65C02">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2006</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>6502 RDY</keywords>
+  <metadesc>RDY-Generation for CMOS 65C02</metadesc>
+  <overview><p>This article describes a generic schematics for the generation of the RDY
 line used by the 65C02 processor to hold bus accesses when the device is not
 ready.
 </p>
 <p>You think this is not necessary nowadays, where everything is way
 faster than the one or two MHz the 6502 runs at. Well, actually I recently
-found a chip that was too slow for my 2&nbsp;MHz 65C02 system, so I 
+found a chip that was too slow for my 2&nbsp;MHz 65C02 system, so I
 developed this schematics.
 </p><p>Please note that the schematics works for a CMOS 65C02 only - not an
 NMOS&nbsp;6502. This is due to two facts:
@@ -19,10 +23,10 @@ NMOS&nbsp;6502. This is due to two facts:
 <li>The NMOS version requires that the RDY signal is asserted during Phi1,
 i.e. when Phi2 is low. In this phase the CPU sets up the address and control
 lines for the access that is performed at Phi2. This schematics asserts
-RDY at Phi2, which works with the CMOS version, that only requires the 
+RDY at Phi2, which works with the CMOS version, that only requires the
 RDY 200ns before the end of Phi2.
 </li>
-<li>The NMOS version does not stop on write cylces. Instead it simply 
+<li>The NMOS version does not stop on write cylces. Instead it simply
 performs the current and all directly consecutive writes - up to three
 in total in a 6502 - and only stops on the next read cylce.
 This schematics does not handle the write problem with the NMOS chips,
@@ -39,16 +43,23 @@ RDY to halt the CPU for a cycle when accessing the chip.
 </p>
 <p>This schematics creates the RDY signal, but a similar schematics can
 be used to create other clocked signals as well.
-</p>
-<h1>Signals</h1>
-<p>This section describes the signals as used in the schematics.</p>
+	</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+  <section toc="signals" name="Signals">
+    <desc><p>This section describes the signals as used in the schematics.</p>
 <ul>
 <li>Phi2: The CPU clock signal. When it is high, the CPU has put valid
 address and data (in case of write) lines on the bus. When Phi2 is low
 the CPU changes the address lines. Read happens at the falling edge of
 Phi2.</li>
 <li>/SEL_unclocked: This select signal is determined by decoding the
-CPU address lines. It goes low when the CPU puts the correct address 
+CPU address lines. It goes low when the CPU puts the correct address
 for access of the device on the address lines.
 This line is mostly used for read accesses when the CPU expects the
 data at the falling edge of Phi2, and the device does not need any specific
@@ -69,9 +80,13 @@ is accessed and the RDY line should be asserted for this access.
 timing for the write access.
 </li>
 </ul>
-<h1>Schematics</h1>
+    </desc>
+  </section>
+
+  <section toc="schematics" name="Schematics">
+    <desc>
 <p>The following diagram shows the schematics</p>
-<img src="rdy/rdy-schematics.png">
+<img src="rdy/rdy-schematics.png"/>
 <p>The main IC used for the generation is the shift register 74LS164.
 It is clocked with the Phi2 clock signal, and shifts the /SEL_unclocked
 signal through its output signals.
@@ -86,11 +101,15 @@ You could also use a higher shift register clock and shift the Phi2
 signal through the shift register, and use combinations of the output
 signals e.g. for RAM timing signals.
 </p>
-<h1>Timing diagrams</h1>
+    </desc>
+
+  </section>
+  <section toc="timing" name="Timing diagrams">
+    <desc>
 <p>This diagram shows the principle timing, but without RDY being pulled
 from XRDY.
 </p>
-<img src="rdy/rdy-timing1.png">
+<img src="rdy/rdy-timing1.png"/>
 <p>Phi2 shows the central CPU timing signal. Ax,R/W shows where the address
 lines and R/-W are stable. /SEL_unclocked is the select signal that is
 derived from the CPU address lines. /SEL_clocked is this select signal
@@ -102,17 +121,19 @@ and Q2 being high.
 </p>
 <p>The following diagram shows the signals with the RDY line asserted from
 XRDY.</p>
-<img src="rdy/rdy-timing2.png">
-<p>The /SEL_clocked line now shows two active periods, as it is combined 
-with Phi2 that is going inactive during Phi1. Therefore the /NEWSEL line is 
+<img src="rdy/rdy-timing2.png"/>
+<p>The /SEL_clocked line now shows two active periods, as it is combined
+with Phi2 that is going inactive during Phi1. Therefore the /NEWSEL line is
 generated using the /SEL_clocked and XRDY line.
 </p><p>
 Note: it is important, that the Phi2 going high signals arrives a the
 AND-gate before the shift register and Q1/Q2 logic releases XRDY, so that
 there is no inactive spike on the /NEWSEL line. This is accomplished
 by the gate delay times.</p>
-<hr>
-<p>(C) 2006 Andr&eacute; Fachat</p>
+    </desc>
+
+  </section>
+  <closing>
 @FOOTER@
-</DIV>
-</body></html>
+  </closing>
+</webpage>

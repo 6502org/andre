@@ -1,23 +1,33 @@
-<html><head><title>RDY-Generation for CMOS 65C02</title>
-<LINK REL="stylesheet" TYPE="text/css" HREF="%up%style.css">
-</head><body>
-@MENU@
-<DIV ID="content">
-<h1>Remote control via Infrared </h1>
-<p>(C) 1997,2006 A. Fachat</p>
-<p>
-Who doesn't have the problem of a lot of remote controls for the VCR,
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Remote control via Infrared">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore 6502 remote_control</keywords>
+  <metadesc>Remote control via Infrared</metadesc>
+  <overview><p>Who doesn't have the problem of a lot of remote controls for the VCR,
 the TV set, the CD player etc lying around on the table?
-Well, in 1990 I thought about that and implemented an infrared 
+Well, in 1990 I thought about that and implemented an infrared
 remote control feature in my selfbuilt 6502 system. And here is
 the description.
 </p><p>
 Note: This article originally is from 1997 or 1998. Today I would look
-into a solution with the NE555 timer chip to generate the actually 38k 
+into a solution with the NE555 timer chip to generate the actually 38k
 infrared frequency.
-</p>
-<h2>Theory</h2>
-<p>
+	</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+  <section toc="theory" name="Theory">
+    <desc><p>
 How do these infrared remote controls work? Well, they send signals
 via infrared using Pulse Code Modulation. That means they send data
 bits by different pulse lengths. The infrared light is transmitted by
@@ -37,16 +47,19 @@ to start the next bit. This code has 6 bit.
 The Sony stuff is different, it has twelve bit. Here the signal starts
 with a real start bit. Then there is a fixed-length break before each
 bit. The length of the following pulse determines if it is a "0" or
-"1" data bit. 
-</p><p>
+"1" data bit.
+</p>
 <img src="remote/signal.gif" alt="infrared signals"/>
 <p>Fig. 1 shows the two signals in detail.</p>
 <p>
 It can be seen that the the signals are relatively simple and
 the timing is not very critical.
 </p>
-<h2>Hardware</h2>
-<p>
+    </desc>
+  </section>
+
+  <section toc="hw" name="Hardware">
+    <desc> <p>
 The hardware I used is, in general, the 6522 VIA versatile interface adapter
 and its timer. The VIA can produce pulse and toggle outputs on timer underruns
 on pins PB6 and PB7. The timers count the system clock Phi2, which has
@@ -54,11 +67,11 @@ on pins PB6 and PB7. The timers count the system clock Phi2, which has
 appropriately, of course.
 </p><p>
 A timer in the 6522 consists of a timer count register and a latch
-register. When an underflow occurs, the content of the latch register 
+register. When an underflow occurs, the content of the latch register
 is loaded into the count register. Then the value of the count register
 is decremented with the system clock, until the next underflow occurs.
-The output line PB7 can be set to toggle when a timer 1 underflow 
-occurs. 
+The output line PB7 can be set to toggle when a timer 1 underflow
+occurs.
 </p><p>
 Fig. 2 shows the circuit used to produce the infrared signal. It is
 actually not what I would call a clean design of an oscillator, but at
@@ -78,8 +91,11 @@ the oscillator. The output is then given to one driver, that outputs it
 to the LED drivers. The LED drivers then pull the anode of the LEDs low,
 and produce a current that makes them send.
 </p>
-<h2>Software</h2>
-<p>
+    </desc>
+  </section>
+
+  <section toc="sw" name="Software">
+    <desc> <p>
 The software is pretty simple. In Listing 1. a small menu driven program
 is listed that can send remote commands. The first part is all the menu
 stuff. Only the last part (sendsony) handles the transmission of the
@@ -99,32 +115,39 @@ next bit is loaded into the latches. This way the latches always contain
 the timer value for the next phase, while the actual phase is counting.
 </p><p>
 The software has enough time to reload the latches then. Well, enough
-time is relative. I tried it as an interrupt device in my 6502 
-operating system, such that each bit toggle issued an interrupt to 
+time is relative. I tried it as an interrupt device in my 6502
+operating system, such that each bit toggle issued an interrupt to
 reload the latches. But the interrupt latency was too high to allow
 such an operation.
 </p>
-<h2>Conclusion</h2>
-<p>
+    </desc>
+  </section>
+
+  <section toc="conclusion" name="Conclusion">
+    <desc> <p>
 Together with a simple keyboard interface this circuitry allows to
 replace remote controls. But it also allows to control TV sets, or VCRs or
-other infrared controlled stuff using a (selfbuilt) 
-computer. 
+other infrared controlled stuff using a (selfbuilt)
+computer.
 </p><p>
-The same circuitry, together with a modified version of the listed 
+The same circuitry, together with a modified version of the listed
 program, is implemented in the CS/A65 Gecko computer, a simple
 6502 prototype board. Have a look at it at the <a href="../csa/gecko/index.html">Gecko page</a>
 </p>
-<h2>References</h2>
-<ul>
-<li><a href="remote/irtx.a65">irtx.a65</a> driver source code</a></li>
-<li><a href="remote/irtx.def">irtx.def</a> remote signal definitions</a></li>
+    </desc>
+  </section>
+
+  <section toc="refs" name="References">
+    <desc> <ul>
+<li><a href="remote/irtx.a65">irtx.a65</a> driver source code</li>
+<li><a href="remote/irtx.def">irtx.def</a> remote signal definitions</li>
 <li><a href="remote/diagram.gif">diagram.gif</a> schematics (<a href="remote/diagram.fig">source</a>)</li>
 <li><a href="remote/signal.gif">signal.gif</a> remote signal description (<a href="remote/signal.fig">source</a>)</li>
 </ul>
-<hr>
-<p>(C) 1997,2006 Andr&eacute; Fachat</p>
-@FOOTER@
-</DIV>
-</body></html>
+    </desc>
+  </section>
 
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

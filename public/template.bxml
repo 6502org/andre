@@ -1,9 +1,11 @@
-<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="Commodore PET ROM descriptions">
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Adding an UART to a 6502">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
   </author>
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
