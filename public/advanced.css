@@ -143,6 +143,10 @@ H2 {
 	border-top: 2px solid;
 }
 
+ul.quickfinder li {
+	padding-top: 0.3em;
+}
+
 
 .rightimg {
 	float:right;
