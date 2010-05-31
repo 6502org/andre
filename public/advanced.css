@@ -106,6 +106,10 @@ DIV#menu li {
   margin-bottom: 0.1em;
 }
 
+div#menu a:hover { 
+  background-color:#ff0; 
+}
+
 DIV#menu img {
   margin-right:0.5em;
 }
@@ -113,7 +117,6 @@ DIV#menu img {
 LI.separator {
   font-size:larger;
   font-weight:bold;
-  list-style-type:none;
 }
 
 
