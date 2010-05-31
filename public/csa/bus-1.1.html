@@ -1,8 +1,19 @@
-<html><head><meta name="author" content="Andr&eacute; Fachat">
-<link rev=made href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
-<title>CS/A bus connector</title></head>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="CS/A bus connector">
+<meta name="keywords" content="Commodore PET CBM ROM">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+<script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
+
+<title>CS/A bus connector</title>
+</head>
 <body>
+<div id="leftcol">
 <DIV class="top" ID="menu">
 <a class="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -100,56 +111,86 @@
 </ul>
 
 </DIV>
-<DIV ID="content">
-<h1 align="center">CS/A bus connector V1.1</h1>
-<H2 ALIGN=CENTER>(c) 1997,2006 Andr&eacute; Fachat</h2>
-<hr>
+		<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google"><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+<div class="top" id="twitter">
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+<div class="top" id="forum">
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../index.html">Homepage</a>
+&gt;&gt; CS/A65 Caspaer and Gecko computer
+</DIV>
+<DIV class="top" ID="content">
+<h1>CS/A bus connector</h1>
+<p class="copyright">(C)
+- André  Fachat</p> 
+<div class="overview">
+<p>	Note: superseded by bus specification <a href="bus-1.1.html">version 1.1</a>
+</p>
+<p>
 The bus connector is a 96 pin connector according to DIN 41612, type C,
 where only 64 pins (rows a+c) are used.
-The board itself has the male connector. It can be plugged into a bus 
+The board itself has the male connector. It can be plugged into a bus
 plane with female connectors.
-<p>
-The bus layout is:
+</p>
+  </div>
+<h2><a name="layout">Layout</a></h2>
+<p> <p>The bus layout is:
+</p>
 <pre>
-	a	c
+        a       c
 --------------------------
     GND a    1  c GND
-   Vbuf a    2	c Vcc
-   50Hz a    3	c Vcc
- -IOINH a    4	c A19
+   Vbuf a    2  c Vcc
+   50Hz a    3  c Vcc
+ -IOINH a    4  c A19
  -EXTIO a    5  c A18
 -MEMSEL a    6  c A17
- -IOSEL a    7	c A16
+ -IOSEL a    7  c A16
     -BE a    8  c A15
-  VCC33	a    9	c A14
- NOEXEC	a   10	c A13
-NOTMAPD	a   11	c A12
-  WPROT	a   12	c A11
- I2CSDA	a   13  c A10
- I2CSCL	a   14	c A9
-     D7 a   15	c A8
-     D6	a   16 	c A7
-     D5	a   17	c A6
-     D4	a   18 	c A5
-     D3	a   19	c A4
-     D2	a   20 	c A3
-     D1	a   21	c A2
-     D0	a   22	c A1
-   -NMI	a   23	c A0
-   -IRQ	a   24	c SYNC
-    -SO	a   25	c R/-W
-    RDY	a   26	c Phi2
-   -RES	a   27	c Phi1
-    GND	a   28	c Phi0
-    GND	a   29 	c 2Phi2
-    GND	a   30	c 16MHz
-    GND	a   31	c 8Phi2
-    GND	a   32	c GND
+  VCC33 a    9  c A14
+ NOEXEC a   10  c A13
+NOTMAPD a   11  c A12
+  WPROT a   12  c A11
+ I2CSDA a   13  c A10
+ I2CSCL a   14  c A9
+     D7 a   15  c A8
+     D6 a   16  c A7
+     D5 a   17  c A6
+     D4 a   18  c A5
+     D3 a   19  c A4
+     D2 a   20  c A3
+     D1 a   21  c A2
+     D0 a   22  c A1
+   -NMI a   23  c A0
+   -IRQ a   24  c SYNC
+    -SO a   25  c R/-W
+    RDY a   26  c Phi2
+   -RES a   27  c Phi1
+    GND a   28  c Phi0
+    GND a   29  c 2Phi2
+    GND a   30  c 16MHz
+    GND a   31  c 8Phi2
+    GND a   32  c GND
 
 </pre>
-
-Comments to V1.1:
-<ul>
+    </p>
+<H3><a name="comments11">Comments to V1.1</a></H3>
+<p><p><ul>
 <li>The V1.1 is an upward compatible version of the V1.0 bus. The
 additional lines used are A9-A14</li>
 <li>I2CSCL and I2CSDA are the I2C clock and data lines. Currently the
@@ -158,51 +199,59 @@ lines are specified for a 5V I2C bus.</li>
 CPU writes to a write protected page (WPROT), accesses a memory area
 that is marked as not mapped in the MMU (NOTMAPD), or reads an opcode
 on a page that is marked as not executable (NOEXEC).
-</li><li>The VCC33 line is a 3.3V supply line.</li>
-</ul>
-Comments to V1.0:
-<ul>
+</li>
+<li>The VCC33 line is a 3.3V supply line.</li>
+	</ul></p></p>
+<H3><a name="comments10">Comments to V1.0</a></H3>
+<p><p><ul>
 <li>For non-MMU systems like the <strong>Gecko</strong>
 only the lines <code>A0-A11, D0-D7, Phi2, R/-W, -RES, -IRQ, -NMI, -IOSEL</code>
 are necessary. Still some of the other lines need to be taken care of.
-(-MEMSEL must be pushed high).
+(-MEMSEL must be pushed high).</li>
 <li>-MEMSEL and -IOSEL are memory selection lines. If -MEMSEL goes low
 (active), address lines A0-A19 must be valid. If -IOSEL goes low, then
 only address lines A0-A11 must be valid. Both lines are <strong>not</strong>
 open collector lines (although this is one of the few 'known bugs' of
-this design)! 
-The select lines are generated by the CPU. 
+this design)!
+The select lines are generated by the CPU.
 To map the I/O address space somewhere else (i.e. in a memory area selected
 by -MEMSEL), -EXTIO must be pulled low
-when an address in the selected area is accessed (by a memory card). 
+when an address in the selected area is accessed (by a memory card).
 Thus -MEMSEL <strong>and</strong>
 -IOSEL go then low on such an access. <br>
-In MMU systems, the I/O space is normally mapped to some fixed location 
+In MMU systems, the I/O space is normally mapped to some fixed location
 in the CPU address space and cannot be mapped around with the MMU. To avoid
 this mapping, -IOINH must be pulled low. Warning: if you pull -IOINH and
 not do not assign -EXTIO at some address, you lose access to the I/O area.
 In the BIOS card for the MMU system, a control port can set these lines.
--IOINH and -EXTIO are open collector lines.
-<li>Vbuf is a battery buffered 5 Volt supply. Vcc is standard 5 Volt supply, 
-respective to GND.
+-IOINH and -EXTIO are open collector lines.</li>
+<li>Vbuf is a battery buffered 5 Volt supply. Vcc is standard 5 Volt supply,
+respective to GND.</li>
 <li>50Hz is a 50/50 phase 50 Hz TTL signal, generated from line frequency.
 (In the U.S., you might generate it differently). <br>
-16MHz is a 16 MHz clock.
+16MHz is a 16 MHz clock.</li>
 <li>To drive some circuits synchronously with the CPU, there are 2Phi2 and 8Phi2.
-2Phi2 has double the frequency than the CPU clock Phi2. At each 
+2Phi2 has double the frequency than the CPU clock Phi2. At each
 transition of Phi2, 2Phi2 has a low-high transition. The high-low transition
 follows about less than 100 ns later. I use 2Phi2 to directly drive
 the -RAS signal of dynamic RAM.<br>
 8Phi2 is the 8-times Phi2, but this signal has no fixed phase relation
 to Phi2. I use it as pixel clock in a video card.<br>
-Both signals are usually generated by the CPU card.
+Both signals are usually generated by the CPU card.</li>
 <li>-BE cuts the CPU off the bus, i.e. select (-IOSEL, -MEMSEL),
 Data (D0-7) and Address lines (A0-A19) are put into tri-state.
 This line is asynchronous and should only be assigned with carefully
 designed circuitry using -RDY stop the CPU and Phi2 for clock and all that.
-Using -RDY and BE should allow an external bus master to take the 
-bus, although it has not been tested so far.
+Using -RDY and BE should allow an external bus master to take the
+bus, although it has not been tested so far.</li>
 </ul>
-</DIV>
+	</p>
+	</p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
 </body>
-</html>
+</html> 
+

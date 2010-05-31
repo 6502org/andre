@@ -33,7 +33,8 @@ DIV.top {
 -webkit-border-radius: 10px;
   background-color: #ffffff; 
   margin: 0;
-  margin-bottom: 0.6em;
+  margin-top: 1.3em;
+  margin-bottom: 0.3em;
   padding: 1em;
 }
 
@@ -54,15 +55,19 @@ DIV#content {
 DIV#leftcol {
   float: left; 
   width: 20em;
-  margin: 0; padding: 0;
+  margin: 0; 
+  padding: 0;
   font-size:smaller;
 }
 
 DIV#rightcol {
   float: right; 
   width: 19em;
-  margin: 0; padding: 0;
+  margin: 0; 
+  margin-top: -1.3em;
+  padding: 0;
   font-size:smaller;
+  display: block;
 }
 
 DIV#oldnews {
@@ -77,6 +82,14 @@ DIV#oldnews {
 * html div#oldnews {
   width: 19em;	/* same value as rightcol - scroll bar inside width in IE */
 }
+
+DIV#browser {
+  display: block;
+}
+DIV#breadcrumbs {
+  display: block;
+}
+
 
 /********************** Menu formatting *********************/
 

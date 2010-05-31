@@ -16,16 +16,7 @@ machines with this CPU is there, like new C64 kernals, VC1541 modifications
 etc. A selfbuilt operating system
 features Multitasking, dynamic memory management, a standard library
 and internet access.</p>
-<h3>In the works...</h3><p>
-These are the things I currently have in the works - although actually in the works for about two years now...</p>
-<ul>
-<li>A board with an Ethernet and two USB connections. I have the board and the parts, but I think I still need to get more up to date with SMD soldering...</li>
-<li>I plan to update the GeckOS operating system to
-improve messaging and communication throughput, add C support and more. 
-This is currently planned only.</li>
-<li>A "Blitter" board - to transfer bulk data from one memory location to another - planned.</li>
-</ul>
-
+<p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
     <item date="2010-05-25">

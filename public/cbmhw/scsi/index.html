@@ -1,13 +1,19 @@
-<html><head><base target="_top">
-<meta content="André  Fachat" name="author">
-<meta content="text/html; charset=iso8859-1" http-equiv="content-type">
-<meta content="SCSI controllers for the C64" name="description">
-<meta content="C64, SCSI controller" name="keywords">
-<title>www.6502.org: SCSI-64: SCSI controller for the C64 and other 6502</title>
-<link href="mailto:afachat@gmx.de" rev="made">
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="SCSI controllers for the C64">
+<meta name="keywords" content="C64, SCSI controller">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+<script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
+
+<title>SCSI-64: SCSI controller for the C64 and other 6502</title>
 </head>
 <body>
+<div id="leftcol">
 <DIV class="top" ID="menu">
 <a class="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -67,16 +73,61 @@
 </ul>
 
 </DIV>
-<DIV ID="content">
+		<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google"><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+<div class="top" id="twitter">
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+<div class="top" id="forum">
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../../index.html">Homepage</a>
+&gt;&gt; <a href="../index.html">CBM hardware and mods
+</a>&gt;&gt; CBM SCSI interfaces
+</DIV>
+<DIV class="top" ID="content">
 <h1>SCSI-64: SCSI controller for the C64 and other 6502</h1>
-<p class="copyright">(C) 1997-2000 Andr&eacute; Fachat</p> 
+<p class="copyright">(C)
+- André  Fachat</p> 
+<div class="overview">
 <p>This is the description of several SCSI controllers for the Commodore C64
 computer. Some of them may be used with a VIC20 or C128 as well.
 All of the controllers are based on one hardware interface that is built
 into different setups.
-  </p><hr><h3>Description</h3>
-<p>
-After going a bit into the SCSI standard first I
+	</p>
+  </div>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#desc">Description</a></li>
+<li><a href="#disc">Disclaimer</a></li>
+<li><a href="#dist">Distribution</a></li>
+<li><a href="#std">Standard</a></li>
+<li><a href="#genscsi">Generic 6502 SCSI Interface</a></li>
+<li><a href="#swarch">Software Architecture</a></li>
+<li><a href="#hwproj">Hardware Projects</a></li>
+<dir>
+<li><a href="#c64scsi">C64 SCSI (harddisk) adapter</a></li>
+<li><a href="#vcscsi10">VC-SCSI 1.0 drive</a></li>
+<li><a href="#vcscsi1x">VC-SCSI 1.x drive</a></li>
+<li><a href="#vcscsi20">VC-SCSI 2.0 drive</a></li>
+</dir>
+</dir>
+</DIV>
+<h2><a name="desc">Description</a></h2>
+<p> <p>After going a bit into the SCSI standard first I
 present the generic interface.
 (You can download a slightly older page and all schematics in one archive in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/scsi/scsi64-1.tar.gz">scsi64-1.tar.gz</a>. The link to the SCSI standard below is missing).
@@ -91,27 +142,31 @@ The different hardware projects using the generic SCSI interface are described
 in the third chapter. Those include a SCSI interface directly for the C64,
 as well as disk-drive-like small computers that can be used via the
 C64s serial IEC bus.
-</p>
-    <hr><h4>Disclaimer</h4>
-<font size="+1">Before you go on, you should know that all this stuff
+    </p></p>
+<h2><a name="disc">Disclaimer</a></h2>
+<p> <p><em>Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
 to be used in any important or even life-critical systems.
 The hardware schematics and software
 are provided 'AS IS', WITHOUT WARRANTY of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
-servicing, repair or correction.</font>
-    <hr><h3>Distribution</h3>
-<p>This computer system is distributed under the GNU Public License V2.</p>
-    <hr><h3>SCSI Standard</h3><p>
+servicing, repair or correction.
+    </em></p></p>
+<h2><a name="dist">Distribution</a></h2>
+<p> <p>This computer system is distributed under the GNU Public License V2.</p>
+    </p>
+<h2><a name="std">Standard</a></h2>
+<p>
+    <p>
 SCSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
 disks, scanners, CD-ROMs etc. As such it is very flexible.
 </p><p>
 More on the SCSI standard can be found on its <a href="../../hwinfo/scsi.html">SCSI page</a> on this site.
-</p>
-    <hr><h3>Generic 6502 SCSI Interface</h3><p>
-In my SCSI interfaces and devices for the Commodore computers I use a
+    </p></p>
+<h2><a name="genscsi">Generic 6502 SCSI Interface</a></h2>
+<p> <p>In my SCSI interfaces and devices for the Commodore computers I use a
 generic 6502 SCSI interface I developed for the <a href="../../csa/index.html">CS/A65</a> computer. The SCSI interface has its own <a href="../../csa/scsi/index.html">place</a> there.
 </p><p>
 This interface has been designed for the
@@ -124,15 +179,15 @@ and it is used on selfbuilt computers as well as the C64,
 as will be seen below. The 6809 has the same bus interface as the 6502,
 so it could even be used with this CPU (although no drivers exist for
 the 6809).
-</p>
-    <hr><h3>Software Architecture</h3><p>
-The software architecture is kept as flexible as possible.
+    </p></p>
+<h2><a name="swarch">Software Architecture</a></h2>
+<p> <p>The software architecture is kept as flexible as possible.
 Three levels work together, the hardware driver, the partition
 level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the
 filesystem code.
 </p><p>
-An implementation of the drivers can be found in the <a href="../../osa/index.html">GeckOS</a> operating system. A description comes with the 
+An implementation of the drivers can be found in the <a href="../../osa/index.html">GeckOS</a> operating system. A description comes with the
 description of the <a href="../../csa/scsi/index.html">CS/A65 SCSI interface</a>.
 </p><p>
 The most recent SCSI drivers can be found in the <a href="../../osa/index.html">GeckOS/A65 operating
@@ -142,27 +197,37 @@ that implement a fileserver task for the GeckOS/A65 operating
 system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 (no FAT32 and no long filenames). But be warned, it is an early
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
-</p>
-    <hr><h3>Hardware projects</h3>Now I will describe the different approaches to use the generic
+    </p></p>
+<h2><a name="hwproj">Hardware Projects</a></h2>
+<p> <p>
+Now I will describe the different approaches to use the generic
 SCSI interface in a Commodore system, more specifically with a
 C64 or C128.
-    <ul><li><strong>C64 SCSI (harddisk) adapter</strong><br><br><ul><li><strong>Idea</strong>
-	      : 
-  	      This interface should directly connect a harddisk to the C64.
+    </p></p>
+<H3><a name="c64scsi">C64 SCSI (harddisk) adapter</a></H3>
+<p><p><ul>
+<li>
+<strong>Idea</strong>
+              :
+              This interface should directly connect a harddisk to the C64.
 The C64 would then have to do all the filesystem handling itself,
-but it is fast (no serial IEC bus) and cheap.<br><br></li><li><strong>Description</strong>
-	      : 
-  	      <p>This is a simple example of how to use the C64-CS/A adapter
+but it is fast (no serial IEC bus) and cheap.</li>
+<li>
+<strong>Description</strong>
+              :
+              <p>This is a simple example of how to use the C64-CS/A adapter
 with a CS/A65 I/O card.
 The <a href="../c64csa/index.html">C64-CS/A adapter</a>
 is plugged into the expansion port using one I/O area (at $de** or $df**).
 It uses a VIA 6522 to expand the address range so that you can
 use the full CS/A bus system with all cards.
-</p><p>
+</p>
+<p>
 The results of the combination with the CS/A-SCSI card
 is a simple C64 expansion port card without CS/A bus
 interface, in this case in the <font color="#ff0000">C64 SCSI controller</font>.
-</p><p>
+</p>
+<p>
 A picture says more than a thousand words, so here is the C64 SCSI
 interface schematics as
 <a href="c64scsi/c64scsi.png">c64scsi.png</a> or
@@ -176,106 +241,157 @@ and only one additional connection has to be made (indicated).
 <a href="http://www.cadsoft.de/">Eagle</a> schematics and board layout
 for the C64-SCSI board. However, There is absolutely no warranty with
 this schematics and layout, as I could not fully check it.
-You can find it in <a href="c64scsi/c64scsi.zip">c64scsi.zip</a>.</p><br><br></li><li><strong>Status</strong>
-	      : 
-  	      The interface consisting of the C64-CS/A adapter and the CS/A-SCSI
+You can find it in <a href="c64scsi/c64scsi.zip">c64scsi.zip</a>.</p>
+</li>
+<li>
+<strong>Status</strong>
+              :
+              The interface consisting of the C64-CS/A adapter and the CS/A-SCSI
 card has been tested on a C64 and works. The "imploded" version
-with the left out parts has not been tested.<br><br></li>
-</ul></li><br><li><strong>VC-SCSI 1.0 drive</strong><br><br><ul><li><strong>Idea</strong>
-	      : 
-  	      Provide a separate computer like the VC1541 and interface it with
+with the left out parts has not been tested.</li>
+</ul>
+	</p>
+	</p>
+<H3><a name="vcscsi10">VC-SCSI 1.0 drive</a></H3>
+<p><p><ul>
+<li>
+<strong>Idea</strong>
+              :
+              Provide a separate computer like the VC1541 and interface it with
 the C64 via the serial IEC bus. This would keep a lot of work off the
-C64, and provide easier access.<br><br></li><li><strong>Description</strong>
-	      : 
-  	      <p>
+C64, and provide easier access.</li>
+<li>
+<strong>Description</strong>
+              :
+              <p>
 This is a combination of the Gecko computer and the SCSI board.
-</p><p>
+</p>
+<p>
 The Gecko (see the <a href="../../csa/gecko/index.html">gecko</a> directory) is
 a small single-board 6502 computer. The base system provides
 32k RAM, 32k ROM and access to the <a href="../../csa/bus.html">CS/A I/O bus</a>
 (which is the CS/A bus itself, but only using the lower 12 address bits
 with <code>/IOSEL</code>). The full Gecko includes an RS232 interface,
 as well as a VIA6522 with serial IEC and keyboard interface.
-</p><p>
+</p>
+<p>
 Combining the Gecko with the SCSI interface is simple, just attach it.
 If you remove the backplane by putting both cards on the same board
 you can also leave out some parts of the Gecko that are of no use.
 Those parts are shaded grey in the schematics.
 This board can be used with the C64, C128 and VIC20.
-</p><p>
+</p>
+<p>
 The schematics are available as
 <a href="vcscsi1/vcscsi-1.0.png">vcscsi-1.0.png</a> or
 <a href="vcscsi1/vcscsi-1.0.ps.gz">vcscsi-1.0.ps.gz</a>.
-</p><br><br></li><li><strong>Status</strong>
-	      : 
-  	      The Gecko board and the SCSI interface have been tested separately
+</p>
+</li>
+<li>
+<strong>Status</strong>
+              :
+              The Gecko board and the SCSI interface have been tested separately
 and both work. Also the Gecko board works with several other
 CS/A cards (my Gecko prototype board developed a bad soldering
 so I cannot test it with the SCSI board at this time.).
 The SCSI interface has been tested with the orignal CS/A65 computer
 and with the C64 using the adapter from above.
-This will work with &gt;99.5%.<br><br></li></ul></li><br><li><strong>VC-SCSI 1.x drive</strong><br><br><ul><li><strong>Idea</strong>
-	      : 
-  	      Modify the Gecko board such that the VIA appears at the same place as
+This will work with &gt;99.5%.</li>
+</ul>
+	</p>
+	</p>
+<H3><a name="vcscsi1x">VC-SCSI 1.x drive</a></H3>
+<p><p><ul>
+<li>
+<strong>Idea</strong>
+              :
+              Modify the Gecko board such that the VIA appears at the same place as
 the IEC VIA in the VC1541, and also use the very same IEC schematics
 as in the VC1541. This would allow building a VC1541 emulation mode
 for all speeders that use the standard FDC routines to acces
 a floppy - these routines would then be replaced to access a large file
-on the harddrive (a .d64 image basically)<br><br></li><li><strong>Description</strong>
-	      : 
-  	      <p>
+on the harddrive (a .d64 image basically)</li>
+<li>
+<strong>Description</strong>
+              :
+              <p>
 This is basically still the Gecko board. Only the address selection of
 the I/O area around IC2 would have to be changed, as well as the
 address value at IC9. The VIA would get the very same IEC electronics
 as the VC1541 has, removing anything else. The UART (RS232) would be
 removed as well.
-<br>
+<p></p>
 The 32k ROM would be divided into an upper 16k part and a lower 16k part.
 The upper part would be filled with a modified VC1541 ROM, and the lower
 part with the SCSI filesystem code.
-<br>
+<p></p>
 To make the emulation mode reasonably secure part of the RAM - that would
 then contain the mapping of VC1541 blocks -&gt; blocks on the disk drive -
 should be made write-protectable. This way any floppy speeder going haywire
 could with high probability not overwrite other parts of the HD.
 </p>
-<br><br></li><li><strong>Status</strong>
-	      : 
-  	      Idea<br><br></li></ul></li><br><li><strong>VC-SCSI 2.0 drive</strong><br><br><ul><li><strong>Idea</strong>
-	      : 
-  	      When the 6522 is replaced with a 6526 the burst mode of the VC1571 can
-be used.<br><br></li><li><strong>Description</strong>
-	      : 
-  	      <p>
+</li>
+<li>
+<strong>Status</strong>
+              :
+              Idea</li>
+</ul>
+	</p>
+	</p>
+<H3><a name="vcscsi20">VC-SCSI 2.0 drive</a></H3>
+<p><p><ul>
+<li>
+<strong>Idea</strong>
+              :
+              When the 6522 is replaced with a 6526 the burst mode of the VC1571 can
+be used.</li>
+<li>
+<strong>Description</strong>
+              :
+              <p>
 In this schematics I have molded the Gecko and the SCSI
 boards more together, without
 a bus in between. Also I replaced the 6522 with a 6526. This allows
 to use the fast serial IEC bus as used with the C128 (or with a modified
 C64). A place for a Speeder Cable is also provided.
-</p><p>
+</p>
+<p>
 Thanks to Nicolas Welte I have improved the parallel speeder cable
 support, and provided a way to set the IEC ID.
-</p><p>
+</p>
+<p>
 One word of warning, though: The schematics are preliminary, untested, and
 a mess! Again, they are provided AS IS, without warranty!
-</p><p>
+</p>
+<p>
 The schematics are available as
 <a href="vcscsi2/vcscsi-2.1C.png">vcscsi-2.1C.png</a> or
 <a href="vcscsi2/vcscsi-2.1C.ps.gz">vcscsi-2.1C.ps.gz</a>.
 And there is the
 <a href="vcscsi2/vcscsi-2.1C-parts.txt">vcscsi-2.1C-parts.txt</a>
 parts list.
-</p><p>
+</p>
+<p>
 The memory map has RAM at $0000-$7FFF, ROM at $8000-$DFFF and $E800-$FFFF.
 I/O is at $E000-$E7FF, with $E000-$E3FF mirrored at $E400.
 $E0** is the 6526, $E1** is the SCSI interface and $E2** is the IEEE488 ID
 and speeder flag port.
 $E3** is not (yet) used, so there is place for a disk controller or whatever.
 </p>
-<br><br></li><li><strong>Status</strong>
-	      : 
-  	      Schematics exist, but they are preliminary, untested, and
-a mess! Again, they are provided AS IS, without warranty!<br><br></li></ul></li><br></ul><hr>
+</li>
+<li>
+<strong>Status</strong>
+              :
+              Schematics exist, but they are preliminary, untested, and
+a mess! Again, they are provided AS IS, without warranty!</li>
+</ul>
+	</p>
+	</p>
+<hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
-  </DIV></body></html>
+  </DIV>
+</div>
+</body>
+</html> 
+

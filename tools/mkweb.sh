@@ -28,11 +28,11 @@ $bin/files2menu.sh $dir
 ############################################
 # 2) create the *.inx files from the sources
 
-# .bxml -> .inx
-$bin/doxsl.sh -f $dir
-
 # .in -> .inx
 $bin/doinx.sh -f $dir
+
+# .bxml -> .inx
+$bin/doxsl.sh -f $dir
 
 ############################################
 # 3) create the html files by merging the menu with the .in files
