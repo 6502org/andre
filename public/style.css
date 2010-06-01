@@ -14,7 +14,7 @@
 	padding: 5px;
 }
 
-li li {
+div#content li li {
 	margin-top: 10px;
 }
 
@@ -69,38 +69,48 @@ DIV#content table {
 	width:auto;
 }
 
+/*
 DIV#menu {
-  float: left; width: 25em;
   margin: 0; padding: 0;
   margin-left: -2em;
   list-style-position:outside;
-/*  position: fixed; 
- *    margin-top: -1.7em;
- *      background-color: #dddddd; 
- *       */
   font-size:smaller;
 }
+*/
 
-/*
- * DIV.rightbar {
- *   border-style: solid;
- *     border-width: 2px;
- *       float: right;
- *         width: 25em;
- *           margin-top: -1.7em;
- *             margin-right: -2em;
- *               background-color: #dddddd; 
- *                 font-size:smaller;
- *                 }
- *                 */
+/********************** Menu formatting *********************/
 
-/*
- * DIV.overview {
- * 	font-size:larger;
- * 		font-weight:bold;
- * 			background-color: #ffdddd;
- * 			}
- * 			*/
+DIV#menu {
+  float: left; 
+  margin: 0; padding: 0;
+  width: 18em;
+}
+
+DIV#menu ul {
+  list-style-type:none;
+  font-size:small;
+  margin-left: -1em;
+}
+
+/* IE6 hack - may it go away soon! */
+* html div#menu ul {
+  	margin-left: 0.5em;
+}
+
+DIV#menu img {
+	margin-right:0.5em;
+}
+
+LI.separator {
+	font-size:larger;
+	font-weight:bold;
+	list-style-type:none;
+/*        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+}
+
+
+/****************** End Menu formatting *********************/
+
 
 P.copyright {
 	font-size:larger;
@@ -147,16 +157,6 @@ LI.extlink {
 A.extlink {
     	background: url("imgs/icon_extlink.jpg") center right no-repeat;
     	padding-right: 16px;
-}
-
-UL.menu0 {
-  font-size:small;
-}
-UL.menu1 {
-}
-UL.menu2 {
-}
-UL.menu3 {
 }
 
 UL.news {
@@ -236,30 +236,5 @@ table.memmap th {
 	width:14mm;
 	padding:5px;
 }
-/*
- * table.memmap {
- * 	text-align:center;
- * 		empty-cells:show;
- * 			border-style:solid;
- * 				border-spacing:0px;
- * 					margin:5px;
- * 					}
- *
- * 					table.memmap td {
- * 						border-width:1px;
- * 							border-style:solid;
- * 								width:14mm;
- * 								}
- * 								table.memmap th {
- * 									border-width:1px;
- * 										border-style:solid;
- * 											width:14mm;
- * 											}
- *
- * 											table.memmap th.separator {
- * 												background-color: #ffffff;
- * 													border-style:none;
- * 													}
- * 													*/
 
 
