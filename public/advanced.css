@@ -72,11 +72,7 @@ DIV#oldnews {
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
-  	width: 17.1em;
-}
-
-* html div#oldnews {
-  width: 19em;	/* same value as rightcol - scroll bar inside width in IE */
+  	width: 17.0em;
 }
 
 DIV#browser {
@@ -111,13 +107,8 @@ A.m_homepage {
 DIV#menu ul {
   list-style-type:none;
   padding-left: 1em;
-  /*margin-left: -2em;*/
+  margin-left: 0em;
   font-size:small;
-}
-
-/* IE6 hack - may it go away soon! */
-* html div#menu ul {
-  	margin-left: 0em;
 }
 
 DIV#menu li {
