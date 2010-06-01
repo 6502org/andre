@@ -189,21 +189,27 @@ LI.homepage {
 	font-size:large;
 }
 
+
 LI.file {
-	list-style-image:url(imgs/file.png);
+	/*list-style-image:url(imgs/file.png);*/
+	list-style-type: none;
 }
 
 LI.link {
-	list-style-image:url(imgs/link.png);
+	/*list-style-image:url(imgs/link.png);*/
+	list-style-type: none;
 }
 
 LI.dir {
-	list-style-image:url(imgs/dir.png);
+	/*list-style-image:url(imgs/dir.png);*/
+	list-style-type: none;
 }
 
 LI.openfile {
-	list-style-image:url(imgs/openfile.png);
+	/*list-style-image:url(imgs/openfile.png);*/
+	list-style-type: none;
 }
+
 
 table.content {
 	text-align:center;

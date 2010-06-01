@@ -33,23 +33,20 @@ DIV.top {
 -webkit-border-radius: 10px;
   background-color: #ffffff; 
   margin: 0;
-  margin-top: 1.3em;
-  margin-bottom: 0.3em;
+  margin-top: 0em;
+  margin-bottom: 0.6em;
   padding: 1em;
 }
 
-DIV#footer {
-  border-top: 2px solid;
+DIV#mainbox {
+   padding-top: 1em;
 }
 
 DIV#midcol {
+  margin: 0;
   margin-left: 17.5em;
   margin-right: 16.6em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
-}
-
-DIV#content {
-  text-align: left;
 }
 
 DIV#leftcol {
@@ -64,7 +61,6 @@ DIV#rightcol {
   float: right; 
   width: 19em;
   margin: 0; 
-  margin-top: -1.3em;
   padding: 0;
   font-size:smaller;
   display: block;
@@ -88,6 +84,15 @@ DIV#browser {
 }
 DIV#breadcrumbs {
   display: block;
+}
+
+
+DIV#content {
+  text-align: left;
+}
+
+DIV#footer {
+  border-top: 2px solid;
 }
 
 
@@ -249,22 +254,6 @@ A.extlink {
     	background: url("imgs/icon_extlink.jpg") center right no-repeat;
     	padding-right: 16px;
 }
-
-/*
-UL.menu0 {
-  font-size:small;
-  margin-left: -1.5em;
-}
-UL.menu1 {
-  margin-left: -1.5em;
-}
-UL.menu2 {
-  margin-left: -1.5em;
-}
-UL.menu3 {
-  margin-left: -1.5em;
-}
-*/
 
 UL.news {
 	list-style-image:url(imgs/news.gif);

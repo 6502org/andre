@@ -52,6 +52,7 @@
 	<TITLE><xsl:value-of select="name"/></TITLE>
 </HEAD><xsl:text>
 </xsl:text><BODY>
+<div id="mainbox">
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 @BREAD@
@@ -85,6 +86,7 @@
 </DIV> <!-- footer -->
 </DIV> <!-- content -->
 </div> <!-- midcol -->
+</div> <!-- mainbox -->
 </BODY></HTML>
 </xsl:template>
 
@@ -213,6 +215,7 @@
 <xsl:text>
 </xsl:text>
 <body>
+<div id="mainbox">
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 @BREAD@
@@ -274,6 +277,7 @@
 <xsl:apply-templates select="closing"/>
 </DIV> <!-- content -->
 </div> <!-- midcol -->
+</div> <!-- mainbox -->
 </body></html>
 <xsl:text> 
 </xsl:text>
@@ -372,7 +376,7 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%stylenew.css"/>
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 <script src="%up%jquery-1.4.2.min.js"></script>
 <script src="%up%myscripts.js"></script>

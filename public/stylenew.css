@@ -55,11 +55,11 @@ TABLE.notes TR {
 
 DIV#leftcol {
   float: left; 
-  width: 23em;
+  width: 18em;
 }
 
 DIV#midcol {
-  margin-left: 17.5em;
+  margin-left: 18.5em;
   /*margin-right: 16.6em;*/
   margin-right: 1em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
@@ -103,11 +103,13 @@ DIV#content table {
 
 DIV#menu {
   margin: 0; padding: 0;
+  width: 18em;
 }
 
 DIV#menu ul {
   list-style-type:none;
   font-size:small;
+  margin-left: -1em;
 }
 
 /* IE6 hack - may it go away soon! */
