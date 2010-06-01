@@ -44,10 +44,10 @@ TD.noteicon {
 }
 
 /*
- * TABLE.notes TR {
- * 	background-color: #eeeeee;
- * 	}
- * 	*/
+TABLE.notes TR {
+	background-color: #eeeeee;
+}
+*/
 
 H2 {
 	border-top: 2px solid;
@@ -69,48 +69,38 @@ DIV#content table {
 	width:auto;
 }
 
-/*
 DIV#menu {
+  float: left; width: 25em;
   margin: 0; padding: 0;
   margin-left: -2em;
   list-style-position:outside;
+/*  position: fixed; 
+  margin-top: -1.7em;
+  background-color: #dddddd; 
+ */
+  font-size:smaller;
+}
+
+/*
+DIV.rightbar {
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 25em;
+  margin-top: -1.7em;
+  margin-right: -2em;
+  background-color: #dddddd; 
   font-size:smaller;
 }
 */
 
-/********************** Menu formatting *********************/
-
-DIV#menu {
-  float: left; 
-  margin: 0; padding: 0;
-  width: 18em;
-}
-
-DIV#menu ul {
-  list-style-type:none;
-  font-size:small;
-  margin-left: -1em;
-}
-
-/* IE6 hack - may it go away soon! */
-* html div#menu ul {
-  	margin-left: 0.5em;
-}
-
-DIV#menu img {
-	margin-right:0.5em;
-}
-
-LI.separator {
+/*
+DIV.overview {
 	font-size:larger;
 	font-weight:bold;
-	list-style-type:none;
-/*        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+	background-color: #ffdddd;
 }
-
-
-/****************** End Menu formatting *********************/
-
+*/
 
 P.copyright {
 	font-size:larger;
@@ -121,7 +111,7 @@ LI.separator {
 	font-size:larger;
 	font-weight:bold;
 	list-style-type:none;
-        margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
+        /*margin-left:-22px;  /* Abstand linker Rand zu Zeichen/image */
 }
 
 LI.hw {
@@ -159,6 +149,16 @@ A.extlink {
     	padding-right: 16px;
 }
 
+UL.menu0 {
+  font-size:small;
+}
+UL.menu1 {
+}
+UL.menu2 {
+}
+UL.menu3 {
+}
+
 UL.news {
 	list-style-image:url(imgs/news.gif);
 }
@@ -184,32 +184,32 @@ DIV.interview .other {
 	font-weight:bold;
 }
 
-LI.homepage {
-	list-style-image:url(imgs/dir.png);
-	font-size:large;
+a.m_homepage {
+	/*list-style-image:url(imgs/dir.png);*/
+	list-style-type: none;
+	margin-left:2em;
+	font-size:larger;
 }
 
-
 LI.file {
+	list-style-type:none;
 	/*list-style-image:url(imgs/file.png);*/
-	list-style-type: none;
 }
 
 LI.link {
+	list-style-type:none;
 	/*list-style-image:url(imgs/link.png);*/
-	list-style-type: none;
 }
 
 LI.dir {
+	list-style-type:none;
 	/*list-style-image:url(imgs/dir.png);*/
-	list-style-type: none;
 }
 
 LI.openfile {
+	list-style-type:none;
 	/*list-style-image:url(imgs/openfile.png);*/
-	list-style-type: none;
 }
-
 
 table.content {
 	text-align:center;
@@ -236,5 +236,30 @@ table.memmap th {
 	width:14mm;
 	padding:5px;
 }
+/*
+table.memmap {
+	text-align:center;
+	empty-cells:show;
+	border-style:solid;
+	border-spacing:0px;
+	margin:5px;
+}
+
+table.memmap td {
+	border-width:1px;
+	border-style:solid;
+	width:14mm;
+}
+table.memmap th {
+	border-width:1px;
+	border-style:solid;
+	width:14mm;
+}
+
+table.memmap th.separator {
+	background-color: #ffffff;
+	border-style:none;
+}
+*/
 
 
