@@ -1,9 +1,19 @@
-<html><head>
-<meta name="author" content="Andr&eacute; Fachat">
-<title>Andr&eacute;'s CS/A65 computer</title>
-<link rev=made href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TYPE="text/css" HREF="../../style.css">
-</head><body> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../stylenew.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+<script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
+
+<title>André 's CS/A65 computer</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
 <DIV class="top" ID="menu">
 <a class="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -28,7 +38,7 @@
 </li>
 <li class="dir" id="m_csa_petcpu"><img src="../../imgs/dir.png"/><a href="../petcpu/index.html">64k PET CPU</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../gecko/index.html">Gecko</a>
+<li class="dir" id="m_csa_gecko"><img src="../../imgs/dir.png"/><a href="../gecko/index.html">Gecko</a>
 </li>
 <li class="file"><img src="../../imgs/file.png"/><a href="../auxcpu/index.html">Auxiliary CPU</a>
 </li>
@@ -102,62 +112,99 @@
 </ul>
 
 </DIV>
-<DIV ID="content">
-<h2 align=center>This is my selfdesigned and selfbuilt computer</h2>
-<h3 align=center>&copy; Andr&eacute; Fachat</h3>
-<hr><p>
-On this page are a few images of my selfbuilt computer(s), just to give some
+		<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google"><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+<div class="top" id="twitter">
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+<div class="top" id="forum">
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../../index.html">Homepage</a>
+&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Gallery</DIV>
+<DIV class="top" ID="content">
+<h1>André 's CS/A65 computer</h1>
+<p class="copyright">(C)
+- André  Fachat</p> 
+<div class="overview">
+<p>On this page are a few images of my selfbuilt computer(s), just to give some
 impression of how it looks like and of what kind of technique it is.
-(Remeber, I built this thingy aroung 1989-1991, quite some time ago...)
-<p>
-<a href="#config">Below</a> there also is an image how my current configuration looks like.
+(Remember, I built this thingy aroung 1989-1991, quite some time ago...)
+	</p>
+  </div>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#oldstyle">The Beginnings...</a></li>
+<li><a href="#gecko">The Gecko board</a></li>
+<li><a href="#config">My configuration</a></li>
+</dir>
+</DIV>
+<h2><a name="oldstyle">The Beginnings...</a></h2>
+<p> <p><a href="#config">Below</a> there also is an image how my current configuration looks like.
 All of it except the SCSI harddisk on my selfbuilt computer is working.
 Ok, the SCSI interface is there, the drivers are there and the filesystem (FAT16)
 is there, I just did not have the time to glue them together so far... :-)
-<p><hr>
+</p>
 <img src="photo-csa.jpg" alt="[Sorry, no picture!]"><p>
 This is a view of the computer itself. It consists of a motherboard, that
 is just a bus plane, and several card boards.
 From right to left you can see the CPU board, the BIOS board, the
 video board and the keyboard board. Then there are the IEC board and
-the shugart bus board to connect PC floppy disk drives.
-<p><hr><img src="photo-backside.jpg" alt="[Sorry, no picture]"><p>
+the shugart bus board to connect PC floppy disk drives.</p>
+<img src="photo-backside.jpg" alt="[Sorry, no picture]"><p>
 Here you can see how all these boards are built...
-<p><hr><img src="photo-emu.jpg" alt="[Sorry, no picture!]"><p>
+</p><p><img src="photo-emu.jpg" alt="[Sorry, no picture!]"></p><p>
 This shows the Emulator board (the grey one in the back) that emulates
 the 6502 CPU of another computer (a CS/A65 CPU board without MMU, in
-the front - this very board later became the 
-<a href="../gecko/index.html"><em>Gecko</em></a> prototype board, 
-see also <a href="#gecko">below</a>). 
-The long cable is plugged into the socket where the CPU 
+the front - this very board later became the
+<a href="../gecko/index.html"><em>Gecko</em></a> prototype board,
+see also <a href="#gecko">below</a>).
+The long cable is plugged into the socket where the CPU
 resides usually on the CPU board and on the special socket on the
-emulator board. Because the CS/A65 computer with MMU can handle 
-1 MByte of RAM, the 64 kByte of the emulated CPU are mapped into the 
-memory of the CS/A65 system.<p>
-I have been able to test new ROMs for the VC1541 in RAM before 
+emulator board. Because the CS/A65 computer with MMU can handle
+1 MByte of RAM, the 64 kByte of the emulated CPU are mapped into the
+memory of the CS/A65 system.</p><p>
+I have been able to test new ROMs for the VC1541 in RAM before
 burning them into EPROMs. I just replaced the old ROMs on the board
 with some RAM area from the CS/A computer with the MMU, loaded
 the new ROM into this RAM (from the CS/A computer) and started the
 VC1541 DOS.
-<hr>
-<a name="gecko"></a>
-<h3>The <em><font color="#ff0000">Gecko</font></em> board</h3>
+    </p></p>
+<h2><a name="gecko">The Gecko board</a></h2>
+<p> <p>After so many people asked me to give some hardware diagrams to the public,
+I decided to design and build a simple non-MMU system especially for
+Web-publishing. So here are the photos of this one:</p>
 
-After so many people asked me to give some hardware diagrams to the public,
-I decided to design and build a simple non-MMU system especially for 
-Web-publishing. So here are the photos of this one:<p>
-<!--- img src="image01.png" --->
-<!--- img src="image02.png" --->
-<!--- img src="image03.png" --->
-<!--- img src="image04.png" --->
-<!--- img src="image05.png" --->
-<!--- img src="image06.png" --->
+
+
+
+
+
 <img src="image09.png" alt="[Sorry, no picture!]">
 <img src="image07.png" alt="[Sorry, no picture!]">
-<!--- img src="image08.png" --->
+
+    </p>
+<h2><a name="config">My configuration</a></h2>
+<p> <img src="mycomps.png" alt="[Sorry, no picture!]">
+    </p>
 <hr>
-<a name="config"></a>
-<h2>My current configuration</h2>
-<img src="mycomps.png" alt="[Sorry, no picture!]">
-</DIV></body>
-</html>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
+</div></body>
+</html> 
+

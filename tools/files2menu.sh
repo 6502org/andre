@@ -33,18 +33,16 @@ function buildbread () {
 		fi;
 	fi;
 
-#	if [ -f $1/.name.xml ]; then 
-	    if [ "x$2" = "x" ]; then
+	if [ "x$2" = "x" ]; then
 		# bottom level
 		echo -n '&gt;&gt; '
 		cat $1/.name.xml
-	    else
+	else
 		# not bottom level
 		echo -n '&gt;&gt;'" <a href=\""$2"index.html\">"
 		cat $1/.name.xml
 		echo -n "</a>"
-	    fi;
-#	fi;
+	fi;
 }
 
 id=`echo "$root" \
@@ -114,15 +112,18 @@ else
 fi
 
 if [ -f $root/.files ]; then
+
+    cat $root/.files | grep "^f " | cut -d " " -f 2- >> $root/$i/.name.xml
+
     for i in `cat $root/.files | grep "^[pd] " | cut -d " " -f 2`; do
 
 	# extract name
 	name=`cat $root/.files | grep "^[pd] $i " | cut -d " " -f 3-`;
 	#echo "i=" $i ", name="$name;
-	echo $name > $root/$i/.name.xml;
-	
+	echo "index.html " $name > $root/$i/.name.xml;
+
 	# build breadcrumbs from name
-	buildbread $root/$i > $root/$i/.bread.xml
+	#buildbread $root/$i > $root/$i/.bread.xml
 
 	# recursively continue
 	#  if [ "x$i" != "x" -a -f $root/$i/.files ]; then 
@@ -130,7 +131,7 @@ if [ -f $root/.files ]; then
 	#  fi
 
 	# cleanup name.xml
-	rm -f $root/$i/.name.xml
+	#rm -f $root/$i/.name.xml
     done;
 fi
 

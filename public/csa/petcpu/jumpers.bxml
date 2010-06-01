@@ -1,19 +1,18 @@
-<HTML>
-<HEAD>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<META NAME="keywords" CONTENT="CSA65 6502 PET CPU">
-<TITLE>CS/A65 PETCPU Jumper settings</TITLE>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css">
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css">
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>CS/A65 PETCPU Jumper settings</H1>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="CS/A65 PETCPU Jumper settings">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <!--yearstart>1997</yearstart>
+    <yearend>2010</yearend-->
+  </author>
+  <!--keywords>Commodore PET CBM ROM</keywords>
+  <metadesc>Commodore PET CBM ROM descriptions</metadesc-->
+  <overview>
 <P>
-			This table describes the jumper settings available on
-			the board
+                        This table describes the jumper settings available on
+                        the board
 </P>
                         <table border="1" class="jumpers">
 <tr>
@@ -332,9 +331,27 @@
 </tr>
 
 </table>
-		</TD>
-</TR>
-</TABLE>
-</DIV>
-</BODY>
-</HTML>
+
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/>
+  <section toc="main" name="Differences in Software">
+    <desc> <p>
+    </p></desc>
+
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc><p>
+	</p>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+
+  </section-->
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

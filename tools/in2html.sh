@@ -61,6 +61,50 @@ function doinsert2 () {
 		>> $tox
 }
 
+function buildbread () {
+
+        #echo "buildbread myname = $1, rroot=" $2 ", level="$3 ", <p/>"
+
+        if [ -f $2/../.name.xml ]; then
+                buildbread $1 $2/.. ../$3
+        else
+                if [ -f $2/.name.xml ]; then
+                        echo "<a href=\""$3"index.html\">Homepage</a>"
+                else
+                        echo "Homepage"
+                fi;
+        fi;
+
+        if [ "x$3" = "x" ]; then
+                # bottom level
+		if [ "$myname" != "index.html" ]; then
+                	echo -n '&gt;&gt; '
+	                echo -n " <a href=\""$3"index.html\">"
+        	        cat $2/.name.xml \
+				| grep "^index.html" \
+				| cut -d " " -f 2-
+	                echo -n "</a>"
+		fi;
+		x=`cat $2/.name.xml \
+			| grep "^$myname" \
+			| cut -d " " -f 2-`
+		if [ "x$x" != "x" ]; then
+                	echo -n '&gt;&gt;  '
+			echo -n $x;
+		fi;
+        else
+                # not bottom level
+	        x=`cat $2/.name.xml \
+			| grep "^index.html" \
+			| cut -d " " -f 2-`
+		if [ "x$x" != "x" ]; then
+                	echo -n '&gt;&gt;'" <a href=\""$3"index.html\">"
+			echo -n $x;
+                	echo -n "</a>";
+		fi;
+        fi;
+}
+
 #echo "Run: " $0 $root $up $upn $parent
 
 for i in $root/*.inx; do 
@@ -69,7 +113,8 @@ for i in $root/*.inx; do
 	t3=${i}_3;
 	t4=${i}_4;
 	t5=${i}_5;
-	to=`dirname $i`/`basename $i .inx`.html;
+	myname=`basename $i .inx`.html;
+	to=`dirname $i`/$myname;
 	if [ -f $i ]; then
 		#echo "from " $i " to " $t2
 
@@ -95,9 +140,19 @@ for i in $root/*.inx; do
 		doinsert1 $t3 $t4 "@BREAD@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			if [ -f $root/.bread.xml ]; then
+#			if [ -f $root/.bread.xml ]; then
+#				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t4
+#				cat $root/.bread.xml \
+#					| sed -e "s@%up%@.@g" \
+#					>> $t4
+#				echo "</DIV>" >> $t4
+#			else
+#				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
+#			fi;
+			if [ -f $root/.name.xml ]; then
 				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t4
-				cat $root/.bread.xml \
+				#cat $root/.name.xml \
+				buildbread $myname $root \
 					| sed -e "s@%up%@.@g" \
 					>> $t4
 				echo "</DIV>" >> $t4
@@ -136,6 +191,7 @@ if [ -f $root/.files ]; then
 	"$0" $root/$i $up../ $(($upn+1)) $i
 	rm -f $root/$i/.files.xml
 	rm -f $root/$i/.bread.xml
+	rm -f $root/$i/.name.xml
     done;
 fi
 

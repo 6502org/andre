@@ -1,30 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"> 
-<html><head><base target="_top">
-<meta name="author"  content="Andr&eacute; Fachat">
-<meta name="robots"  content="noindex">
-<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
-<meta name="keywords" content="6502,hardware,8 bit,schematics"> <meta name="description" content="6502 computer">
-<title>Gecko</title>
-<link rev=made href="mailto:a.fachat@physik.tu-chemnitz.de">
-<link rel=StyleSheet href="./../../style.css" type="text/css">
-</head>
-@MENU@
-<DIV ID="content">
-<body>
-<H1 ALIGN=CENTER>CS/A65 <em><FONT COLOR="#FF0000">Gecko</FONT></em> Computer</H1>
-
-<H1 ALIGN=CENTER>(c) 1997-1999 Andr&eacute; Fachat</h1>
-
-<P>
-<HR></P>
-
-<P>In 1989, after my first semester at university, I made the first line
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Gecko 2.x">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>6502,hardware,8 bit,schematics</keywords>
+  <metadesc>6502 computer</metadesc>
+  <overview><p>	In 1989, after my first semester at university, I made the first line
 on the schematics for a small self-designed and self-built computer. This
 computer, based on the 6502 CPU, has until 1992 become a small computer
-system.</P>
+system</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
 
-<P>The new <strong><em><FONT COLOR="#FF0000">Gecko</FONT></em></strong> system is conformant
-to this system and has some quite nice features:</P>
+  <section toc="features" name="Features">
+    <desc> <p>The new <strong><em><FONT COLOR="#FF0000">Gecko</FONT></em></strong> system is conformant
+to this system and has some quite nice features:</p>
 
 <UL>
 <LI>A&nbsp;fast serial <strong>RS232</strong> interface, using the 16550 UART&nbsp;with
@@ -42,17 +41,20 @@ I/O space</LI>
 
 <LI>Bus interface to standard CS/A peripheral interface cards</LI>
 </UL>
+  </desc>
+  </section>
 
-<P>Software that is completed is:</P>
+  <section toc="current" name="Software that is completed">
+    <desc> <P>Software that is completed is:</P>
 
 <UL>
 <LI><A HREF="../../osa/index.html">GeckOS/A65 Multitasking OS</A></LI>
 
-<LI>Filesystem for the Commodore 
+<LI>Filesystem for the Commodore
 VC1541 disk drive (in GeckOS/A65)</LI>
 
-<LI>Multitasking shell with 
-I/O&nbsp;redirection, including a 
+<LI>Multitasking shell with
+I/O&nbsp;redirection, including a
 machine language monitor (running over the serial line</LI>
 
 <LI>Device for infrared control</LI>
@@ -61,7 +63,6 @@ machine language monitor (running over the serial line</LI>
 serial line and SLIP&nbsp;protocol</LI>
 
 </UL>
-
 <P>Later there will be:</P>
 
 <UL>
@@ -69,19 +70,19 @@ serial line and SLIP&nbsp;protocol</LI>
 files on the PC&nbsp;from the C64 for example.</LI>
 </UL>
 
-<hr>
-<H3>From Theory to Practice - the Hardware</H3>
+    </desc>
+  </section>
 
-<P>
-You can have a look at the real hardware of my prototype board at my 
-<a href="../gallery/index.html#gecko">Gallery</a>.
+  <section toc="hw" name="From Theory to Practice - the Hardware">
+    <desc> <p>You can have a look at the real hardware of my prototype board at my
+<a href="../gallery/index.html#gecko">Gallery</a>.</p>
 <p>
-In <strong><A HREF="gecko.ps.gz">gecko.ps.gz</A></strong> or 
+In <strong><A HREF="gecko.ps.gz">gecko.ps.gz</A></strong> or
 <strong><a href="gecko.png">gecko.png</a></strong> is a drawn xfig schematics,
 (in gnuzip'd postscript format or PNG) of the main board
 that has all the above listed
-interfaces. 
-<P>On the left side is the 6502, the CPU. To the right follows an address
+interfaces.
+</p><P>On the left side is the 6502, the CPU. To the right follows an address
 decoder, that produces the following memory map (which is the standard
 map for CS/A computers, except for the I/O contents):</P>
 
@@ -89,7 +90,7 @@ map for CS/A computers, except for the I/O contents):</P>
 $8000 - $E7FF    ROM
 $E800 - $EFFF    I/O:
                 $EC00-$EC0F     16550A UART
-                $EC10-$EC1F     6522 VIA 
+                $EC10-$EC1F     6522 VIA
 $F000 - $FFFF    ROM
 </PRE>
 
@@ -103,57 +104,58 @@ bus connector, so that you have a simple example of how to implement your
 own I/O cards (There is an exception - the CPU part and the I/O part share
 IC14, IC15 and IC18, but that's just for convenience. They are used for the
 RESET logic. You have to take a Schmitt-Trigger there, and an open collector
-output. I usually use a 74LS14 with a following 74LS06). 
+output. I usually use a 74LS14 with a following 74LS06).
 Here is the <A HREF="gparts.html">parts list</A>. </P>
 
-<P>One thing is that the 1.8432 MHz crystal Q1, together with R14,
+<p>One thing is that the 1.8432 MHz crystal Q1, together with R14,
 R15, C9, and C10 should be replaced with an oscillator like IC7. The oscillator
 output should be connected to XIN, while XOUT should be not connected.
-<BR>
+</p><p>
 I used to just connect the crystal to XIN and XOUT, but that doesn't work
 with all types of crystal - it doesn't start oscillating... It's probably
-only R15 missing then. </P>
-
+only R15 missing then. </p>
 <p> The UART not only has the RS232 interface, but I also use the OUT2
 line to drive the system LED: the LED blinks if autodetection tests
-fail when booting, for example. <br>
+fail when booting, for example. </p><p>
 The VIA port A is used for a simple keyboard interface. Four lines are
 driven for output, while four lines can be read. These eight lines
 are buffered and there is a 10 pin conector with these lines and a
 5 Volt power supply. I normally give the 4 output pins to an external
-BCD-to-decimal decoder with Open collector outputs (74LS145). The up to 
+BCD-to-decimal decoder with Open collector outputs (74LS145). The up to
 10 outputs
 are then given to a 10x4 keyboard matrix. The 4 output lines are then read
 from the keyboard. This gives up to 40 keys. When using a 4-to-16 decoder,
 you can have up to 64 keys.
-<p>
+</p><p>
 The VIA PB7 output pin is used to drive the infrared circuitry. If it is
 high (or set to input) then the circuit is inactive. Otherwise a 40 kHz
 signal is produced with the help of R6 and C8. This signal is then driven
-to the infrared LED. 
+to the infrared LED.</p>
 <p> The rest of port B is used for a Commdore compatible serial IEC
 interface. This interface can be used as floppy or as a master (computer)
 on the bus. As long if you don't have the software to run it as floppy,
 disable the ATNA output by opening jumper J4. The ATNA circuitry
 immediately pulls DATA low if the ATN line goes active and the computer
-hasn't yet recognized that. But the bus master (sending the ATN) is 
+hasn't yet recognized that. But the bus master (sending the ATN) is
 therefore notified that a device is on the bus.
-<hr>
-<H3>The Software</H3>
-The software available already is the Operating system 
+    </p></desc>
+  </section>
+
+  <section toc="sw" name="The Software">
+    <desc> <p>The software available already is the Operating system
 <a href="../../osa/index.html">GeckOS/A65</a>, together with the shell for this system,
-and a serial IEC filesystem. Also a small example for a infrared 
-control is also implemented. <p>
+and a serial IEC filesystem. Also a small example for a infrared
+control is also implemented. </p><p>
 If you get the OS/A65 operating system, and have my cross-assembler
-<a href="../../misc/index.html">XA</a>, you have to go to the main 
+<a href="../../misc/index.html">XA</a>, you have to go to the main
 directory of the OS/A65 distribution tree and do a "make gecko.rom".
-This produces the "gecko.rom" file, i.e. a 
-32 kByte ROM image (with additional CBM two byte load address at the 
+This produces the "gecko.rom" file, i.e. a
+32 kByte ROM image (with additional CBM two byte load address at the
 beginning!) This ROM image must be burned into a 32kByte EPROM and
-put into the <em>Gecko</em> computer.
+put into the <em>Gecko</em> computer.</p>
 <p>
 When the system comes up and detects an error, the LED is giving a blink code.
-The code can be seen from the definitions in the OS/A file oa1str.def:
+The code can be seen from the definitions in the OS/A file oa1str.def:</p>
 <pre>
 /*        Hardware-Errors          */
 
@@ -167,74 +169,74 @@ The code can be seen from the definitions in the OS/A file oa1str.def:
                                    ROM autostart requests */
 #define   HE_DEV    &lt;-8         /* error registering ROM device */
 #define   HE_TASK   &lt;-9         /* no more active task! */
-</pre>
-If the LED blinks 7 times, then it's HE_ROM for example.
-<p> 
-After coming up, you have to connect a 9600 baud, 8N1 serial line terminal 
+</pre><p>
+If the LED blinks 7 times, then it's HE_ROM for example.</p>
+<p>
+After coming up, you have to connect a 9600 baud, 8N1 serial line terminal
 (or PC with terminal program) to the RS232 interface. You get the prompt
 of the running shell. In drive A: you have
-all the registered devices, drive B: shows the ROM contents. 
+all the registered devices, drive B: shows the ROM contents.
 Devices are a small <em>key</em> devices, that handles the keyboard interface.
 If opened for reading, it sends the keycode (0-63) of a pressed key.
 The <em>null</em> device is a neverfilling trashcan. The <em>spooler</em>
-device can serialize file transfers. 
-Drive C: is the serial IEC bus drive 8, accessed as a VC1541.
+device can serialize file transfers.
+Drive C: is the serial IEC bus drive 8, accessed as a VC1541.</p>
 <P>
 As a program you have <em>irtx</em> on drive B:. It shows a small menu
 to select a universum TV set, a Sony CD player or a Sony receiver (master).
-It can then send infrared signals to (my) audio equipment :-)
-<p> As the <em><font color="#ff0000">Gecko</font></em> has no MMU, all 
-programs share the same memory. The following memory locations are used:
+It can then send infrared signals to (my) audio equipment :-)</P>
+<p> As the <em><font color="#ff0000">Gecko</font></em> has no MMU, all
+programs share the same memory. The following memory locations are used:</p>
 <pre>
 Zeropage:
-2-14		kernal zeropage
-14-32		reserved
-32-87		programs
+2-14            kernal zeropage
+14-32           reserved
+32-87           programs
 
 Memory:
-$100-$200	Stack
-$200-$300	PCBUF (interprocess communications buffer)
-$300-$800	kernel buffers, tables etc
-$800-$1000	used program space (fsiec buffers, ...)	
-</pre>
+$100-$200       Stack
+$200-$300       PCBUF (interprocess communications buffer)
+$300-$800       kernel buffers, tables etc
+$800-$1000      used program space (fsiec buffers, ...)
+</pre><p>
 So in an 8 kByte system, you still have 4 kByte for your purposes.
 It is recommended to start zeropage use at 128.
-
-<hr>
-<H3>OS/A65 <em><font color="#ff0000">Gecko</font></em> specifics</H3>
-
+</p></desc>
+</section>
+<section toc="osa" name="OS/A65 Gecko specifics">
+<desc><p>
 There are no changes to the OS/A65 kernel for the <em>Gecko</em> computer.
 Though, because there is only one 6522, and no special IRQ timer, the following
-must be considered:
+must be considered:</p>
 <ul>
 <li>The kernel needs an interrupt source to be able to preemptively schedule
 processes. The <em>keydev</em> device uses the VIA timer2 to periodically
 generate these interrupts. The device itself clears the interrupt again,
-the kernel never touches the VIA.
-<li>Both, the <em>fsiec</em> filesystem for the serial IEC bus and the 
+the kernel never touches the VIA.</li>
+<li>Both, the <em>fsiec</em> filesystem for the serial IEC bus and the
 <em>irtx</em> program need a timer, and only the VIA timer 1 is left. So
 they both have to compete for this timer by getting semaphore <strong>SEM_T1</strong>,
 which is an alias to SEM_SERIEC. This is a system semaphore to handle
-concurring requests for system hardware.
+concurring requests for system hardware.</li>
 </ul>
-<hr>
-<h3>Advanced Hardware...</h3>
-<p>
-Ok, after toying around with that thing I was wondering if I could use the
+    </desc>
+  </section>
+
+  <section toc="adv" name="Advanced Hardware ...">
+    <desc> <p>Ok, after toying around with that thing I was wondering if I could use the
 memory and the I/O in a standard <a href="../index.html">CS/A65</a>
-board. I came up with a simple solution with only some jumpers to switch 
-in addition to removing the local CPU. So this board can be tested in a 
+board. I came up with a simple solution with only some jumpers to switch
+in addition to removing the local CPU. So this board can be tested in a
 standard CS/A65 system.
 </p><p>
 The schematics are in <a href="gecko2.ps.gz">gecko2.ps.gz</a> or
 <a href="gecko2.png">gecko2.png</a>, and the new
 parts list is in <a href="geckoparts.txt">geckoparts.txt</a>.
 The description is in <a href="geckodesc.txt">geckodesc.txt</a>.
-</p>
-<hr><p class=endofpage>
-Contents last modified Jan 13 12:45 |
-Go to <a href="../../index.html">Homepage</a> 
-</p>
-</DIV>
-</body>
-</html>
+    </p></desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

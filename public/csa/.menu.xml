@@ -12,7 +12,7 @@
 </li>
 <li class="dir" id="m_csa_petcpu"><img src="%xup%imgs/dir.png"/><a href="%up%petcpu/index.html">64k PET CPU</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%gecko/index.html">Gecko</a>
+<li class="dir" id="m_csa_gecko"><img src="%xup%imgs/dir.png"/><a href="%up%gecko/index.html">Gecko</a>
 </li>
 <li class="file"><img src="%xup%imgs/file.png"/><a href="%up%auxcpu/index.html">Auxiliary CPU</a>
 </li>
