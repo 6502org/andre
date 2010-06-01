@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
-<webpage name="Andr&eacute;'s 8-bit TODO-List">
+<webpage name="Andr&eacute;'s 8-bit Sneak Preview">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -91,11 +91,11 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 
   </section>
 
-  <section toc="fpga" name="65000 FPGA">
-    <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement. 
+  <section toc="fpga" name="The 65k Project">
+    <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
+	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
 </p>
 	</desc>
-	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
 
 	<subsection toc="65002" name="65002"><desc><p>Design goals for the 65002 CPU replacement are:</p>
 <ul>
@@ -139,6 +139,12 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
     </subsection>
 	<subsection toc="io" name="652xx"><desc><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
     </desc>
+    </subsection>
+
+    <subsection toc="refs" name="References">
+	<desc>
+    	</desc>
+	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
     </subsection>
   </section>
 

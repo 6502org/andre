@@ -78,12 +78,15 @@ function buildbread () {
         if [ "x$3" = "x" ]; then
                 # bottom level
 		if [ "$myname" != "index.html" ]; then
-                	echo -n '&gt;&gt; '
-	                echo -n " <a href=\""$3"index.html\">"
-        	        cat $2/.name.xml \
+        	        x=`cat $2/.name.xml \
 				| grep "^index.html" \
-				| cut -d " " -f 2-
-	                echo -n "</a>"
+				| cut -d " " -f 2-`
+			if [ "x$x" != "x" ]; then
+                		echo -n '&gt;&gt; '
+	                	echo -n " <a href=\""$3"index.html\">"
+				echo $x;
+	                	echo -n "</a>"
+			fi;
 		fi;
 		x=`cat $2/.name.xml \
 			| grep "^$myname" \
@@ -196,5 +199,6 @@ if [ -f $root/.files ]; then
 fi
 
 rm -f $root/.files.xml
+rm -f $root/.name.xml
 
 
