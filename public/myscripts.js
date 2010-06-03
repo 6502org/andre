@@ -32,11 +32,12 @@ function getPathFromId( p ) {
 function processMenu( target, data ) {
 
 	// highly parallel - so use local vars
-	var id = $(target).attr("id");
-	var path = getPathFromId(id);
-	var rpath = myUp + path + "/";
-
 	if (typeof data == 'string') {
+
+		var id = $(target).attr("id");
+		var path = getPathFromId(id);
+		var rpath = myUp + path + "/";
+
 		// filesystem local tests
 		var spl = data.split("%");
 		l = spl.length;
@@ -51,8 +52,8 @@ function processMenu( target, data ) {
 		$(target).append(data);
 
 		bindMenu(target);
-		bindMinus(target);
 	}
+	bindMinus(target);
 }
 
 function loadMenu( r, process ) {
@@ -70,7 +71,7 @@ function loadMenu( r, process ) {
 		}, "html" );
 	} else {
 		$(r).children("ul").show();
-		bindMinus(r);
+		process(target);
 	}
 }
 
@@ -83,7 +84,7 @@ function setupAjax() {
 // ----------------------------------------------------------------------------------------------------------
 // expand/hide single menu entries
 
-// this is the IMG element tha has been clicked
+// this is the IMG element that has been clicked
 function hideMenu() {
 	r = $(this).parent();	// to the LI element
 	$(r).children("ul").hide();  // and back down to the enclosed sub menu
@@ -91,7 +92,7 @@ function hideMenu() {
 	return false;
 }
 
-// this is the IMG element tha has been clicked
+// this is the IMG element that has been clicked
 function showMenu( ) {
 	r = $(this).parent();	// up to the LI element
 	loadMenu(r, processMenu);
@@ -142,6 +143,9 @@ function processExpand( target, data ) {
 }
 
 function triggerExpand( parent ) {
+
+	$(parent).find("li").show();
+
 	$(parent).find("li.dirp").each( function ( i, e ) {
 		loadMenu( e, processExpand );
 	});
@@ -150,13 +154,19 @@ function triggerExpand( parent ) {
 function expandAll( ) {
 	// we cannot simply let jquery loop over all ul, as they may not be loaded yet
 	// but we can start with all the collapsed entries
-	triggerExpand($("div#menu"));
+	var v = $("div#menu ul");
+	$(v).show();
+	triggerExpand($(v));
 }
 
 function collapseAll( ) {
-	$("div#menu li.dirm").each( function ( i, e ) {
-		bindPlus( e );
-		$(e).children("ul").hide();
+	$("div#menu ul").show();
+	$("div#menu li").each( function ( i, e ) {
+		$(e).show();
+		if ($(e).hasClass("dirm")) {
+			bindPlus( e );
+			$(e).children("ul").hide();
+		}
 	});
 }
 
@@ -165,25 +175,42 @@ function collapseAll( ) {
 
 var currentFilter = "";
 
-function processFilter( target, data ) {
+function triggerFilter( parent, filter ) {
 
-	// include loaded menu
-	processMenu( target, data );
+	//alert("triggerFilter:" + $(parent).find(":text"));
 
-	// trigger further expand
-	triggerExpand( target );
-}
+	// first hide all
+	$(parent).find("li").each( function ( i, e ) {
+		// hide each item
+		$(e).hide();
+		if ( ($(e).hasClass("dirp")) || ($(e).hasClass("dirm")) ) {
+			loadMenu( e, function(target, data) {
+				processMenu( target, data );
+				triggerFilter(target, data, filter);
+			});
+		}
 
-function triggerFilter( parent ) {
-	$(parent).find("li.dirp").each( function ( i, e ) {
-		loadMenu( e, processFilter );
+		// search		
+		if ($(e).text().toLowerCase().indexOf(currentFilter) >= 0) {
+			$(e).show(); 	// LI
+			$(e).parents().show();	// UL
+		}
 	});
 }
 
 function changeFilter( val ) {
-	currentFilter = val;
+	//isFilterActive = 0;
 
-	triggerFilter($("div#menu"));
+	currentFilter = val.toLowerCase();
+
+	var filter = currentFilter;
+
+	// hide both LI and UL
+	var v = $("div#menu ul");
+	$(v).hide();
+	triggerFilter($(v), filter);
+
+	//isFilterActive = 1;
 }
 
 function checkValue() {
@@ -202,13 +229,19 @@ function checkValue() {
 	}
 }
 
+var isFilterActive = 0;
 function monitorFilter() {
 	checkValue();
-	setTimeout(monitorFilter, 40);
+	if (isFilterActive == 1) {
+		setTimeout(monitorFilter, 40);
+	}
 }
 
+// ----------------------------------------------------------------------------------------------------------
+// setup navigation
+
 function setupFilter() {
-	$("div#menu").prepend( "<form action=\"#\"><img id=\"expand\" src=\"" + myUp + "imgs/expand.png\"/>"
+	$("div#filter").prepend( "<form action=\"#\"><img id=\"expand\" src=\"" + myUp + "imgs/expand.png\"/>"
 			+ "<img id=\"collapse\" src=\"" + myUp + "imgs/collapse.png\"/>"
 			+ "<input size=\"10\" name=\"filter\" value=\"filter\" type=\"text\"> "
 		        + "<img id=\"cancel\" src=\"" + myUp + "imgs/cancel.png\"></form>"
@@ -217,15 +250,30 @@ function setupFilter() {
 	$("div#menu img#collapse").click( collapseAll );
 
 	$("div#menu img#cancel").click( function() {
+			expandAll();
 			$("div#menu input").attr("value", "");
 		});
 
 	$("div#menu input").focusin( function( ) {
+			$(this).css({'background-color':'#fc6'});
 			$(this).attr("value", "");
 			$(this).unbind("focusin");
+			$(this).focusin( function() {
+				$(this).css({'background-color':'#fc6'});
+				if (currentFilter.length > 1) {
+					changeFilter(currentFilter);
+				}
+				isFilterActive = 1;
+				setTimeout(monitorFilter, 40);
+			});	
+			isFilterActive = 1;
 			setTimeout(monitorFilter, 40);
 		});
 		
+	$("div#menu input").focusout( function( ) {
+			$(this).css({'background-color':'#fff'});
+			isFilterActive = 0;
+		});		
 }
 
 // ----------------------------------------------------------------------------------------------------------
