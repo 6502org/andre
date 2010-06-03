@@ -1,6 +1,7 @@
 
 //
 // (C) Copyright 2010 A.Fachat <afachat@gmx.de>
+// All rights reserved!
 //
 // This file is copyrighted. Other uses are prohibited without explicit permission by the copyright owner.
 //
@@ -29,10 +30,10 @@ function getPathFromId( p ) {
 
 // process the retrieved menu part
 // as string, then append to target
-function processMenu( target, data ) {
+function processMenu( target, data, loaded ) {
 
 	// highly parallel - so use local vars
-	if (typeof data == 'string') {
+	if (loaded && typeof data == 'string') {
 
 		var id = $(target).attr("id");
 		var path = getPathFromId(id);
@@ -40,7 +41,7 @@ function processMenu( target, data ) {
 
 		// filesystem local tests
 		var spl = data.split("%");
-		l = spl.length;
+		var l = spl.length;
 		for (i = 0; i < l; i++) {
 			t = spl[i];
 			if (t == "xup") spl[i] = myUp;
@@ -53,7 +54,6 @@ function processMenu( target, data ) {
 
 		bindMenu(target);
 	}
-	bindMinus(target);
 }
 
 function loadMenu( r, process ) {
@@ -67,11 +67,11 @@ function loadMenu( r, process ) {
 		// load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
 		// XML DOM tree) directly into the html document
 		$.get(myUp + path + '/.menu.xml', function(data) {
-		  process(target, data);
+		  process(target, data, true);
 		}, "html" );
 	} else {
 		$(r).children("ul").show();
-		process(target);
+		process(target, "", false);
 	}
 }
 
@@ -86,7 +86,7 @@ function setupAjax() {
 
 // this is the IMG element that has been clicked
 function hideMenu() {
-	r = $(this).parent();	// to the LI element
+	var r = $(this).parent();	// to the LI element
 	$(r).children("ul").hide();  // and back down to the enclosed sub menu
 	bindPlus(r);
 	return false;
@@ -94,8 +94,14 @@ function hideMenu() {
 
 // this is the IMG element that has been clicked
 function showMenu( ) {
-	r = $(this).parent();	// up to the LI element
+	var r = $(this).parent();	// up to the LI element
 	loadMenu(r, processMenu);
+	bindMinus(r);
+	$(r).children("ul").children("li.dirm").each( function (i, e) {
+	      $(e).children("ul").hide();
+	      bindPlus(e);
+	  });
+	//loadMenu(r, function () {} );
 	return false;
 }
 
@@ -103,7 +109,7 @@ function showMenu( ) {
 function bindPlus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirp");
-	img = $(el).children("img");
+	var img = $(el).children("img");
 	$(img).attr("src", myUp + "imgs/dirp.png");
 	$(img).unbind();
 	$(img).click( showMenu );
@@ -113,7 +119,7 @@ function bindPlus( el ) {
 function bindMinus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirm");
-	img = $(el).children("img");
+	var img = $(el).children("img");
 	$(img).attr("src", myUp + "imgs/dirm.png");
 	$(img).unbind();
 	$(img).click( hideMenu );
@@ -133,39 +139,45 @@ function bindMenu( el ) {
 // ----------------------------------------------------------------------------------------------------------
 // expand/collapse and filter functionality
 
-function processExpand( target, data ) {
-
-	// include loaded menu
-	processMenu( target, data );
-
-	// trigger further expand
-	triggerExpand( target );
-}
-
 function triggerExpand( parent ) {
 
 	$(parent).find("li").show();
 
+	// find recursively. We can do that as we only process loaded ones
 	$(parent).find("li.dirp").each( function ( i, e ) {
-		loadMenu( e, processExpand );
+		loadMenu( e, function (target, data, loaded) {
+
+			// include loaded menu
+			processMenu( target, data, loaded );
+			bindMinus(target);
+
+			if (loaded) {
+				// trigger further expand
+				triggerExpand( target );
+			}
+		});
 	});
 }
 
 function expandAll( ) {
 	// we cannot simply let jquery loop over all ul, as they may not be loaded yet
 	// but we can start with all the collapsed entries
+	// triggerExpand will do the rest for us in the ajax handler
 	var v = $("div#menu ul");
 	$(v).show();
 	triggerExpand($(v));
 }
 
 function collapseAll( ) {
-	$("div#menu ul").show();
-	$("div#menu li").each( function ( i, e ) {
+	var topul = $("div#menu").children().children("ul");
+
+	$(topul).show();
+	$(topul).children("li").each( function ( i, e ) {
+		// toplevel
 		$(e).show();
+		$(e).children("ul").hide();
 		if ($(e).hasClass("dirm")) {
 			bindPlus( e );
-			$(e).children("ul").hide();
 		}
 	});
 }
@@ -177,40 +189,47 @@ var currentFilter = "";
 
 function triggerFilter( parent, filter ) {
 
-	//alert("triggerFilter:" + $(parent).find(":text"));
-
-	// first hide all
-	$(parent).find("li").each( function ( i, e ) {
+	// do not search rescursively with CSS, as visibility needs to be processed
+	// in the correct order
+	$(parent).children("li").each( function ( i, e ) {
 		// hide each item
 		$(e).hide();
-		if ( ($(e).hasClass("dirp")) || ($(e).hasClass("dirm")) ) {
-			loadMenu( e, function(target, data) {
-				processMenu( target, data );
-				triggerFilter(target, data, filter);
+		if ($(e).hasClass("dirp") || $(e).hasClass("dirm")) {
+			// should have children in the DOM tree
+			loadMenu( e, function(target, data, loaded) {
+
+			      processMenu( target, data, loaded );
+
+			      triggerFilter($(target).children("ul"), filter);
 			});
 		}
 
-		// search		
+		// search and show results
 		if ($(e).text().toLowerCase().indexOf(currentFilter) >= 0) {
 			$(e).show(); 	// LI
-			$(e).parents().show();	// UL
+			$(e).parents().each( function (i, x) {
+				$(x).show();
+				if ($(x).hasClass("dirp")) {
+					bindMinus(x);
+				}
+			});
 		}
 	});
 }
 
 function changeFilter( val ) {
-	//isFilterActive = 0;
 
 	currentFilter = val.toLowerCase();
 
 	var filter = currentFilter;
 
 	// hide both LI and UL
-	var v = $("div#menu ul");
+	var v = $("div#menu").children().children("ul");
 	$(v).hide();
-	triggerFilter($(v), filter);
 
-	//isFilterActive = 1;
+	//printDOMTree( $(v).get(0), window.open());
+
+	triggerFilter($(v), filter);
 }
 
 function checkValue() {
@@ -241,15 +260,12 @@ function monitorFilter() {
 // setup navigation
 
 function setupFilter() {
-	$("div#filter").prepend( "<form action=\"#\"><img id=\"expand\" src=\"" + myUp + "imgs/expand.png\"/>"
-			+ "<img id=\"collapse\" src=\"" + myUp + "imgs/collapse.png\"/>"
-			+ "<input size=\"10\" name=\"filter\" value=\"filter\" type=\"text\"> "
-		        + "<img id=\"cancel\" src=\"" + myUp + "imgs/cancel.png\"></form>"
-			+ "<br/>");
 	$("div#menu img#expand").click( expandAll );
 	$("div#menu img#collapse").click( collapseAll );
 
 	$("div#menu img#cancel").click( function() {
+			isFilterActive = 0;
+			currentFilter = "";
 			expandAll();
 			$("div#menu input").attr("value", "");
 		});
@@ -302,5 +318,94 @@ $(document).ready(function(){
 	doTimer();
 });
 
+// ----------------------------------------------------------------------------------------------------------
+// debug
 
+//  From http://www.permadi.com/tutorial/domTree/index.html
 
+// F. Permadi 2005.
+// (C) F. Permadi
+// Print DOM tree
+////////////////////////////////////////////
+// This function traverses the DOM tree of an element and prints the tree.  
+// This function called recursively until the DOM tree is fully traversed.
+// 
+// Parameters:
+// - targetDocument is where the tree will be printed into
+// - currentElement is the element that we want to print
+// - depth is the depth of the current element 
+//   (it should be 1 for the initial element)
+////////////////////////////////////////////
+function traverseDOMTree(targetDocument, currentElement, depth)
+{
+  if (currentElement)
+  {
+    var j;
+    var tagName=currentElement.tagName;
+    // Prints the node tagName, such as <A>, <IMG>, etc
+    if (tagName)
+      targetDocument.writeln("&lt;"+currentElement.tagName+"&gt;");
+    else
+      targetDocument.writeln("[unknown tag]");
+
+    // Traverse the tree
+    var i=0;
+    var currentElementChild=currentElement.childNodes[i];
+    while (currentElementChild)
+    {
+      // Formatting code (indent the tree so it looks nice on the screen)
+      targetDocument.write("<BR>\n");
+      for (j=0; j<depth; j++)
+      {
+        // &#166 is just a vertical line
+        targetDocument.write("&nbsp;&nbsp;&#166");
+      }								
+      targetDocument.writeln("<BR>");
+      for (j=0; j<depth; j++)
+      {
+        targetDocument.write("&nbsp;&nbsp;&#166");
+      }					
+      if (tagName)
+        targetDocument.write("--");
+
+      // Recursively traverse the tree structure of the child node
+      traverseDOMTree(targetDocument, currentElementChild, depth+1);
+      i++;
+      currentElementChild=currentElement.childNodes[i];
+    }
+    // The remaining code is mostly for formatting the tree
+    targetDocument.writeln("<BR>");
+    for (j=0; j<depth-1; j++)
+    {
+      targetDocument.write("&nbsp;&nbsp;&#166");
+    }			
+    targetDocument.writeln("&nbsp;&nbsp;");
+    if (tagName)
+      targetDocument.writeln("&lt;/"+tagName+"&gt;");
+  }
+}
+
+////////////////////////////////////////////
+// This function accepts a DOM element as parameter and prints
+// out the DOM tree structure of the element.
+////////////////////////////////////////////
+function printDOMTree(domElement, destinationWindow)
+{
+  // Use destination window to print the tree.  If destinationWIndow is
+  //   not specified, create a new window and print the tree into that window
+  var outputWindow=destinationWindow;
+  if (!outputWindow)
+    outputWindow=window.open();
+
+  // make a valid html page
+  outputWindow.document.open("text/html", "replace");
+  outputWindow.document.write("<HTML><HEAD><TITLE>DOM</TITLE></HEAD><BODY>\n");
+  outputWindow.document.write("<CODE>\n");
+  traverseDOMTree(outputWindow.document, domElement, 1);
+  outputWindow.document.write("</CODE>\n");
+  outputWindow.document.write("</BODY></HTML>\n");
+  
+  // Here we must close the document object, otherwise Mozilla browsers 
+  //   might keep showing "loading in progress" state.
+  outputWindow.document.close();
+}

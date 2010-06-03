@@ -94,7 +94,16 @@
 
 <xsl:template name="commoncol">
 	<div id="leftcol">
+		<div id="menu" class="top">
+			<div class="tophead">navigate</div>
+	                <div id="filter">
+                            <form action="#"><img id="expand" src="%up%imgs/expand.png"/>
+                            <img id="collapse" src="%up%imgs/collapse.png"/>
+                            <input size="10" name="filter" value="filter" type="text"/>
+                            <img id="cancel" src="%up%imgs/cancel.png"/></form>
+			</div>
 		@MENU@
+		</div><!-- menu -->
 		<div class="top" id="browser">
 			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
 		</div>

@@ -125,12 +125,9 @@ for i in $root/*.inx; do
 		doinsert1 $i $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			echo "<div class=\"top\" ID=\"menu\">" >> $t2
-			echo "<div class=\"tophead\">navigate</div>" >> $t2
-			echo "<div id=\"filter\"></div>" >> $t2
 			echo "<div>" >> $t2
 			cat $root/.files.xml >> $t2
-			echo "</div></div>" >> $t2
+			echo "</div>" >> $t2
 			doinsert2 $i $t2 "@MENU@"
 		fi
 
