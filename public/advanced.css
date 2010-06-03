@@ -37,11 +37,9 @@ DIV.top {
 }
 
 DIV.tophead {
-	background-color: #e80;
- 	background: -moz-linear-gradient(top, #fc6, #e80 100%); /* mozilla */
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	/* webkit */
-  	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffcc66', endColorstr='#ee8800'); /* IE6 & IE7 */
-  	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffcc66', endColorstr='#ee8800')"; /* IE8 */
+ 	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
+	background-color: #ee8800;
 
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
