@@ -1,29 +1,37 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/pinouts.html"-->
-<TITLE>PET index - pinouts</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - pinouts</H1>
-<P>Here is a description of some pinouts of the PET connectors.
-Most (i.e. all so far!) are from the 8296 addendum in the petio text typed in 
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - pinouts">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM pinout connectors</keywords>
+  <metadesc>Commodore PET CBM ROM descriptions</metadesc>
+  <overview><P>Here is a description of some pinouts of the PET connectors.
+Most (i.e. all so far!) are from the 8296 addendum in the petio text typed in
 by Olaf Seibert (Many thanks!):</P>
-<P>I have now gotten hold of a copy of the 8296 addendum and added
+<P>I have also gotten hold of a copy of the 8296 addendum and added
 some scans of the original pages.</P>
-<H2>Keyboards</H2>
-<P>For the layouts please see <A HREF="keyboards.html">keyboards.html</A></P>
-<H3>80xx separate keyboard 25 pin D-Sub connector</H3>
-<PRE>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="kbds" name="Keyboards">
+     <desc><P>For the layouts please see <A HREF="keyboards.html">keyboards.html</A></P>
+     </desc>
+     <subsection toc="80xx" name="80xx separate keyboard 25 pin D-Sub connector">
+	<desc><PRE>
           KEYBOARD
           ========
 
           PLease note that the original documentation in the 8296 addendum
-          is incorrect. Here you can see the <A HREF="imgs/j13.gif">incorrect original documentation</A>, 
+          is incorrect. Here you can see the <A HREF="imgs/j13.gif">incorrect original documentation</A>,
           and here is the relevant part of the <A HREF="imgs/j13schem.gif">schematics</A>.
 
           +-----+--------+
@@ -48,7 +56,7 @@ some scans of the original pages.</P>
           | 17  | |   3  |    25                    14
           | 18  | |   4  |
           | 19  | |   5  |
-          | 20  | |   6  | 
+          | 20  | |   6  |
           | 21  | V   7  |
           | 22  | N.C.   |
           | 23  | N.C.   |
@@ -56,9 +64,10 @@ some scans of the original pages.</P>
           | 25  | N.C.   |
           +-----+--------+
 </PRE>
-<H2>I/O - IEEE488, Tape and Userport</H2>
-<H3>8296 IEEE and Userport</H3>
-<P>As far as I know those connectors were the same for all the PETs,
+	</desc>
+     </subsection>
+     <subsection toc="io" name="I/O - IEEE488, Tape and Userport">
+	<desc><P>As far as I know those connectors were the same for all the PETs,
 but you never know...</P>
 <PRE>
 IEEE                                   USER - PORT
@@ -101,8 +110,11 @@ IEEE                                   USER - PORT
    A  B  C  D  E  F  H  J  K  L  M  N
 
 </PRE>
-<H3>8296 Tape</H3>
-<P>The same for the Tape connectors - supposed to be the same for all models
+	</desc>
+     </subsection>
+
+     <subsection toc="8296tape" name="8296 Tape">
+	<desc><P>The same for the Tape connectors - supposed to be the same for all models
 </P>
 <PRE>
 CASSETTE 1                             CASSETTE 2
@@ -129,9 +141,16 @@ CASSETTE 1                             CASSETTE 2
     A  B  C  D  E  F
 
 </PRE>
-<H2>Misc.</H2>
-<H3>8296 Memory expansion J4</H3>
-<PRE>
+	</desc>
+     </subsection>
+  </section>
+
+  <section toc="misc" name="Misc">
+	<desc>
+	</desc>
+
+     <subsection toc="memj4" name="8296 Memory expansion J4">
+	<desc><PRE>
 MEMORY - EXPANSION
 ==================
 
@@ -167,8 +186,11 @@ MEMORY - EXPANSION
 | 25  | GND       | 50  | GND    |  1 o  o 26
 +-----+-----------+-----+--------+
 </PRE>
-<H3>8296 Memory expansion J9</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="memj9" name="8296 Memory expansion J9">
+	<desc><PRE>
 MEMORY - EXPANSION
 ==================
 
@@ -204,8 +226,11 @@ MEMORY - EXPANSION
 | 25  | GND       | 50  | GND    |  1 o  o 26
 +-----+-----------+-----+--------+
 </PRE>
-<H3>8296 Power supplies/expansion? J10 and J11</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="j10j11" name="8296 Power supplies/expansion J10 and J11">
+	<desc><PRE>
 POWER EXP. AC                         POWER EXP. DC
 =============                         =============
 
@@ -223,8 +248,11 @@ POWER EXP. AC                         POWER EXP. DC
 |  7  | AC  8V    |  7| o |           |  7  | GND       |  7| o |
 +-----+-----------+   +---+           +-----+-----------+   +---+
 </PRE>
-<H3>8296 Changes in arrangements of pins Memory Expansion J4</H3>
-<P><A HREF="imgs/8296changes.gif">This is the change from 8032 (old) to 8296 (new)</A>.</P>
+	</desc>
+     </subsection>
+
+     <subsection toc="changesj4" name="8296 Changes in arrangements of pins Memory expansion J4">
+	<desc><P><A HREF="imgs/8296changes.gif">This is the change from 8032 (old) to 8296 (new)</A>.</P>
 <PRE>
 J 4    Memory expansion
 +-----------------------------------+
@@ -240,8 +268,11 @@ J 4    Memory expansion
 | 19  /SEL B      | /CS E           |
 +-----------------+-----------------+
 </PRE>
-<H3>8296 Power supply J8 changes from 8032</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="changesj8" name="8296 Power supply J8 changes from 8032">
+	<desc><PRE>
 J 8     Power supply
 +-----------------+-----------------+
 |      8032       |      8096       |
@@ -259,8 +290,11 @@ J 8     Power supply
 |  9   14V AC     |                 |
 +-----------------+-----------------+
 </PRE>
-<H3>8296 Power supply for hardware expansion J10 changes from 8032</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="changesj10" name="8296 Power supply for hardware expansion J10 changes from 8032">
+	<desc><PRE>
 J 10    Power supply for hardware expansion
 +-----------------------------------+
 | Pin        Signal                 |
@@ -275,8 +309,11 @@ J 10    Power supply for hardware expansion
 |  7    GND       |   AC 2          |
 +-----------------+-----------------+
 </PRE>
-<H3>8296 keyboard connector on board J5</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="kbdinternj5" name="8296 keyboard connector on board J5">
+	<desc><PRE>
 KEYBOARD
 ========
 
@@ -307,8 +344,11 @@ KEYBOARD
 | 12  | GND    | | o | 12
 +-----+--------+ +---+
 </PRE>
-<H3>8296 Reset switch</H3>
-<PRE>
+	</desc>
+     </subsection>
+
+     <subsection toc="reset" name="8296 Reset switch">
+	<desc><PRE>
           RESET
           =====
 
@@ -321,9 +361,12 @@ KEYBOARD
           |  2  | GND    | 2| o |
           +-----+--------+  +---+
 </PRE>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.1 (c) 1998,2006 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+	</desc>
+     </subsection>
+
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

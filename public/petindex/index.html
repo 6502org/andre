@@ -1,13 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/index.html"-->
-<TITLE>PET index V1.1</TITLE>
-<LINK REL="stylesheet" TYPE="text/css" HREF="../style.css">
-</HEAD>
-<BODY>
-<div id="menu">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="PET index">
+<meta name="keywords" content="Commodore PET CBM ROM">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="alternate stylesheet" TITLE="Old" TYPE="text/css" HREF="../stylenew.css">
+<LINK REL="stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+<script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
+
+<title>PET index</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="10" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
+</form></div>
 <div>
 <a class="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -72,69 +83,141 @@
 </ul>
 
 </div>
+		</div>
+<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
 </div>
-<DIV ID="content">
-<H1>PET index</H1>
-<!--P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
-images for the 8x96.</P>
-<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P-->
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../index.html">Homepage</a>
+&gt;&gt;  CBM PETindex</DIV>
+<DIV class="top" ID="content">
+<h1>PET index</h1>
+<p class="copyright">(C)
+1998-2010 André  Fachat</p> 
+<div class="overview">
 <P>This file is intended to be an index about the
 PET line of Commodore computers. It is compiled out of several
 resources found on the internet. As there are a number of sites
 about the Commodore PET computers, this site concentrates on
 the technical aspects of those machines. Therefore you will
-find hardware and (machine) programming information for the 
+find hardware and (machine) programming information for the
 PET here.
-</P><P>
+</P>
+<P>
 I started this collection when I was working on the
 <A HREF="http://www.viceteam.org/index.html">VICE</A>
 PET emulator. The VICE emulator now emulates several PET machines from the 2001
 to the 8296, including the old disk drives from 2040 to 8250.
-</P><P>
+</P>
+<P>
 I think all the information is accurate, although it is certainly not
 complete. Also I would like to find some images of the different PET
 cases. I am also looking for the differences of the ROM versions.
-If you find anything that you think is not accurate, please 
+If you find anything that you think is not accurate, please
 tell me about it!
-</P><P>
+</P>
+<P>
 I hope you enjoy this document.<BR>
 <A HREF="http://www.6502.org/users/andre/">A. Fachat</A>
 (<A HREF="mailto:afachat@gmx.de?subject=PETindex:">afachat@gmx.de</A>)
 </P>
-<H2>What is covered and what not?</H2>
-<P>Coverage is the whole line of Commodore PET computers, ranging
-from the PET 2001 to the CBM 8296, as well as the SuperPET (aka MicroMainFrame 9000 in Europe). 
+  </div>
+<h2><a name="coverage">What is covered and what not?</a></h2>
+<p><P>Coverage is the whole line of Commodore PET computers, ranging
+from the PET 2001 to the CBM 8296, as well as the SuperPET (aka MicroMainFrame 9000 in Europe).
 Not covered are the so-called "CBM-II" machines, the business machines CBM 610-620, 710-720 (also known as B128 and B256)
 and the 510-520 (also known as P500)</P>
-
-<H2>The parts of the index</H2>
-<P><UL>
+     </p>
+<h2><a name="parts">The parts of the index</a></h2>
+<p><UL>
 <LI>The <A HREF="versions.html">PET model index</A>
-<P></LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> (<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010: harddisk info)
+</LI>
+<LI>The <A HREF="drives/index.html">Disk drive model index</A> (<img src="../imgs/news.gif" alt="UPDATED"> JAN 2010: harddisk info)
 
-<P></LI><LI><A HREF="boards.html">Boards</A> that make up a PET (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
-<P></LI><LI><A HREF="pinouts.html">Pinouts</A> of various PET connectors
-<P></LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
-<P></LI><LI><A HREF="extensions.html">Extensions</A> extensions of the PET (<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010: RAM expansions, CPU speeders)
-<P></LI><LI>Hardware <A HREF="progmod.html">Programming</A> information (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
-<P></LI><LI><A HREF="roms.html">ROM</A> description (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
-<P></LI><LI><A HREF="crtc.html">CRTC 6545 operation</A>
-<P></LI><LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page
-<P></LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s)
-<P></LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96)
-<P></LI><LI><A HREF="hw.html">Hardware</A> projects around the PET
-<P></LI><LI><A HREF="sw.html">Software</A> projects and archives
-<P></LI><LI><A HREF="emus.html">PET emulators</A> run PET programs on other hardware
-<P></LI><LI><A HREF="transfer.html">Transfer</A> projects to transfer files from the PET to the PC and back.
-<P></LI><LI><A HREF="repairs.html">Repair</A> information for the PET
-<P></LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics) (<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010)
-
-</LI></UL>
-<HR>
-<P>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
+</LI>
+<LI>
+<A HREF="boards.html">Boards</A> that make up a PET (<img src="../imgs/news.gif" alt="NEW"> JAN 2010 updates layout and included links)
+</LI>
+<LI>
+<A HREF="pinouts.html">Pinouts</A> of various PET connectors
+</LI>
+<LI>
+<A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
+</LI>
+<LI>
+<A HREF="extensions.html">Extensions</A> extensions of the PET (<img src="../imgs/news.gif" alt="UPDATED"> MAY 2010: RAM expansions, CPU speeders)
+</LI>
+<LI>Hardware <A HREF="progmod.html">Programming</A> information (<img src="../imgs/news.gif" alt="NEW"> JAN 2010 updates layout and included links)
+</LI>
+<LI>
+<A HREF="roms.html">ROM</A> description (<img src="../imgs/news.gif" alt="NEW"> JAN 2010 updates layout and included links)
+</LI>
+<LI>
+<A HREF="crtc.html">CRTC 6545 operation</A>
+</LI>
+<LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page
+</LI>
+<LI>
+<A HREF="superpet.html">SuperPET</A> add-on board(s)
+</LI>
+<LI>
+<A HREF="8x96.html">8x96</A> expanded versions (including LOS-96)
+</LI>
+<LI>
+<A HREF="hw.html">Hardware</A> projects around the PET
+</LI>
+<LI>
+<A HREF="sw.html">Software</A> projects and archives
+</LI>
+<LI>
+<A HREF="emus.html">PET emulators</A> run PET programs on other hardware
+</LI>
+<LI>
+<A HREF="transfer.html">Transfer</A> projects to transfer files from the PET to the PC and back.
+</LI>
+<LI>
+<A HREF="repairs.html">Repair</A> information for the PET
+</LI>
+<LI>
+<A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics) (<img src="../imgs/news.gif" alt="UPDATED"> MAY 2010)
+</LI>
+</UL>
+     </p>
+<h2><a name="thanks">Thanks</a></h2>
+<p><P>Many thanks to Olaf Seibert, Larry Anderson, Marko Mä kelä ,
 Ruud Baltissen and all the others that provided this information.
-</P><P>
-Last changed 11. May 2010 A.Fachat
-</P></DIV>
-</BODY>
-</HTML>
+</P>
+     </p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
+</div></body>
+</html> 
+

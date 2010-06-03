@@ -1,28 +1,36 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../../style.css" REL="stylesheet" TYPE="text/css">
-<LINK REV="made" HREF="mailto:afachat@gmx.de">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<TITLE>PET index - Disk drives</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - Disk drives</H1>
-<P><STRONG>This part is under construction</STRONG></P>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - Disk drives">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM disk drives</keywords>
+  <metadesc>Commodore PET CBM ROM descriptions</metadesc>
+  <overview><P><STRONG>This part is under construction</STRONG></P>
 <P>The Commodore disk drives for the PET computers actually are more
 intelligent than the PET itself - they had two 650x processors, one
 for the DOS and one for the drive controller. Using this "intelligent"
-design the PET was able to send a command to the disk drive and continue 
-its own work, while the floppy was doing its.
+design the PET was able to send a command to the disk drive and continue
+its own work, while the floppy was doing its.</P>
 <P>
 Disk drives to be used with the PET have to be equipped with an IEEE488
 interface. Most of the devices had two drives, but there are single drive
-units. 
+units.
 </P><P>In the following you find some more information about these drives:
 </P>
-<P><UL>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="qf" name="Quickfinder">
+     <desc><UL>
 <LI><A HREF="drives.html">Disk drive list</A>
 </LI><LI><A HREF="arch/index.html">Architecture overview</A> on the drives and schematics
 </LI><LI><A HREF="roms/index.html">DOS ROM information</A>
@@ -33,9 +41,12 @@ units.
 </LI><LI><A HREF="#blink">Disk error codes</A>
 </LI><LI><A HREF="#misc">Other disk drive information</A>
 </LI></UL>
-<H2><A NAME="capacity"></A>Drive capacity and compatibility</H2>
-<P>All in all, there were two major 5.25" disk formats for the PET series,
-the 35 track double density version with around 170&nbsp;kByte and the 39/78 track quad density version with 512k/1M&nbsp;Byte free. 
+     </desc>
+  </section>
+
+  <section toc="capacity" name="Capacity">
+     <desc><P>All in all, there were two major 5.25" disk formats for the PET series,
+the 35 track double density version with around 170&nbsp;kByte and the 39/78 track quad density version with 512k/1M&nbsp;Byte free.
 Both major types are completely incompatible.
 </P><P>
 The quad density came in two variations only, single sided (8050 DOS2.5/2.7) and double sided (8250/1001 DOS2.7). The double sided drives could read the single sided disks ok. The single sided drives could even read the double sided disks,
@@ -45,8 +56,11 @@ The double density disks are another story. With DOS1 Commodore introduced a dis
 write gap from the DOS2 disks to the 1541. Due to this the drives are only
 read compatible. You can read more about this <A HREF="writegap.html">here</A>.
 </P>
-<H2><A NAME="blink"></A>Disk drive error codes</H2>
-<P>The Commodore disk drives indicated hardware failures detected 
+     </desc>
+  </section>
+
+  <section toc="blink" name="Disk drive error codes">
+     <desc><P>The Commodore disk drives indicated hardware failures detected
 during boot with a blink code. Here's the meaning from the 8050/8250 service manual:
 </P>
 <H3>POWER UP DIAGNOSTIC FOR 8050/8250 FLASH CODE</H3>
@@ -69,13 +83,17 @@ On power up, the three LED's on the drive should blink. The drive LED's go off a
 </TABLE>
 <P>
 If the LED's come on and stay on, the microprocessor UN1 is probably at fault. </P>
+     </desc>
+  </section>
 
-<H2><A NAME="misc"></A>Other disk drive information</H2>
-<P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.
+  <section toc="misc" name="Other disk drive information">
+     <desc><P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.</P>
 <P><A HREF="@CBMARC@/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
-<HR><P>
-Back to the <A HREF="../index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+</P>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

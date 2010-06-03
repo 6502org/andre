@@ -1,20 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../../style.css" REL="stylesheet" TYPE="text/css">
-<LINK REV="made" HREF="mailto:afachat@gmx.de">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/writegap.html"-->
-<TITLE>PET index - disks</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - Write Gap diskussion</H1>
-<P>Here you find the information from Inside Commodore DOS and
-from a diskussion on the cbm-hackers mailing list in spring 2005.
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - disks">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2005</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM disk drive write gap</keywords>
+  <metadesc>PET index - disks</metadesc>
+  <overview><P>Here you find the information from Inside Commodore DOS and
+from a diskussion on the cbm-hackers mailing list in spring 2005 about disk drive
+incompatibilities between the different DOS versions.
+</P>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
 
-<H2>Inside Commodore DOS</H2>
+  <section toc="cbmdos" name="Inside Commodore DOS">
+     <desc>
 <PRE>
 9.12  Write Incompatibility with 4040
 
@@ -154,7 +162,6 @@ by a 1541 +-----+-----+-----+-----+-----+-----+-----+-----+-----+
 Replacement sync mark           ??|S   N|N   S|S   N|N   S|S   N|
 written by a 4040                 +-----+-----+-----+-----+-----+
                                 ?? = effects of transient currents
-
           +-----+-----+-----+-----------+-----+-----+-----+-----+
 Result    |N   S|S   N|N   S|S   ??    N|N   S|S   N|N   S|S   N|
           +-----+-----+-----+-----------+-----+-----+-----+-----+
@@ -200,7 +207,6 @@ formatted diskettes.  Otherwise, a magnetic plague will develop among your
 4040 formatted diskettes.  Don't say you weren't warned!
 
 Head Positioning Problems
-
 Since we encountered so few errors using properly aligned drives, we feel
 that most of the reported problems of incompatibilities are the result of
 head positioning errors.
@@ -245,8 +251,12 @@ Further evidence for this is the fact that some schools are experiencing
 similar difficulties when students use several different 1541 drives for
 saving programs on a single diskette.
 
-</PRE><HR>
-<H2>CBM-Hackers discussion</H2>
+</PRE>
+     </desc>
+  </section>
+
+  <section toc="cbmhackers" name="CBM-Hackers discussion">
+     <desc>
 <PRE>
 
 Hello,
@@ -400,7 +410,7 @@ Ok, again, this is pure speculation.
 
 Regards,
    Spiro.
-</PRE><HR><PRE>
+</PRE><HR/><PRE>
 Hello Glenn,
 
 * On Fri, May 06, 2005 at 04:44:20AM -0500 Glenn Holmer wrote:
@@ -422,7 +432,7 @@ What is interesting:
 Regards,
    Spiro.
 
-</PRE><HR><PRE>
+</PRE><HR/><PRE>
 
 Hello,
 
@@ -644,10 +654,11 @@ Regards,
    Spiro.
 
 </PRE>
-<HR><P>
-Back to the <A HREF="../index.html">PET index</A>
-<P>PET index V1.0 (c) 1998 A. Fachat
-</DIV>
-</BODY>
-</HTML>
 
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

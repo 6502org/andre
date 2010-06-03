@@ -1,31 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../../../style.css" REL="stylesheet" TYPE="text/css">
-<LINK REV="made" HREF="mailto:afachat@gmx.de">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/arch/index.html"-->
-<TITLE>PET index - Drive Architecture</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - Drive Architecture</H1>
-<P>The 5.25" disk drives (and possibly the 8" and harddrives as well) share the same architecture.
-In this page you find:</P>
-<P><UL>
-<LI>An <A HREF="#overview">architecture overview</A>
-</LI><LI>A description of the <A HREF="#gcr">GCR handling</A>
-</LI><LI>A <A HREF="#memmap">memory map</A>
-</LI><LI>Links to the <A HREF="#schem">schematics</A>
-</LI></UL>
-<H2><A NAME="overview">Architecture Overview</A></H2><P>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - Drive Architecture">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM disk drives</keywords>
+  <metadesc>PET index - Drive Architecture</metadesc>
+  <overview><P>The 5.25" disk drives (and possibly the 8" and harddrives as well) share the same architecture.
+In this page you find information about the architecture of these drives.</P>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="overview" name="Architecture Overview">
+     <desc><P>
 The architecture is actually a quite elegant solution to wire two CPUs together, as well as
 it has an ingenious method of handling GCR data in hardware.
 The following block diagram shows this (click to enlarge):</P>
-<P><A HREF="arch.png"><IMG WIDTH="50%" SRC="arch.png" ALT="architecture diagram"></A></P>
+<P><A HREF="arch.png"><IMG WIDTH="50%" SRC="arch.png" ALT="architecture diagram"/></A></P>
 <P>
-The two CPUs work on a phase inverted clock, i.e. when the 6502 has 
+The two CPUs work on a phase inverted clock, i.e. when the 6502 has
 Phi2 active, the 6504 is has it passive and vice versa. The CPUs only
 use the data bus (approximately) during the active phase, so the data
 bus could be shared between the CPUs! The address bus is always active,
@@ -40,11 +41,14 @@ The I/O is mainly used for the IEEE488 interface, as well as the
 LEDs and the drive unit detection.
 </P><P>
 The FDC CPU has a 6530 and a 6522 chip for I/O. The I/O is used to
-control the drives. The VIA 6522 is for example used to control the motor and 
+control the drives. The VIA 6522 is for example used to control the motor and
 the head steppers.
 </P>
-<H2><A NAME="gcr">GCR handling</A></H2>
-<P>
+     </desc>
+  </section>
+
+  <section toc="gcr" name="GCR Handling">
+     <desc><P>
 Commodore disk drives store the data in GCR (Group Code Recording) format
 on the disks, which is different from the (IMHO inferior), nowadays used MFM
 encoding. I will not go into the difference, only note that
@@ -52,10 +56,10 @@ in GCR, 4 data bytes are computed into 5 GCR bytes. In fact,
 4 data bits are computed into 5 GCR bits.
 </P><P>
 Now when writing to the disk, the FDC CPU writes the data to the 6530.
-This data byte is split into to 4-bit nibbles, and each nibble is expanded 
+This data byte is split into to 4-bit nibbles, and each nibble is expanded
 by one bit. The low nibble gets the "mode select" as 5th bit, the high
 nibble gets a zero bit. These ten bits are then used as address input to the
-ROM. the 8 data lines from the ROM are also expanded: the ROM input A2 
+ROM. the 8 data lines from the ROM are also expanded: the ROM input A2
 (former output data
 bit 2) is inserted as output bit 2, and ROM input A7 (former input bit 6)
 is inserted as output bit 7. I.e. for each original data nibble, bit 2
@@ -71,14 +75,17 @@ by a 10 bit shift register. This code is used as input to the same ROM
 as above (but with A10 switched, so different ROM content is selected).
 The output of the ROM is then read by the CPU.
 </P>
-<H2><A NAME="memmap">Memory mapping</A></H2>
-<P>The following table has been composed by William Levak:</P>
+     </desc>
+  </section>
+
+  <section toc="memmap" name="Memory map">
+     <desc><P>The following table has been composed by William Levak:</P>
 <PRE>
                         4040 Memory Map
 composed by William Levak
 
             6502                               6504
-                                                                                
+
 0000-007F  6532 #1 RAM            6530 RAM            0000-003F
 0080-00FF  6532 #2 RAM
 0100-01FF  6532 RAM shadows
@@ -101,12 +108,17 @@ composed by William Levak
 9000-CFFF  RAM shadows
 D000-FFFF  ROM                    6530 ROM            1C00-1FFF
 </PRE>
-<H2><A NAME="schem">Schematics</A></H2>
-<P>The schematics can be found on the CBM archive in the 
+     </desc>
+  </section>
+
+  <section toc="schem" name="Schematics">
+     <desc><P>The schematics can be found on the CBM archive in the
 <A HREF="@CBMARC@/schematics/drives/old/">old drive schematics page</A>.
-<HR><P>
-Back to the <A HREF="../../index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+</P>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

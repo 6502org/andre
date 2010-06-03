@@ -1,25 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
-<TITLE>PET index - PET emulators</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - PET emulators</H1>
-<P>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - PET emulators">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM emulator</keywords>
+  <metadesc>PET index - PET emulators</metadesc>
+  <overview><P>
 PET computers are increasingly hard to get. So there are emulators
 that allow to run PET prgrams on other hardware. This page describes
 the different emulators available.
 </P>
-<P><DL>
+<DL>
 <DT><A HREF="http://vice-emu.sourceforge.net/">VICE</A></DT>
 <DD>This is the VICE emulator, that not only emulates the
 PET, but also most other Commodore 8-bit machines (C64, VIC20, C128, CBM-II).
 In VICE almost all PET computers are emulated (SuperPET 6809 mode is not supported), together with the different IEEE488 disk drives.
-The VICE emulator runs on different platforms, notably the 
+The VICE emulator runs on different platforms, notably the
 Windows and Linux/Unix platforms are supprted, but others as well.
 </DD>
 
@@ -29,20 +29,26 @@ amongst them also the PET computers. It even says to emulate the SuperPET.
 I have not tried it yet though.</DD>
 
 <DT><A HREF="@CBMARC@/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
-<DD>This is a different type of emulator - it runs on the C64, and 
+<DD>This is a different type of emulator - it runs on the C64, and
 emulates the hardware only as far as it is able to catch hardware accesses
 using BASIC POKE and PEEK commands.</DD>
 
 <DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
 <DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
 It provides a very highly compatible system. In fact it runs a patched
-3032 ROM just fine. Only a few IEEE488 lines have been moved around, 
-and the CRTC still needs to be set to 80 columns and not 40 to display 
+3032 ROM just fine. Only a few IEEE488 lines have been moved around,
+and the CRTC still needs to be set to 80 columns and not 40 to display
 80 columns.</DD>
 </DL>
-<HR>
-<P>Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2010 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

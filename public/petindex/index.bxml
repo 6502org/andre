@@ -1,0 +1,89 @@
+<!DOCTYPE webpage [ <!ENTITY auml "&#228; "> <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM</keywords>
+  <metadesc>PET index</metadesc>
+  <overview><!--P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
+images for the 8x96.</P>
+<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P-->
+<P>This file is intended to be an index about the
+PET line of Commodore computers. It is compiled out of several
+resources found on the internet. As there are a number of sites
+about the Commodore PET computers, this site concentrates on
+the technical aspects of those machines. Therefore you will
+find hardware and (machine) programming information for the
+PET here.
+</P><P>
+I started this collection when I was working on the
+<A HREF="http://www.viceteam.org/index.html">VICE</A>
+PET emulator. The VICE emulator now emulates several PET machines from the 2001
+to the 8296, including the old disk drives from 2040 to 8250.
+</P><P>
+I think all the information is accurate, although it is certainly not
+complete. Also I would like to find some images of the different PET
+cases. I am also looking for the differences of the ROM versions.
+If you find anything that you think is not accurate, please
+tell me about it!
+</P><P>
+I hope you enjoy this document.<BR/>
+<A HREF="http://www.6502.org/users/andre/">A. Fachat</A>
+(<A HREF="mailto:@EMAIL@?subject=PETindex:">@EMAIL@</A>)
+</P>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+
+  <section toc="coverage" name="What is covered and what not?">
+     <desc><P>Coverage is the whole line of Commodore PET computers, ranging
+from the PET 2001 to the CBM 8296, as well as the SuperPET (aka MicroMainFrame 9000 in Europe).
+Not covered are the so-called "CBM-II" machines, the business machines CBM 610-620, 710-720 (also known as B128 and B256)
+and the 510-520 (also known as P500)</P>
+     </desc>
+  </section>
+
+  <section toc="parts" name="The parts of the index">
+     <desc><UL>
+<LI>The <A HREF="versions.html">PET model index</A>
+</LI><LI>The <A HREF="drives/index.html">Disk drive model index</A> (<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010: harddisk info)
+
+</LI><LI><A HREF="boards.html">Boards</A> that make up a PET (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
+</LI><LI><A HREF="pinouts.html">Pinouts</A> of various PET connectors
+</LI><LI><A HREF="keyboards.html">Keyboard</A> layouts and Screen control codes
+</LI><LI><A HREF="extensions.html">Extensions</A> extensions of the PET (<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010: RAM expansions, CPU speeders)
+</LI><LI>Hardware <A HREF="progmod.html">Programming</A> information (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
+</LI><LI><A HREF="roms.html">ROM</A> description (<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)
+</LI><LI><A HREF="crtc.html">CRTC 6545 operation</A>
+</LI><LI>The infamous <A HREF="poke.html">Killer Poke</A> has its own page
+</LI><LI><A HREF="superpet.html">SuperPET</A> add-on board(s)
+</LI><LI><A HREF="8x96.html">8x96</A> expanded versions (including LOS-96)
+</LI><LI><A HREF="hw.html">Hardware</A> projects around the PET
+</LI><LI><A HREF="sw.html">Software</A> projects and archives
+</LI><LI><A HREF="emus.html">PET emulators</A> run PET programs on other hardware
+</LI><LI><A HREF="transfer.html">Transfer</A> projects to transfer files from the PET to the PC and back.
+</LI><LI><A HREF="repairs.html">Repair</A> information for the PET
+</LI><LI><A HREF="links.html">Links</A> to some other docs (faq, pictures, schematics) (<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010)
+</LI></UL>
+     </desc>
+  </section>
+
+  <section toc="thanks" name="Thanks">
+     <desc><P>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
+Ruud Baltissen and all the others that provided this information.
+</P>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

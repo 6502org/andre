@@ -385,8 +385,8 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%stylenew.css"/>
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
+<LINK REL="alternate stylesheet" TITLE="Old" TYPE="text/css" HREF="%up%stylenew.css"/>
+<LINK REL="stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 <script src="%up%jquery-1.4.2.min.js"></script>
 <script src="%up%myscripts.js"></script>
 <script>myUp="%up%";</script>

@@ -1,16 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../../style.css" REL="stylesheet" TYPE="text/css">
-<LINK REV="made" HREF="mailto:afachat@gmx.de">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/drives/drives.html"-->
-<TITLE>PET index - disk drives</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - disks</H1>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - disk drives">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM ROM disk drives</keywords>
+  <metadesc>PET index - disk drives</metadesc>
+  <overview>
 <P>There a a great variety of 5.25" disk drives. For the first PET
 with BASIC&nbsp;2 it started with the 2040 disk drive and with
 its CBM DOS 1.0.
@@ -83,7 +82,7 @@ are only read compatible (<A HREF="writegap.html">Read more</A>).
 <TR><TD>8250/8250LP</TD><TD>DOS2.7</TD><TD>Double Sided/Quad Density format, 1mb per disk</TD></TR>
 <TR><TD>SFD-1001</TD><TD>DOS2.7</TD><TD>Same as 8250, but single drive unit.</TD><TD>Other than the 2031 it still had both CPUs, and even the very same DOS as the 8250. Only the Controller DOS differed.</TD></TR>
 </TABLE>
-<P>The "LP" versions were "Low Profile" versions. Which means that while the other drives were delivered in the old "boat anchor" design with full height drives, the LP versions came in 1541-like (SFD-1001) design or even in a very slick low profile case for the 8250LP. You can see them in the <A HREF="gallery/index.html">drive gallery</A>.
+<P>The "LP" versions were "Low Profile" versions. Which means that while the other drives were delivered in the old "boat anchor" design with full height drives, the LP versions came in 1541-like (SFD-1001) design or even in a very slick low profile case for the 8250LP. You can see them in the <A HREF="gallery/index.html">drive gallery</A>.</P>
 
 <P>Commodore even sold 8" disk drives...</P>
 <TABLE BORDER="1">
@@ -98,10 +97,17 @@ are only read compatible (<A HREF="writegap.html">Read more</A>).
 <TR><TD>9060</TD><TD>DOS?</TD><TD>5 MByte</TD><TD>Hard Disk Unit</TD></TR>
 <TR><TD>9090</TD><TD>DOS?</TD><TD>7.5 MByte</TD><TD>Hard Disk Unit</TD></TR>
 </TABLE>
-<P>Note: the DOS version numbering of "3.0" for harddisks and even later 8" drives seems inconsistent with the DOS&nbsp;3.0 of the 1571 disk drive for the C64/C128.
-<HR><P>
-Back to the <A HREF="../index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+<P>Note: the DOS version numbering of "3.0" for harddisks and even later 8" drives seems inconsistent with the DOS&nbsp;3.0 of the 1571 disk drive for the C64/C128.</P>
+
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

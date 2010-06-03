@@ -1,26 +1,34 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/versions.html"-->
-<TITLE>PET index - versions</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - versions</H1>
-<H2>What different machines are there? Version Overview</H2>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - versions">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM versions</keywords>
+  <metadesc>PET index - versions</metadesc>
+  <overview>
 <P>
 The Problem that caused much confusion is that there are a real lot
 of different versions of PET-type computers. PET-type, as in Europe they
-are called `CBM' machines, not `PET', and had a different numbering. 
+are called `CBM' machines, not `PET', and had a different numbering.
 Here is only an overview
-with some comments. For more information look at the 
+with some comments. For more information look at the
 <A HREF="links.html#petfaq">petfaq</A>.
 </P>
-<P>
-There are 4 major case versions:
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="versions" name="What different machines are there? Version Overview">
+     <desc><P>
+There are 4 major case versions:</P>
 <OL>
 <LI>9" design model, never sold
 </LI><LI>9" screen and tape recorder builtin, small chiclet-type keyboard
@@ -32,17 +40,18 @@ keyboard
 <P>
 All except the "separate keyboard" are one-piece cases. Pictures of these cases can be seen in the <A HREF="gallery/index.html">PET gallery</A>.
 </P><P>
-In addition to that there are 4 major board revisions 
+In addition to that there are 4 major board revisions
 (see the <A HREF="boards.html">boards</A> section)
 And also the <A HREF="roms.html">ROMs</A> have changed too.
 </P>
-<H3>Model Numbering</H3>
-<P>
+     </desc>
+     <subsection toc="numbering" name="Model Numbering">
+	<desc><P>
 This can also only be an overview, for more accurate numering information
 please look at the <A HREF="links.html#prodlist">CBM products list</A>. All models
-except 80** and the SuperPET are 40 columns.
+except 80** and the SuperPET are 40 columns.</P>
 <UL>
-<LI>PET 2001 - Of this number there exist a lore of versions, with RAM from 
+<LI>PET 2001 - Of this number there exist a lore of versions, with RAM from
 4k to 32, 9" and 12" screen, chiclet-type, graphics and business keyboard,
 ROMs from original to 4.0. The normal numbering was "2001" with extras behind
 the number to show the RAM size of other version information.
@@ -51,23 +60,26 @@ the number to show the RAM size of other version information.
 </LI><LI>1979 more memory (up to 32k), full size keyboard, Upgrade ROMs, DOS1 disk drive, later DOS1.2, board#2
 </LI></UL>
 </LI><LI>CBM 30** - Those are in general European 9" PET models, with the
-board 2 (from above). They have no sound but have upgrade ROMs. Replace the 
+board 2 (from above). They have no sound but have upgrade ROMs. Replace the
 "**" with the RAM size 08, 16, or 32k. German 3001 machines are supposed
 to be 2001's with large keyboard.
 </LI><LI>PET/CBM 40** with 9" screen - The products list as well as the faq mentions
 9" 40** PETs. Around 1980, using the #2 board, with the revised BASIC4.
-</LI><LI>PET/CBM 40** with 12" screen - board #3 (with CRTC), upgradeable to 
+</LI><LI>PET/CBM 40** with 12" screen - board #3 (with CRTC), upgradeable to
 80 cols, piezo beeper. 4.0 ROMs, around 1981, with DOS2.1 drive 4040. Also known as "Fat Forty". When the 8032 came out, 12" screens became standard with this model.
-</LI><LI>PET/CBM 8032 with 12" one-piece case. They have board #3, and 80 cols 
+</LI><LI>PET/CBM 8032 with 12" one-piece case. They have board #3, and 80 cols
 screen and piezo beeper. 4.0 ROMs with 80 cols editor ROM. The 8032 came 1981. Some have been upgraded with expansion board to a 8096. Another models based on this 8032 is the SuperPET (AKA MMF9000).
 </LI><LI>PET/CBM 8032-SK with 12" separate keyboard. They have board #3 or board #4.
-Board #3 doesn't fit into the new case so they had to use extra cables from 
+Board #3 doesn't fit into the new case so they had to use extra cables from
 the board to the back of the computer. You can recognize them by not
 having card-edge connectors for IEEE488 on the back. The board #4 were sold as 8296 in 1984-1986
 </LI></UL>
-<H3>Comments</H3>
-<P>
-I guess to understand this numbering one has to understand a bit of the 
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="comments" name="Comments">
+	<desc><P>
+I guess to understand this numbering one has to understand a bit of the
 model history. First the 9" models with board #1 and built-in tape
 have been developed. The hardware was pretty much ok, but the software
 was buggy. (Don't know if these boards have been sold with full-size keyboard).
@@ -78,14 +90,14 @@ They were available with full-size keyboard (with tape as well? don't know).
 </P><P>
 After that came BASIC 4, with the 4000 series.
 </P><P>
-However, as the first BASIC version was so buggy, a lot of machines were 
-upgraded to higher BASIC versions, and the 9" models were even sold with 
+However, as the first BASIC version was so buggy, a lot of machines were
+upgraded to higher BASIC versions, and the 9" models were even sold with
 Basic 1, 2, and 4 (probably as 2001, 30** and 40** models).
 That is why there are so many different types.
 </P><P>
 When Commodore developed the CRTC board (#3) they first did a version
 for 80 columns only. This probably went along with the development
-of BASIC 4 (?). So they sold 9" 40 columns PETs with BASIC 4 without 
+of BASIC 4 (?). So they sold 9" 40 columns PETs with BASIC 4 without
 CRTC, and 12" 80 columns PET with CRTC and BASIC 4.
 </P><P>
 Then they modified the 80** board to the "universal dynamic PET board"
@@ -95,11 +107,11 @@ sold 12" cases with basically the same board as 40** and 80**, which
 supposedly reduced production costs a lot.
 </P><P>
 This universal board then became the base for the SuperPET and the 8096,
-which were actually add-on boards to the 8032 board, either with an 
+which were actually add-on boards to the 8032 board, either with an
 additional 6809 CPU, RAM and ROM, or with a simple 64k RAM extension.
 </P><P>
-CBM then designed a new case, the rounded separate keyboard case. 
-Unfortunately the 8032 boards didn't fit in there, so they 
+CBM then designed a new case, the rounded separate keyboard case.
+Unfortunately the 8032 boards didn't fit in there, so they
 improvised something with a lot of wiring.
 </P><P>
 Finally CBM designed the new board with up to 128k RAM. This board is
@@ -108,11 +120,17 @@ $E8**, so that $E900-$EFFF can be used for nationalized editor ROMs.
 I have to see reports about other models than the 8296 to use this
 board actually.
 </P>
-<P>More on the PET history can be found on the 
-<A HREF="http://www.commodore.ca/products/pet/commodore_pet.htm">Commodore.ca</A> web site.</P>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+	</desc>
+     </subsection>
+  </section>
+
+  <section toc="refs" name="References">
+     <desc><P>More on the PET history can be found on the links below</P>
+     </desc>
+	<extlink link="http://www.commodore.ca/products/pet/commodore_pet.htm" name="Commodore.ca web site"/>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

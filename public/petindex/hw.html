@@ -1,13 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/hw.html"-->
-<TITLE>PET index - hardware projects</TITLE>
-</HEAD>
-<BODY>
-<div id="menu">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="PET index - hardware projects">
+<meta name="keywords" content="Commodore PET CBM hardware project">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="alternate stylesheet" TITLE="Old" TYPE="text/css" HREF="../stylenew.css">
+<LINK REL="stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+<script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
+
+<title>PET index - hardware projects</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="10" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
+</form></div>
 <div>
 <a class="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -72,74 +83,139 @@
 </ul>
 
 </div>
+		</div>
+<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
 </div>
-<DIV ID="content">
-<H1>PET index - hardware projects</H1>
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../index.html">Homepage</a>
+&gt;&gt;  <a href="index.html">CBM PETindex
+</a>&gt;&gt;  Hardware projects</DIV>
+<DIV class="top" ID="content">
+<h1>PET index - hardware projects</h1>
+<p class="copyright">(C)
+1998-2010 André  Fachat</p> 
+<div class="overview">
 <P>
 This page contains links to some hardware projects around the PET machines.
 </P>
-<H2>Disclaimer</H2>
-<P>Whatever you do with the information in these pages or on the linked pages, I am not responsible for any damage you have for using this information. The information herein is provided AS-IS and there is no warranty whatsoever!</P>
-<H2>Peripherals</H2>
-<P>This section contains projects related to PET peripherals, mostly IEEE488 related.</P>
-<P><DL>
-<DT><A HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
+  </div>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#disc">Dislaimer</a></li>
+<li><a href="#peripherals">Peripherals</a></li>
+<li><a href="#system">System Projects</a></li>
+<li><a href="#misc">Misc links</a></li>
+</dir>
+</DIV>
+<h2><a name="disc">Dislaimer</a></h2>
+<p><P>Whatever you do with the information in these pages or on the linked pages, I am not responsible for any damage you have for using this information. The information herein is provided AS-IS and there is no warranty whatsoever!</P>
+     </p>
+<h2><a name="peripherals">Peripherals</a></h2>
+<p><P>This section contains projects related to PET peripherals, mostly IEEE488 related.</P>
+<DL>
+<DT><A class="extlink" HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
 <DD>Ruud Baltissen has made a project to emulate Commodore IEEE488 disk drives
 using a PC and some hardware.</DD>
 <DT><A HREF="http://www.6502.org/users/andre/ieee488/">LPTIEC and other IEEE488 stuff</A></DT>
-<DD>As I have used the IEEE488 bus to connect (almost) all my Commodore 
-equipment, even with my Atari ST and later the PC (as harddrive) 
+<DD>As I have used the IEEE488 bus to connect (almost) all my Commodore
+equipment, even with my Atari ST and later the PC (as harddrive)
 I have created a page for it. It contains an IEEE488 interface for the PC
 to emulate IEEE488 disk drives (using VICE drive code :-),
-a System to have the PET access serial IEC disk drives, and IEEE488 
+a System to have the PET access serial IEC disk drives, and IEEE488
 interfaces for the C64, VIC20 and the VC1541.
 </DD>
-<DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/">The transfer section</A> of the CBM archive</DT><DD>Contains a lot of transfer utilities to copy files from the PC to the PET and back.</DD>
-<DT><A HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
+<DT>
+<A class="extlink" HREF="http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/">The transfer section</A> of the CBM archive</DT>
+<DD>Contains a lot of transfer utilities to copy files from the PC to the PET and back.</DD>
+<DT><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
 <DD>This page contains the description of the "Flash Attack" cable, as well as a PET sound interface.</DD>
-<DT>The <A HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A> and <A HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> have circuits for composite video output.</DT>
+<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A> and <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> have circuits for composite video output.</DT>
 <DD>One of the deficiencies of the PET is that it has no composite video
 output to connect normal monitors to it. These links show two circuits
 (PET library from "THE PET REVEALED" by Nick Hampshire, p117f, 1979, whereas
 oldcomputers.net claims their circuit is untested). Another sample
-circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
+circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A class="extlink" HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
 I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.html">VDC page</a> to include schematics and boards for adapted versions of the abovementioned two composite video circuits to work with my CS/A computer (which comes close to the PET in this respect).
 </DD>
 </DL>
-<H2>System Projects</H2>
-<P>This section contains projects that relate more to the PET itself</P>
-<P><DL>
+     </p>
+<h2><a name="system">System Projects</a></h2>
+<p><P>This section contains projects that relate more to the PET itself</P>
+<DL>
+<DT><A HREF="http://www.6502.org/users/andre/cbmhw/pet816/">PET816</A></DT>
+<DD>A CPU replacement for the PET that allows it to run at up to 10MHz!</DD>
 <DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
-<DD>This computer system is a modular system with an MMU and other nice 
+<DD>This computer system is a modular system with an MMU and other nice
 features. One feature is the 95% PET compatibility. It actually runs
 a 3032 PET emulator - which is a slightly patched up copy of the PET ROM
 (the only difference is the CRTC uses real columns even in 80 col mode, and
-some IEEE488 lines are swapped around). I plan on building an 
+some IEEE488 lines are swapped around). I plan on building an
 adapter to use the CS/A65 I/O cards in a PET computer.
 </DD>
 <DT><A HREF="http://www.6502.org/users/andre/cbmhw/ryofat40/index.html">Build your own Fat40</A></DT>
 <DD>This project consists of three specific boards for the <a href="http://www.6502.org/users/andre/csa/index.html">CS/A65</a> computer that together
 can make up a PET 4032.
 </DD>
-<DT><A HREF="http://people.freenet.de/x1541/hardware/petram.html">PET RAM</A> - a universal 6502 RAM/ROM expansion</DT>
+<DT>
+<A class="extlink" HREF="http://people.freenet.de/x1541/hardware/petram.html">PET RAM</A> - a universal 6502 RAM/ROM expansion</DT>
 <DD>This is a universal PET RAM/Flash ROM expansion with schematics and board diagrams in Eagle(tm) format.</DD>
-<DT><A HREF="http://www.cbmhardware.de/cbmpet/petcart.php">PET-REU</A></DT>
+<DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmpet/petcart.php">PET-REU</A></DT>
 <DD>This is a RAM expansion unit for the PET, using the (in old boards) unused
 $8800-$8fff memory area.
 </DD>
 </DL>
-<H2>Misc links</H2>
-<P>This section contains other 6502-related links, that are less PET-related.</P>
-<P>Note: schematics and chip data are linked from the <A HREF="links.html">links page</A></P>
-<P><UL>
-<LI><A HREF="http://www.6502.org">6502.org</A> with a host of 6502-related stuff and original host of the PET index.
-</LI><LI><A HREF="http://www.baltissen.org/">Ruud Baltissen</A> not only has the CBM-HD, but other Commodore hardware and software projects as well.
-</LI><LI><A HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:pet:pet_faq-peripherals_interfacing">Peripherals info</A> from the PETFAQ, includes for example how to add a Joystick.
-</LI><LI><A HREF="http://www.cbmhardware.de/cbmpet/pethard.php?Lang=D&from=petindex">cbmhardware.de</A> has some german info.
-</LI></UL>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2010 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+     </p>
+<h2><a name="misc">Misc links</a></h2>
+<p><P>This section contains other 6502-related links, that are less PET-related.</P>
+<P>Note: schematics and chip data are linked from the <A HREF="links.html">links page</A>
+</P>
+<UL>
+<LI>
+<A class="extlink" HREF="http://www.6502.org">6502.org</A> with a host of 6502-related stuff and original host of the PET index.
+</LI>
+<LI>
+<A class="extlink" HREF="http://www.baltissen.org/">Ruud Baltissen</A> not only has the CBM-HD, but other Commodore hardware and software projects as well.
+</LI>
+<LI>
+<A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:pet:pet_faq-peripherals_interfacing">Peripherals info</A> from the PETFAQ, includes for example how to add a Joystick.
+</LI>
+<LI>
+<A class="extlink" HREF="http://www.cbmhardware.de/cbmpet/pethard.php?Lang=D&amp;from=petindex">cbmhardware.de</A> has some german info.
+</LI>
+</UL>
+     </p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
+</div></body>
+</html> 
+

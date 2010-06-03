@@ -1,13 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="../style.css" REL="stylesheet" TYPE="text/css">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/keyboards.html"-->
-<TITLE>PET index - keyboards</TITLE>
-</HEAD>
-<BODY>
-<div id="menu">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="alternate stylesheet" TITLE="Old" TYPE="text/css" HREF="../stylenew.css">
+<LINK REL="stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
+<script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
+
+<title>PET index - keyboards</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="10" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
+</form></div>
 <div>
 <a class="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -72,19 +83,51 @@
 </ul>
 
 </div>
+		</div>
+<div class="top" id="browser">
+			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+		</div>
 </div>
-<DIV ID="content">
-<H1>PET index - keyboards</H1>
-<P><STRONG>This part is under construction</STRONG></P>
-
-<H2>General</H2>
-
-<P>The keyboard layout is sometimes a real hassle, because there are
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search">
+<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on
+		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a>
+</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../index.html">Homepage</a>
+&gt;&gt;  <a href="index.html">CBM PETindex
+</a>&gt;&gt;  Keyboards</DIV>
+<DIV class="top" ID="content">
+<h1>PET index - keyboards</h1>
+<p class="copyright">(C)
+1998-2010 André  Fachat</p> 
+<div class="overview">
+<p>	The keyboard layout is sometimes a real hassle, because there are
 in fact quite some different keyboards. The very first one was the
 chicklet-type keyboard of the original PET. It actually represented the
-keyboard scan matrix quite nicely. The graphics keyboard is a direct 
+keyboard scan matrix quite nicely. The graphics keyboard is a direct
 descendant as it uses the same scan matrix.
-</P><P>The business keyboards however have differences. The first and
+</p>
+<p>The business keyboards however have differences. The first and
 most (if at all) known are the different so-called 50Hz and 60Hz models.
 Those numbers relate to the power supply line frequency in Europe and
 the USA resp. Because of this difference there were differences
@@ -94,49 +137,76 @@ with german or other keyboards and character sets.
 Therefore I will in this document name the keyboards "chicklet", "graphics"
 and "business-**", where "**" is "us", "uk", "de" etc for the different
 countries.
-</P>
-
-<H2>Keyboard layout</H2>
-<P>I now have put my worksheet of the PET keyboard layout here. It 
+</p>
+  </div>
+<DIV ID="toc">
+<H2>Table of content</H2>
+<dir>
+<li><a href="#layout">Keyboard Layout</a></li>
+<li><a href="#scan">Keyboard Scan</a></li>
+<dir>
+<li><a href="#graph">The graphics keyboard</a></li>
+<li><a href="#business">The business keyboard</a></li>
+<li><a href="#hints">Hints</a></li>
+<li><a href="#ctrl">Control Codes</a></li>
+</dir>
+<li><a href="#i18n">Internationalization</a></li>
+<dir><li><a href="#japan">Japan</a></li></dir>
+</dir>
+</DIV>
+<h2><a name="layout">Keyboard Layout</a></h2>
+<p> <p>I now have put my worksheet of the PET keyboard layout here. It
 is a graphical representation of the PET graphics and business-uk
 (50Hz) keyboards, with the keycaps and the row/column number
-in the scan matrix. There is a postscript file for the 
+in the scan matrix. There is a postscript file for the
 <A HREF="keymap/petbusi-uk.ps.gz">UK (50Hz) business keyboard</A>
 and the <A HREF="keymap/petgraph.ps.gz">Graphics keyboard</A>.
 For those of you who would like to send me other mappings, please
-use the unix <CODE>xfig</CODE> program and the templates in 
+use the unix <CODE>xfig</CODE> program and the templates in
 <A HREF="keymap/petmaps.tar.gz">petmaps.tar.gz</A>.
 (If displaying postscript, use A4 paper format, 29.7cm x 21cm).
-</P><P>
+</p><p>
 There also is my old, hand-drawn version.
 Unfortunately it is not high-quality,
 but I hope it helps. It is in <A HREF="imgs/klayout.png">klayout.png</A>
 (150k). You may also see if you can recognize the prints on these images (courtesy Bo Zimmermann):
-</P>
+</p>
 <TABLE>
-<TR><TD>Chicklet keyboard</TD><TD><IMG SRC="imgs/2001keyboard.gif" ALT="image of 2001 chicklet keyboard"></TD></TR>
-<TR><TD><IMG SRC="imgs/4008kybd.gif" ALT="image of PET graphics keyboard (main part)"><IMG SRC="imgs/numkeypad.gif" ALT="image of PET graphics keyboard (number pad)"></TD><TD>Graphics keyboard</TD></TR>
-<TR><TD>Business keyboard</TD><TD><IMG SRC="imgs/8096keyboard.gif" ALT="image of business keyboard (main part)"><IMG SRC="imgs/8096keypad.gif" ALT="image of business keyboard (number pad)"></TD></TR>
+<TR>
+<TD>Chicklet keyboard</TD>
+<TD><IMG SRC="imgs/2001keyboard.gif" ALT="image of 2001 chicklet keyboard"></TD>
+</TR>
+<TR>
+<TD>
+<IMG SRC="imgs/4008kybd.gif" ALT="image of PET graphics keyboard (main part)"><IMG SRC="imgs/numkeypad.gif" ALT="image of PET graphics keyboard (number pad)">
+</TD>
+<TD>Graphics keyboard</TD>
+</TR>
+<TR>
+<TD>Business keyboard</TD>
+<TD>
+<IMG SRC="imgs/8096keyboard.gif" ALT="image of business keyboard (main part)"><IMG SRC="imgs/8096keypad.gif" ALT="image of business keyboard (number pad)">
+</TD>
+</TR>
 </TABLE>
-
-<H2>Keyboard scan</H2>
-<P>How is a keyboard read by the operating system? The CPU writes the 
+    </p>
+<h2><a name="scan">Keyboard Scan</a></h2>
+<p> <p>How is a keyboard read by the operating system? The CPU writes the
 keyboard row number into PIA1 PA 0-3, where the row number goes from
 0 to 9. This is decoded into 10 select lines, each is set high unless
-the keyboard row matches with it, then it is set low. 
+the keyboard row matches with it, then it is set low.
 To each row line there are 8 keys attached that, if pressed, make contact
 with one of the 8 bits of PIA1 PB. Those inputs are read as high if no
-key is pressed (pullup resistors). Also if a key is pressed and 
+key is pressed (pullup resistors). Also if a key is pressed and
 the corresponding row select line is not low, the input is read high.
 But if a key is pressed and the row select line of that key is low,
 the corresponding PB bit is read 0, indicating that the key at the
 selected row and the position of the 0-bit is pressed. With 10 rows
-and 8 columns you get up to 80 keys. The keyboard scan matrix 
+and 8 columns you get up to 80 keys. The keyboard scan matrix
 reflects this origanization.
-
-<H2>Keyboard scan matrix (from <A HREF="links.html#petio">PETio</A>)</H2>
-<H3>The graphics keyboard</H3>
-<PRE>
+    </p></p>
+<H3><a name="graph">The graphics keyboard</a></H3>
+<p><PRE>
 Graphics keyboard decoding table:
 
 ----+------------------------
@@ -183,10 +253,10 @@ The original gfx keyboard reflects the matrix perfectly:
 
 The shift key always set the high bit, producing a graphic character.
 </PRE>
-
-<H3>The business keyboard</H3>
-<P>This is the us and en keyboard scan matrix. The upper ones are the en
-(50Hz) and the lower ones, if they differ, the us (60Hz) codes.</P>
+	</p>
+<H3><a name="business">The business keyboard</a></H3>
+<p><p>This is the us and en keyboard scan matrix. The upper ones are the en
+(50Hz) and the lower ones, if they differ, the us (60Hz) codes.</p>
 <PRE>
 The keyboard is scanned by writing the row number into the row select port
 ($E810), then reading the column bits ($E812). Each bit that reads 0
@@ -233,8 +303,9 @@ row |  7  6  5  4  3  2  1  0
     |  . ^N ^] k8  -  8  5  2   ^N = both shifts + 2, ^] = cursor right
 ----+------------------------
 </PRE>
-<H3>Hints</H3>
-<P>
+	</p>
+<H3><a name="hints">Hints</a></H3>
+<p><P>
 In Basic 4.0 CRTC the (PETSCII) values listed in the table below are
 recorded in location 151 [this makes distinguishing between the normal 0
 key and the one on the numeric keypad impossible]; in older versions (and
@@ -242,8 +313,9 @@ key and the one on the numeric keypad impossible]; in older versions (and
 8 * (9 - row) + (7 - column) + 1, i.e. starting at 1, incrementing left to
 right and top to bottom.
 </P>
-<H3>Control Codes</H3>
-<PRE>
+	</p>
+<H3><a name="ctrl">Control Codes</a></H3>
+<p><PRE>
 CONTROL CODES
 =============
 
@@ -279,8 +351,8 @@ different from the 4.0-80 code. Note that the decimal notation of the
 former (16, or $10) equals the hex notation of the latter ($16, or 22).
 This suggests a typo while editing the assembly source for the other
 version.
-</PRE><P>
-Larry Anderson wrote in a mail to cbm-hackers:
+</PRE><p>
+Larry Anderson wrote in a mail to cbm-hackers:</p>
 <PRE>
 8032 control characters:
 
@@ -308,15 +380,19 @@ Bottom - 225,(Top-24)
  Right - 213,(Left-79)
 
 </PRE>
-<H2>Internationalization</H2>
-<p>The PET was also sold in other countries. Here are some bits of information about those models:</p>
-<h3>Japan</h3>
-The Japanese PET has a Yen symbol on the keyboard, and no pound
-symbol.
+	</p>
+<h2><a name="i18n">Internationalization</a></h2>
+<p><p>The PET was also sold in other countries. Here are some bits of information about those models:</p>
+    </p>
+<H3><a name="japan">Japan</a></H3>
+<p><p>The Japanese PET has a Yen symbol on the keyboard, and no pound symbol.
+	</p>
+	</p>
+<hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
 
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1998-2010 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+  </DIV>
+</div>
+</div></body>
+</html> 
+

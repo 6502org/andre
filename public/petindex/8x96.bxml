@@ -1,17 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-<LINK HREF="%up%style.css" REL="stylesheet" TYPE="text/css">
-<LINK REV="made" HREF="mailto:@EMAIL@">
-<META NAME="author" CONTENT="Andr&eacute; Fachat">
-<!--BASE HREF="http://www.6502.org/users/andre/petindex/8x96.html"-->
-<TITLE>PET index - 8x96</TITLE>
-</HEAD>
-<BODY>
-@MENU@
-<DIV ID="content">
-<H1>PET index - 8x96</H1>
-<P>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - 8x96">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1999</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM 8096 8296 8x96</keywords>
+  <metadesc>PET index - 8x96</metadesc>
+  <overview><P>
 The 8096 basically is an 8032 with a 64k expansion board.
 Later Commodore redesigned the 8032 board to include the 64k
 expansion board by using complete 128k of RAM! The 8296 were
@@ -19,18 +17,19 @@ sold in the slick separate keyboard cases, and the top models
 had a 8250 disk drive builtin.
 In this document you find:
 </P>
-<P><UL>
-<LI><a href="#2">General memory mapping</a> info for both machines, 8096 and 8296 </LI>
-<LI><a href="#1">General Info</a> about the 8296</LI>
-<LI><a href="#3">8296-D Information</a></LI>
-<LI><a href="#4">Original Docs and LOS-96 Operating System</a></LI>
-<LI><a href="#5">Further links</a></LI>
-</UL>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
 
-<H2><a name="2">8x96 memory mapping</a></H2><P>
-The 64k RAM of the 8096 can replace the upper 32k address range. 
+  <section toc="memmap" name="8x96 memory mapping">
+     <desc><P>
+The 64k RAM of the 8096 can replace the upper 32k address range.
 The mapping is best depicted with this table
-(from the 8296 supplement to the 8032 manual):
+(from the 8296 supplement to the 8032 manual):</P>
 <PRE>
 0       +----------------+ 0000
         |                |
@@ -73,8 +72,11 @@ The mapping is best depicted with this table
                 Figure 2-1.  Expansion memory mapping
 </PRE><P>
 In the 8096 the left memory map is exactly the PET 8032 memory map.
-(The 8296 is different, but for this see below).
-The mapping is controlled by a write-only register at $fff0:
+(The 8296 is different, but for this see below).</P>
+	</desc>
+	<subsection toc="ctrl" name="Control Register">
+	<desc><P>
+The mapping is controlled by a write-only register at $fff0:</P>
 <PRE>
 
 Figure 2-2 depicts the functions of the memory control register.
@@ -127,19 +129,21 @@ Control Register Bit 0 - When equal to 1, addresses $8000 through $BFFF
 on the /Expansion Memory Board only/ are write protected.
 The screen is not write protected if screen peek through is enabled.
 When equal to 0, the addresses are not write protected.
-</PRE>
-<H2><a name="1">8296 Information</a></H2>
-<P>
+</PRE></desc></subsection>
+  </section>
+
+  <section toc="8296" name="8296 Information">
+     <desc><P>
 The 8296 is a complete redesign of the PET universal board.
-It fits into the separate keyboard case, and directly holds 
+It fits into the separate keyboard case, and directly holds
 128k RAM, of which 96k can be used as in the 8096. In addition,
-using "user jumpers" on the motherboard, the ROM can be 
+using "user jumpers" on the motherboard, the ROM can be
 completely switched off to access the RAM "under the ROM",
 so that the complete 128k RAM are accessible. The "user jumpers"
 could be set to connect to the userport, so this could even be done
 under program control.
 </P><P>
-For the other features of the 8296, please have a look at the 
+For the other features of the 8296, please have a look at the
 <A HREF="orig/8296supplement.html">8296 supplement</A>
 to the 8032 manual.
 </P><P>
@@ -151,9 +155,11 @@ You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> an
 <P>The <a href="crtc.html">CRTC page</a> contains a block schematics on
 how the video circuitry works, that also shows how the memory is used.
 </P>
+     </desc>
+  </section>
 
-<H2><a name="3">8296-D</a></H2>
-<P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
+  <section toc="8296d" name="8296D">
+     <desc><P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
 a single case. The disk drive is attached to the upper part of the
 case, underneath the monitor. Both, the computer and the drive
 share the same power supply. The board is thus not equipped with an
@@ -164,26 +170,32 @@ own voltage regulator etc as is the 8296 (without drive).
 </TD><TD>
 <a href="imgs/8296d-open-small.jpg"><img src="imgs/8296d-open-mini.gif"/></a>
 </TD></TR></TABLE>
+     </desc>
+  </section>
 
-<H2><a name="4">Orignal Docs and LOS-96</a></H2>
-<P>There are some original documents available in electronic form
+  <section toc="docs" name="Original Docs and LOS-96">
+     <desc><P>There are some original documents available in electronic form
 (of course always looking for more):
-</P><P><UL>
+</P><UL>
 <LI>CBM <A HREF="orig/8296supplement.html">8296 Supplement</A> to the 8032 manuals
-<P></LI><LI>CBM released a LOS-96 (Loadable Operating System for the 8x96) that
+</LI><LI>CBM released a LOS-96 (Loadable Operating System for the 8x96) that
 actually is an improved basic. There is some german documentation in
 <A HREF="orig/Los96-de.html">Los96-de.html</A> and <A HREF="orig/LosKit-de.html">LosKit-de.html</A>.
 The LOS-96 software can be found in <A HREF="soft/los96-disk.tar.gz">los96-disk.tar.gz</A>
 which is the same as on the CBM archive, but includes a VICE PET emulator .x64 disk
 image with the stuff.
 </LI></UL>
-<H2><a name="5">More links</a></H2>
-<ul>
-<li><a href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">PLA replacement</a> with an EPROM (German).</li>
+     </desc>
+  </section>
+
+  <section toc="refs" name="References">
+     <desc><ul>
+<li><a class="extlink" href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">PLA replacement</a> with an EPROM (German).</li>
 </ul>
-<HR><P>
-Back to the <A HREF="index.html">PET index</A>
-<P>PET index V1.0 (c) 1999-2005 A. Fachat
-</DIV>
-</BODY>
-</HTML>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
