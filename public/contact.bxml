@@ -41,7 +41,7 @@
   <!--toc/-->
   <section name="Web page technology" toc="web">
     <desc><p>
-I have created these pages (under <a href="http://www.6502.org/users/andre">http://www.6502.org/users/andre</a>) with the help of a text editor, an XSLT transformation and some linux shell scripts, so I hope I know what these pages do :-)
+I have created these pages (under <a href="http://www.6502.org/users/andre">http://www.6502.org/users/andre</a>) with the help of a text editor, an XSLT transformation and some linux shell scripts. For the icons I mainly used the Gimp.
 </p><p>Contrary to most of the content of these pages, the design, stylesheets, icons and javascript is not free. It is copyrighted by me and re-use requires explicit written permission by me.
 The exception is the free <a href="http://jquery.com">query</a> javascript library I use.
 </p><p>
