@@ -148,6 +148,9 @@ LI.separator {
   font-weight:bold;
 }
 
+A.mcurrent {
+  background-color: #ddd;
+}
 
 /****************** End Menu formatting *********************/
 

@@ -117,6 +117,9 @@ for i in $root/*.inx; do
 	t4=${i}_4;
 	t5=${i}_5;
 	myname=`basename $i .inx`.html;
+	dir=`dirname $i`;
+	lastdir=`basename $dir`;
+	#echo "lastdir=" $lastdir;
 	to=`dirname $i`/$myname;
 	if [ -f $i ]; then
 		#echo "from " $i " to " $t2
@@ -126,7 +129,10 @@ for i in $root/*.inx; do
 		v=$?
 		if [ $v -eq 1 ]; then
 			echo "<div>" >> $t2
-			cat $root/.files.xml >> $t2
+			cat $root/.files.xml \
+				| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
+				| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
+				>> $t2
 			echo "</div>" >> $t2
 			doinsert2 $i $t2 "@MENU@"
 		fi
