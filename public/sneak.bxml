@@ -13,6 +13,9 @@ I have decided to go a bit more public with my currently planned projects. So th
 for my 8-bit projects... Don't actually expect me to get anything of this finished soon...</p>
   </overview>
   <news>
+    <item date="2010-06-05">
+	Website design update done!
+    </item>
     <item date="2010-06-01">
 	Started this page
     </item>
@@ -156,9 +159,8 @@ create a new firmware for the XS1541 to provide the lptieee functionality...
   </section>
 
   <section toc="web" name="Web design overhaul">
-    <desc> <p>I have a major web design overhaul in the making. I still have to convert a number of pages to the current XML/XSL page generation before I can update the design on all pages - but when that is done, design changes work easily for all pages :-)
+    <desc> <p>As you can see, this part is done as of June 5t 2010 :-)
 </p>
-	<p>You can actually get a glimpse of the new design if you select the "advanced" stylesheet in your browser - should work forabout two-third of the pages now</p>
 	</desc>
   </section>
 	  <closing>

@@ -99,7 +99,7 @@
 	                <div id="filter">
                             <form action="#"><img id="expand" src="%up%imgs/expand.png"/>
                             <img id="collapse" src="%up%imgs/collapse.png"/>
-                            <input size="10" name="filter" value="filter" type="text"/>
+                            <input size="8" name="filter" value="filter" type="text"/>
                             <img id="cancel" src="%up%imgs/cancel.png"/></form>
 			</div>
 		@MENU@
@@ -385,8 +385,8 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<LINK REL="alternate stylesheet" TITLE="Old" TYPE="text/css" HREF="%up%stylenew.css"/>
-<LINK REL="stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 <script src="%up%jquery-1.4.2.min.js"></script>
 <script src="%up%myscripts.js"></script>
 <script>myUp="%up%";</script>

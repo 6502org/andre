@@ -30,6 +30,7 @@ function getPathFromId( p ) {
 
 // process the retrieved menu part
 // as string, then append to target
+// returns true when correctly loaded
 function processMenu( target, data, loaded ) {
 
 	// highly parallel - so use local vars
@@ -53,7 +54,10 @@ function processMenu( target, data, loaded ) {
 		$(target).append(data);
 
 		bindMenu(target);
+		bindMinus(target);
 	}
+
+	return (!loaded) || (typeof data == 'string' && data.length > 0);
 }
 
 function loadMenu( r, process ) {
@@ -64,6 +68,7 @@ function loadMenu( r, process ) {
 
 	ul = $(r).children("ul");
 	if ($(ul).size() == 0) {
+		$(r).children("img").attr("src", myUp + "imgs/dirload.gif");
 		// load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
 		// XML DOM tree) directly into the html document
 		$.get(myUp + path + '/.menu.xml', function(data) {
@@ -95,11 +100,16 @@ function hideMenu() {
 // this is the IMG element that has been clicked
 function showMenu( ) {
 	var r = $(this).parent();	// up to the LI element
-	loadMenu(r, processMenu);
-	bindMinus(r);
-	$(r).children("ul").children("li.dirm").each( function (i, e) {
-	      $(e).children("ul").hide();
-	      bindPlus(e);
+	loadMenu(r, function( target, data, loaded ) {
+		var ok = processMenu(target, data, loaded)
+		if (ok) {
+			bindMinus(r);
+
+			$(r).children("ul").children("li.dirm").each( function (i, e) {
+	      			$(e).children("ul").hide();
+		      		bindPlus(e);
+			});
+		}		
 	  });
 	//loadMenu(r, function () {} );
 	return false;
@@ -148,12 +158,14 @@ function triggerExpand( parent ) {
 		loadMenu( e, function (target, data, loaded) {
 
 			// include loaded menu
-			processMenu( target, data, loaded );
-			bindMinus(target);
+			var ok = processMenu( target, data, loaded );
+			if (ok) {
+				bindMinus(target);
 
-			if (loaded) {
-				// trigger further expand
-				triggerExpand( target );
+				if (loaded) {
+					// trigger further expand
+					triggerExpand( target );
+				}
 			}
 		});
 	});

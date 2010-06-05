@@ -19,6 +19,10 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2010-06-06">
+	Major web design update. New (menu) icons, new stylesheet with a new 3-column layout, and a much more functional menu.
+	The menu is now dynamic, and allows filtering it for keywords. I hope you like it.
+    </item>
     <item date="2010-05-31">
 	Added a <a href="sneak.html">Sneak Preview page</a> with my 8-bit plans...
     </item>
