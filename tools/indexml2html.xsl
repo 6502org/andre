@@ -104,9 +104,9 @@
 			</div>
 		@MENU@
 		</div><!-- menu -->
-		<div class="top" id="browser">
+		<!--div class="top" id="browser">
 			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
-		</div>
+		</div-->
 	</div> <!-- leftcol -->
 	<div id="rightcol">
 	        <div class="top" id="google"><div class="tophead">search</div><div>

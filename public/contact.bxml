@@ -38,20 +38,17 @@
     <item date="2006-08-07">
     </item>
   </news-->
-  <!--itemlist name="Quickfinder">
-    <desc>
+  <!--toc/-->
+  <section name="Web page technology" toc="web">
+    <desc><p>
+I have created these pages (under <a href="http://www.6502.org/users/andre">http://www.6502.org/users/andre</a>) with the help of a text editor, an XSLT transformation and some linux shell scripts, so I hope I know what these pages do :-)
+</p><p>Contrary to most of the content of these pages, the design, stylesheet and javascript is not free. It is copyrighted by me and re-use requires explicit written permission by me.
+The exception is the free <a href="http://jquery.com">query</a> javascript library I use.
+</p><p>
+The Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
+</p>
     </desc>
-    <items>
-     <item name="Commodore 8-bit stuff">
-      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
-      </subitem>
-     </item>
-    </items>
-    <disclaimer name="Disclaimer">
-@DISCLAIMER@
-    </disclaimer>
-  </itemlist-->
+  </section>
   <closing>
-<BR/>Last updated 2006-11-02.
   </closing>
 </webpage>

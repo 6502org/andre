@@ -124,31 +124,37 @@ A.m_homepage {
 	font-size: large;
 }
 
-DIV#menu ul {
+DIV#mtree ul {
   list-style-type:none;
   padding-left: 1em;
   margin-left: 0em;
   font-size:small;
 }
 
-DIV#menu li {
+DIV#mtree li {
   margin-bottom: 0.1em;
 }
 
-div#menu a:hover { 
+div#mtree a:hover { 
   background-color:#ff0; 
 }
 
-DIV#menu img {
-  margin-right:0.5em;
+div#mtree a { 
+  padding-left: 1.7em;
+  display:block;
 }
 
-LI.separator {
+DIV#mtree img {
+  margin-right:0.5em;
+  float:left;
+}
+
+div#mtree LI.separator {
   font-size:larger;
   font-weight:bold;
 }
 
-A.mcurrent {
+div#mtree A.mcurrent {
   background-color: #ddd;
 }
 

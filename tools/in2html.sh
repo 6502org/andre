@@ -128,7 +128,7 @@ for i in $root/*.inx; do
 		doinsert1 $i $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			echo "<div>" >> $t2
+			echo "<div id=\"mtree\">" >> $t2
 			cat $root/.files.xml \
 				| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
 				| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \

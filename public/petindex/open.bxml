@@ -1,0 +1,53 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET open questions...">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2010</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM</keywords>
+  <metadesc>Open questions about Commodore PET CBM</metadesc>
+  <overview><p>In this page I have collected the open questions
+	that I have around the Commodore PET machines.</p>
+  </overview>
+  <news>
+    <item date="2010-06-05">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="i18n" name="Internationalization">
+     <desc><p>I have read some things about internationalized versions
+	of the PET, like Swedish, German, or Japanese ones etc. 
+	Any information and links are appreciated so I can make a 
+	separate page for them.</p>
+     </desc>
+  </section>
+
+  <section toc="hw" name="Hardware">
+     <desc><p>Hardware-related questions</p>
+     </desc>
+     <subsection toc="killer" name="Killer Poke">
+	<desc><p>I still have no confirmed "kill" of a PET from the 
+		so-called killer poke. If you know any stories, let me know.
+		</p></desc>
+     </subsection>
+  </section>
+
+  <section toc="sw" name="Software">
+     <desc><p>Software-related questions</p>
+     </desc>
+     <!--subsection toc="" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection-->
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
