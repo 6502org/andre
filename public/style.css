@@ -116,26 +116,26 @@ DIV#mainbox {
 
 DIV#midcol {
   margin: 0;
+  margin-left: 16%;
+  margin-right: 16%;
 /*
   margin-left: 17.5em;
   margin-right: 16.6em;
-*/
-  margin-left: 18em;
-  margin-right: 17em;
-  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+/*  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
 }
 
 DIV#leftcol {
   float: left; 
-  width: 20em;
+/*  width: 20em;*/
+  width: 15%;
   margin: 0; 
   padding: 0;
-  font-size:smaller;
 }
 
 DIV#rightcol {
   float: right; 
-  width: 19em;
+/*  width: 19em;*/
+  width: 15%;
   margin: 0; 
   padding: 0;
   font-size:smaller;
@@ -180,11 +180,10 @@ DIV#footer {
 DIV#menu {
   padding-left: 1em;
   padding-right: 1em; 
-  font-size:larger;
 }
 
 A.m_homepage {
-	font-size: large;
+  font-size: large;
 }
 
 div#filter {
@@ -202,12 +201,13 @@ DIV#mtree ul {
   list-style-type:none;
   padding-left: 1em;
   margin-left: 0em;
-  font-size:small;
+  font-size:80%;
 }
 
 DIV#mtree li {
   margin-bottom: 0.2em;
   margin-top: 0.3em;
+  font-size:80%;
 }
 
 div#mtree a { 
