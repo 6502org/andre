@@ -30,7 +30,6 @@ BODY {
  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 */
 
 	font-family: "Arial","Sans Serif";
-	font-size: 100%;
 }
 
 a:visited { color:#000080; text-decoration:none }
@@ -117,8 +116,12 @@ DIV#mainbox {
 
 DIV#midcol {
   margin: 0;
+/*
   margin-left: 17.5em;
   margin-right: 16.6em;
+*/
+  margin-left: 18em;
+  margin-right: 17em;
   min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
 }
 
