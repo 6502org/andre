@@ -110,9 +110,9 @@
 	</div> <!-- leftcol -->
 	<div id="rightcol">
 	        <div class="top" id="google"><div class="tophead">search</div><div>
-	                <form method="get" action="http://www.google.com/search">
-       		                <input type="text" name="q" size="20" maxlength="255" value="" />
-	                        <input type="submit" value="Search my site" /> (Google)
+	                <form method="get" action="http://www.google.com/search" target="_blank">
+       		                <input type="text" name="q" size="10" maxlength="255" value="" />
+	                        <input type="submit" value="Search my site" /><br/>(Google, in new window)
 	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
 	                </form>
 	        </div></div>
@@ -259,8 +259,7 @@
     <xsl:for-each select="item">
       <li>
 	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-	<strong><xsl:call-template name="aname"/></strong><br/>
-        <br/>
+	<strong><xsl:call-template name="aname"/></strong>
           <xsl:apply-templates select="desc"/>
 	  <xsl:if test="subitem|extlink">
 	<ul>
@@ -269,7 +268,6 @@
 	</ul>
 	  </xsl:if>
       </li>
-      <br/>
     </xsl:for-each>
     <xsl:apply-templates select="subitem"/>
    </ul>
@@ -352,19 +350,15 @@
 	      <xsl:value-of select="@name"/>
 	      </a><xsl:text> </xsl:text>
   	      <xsl:copy-of select="*|text()"/>
-        <br/>
-        <br/>
 	</li>
 </xsl:template>
 
 <xsl:template match="subitem">
-	<li>
+	<li class="subitem">
 	      <strong>
 	      <xsl:value-of select="@name"/>
 	      </strong>: <!--<br/>-->
   	      <xsl:copy-of select="*|text()"/>
-        <br/>
-        <br/>
 	</li>
 </xsl:template>
 

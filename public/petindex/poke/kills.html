@@ -3,14 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
 
-<meta name="description" content="Commodore PET CBM ROM descriptions">
-<meta name="keywords" content="Commodore PET CBM ROM disk drives">
+<meta name="description" content="Commodore PET CBM Killer poke stories">
+<meta name="keywords" content="Commodore PET CBM Killer poke">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 <script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
 
-<title>PET index - Disk drives</title>
+<title>Kill Stories</title>
 </head>
 <body><div id="mainbox">
 <div id="leftcol"><div id="menu" class="top">
@@ -37,20 +37,7 @@
 <li class="file"><img src="../../imgs/file.png"/><a href="../superpet.html">SuperPET MMF9000</a></li>
 <li class="file"><img src="../../imgs/file.png"/><a href="../8x96.html">The 8096 and 8296 models</a></li>
 <li class="separator">Peripherals</li>
-<li class="dir" id="m_petindex_drives"><img src="../../imgs/dir.png"/><a href="index.html" class="mcurrent">Disk drives</a>
-<ul class="menu2" >
-<li class="file"><img src="../../imgs/file.png"/><a href="arch/index.html">Drive architecture</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="gallery/index.html">Drive gallery</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="roms/index.html">DOS ROMs</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="progs/index.html">Drive utilities</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="drives.html">Drives list</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="harddisk.html">Harddisk info</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="writegap.html">Write gap info</a></li>
-</ul>
+<li class="dir" id="m_petindex_drives"><img src="../../imgs/dir.png"/><a href="../drives/index.html">Disk drives</a>
 </li>
 <li class="separator">Programming</li>
 <li class="file"><img src="../../imgs/file.png"/><a href="../progmod.html">Hardware programming</a></li>
@@ -58,6 +45,9 @@
 <li class="file"><img src="../../imgs/file.png"/><a href="../crtc.html">CRTC operation</a></li>
 <li class="separator">Quirks</li>
 <li class="dir" id="m_petindex_poke"><img src="../../imgs/dir.png"/><a href="../poke/index.html">Killer poke</a>
+<ul class="menu2" >
+<li class="file"><img src="../../imgs/file.png"/><a href="kills.html" class="mcurrent">Kill Stories</a></li>
+</ul>
 </li>
 <li class="file"><img src="../../imgs/file.png"/><a href="../repairs.html">Repairing the PET</a></li>
 <li class="separator">Links</li>
@@ -124,161 +114,50 @@
 <div id="midcol">
 <DIV class="top" ID="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CBM PETindex</a>&gt;&gt;  Disk drives</DIV>
+&gt;&gt; <a href="../index.html">CBM PETindex</a>&gt;&gt;  <a href="index.html">Killer poke
+</a>&gt;&gt;  Kill Stories</DIV>
 <DIV class="top" ID="content">
-<h1>PET index - Disk drives</h1>
+<h1>Kill Stories</h1>
 <p class="copyright">(C)
-1998-2010 André  Fachat</p> 
+1997-2010 André  Fachat</p> 
 <div class="overview">
-<P><STRONG>This part is under construction</STRONG></P>
-<P>The Commodore disk drives for the PET computers actually are more
-intelligent than the PET itself - they had two 650x processors, one
-for the DOS and one for the drive controller. Using this "intelligent"
-design the PET was able to send a command to the disk drive and continue
-its own work, while the floppy was doing its.</P>
-<P>
-Disk drives to be used with the PET have to be equipped with an IEEE488
-interface. Most of the devices had two drives, but there are single drive
-units.
-</P>
-<P>In the following you find some more information about these drives:
-</P>
+<p>Sad stories, but they exist - stories where a PET broke due to a killer poke</p>
+<p>I still have no definite confirmation, only the stories that I was allowed to publish below.</p>
   </div>
+<h3>News:</h3>
+<ul class="news"><li>
+<small>2010-06-06</small>
+	Started this page
+    </li></ul>
 <DIV ID="toc">
 <H2>Table of content</H2>
-<dir>
-<li><a href="#qf">Quickfinder</a></li>
-<li><a href="#capacity">Capacity</a></li>
-<li><a href="#blink">Disk drive error codes</a></li>
-<li><a href="#misc">Other disk drive information</a></li>
-</dir>
+<dir><li><a href="#s1">Kill story (anonymous)</a></li></dir>
 </DIV>
-<h2><a name="qf">Quickfinder</a></h2>
-<p><UL>
-<LI>
-<A HREF="drives.html">Disk drive list</A>
-</LI>
-<LI>
-<A HREF="arch/index.html">Architecture overview</A> on the drives and schematics
-</LI>
-<LI>
-<A HREF="roms/index.html">DOS ROM information</A>
-</LI>
-<LI>
-<A HREF="progs/index.html">Drive utility programs</A>
-</LI>
-<LI>
-<A HREF="gallery/index.html">Gallery</A> with pictures of the drives
-</LI>
-<LI>Information about <A HREF="harddisk.html">the Commodore harddisks</A>
-</LI>
-<LI>
-<A HREF="#capacity">Drive capacity and compatibility</A> and other DOS information.
-</LI>
-<LI>
-<A HREF="#blink">Disk error codes</A>
-</LI>
-<LI>
-<A HREF="#misc">Other disk drive information</A>
-</LI>
-</UL>
-     </p>
-<h2><a name="capacity">Capacity</a></h2>
-<p><P>All in all, there were two major 5.25" disk formats for the PET series,
-the 35 track double density version with around 170 kByte and the 39/78 track quad density version with 512k/1M Byte free.
-Both major types are completely incompatible.
-</P><P>
-The quad density came in two variations only, single sided (8050 DOS2.5/2.7) and double sided (8250/1001 DOS2.7). The double sided drives could read the single sided disks ok. The single sided drives could even read the double sided disks,
-as long as the second side was not used.
-</P><P>
-The double density disks are another story. With DOS1 Commodore introduced a disk format that is almost the same as in the 1541 - only in one of the speed zones there was one sector more. Therefore the disks had 670 blocks free. Probably Commdore found that there were too many errors, so with DOS2 they reduced the number of blocks by one sector per track in one speed zone, resulting in 664 blocks free. But that is not the end of the story. In the disk format there is a write gap between the header and the data block. Commodore changed the size of the
-write gap from the DOS2 disks to the 1541. Due to this the drives are only
-read compatible. You can read more about this <A HREF="writegap.html">here</A>.
-</P>
-     </p>
-<h2><a name="blink">Disk drive error codes</a></h2>
-<p><P>The Commodore disk drives indicated hardware failures detected
-during boot with a blink code. Here's the meaning from the 8050/8250 service manual:
-</P>
-<H3>POWER UP DIAGNOSTIC FOR 8050/8250 FLASH CODE</H3>
-<P>
-On power up, the three LED's on the drive should blink. The drive LED's go off and the center Tri-State LED remains green. The sytem has a built in self diagnostic which can be read in the form of a flash code. In the event of a failure, the 3 LED's will blink in a repetitive sequence. The number of blinks between intervals will indicate the possible location of a failure. </P>
-
-<TABLE class="content" BORDER="1">
-<TR><TH COLSPAN="4">ERROR INDICATIONS</TH></TR>
-<TR>
-<TH>NUMBER OF FLASHES</TH>
-<TH>ERROR CAUSE</TH>
-<TH>COMPONENT</TH>
-<TH>LOCATION</TH>
-</TR>
-<TR>
-<TD> 1 </TD>
-<TD> Zero Page </TD>
-<TD> 6532 </TD>
-<TD>UC1,UE1 </TD>
-</TR>
-<TR>
-<TD>2 </TD>
-<TD>ROM $E000-$EFFF </TD>
-<TD>2364 </TD>
-<TD>UL1 </TD>
-</TR>
-<TR>
-<TD>3 </TD>
-<TD>ROM $C000-$DFFF </TD>
-<TD>2364 </TD>
-<TD>UH1 </TD>
-</TR>
-<TR>
-<TD>4 </TD>
-<TD>Unused </TD>
-</TR>
-<TR>
-<TD>5 </TD>
-<TD>Zero Page </TD>
-<TD>6530 6502 </TD>
-<TD>UK3 UH3 </TD>
-</TR>
-<TR>
-<TD>6 </TD>
-<TD>Common RAM $1000-$13FF </TD>
-<TD>2114 </TD>
-<TD>UC4,UC5 </TD>
-</TR>
-<TR>
-<TD>7 </TD>
-<TD>Common RAM $2000-$23FF </TD>
-<TD>2114 </TD>
-<TD>UD4,UD5 </TD>
-</TR>
-<TR>
-<TD>8 </TD>
-<TD>Common RAM $3000-$33FF </TD>
-<TD>2114 </TD>
-<TD>UE4,UE5 </TD>
-</TR>
-<TR>
-<TD>9 </TD>
-<TD>Common RAM $4000-$43FF </TD>
-<TD>2114 </TD>
-<TD>UF4,UF5 </TD>
-</TR>
-<TR>
-<TD>10 </TD>
-<TD>Controller ROM </TD>
-<TD>6530 6502 </TD>
-<TD>UK3 UH3 </TD>
-</TR>
-</TABLE>
-<P>
-If the LED's come on and stay on, the microprocessor UN1 is probably at fault. </P>
-     </p>
-<h2><a name="misc">Other disk drive information</a></h2>
-<p><P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.</P>
-<P>
-<A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
-</P>
+<h2><a name="s1">Kill story (anonymous)</a></h2>
+<p><p>
+My story must be 25 years old now, but I can confirm I killed a PET at high school through an accidental killer poke, which I had
+thought an urban myth till then!
+</p><p>
+This was shortly after the release of the ZX Spectrum computer game, 'Jet Set Willy'.  One of the interesting features of this game
+(for its day) was a rope swing the character would have to jump on to pass certain screens.
+</p><p>
+I thought the idea of trying to animate a rope swing on the PET sounded fun, so I coded it up in our computer lab over a lunch hour
+(computer time was very limitted, it is hard to realise what a limitted resource computers were to an 80s high school!)
+</p><p>
+The program worked much better than expected, giving me some very impressive high-res graphics from the text-only commodore screen.
+I was impressed, but confused.  After 5 minutes of this display, the screen went black.  When it did not respond, I duly turned the
+PET off, waited 10 seconds, and turned it on again.  The screen was resolutely blank, not a flicker.  I turned the power off again
+for a good 60 seconds before one final reboot, and then as any responsible high school student who believes he has just broken
+something incredibly expensive would do, I quietly left the lab hoping no-one noticed!  (I carry the shame to this day!)
+</p><p>
+I noticed that PET was out of commission for a few months, and when eventually it did return to service, it only had half the
+memory that it had before.
+</p><p>
+I don't know that the actual killer poke was, but in hindsight I realised I ad animated a beautiful rope swing, but had forgotten
+to add the offset to the start of the screen, so actually ran my animation through some very low memory addresses.
+</p><p>
+Contrary to popular rumours, there was no spontaneous catching of fire, just one very blank screen.
+</p>
      </p>
 <hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>

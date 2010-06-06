@@ -67,7 +67,7 @@ during boot with a blink code. Here's the meaning from the 8050/8250 service man
 <P>
 On power up, the three LED's on the drive should blink. The drive LED's go off and the center Tri-State LED remains green. The sytem has a built in self diagnostic which can be read in the form of a flash code. In the event of a failure, the 3 LED's will blink in a repetitive sequence. The number of blinks between intervals will indicate the possible location of a failure. </P>
 
-<TABLE BORDER="1">
+<TABLE class="content" BORDER="1">
 <TR><TH COLSPAN="4">ERROR INDICATIONS</TH></TR>
 <TR><TH>NUMBER OF FLASHES</TH><TH>ERROR CAUSE</TH><TH>COMPONENT</TH><TH>LOCATION</TH></TR>
 <TR><TD> 1 </TD><TD> Zero Page </TD><TD> 6532 </TD><TD>UC1,UE1 </TD></TR>

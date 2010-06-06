@@ -78,8 +78,8 @@
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
-<div><form method="get" action="http://www.google.com/search">
-<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
@@ -120,7 +120,7 @@ Not all of them are by me, but some are.
 There is an <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/IEEE-488.txt">introduction</a> to the IEEE-488 bus by Ruud Baltissen.
     </p>
 <ul>
-<li>
+<li class="subitem">
 <strong>C64</strong>: The CBM IEEE488 interface for the C64 is used to connect the
 C64 to the IEEE488 bus. I had my own (hand-drawn) schematics
 here, but Wolfgang Gü nther did it with a drawing program, and dumped
@@ -130,17 +130,15 @@ the ROM as well. Find the description in
 The original software uses up some space in the $c*** area and completely
 disabled the serial IEC bus. I wrote a modification to the C64 kernal
 such that both busses can be used and the $c*** area is free. See the
-<a href="../kernal/index.html">kernal pages</a>.<br><br>
-</li>
-<li>
+<a href="../kernal/index.html">kernal pages</a>.</li>
+<li class="subitem">
 <strong>VIC20</strong>: Although I never owned a VIC20, I list this one here as well for completeness.
 Wolfgang Gü nther made the schematics of the original CBM IEEE488
 interface for the VIC20 with a drawing program, and dumped
 the ROM as well. Find the description in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/cartridges/vic20/ieee-488/index.html">vic20/</a>.
-<br><br>
 </li>
-<li>
+<li class="subitem">
 <strong>VC1541</strong>:  The now gone 64er magazin published a modification of the VC1541
 to use an IEEE488 interface. It basically implements the IEEE488
 interface of the 2031 drive, the IEEE488 sister drive to the VC1541.
@@ -148,9 +146,8 @@ Only the ROM code was modified such that only one of the two 8k ROM
 chips had to be replaced by an EPROM.
 Find the description in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/vc1541-ieee.tar.gz">vc1541-ieee.tar.gz</a>.
-<br><br>
 </li>
-<li>
+<li class="subitem">
 <strong>PC-LPT</strong>: This interface is listed here because I use my PC as
 a disk drive for my CBM equipment. Starting from ideas from
 Ruud Baltissen (see
@@ -161,9 +158,8 @@ Schematics, description and software (for Linux) can be found in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/lptiec-0.9.2.tar.gz">lptiec-0.9.2.tar.gz</a>.<br>
 Although the software is for Linux, it is written somewhat portably
 in that no special kernel device or so is used. The program directly
-interfaces the PC LPT hardware and should easily be ported.<br><br>
-</li>
-<li>
+interfaces the PC LPT hardware and should easily be ported.</li>
+<li class="subitem">
 <strong>IEEE488-&gt;IEC</strong>:  A friend of mine used the serial IEC bus
 and not the IEEE488 bus to connect all his stuff. Unfortunately he also
 used a CBM 600 (aka B128). We designed a small device - a 6502
@@ -171,8 +167,7 @@ computer actually - that is put in between the two busses, converting the
 parallel IEEE488 to the serial IEC bus. The schematics has longs since
 been lost, so I reverse-engineered it from the last existing source file
 for the ROM. Find the description in
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.<br><br>
-</li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.</li>
 </ul>
 <h2>Disclaimer</h2>
 <p>

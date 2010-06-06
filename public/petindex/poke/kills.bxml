@@ -1,0 +1,53 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Kill Stories">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>1997</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET CBM Killer poke</keywords>
+  <metadesc>Commodore PET CBM Killer poke stories</metadesc>
+  <overview><p>Sad stories, but they exist - stories where a PET broke due to a killer poke</p>
+<p>I still have no definite confirmation, only the stories that I was allowed to publish below.</p>
+  </overview>
+  <news>
+    <item date="2010-06-06">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="s1" name="Kill story (anonymous)">
+     <desc><p>
+My story must be 25 years old now, but I can confirm I killed a PET at high school through an accidental killer poke, which I had
+thought an urban myth till then!
+</p><p>
+This was shortly after the release of the ZX Spectrum computer game, 'Jet Set Willy'.  One of the interesting features of this game
+(for its day) was a rope swing the character would have to jump on to pass certain screens.
+</p><p>
+I thought the idea of trying to animate a rope swing on the PET sounded fun, so I coded it up in our computer lab over a lunch hour
+(computer time was very limitted, it is hard to realise what a limitted resource computers were to an 80s high school!)
+</p><p>
+The program worked much better than expected, giving me some very impressive high-res graphics from the text-only commodore screen.
+I was impressed, but confused.  After 5 minutes of this display, the screen went black.  When it did not respond, I duly turned the
+PET off, waited 10 seconds, and turned it on again.  The screen was resolutely blank, not a flicker.  I turned the power off again
+for a good 60 seconds before one final reboot, and then as any responsible high school student who believes he has just broken
+something incredibly expensive would do, I quietly left the lab hoping no-one noticed!  (I carry the shame to this day!)
+</p><p>
+I noticed that PET was out of commission for a few months, and when eventually it did return to service, it only had half the
+memory that it had before.
+</p><p>
+I don't know that the actual killer poke was, but in hindsight I realised I ad animated a beautiful rope swing, but had forgotten
+to add the offset to the start of the screen, so actually ran my animation through some very low memory addresses.
+</p><p>
+Contrary to popular rumours, there was no spontaneous catching of fire, just one very blank screen.
+</p>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

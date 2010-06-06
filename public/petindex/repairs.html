@@ -44,7 +44,8 @@
 <li class="file"><img src="../imgs/file.png"/><a href="roms.html">ROM descriptions</a></li>
 <li class="file"><img src="../imgs/file.png"/><a href="crtc.html">CRTC operation</a></li>
 <li class="separator">Quirks</li>
-<li class="file"><img src="../imgs/file.png"/><a href="poke.html">Killer poke</a></li>
+<li class="dir" id="m_petindex_poke"><img src="../imgs/dir.png"/><a href="poke/index.html">Killer poke</a>
+</li>
 <li class="file"><img src="../imgs/file.png"/><a href="repairs.html" class="mcurrent">Repairing the PET</a></li>
 <li class="separator">Links</li>
 <li class="file"><img src="../imgs/file.png"/><a href="hw.html">Hardware projects</a></li>
@@ -87,8 +88,8 @@
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
-<div><form method="get" action="http://www.google.com/search">
-<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
@@ -151,12 +152,12 @@
     </p>
 <ul>
 <li>
-<strong><a name="tools">Tools</a></strong><br><br><p>
+<strong><a name="tools">Tools</a></strong><p>
 	In general you should have good tools if you endeavor to analyze
 	and fix a hardware problem (not only(!)) with your PET ...
 	</p>
 <ul>
-<li>
+<li class="subitem">
 <strong>Generic Tools</strong>: 
 	<div class="rightimg">
 	<image src="imgs/osci.jpg"></image><br>
@@ -185,9 +186,8 @@ tend to go bad, especially if left sitting unused for years.
 	at constant 5V, it's dead. Same for 0V. Instead the Voltmeter should
 	be somewhere around 2-3V, as it averages Phi2 high and low.
 	</p>
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>6502 and PET Specific Tools</strong>:  Here some
 	more specific tools, that you can actually build yourself if needed:
 	<p>
@@ -243,28 +243,25 @@ machine language monitor.
 </p>
 <p>
 So far I don't have the schematics for the CPU connector, nor the ROMs and test programs, sorry. So if you can provide this info, this would be very helpful!</p>
-      <br><br>
-</li>
+      </li>
 </ul>
 </li>
-<br><li>
+<li class="subitem">
 <strong>Be Careful</strong>: 
 	If handled improperly the PET electronics can be damaged. So please
 	minimize the risk of static electricity.
 	<br>
 	The monitor can be damaged by switching it on and off very often
 	during testing. Consider using a separate monitor with the signal
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>Prepare</strong>: 
 	Prepare for your job. Read all about the symptoms you find on the
 	net, so you don't start in the wrong place.
 	<br>
 	Print out the schematics. That helps.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>First Job</strong>: 
 	When you get a PET to repair, first see if there is any apparent
 	damage. This includes the inside. Check that all necessary ROMs are 
@@ -274,8 +271,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	sockets. So one thing to do is to take the chips out and reseat
 	them properly. Take care to put them back in in the correct place and
 	orientation.
-      <br><br>
-</li>
+      </li>
 </ul>
 <h2><a name="dead">PET's dead</a></h2>
 <p>
@@ -287,7 +283,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	was dead.
     </p>
 <ul>
-<li>
+<li class="subitem">
 <strong>Initial Check</strong>: 
 	Before you check anything else, check that there is power on 
 	the board e.g. by measuring 5V on the userport, then check
@@ -295,18 +291,16 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	(IRQ, NMI, RES) do, and then the address lines. This should give
 	you an idea if it is a very basic problem or maybe something with
 	the ROMs for example.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>CRTC PET</strong>: 
 	In the CRTC PET a "dead" PET may not be completely dead. The CPU
 	must program the CRTC to actually generate a valid video signal.
 	So if the CPU is running and the PET still does not work, check
 	the ROM contents and the address decoding (either with the CPU
 	emulator or by monitoring the ROM select lines, esp. after reset.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>8296(D)</strong>: 
 	The 8296 and 8296-D (that use the same board, so I'll use 8296 only)
 	are notoriously known for broken PLA chips. To check that measure
@@ -317,8 +311,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	page</a> (in German, but should be easy to understand in english as well). 
 	Or use the info on <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/8296/index.html">this page</a>, including a GAL replacement
 	of the UE5 PLA.
-      <br><br>
-</li>
+      </li>
 </ul>
 <h2><a name="funny">Funny characters on the screen</a></h2>
 <p>
@@ -326,7 +319,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	on the screen and other video problems.
     </p>
 <ul>
-<li>
+<li class="subitem">
 <strong>Non-CRTC-PET</strong>:  
 	Here the screen displays the screen memory content even without 
 	the CPU doing anything. Therefore a "working" screen with constant funny
@@ -337,18 +330,16 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	link below.
 	<br>
 	If that does not help, go to the "PET's dead" section.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>Flickering screen</strong>: 
 	If the screen is flickering in the sense that characters are changing
 	shape all the time, i.e. their pixel representation is not constant
 	or does not correspond to any know CBM character, then there is
 	a problem with the character generation. Try to reseat the 
 	character ROM, check its content.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>Vertical lines on the screen</strong>: 
 	<div class="rightimg">
 	<a href="imgs/vertlines.png"><image src="imgs/vertlines_small.png"></image></a><br>
@@ -362,22 +353,20 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	Note that the vertical lines only show where characters should be, not the borders
 	and even not in between the characters. That would be a different error.
 	Thanks to Alasdair Macdonald for reporting this and providing the picture!
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>Video board</strong>: 
 A comment by William Levak: <p class="quote">
 When you get to the video board, there were 2 capacitors on the original
 version of the video board for the original PET that went bad frequently.</p>
-      <br><br>
-</li>
+      </li>
 </ul>
 <h2><a name="monitor">Monitor and other weird symptoms</a></h2>
 <p>
 	This section has an assorted list of symptoms...
     </p>
 <ul>
-<li>
+<li class="subitem">
 <strong>Monitor after reset</strong>:  
 	When the PET comes up with the built-in monitor (TIM) instead of
 	the BASIC prompt, check the value of the stack pointer. If it is
@@ -387,9 +376,8 @@ version of the video board for the original PET that went bad frequently.</p>
 	signal, only that it is not between 0V and 5V, but between around 
 	0V and 1V, then the VIA may be broken and pulling the signal low,
 	so that the PIA has problems detecting the interrupt.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>No 'chirp' after reset</strong>:  
 	The 12" models have a piezo beeper and since BASIC4 they "chirp"
 	when reset. If such a model does not do this, check the 
@@ -399,9 +387,8 @@ version of the video board for the original PET that went bad frequently.</p>
 	In my case I had the 8296 boot either with chirp into the 
 	TIM monitor or without chirp into the BASIC prompt, and I found
 	a broken VIA.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>SYNTAX ERROR on every command and screen scrolling problems</strong>: 
 	I read of a case where on every command entered the system reacted
 	with a "SYNTAX ERROR". Also when scrolling the screen, some
@@ -412,8 +399,7 @@ version of the video board for the original PET that went bad frequently.</p>
 	So both problems came from the same source, the bus driver
 	that separated the video RAM from the CPU bus. It had a broken
 	driver in one of the lines. 
-      <br><br>
-</li>
+      </li>
 </ul>
 <h2><a name="links">Links</a></h2>
 <p>
@@ -423,25 +409,20 @@ version of the video board for the original PET that went bad frequently.</p>
 <ul>
 <li class="subitem">
 <a href="http://www.commodore.ca/manuals/default.htm">Diagnostic Manuals</a> commodore.ca has a number of diagnostic manuals. 
-      <br><br>
-</li>
+      </li>
 <li class="subitem">
 <a href="http://www.commodore.ca/manuals/PET_RAM_test.htm">PET memory test program</a> commodore.ca has memory test program for an 8k PET, which could probably be adapted for larger memory sizes.
-      <br><br>
-</li>
-<li>
+      </li>
+<li class="subitem">
 <strong>PET restoration</strong>:  of an original PET 2001-8 by Dave Gostelow - 20100103 obviously gone, if you know its new home, let me know
-      <br><br>
-</li>
+      </li>
 <li class="subitem">
 <a href="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:commodore_troubleshooting">Larry's portcommodore 8-bit troubleshooting list</a> 
-      <br><br>
-</li>
+      </li>
 <li class="subitem">
 <a href="http://www.cosam.org/computers/cbm/pet/index.html">Description of a PET repair</a> 
 	<desc>Interesting description to solve several problems with a non-working PET</desc>
-      <br><br>
-</li>
+      </li>
 </ul>
 <h2>Disclaimer</h2>
 <p>

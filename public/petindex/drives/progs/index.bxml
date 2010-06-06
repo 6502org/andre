@@ -23,7 +23,7 @@
 to read out the DOS ROM. It actually reads the upper 16k.
 Another more complicated one is used to read out the FDC ROM. For this purpose it transfers some code into the drive buffer and lets it execute by the FDC
 CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffers so that they can be read by the readout programm.</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
 <TR><TD>Read FDC ROM</TD><TD><A HREF="readfdc">readfdc</A></TD><TD><A HREF="readfdc.lst">readfdc.lst</A></TD><TD>Read the FDC ROM from a dual processor drive. As after the reading the FDC CPU is stuck in an endless loop, the drive must be reset during execution.</TD></TR>
 <TR><TD>Read DOS ROM</TD><TD><A HREF="readdos">readdos</A></TD><TD><A HREF="readdos.lst">readdos.lst</A></TD><TD>Read the upper 16k of the DOS CPU address space from a dual processor drive. This includes the ROM image and is large enough for all dual CPU DOS versions.</TD></TR>
@@ -35,7 +35,7 @@ CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffer
      <desc><P>These programmes can be used to read disks into disk images and
 write the images back into disks. These files are linked from the
 <A HREF="@CBMARC@/pet/archivers/index.html">CBM archive</A> (except for the listings).</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
 <TR><TD>Read image</TD><TD><A HREF="@CBMARC@/pet/archivers/dsk2file.prg">dsk2file.prg</A></TD><TD><A HREF="dsk2file.lst">dsk2file.lst</A></TD><TD>A BASIC/ML program to convert any CBM disk to a dump file (like VC1541 disk to .d64) for a PET or C64.
  The dump file should be written to a device larger than the dumped disk (although the program can be tailored to split an image).</TD></TR>
@@ -46,7 +46,7 @@ write the images back into disks. These files are linked from the
   </section>
 
   <section toc="other" name="Other Utilities">
-     <desc><TABLE BORDER="1">
+     <desc><TABLE BORDER="1" class="content">
 <TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
 <TR><TD>diskcopy</TD><TD><A HREF="diskcopy.zip">diskcopy.zip</A></TD><TD></TD><TD>Diskcopy by <a href="http://www.baltissen.org">Ruud Baltissen</a> copies a disk from one drive to another.</TD></TR>
 </TABLE>

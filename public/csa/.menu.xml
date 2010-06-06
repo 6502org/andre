@@ -59,4 +59,5 @@
 <li class="file"><img src="%xup%imgs/file.png"/><a href="%up%emu/index.html">VICE emu of CS/A65</a>
 </li>
 <li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
+<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../cbmhw/petcsa/index.html">PET CS/A adapter</a></li>
 </ul>

@@ -72,7 +72,7 @@ header and block is different between the two, so that they
 are only read compatible (<A HREF="writegap.html">Read more</A>).
 </P>
 <P>Here is a list of disk drives for the Commodore PET</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH COLSPAN="4">Commodore IEEE-488 5.25" models</TH></TR>
 <TR><TD>2040</TD><TD>DOS1.0/DOS1.2</TD><TD>DOS1.0 contained bugs, most have been updated to DOS1.2, later models shipped with DOS1.2; 670 blocks free</TD><TD ROWSPAN="2">Many of these drives have later been updated to DOS2</TD></TR>
 <TR><TD>3040</TD><TD>DOS1.2</TD><TD>European 2040, like the 3000 series PET</TD></TR>
@@ -85,14 +85,14 @@ are only read compatible (<A HREF="writegap.html">Read more</A>).
 <P>The "LP" versions were "Low Profile" versions. Which means that while the other drives were delivered in the old "boat anchor" design with full height drives, the LP versions came in 1541-like (SFD-1001) design or even in a very slick low profile case for the 8250LP. You can see them in the <A HREF="gallery/index.html">drive gallery</A>.</P>
 
 <P>Commodore even sold 8" disk drives...</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH COLSPAN="3">Commodore IEEE-488 8" models</TH></TR>
 <TR><TD>8060</TD><TD>DOS1.x</TD><TD>750 kByte</TD><TD>(little info on this one...)</TD></TR>
 <TR><TD>8061</TD><TD>DOS1.x</TD><TD>1500 kByte?</TD><TD>(little info on this one...)</TD></TR>
 <TR><TD>8280</TD><TD>DOS3.x?</TD><TD>1 MB or 512k per Drive</TD><TD> (little info on this one...)</TD></TR>
 </TABLE>
 <P>... and harddisks for the PETs.</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH COLSPAN="3">Commodore IEEE-488 Hard Disk Drives</TH></TR>
 <TR><TD>9060</TD><TD>DOS?</TD><TD>5 MByte</TD><TD>Hard Disk Unit</TD></TR>
 <TR><TD>9090</TD><TD>DOS?</TD><TD>7.5 MByte</TD><TD>Hard Disk Unit</TD></TR>

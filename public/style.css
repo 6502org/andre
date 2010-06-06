@@ -1,4 +1,17 @@
 
+/****************************************************************************************************
+ *
+ * style.css 
+ *
+ * (c) 2010 A. Fachat
+ *
+ * All rights reserved!
+ */
+
+/****************************************
+ *  global 
+ */
+
 BODY {
  /* non CSS3 browsers */
  background-color: #888;
@@ -17,7 +30,7 @@ BODY {
  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 */
 
 	font-family: "Arial","Sans Serif";
-	font-size: 80%;
+	font-size: 100%;
 }
 
 a:visited { color:#000080; text-decoration:none }
@@ -26,16 +39,18 @@ a:active { color:#8888ff; text-decoration:none }
 a:focus { color:#888888; text-decoration:none }
 a:hover { color:#ff0000; text-decoration:none }
 
+/* top level style */
 DIV.top {
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  background-color: #ffffff; 
-  margin: 0;
-  margin-top: 0em;
-  margin-bottom: 0.6em;
-  padding: 1em;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	background-color: #ffffff; 
+  	margin: 0;
+  	margin-top: 0em;
+  	margin-bottom: 0.6em;
+  	padding: 1em;
 }
 
+/* left/right cols have headers in the top level style */
 DIV.tophead {
  	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
@@ -57,9 +72,48 @@ DIV.tophead {
 	padding-right: 2em;
 }
 
+/*
+DIV.overview {
+	font-size:larger;
+	font-weight:bold;
+	background-color: #ffdddd;
+}
+*/
+
+P.copyright {
+	font-size:larger;
+	font-weight:bold;
+}
+
+.quote {
+	font-style: italic;
+}
+
+LI.extlink {
+	list-style-position: outside;
+	list-style-image:url(imgs/icon_extlink.jpg);
+}
+
+A.extlink {
+    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
+    	padding-right: 16px;
+}
+
+H2 {
+	border-top: 2px solid;
+}
+
+/****************************************
+ * Layout
+ */
+
 DIV#mainbox {
    padding-top: 1em;
 }
+
+/****************************************
+ * parts of mainbox 
+ */
 
 DIV#midcol {
   margin: 0;
@@ -85,6 +139,10 @@ DIV#rightcol {
   display: block;
 }
 
+/****************************************
+ * visible top level elements, parts of columns
+ */
+
 DIV#oldnews {
 	height: 50em;
 	overflow: scroll;
@@ -97,6 +155,7 @@ DIV#oldnews {
 DIV#browser {
   display: block;
 }
+
 DIV#breadcrumbs {
   display: block;
 }
@@ -111,10 +170,11 @@ DIV#footer {
 }
 
 
-/********************** Menu formatting *********************/
+/****************************************
+ * Menu formatting
+ */
 
 DIV#menu {
-  /*padding-left: 0.5em;*/
   padding-left: 1em;
   padding-right: 1em; 
   font-size:larger;
@@ -129,9 +189,9 @@ div#filter {
 }
 
 DIV#filter img {
-  width: 1.9em;
+  width: 2em;
   padding: 0.1em;
-  padding-left: 0;
+  padding-left: 0.2em;
   margin-bottom: -0.7em;
 }
 
@@ -147,13 +207,13 @@ DIV#mtree li {
   margin-top: 0.3em;
 }
 
-div#mtree a:hover { 
-  background-color:#ff0; 
-}
-
 div#mtree a { 
   margin-left: 1.7em;
   display:block;
+}
+
+div#mtree a:hover { 
+  background-color:#ff0; 
 }
 
 DIV#mtree img {
@@ -175,36 +235,23 @@ div#mtree A.mcurrent {
   background-color: #ddd;
 }
 
-/****************** End Menu formatting *********************/
-
-TABLE {
-	font-size: 90%;
-}
-
-TH {
-	background-color: #dddddd;
-}
-
-TD.noteicon {
-	vertical-align:top;
-	text-align:center;
-	padding:5px;
-}
-
 /*
-TABLE.notes TR {
-	background-color: #eeeeee;
+IMG.menuovlp {
+	width: 0.6em;
+	/*margin-left: -3em;*
+	margin-right: 0.2em;
+}
+
+IMG.menuovlm {
+	width: 0.6em;
+	/*margin-left: -3em;*
+	margin-right: 0.2em;
 }
 */
 
-H2 {
-	border-top: 2px solid;
-}
-
-ul.quickfinder li {
-	padding-top: 0.3em;
-}
-
+/****************************************
+ * right side floating elements
+ */
 
 .rightimg {
 	float:right;
@@ -222,10 +269,6 @@ ul.quickfinder li {
 	padding: 5px;
 }
 
-.quote {
-	font-style: italic;
-}
-
 DIV.rightbar {
   border-style: solid;
   border-width: 2px;
@@ -237,39 +280,44 @@ DIV.rightbar {
   font-size:smaller;
 }
 
-DIV#content table {
-	width:auto;
+/****************************************
+ * board-related styles
+ */
+
+/* used on the boards, for "note_*" icond */
+TD.noteicon {
+	vertical-align:top;
+	text-align:center;
+	padding:5px;
 }
 
-
-
-
 /*
-DIV.overview {
-	font-size:larger;
-	font-weight:bold;
-	background-color: #ffdddd;
+TABLE.notes TR {
+	background-color: #eeeeee;
 }
 */
 
-P.copyright {
-	font-size:larger;
-	font-weight:bold;
+/****************************************
+ * main entry page (quickfinder)
+ */
+
+ul.quickfinder li {
+	padding-top: 0em;
 }
 
-LI.hw {
+ul.quickfinder LI.hw {
 	list-style-image:url(imgs/icon_hw.jpg);
         margin-left:50px;
 }
-LI.sw {
+ul.quickfinder LI.sw {
 	list-style-image:url(imgs/icon_sw.jpg);
         margin-left:50px;
 }
-LI.cbm {
+ul.quickfinder LI.cbm {
 	list-style-image:url(imgs/icon_cbm.jpg);
         margin-left:50px;
 }
-LI.icap {
+ul.quickfinder LI.icap {
 	list-style-image:url(imgs/icon_icap.jpg);
         margin-left:50px;
 }
@@ -277,20 +325,16 @@ UL.quickfinder LI.subitem {
 	list-style-image:none;
         margin-left:-40px;
 }
+
 LI.subitem {
 	list-style-position: outside;
-	/*margin-left:18px;*/
+	margin-top:0.5em;
+	margin-bottom:0.5em;
 }
 
-LI.extlink {
-	list-style-position: outside;
-	list-style-image:url(imgs/icon_extlink.jpg);
-}
-
-A.extlink {
-    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
-    	padding-right: 16px;
-}
+/****************************************
+ * news formatting
+ */
 
 UL.news {
 	list-style-image:url(imgs/news.gif);
@@ -302,17 +346,9 @@ LI.hotnews {
 	list-style-image:url(imgs/hotnews.gif);
 }
 
-IMG.menuovlp {
-	width: 0.6em;
-	/*margin-left: -3em;*/
-	margin-right: 0.2em;
-}
-
-IMG.menuovlm {
-	width: 0.6em;
-	/*margin-left: -3em;*/
-	margin-right: 0.2em;
-}
+/****************************************
+ * Interview formatting
+ */
 
 DIV.interview {
 	margin-left:1em;
@@ -329,39 +365,9 @@ DIV.interview .other {
 	font-weight:bold;
 }
 
-/*
-LI.homepage {
-	list-style-image:url(imgs/dir.png);
-	font-size:large;
-}
-
-LI.file {
-	list-style-image:url(imgs/file.png);
-}
-
-LI.link {
-	list-style-image:url(imgs/link.png);
-}
-
-LI.dir {
-	list-style-image:url(imgs/dir.png);
-}
-*/
-LI.openfile {
-	list-style-image:url(imgs/openfile.png);
-}
-
-table.content {
-	text-align:center;
-	empty-cells:show;
-	margin:5px;
-}
-table.content td {
-	padding:3px;
-}
-table.content th {
-	padding:5px;
-}
+/****************************************
+ * memory map table
+ */
 
 table.memmap {
 	text-align:center;
@@ -376,4 +382,31 @@ table.memmap th {
 	width:14mm;
 	padding:5px;
 }
+
+/****************************************
+ * general table formatting
+ */
+
+div#content table {
+	font-size: 100%;
+	width:auto;
+}
+
+
+div#content th {
+	background-color: #dddddd;
+}
+
+table.content {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.content td {
+	padding:3px;
+}
+table.content th {
+	padding:5px;
+}
+
 

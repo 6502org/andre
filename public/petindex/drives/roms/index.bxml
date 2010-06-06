@@ -21,7 +21,7 @@
   <section toc="comp" name="Comparison">
      <desc><P>Here is a comparison table for the different DOS versions (Based on information from this <A HREF="../local/drive_info.txt">drive_info.txt</A> that comes with the <A HREF="http://vice-emu.sourceforge.net/">VICE</A> emulator
 </P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH>Model</TH><TH>1541</TH><TH>2031/4031</TH><TH>2040/3040</TH><TH>4040</TH><TH>8050</TH><TH>8250/1001</TH></TR>
 <TR><TD>DOS version(s)</TD><TD>2.6</TD><TD>2.6</TD><TD>1.0/1.2</TD><TD>2.1/2.7</TD><TD>2.5/2.7</TD><TD>2.7</TD></TR>
 <TR><TD>Disk format(s)</TD><TD>'2A'</TD><TD>'2A'</TD><TD>'  '</TD><TD>'2A'</TD><TD>"2C"</TD><TD>"2C"</TD></TR>
@@ -44,7 +44,7 @@
 <TR><TD>Revolutions/minute</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD><TD>300</TD></TR>
 </TABLE>
 <P>The following table denotes the speed zones for the different formats:</P>
-<TABLE BORDER="1">
+<TABLE BORDER="1" class="content">
 <TR><TH COLSPAN="4">Number of sectors per track</TH></TR>
 <TR><TD>2040/3040 DOS1.x</TD><TD>1540/1541/4040</TD><TD>8050</TD><TD>8250</TD></TR>
 <TR>

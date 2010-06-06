@@ -16,7 +16,7 @@ f progmod.html Hardware programming
 f roms.html ROM descriptions
 f crtc.html CRTC operation
 s Quirks
-f poke.html Killer poke
+d poke Killer poke
 f repairs.html Repairing the PET
 s Links
 f hw.html Hardware projects

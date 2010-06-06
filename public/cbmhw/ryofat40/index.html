@@ -84,8 +84,8 @@
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
-<div><form method="get" action="http://www.google.com/search">
-<input type="text" name="q" size="20" maxlength="255" value=""><input type="submit" value="Search my site"> (Google)
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
@@ -168,7 +168,7 @@
     </p>
 <ul>
 <li>
-<strong>Board Settings</strong><br><br><p><p>
+<strong>Board Settings</strong><p><p>
 	This section describe the CS/A65 boards making up the PET 4032.
 	Here is a <a href="fat40.jpg">picture</a> of the three boards on 
 	a backplane. Note the separate cable between the VDC and the 
@@ -193,27 +193,24 @@
 	<br>You can see the jumpers in this <a href="petcpu.jpg">picture</a>.
 	Please note that this is jumpered for 2MHz, and the RAM is missing -
 	as the RAM is setup to be used from the video board.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="../../csa/petio/index.html">PETIO board</a> 
 	On the PETIO board only the "special features" must be
 	switched off, especially the IEEE488 slave mode feature, as the
 	ROM does not handle this, as well as the EOI must be located
 	at its original place on the keyboard PIA.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="../../csa/vdc/index.html">Video board</a> 
 	The video board must be set to the memory area $01****. Otherwise
 	it should best be a 1.4 version, as the control port is reset
 	with /RES and needs not be set by the ROM.
-     <br><br>
-</li>
+     </li>
 </ul>
 </li>
-<br><li>
-<strong>ROMs</strong><br><br><p><p>
+<li>
+<strong>ROMs</strong><p><p>
 	In this section you can find the ROMs for the PET. They basically
 	are the original PET ROMs, only that I have modified the 
 	CRTC timing parameters. Please note that the 2MHz (8032) version
@@ -224,16 +221,13 @@
 <li class="subitem">
 <a href="roms/pet-fat40-1mhz-n.bin">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="roms/pet-8032-2mhz-b.bin">8032 business keyboard 2MHz</a> 
 	This 2MHz version is experimental. As the VDC board can only do 80 columns with 2MHz bus frequency, no 8032 with 1MHz is possible.
-     <br><br>
-</li>
+     </li>
 </ul>
 </li>
-<br>
 </ul>
 <h2>Caspaer Setup</h2>
 <p>This section contains a description of a setup
@@ -242,7 +236,7 @@
 	</p>
 <ul>
 <li>
-<strong>Board Settings</strong><br><br><p><p>
+<strong>Board Settings</strong><p><p>
 	This section describe the CS/A65 boards making up the PET 4032
 	in a setup with the CPU+BIOS board combination. 
 	Please note that the separate cable between the VDC and the 
@@ -257,24 +251,21 @@
 	the MMU at $eff*, so the board must be set to an I/O area of
 	2k from $E800-$EFFF and the MMU to $EFF*. By modifying the patch
 	other values are possible.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="../../csa/bios/index.html">BIOS board</a> 
 	The BIOS must be set that the ROM as described below
 	is found at $08000-$0FFFF so that the CPU boots from it.
 	The RAM should be on $00000-$07FFF.
-     <br><br>
-</li>
-<li>
+     </li>
+<li class="subitem">
 <strong>PETIO and VDC boards</strong>: 
 	Please use the same settings as described above.
-     <br><br>
-</li>
+     </li>
 </ul>
 </li>
-<br><li>
-<strong>ROMs</strong><br><br><p><p>
+<li>
+<strong>ROMs</strong><p><p>
 	The ROMs are basically the same ROMs as above, i.e. including
 	the modified CRTC timing parameters.
 	In addition, the CPU must set the MMU and BIOS board to correct
@@ -290,29 +281,24 @@
 <li class="subitem">
 <a href="roms/pet-fat40-1mhz-n-mmu.bin">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output in the MMU version.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="roms/pet-fat40-1mhz-n-mmu+mon.bin">Fat40 4032 graphics keyboard 1MHz @MON</a> 
 	This is the same ROM as above, only that it includes a PET version
 	of the <a href="../../misc/index.html">@MON</a> machine language
 	monitor at $A000, to start with "SYS 40960".
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="roms/csabiospet2mhz_n_ieee.bin">Fat40 8032 graphics keyboard 2MHz @MON</a> 
 	This is the same ROM as above, with the patched IEEE488 and video timing to run at 2MHz.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="mmu.diff">ROM diff</a> This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
-     <br><br>
-</li>
+     </li>
 <li class="subitem">
 <a href="initcsa.a65">Patch source</a> This is the source for the ROM patch (excluding the modified reset vector.
-     <br><br>
-</li>
-<li>
+     </li>
+<li class="subitem">
 <strong>IEEE488 patch</strong>: This is the IEEE488 patch that makes the IEEE488 work at 2Mhz (beta).
 	<pre>
 	*=$f0d8
@@ -326,11 +312,9 @@ l1      sec
         lda $e840
         rts
 	</pre>
-     <br><br>
-</li>
+     </li>
 </ul>
 </li>
-<br>
 </ul>
 <h2>Disclaimer</h2>
 <p>
