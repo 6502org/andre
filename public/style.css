@@ -108,6 +108,7 @@ H2 {
 
 DIV#mainbox {
    padding-top: 1em;
+   font-size: medium;
 }
 
 /****************************************
@@ -122,6 +123,7 @@ DIV#midcol {
   margin-left: 17.5em;
   margin-right: 16.6em;
 /*  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+  font-size:small;
 }
 
 DIV#leftcol {
@@ -138,7 +140,7 @@ DIV#rightcol {
   width: 15%;
   margin: 0; 
   padding: 0;
-  font-size:smaller;
+  font-size:x-small;
   display: block;
 }
 
@@ -152,6 +154,7 @@ DIV#oldnews {
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
+ /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	width: 17.0em;
 }
 
@@ -188,7 +191,7 @@ A.m_homepage {
 
 div#filter {
   margin-bottom: 1em;
-  font-size:75%;
+  font-size:x-small;
 }
 
 DIV#filter img {
@@ -198,21 +201,21 @@ DIV#filter img {
   margin-bottom: -0.3em;
 }
 
+
 DIV#mtree ul {
   list-style-type:none;
   padding-left: 1em;
   margin-left: 0em;
-  font-size:90%;
 }
 
 DIV#mtree li {
   margin-bottom: 0.2em;
   margin-top: 0.3em;
-  font-size:90%;
+  font-size:small;
 }
 
 div#mtree a { 
-  margin-left: 1.7em;
+  margin-left: 0em;
   display:block;
 }
 
@@ -226,9 +229,16 @@ DIV#mtree img {
   width: 1.4em;
 }
 
+* html div#mtree a {
+  display: inline-block;
+  margin-left: 0.1em;
+}
+
+/*
 DIV#mtree li.file img {
   width: 1.4em;
 }
+*/
 
 div#mtree LI.separator {
   font-size:larger;
