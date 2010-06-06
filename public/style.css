@@ -204,8 +204,13 @@ DIV#filter img {
 
 DIV#mtree ul {
   list-style-type:none;
-  padding-left: 1em;
+  padding-left: 0em;
   margin-left: 0em;
+}
+
+/* only the first one has 0em padding-left, the others do indent */
+DIV#mtree ul ul {
+  padding-left: 1em;
 }
 
 DIV#mtree li {
