@@ -396,10 +396,12 @@ table.memmap {
 table.memmap td {
 	width:14mm;
 	padding:3px;
+	font-size:80%;
 }
 table.memmap th {
 	width:14mm;
 	padding:5px;
+	font-size:80%;
 }
 
 /****************************************
