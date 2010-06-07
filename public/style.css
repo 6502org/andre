@@ -29,7 +29,9 @@ BODY {
  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 */
  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 */
 
-	font-family: "Arial","Sans Serif";
+	/*font-family: "Arial","Sans Serif";*/
+	font-family: verdana,helvetica,arial,sans-serif;
+	font-size: 100%;
 }
 
 a:visited { color:#000080; text-decoration:none }
@@ -141,7 +143,7 @@ DIV#rightcol {
   margin: 0; 
   padding: 0;
   font-size:x-small;
-  display: block;
+  /*display: block;*/
 }
 
 /****************************************
@@ -216,12 +218,18 @@ DIV#mtree ul ul {
 DIV#mtree li {
   margin-bottom: 0.2em;
   margin-top: 0.3em;
-  font-size:small;
+  padding-top: 0.2em;
+  font-size:x-small;
 }
 
 div#mtree a { 
   margin-left: 0em;
   display:block;
+  font-size:xx-small;
+}
+
+div#mtree A.mcurrent {
+  background-color: #ddd;
 }
 
 div#mtree a:hover { 
@@ -234,6 +242,8 @@ DIV#mtree img {
   width: 1.4em;
 }
 
+/* IE handles display of float (image) in an LI differently
+ * so that the anchor must be inline-block instead of block */
 * html div#mtree a {
   display: inline-block;
   margin-left: 0.1em;
@@ -246,12 +256,8 @@ DIV#mtree li.file img {
 */
 
 div#mtree LI.separator {
-  font-size:larger;
+  font-size:x-small;
   font-weight:bold;
-}
-
-div#mtree A.mcurrent {
-  background-color: #ddd;
 }
 
 /*
