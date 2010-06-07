@@ -203,12 +203,14 @@ DIV#mtree ul {
   list-style-type:none;
   padding-left: 0em;
   margin-left: 0em;
+  margin-bottom: 0.5em;
   margin-top: 0.5em;
 }
 
 /* only the first one has 0em padding-left, the others do indent */
 DIV#mtree ul ul {
   padding-left: 1em;
+  margin-top: 0em;
 }
 
 DIV#mtree li {
@@ -221,7 +223,7 @@ DIV#mtree li {
 div#mtree a { 
   margin-left: 0em;
   display:block;
-  font-size:x-small;
+  font-size:small;
 }
 
 div#mtree A.mcurrent {
@@ -250,6 +252,7 @@ DIV#mtree img {
 }
 
 div#mtree LI.separator {
+  margin-top: 0.5em;
   font-size:x-small;
   font-weight:bold;
 }
