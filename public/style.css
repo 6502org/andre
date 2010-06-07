@@ -209,7 +209,7 @@ DIV#mtree ul {
 
 /* only the first one has 0em padding-left, the others do indent */
 DIV#mtree ul ul {
-  padding-left: 1em;
+  padding-left: 1.2em;
   margin-top: 0em;
 }
 
@@ -217,7 +217,7 @@ DIV#mtree li {
   margin-bottom: 0em;
   margin-top: 0em;
   padding-top: 0.2em;
-  font-size:x-small;
+  font-size:small;
 }
 
 div#mtree a { 
@@ -241,7 +241,7 @@ div#mtree A.m_homepage {
 DIV#mtree img {
   margin-right:0.1em;
   float:left;
-  width: 1.4em;
+  width: 1.3em;
 }
 
 /* IE handles display of float (image) in an LI differently
