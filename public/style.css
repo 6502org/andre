@@ -217,6 +217,7 @@ DIV#mtree li {
   margin-bottom: 0em;
   margin-top: 0em;
   padding-top: 0.2em;
+  padding-bottom: 0em;
   font-size:small;
 }
 
@@ -246,14 +247,23 @@ DIV#mtree img {
 }
 
 /* IE handles display of float (image) in an LI differently
- * so that the anchor must be inline-block instead of block */
+ * so that the anchor must be inline-block instead of block *
 * html div#mtree a {
   display: inline-block;
   margin-left: 0.1em;
 }
+*/
+
+/* IE handles display of float (image) in an LI differently
+ * so that the anchor must be inline-block instead of block */
+* html div#mtree li {
+  padding-bottom: 0.1em;
+  padding-top: 0.1em;
+}
+
 
 div#mtree LI.separator {
-  margin-top: 0.5em;
+  margin-top: 0.1em;
   font-size:x-small;
   font-weight:bold;
 }
