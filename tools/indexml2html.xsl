@@ -118,12 +118,12 @@
 	        </div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on
-		            <a href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a>
+		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a> (In new window)
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
-			<p>Discuss my site on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
 			<xsl:for-each select="//forum[@type='6502.org']">
-				<p>Discuss this page's content on <a href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+				<p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
 			</xsl:for-each>
 			<p>(Forum registration required to post)</p>
 		</div></div>

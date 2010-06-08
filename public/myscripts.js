@@ -50,8 +50,11 @@ function processMenu( target, data, loaded ) {
 		}
 		data = dumpArrayToString(spl, "", 0);
 
-		// append data (as string) to target
-		$(target).append(data);
+		if( $(target).children("ul").size() == 0) {
+			// it was not already loaded in the meantime
+			// append data (as string) to target
+			$(target).append(data);
+		}
 
 		bindMenu(target);
 		bindMinus(target);
@@ -66,7 +69,7 @@ function loadMenu( r, process ) {
 	var id = $(target).attr("id");
 	var path = getPathFromId(id);
 
-	ul = $(r).children("ul");
+	var ul = $(target).children("ul");
 	if ($(ul).size() == 0) {
 		$(r).children("img").attr("src", myUp + "imgs/dirload.gif");
 		// load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
