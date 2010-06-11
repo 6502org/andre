@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="PET CRTC 6545 test programs">
 <meta name="keywords" content="PET CRTC 6545">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../../advanced.css">
 <script src="../../../jquery-1.4.2.min.js"></script><script src="../../../myscripts.js"></script><script>myUp="../../../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>PET CRTC 6545 Test Programs</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../../../imgs/expand.png"><img id="collapse" src="../../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../../imgs/cancel.png">
@@ -71,20 +71,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -100,7 +106,7 @@
 <a href="../../../index.html">Homepage</a>
 &gt;&gt; <a href="../../index.html">ICs and Standards Info</a>&gt;&gt; <a href="../index.html">CRTC 6545/6845</a>&gt;&gt;  CBM PET test programs</DIV>
 <DIV class="top" ID="content">
-<h1>PET CRTC 6545 Test Programs</h1>
+<a name="topanchor"></a><h1>PET CRTC 6545 Test Programs</h1>
 <p class="copyright">(C)
 1999-2006 André  Fachat</p> 
 <div class="overview">
@@ -121,7 +127,8 @@ DO NOT RUN those programs! They are provided for educational purposes only! Ther
 	</p>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#crtc1">Vertical Retrace</a></li>
 <li><a href="#crtc3">Uncompensated HSync</a></li>
@@ -132,6 +139,7 @@ DO NOT RUN those programs! They are provided for educational purposes only! Ther
 </dir>
 </DIV>
 <h2><a name="crtc1">Vertical Retrace</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 Those two programs demonstrate the timing of the vertical retrace
@@ -185,6 +193,7 @@ _before_ the first screen cycle.
 </table>
 <ul></ul>
 <h2><a name="crtc3">Uncompensated HSync</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 This program moves the next-to-last line two character to the right.
@@ -215,6 +224,7 @@ line of digits with the distortion.
 </table>
 <ul></ul>
 <h2><a name="crtc4">Compensated HSync</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 Those two programs implement the side-shift by adjusting the 
@@ -251,6 +261,7 @@ use of IEEE488 during the demo (crashes :-(
 </table>
 <ul></ul>
 <h2><a name="crtc6">Chars per line</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 Those test programs demonstrate the rasterline timing with 
@@ -311,6 +322,7 @@ crtc9 then does the correct timing.
 </table>
 <ul></ul>
 <h2><a name="crtc10">Character Height</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 Those three programs try to change the character height in the next 
@@ -374,6 +386,7 @@ interrupt timing is not changed, so this works.
 </table>
 <ul></ul>
 <h2><a name="crtc13">Vertical boarders</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 This test one opens the vertical borders by writing a value into
@@ -402,6 +415,7 @@ a POKE 59520, 6: POKE 59521, 64 :-)
 </table>
 <ul></ul>
 <h2>Disclaimer</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="Adding an UART to a 6502">
 <meta name="keywords" content="6502 UART 16550 16450 C64">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>Adding an UART to a 6502</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -61,20 +61,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -91,7 +97,7 @@
 &gt;&gt;  <a href="index.html">6502 Hardware Bits
 </a>&gt;&gt;  UART serial interface</DIV>
 <DIV class="top" ID="content">
-<h1>Adding an UART to a 6502</h1>
+<a name="topanchor"></a><h1>Adding an UART to a 6502</h1>
 <p class="copyright">(C)
 1997-2010 André  Fachat</p> 
 <div class="overview">
@@ -110,7 +116,8 @@ ACIA in my C64 with the UART 16550A.
 </p>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#bus">Bus Differences</a></li>
 <li><a href="#schematics">Schematics</a></li>
@@ -122,6 +129,7 @@ ACIA in my C64 with the UART 16550A.
 </dir>
 </DIV>
 <h2><a name="bus">Bus Differences</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 The UART chips was designed for a different bus as the 6502, so there
 are differences in how to handle the chip. When I had a first look
@@ -153,6 +161,7 @@ information.  But then the UART has the already mentioned advantage of
 the FIFO, which makes it attractive.
     </p></p>
 <h2><a name="schematics">Schematics</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 When I was rebuilding my ACIA interface to a UART interface, I had to reuse
 some sockets and chips, because I didn't really want to build everything
@@ -173,6 +182,7 @@ I needed more circuitry from the decoder to manage the RD/WR handling.
 Well, one could surely think of something cleaner, but I wanted it quick...
     </p></p>
 <h2><a name="c64">Here's how it works in the C64</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 All pins from the SID are connected from the C64 SID socket to the SID
 socket on the daughterboard, except -CS (pin 8). This line is or'ed with
@@ -196,6 +206,7 @@ Phi2 then stops the access by invalidating the RD/WR lines when Phi2
 becomes inactive. This also is a reason for Phi2 being used as CS line.
     </p></p>
 <h2><a name="otherex">Another Example</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 I have also built a Dual UART card with two 16550A for my selfbuilt 6502
 computer, and there I used a similar approach.  I took a 74LS138, a
@@ -212,6 +223,7 @@ chips.
 </pre>
     </p></p>
 <h2><a name="sw">The Software</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 Now that you have the UART in your computer, you have to have some software
 to use it. I have also rewritten the C64 OS to use the UART as serial
@@ -249,6 +261,7 @@ the same program with an ACIA, even at 2400 baud, is completely useless
 due to lost characters.
 </p></p>
 <h2><a name="conclusion">Conclusion</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 The 16550A might not be the chip of choice for simple applications, where
 a high data rate is not necessary. But if you don't want to use the serial
@@ -257,6 +270,7 @@ better take an UART. Here you see a way to use the UART in 6502 based
 systems and how to program it.
 </p></p>
 <h2><a name="ref">References</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p> <p>
 Here are the schematics and source code for the interface</p>
 <ul>

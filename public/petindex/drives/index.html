@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="Commodore PET CBM ROM descriptions">
 <meta name="keywords" content="Commodore PET CBM ROM disk drives">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 <script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>PET index - Disk drives</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../../imgs/expand.png"><img id="collapse" src="../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../imgs/cancel.png">
@@ -98,20 +98,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -127,7 +133,7 @@
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CBM PETindex</a>&gt;&gt;  Disk drives</DIV>
 <DIV class="top" ID="content">
-<h1>PET index - Disk drives</h1>
+<a name="topanchor"></a><h1>PET index - Disk drives</h1>
 <p class="copyright">(C)
 1998-2010 André  Fachat</p> 
 <div class="overview">
@@ -146,7 +152,8 @@ units.
 </P>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#qf">Quickfinder</a></li>
 <li><a href="#capacity">Capacity</a></li>
@@ -155,6 +162,7 @@ units.
 </dir>
 </DIV>
 <h2><a name="qf">Quickfinder</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><UL>
 <LI>
 <A HREF="drives.html">Disk drive list</A>
@@ -185,6 +193,7 @@ units.
 </UL>
      </p>
 <h2><a name="capacity">Capacity</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>All in all, there were two major 5.25" disk formats for the PET series,
 the 35 track double density version with around 170 kByte and the 39/78 track quad density version with 512k/1M Byte free.
 Both major types are completely incompatible.
@@ -198,6 +207,7 @@ read compatible. You can read more about this <A HREF="writegap.html">here</A>.
 </P>
      </p>
 <h2><a name="blink">Disk drive error codes</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>The Commodore disk drives indicated hardware failures detected
 during boot with a blink code. Here's the meaning from the 8050/8250 service manual:
 </P>
@@ -276,6 +286,7 @@ On power up, the three LED's on the drive should blink. The drive LED's go off a
 If the LED's come on and stay on, the microprocessor UN1 is probably at fault. </P>
      </p>
 <h2><a name="misc">Other disk drive information</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.</P>
 <P>
 <A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.

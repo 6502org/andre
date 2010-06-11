@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="6502 o65 standard fileformat">
 <meta name="keywords" content="6502,standard,fileformat">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>o65 6502 binary relocation format v1.3</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -55,20 +55,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -84,7 +90,7 @@
 <a href="../index.html">Homepage</a>
 &gt;&gt;  O65 file format</DIV>
 <DIV class="top" ID="content">
-<h1>o65 6502 binary relocation format v1.3</h1>
+<a name="topanchor"></a><h1>o65 6502 binary relocation format v1.3</h1>
 <p class="copyright">(C)
 1997-2010 André  Fachat</p> 
 <div class="overview">
@@ -97,7 +103,8 @@ Block loading can be used and when there is no late-binding
 	</p>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#current">Current Version</a></li>
 <li><a href="#example">Example Code</a></li>
@@ -108,6 +115,7 @@ Block loading can be used and when there is no late-binding
 </dir>
 </DIV>
 <h2><a name="current">Current Version</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>The current version is version 1.3 in
 <a href="fileformat.html">fileformat.html</a>
 </p><p>
@@ -121,6 +129,7 @@ relocation has changed.
 </p>
     </p>
 <h2><a name="example">Example Code</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 In the file <a href="libloader.a65">libloader.a65</a> is a sample loader
 for the o65 file format in 6502 assembler. It is taken from the OS/A65 lib6502 code. It does not use the simple file format (as described by mode.11), but
@@ -138,12 +147,14 @@ hard hat.
 </p>
     </p>
 <h2><a name="o65ng">o65 Next Generation</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>Due to some requests to support other CPUs and "larger" systems, I have made an attempt to
 define a new, "v2" version of the o65 file format. It is far from complete, and open for discussion.
 You can find the working draft in <a href="fileformatng.html">fileformatng.html</a>.
 </p>
     </p>
 <h2><a name="dist">Distribution</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 The file format extension <quote>o65</quote> for a 6502 relocatable file format
 is copyrighted by me. It may be used by systems and applications without
@@ -153,6 +164,7 @@ the definitions stated in this document.
 </p>
     </p>
 <h2><a name="uses">Current uses</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 The <code>o65</code> file format is currently used in the following systems:
@@ -204,6 +216,7 @@ even for such CPUs as Z80 and 80286!</li>
 </p>
     </p>
 <h2><a name="disc">Disclaimer</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.

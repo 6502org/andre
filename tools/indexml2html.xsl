@@ -4,9 +4,33 @@
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
+<xsl:template name="h2toc">
+	<xsl:param name="hdr"/>
+	<xsl:param name="a"/>
+<xsl:choose>
+  <xsl:when test="$a">
+<h2><a name="{$a}"><xsl:value-of select="$hdr"/></a></h2>
+  </xsl:when>
+  <xsl:otherwise>
+<h2><xsl:value-of select="$hdr"/></h2>
+  </xsl:otherwise>
+</xsl:choose>
+<div class="toplink"><a href="#top">Top</a></div>
+</xsl:template>
+
+<!--xsl:template name="h2">
+	<xsl:param name="hdr"/>
+<h2><xsl:value-of select="$hdr"/></h2>
+<div class="toplink"><a href="#topanchor">Top</a></div>
+</xsl:template-->
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 <xsl:template name="toc">
 <DIV ID="toc">
-<H2>Table of content</H2>
+<xsl:call-template name="h2toc">
+	<xsl:with-param name="hdr">Table of content</xsl:with-param>
+</xsl:call-template>
 <dir>
 <xsl:for-each select="section|itemlist">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
@@ -47,16 +71,17 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="board">
-<HTML><HEAD>
+<html><head>
 	<xsl:call-template name="head"/>
-	<TITLE><xsl:value-of select="name"/></TITLE>
-</HEAD><xsl:text>
-</xsl:text><BODY>
+	<title><xsl:value-of select="name"/></title>
+</head><xsl:text>
+</xsl:text><body>
 <div id="mainbox">
+<a name="top"/>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 @BREAD@
-<DIV class="top" ID="content">
+<div class="top" ID="content">
 <xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
@@ -66,28 +91,37 @@
 <xsl:call-template name="toc"/>
 <xsl:apply-templates select="section"/>
 <xsl:if test="driver">
-<H2><A NAME="driver">Driver</A></H2>
+<xsl:call-template name="h2toc">
+  <xsl:with-param name="hdr">Driver</xsl:with-param>
+  <xsl:with-param name="a">driver</xsl:with-param>
+</xsl:call-template>
 <xsl:apply-templates select="driver"/>
 </xsl:if>
 <xsl:if test="rev">
-<H2><A NAME="boards">Board revisions</A></H2>
+<xsl:call-template name="h2toc">
+  <xsl:with-param name="hdr">Board revisions</xsl:with-param>
+  <xsl:with-param name="a">boards</xsl:with-param>
+</xsl:call-template>
 <xsl:apply-templates select="rev"/>
 </xsl:if>
 <xsl:if test="diagram">
-<H2><A name="blkdiag">Block diagram</A></H2>
+<xsl:call-template name="h2toc">
+  <xsl:with-param name="hdr">Block diagram</xsl:with-param>
+  <xsl:with-param name="a">blkdiag</xsl:with-param>
+</xsl:call-template>
 <img src="{diagram/file}" alt="block diagram"/>
 <xsl:apply-templates select="diagram/desc"/>
 </xsl:if>
 <xsl:apply-templates select="oldnews"/>
 <xsl:apply-templates select="disclaimer"/>
-<DIV ID="footer">
+<div ID="footer">
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
 @FOOTER@
-</DIV> <!-- footer -->
-</DIV> <!-- content -->
+</div> <!-- footer -->
+</div> <!-- content -->
 </div> <!-- midcol -->
 </div> <!-- mainbox -->
-</BODY></HTML>
+</body></html>
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -107,6 +141,12 @@
 		<!--div class="top" id="browser">
 			Site has been tested with Firefox 3.6, IE6, IE8, Opera 10 and Google Chrome 5 on Windows XP, as well as Firefox 3.5, Google Chrome 5 and konqueror 4.3.5 on (SuSE) Linux 11.2
 		</div-->
+		<div class="top" id="browser">
+			<div class="tophead">browser</div>
+			<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+		</div>
 	</div> <!-- leftcol -->
 	<div id="rightcol">
 	        <div class="top" id="google"><div class="tophead">search</div><div>
@@ -117,8 +157,8 @@
 	                </form>
 	        </div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a> (In new window)
+		            Follow my 8-bit tweets on<br/>
+		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a><br/> (In new window)
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
 			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
@@ -228,7 +268,7 @@
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 @BREAD@
-<DIV class="top" ID="content">
+<DIV class="top" ID="content"><a name="topanchor"/>
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">
@@ -246,7 +286,10 @@
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
-  <h2><xsl:call-template name="aname"/></h2>
+  <xsl:call-template name="h2toc">
+    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+    <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
+  </xsl:call-template>
   <xsl:apply-templates select="desc"/>
   <xsl:apply-templates select="subsection"/>
   <xsl:for-each select="items[item|subitem|file]">
@@ -312,7 +355,10 @@
 </xsl:template>
 
 <xsl:template match="oldnews">
- <h2><a name="oldnews">Old News:</a></h2>
+ <xsl:call-template name="h2toc">
+   <xsl:with-param name="hdr">Old News:</xsl:with-param>
+   <xsl:with-param name="a">oldnews</xsl:with-param>
+ </xsl:call-template>
  <ul class="oldnews">
  <xsl:for-each select="item[@state!='off']">
   <li>
@@ -325,8 +371,10 @@
 </xsl:template>
 
 <xsl:template match="disclaimer">
-    <h2><xsl:value-of select="@name"/></h2>
-    <p><xsl:copy-of select="*|text()"/></p>
+  <xsl:call-template name="h2toc">
+    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+  </xsl:call-template>
+  <p><xsl:copy-of select="*|text()"/></p>
 </xsl:template>
 
 <xsl:template match="closing">

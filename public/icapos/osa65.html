@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="6502 multitasking operating system design">
 <meta name="keywords" content="6502 operating system OS/A65 multitasking">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>OS/A65 - a Multitasking/Multithreading Operating System for 6502 computers</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -59,20 +59,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -89,7 +95,7 @@
 &gt;&gt;  <a href="index.html">Computer/OS Architecture
 </a>&gt;&gt;  OS/A65 Operating System</DIV>
 <DIV class="top" ID="content">
-<h1>OS/A65 - a Multitasking/Multithreading Operating System for 6502 computers</h1>
+<a name="topanchor"></a><h1>OS/A65 - a Multitasking/Multithreading Operating System for 6502 computers</h1>
 <p class="copyright">(C)
 1996-2006 André  Fachat</p> 
 <div class="overview">  
@@ -98,7 +104,8 @@
 	the <a href="../osa/index.html">GeckOS</a> operating system.
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#realos">What Should a Real OS Do?</a></li>
@@ -123,6 +130,7 @@
 </dir>
 </DIV>
 <h2><a name="intro">Introduction</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>
 In 1989, I first thought about building a self-designed computer.  I 
@@ -140,6 +148,7 @@ of key memory locations, including the 6502 zero-page and stack.
 </p>
     </p>
 <h2><a name="realos">What Should a Real OS Do?</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 A real operating system has four major parts that handle the 
 input/output, filesystems, memory management and process handling.  At 
@@ -297,6 +306,7 @@ to support drive operation.
 </p>
     </p>
 <h2><a name="design">Modern Kernel Design</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 Early operating systems started with a monolithic approach. i.e. all the 
 system functions were provided with one big binary. Modern UNIX systems- 
@@ -323,6 +333,7 @@ to allow any server to be replaced by another.
 </p>
     </p>
 <h2><a name="osa">The OS/A65 Operating System</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 Now let's get from theory to practice...
 </p>
@@ -469,6 +480,7 @@ C64 (see below).
 </p>
     </p>
 <h2><a name="nommu">Operating without an MMU</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 After the system worked well with an MMU, I decided to build a stripped 
 down version for systems without an MMU to better fit some `embedded 
@@ -493,6 +505,7 @@ running in opposite directions...
 </p>
     </p>
 <h2><a name="c64">Port to the C64</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 In addition to lacking an MMU, the Commodore 64 posed other porting 
 problems. Only small changes had to be made to the kernel.  The C64 
@@ -512,6 +525,7 @@ protected by a semaphore.
 </p>
     </p>
 <h2><a name="c128">Port to the C128</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 Well, the C128 has more memory and even the capability of remapping the 
 stack and zero page to other locations. In a simple expansion of the C64 
@@ -527,6 +541,7 @@ time.
 </p>
     </p>
 <h2><a name="conclusion">Conclusion</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 The OS/A65 operating system provides multitasking and multithreading 
 capabilities with a modern kernel design for a 6502 CPU. The OS can be 
@@ -540,6 +555,7 @@ it, more information is available at
 <a href="../osa/index.html">the GeckOS page</a></p>
     </p>
 <h2>Disclaimer</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

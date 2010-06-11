@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="Differences of CRTC models 6545 and 6845">
 <meta name="keywords" content="CRTC 6545 6845 differences">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 <script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>Differences of CRTC models</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../../imgs/expand.png"><img id="collapse" src="../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../imgs/cancel.png">
@@ -70,20 +70,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -100,7 +106,7 @@
 &gt;&gt; <a href="../index.html">ICs and Standards Info</a>&gt;&gt;  <a href="index.html">CRTC 6545/6845
 </a>&gt;&gt;  Differences between models</DIV>
 <DIV class="top" ID="content">
-<h1>Differences of CRTC models</h1>
+<a name="topanchor"></a><h1>Differences of CRTC models</h1>
 <p class="copyright">(C)
 1999-2006 André  Fachat</p> 
 <div class="overview">
@@ -124,7 +130,8 @@
 	</P>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#pinout">Pinout</a></li>
 <li><a href="#statusreg">Status Register</a></li>
@@ -143,10 +150,12 @@
 </dir>
 </DIV>
 <h2><a name="pinout">Pinout</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 	Although the pin naming is different, the pinout itself is the same for all chips, and all pins have the same meaning.
     </p>
 <h2><a name="statusreg">Status Register</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 	The Status register is read when the register select (RS) pin is low (when writing to this address, the index in the CRTC register file is written).
 	<pre>
@@ -182,6 +191,7 @@ Motorola 6845, 6845-1, Hitachi 46505
 	</pre>
     </p>
 <h2><a name="registers">Register File</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 	The following registers are basically the same for all chips (see notes):
 	<pre>
@@ -213,6 +223,7 @@ R17	Lightpen address low (8 bit)
 	Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
     </p>
 <h2><a name="regdiffs">The major differences in the register file</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 	The following items describe the major register file differences.
     </p>
@@ -313,6 +324,7 @@ Now lets explain certain features that are mentioned in the table.
 </li>
 </ul>
 <h2><a name="opmodes">Different Modes of Operation</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 	The following sections explain the different modes of operation
 	of the different models.
@@ -366,6 +378,7 @@ Interestingly the Commodore 8563 VDC chip used in the C128 computer seems to be 
 </li>
 </ul>
 <h2>Disclaimer</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

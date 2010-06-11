@@ -19,7 +19,7 @@ fi
 
 #echo "Run: " $0 $root $up $upn $parent
 
-function buildbread () {
+buildbread () {
 
 	#echo "buildbread rroot=" $1 ", level="$2 ", <p/>"
 

@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="PET index - 8x96">
 <meta name="keywords" content="Commodore PET CBM 8096 8296 8x96">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>PET index - 8x96</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -85,20 +85,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -115,7 +121,7 @@
 &gt;&gt;  <a href="index.html">CBM PETindex
 </a>&gt;&gt;  The 8096 and 8296 models</DIV>
 <DIV class="top" ID="content">
-<h1>PET index - 8x96</h1>
+<a name="topanchor"></a><h1>PET index - 8x96</h1>
 <p class="copyright">(C)
 1999-2010 André  Fachat</p> 
 <div class="overview">
@@ -129,7 +135,8 @@ In this document you find:
 </P>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#memmap">8x96 memory mapping</a></li>
 <dir><li><a href="#ctrl">Control Register</a></li></dir>
@@ -140,6 +147,7 @@ In this document you find:
 </dir>
 </DIV>
 <h2><a name="memmap">8x96 memory mapping</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>
 The 64k RAM of the 8096 can replace the upper 32k address range.
 The mapping is best depicted with this table
@@ -245,6 +253,7 @@ The screen is not write protected if screen peek through is enabled.
 When equal to 0, the addresses are not write protected.
 </PRE></p>
 <h2><a name="8296">8296 Information</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>
 The 8296 is a complete redesign of the PET universal board.
 It fits into the separate keyboard case, and directly holds
@@ -269,6 +278,7 @@ how the video circuitry works, that also shows how the memory is used.
 </P>
      </p>
 <h2><a name="8296d">8296D</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
 a single case. The disk drive is attached to the upper part of the
 case, underneath the monitor. Both, the computer and the drive
@@ -285,6 +295,7 @@ own voltage regulator etc as is the 8296 (without drive).
 </TR></TABLE>
      </p>
 <h2><a name="docs">Original Docs and LOS-96</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><P>There are some original documents available in electronic form
 (of course always looking for more):
 </P><UL>
@@ -300,6 +311,7 @@ image with the stuff.
 </UL>
      </p>
 <h2><a name="refs">References</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><ul>
 <li>
 <a class="extlink" href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">PLA replacement</a> with an EPROM (German).</li>

@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="Commodore PET CBM Hardware descriptions">
 <meta name="keywords" content="Commodore PET CBM Hardware">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>Commodore PET Programming Model</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -85,20 +85,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -115,7 +121,7 @@
 &gt;&gt;  <a href="index.html">CBM PETindex
 </a>&gt;&gt;  Hardware programming</DIV>
 <DIV class="top" ID="content">
-<h1>Commodore PET Programming Model</h1>
+<a name="topanchor"></a><h1>Commodore PET Programming Model</h1>
 <p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview">
@@ -124,7 +130,8 @@
   </p>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#memmap">Hardware Memory Map</a></li>
 <li><a href="#io">I/O Area</a></li>
@@ -148,6 +155,7 @@
 </dir>
 </DIV>
 <h2><a name="memmap">Hardware Memory Map</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <P>The memory map of the PET is pretty simple - if you do not consider
 the 8x96 and SuperPET models. We will therefore only discuss the models up
@@ -185,6 +193,7 @@ open address or the $E*** ROM iff it is 4k.</DD>
 </DL>
     </p>
 <h2><a name="io">I/O Area</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <P>The I/O area in general is 2k from $E800 to $EFFF. Used, however, is
 only one page ($E800-$E8FF). In the board #4 the I/O size has been reduced
@@ -368,6 +377,7 @@ blanks the displayed character for all scan lines above the 8th...
 </P>
 		</p>
 <h2><a name="extended">Extended Models</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <H3><a name="sp">SuperPET Models</a></H3>
 <p>
 <p>The SuperPET also known as <quote>MicroMainFrame 9000</quote>, esp. in Europe, has 
@@ -423,6 +433,7 @@ A full memory map of the CBM8296 is in this <A HREF="imgs/fullmemmap.gif">image<
 <ul><li class="subitem">
 <a href="8x96.html">8x96 Page</a> </li></ul>
 <h2><a name="links">Links</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>Links to information about the I/O area.</p>
 <H3><a name="petio">PET I/O</a></H3>
 <ul><li class="subitem">

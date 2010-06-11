@@ -16,7 +16,7 @@ if [ $# -ge 4 ]; then
    parent="$4";
 fi
 
-function print_disclaimer () {
+print_disclaimer () {
 	echo "All Copyrights are acknowledged."
 	echo "The information here is provided under the terms of the"
 	echo "GNU Public License version 2 unless noted otherwise."
@@ -33,7 +33,7 @@ function print_disclaimer () {
 #   to		- where to write the new file to
 #   key		- keyword
 #
-function doinsert1 () {
+doinsert1 () {
 	from="$1"
 	tox="$2"
 	key="$3"
@@ -48,7 +48,7 @@ function doinsert1 () {
 	rv=$?
 	return $rv
 }	
-function doinsert2 () {
+doinsert2 () {
 	from="$1"
 	tox="$2"
 	key="$3"
@@ -61,7 +61,7 @@ function doinsert2 () {
 		>> $tox
 }
 
-function buildbread () {
+buildbread () {
 
         #echo "buildbread myname = $1, rroot=" $2 ", level="$3 ", <p/>"
 

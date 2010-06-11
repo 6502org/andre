@@ -15,7 +15,7 @@
 #   to          - where to write the new file to
 #   key         - keyword
 #
-function doinsert1 () {
+doinsert1 () {
         from="$1"
         tox="$2"
         key="$3"
@@ -30,7 +30,7 @@ function doinsert1 () {
         rv=$?
         return $rv
 }
-function doinsert2 () {
+doinsert2 () {
         from="$1"
         tox="$2"
         key="$3"

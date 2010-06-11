@@ -1,19 +1,19 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="description" content="6502 multiprocessing operating system design">
 <meta name="keywords" content="6502 operating system multitasking multithreading multiprocessing">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
-
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
 <title>Context-Switching and Thread-Synchronization with a 6502</title>
 </head>
 <body><div id="mainbox">
-<div id="leftcol"><div id="menu" class="top">
+<div id="leftcol">
+<div id="menu" class="top">
 <div class="tophead">navigate</div>
 <div id="filter"><form action="#">
 <img id="expand" src="../imgs/expand.png"><img id="collapse" src="../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../imgs/cancel.png">
@@ -59,20 +59,26 @@
 </ul>
 
 </div>
-		</div></div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
 <div id="rightcol">
 <div class="top" id="google">
 <div class="tophead">search</div>
 <div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input type="submit" value="Search my site"><br>(Google, in new window)
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
 </form></div>
 </div>
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -89,7 +95,7 @@
 &gt;&gt;  <a href="index.html">Computer/OS Architecture
 </a>&gt;&gt;  6502 Multitasking</DIV>
 <DIV class="top" ID="content">
-<h1>Context-Switching and Thread-Synchronization with a 6502</h1>
+<a name="topanchor"></a><h1>Context-Switching and Thread-Synchronization with a 6502</h1>
 <p class="copyright">(C)
 2007-2007 André  Fachat</p> 
 <div class="overview">
@@ -113,7 +119,8 @@
 	</p>
   </div>
 <DIV ID="toc">
-<H2>Table of content</H2>
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#cswitch">Context switching</a></li>
@@ -146,6 +153,7 @@
 </dir>
 </DIV>
 <h2><a name="intro">Introduction</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 <p>In the beginning of computing computers had a single CPU,
 and could run a single program. Those computers, however, were quite
@@ -193,6 +201,7 @@ The diagram shows the relationship between processors, threads, and tasks.
 </p>
     </p>
 <h2><a name="cswitch">Context switching</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 <div class="rightimg" width="300px">Example for switching from userspace thread to kernel and back:
 <ol>
@@ -274,6 +283,7 @@ used a second CPU to handle the exception.</li>
 </ul>
 </p></p>
 <h2><a name="cswitch65">Context Switching with the 6502</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 The (NMOS) 6502 is a very old CPU. It has not been designed with multitasking
 in mind. It thus lacks the second essential requirement: it can not stop or 
@@ -306,6 +316,7 @@ position that has originally faulted.
 </ul>
 </p>
 <h2><a name="sync">Task and Thread Synchronization</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p><p>
 Running multiple threads and tasks in a system is only half fun if
 they can not communicate with each other. This communication is necessary
@@ -418,6 +429,7 @@ if another CPU modifies the same location.
 </p>
 </p>
 <h2><a name="sync65">Thread Synchronization with the 6502</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 Again the (NMOS) 6502 not been designed with multitasking
 in mind. Although it does have read-modify-write operations (the rotate
@@ -448,6 +460,7 @@ effort though.
 </p>
 </p>
 <h2><a name="summary">Summary</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 In this article I have given a brief summary on context switching and
 task synchronization and what type of hardware support is required to
@@ -456,6 +469,7 @@ is possible even with the original 6502 to implement the basic functionality
 required.
 </p>
 <h2><a name="links">Links</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <ul>
 <li class="subitem">
 <a href="http://en.wikipedia.org/wiki/Computer_multitasking">[1] Wikipedia on multitasking</a> </li>
@@ -483,6 +497,7 @@ required.
 <a href="http://www.65xx.com/wdc/w65c816s.cfm">[12] The 65816</a> </li>
 </ul>
 <h2>Disclaimer</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
