@@ -312,6 +312,8 @@ function setupFilter() {
 
 // do the actual init
 function doInit() {
+	// filter is only usable with javascript, so hidden by default
+	$("div#filter").show();
 	bindMenu($("div#menu"));
 	setupAjax();
 	setupFilter();
