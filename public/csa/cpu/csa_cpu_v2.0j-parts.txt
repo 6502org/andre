@@ -1,0 +1,55 @@
+Partlist
+
+C1       100n     
+C2       100n    
+C3       100n    
+C4       100n    
+C5       100n    
+C6       100n    
+C7       100n    
+C8       100n    
+C9       100n    
+C10      100n    
+C11      100n    
+C12      100n    
+C13      100n    
+C14      100n   
+C15      100n   
+C16      100n   
+C17      100n   
+C18      100n    
+C19      100n    
+C20      100n    
+C21      100n    
+C22      100n    
+C23      47u     
+C24      100n    
+IC1      74ALS245
+IC2      74ALS245
+IC3      74ALS245
+IC4      74LS293
+IC5      74ALS688
+IC6      74LS173
+IC7      74ALS04
+IC10     74ALS164
+IC11     74ALS02
+IC12     74ALS86
+IC13     74ALS245
+IC14     74ALS245
+IC15     74ALS688
+IC16     74ALS139
+IC17     74ALS245
+IC18     74ALS245
+IC19     74ALS08
+QG1      16MHz crystal oscillator module DIL14E
+R1       10k    
+R2       4k7   
+RN1      4k7  
+RN3      4k7 
+U$1      CSABUS   
+U$2      74LS610
+U$3      TL7705 
+U$4      TASTER  
+U1       CPU 6502 4MHz version
+
+ 

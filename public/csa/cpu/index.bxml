@@ -22,6 +22,22 @@
 		</desc>
 	</diagram>
 	<rev>
+		<version>2.0J</version>
+		<status>ok</status>
+		<note type="msg">
+			This version improves on the timing. 2Phi2 is now driven by the XOR, 
+			not the actual bus driver anymore. This does not make signal quality 
+			better but improves timing such that it is rock stable.
+			IC3 is now an 'ALS as well.
+		</note>
+		<file ltype="desc" ptype="txt">csa_cpu_v2.0h-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_cpu_v2.0h-parts.txt</file>
+		<file ltype="schem" ptype="esch">csa_cpu_v2.0j.sch</file>
+		<file ltype="schem" ptype="png">csa_cpu_v2.0j_sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_cpu_v2.0j.brd</file>
+		<file ltype="layout" ptype="png">csa_cpu_v2.0j_brd.png</file>
+	</rev>
+	<rev>
 		<version>2.0H</version>
 		<status>prototype</status>
 		<note type="msg">

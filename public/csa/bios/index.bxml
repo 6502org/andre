@@ -19,8 +19,50 @@ use a 16550 UART (with FIFO).
 		<desc>This diagram shows an overview on the board architecture</desc>
 	</diagram>
 	<rev>
-		<version>3.0B</version>
+		<version>3.0D</version>
 		<status>ok</status>
+		<note type="warn">
+			This board is definitely in for a re-layout, which will probably happen
+			during the next change (>= 3.1), although nothing's planned yet.
+		</note>
+		<note type="msg">
+			In this version the 512k RAM IC does not get the power supply from the 
+			VBuf line (which is 3.6V), but from the real 5V line. I have found that
+			using VBuf made the system unstable as the larger RAM needs much more power.
+			Also my prototype board required a separate MLC bypass capacitor soldered
+			between the Pins 16 and 32 of the RAM IC.
+		</note>
+		<note type="warn">
+			The RS232 problems noted in 3.0B may still be there as I did not change 
+			anything. Might be a problem with the power supply though, see RAM 
+			chip discussion above.
+		</note>
+		<note type="msg">The TTL parts mainly consist of the 'ALS (advanced
+			Low-Power Shottky) TTL types, except where available.
+		</note>
+		<file ltype="desc" ptype="esch">csa_bios_v3.0b-desc.txt</file>
+		<file ltype="schem" ptype="esch">csa_bios_v30d.sch</file>
+		<file ltype="schem" ptype="png">csa_bios_v3.0d_sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_bios_v3.0d.brd</file>
+		<file ltype="layout" ptype="png">csa_bios_v3.0d_brd.png</file>
+	</rev>
+	<rev>
+		<version>3.0C</version>
+		<status>ok (for 32k RAM)</status>
+		<note type="msg">
+			I have found stability problems with the 512k RAM version.
+			Looking into the datasheet of the used RAM it says that Ax must
+			be stable while /WE is low - so I gated /WE with Phi2. 
+			Didn't help though, see version 3.0D.
+		</note>
+		<file ltype="schem" ptype="esch">csa_bios_v3.0c.sch</file>
+		<file ltype="schem" ptype="png">csa_bios_v3.0c_sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_bios_v3.0c.brd</file>
+		<file ltype="layout" ptype="png">csa_bios_v3.0c_brd.png</file>
+	</rev>
+	<rev>
+		<version>3.0B</version>
+		<status>ok (for 32k RAM)</status>
 		<note type="msg">This is the new version of the board,
 			using larger (up to 512k) RAM and ROM sockets.
 			For this board also Eagle(tm) schematics and layout

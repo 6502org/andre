@@ -1,14 +1,15 @@
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
 <meta name="description" content="">
 <meta name="keywords" content="CSA65 6502 BIOS UART">
 <link rev="made" href="mailto:">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 <script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1">
+
 <title>CS/A65 BIOS</title>
 </head>
 <body><div id="mainbox">
@@ -175,19 +176,115 @@ use a 16550 UART (with FIFO).
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">3.0B</a> (ok)</li>
+<a href="#board1">3.0D</a> (ok)</li>
 <li>
-<a href="#board2">2.0B</a> (ok)</li>
+<a href="#board2">3.0C</a> (ok (for 32k RAM))</li>
 <li>
-<a href="#board3">1.x</a> (ok)</li>
+<a href="#board3">3.0B</a> (ok (for 32k RAM))</li>
+<li>
+<a href="#board4">2.0B</a> (ok)</li>
+<li>
+<a href="#board5">1.x</a> (ok)</li>
 </dir>
 <li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
 <h2><a name="boards">Board revisions</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<H3><A NAME="board1">Version: 3.0B</A></H3>
+<H3><A NAME="board1">Version: 3.0D</A></H3>
 <P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board is definitely in for a re-layout, which will probably happen
+			during the next change (&gt;= 3.1), although nothing's planned yet.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			In this version the 512k RAM IC does not get the power supply from the 
+			VBuf line (which is 3.6V), but from the real 5V line. I have found that
+			using VBuf made the system unstable as the larger RAM needs much more power.
+			Also my prototype board required a separate MLC bypass capacitor soldered
+			between the Pins 16 and 32 of the RAM IC.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			The RS232 problems noted in 3.0B may still be there as I did not change 
+			anything. Might be a problem with the power supply though, see RAM 
+			chip discussion above.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>The TTL parts mainly consist of the 'ALS (advanced
+			Low-Power Shottky) TTL types, except where available.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csa_bios_v3.0b-desc.txt">csa_bios_v3.0b-desc.txt</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v30d.sch">csa_bios_v30d.sch</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v3.0d_sch.png">csa_bios_v3.0d_sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0d.brd">csa_bios_v3.0d.brd</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0d_brd.png">csa_bios_v3.0d_brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 3.0C</A></H3>
+<P>Status: ok (for 32k RAM)</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			I have found stability problems with the 512k RAM version.
+			Looking into the datasheet of the used RAM it says that Ax must
+			be stable while /WE is low - so I gated /WE with Phi2. 
+			Didn't help though, see version 3.0D.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v3.0c.sch">csa_bios_v3.0c.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_bios_v3.0c_sch.png">csa_bios_v3.0c_sch.png</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0c.brd">csa_bios_v3.0c.brd</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_bios_v3.0c_brd.png">csa_bios_v3.0c_brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board3">Version: 3.0B</A></H3>
+<P>Status: ok (for 32k RAM)</P>
 <H4>Notes</H4>
 <TABLE class="notes">
 <TR>
@@ -245,7 +342,7 @@ use a 16550 UART (with FIFO).
 <TD><A HREF="csa_bios_v3.0b.jpg">csa_bios_v3.0b.jpg</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 2.0B</A></H3>
+<H3><A NAME="board4">Version: 2.0B</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -280,7 +377,7 @@ use a 16550 UART (with FIFO).
 <A HREF="csabios2.jpg">csabios2.jpg</A>(The ROM is currently missing)</TD>
 </TR>
 </TABLE>
-<H3><A NAME="board3">Version: 1.x</A></H3>
+<H3><A NAME="board5">Version: 1.x</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
