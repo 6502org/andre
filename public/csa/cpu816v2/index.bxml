@@ -191,8 +191,8 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		</note>
 		<file ltype="schem" ptype="esch">csa_cpu816-v2.0b.sch</file>
 		<file ltype="schem" ptype="png">csa_cpu816-v2.0b-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_cpu816-v2.0b.brd</file>
-		<file ltype="schem" ptype="png">csa_cpu816-v2.0b-brd.png</file>
+		<file ltype="layout" ptype="esch">csa_cpu816-v2.0b.brd</file>
+		<file ltype="layout" ptype="png">csa_cpu816-v2.0b-brd.png</file>
 		<file ltype="parts" ptype="txt">csa_cpu816-v2.0b.parts</file>
 		<file ltype="logic" ptype="vhd" note="CPLD VHDL source">csa_cpu816-v2.0b.vhd</file>
 		<file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">csa_cpu816-v2.0b.ucf</file>
@@ -208,7 +208,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		<file ltype="photo" ptype="png" note="Picture of the assembled board"></file>
 		<file ltype="schem" ptype="esch">csa_cpu816-v2.0a.sch</file>
 		<file ltype="schem" ptype="png">csa_cpu816-v2.0a-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_cpu816-v2.0a.brd</file>
-		<file ltype="schem" ptype="png">csa_cpu816-v2.0a-brd.png</file>
+		<file ltype="layout" ptype="esch">csa_cpu816-v2.0a.brd</file>
+		<file ltype="layout" ptype="png">csa_cpu816-v2.0a-brd.png</file>
 	</rev>
 </board>

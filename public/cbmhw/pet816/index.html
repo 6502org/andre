@@ -115,9 +115,10 @@
 
 <div class="overview">
 <p><p>
-			Finally I've made it! This the first version of the PET 65816 CPU card! It speeds up your PET to up to 12.5MHz
-			(at least that's the plan for the final stage, but it currently looks good!).
-			The board uses a 65816 CPU that runs at up to 12.5MHz, plus a Xilinx CPLD as logic glue. It includes
+			This a PET 65816 CPU card! It speeds up your PET to up to 8MHz.
+			In fact it's a 6502 replacement card and could be used in other 6502-based
+			computers as well.
+			The board uses a 65816 CPU that runs at up to 8MHz, plus a Xilinx CPLD as logic glue. It includes
 			up to 1MByte fast RAM (run at CPU speed) plus 512k parallel Flash ROM, that can be used as boot ROM.
 	</p>
 	<div class="rightimg">
@@ -129,14 +130,15 @@ parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is 
 a feature in these days.
 	</p><p>
 		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
-		easier to handle when you have to change things often. But it also now runs in the 8296. 
+		easier to handle when you have to change things often. But it also now runs in the CBM8296. 
 	</p><p>
 		The board has been tested with some simple tests. Copying data from slow to fast RAM and back, copying the 
 		PET ROM to the fast RAM "under" the ROM and switch to fast mode. Run code in fast RAM.
-		One test works in the CS/A board, but still fails in the
+		One of the test works only in the CS/A board, but still fails in the
 		8296 - copying the ROM to the RAM "under" the ROM seems to produce strange results. 
-		This might have to do with the fact that the I/O area in the 8296 is only 256 bytes long, or
-		with other parts of the "modern" architecture of the 8296. Tests with older PETs will follow.
+		This is actually due to the fact, that you should not overwrite the 8296's own
+		memory configuration register at $fff0...
+		Tests with older PETs will follow.
 	</p>
 	<div class="rightimg">
 <a href="pet816_proto.png"><img width="200" src="pet816_proto_small.png"></a><br>The PET816 board 
@@ -149,19 +151,33 @@ a feature in these days.
 	</p>
 </div>
 <h3>News:</h3>
-<ul class="news"><li>
+<ul class="news">
+<li>
+<small>2010-08-14</small>
+			New version of the board, now with board layout, and updated VHDL code.
+			Explanations still to come though.
+		</li>
+<li>
 <small>2010-04-20</small>
 			Published the board.
-		</li></ul>
+		</li>
+</ul>
 <DIV ID="toc">
 <h2>Table of content</h2>
 <div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#driver">Driver</a></li>
-<dir><li><a href="#driver1">Prototype tests</a></li></dir>
+<dir>
+<li><a href="#driver1">Prototype tests</a></li>
+<li><a href="#driver2">VHDL code</a></li>
+</dir>
 <li><a href="#boards">Board Revisions</a></li>
-<dir><li>
-<a href="#board1">1.0b</a> (prototype)</li></dir>
+<dir>
+<li>
+<a href="#board1">1.2a</a> (prototype)</li>
+<li>
+<a href="#board2">1.0b</a> (prototype)</li>
+</dir>
 </dir>
 </DIV>
 <h2><a name="driver">Driver</a></h2>
@@ -198,9 +214,25 @@ a feature in these days.
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. In the testbench directory, type 'make test2' to simulate the timing (requires linux with ghdl and gtkwave installed))</TD>
+<A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">VHDL code</A></H3>
+<p><p>
+			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
+		</p></p>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="PET816_1.5.tar.bz2">PET816_1.5.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+</TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
 <A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
@@ -208,7 +240,37 @@ a feature in these days.
 </TABLE>
 <h2><a name="boards">Board revisions</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<H3><A NAME="board1">Version: 1.0b</A></H3>
+<H3><A NAME="board1">Version: 1.2a</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board has been only barely tested
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.2a.sch">pet_cpu816-v1.2a.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.2a.brd">pet_cpu816-v1.2a.brd</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="pet_cpu816-v1.2a-sch.png">pet_cpu816-v1.2a-sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="pet_cpu816-v1.2a-brd.png">pet_cpu816-v1.2a-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.0b</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -236,7 +298,7 @@ All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
 <div ID="footer">
-<P>Last modified: 2010-04-20.</P>
+<P>Last modified: 2010-08-14.</P>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div>
