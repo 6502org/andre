@@ -15,6 +15,11 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2010-08-22">
+			Updated the <a href="vdc/index.html">VDC</a> and 
+			<a href="cpu/index.html">CPU</a> boards with versions with better layout
+			and in case of VDC a bug fixed.
+		</item>
 		<item date="2010-08-02">
 			Updated the <a href="bios/index.html">BIOS</a> and 
 			<a href="cpu/index.html">CPU</a> boards with versions with improved timing.

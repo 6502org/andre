@@ -190,11 +190,13 @@
 <li>
 <a href="#board2">Composite Video (pucoe) 1.0C</a> (ok)</li>
 <li>
-<a href="#board3">1.4A</a> (untested)</li>
+<a href="#board3">1.4B</a> (untested)</li>
 <li>
-<a href="#board4">1.3E</a> (prototype)</li>
+<a href="#board4">1.4A</a> (untested)</li>
 <li>
-<a href="#board5">1.3C</a> (prototype with bugs)</li>
+<a href="#board5">1.3E</a> (prototype)</li>
+<li>
+<a href="#board6">1.3C</a> (prototype with bugs)</li>
 </dir>
 <li><a href="#blkdiag">Block diagram</a></li>
 </dir>
@@ -325,7 +327,69 @@
 <A HREF="composite1.jpg">composite1.jpg</A>(This picture shows an older version without R2/R5)</TD>
 </TR>
 </TABLE>
-<H3><A NAME="board3">Version: 1.4A</A></H3>
+<H3><A NAME="board3">Version: 1.4B</A></H3>
+<P>Status: untested</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			The board has an improved layout on the 1.4A board, in that it 
+			has decent GND and VCC supply networks. Also it removes the delayed
+			/CAS input to /RAMWE, as this was a bug. The board also got a jumper
+			to set the external graphics character mode (for the PET emulation)
+			via control register. The input to IC14A is inverted, to avoid jitter 
+			in the SR load line (adds an inverter from IC15 into the input line)
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This layout is untested.
+		</TD>
+</TR>
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			Most of the TTL chips are 'ALS technology, but a few
+			have to be 'LS for timing requirements: IC9 is a
+			74LS245 so that the data read from the RAM is held
+			on the bus longer, as the CPU requires a certain
+			hold time of that data. IC21 is a 74ALS14(!) so that the
+			delay between /RAS and /CAS is still long enough.
+			IC9 may probably be an 'ALS04 as well, but never
+			change a running system... IC15 is a 74LS04.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD><A HREF="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_vdc_v1.4a-sch.png">csa_vdc_v1.4a-sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_vdc_v1.4a.sch">csa_vdc_v1.4a.sch</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_vdc_v1.4a-brd.png">csa_vdc_v1.4a-brd.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board4">Version: 1.4A</A></H3>
 <P>Status: untested</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -344,7 +408,7 @@
 <TR>
 <TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
 <TD>
-			This board is untested.
+			This layout is untested.
 		</TD>
 </TR>
 <TR>
@@ -388,7 +452,7 @@
 <TD><A HREF="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board4">Version: 1.3E</A></H3>
+<H3><A NAME="board5">Version: 1.3E</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -432,7 +496,7 @@
 <TD><A HREF="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board5">Version: 1.3C</A></H3>
+<H3><A NAME="board6">Version: 1.3C</A></H3>
 <P>Status: prototype with bugs</P>
 <H4>Notes</H4>
 <TABLE class="notes">

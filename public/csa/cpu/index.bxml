@@ -22,6 +22,24 @@
 		</desc>
 	</diagram>
 	<rev>
+		<version>2.0K</version>
+		<status>ok</status>
+		<note type="msg">
+			This version only improves the layout, in that it finally has decent
+			GND and VCC power supply networks. Otherwise unchanged from 2.0J.
+			Note that ICs should be 'ALS. I tried to use 'HCT drivers (the '245)
+			but they produced slightly different signals when the CPU was replaced
+			by the PET816 CPU card, which produced errors on the VDC access...
+			With 'ALS it seems to work. 
+		</note>
+		<file ltype="desc" ptype="txt">csa_cpu_v2.0h-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_cpu_v2.0h-parts.txt</file>
+		<file ltype="schem" ptype="esch">csa_cpu_v2.0k.sch</file>
+		<file ltype="schem" ptype="png">csa_cpu_v2.0k_sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_cpu_v2.0k.brd</file>
+		<file ltype="layout" ptype="png">csa_cpu_v2.0k_brd.png</file>
+	</rev>
+	<rev>
 		<version>2.0J</version>
 		<status>ok</status>
 		<note type="msg">

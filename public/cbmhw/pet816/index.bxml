@@ -3,7 +3,8 @@
 	<name>Commodore PET 65816 CPU card</name>
 	<keywords>Commodore PET 6502 65816 CPU</keywords>
         <lastmodified>2010-08-14</lastmodified>
-	<desc><p>
+        <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1573</forum>
+        <desc><p>
 			This a PET 65816 CPU card! It speeds up your PET to up to 8MHz.
 			In fact it's a 6502 replacement card and could be used in other 6502-based
 			computers as well.
@@ -64,10 +65,25 @@ a feature in these days.
 		<desc><p>
 			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
 		</p></desc>
+		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.7.tar.bz2</file>
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.5.tar.bz2</file>
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.0.tar.bz2</file>
 		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
         </driver>
+	<rev>
+		<version>1.2b</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board is an update on the 1.2A, and only contains a few small changes:
+			Two delay loops that can be used in the VHDL code have been added. Also
+			an "official" diagnostics pin has been added too, to get easy access to a 
+			signal "exported" from the CPLD.
+		</note>
+		<file ltype="schem" ptype="esch">pet_cpu816-v1.2b.sch</file>
+		<file ltype="schem" ptype="ebrg">pet_cpu816-v1.2b.brd</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2b-sch.png</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2b-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.2a</version>
 		<status>prototype</status>

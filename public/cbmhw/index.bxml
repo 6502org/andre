@@ -12,7 +12,10 @@
 	and devices for Commodore 8-bit computer.
   </overview>
   <news>
-    <item date="2010-08-11" state="hot">
+    <item date="2010-08-22" state="hot">
+        Again I have updated the <a href="pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card.
+    </item>
+    <item date="2010-08-11">
         I have updated the <a href="pet816/index.html">PET 65816 board</a>, to speed up the PET to 8MHz by replacing the 6502 with a 65816 card.
     </item>
     <item date="2010-05-11">

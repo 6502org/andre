@@ -19,7 +19,13 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
-    <item date="2010-08-11" state="hot">
+    <item date="2010-08-22" state="hot">
+        Again I have updated the <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card.
+    </item>
+    <item date="2010-08-22">
+	Improved the CS/A <a href="csa/vdc/index.html">VDC</a> and <a href="csa/cpu/index.html">CPU</a> boards with better layout and a bug fixed.
+    </item>
+    <item date="2010-08-11">
         I have updated the <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 8MHz by replacing the 6502 with a 65816 card.
     </item>
     <item date="2010-08-02">

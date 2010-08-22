@@ -172,22 +172,67 @@
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">2.0J</a> (ok)</li>
+<a href="#board1">2.0K</a> (ok)</li>
 <li>
-<a href="#board2">2.0H</a> (prototype)</li>
+<a href="#board2">2.0J</a> (ok)</li>
 <li>
-<a href="#board3">2.0G</a> (prototype with bugs)</li>
+<a href="#board3">2.0H</a> (prototype)</li>
 <li>
-<a href="#board4">1.3B</a> (ok)</li>
+<a href="#board4">2.0G</a> (prototype with bugs)</li>
 <li>
-<a href="#board5">1.2C</a> (ok)</li>
+<a href="#board5">1.3B</a> (ok)</li>
+<li>
+<a href="#board6">1.2C</a> (ok)</li>
 </dir>
 <li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
 <h2><a name="boards">Board revisions</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<H3><A NAME="board1">Version: 2.0J</A></H3>
+<H3><A NAME="board1">Version: 2.0K</A></H3>
+<P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_msg.gif" ALT="msg"></TD>
+<TD>
+			This version only improves the layout, in that it finally has decent
+			GND and VCC power supply networks. Otherwise unchanged from 2.0J.
+			Note that ICs should be 'ALS. I tried to use 'HCT drivers (the '245)
+			but they produced slightly different signals when the CPU was replaced
+			by the PET816 CPU card, which produced errors on the VDC access...
+			With 'ALS it seems to work. 
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_desc.gif" ALT="desc"></TD>
+<TD><A HREF="csa_cpu_v2.0h-desc.txt">csa_cpu_v2.0h-desc.txt</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_parts.gif" ALT="parts"></TD>
+<TD><A HREF="csa_cpu_v2.0h-parts.txt">csa_cpu_v2.0h-parts.txt</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_cpu_v2.0k.sch">csa_cpu_v2.0k.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_cpu_v2.0k_sch.png">csa_cpu_v2.0k_sch.png</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_cpu_v2.0k.brd">csa_cpu_v2.0k.brd</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_cpu_v2.0k_brd.png">csa_cpu_v2.0k_brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 2.0J</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -228,7 +273,7 @@
 <TD><A HREF="csa_cpu_v2.0j_brd.png">csa_cpu_v2.0j_brd.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 2.0H</A></H3>
+<H3><A NAME="board3">Version: 2.0H</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -297,7 +342,7 @@
 <TD><A HREF="csa_cpu_v2.0h-lay.png">csa_cpu_v2.0h-lay.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board3">Version: 2.0G</A></H3>
+<H3><A NAME="board4">Version: 2.0G</A></H3>
 <P>Status: prototype with bugs</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -345,7 +390,7 @@
 <A HREF="csa_cpu_v2.0g.jpg">csa_cpu_v2.0g.jpg</A>(Without CPU, to see the driver underneath)</TD>
 </TR>
 </TABLE>
-<H3><A NAME="board4">Version: 1.3B</A></H3>
+<H3><A NAME="board5">Version: 1.3B</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -383,7 +428,7 @@
 <TD><A HREF="cpu65wp.ps.gz">cpu65wp.ps.gz</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board5">Version: 1.2C</A></H3>
+<H3><A NAME="board6">Version: 1.2C</A></H3>
 <P>Status: ok</P>
 <H4>Notes</H4>
 <TABLE class="notes">

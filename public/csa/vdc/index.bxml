@@ -103,6 +103,37 @@
 		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
 	</rev>
 	<rev>
+		<version>1.4B</version>
+		<status>untested</status>
+		<note type="msg">
+			The board has an improved layout on the 1.4A board, in that it 
+			has decent GND and VCC supply networks. Also it removes the delayed
+			/CAS input to /RAMWE, as this was a bug. The board also got a jumper
+			to set the external graphics character mode (for the PET emulation)
+			via control register. The input to IC14A is inverted, to avoid jitter 
+			in the SR load line (adds an inverter from IC15 into the input line)
+		</note>
+		<note type="warn">
+			This layout is untested.
+		</note>
+		<note type="msg">
+			Most of the TTL chips are 'ALS technology, but a few
+			have to be 'LS for timing requirements: IC9 is a
+			74LS245 so that the data read from the RAM is held
+			on the bus longer, as the CPU requires a certain
+			hold time of that data. IC21 is a 74ALS14(!) so that the
+			delay between /RAS and /CAS is still long enough.
+			IC9 may probably be an 'ALS04 as well, but never
+			change a running system... IC15 is a 74LS04.
+		</note>
+		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
+		<file ltype="schem" ptype="png">csa_vdc_v1.4a-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_vdc_v1.4a.sch</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4a-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4a.brd</file>
+	</rev>
+	<rev>
 		<version>1.4A</version>
 		<status>untested</status>
 		<note type="msg">
@@ -115,7 +146,7 @@
 			can implement any better composite generation.
 		</note>
 		<note type="warn">
-			This board is untested.
+			This layout is untested.
 		</note>
 		<note type="msg">
 			Most of the TTL chips are 'ALS technology, but a few

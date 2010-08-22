@@ -102,6 +102,7 @@
 <div class="tophead">discuss</div>
 <div>
 <p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=1573"> this 6502.org forum thread</a></p>
 <p>(Forum registration required to post)</p>
 </div>
 </div>
@@ -174,9 +175,11 @@ a feature in these days.
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
 <li>
-<a href="#board1">1.2a</a> (prototype)</li>
+<a href="#board1">1.2b</a> (prototype)</li>
 <li>
-<a href="#board2">1.0b</a> (prototype)</li>
+<a href="#board2">1.2a</a> (prototype)</li>
+<li>
+<a href="#board3">1.0b</a> (prototype)</li>
 </dir>
 </dir>
 </DIV>
@@ -225,14 +228,19 @@ a feature in these days.
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.5.tar.bz2">PET816_1.5.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+<A HREF="PET816_1.7.tar.bz2">PET816_1.7.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+<A HREF="PET816_1.5.tar.bz2">PET816_1.5.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+</TR>
+<TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
 <A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
@@ -240,7 +248,40 @@ a feature in these days.
 </TABLE>
 <h2><a name="boards">Board revisions</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<H3><A NAME="board1">Version: 1.2a</A></H3>
+<H3><A NAME="board1">Version: 1.2b</A></H3>
+<P>Status: prototype</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD class="noteicon"><IMG SRC="../../imgs/note_warn.gif" ALT="warn"></TD>
+<TD>
+			This board is an update on the 1.2A, and only contains a few small changes:
+			Two delay loops that can be used in the VHDL code have been added. Also
+			an "official" diagnostics pin has been added too, to get easy access to a 
+			signal "exported" from the CPLD.
+		</TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.2b.sch">pet_cpu816-v1.2b.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="pet_cpu816-v1.2b.brd">pet_cpu816-v1.2b.brd</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="pet_cpu816-v1.2b-sch.png">pet_cpu816-v1.2b-sch.png</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="pet_cpu816-v1.2b-brd.png">pet_cpu816-v1.2b-brd.png</A></TD>
+</TR>
+</TABLE>
+<H3><A NAME="board2">Version: 1.2a</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
@@ -270,7 +311,7 @@ a feature in these days.
 <TD><A HREF="pet_cpu816-v1.2a-brd.png">pet_cpu816-v1.2a-brd.png</A></TD>
 </TR>
 </TABLE>
-<H3><A NAME="board2">Version: 1.0b</A></H3>
+<H3><A NAME="board3">Version: 1.0b</A></H3>
 <P>Status: prototype</P>
 <H4>Notes</H4>
 <TABLE class="notes">
