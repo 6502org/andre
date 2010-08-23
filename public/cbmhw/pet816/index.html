@@ -27,8 +27,11 @@
 </li>
 <li class="dir" id="m_cbmhw"><img src="../../imgs/dir.png"/><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 <ul class="menu1" >
-<li class="file"><img src="../../imgs/file.png"/><a href="index.html" class="mcurrent">Speed up your PET!</a>
-
+<li class="dir" id="m_cbmhw_pet816"><img src="../../imgs/dir.png"/><a href="index.html" class="mcurrent">Speed up your PET!</a>
+<ul class="menu2" >
+<li class="file"><img src="../../imgs/file.png"/><a href="features.html">Board Features</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="works.html">How it works</a></li>
+</ul>
 </li>
 <li class="dir" id="m_cbmhw_ryofat40"><img src="../../imgs/dir.png"/><a href="../ryofat40/index.html">Build your own PET replica!</a>
 </li>
@@ -116,14 +119,14 @@
 
 <div class="overview">
 <p><p>
-			This a PET 65816 CPU card! It speeds up your PET to up to 8MHz.
+			This a PET 65816 CPU card! It speeds up your PET to up to 10MHz.
 			In fact it's a 6502 replacement card and could be used in other 6502-based
 			computers as well.
-			The board uses a 65816 CPU that runs at up to 8MHz, plus a Xilinx CPLD as logic glue. It includes
-			up to 1MByte fast RAM (run at CPU speed) plus 512k parallel Flash ROM, that can be used as boot ROM.
+			The board uses a 65816 CPU that runs at up to 10MHz, plus a Xilinx CPLD as logic glue. It includes
+			up to 1MByte fast RAM (run at CPU speed) plus up to 512k parallel Flash ROM (in-system programmable), that can be used as boot ROM.
 	</p>
 	<div class="rightimg">
-<a href="pet816_8296a.png"><img width="200" src="pet816_8296a_small.png"></a><br>The board installed in a Commodore 8296 
+<a href="pet816_8296a.png"><img width="200" src="pet816_8296a_small.png"></a><br>The board prototype installed in a Commodore 8296 
 		                </div>	<p>
 The interface itself is, in fact, pretty simple. It is a board that is plugged 
 in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
@@ -131,28 +134,19 @@ parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is 
 a feature in these days.
 	</p><p>
 		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
-		easier to handle when you have to change things often. But it also now runs in the CBM8296. 
+		easier to handle when you have to change things often. But it also now runs in the CBM8296. Tests with other PETs will follow.
 	</p><p>
-		The board has been tested with some simple tests. Copying data from slow to fast RAM and back, copying the 
-		PET ROM to the fast RAM "under" the ROM and switch to fast mode. Run code in fast RAM.
-		One of the test works only in the CS/A board, but still fails in the
-		8296 - copying the ROM to the RAM "under" the ROM seems to produce strange results. 
-		This is actually due to the fact, that you should not overwrite the 8296's own
-		memory configuration register at $fff0...
-		Tests with older PETs will follow.
+		Please also look at the <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
 	</p>
-	<div class="rightimg">
-<a href="pet816_proto.png"><img width="200" src="pet816_proto_small.png"></a><br>The PET816 board 
-		</div>	<p>
-		As you can see there is still some manual soldering on the 65816 board. In the beginning I had used some 
-		wrong driver ICs that only allowed to tri-state the address bus - once I replaced them with 74LS273 registers
-		with reset, I didn't have any more problems. I haven't done an updated layout yet, but will do one 
-		when I have improved the board more. I'm planning to pull the 74ALS573 high address byte latch into the CPLD, 
-		as well as the other support chips.</p>
 	</p>
 </div>
 <h3>News:</h3>
 <ul class="news">
+<li>
+<small>2010-08-24</small>
+			New 1.2B version of the board, with board layout, and updated VHDL code.
+			Also added <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
+		</li>
 <li>
 <small>2010-08-14</small>
 			New version of the board, now with board layout, and updated VHDL code.
@@ -169,8 +163,9 @@ a feature in these days.
 <dir>
 <li><a href="#driver">Driver</a></li>
 <dir>
-<li><a href="#driver1">Prototype tests</a></li>
-<li><a href="#driver2">VHDL code</a></li>
+<li><a href="#driver1">Testsuite</a></li>
+<li><a href="#driver2">Prototype tests</a></li>
+<li><a href="#driver3">VHDL code</a></li>
 </dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
@@ -181,18 +176,53 @@ a feature in these days.
 <li>
 <a href="#board3">1.0b</a> (prototype)</li>
 </dir>
+<li><a href="#blkdiag">Block diagram</a></li>
 </dir>
 </DIV>
 <h2><a name="driver">Driver</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<H3><A NAME="driver1">Prototype tests</A></H3>
+<H3><A NAME="driver1">Testsuite</A></H3>
+<p><p>Here are some small tests that test the various features of the board.
+		</p><p>Note that building them requires the <code>xa</code> cross assembler, using the <code>-w</code>
+				switch to enable 65816 code, as well as <code>petcat</code> from the VICE emulator package.</p>
+		</p>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="x816tests-1.0.tgz">x816tests-1.0.tgz</A>(Feature test suite)</TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test2.a65">test2.a65</A>(Execute and time a loop in fast and slow memory)</TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test3.a65">test3.a65</A>(Copy 4k memory to fast RAM and back)</TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
+<TD>
+<A HREF="test4.a65">test4.a65</A>(XOR mirrored system memory with bank 0)</TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
+</TR>
+</TABLE>
+<H3><A NAME="driver2">Prototype tests</A></H3>
 <p><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
 				switch to enable 65816 code.</p>
 			<div class="rightimg">
 <a href="pet816_test2.png"><img width="200" src="pet816_test2_small.png"></a><br>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
 				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
 				More measurements and explanations to follow.
-		</div>	                </p>
+		</div>	                
+		<p>Note: this tests are basically deprecated now, as they may use wrong control register settings</p>
+		</p>
 <TABLE class="files">
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
@@ -220,7 +250,7 @@ a feature in these days.
 <A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
 </TR>
 </TABLE>
-<H3><A NAME="driver2">VHDL code</A></H3>
+<H3><A NAME="driver3">VHDL code</A></H3>
 <p><p>
 			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
 		</p></p>
@@ -333,6 +363,10 @@ a feature in these days.
 <TD><A HREF="pet_cpu816-v1.0b-sch.png">pet_cpu816-v1.0b-sch.png</A></TD>
 </TR>
 </TABLE>
+<h2><a name="blkdiag">Block diagram</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<img src="diagram.gif" alt="block diagram"><p>Block diagram of the board. Only the main parts are shown.
+            </p>
 <h2>Disclaimer</h2>
 <div class="toplink"><a href="#top">Top</a></div>
 All Copyrights are acknowledged.

@@ -1,5 +1,5 @@
 <ul class="menu1" >
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%pet816/index.html">Speed up your PET!</a>
+<li class="dir" id="m_cbmhw_pet816"><img src="%xup%imgs/dir.png"/><a href="%up%pet816/index.html">Speed up your PET!</a>
 </li>
 <li class="dir" id="m_cbmhw_ryofat40"><img src="%xup%imgs/dir.png"/><a href="%up%ryofat40/index.html">Build your own PET replica!</a>
 </li>
