@@ -112,10 +112,8 @@ buildbread () {
 
 for i in $root/*.inx; do 
 	#echo "d="`pwd`", i=" $i
+	t1=${i}_1;
 	t2=${i}_2;
-	t3=${i}_3;
-	t4=${i}_4;
-	t5=${i}_5;
 	myname=`basename $i .inx`.html;
 	dir=`dirname $i`;
 	lastdir=`basename $dir`;
@@ -124,8 +122,10 @@ for i in $root/*.inx; do
 	if [ -f $i ]; then
 		#echo "from " $i " to " $t2
 
+		cp $i $t1
+
 		# insert menu
-		doinsert1 $i $t2 "@MENU@"
+		doinsert1 $t1 $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
 			echo "<div id=\"mtree\">" >> $t2
@@ -136,17 +136,30 @@ for i in $root/*.inx; do
 			echo "</div>" >> $t2
 			doinsert2 $i $t2 "@MENU@"
 		fi
+		mv $t2 $t1
 
 		# insert disclaimer
-		doinsert1 $t2 $t3 "@DISCLAIMER@"
+		doinsert1 $t1 $t2 "@DISCLAIMER@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			print_disclaimer >> $t3
-			doinsert2 $t2 $t3 "@DISCLAIMER@" 
+			print_disclaimer >> $t2
+			doinsert2 $t1 $t2 "@DISCLAIMER@" 
 		fi
+		mv $t2 $t1
+
+		# insert Hot items
+		doinsert1 $t1 $t2 "@HOT@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			if [ -f .hot.xml ]; then
+				cat .hot.xml >> $t2
+			fi;
+			doinsert2 $t1 $t2 "@HOT@" 
+		fi
+		mv $t2 $t1
 
 		# insert breadcrumb
-		doinsert1 $t3 $t4 "@BREAD@"
+		doinsert1 $t1 $t2 "@BREAD@"
 		v=$?
 		if [ $v -eq 1 ]; then
 #			if [ -f $root/.bread.xml ]; then
@@ -159,20 +172,21 @@ for i in $root/*.inx; do
 #				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
 #			fi;
 			if [ -f $root/.name.xml ]; then
-				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t4
+				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t2
 				#cat $root/.name.xml \
 				buildbread $myname $root \
 					| sed -e "s@%up%@.@g" \
-					>> $t4
-				echo "</DIV>" >> $t4
+					>> $t2
+				echo "</DIV>" >> $t2
 			else
 				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
 			fi;
-			doinsert2 $t3 $t4 "@BREAD@"
+			doinsert2 $t1 $t2 "@BREAD@"
 		fi
+		mv $t2 $t1
 
 		#echo "from " $t4 " to " $t5
-		cat $t4 \
+		cat $t1 \
 			| awk '/@FOOTER@/ { print "<p>Return to <a href=\"%up%index.html\">Homepage</a></p>"; }
 				{ print $0; }' \
 			| sed -e "s/@EMAIL@/afachat@gmx.de/g" \
@@ -180,18 +194,19 @@ for i in $root/*.inx; do
 			| sed -e "s%@CBMARC@%http://www.zimmers.net/anonftp/pub/cbm%g" \
 			| sed -e "s/@[a-zA-Z0-9]*@//g" \
 			| sed -e "s@%up%@$up@g" \
-			> $t5
+			> $t2
+		mv $t2 $t1
 
 		#echo "from " $t5 " to " $to
 		if [ ! -f $to ]; then
-			cp $t5 $to;
+			cp $t1 $to;
 		else
-			diff -q $to $t5
+			diff -q $to $t1
 			if [ $? -eq 1 ]; then
-				cp $t5 $to;
+				cp $t1 $to;
 			fi
 		fi;
-		rm $i $t2 $t3 $t4 $t5
+		rm $i $t1
 	fi;
 done
 

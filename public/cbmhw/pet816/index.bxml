@@ -44,10 +44,6 @@ a feature in these days.
 				switch to enable 65816 code, as well as <code>petcat</code> from the VICE emulator package.</p>
 		</desc>
                 <file ltype="driver" ptype="tgz" note="Feature test suite">x816tests-1.0.tgz</file>
-                <file ltype="driver" ptype="a65" note="Execute and time a loop in fast and slow memory">test2.a65</file>
-                <file ltype="driver" ptype="a65" note="Copy 4k memory to fast RAM and back">test3.a65</file>
-                <file ltype="driver" ptype="a65" note="XOR mirrored system memory with bank 0">test4.a65</file>
-		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
         </driver>
         <driver>
                 <name>Prototype tests</name>

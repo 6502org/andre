@@ -11,7 +11,8 @@
   <metadesc>Commodore PET 65816 CPU replacement board explained</metadesc>
   <overview>
 	<p>This page describes the inner workings of the 65816 board,
-	what external and internal signals are there and how they work together
+	what external and internal signals are there and how they work together. Also it
+	explains the different parts of the VHDL code.
 	</p>
   </overview>
   <!--news>
@@ -61,20 +62,46 @@
      </subsection>
   </section>
 
-  <section toc="main" name="Differences in Software">
-     <desc>
+  <section toc="vhdl" name="VHDL Explained...">
+     <desc><p>In this section I will describe the main structure of the VHDL code that implements
+	the logic in the CPLD. I will also go into ways of efficient testing as I experienced
+	while developing the board.</p>
+<div class="rightimg">
+                <a href="vhdlstruct.svg"><img src="vhdlstruct.png"/></a><br/>VHDL structure
+                </div>
+	<p>VHDL defines that logic is separated into modules. Each module has input and
+		output signals that define the "interface" of the module. In general you can think
+		of these modules as being similar to logic ICs. These ICs resp. modules are then
+		plugged together in higher level modules, using the input and output signals.
+	</p><p>So I have separated the CPLD logic into different modules as well, which I am going
+		to explain here.
+	</p>
      </desc>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+     <subsection toc="core" name="Core.vhd">
+	<desc>	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="map" name="SystemMap.vhd">
 	<desc>
 	</desc>
 	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
      </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+     <subsection toc="div" name="ClockDivider.vhd">
 	<desc>
 	</desc>
 	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
      </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+     <subsection toc="div" name="ClockShift.vhd">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="div" name="ClockSync.vhd">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="div" name="BoardMemSel.vhd">
 	<desc>
 	</desc>
 	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>

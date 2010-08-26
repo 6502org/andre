@@ -97,7 +97,7 @@
 		<tr><td>6</td><td>64</td><td>BOOTROM</td><td>When set, the lowest 64k CPU address space are mapped to the built-in ROM (except video and I/O, see above)</td><td>Bootrom jumper</td><td>Note this allows to unmap the system ROM after boot by setting this bit to 0. Only the initial value is taken from the Bootrom jumper.</td></tr>
 		<tr><td>5</td><td>32</td><td>SLOW64K</td><td>When set, the lowest 64k CPU address space are mapped to the system bus (6502 connector)</td><td>1</td></tr>
 		<tr><td>4</td><td>16</td><td>SLOWCLK</td><td>When set, use the system clock even on fast memory</td><td>1</td></tr>
-		<tr><td>3</td><td>8</td><td>HIDEBOGUD</td><td>When set, hide the CPU's bogus cycles - as indicated by VPA and VDA both 0 - from the system bus when possible.</td></tr>
+		<tr><td>3</td><td>8</td><td>HIDEBOGUS</td><td>When set, hide the CPU's bogus cycles - as indicated by VPA and VDA both 0 - from the system bus when possible.</td></tr>
 		<tr><td>2</td><td>4</td><td>FASTVREAD</td><td>When set, read the video RAM area from the fast RAM (writes still go to the slow system RAM)</td></tr>
 		<tr><td>1,0</td><td>2,1</td><td>WPROTECT</td><td>Write protect upper parts of the lowest 64k of FastRAM
 			<table><tr><th>Value</th><th>Protected Area</th></tr>
@@ -115,11 +115,11 @@
 	<desc><p>This section describes the memory map of the system. As there are some jumper settings
 		that influence the memory map, it is best shown in a table.</p>
 		<table class="content" border="1"><tr><th>Memory area</th><th>Range</th><th>no BOOTROM, no SLOW64k</th><th>BOOTROM, no SLOW64k</th><th>no BOOTROM, SLOW64k</th><th>Notes</th></tr>
-			<tr><th>$000000-$007fff</th><td>32k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td></tr>
+			<tr><th>$000000-$007fff</th><td>32k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
 			<tr><th>$008000-$0087ff</th><td>2k</td><td colspan="3">system bus (video memory) $8000-$87ff</td><td>Note: If the FASTVREAD control register bit is set, only writes go to the system bus (and write through to FastRAM), but reads only go to FastRAM.</td></tr>
-			<tr><th>$008800-$00e7ff</th><td>24k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td></tr>
-			<tr><th>$00e800-$00efff</th><td>2k</td><td colspan="3">system bus (io) $e800-$efff</td></tr>
-			<tr><th>$00f000-$00ffff</th><td>4k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td></tr>
+			<tr><th>$008800-$00e7ff</th><td>24k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
+			<tr><th>$00e800-$00efff</th><td>2k</td><td colspan="3">system bus (io) $e800-$efff</td><td>Writes always also go to FastRAM (write through)</td></tr>
+			<tr><th>$00f000-$00ffff</th><td>4k</td><td>FastRAM</td><td>BootROM</td><td>system bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
 			<tr><th>$010000-$0fffff</th><td>960k (2*512k-64k)</td><td colspan="3">FastRAM</td></tr>
 			<tr><th>$100000-$dfffff</th><td></td><td colspan="3">---</td></tr>
 			<tr><th>$e00000-$efffff</th><td>1024k</td><td colspan="3">system bus (mirror)</td></tr>

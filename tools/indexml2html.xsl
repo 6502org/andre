@@ -61,9 +61,9 @@
 <xsl:if test="diagram">
 <li><a href="#blkdiag">Block diagram</a></li>
 </xsl:if>
-<xsl:if test="oldnews">
+<!--xsl:if test="oldnews">
 <li><a href="#oldnews">Old News</a></li>
-</xsl:if>
+</xsl:if-->
 </dir>
 </DIV>
 </xsl:template>
@@ -112,7 +112,7 @@
 <img src="{diagram/file}" alt="block diagram"/>
 <xsl:apply-templates select="diagram/desc"/>
 </xsl:if>
-<xsl:apply-templates select="oldnews"/>
+<!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <div ID="footer">
 <P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
@@ -167,6 +167,15 @@
 			</xsl:for-each>
 			<p>(Forum registration required to post)</p>
 		</div></div>
+		<div class="top" id="hot"><div class="tophead">Hot!</div><div>
+			@HOT@
+		</div></div>
+		<xsl:if test="oldnews">
+			<div class="top" id="oldnews"><div class="tophead">Page History</div>
+			<div id="oldnewscontent">
+				<xsl:apply-templates select="oldnews"/>
+			</div></div>
+		</xsl:if>
 	</div>
 </xsl:template>
 
@@ -322,7 +331,7 @@
   </xsl:if>
   <xsl:apply-templates select="disclaimer"/>
 </xsl:for-each>
-<xsl:apply-templates select="oldnews"/>
+<!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
 </DIV> <!-- content -->
@@ -336,7 +345,7 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="news">
- <h3>News:</h3>
+ <h2>News:</h2>
  <ul class="news">
  <xsl:for-each select="item[@state='hot']">
   <li class="hotnews">
@@ -355,10 +364,10 @@
 </xsl:template>
 
 <xsl:template match="oldnews">
- <xsl:call-template name="h2toc">
+ <!--xsl:call-template name="h2toc">
    <xsl:with-param name="hdr">Old News:</xsl:with-param>
    <xsl:with-param name="a">oldnews</xsl:with-param>
- </xsl:call-template>
+ </xsl:call-template-->
  <ul class="oldnews">
  <xsl:for-each select="item[@state!='off']">
   <li>

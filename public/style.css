@@ -60,6 +60,18 @@ DIV.tophead {
 	padding-right: 2em;
 }
 
+/* left/right cols have headers in the top level style */
+DIV#hot DIV.tophead {
+ 	background: -moz-linear-gradient(top, #f00, #e00 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f00), color-stop(1, #e00));	
+	background-color: #ee0000;
+
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+
 /*
 DIV.overview {
 	font-size:larger;
@@ -157,14 +169,15 @@ DIV#rightcol {
  * visible top level elements, parts of columns
  */
 
-DIV#oldnews {
-	height: 50em;
-	overflow: scroll;
+DIV#oldnewscontent  {
+	height: 40em;
+	overflow-y: scroll;
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
-  	width: 17.0em;
+  	/*width: 17.0em;*/
+	margin-right: -1em;
 }
 
 DIV#browser {

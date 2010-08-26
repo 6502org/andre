@@ -108,6 +108,14 @@
 <p>(Forum registration required to post)</p>
 </div>
 </div>
+<div class="top" id="hot">
+<div class="tophead">Hot!</div>
+<div>
+<p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../../cbmhw/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+
+		</div>
+</div>
 </div>
 <div id="midcol">
 <DIV class="top" ID="breadcrumbs">
@@ -120,7 +128,8 @@
 2010-2010 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes the inner workings of the 65816 board,
-	what external and internal signals are there and how they work together
+	what external and internal signals are there and how they work together. Also it
+	explains the different parts of the VHDL code.
 	</p>
   </div>
 <DIV ID="toc">
@@ -139,11 +148,14 @@
 <li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
 <li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
 </dir>
-<li><a href="#main">Differences in Software</a></li>
+<li><a href="#vhdl">VHDL Explained...</a></li>
 <dir>
-<li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
-<li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
-<li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
+<li><a href="#core">Core.vhd</a></li>
+<li><a href="#map">SystemMap.vhd</a></li>
+<li><a href="#div">ClockDivider.vhd</a></li>
+<li><a href="#div">ClockShift.vhd</a></li>
+<li><a href="#div">ClockSync.vhd</a></li>
+<li><a href="#div">BoardMemSel.vhd</a></li>
 </dir>
 </dir>
 </DIV>
@@ -185,21 +197,47 @@
 	</p>
 <ul><li>
 <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
-<h2><a name="main">Differences in Software</a></h2>
+<h2><a name="vhdl">VHDL Explained...</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<p>
+<p><p>In this section I will describe the main structure of the VHDL code that implements
+	the logic in the CPLD. I will also go into ways of efficient testing as I experienced
+	while developing the board.</p>
+<div class="rightimg">
+                <a href="vhdlstruct.svg"><img src="vhdlstruct.png"></a><br>VHDL structure
+                </div>
+	<p>VHDL defines that logic is separated into modules. Each module has input and
+		output signals that define the "interface" of the module. In general you can think
+		of these modules as being similar to logic ICs. These ICs resp. modules are then
+		plugged together in higher level modules, using the input and output signals.
+	</p><p>So I have separated the CPLD logic into different modules as well, which I am going
+		to explain here.
+	</p>
      </p>
-<H3><a name="orig">Original ROMs ($C000-$FFFF)</a></H3>
+<H3><a name="core">Core.vhd</a></H3>
+<p>	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
+<H3><a name="map">SystemMap.vhd</a></H3>
 <p>
 	</p>
 <ul><li>
 <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
-<H3><a name="orig">Original ROMs ($C000-$FFFF)</a></H3>
+<H3><a name="div">ClockDivider.vhd</a></H3>
 <p>
 	</p>
 <ul><li>
 <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
-<H3><a name="orig">Original ROMs ($C000-$FFFF)</a></H3>
+<H3><a name="div">ClockShift.vhd</a></H3>
+<p>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
+<H3><a name="div">ClockSync.vhd</a></H3>
+<p>
+	</p>
+<ul><li>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul>
+<H3><a name="div">BoardMemSel.vhd</a></H3>
 <p>
 	</p>
 <ul><li>
