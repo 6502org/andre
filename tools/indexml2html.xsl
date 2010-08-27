@@ -171,7 +171,7 @@
 			@HOT@
 		</div></div>
 		<xsl:if test="oldnews">
-			<div class="top" id="oldnews"><div class="tophead">Page History</div>
+			<div class="top" id="oldnews"><div class="tophead">History</div>
 			<div id="oldnewscontent">
 				<xsl:apply-templates select="oldnews"/>
 			</div></div>

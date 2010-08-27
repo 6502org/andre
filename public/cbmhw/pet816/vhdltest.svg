@@ -8,12 +8,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="641"
-   height="751"
+   width="781.07001"
+   height="1121.0182"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
-   sodipodi:docname="vhdlstruct.svg"
+   sodipodi:docname="vhdltest.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0"
    inkscape:export-filename="/home/fachat/8bitweb/public/cbmhw/pet816/vhdlstruct.png"
@@ -47,9 +47,9 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.93979052"
-     inkscape:cx="353.42607"
-     inkscape:cy="286.2155"
+     inkscape:zoom="0.66453225"
+     inkscape:cx="102.12149"
+     inkscape:cy="638.30566"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -80,14 +80,21 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(-48.540439,-14.054569)">
+     transform="translate(113.37279,6.4901026)">
     <rect
-       style="fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.15499163px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="opacity:1;fill:#d45500;fill-opacity:1;stroke:#000000;stroke-width:1.21414542;stroke-opacity:1"
+       id="rect3202"
+       width="240.34795"
+       height="1059.8507"
+       x="-71.727493"
+       y="25.16164" />
+    <rect
+       style="fill:#7e9955;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.43216884px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="rect2455"
-       width="200.1048"
-       height="649.93719"
-       x="99.617935"
-       y="54.039902" />
+       width="199.82762"
+       height="1000.7006"
+       x="99.756523"
+       y="54.178493" />
     <rect
        style="fill:#ffd42a;fill-rule:evenodd;stroke:#000000;stroke-width:0.98474532px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="rect2403"
@@ -215,24 +222,126 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="119.80786"
-       y="363.95477"
+       x="118.54044"
+       y="475.05457"
        id="text2457"><tspan
          sodipodi:role="line"
          id="tspan2459"
-         x="119.80786"
-         y="363.95477">PET</tspan><tspan
+         x="118.54044"
+         y="475.05457">PET</tspan><tspan
          sodipodi:role="line"
-         x="119.80786"
-         y="413.95477"
-         id="tspan2461">816</tspan></text>
+         x="118.54044"
+         y="525.05457"
+         id="tspan2461">816</tspan><tspan
+         sodipodi:role="line"
+         x="118.54044"
+         y="575.05457"
+         id="tspan3184">TB</tspan></text>
     <rect
-       style="opacity:0;fill:#6600ff;stroke:#000000;stroke-opacity:1;filter:url(#filter3255)"
-       id="rect2463"
-       width="640"
-       height="750"
-       x="-50"
-       y="-38.907837"
-       transform="translate(99.040439,53.462406)" />
+       style="opacity:0;fill:#7e9955;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect3178"
+       width="410"
+       height="150"
+       x="170"
+       y="711"
+       transform="translate(48.540439,14.054569)" />
+    <rect
+       style="opacity:0;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect3180"
+       width="370"
+       height="120"
+       x="170"
+       y="711"
+       transform="translate(48.540439,14.054569)" />
+    <rect
+       style="opacity:0;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect3182"
+       width="360"
+       height="130"
+       x="170"
+       y="721"
+       transform="translate(48.540439,14.054569)" />
+    <rect
+       style="opacity:0;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect3186"
+       width="420"
+       height="140"
+       x="160"
+       y="701"
+       transform="translate(48.540439,14.054569)" />
+    <rect
+       style="opacity:1;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.8941887;stroke-opacity:1"
+       id="rect3190"
+       width="420.1058"
+       height="119.90581"
+       x="208.48753"
+       y="755.00165" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="288.54044"
+       y="835.05457"
+       id="text3192"><tspan
+         sodipodi:role="line"
+         id="tspan3194"
+         x="288.54044"
+         y="835.05457">Free6502 core</tspan></text>
+    <rect
+       style="opacity:1;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.8941887;stroke-opacity:1;display:inline"
+       id="rect3196"
+       width="420.1058"
+       height="119.90582"
+       x="208.43463"
+       y="895.14874" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline;font-family:Bitstream Vera Sans"
+       x="289.23795"
+       y="962.64502"
+       id="text3198"><tspan
+         sodipodi:role="line"
+         id="tspan3200"
+         x="289.23795"
+         y="962.64502">RAM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-31.45956"
+       y="385.05457"
+       id="text3204"><tspan
+         sodipodi:role="line"
+         id="tspan3206"
+         x="-31.45956"
+         y="385.05457">Test</tspan><tspan
+         sodipodi:role="line"
+         x="-31.45956"
+         y="435.05457"
+         id="tspan3208">Para-</tspan><tspan
+         sodipodi:role="line"
+         x="-31.45956"
+         y="485.05457"
+         id="tspan3210">meters</tspan><tspan
+         sodipodi:role="line"
+         x="-31.45956"
+         y="535.05457"
+         id="tspan3212" /><tspan
+         sodipodi:role="line"
+         x="-31.45956"
+         y="585.05457"
+         id="tspan3214">Test</tspan><tspan
+         sodipodi:role="line"
+         x="-31.45956"
+         y="635.05457"
+         id="tspan3216">ROM</tspan></text>
+    <rect
+       style="opacity:0;fill:#d45500;fill-opacity:1;stroke:#000000;stroke-width:1.03597701000000009;stroke-opacity:1"
+       id="rect3220"
+       width="780.03406"
+       height="1119.9822"
+       x="-112.8548"
+       y="-5.9721141"
+       inkscape:export-filename="/home/fachat/8bitweb/public/cbmhw/pet816/vhdltest.png"
+       inkscape:export-xdpi="28.806635"
+       inkscape:export-ydpi="28.806635" />
   </g>
 </svg>
