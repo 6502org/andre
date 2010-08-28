@@ -221,7 +221,7 @@ to this page.</subitem>
       <subitem name="The Advanced 6502 page" link="adv65/index.html">
 	is there for projects that go beyond the original 6502 design. 
 	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
-	that speeds up a 1&nbsp;MHz PET up to 10&nbsp;MHz!
+	that speeds up a 1&#160;MHz PET up to 10&#160;MHz!
 	This page will also be the home for the future <em>65k</em> project - see my
 	<a href="sneak.html">sneak preview page</a> for more on that.
       </subitem>
