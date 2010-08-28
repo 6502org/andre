@@ -166,7 +166,12 @@
 	this new cycle is then (most of the times) a valid one. So when the complete invalid cycle
 	plus the phi1 phase of the following valid cycle fit between phi2 going low and
 	<code>phidelayed</code> going low, the slow system only sees two consecutive - valid - 
-	cycles, and the invalid cycle is hidden!.
+	cycles, and the invalid cycle is hidden!
+	</p><p>
+	You can actually see an invalid cycle being hidden in the diagram linked here. The CPLD
+	builds the <code>validaddr</code> signal from <code>VDA</code> and <code>VPA</code>. When
+	this signal goes low, the cycle is not valid, which happens shortly after time 45us in
+	the diagram, where the red marker line is.
 	</p></desc>
      </subsection>
      <subsection toc="2mhz" name="2 mhz operation">
