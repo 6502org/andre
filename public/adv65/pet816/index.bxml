@@ -26,13 +26,14 @@ a feature in these days.
 		</p>
 		<ul><li><a href="features.html">Features page</a></li>
 		<li><a href="works.html">How it works</a> page.</li>
+		<li><a href="hardware.html">Hardware</a> page</li>
 		<li><a href="gallery.html">Gallery</a> page</li>
 		</ul>
 	</desc>
 	<news>
-		<item date="2010-08-24">
+		<item date="2010-08-28">
 			New 1.2B version of the board, with board layout, and updated VHDL code.
-			Also added <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
+			Also added <a href="features.html">features</a>, <a href="hardware.html">Hardware</a>, <a href="gallery.html">Gallery</a> and <a href="works.html">how it works</a> page.
 		</item>
 		<item date="2010-08-14">
 			New version of the board, now with board layout, and updated VHDL code.
@@ -104,11 +105,11 @@ a feature in these days.
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.0.tar.bz2</file>
 		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
         </driver>
-        <diagram>
+        <!--diagram>
             <file>diagram.gif</file>
             <desc>Block diagram of the board. Only the main parts are shown.
             </desc>
-        </diagram>
+        </diagram-->
         <rev>
 		<version>1.2b</version>
 		<status>prototype</status>

@@ -37,6 +37,7 @@
 <li class="file"><img src="../../imgs/file.png"/><a href="features.html" class="mcurrent">Board Features</a></li>
 <li class="file"><img src="../../imgs/file.png"/><a href="works.html">How it works</a></li>
 <li class="file"><img src="../../imgs/file.png"/><a href="gallery.html">Gallery</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="hardware.html">Hardware</a></li>
 </ul>
 </li>
 <li class="link"><img src="../../imgs/link.png"/><a href="../../csa/index.html">CS/A65</a></li>
@@ -129,10 +130,7 @@
 <div class="toplink"><a href="#top">Top</a></div>
 <dir>
 <li><a href="#hw">Hardware Features</a></li>
-<dir>
-<li><a href="#ics">ICs</a></li>
-<li><a href="#jumpers">Jumpers and Connectors</a></li>
-</dir>
+<dir><li><a href="#jumpers">Jumpers and Connectors</a></li></dir>
 <li><a href="#sw">Software</a></li>
 <dir>
 <li><a href="#control">Control Register</a></li>
@@ -144,59 +142,17 @@
 </DIV>
 <h2><a name="hw">Hardware Features</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<p>This section describes the hardware features of the board.
+<p>This section describes the hardware features of the board that are available
+	in the form of jumpers, and only selected ones. 
+	For a more detailled hardware description see the 
+	<a href="hardware.html">hardware page</a>.
      </p>
-<H3><a name="ics">ICs</a></H3>
-<p><p>Looking at the board <a href="pet_cpu816-v1.2b-brd.png">layout</a> you can see that
-	of course it has the 65816 CPU, but also 2 RAM ICs with 512k each, and a socket for a
-	ROM chip of between 32k and 512k. A 50MHz oscillator gives the clocks.
-	Also the board has three driver ICs (2 '273, 1 '245), one latch (a '573), and a comparator (a '688).
-	The main glue of the board is of course the Xilinx CPLD. The functionality of this IC is not 
-	fixed, but can be programmed using VHDL for example, a hardware description logic. It
-	can contain the equivalent of a whole eurocard of standard logic ICs (depending on the ICs...)
-	</p>
-	<p>In the <a href="diagram.gif">block diagram</a> you can see how these ICs fit together.</p>
-	<p>The two RAM chips of course implement the 1MByte RAM. The ROM is in-place-programmable
-	(when using the correct Flash-PROM that is - I am currently using an Atmel 29C010 128k PROM).
-	</p><p>
-	The '573 is the "usual" latch to capture the upper 8 address bits A16-A23 from the
-	65816's data bus during phi1. It is controlled by the CPLD to be transparent during phi1, 
-	then latch the value and hold it constant during phi2.
-	</p><p>
-	The '273s implement the address driver between the 65816 bus and the slow system bus (the
-	6502 connector). This has to be a '273 as this is the only IC that has a reset line to 
-	set all outputs to low. I use this to read from address 0 as long as the CPU works in the
-	on-board RAM or ROM.
-	</p><p>
-	The '245 is the data bus driver. It decouples the 65816 and the system data bus. 
-	</p><p>
-	The '688 finally is an address selector for address lines A4-A11 on the system bus.
-	It is used to select two addresses in the I/O range for the CPLD's control and clock
-	registers.
-	</p>
-	</p>
 <H3><a name="jumpers">Jumpers and Connectors</a></H3>
 <p><p>
-	The board has a number of jumpers and connectors:</p>
+	The board has a number of jumpers and connectors. The most important one is shown here:</p>
 	<ul>
 	<li>JP1: BOOTROM - when set to on, the on-board ROM is mapped into the lowest 64k
-		address space upon reset, so the board can take the system over</li>
-	<li>JP2: NOROM - this jumper connects PIN 5 of the system (6502) bus connector
-		to the CPLD. The Commodore PET uses this pin to disable the built-in ROMs.
-		Currently not used in the CPLD.</li>
-	<li>JP4: CA18 - allows to use a smaller ROM by connecting VCC to ROM pin 1</li>
-	<li>JP5: CA17 - allows to use a smaller ROM by connecting VCC to ROM pin 30</li>
-	<li>JP6: CA15 - allows to use a smaller ROM by connecting VCC to ROM pin 3</li>
-	<li>JP7: IO1 - switches between $ExFF and $ExBF I/O for the CPLD</li>
-	<li>JP8: IO2 - switches between $E(F/C)xF and $E(B/8)xF I/O for the CPLD</li>
-	<li>JP9: IO3 - switches between $E(F/B)xF and $E(C/8)xF I/O for the CPLD</li>
-	<li>JP10: AUXCONF - config input into CPLD, currently unused</li>
-	<li>JP11: DIAG - single pin, output from CPLD - used for diagnostics signals</li>
-	</ul>
-	<ul>
-	<li>P1: 6502 system bus</li>
-	<li>JP3: pwr - additional power supply</li>
-	<li>SV1: JTAG - programming connector for the CPLD</li>
+		address space upon reset, so the board can take the system over on power-up</li>
 	</ul>
 	</p>
 <h2><a name="sw">Software</a></h2>

@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="Commodore PET 65816 CPU replacement board explained">
+<meta name="keywords" content="Commodore PET 6502 65816 cpu replacement board">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+<script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
+
+<title>65816 board hardware</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="../../imgs/expand.png"><img id="collapse" src="../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../imgs/cancel.png">
+</form></div>
+<div id="mtree">
+<a class="m_homepage" href="../../index.html">Homepage</a>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir" id="m_petindex"><img src="../../imgs/dir.png"/><a href="../../petindex/index.html">CBM PETindex</a>
+</li>
+<li class="dir" id="m_cbmhw"><img src="../../imgs/dir.png"/><a href="../../cbmhw/index.html">CBM hardware and mods</a>
+</li>
+<li class="separator">Hardware</li>
+<li class="dir" id="m_csa"><img src="../../imgs/dir.png"/><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
+</li>
+<li class="dir" id="m_adv65"><img src="../../imgs/dir.png"/><a href="../../adv65/index.html">Advanced 6502</a>
+<ul class="menu1" >
+<li class="dir" id="m_adv65_pet816"><img src="../../imgs/dir.png"/><a href="../pet816/index.html">Speed up your 6502!</a>
+<ul class="menu2" >
+<li class="file"><img src="../../imgs/file.png"/><a href="features.html">Board Features</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="works.html">How it works</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="gallery.html">Gallery</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="hardware.html" class="mcurrent">Hardware</a></li>
+</ul>
+</li>
+<li class="link"><img src="../../imgs/link.png"/><a href="../../csa/index.html">CS/A65</a></li>
+</ul>
+</li>
+<li class="dir" id="m_hwinfo"><img src="../../imgs/dir.png"/><a href="../../hwinfo/index.html">ICs and Standards Info</a>
+</li>
+<li class="dir" id="m_mischw"><img src="../../imgs/dir.png"/><a href="../../mischw/index.html">Other hardware (e.g. tools)</a>
+</li>
+<li class="separator">Software</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../osa/index.html">GeckOS operating system</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../lib6502/index.html">Lib6502 standard</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../o65/index.html">O65 file format</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../misc/index.html">Misc software</a>
+</li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir" id="m_icapos"><img src="../../imgs/dir.png"/><a href="../../icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li class="dir" id="m_icaphw"><img src="../../imgs/dir.png"/><a href="../../icaphw/index.html">6502 Hardware Bits</a>
+</li>
+<li class="separator">Misc</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../contact.html">Contact</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../sneak.html">Sneak preview</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../design.html">Web design</a></li>
+</ul>
+
+</div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
+		</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=1573"> this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div class="top" id="hot">
+<div class="tophead">Hot!</div>
+<div>
+<p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+
+		</div>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../../index.html">Homepage</a>
+&gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">Speed up your 6502!
+</a>&gt;&gt;  Hardware</DIV>
+<DIV class="top" ID="content">
+<a name="topanchor"></a><h1>65816 board hardware</h1>
+<p class="copyright">(C)
+2010-2010 André  Fachat</p> 
+<div class="overview">
+	<p>This page describes the hardware of the 65816 board.
+	</p>
+  </div>
+<DIV ID="toc">
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<dir>
+<li><a href="#structure">Hardware Design</a></li>
+<dir>
+<li><a href="#cpu">CPU domain</a></li>
+<li><a href="#sys">System domain</a></li>
+<li><a href="#buf">Buffers</a></li>
+</dir>
+<li><a href="#ics">ICs</a></li>
+<li><a href="#jumpers">Jumpers and Connectors</a></li>
+</dir>
+</DIV>
+<h2><a name="structure">Hardware Design</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>In this section I describe the hardware design.</p>
+<div class="rightimg">
+<a href="diagram.gif"><img width="300px" src="diagram.gif"></a><br>The board design overview (click to enlarge) </div>
+	<p>The board is actually quite simple. It has a CPU domain, with the CPU, RAM and ROM (incl. 
+	the '573 bank byte latch). It has a system domain, with the connection that goes into the
+	6502 socket on the system, and the '688 address decoder. And it has the address and data bus
+	drivers that connect them, plus the CPLD glue logic.
+	</p></p>
+<H3><a name="cpu">CPU domain</a></H3>
+<p><p>The CPU domain actually is an own computer in itself, only that it lacks I/O capabilities. It has a ROM to store the program, plus RAM to actually work in it.
+	The '573 is the usual bank byte latch used for the 65816. You could actually 
+	be moving this into the CPLD without board change, if the CPLD has enough space. The CPLD 
+	already has the 8 data lines, and you have to redefine the three address lines
+	<code>A16-A18</code> as output instead of input to the CPLD.
+	</p></p>
+<H3><a name="sys">System domain</a></H3>
+<p><p>The system domain only has the 6502 connector and the '688 address decoder.
+	The address decoder is actually used to decode the address of the CPLD's 
+	clock and control register, and to reduce the number of input pins needed on the CPLD.</p></p>
+<H3><a name="buf">Buffers</a></H3>
+<p><p>
+	The buffers are used to decouple the slow system bus from the fast CPU bus. When the CPU
+	does not need the system bus, it sets the buffers to read from system bus address zero.
+	In fact the CPLD makes the address and R/-W only change exactly once a slow cycle.
+	Either the address is set to the CPU address when a (slow) system access is performed,
+	or zero, when the slow bus is not needed (as the CPU is running on fast clock).
+	</p></p>
+<h2><a name="ics">ICs</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>Looking at the board <a href="pet_cpu816-v1.2b-brd.png">layout</a> you can see that
+	of course it has the 65816 CPU, but also 2 RAM ICs with 512k each, and a socket for a
+	ROM chip of between 32k and 512k. A 50MHz oscillator gives the clocks.
+	Also the board has three driver ICs (2 '273, 1 '245), one latch (a '573), and a comparator (a '688).
+	The main glue of the board is of course the Xilinx CPLD. The functionality of this IC is not 
+	fixed, but can be programmed using VHDL for example, a hardware description logic. It
+	can contain the equivalent of a whole eurocard of standard logic ICs (depending on the ICs...)
+	</p>
+	<p>In the <a href="diagram.gif">block diagram</a> you can see how these ICs fit together.</p>
+	<p>The two RAM chips of course implement the 1MByte RAM. The ROM is in-place-programmable
+	(when using the correct Flash-PROM that is - I am currently using an Atmel 29C010 128k PROM).
+	</p><p>
+	The '573 is the "usual" latch to capture the upper 8 address bits A16-A23 from the
+	65816's data bus during phi1. It is controlled by the CPLD to be transparent during phi1, 
+	then latch the value and hold it constant during phi2.
+	</p><p>
+	The '273s implement the address driver between the 65816 bus and the slow system bus (the
+	6502 connector). This has to be a '273 as this is the only IC that has a reset line to 
+	set all outputs to low. I use this to read from address 0 as long as the CPU works in the
+	on-board RAM or ROM.
+	</p><p>
+	The '245 is the data bus driver. It decouples the 65816 and the system data bus. 
+	</p><p>
+	The '688 finally is an address selector for address lines A4-A11 on the system bus.
+	It is used to select two addresses in the I/O range for the CPLD's control and clock
+	registers.
+	</p>
+	</p>
+<h2><a name="jumpers">Jumpers and Connectors</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	The board has a number of jumpers and connectors:</p>
+	<ul>
+	<li>JP1: BOOTROM - when set to on, the on-board ROM is mapped into the lowest 64k
+		address space upon reset, so the board can take the system over</li>
+	<li>JP2: NOROM - this jumper connects PIN 5 of the system (6502) bus connector
+		to the CPLD. The Commodore PET uses this pin to disable the built-in ROMs.
+		Currently not used in the CPLD.</li>
+	<li>JP4: CA18 - allows to use a smaller ROM by connecting VCC to ROM pin 1</li>
+	<li>JP5: CA17 - allows to use a smaller ROM by connecting VCC to ROM pin 30</li>
+	<li>JP6: CA15 - allows to use a smaller ROM by connecting VCC to ROM pin 3</li>
+	<li>JP7: IO1 - switches between $ExFF and $ExBF I/O for the CPLD</li>
+	<li>JP8: IO2 - switches between $E(F/C)xF and $E(B/8)xF I/O for the CPLD</li>
+	<li>JP9: IO3 - switches between $E(F/B)xF and $E(C/8)xF I/O for the CPLD</li>
+	<li>JP10: AUXCONF - config input into CPLD, currently unused</li>
+	<li>JP11: DIAG - single pin, output from CPLD - used for diagnostics signals</li>
+	</ul>
+	<ul>
+	<li>P1: 6502 system bus</li>
+	<li>JP3: pwr - additional power supply</li>
+	<li>SV1: JTAG - programming connector for the CPLD</li>
+	</ul>
+	</p>
+<hr>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
+</div></body>
+</html> 
+
