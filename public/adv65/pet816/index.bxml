@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<board>
+	<name>Commodore PET 65816 CPU card</name>
+	<keywords>Commodore PET 6502 65816 CPU</keywords>
+        <lastmodified>2010-08-14</lastmodified>
+        <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1573</forum>
+        <desc><p>
+			This a PET 65816 CPU card! It speeds up your PET to up to 10MHz.
+			In fact it's a 6502 replacement card and could be used in other 6502-based
+			computers as well.
+			The board uses a 65816 CPU that runs at up to 10MHz, plus a Xilinx CPLD as logic glue. It includes
+			up to 1MByte fast RAM (run at CPU speed) plus up to 512k parallel Flash ROM (in-system programmable), that can be used as boot ROM.
+	</p>
+	<div class="rightimg"><a href="pet816_8296a.png"><img width="200" src="pet816_8296a_small.png"/></a><br/>The board prototype installed in a Commodore 8296 
+		                </div>	<p>
+The interface itself is, in fact, pretty simple. It is a board that is plugged 
+in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
+parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is all-through-hole - i.e. no SMD parts! I call that 
+a feature in these days.
+	</p><p>
+		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
+		easier to handle when you have to change things often. But it also now runs in the CBM8296. Tests with other PETs will follow.
+	</p><p>
+		Please also look at the <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
+	</p>
+	</desc>
+	<news>
+		<item date="2010-08-24">
+			New 1.2B version of the board, with board layout, and updated VHDL code.
+			Also added <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
+		</item>
+		<item date="2010-08-14">
+			New version of the board, now with board layout, and updated VHDL code.
+			Explanations still to come though.
+		</item>
+		<item date="2010-04-20">
+			Published the board.
+		</item>
+	</news>
+        <driver>
+                <name>Testsuite</name>
+		<desc><p>Here are some small tests that test the various features of the board.
+		</p><p>Note that building them requires the <code>xa</code> cross assembler, using the <code>-w</code>
+				switch to enable 65816 code, as well as <code>petcat</code> from the VICE emulator package.</p>
+		</desc>
+                <file ltype="driver" ptype="tgz" note="Feature test suite">x816tests-1.0.tgz</file>
+        </driver>
+        <driver>
+                <name>Prototype tests</name>
+		<desc><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
+				switch to enable 65816 code.</p>
+			<div class="rightimg"><a href="pet816_test2.png"><img width="200" src="pet816_test2_small.png"/></a><br/>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
+				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
+				More measurements and explanations to follow.
+		</div>	                
+		<p>Note: this tests are basically deprecated now, as they may use wrong control register settings</p>
+		</desc>
+                <file ltype="driver" ptype="a65" note="Copy system ROM to fast RAM">test1.a65</file>
+                <file ltype="driver" ptype="a65" note="Execute and time a loop in fast and slow memory">test2.a65</file>
+                <file ltype="driver" ptype="a65" note="Copy 4k memory to fast RAM and back">test3.a65</file>
+                <file ltype="driver" ptype="a65" note="XOR mirrored system memory with bank 0">test4.a65</file>
+		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
+        </driver>
+        <driver>
+                <name>VHDL code</name>
+		<desc><p>
+			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
+		</p></desc>
+		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.7.tar.bz2</file>
+		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.5.tar.bz2</file>
+		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.0.tar.bz2</file>
+		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
+        </driver>
+        <diagram>
+            <file>diagram.gif</file>
+            <desc>Block diagram of the board. Only the main parts are shown.
+            </desc>
+        </diagram>
+        <rev>
+		<version>1.2b</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board is an update on the 1.2A, and only contains a few small changes:
+			Two delay loops that can be used in the VHDL code have been added. Also
+			an "official" diagnostics pin has been added too, to get easy access to a 
+			signal "exported" from the CPLD.
+		</note>
+		<file ltype="schem" ptype="esch">pet_cpu816-v1.2b.sch</file>
+		<file ltype="schem" ptype="ebrg">pet_cpu816-v1.2b.brd</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2b-sch.png</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2b-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.2a</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board has been only barely tested
+		</note>
+		<file ltype="schem" ptype="esch">pet_cpu816-v1.2a.sch</file>
+		<file ltype="schem" ptype="ebrg">pet_cpu816-v1.2a.brd</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2a-sch.png</file>
+		<file ltype="layout" ptype="png">pet_cpu816-v1.2a-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.0b</version>
+		<status>prototype</status>
+		<note type="warn">
+			This board has been only barely tested
+		</note>
+		<file ltype="schem" ptype="esch">pet_cpu816-v1.0b.sch</file>
+		<file ltype="schem" ptype="png">pet_cpu816-v1.0b-sch.png</file>
+	</rev>
+	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
+</board>

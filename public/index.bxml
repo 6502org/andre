@@ -40,6 +40,8 @@ and internet access.</p>
 	tested with a number of browsers and system but not everything is perfect yet. Let me know if you find anything
 	annoying.
     </item>
+ </news>
+  <oldnews>
     <item date="2010-05-31">
 	Added a <a href="sneak.html">Sneak Preview page</a> with my 8-bit plans...
     </item>
@@ -49,8 +51,6 @@ and internet access.</p>
     <item date="2010-05-11">
 	Added a patched PET BASIC4 kernal ROM to enable the CS/A PET replica to run at 2MHz
     </item>
- </news>
-  <oldnews>
     <item date="2010-04-21">
 	Updated the page for the <a href="icaphw/xilinx.html">Xilinx tools</a> with information about VHDL simulation tools I use.
     </item>
@@ -218,6 +218,13 @@ The CS/A65 features virtual memory, video card, a SCSI interface
 and many more stuff
 I have now linked my CS/A65 emulator, based on the VICE emulator,
 to this page.</subitem>
+      <subitem name="The Advanced 6502 page" link="adv65/index.html">
+	is there for projects that go beyond the original 6502 design. 
+	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
+	that speeds up a 1&nbsp;MHz PET up to 10&nbsp;MHz!
+	This page will also be the home for the future <em>65k</em> project - see my
+	<a href="sneak.html">sneak preview page</a> for more on that.
+      </subitem>
       <subitem name="Hardware info" 
 		link="hwinfo/index.html">: Information on various 
 	items and standards used in these pages. Examples are 
