@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name="How does the 65816 bord work?">
+<webpage name="How does the 65816 board work?">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -15,6 +15,7 @@
 	explains the different parts of the VHDL code.
 	</p>
   </overview>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1573</forum>
   <!--news>
     <item date="2010-01-04">
 	Started this page
@@ -23,88 +24,257 @@
   <toc/>
 
   <section toc="gen" name="General">
-     <desc>
+     <desc><p>Here the general design is discussed</p>
      </desc>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     <subsection toc="challenge" name="The challenge...">
+	<desc><p>As there are already 65816-based boards (like my <a href="../../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
+	Well, it's the timing! In my other 65816 board the actual system clock is derived from the
+	65816 fast clock in a synchronous way. But in a 6502 replacement no such synchronous clock is
+	available. There are two clock domains, the system domain that feeds the board with a 
+	slow (1&nbsp;MHz or 2&nbsp;MHz for example) PHI0 clock - and the fast 65816 clock domain.
+	These two need to be synchronized.
+	</p><p>
+	Unfortunately if two different clock domains interact, metastability can occur 
+	(see wikipedia link below for example). I.e. a signal might not settle on a defined high 
+	or low state for a considerable time when it is sampled directly during a transition 
+	for example.
+	</p><p>
+	There are two ways around this issue:
+	<ol>
+	<li>synchronize the two clock domains such that clearly defined timing characteristics 
+		between the clock domains apply, and no clock shift occurs. You could do this with
+		a PLL (phase-locked loop) for example.</li>
+	<li>use an arbiter between the two clock domains as a means of communication between the
+		two domains. Arbiters are still subject to metastability but with a multi-stage approach
+		the mean time between failures can be set in the range of years or more.</li>
+	</ol>
+	Lacking experience with a PLL, and not being sure how a PLL would react on changing base
+	system frequencies - where the CPU to be replaced can already run on different frequencies -
+	I decided to go for the arbiter approach.
+	</p></desc>
+	<extlink name="Wikipedia on metastability in electronics" link="http://en.wikipedia.org/wiki/Metastability_in_electronics"/>
+	<extlink name="Wikipedia on phase-locked loop" link="http://en.wikipedia.org/wiki/PLL"/>
      </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     <subsection toc="sync" name="Clock Synchronization">
+	<desc><p>
+	The clock synchronization has to happen on two places - from slow to fast and from fast to slow.
+	Let's first look at the fast to slow transition. When the CPU outputs the correct addresses
+	during an (initially) fast cycle, the CPLD logic detects a slow access and asserts the
+	<code>isslow</code> signal. This is sampled on the rising edge of the CPU clock
+	(which is in the fast domain at this time) to give the <code>slowdetected</code> signal.
+	</p><p>
+	The rising edge of the CPU clock is used as this is the time when CPU signals are guaranteed
+	to be stable. There has to be some safety margin to account for propagation delays in the 
+	CPLD <code>isslow</code> generation though. Therefore the PHI1 phase cannot be too fast.
+	I found that it should be at least 50&nbsp;ns. 
+	</p><p>
+	Once <code>slowdetected</code> is asserted, the CPU clock is held high to await the actual
+	slow cycle. I.e. I don't use the CPU's RDY pin, but the 65816 feature that it can be stopped
+	indefinitely with PHI2 high.
+	</p><p>
+	As the fast and slow clocks are not synchronized, the detection that a slow access should be
+	done can be anywhere during the slow clock cycle. It could be during PHI1, PHI2 close to any
+	of the transitions, anywhere. That's where the "arbiter" kicks in.
+	</p><div class="rightimg">
+                <a href="timing1.png"><img src="timing1_small.png"/></a><br/>General timing structure
+                </div>
+	<p>
+	In this diagram you can see that the first slow access is detected at 2300&nbsp;ns, in the
+	middle of a slow cycle (PHI0/PHI2 high). The actual slow access thus has to wait for the next
+	slow PHI1 cycle to actually start.
+	</p><p>
+	In the timing diagram you also see a signal called <code>phidelayed</code>. This plays a key role
+	in the synchronization mechanism. This signal is the slow PHI0 input, but delayed for a certain
+	amount of time (and OR'd with PHI0, see 2&nbsp;MHz operation below). 
+	The falling edge is important here. <code>phidelayed</code> is delayed such that the falling
+	edge is far enough before the rising edge of PHI2 to allow for address bus setup times. 
+	Therefore when <code>phidelayed</code>
+	goes low, and a slow cycle is already detected, an actual slow cycle starts.
+	</p><p>
+	More concrete, when <code>slowdetected</code> is detected on a falling edge of 
+	<code>phidelayed</code>, then <code>slowaccess</code> is asserted to actually start a slow
+	cycle. To avoid any race condition (such as one signal derived from <code>slowdetected</code>
+	having a different propagation delay than another and then only one of these being latched 
+	at <code>phidelayed</code> going low), this signal is then used as "single point of thruth"
+	signal to enable the slow bus (only if the slow access actually goes to the slow bus, and not to
+	the board's RAM or ROM). These signals are then latched with <code>phidelayed2</code> going low
+	which comes 20&nbsp;ns after <code>phidelayed</code>. The <code>nslowbusclr</code>,
+	<code>slowaddrlatch</code>, <code>nslowdataen</code> and <code>rnw</code> then determine the
+	state of the slow bus (details see below).
+	</p><p>
+	After the slow access, when PHI2 goes low, a small pulse signal <code>startfast</code>
+	is generated to then restart the fast access. This pulse actually enables the fast clock
+	counter again (<code>divenable</code>) so that the fast clock starts with a fresh,
+	PHI1 cycle (i.e. PHI2 low). In the diagram you can actually see that the next cycle
+	is also detected as a slow cycle, but it is not detected as going to the original system bus.
+	</p></desc>
      </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     <subsection toc="jitter" name="Jitter">
+	<desc><p>
+	As the two clock domains are not completely in sync, there is some jitter that appears
+	between the slow domain signal (PHI2) and its fast clock domain counterpart 
+	(<code>phidelayed</code>). I.e. the timing interval between PHI2 going low and 
+	<code>phidelayed</code> going low is not constant, but changes in the range of a fast clock
+	cylce, i.e. 20&nbsp;ns. All other timing values must take this into account.
+	</p><p>
+	Also there is some jitter when the slow cycle ends. A PHI2 going low the <code>slowdone</code>
+	signal is asserted. This signal is used to reset the <code>slowdetected</code> signal, so this
+	goes low directly with PHI2 going low. This pulse must be long enough, so <code>startfast</code>
+	that ends the <code>slowdone</code> pulse must be at least 10&nbsp;ns, better as I use it
+	20&nbsp;ns after PHI2 goes low. <code>startfast</code> has some jitter, though. It is derived
+	from the <code>phidelayed</code> shift register line, so it is subject to the same jitter
+	as <code>phidelayed</code>.
+	</p></desc>
+     </subsection>
+     <subsection toc="origbus" name="Original bus access">
+	<desc><p>The CPLD control interface for the original bus consists of these signals:</p>
+	<ul>
+		<li><code>nslowbuslcr</code> - if low, set the address lines to zero (as long as CPU does not need the original bus</li>
+		<li><code>slowaddrlatch</code> - on a rising edge of this signal the CPU address bus values are latched and put on the original system bus. Must be at least about 20&nbsp;ns behind <code>nslowbusclr</code> going high, to allow the '273 ICs to recover and latch the correct address.</li>
+		<li><code>nslowdataen</code> - if low, connect the CPU data bus with the system data bus</li>
+		<li><code>rnw</code> - this is the system bus read/not write line. You cannot connect this directly to the CPU, so in the CPLD a circuit similar to the '273 is emulated for the read/not write line</li>
+	</ul><p>
+	The <code>startfast</code> signal is actually derived from two other signals, 
+	<code>startfastr</code> and <code>startfastw</code>, one for read and the other one
+	for write accesses. As this signal determines when the CPU continues with a new cycle,
+	you could actually delay this differently for read and write cycles. Originally I thought
+	that I need to delay further for write cycles to make the data bus hold time longer. 
+	As the 65816 is very fast, that could be a problem so I anticipated that. During the tests,
+	however, it showed that I had to delay the read access as well. That could have been 
+	due to the way I then created the signals to clear and latch the slow address bus.
+	As I have changed that I currently do not see any need to delay read cycles anymore.
+	So there is still room for experimentation.
+	</p></desc>
+     </subsection>
+     <subsection toc="bugus" name="Bogus cycle elimination">
+	<desc><p>On quite some opcodes the 6502 CPU does memory accesses that are actually
+	not used, so called bogus cycles. It does them when it needs time to internally compute
+	an address value for example (e.g. when crossing page boundaries etc). The original 
+	6502 has no way of telling the external system whether a cycle is valid or not.
+	But the 65816 has such a way, using the <code>VPA</code> and <code>VDA</code> signals.
+	Therefore is is possible to hide a bogus cycle from the original system. 
+	Assume that the system is running in slow memory only. Normally the CPLD would
+	detect the slow access on the next fast cylce (after the first PHI1 phase after
+	the previous slow access), and wait for <code>phidelayed</code> going low to initiate
+	a real slow cycle.
+	</p><div class="rightimg">
+                <a href="timing2.png"><img src="timing2_small.png"/></a><br/>Hiding bogus cycles
+                </div>
+	<p>
+	but when the cpu access is not valid, there is no need to wait for the actual slow cycle.
+	instead the cpu can continue with the fast cycle and then begin a new cycle.
+	this new cycle is then (most of the times) a valid one. So when the complete invalid cycle
+	plus the phi1 phase of the following valid cycle fit between phi2 going low and
+	<code>phidelayed</code> going low, the slow system only sees two consecutive - valid - 
+	cycles, and the invalid cycle is hidden!.
+	</p></desc>
+     </subsection>
+     <subsection toc="2mhz" name="2 mhz operation">
+	<desc><p>
+	To hide bogus cycles, the time interval between PHI2 going low and <code>phidelayed</code>
+	going low must be long enough. Unfortunately, when the system is running at 2&nbsp;MHz, this
+	time interval is too long: there is not enough time between <code>phidelayed</code> going
+	low (starting a slow access) to allow for the address setup times on the slow bus.
+	In fact the falling edge of the <code>phidelayed</code> actually runs into the
+	following PHI2 phase! That is actually why <code>phidelayed</code> is OR'd with PHI2, so
+	that in this case the system does not hang.
+	</p><p>
+	That is where the <code>FASTMODE</code> clock register bits comes in. It is set by default
+	and reduces the <code>phidelayed</code> delay such that the system actually works with 
+	2&nbsp;MHz. But there is a cost - you cannot hide bogus cycles anymore.
+	</p></desc>
+     </subsection>
+     <subsection toc="clocks" name="clock duty cycle">
+	<desc><p>
+	Maybe you have already wondered how I actually get to a CPU clock frequency of
+	10&nbsp;MHz. There actually is a trick involved.
+	</p><p>
+	Why is this so difficult to achieve with a 50&nbsp;MHz clock signal? Because the clock
+	is divided by an odd value, 5. Going from frequencies to clock cycle lengths, going from
+	50&nbsp;MHz to 10&nbsp;MHz means to go from a 20&nbsp;ns clock cycle to 100&nbsp;ns, i.e.
+	5 times as much. But normally clock dividers work on a fixed transition on the input signal.
+	I.e. when using 5 cycles of the input clock I would only be able to have something like
+	2 cycles low and 3 cycles high. I had actually tried this by changing the clock latch value
+	loaded into the clock counter by one depending on the clock state. The CPU would work with
+	faster speeds (it's rated 14&nbsp;MHz) so 40&nbsp;ns low is ok, and the RAM would work
+	with 60&nbsp;ns ok.
+	</p><p>
+	However, as I have already written above, this did not leave enough time for the CPU 
+	to put up the addresses <em>and</em> the CPLD to actually use the address for address decoding.
+	What could I do? Here comes the trick. I delayed this asymmetric clock signal by 
+	10&nbsp;ns by using the opposite edge of the fast input clock, then AND'ed the two signals.
+	Alas, a clock signal with 50&nbsp;ns low and 50&nbsp;ns high phase.
+	</p><p>
+	Admittedly this signal is out of specs for the static RAM chip I use, which is rated 55&nbsp;ns
+	access time. Using the burn-in test however, I found it still works. I might get me a faster
+	RAM IC though.
+	</p></desc>
      </subsection>
   </section>
 
-  <section toc="vhdl" name="VHDL Explained...">
-     <desc><p>In this section I will describe the main structure of the VHDL code that implements
-	the logic in the CPLD. I will also go into ways of efficient testing as I experienced
+  <section toc="vhdl" name="vhdl explained...">
+     <desc><p>in this section i will describe the main structure of the vhdl code that implements
+	the logic in the cpld. i will also go into ways of efficient testing as i experienced
 	while developing the board.</p>
 <div class="rightimg">
-                <a href="vhdlstruct.svg"><img src="vhdlstruct.png"/></a><br/>VHDL structure
+                <a href="vhdlstruct.svg"><img src="vhdlstruct.png"/></a><br/>vhdl structure
                 </div>
-	<p>VHDL defines that logic is separated into modules. Each module has input and
-		output signals that define the "interface" of the module. In general you can think
-		of these modules as being similar to logic ICs. These ICs resp. modules are then
+	<p>vhdl defines that logic is separated into modules. each module has input and
+		output signals that define the "interface" of the module. in general you can think
+		of these modules as being similar to logic ics. these ics resp. modules are then
 		plugged together in higher level modules, using the input and output signals.
-	</p><p>So I have separated the CPLD logic into different modules as well, which I am going
-		to explain here. The different modules and their structure is shown in the side image.
+	</p><p>so i have separated the cpld logic into different modules as well, which i am going
+		to explain here. the different modules and their structure is shown in the side image.
 	</p>
      </desc>
-     <subsection toc="core" name="PET816.vhd">
+     <subsection toc="core" name="pet816.vhd">
 	<desc><p>
-	This module is the top level module. Its input and output lines are the ones that are
-	used on the CPLD pins. It does not actually contain any logic. Instead it only passes
-	the signals to the Core module. In addition to that it also defines the power-up values
-	of the clock and control registers, that are passed to the Core module. 
+	this module is the top level module. its input and output lines are the ones that are
+	used on the cpld pins. it does not actually contain any logic. instead it only passes
+	the signals to the core module. in addition to that it also defines the power-up values
+	of the clock and control registers, that are passed to the core module. 
 	</p><p>
-	The power-up values for the registers are defined in this module, so that in a debug
-	setting I can define different power-up values for the registers without changing the
-	Core module.
+	the power-up values for the registers are defined in this module, so that in a debug
+	setting i can define different power-up values for the registers without changing the
+	core module.
 	</p></desc>
      </subsection>
-     <subsection toc="core" name="Core.vhd">
+     <subsection toc="core" name="core.vhd">
 	<desc><p>
-	The Core module is the one that holds all the other parts together. Its input and output
-	signals are the ones for the CPLD pins, but additionally contains the power-up values for
+	the core module is the one that holds all the other parts together. its input and output
+	signals are the ones for the cpld pins, but additionally contains the power-up values for
 	the clock and control registers.
 	</p><p>
-	Internally it wires all the other modules together. Mostly it does this by
-	wiring signals from one module to the other. Only a few signals are created in
+	internally it wires all the other modules together. mostly it does this by
+	wiring signals from one module to the other. only a few signals are created in
 	the module itself. 
 	</p><p>
-	The two most important signals generated here are <code>isslow</code>, and <code>isorig</code>.
-	The <code>isorig</code> signals goes true when the address selection signals from the 
-	SystemMap module (plus some control register values) indicate that the CPU access goes 
+	the two most important signals generated here are <code>isslow</code>, and <code>isorig</code>.
+	the <code>isorig</code> signals goes true when the address selection signals from the 
+	systemmap module (plus some control register values) indicate that the cpu access goes 
 	to the slow system bus, using the 6502 bus interface to the base system.
-	<code>isslow</code> goes active when a slow system access is detected using the CPU 
-	signals - addresses, VPA/VDA (in form of the <code>validaddr</code> signal), R/-W - control
-	register bits and more. It is an asynchronous signal that appears when the CPU signals
-	fulfill the appropriate conditions. It is then clocked in the ClockSync module.
+	<code>isslow</code> goes active when a slow system access is detected using the cpu 
+	signals - addresses, vpa/vda (in form of the <code>validaddr</code> signal), r/-w - control
+	register bits and more. it is an asynchronous signal that appears when the cpu signals
+	fulfill the appropriate conditions. it is then clocked in the clocksync module.
 	</p></desc>
      </subsection>
-     <subsection toc="map" name="SystemMap.vhd">
+     <subsection toc="map" name="systemmap.vhd">
 	<desc><p>
-	The SystemMap generates signals for the different memory areas. It determines where
-	in the memory map the I/O and the video memory areas are. It also determines where the
-	mirror RAM (for the lowest 64k) and the system mirror are. This is the only module
+	the systemmap generates signals for the different memory areas. it determines where
+	in the memory map the i/o and the video memory areas are. it also determines where the
+	mirror ram (for the lowest 64k) and the system mirror are. this is the only module
 	that needs to be replaced for a different type of system (at least in theory).
 	</p></desc>
      </subsection>
-     <subsection toc="div" name="ClockDivider.vhd">
+     <subsection toc="div" name="clockdivider.vhd">
 	<desc><p>
-	This module creates the main clock signals. It gets the 50MHz input clock and divides
+	this module creates the main clock signals. it gets the 50mhz input clock and divides
 	the clock signal by 2 (<code>divby2</code>), 
 	as well as by the value given from the clock register. 
-	The latter signal (<code>masterclk</code>) is then used to generate the 
-	actual CPU clock. The clock divider has an enable input that resets the clock signal.
-	This is used to restart the fast <code>masterclk</code> with a full phase 1 (phi1 high,
+	the latter signal (<code>masterclk</code>) is then used to generate the 
+	actual cpu clock. the clock divider has an enable input that resets the clock signal.
+	this is used to restart the fast <code>masterclk</code> with a full phase 1 (phi1 high,
 	phi2 low) after a slow access.
 	</p></desc>
      </subsection>
@@ -201,6 +371,16 @@
 	</pre>
 	in the testsuite directory, to run the <code>ctrl</code> or <code>hbog</code> test cases 
 	respectively.
+	</p></desc>
+     </subsection>
+     <subsection toc="testclock" name="Clock Testing">
+	<desc><p>As described above the synchronization of the two clock domains can lead to
+	problems, and one common error here is to do testing only with synchronized test clock
+	generators - that are synchronized and do not show real-world clock drift. 
+	</p><p>
+	Therefore I don't use an exact 50&nbsp;MHz clock in the emulation, but drift about 1&nbsp;ns
+	per clock cycle. This allows me to scroll over some execution cycles and get a picture
+	of whether there are problems in the clock synchronization.
 	</p></desc>
      </subsection>
      <subsection toc="testtiming" name="Test Timing">

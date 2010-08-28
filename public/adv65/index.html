@@ -3,14 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
 
-<meta name="description" content="Commodore hardware modifications">
-<meta name="keywords" content="Commodore hardware">
+<meta name="description" content="8-bit 6502 hardware knowledge">
+<meta name="keywords" content="8-bit,6502">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../advanced.css">
 <script src="../jquery-1.4.2.min.js"></script><script src="../myscripts.js"></script><script>myUp="../";</script>
 
-<title>André 's 8-bit pages</title>
+<title>Advanced 6502</title>
 </head>
 <body><div id="mainbox">
 <div id="leftcol">
@@ -25,31 +25,17 @@
 <li class="separator">Commodore</li>
 <li class="dir" id="m_petindex"><img src="../imgs/dir.png"/><a href="../petindex/index.html">CBM PETindex</a>
 </li>
-<li class="dir" id="m_cbmhw"><img src="../imgs/dir.png"/><a href="index.html" class="mcurrent">CBM hardware and mods</a>
-<ul class="menu1" >
-<li class="link"><img src="../imgs/link.png"/><a href="../adv65/pet816/index.html">Speed up your PET!</a></li>
-<li class="dir" id="m_cbmhw_ryofat40"><img src="../imgs/dir.png"/><a href="ryofat40/index.html">Build your own PET replica!</a>
-</li>
-<li class="dir" id="m_cbmhw_ryo1581"><img src="../imgs/dir.png"/><a href="ryo1581/index.html">Build your own VC1581 replica!</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="c64csa/index.html">CS/A adapter for C64</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="petcsa/index.html">CS/A adapter for PETs</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="kernal/index.html">C64 kernal modifications</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="scsi/index.html">CBM SCSI interfaces</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="ieee488/index.html">IEEE488 interfaces</a>
-</li>
-<li class="file"><img src="../imgs/file.png"/><a href="hwmods.html">My Hardware mods</a></li>
-<li class="link"><img src="../imgs/link.png"/><a href="../icap/c64ser.html">UART serial interface</a></li>
-</ul>
+<li class="dir" id="m_cbmhw"><img src="../imgs/dir.png"/><a href="../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
 <li class="dir" id="m_csa"><img src="../imgs/dir.png"/><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
-<li class="dir" id="m_adv65"><img src="../imgs/dir.png"/><a href="../adv65/index.html">Advanced 6502</a>
+<li class="dir" id="m_adv65"><img src="../imgs/dir.png"/><a href="index.html" class="mcurrent">Advanced 6502</a>
+<ul class="menu1" >
+<li class="dir" id="m_adv65_pet816"><img src="../imgs/dir.png"/><a href="pet816/index.html">Speed up your 6502!</a>
+</li>
+<li class="link"><img src="../imgs/link.png"/><a href="../csa/index.html">CS/A65</a></li>
+</ul>
 </li>
 <li class="dir" id="m_hwinfo"><img src="../imgs/dir.png"/><a href="../hwinfo/index.html">ICs and Standards Info</a>
 </li>
@@ -114,96 +100,50 @@
 
 		</div>
 </div>
-<div class="top" id="oldnews">
-<div class="tophead">History</div>
-<div id="oldnewscontent"><ul class="oldnews">
-<li class="oldnews">
-<small>2006-11-26</small>
-	There is a new section where you can build your own, new VC1581!
-    </li>
-<li class="oldnews">
-<small>21. October 2006</small>
-	There is a new section where you can build your own, new PET!
-    </li>
-</ul></div>
-</div>
 </div>
 <div id="midcol">
 <DIV class="top" ID="breadcrumbs">
 <a href="../index.html">Homepage</a>
-&gt;&gt;  CBM hardware and mods</DIV>
+&gt;&gt;  Advanced 6502</DIV>
 <DIV class="top" ID="content">
-<a name="topanchor"></a><h1>André 's 8-bit pages</h1>
+<a name="topanchor"></a><h1>Advanced 6502</h1>
 <p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview">
-	This page contains an overview over hardware modifications
-	and devices for Commodore 8-bit computer.
+	Here I have projects that extend the usual 6502 processor in various bits.
+	In the future (see the <a href="../sneak.html">sneak preview</a> page) this page
+	will also host the <em>65k</em> project.
   </div>
 <h2>News:</h2>
-<ul class="news">
-<li class="hotnews">
-<small>2010-04-20</small>
-	I have added a <a href="pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz!
-    </li>
-<li>
+<ul class="news"><li>
 <small>2010-08-28</small>
-	I have moved the PET816 board to a <a href="../adv65/pet816/index.html">new place</a>, in a new
-	category for <a href="../adv65/index.html">advanced 6502 stuff</a>.
-    </li>
-<li>
-<small>2010-08-11</small>
-        I have updated the <a href="pet816/index.html">PET 65816 board</a>, to speed up the PET to 8MHz by replacing the 6502 with a 65816 card.
-    </li>
-<li>
-<small>2010-05-11</small>
-	Added a patched BASIC4 ROM kernal allows to run the PET (replica) at 2MHz.
-    </li>
-</ul>
+	Created this page.
+    </li></ul>
 <h2><a name="">Quickfinder</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
-<p>
-    </p>
 <ul>
 <li class="subitem">
-<a href="pet816/index.html">PET 65816 CPU</a> 
-	A 65816 board for the Commodore PET!
+<a href="pet816/index.html">PET816</a>  - 
+	The <a href="pet816/index.html">PET816</a> board replaces the 6502 in a normal 6502 computer
+	with a 65816 board. The 65816 can be clocked up to 10 MHz, using the additional RAM that
+	is on the board - making for a really fast PET. With different memory selection logic in the
+	used CPLD it could be used for other 6502 systems like the VIC20, or maybe even a 6502-based 
+	Apple or Atari computer.
       </li>
 <li class="subitem">
-<a href="hwmods.html">Mods</a> 
-	The hardware modifications I made for my Commodore equipment.
-      </li>
-<li class="subitem">
-<a href="c64csa/index.html">C64 CS/A65 adapter</a>  
-	An adapter to use the <a href="../csa/index.html">CS/A65</a> 
-	boards on a C64.
-      </li>
-<li class="subitem">
-<a href="petcsa/index.html">PET CS/A65 adapter</a>  
-	An adapter to use the <a href="../csa/index.html">CS/A65</a> 
-	boards on a Commodore PET.
-      </li>
-<li class="subitem">
-<a href="kernal/index.html">C64 kernal</a> 
-	C64 kernal mods I made.
-      </li>
-<li class="subitem">
-<a href="scsi/index.html">CBM SCSI</a> 
-	SCSI interfaces for the C64 and others.
-      </li>
-<li class="subitem">
-<a href="ieee488/index.html">IEEE488</a> 
-	A set of IEC and IEEE488 interfaces for the Commodore computers.
-      </li>
-<li class="subitem">
-<a href="ryofat40/index.html">Roll-your-own FAT40</a> 
-	Build yourself a completely new Commodore PET 4032 (aka Fat40 with 
-	CRTC).
-      </li>
-<li class="subitem">
-<a href="ryo1581/index.html">Roll-your-own VC1581</a> 
-	Build yourself a completely new Commodore VC1581, using two
-	CS/A65 boards and a standard 3.5" disk drive.
+<a href="../csa/index.html">CS/A65</a>  -
+	The CS/A65 computer in various ways go "beyond" the original 6502 concept. That this is possible
+	is actually a sign for how flexible the simple 6502 basic design is.
+	The <a href="../csa/cpu/index.html">CS/A65 CPU board</a> in itself can be seen as an extended 6502. It extends the core with an MMU
+	to get more address lines, but also with write-protected memory, no-execute bits, or page faults
+	for non-mapped memory blocks. The <a href="../csa/auxcpu/index.html">Auxiliary CPU</a> then 
+	provides a CPU that can actually correct the memory faults while the main CPU is haltet - 
+	coming from the fact that the original 6502 lacks an ABORT signal that the 65816 has.
+	The <a href="../csa/copro/index.html">coprocessor board</a> then is the first step into
+	non-uniform-memory-access (NUMA) multiprocessing.
+	Finally the <a href="../csa/cpuemu/index.html">CPU emulator</a> board allows to replace the
+	6502 in a normal system with a connection to the CS/A computer - where the 64k of the emulated
+	system just becomes a 64k windows in the CS/A65 1 MByte address space.
       </li>
 </ul>
 <h2>Disclaimer</h2>
@@ -214,8 +154,7 @@ The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
     </p>
 <hr>
-<p>Return to <a href="../index.html">Homepage</a></p>
-
+<BR>Last updated 2010-08-28.
   </DIV>
 </div>
 </div></body>

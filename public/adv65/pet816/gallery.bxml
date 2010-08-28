@@ -1,0 +1,53 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET816 Gallery">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2010</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>Commodore PET 65816 board gallery</keywords>
+  <metadesc>Commodore PET 65816 board gallery</metadesc>
+  <overview><p>	
+	On this page I have put some pictures of the board and the benchmarks 
+	I did with the board.
+  </p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+
+  <section toc="main" name="Gallery">
+     <desc>
+	<p><img src="gal_8296.png"/></p>
+	<p>The Commodore 8296 test system</p>
+	<p><img src="gal_8296_open1.png"/></p>
+	<p>The board installed into the 8296. The white connector at the left upper end
+	of the board is an additional power connector, going to the tape port</p>
+	<p><img src="gal_8296_open2.png"/></p>
+	<p>The board installed into the 8296. Here you see the additional power cable going
+	out of the case and to the C2N232 connector I reused to get the power ...</p>
+	<p><img src="gal_bench1.png"/></p>
+	<p>The benchmark determines the system speed using the screen sync frequency.</p>
+	<p><img src="gal_speed.png"/></p>
+	<p>Yeah! The system runs at 10&nbsp;MHz! </p>
+	<p>Each benchmark has two lines. The first line shows the configuration for the 
+	 clock register ("speed"), and control register ("conf"), plus it names the actual
+	 bits that are set for convenience. The second line shows the benchmark result 
+	 in terms of system cycles for the benchmark loop, and the speed calculated from that.</p>
+	<p><img src="gal_hbogus.png"/></p>
+	<p>For certain workloads quite some speedup can be obtained by hiding bogus cycles</p>
+	<p><img src="gal_vread.png"/></p>
+	<p>As there is only one screen read cycle per benchmark loop, not much of a speedup is
+	 expected, as shown. But other workloads may differ, esp. when they already run in fast RAM </p>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

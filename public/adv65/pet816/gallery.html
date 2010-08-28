@@ -3,14 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="André  Fachat">
 
-<meta name="description" content="A new implementation of the Commodore VC1581">
-<meta name="keywords" content="Commodore disk drives VC1581">
+<meta name="description" content="Commodore PET 65816 board gallery">
+<meta name="keywords" content="Commodore PET 65816 board gallery">
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
 <script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
 
-<title>Roll your own VC1581</title>
+<title>PET816 Gallery</title>
 </head>
 <body><div id="mainbox">
 <div id="leftcol">
@@ -26,34 +26,21 @@
 <li class="dir" id="m_petindex"><img src="../../imgs/dir.png"/><a href="../../petindex/index.html">CBM PETindex</a>
 </li>
 <li class="dir" id="m_cbmhw"><img src="../../imgs/dir.png"/><a href="../../cbmhw/index.html">CBM hardware and mods</a>
-<ul class="menu1" >
-<li class="link"><img src="../../imgs/link.png"/><a href="../../adv65/pet816/index.html">Speed up your PET!</a></li>
-<li class="dir" id="m_cbmhw_ryofat40"><img src="../../imgs/dir.png"/><a href="../ryofat40/index.html">Build your own PET replica!</a>
-</li>
-<li class="dir" id="m_cbmhw_ryo1581"><img src="../../imgs/dir.png"/><a href="index.html" class="mcurrent">Build your own VC1581 replica!</a>
-<ul class="menu2" >
-<li class="link"><img src="../../imgs/link.png"/><a href="../../csa/petcpu/index.html">PETCPU</a></li>
-<li class="link"><img src="../../imgs/link.png"/><a href="../../csa/drvio/index.html">DRVIO</a></li>
-</ul>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../c64csa/index.html">CS/A adapter for C64</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../petcsa/index.html">CS/A adapter for PETs</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../kernal/index.html">C64 kernal modifications</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../scsi/index.html">CBM SCSI interfaces</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../ieee488/index.html">IEEE488 interfaces</a>
-</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../hwmods.html">My Hardware mods</a></li>
-<li class="link"><img src="../../imgs/link.png"/><a href="../../icap/c64ser.html">UART serial interface</a></li>
-</ul>
 </li>
 <li class="separator">Hardware</li>
 <li class="dir" id="m_csa"><img src="../../imgs/dir.png"/><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><img src="../../imgs/dir.png"/><a href="../../adv65/index.html">Advanced 6502</a>
+<ul class="menu1" >
+<li class="dir" id="m_adv65_pet816"><img src="../../imgs/dir.png"/><a href="../pet816/index.html">Speed up your 6502!</a>
+<ul class="menu2" >
+<li class="file"><img src="../../imgs/file.png"/><a href="features.html">Board Features</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="works.html">How it works</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="gallery.html" class="mcurrent">Gallery</a></li>
+</ul>
+</li>
+<li class="link"><img src="../../imgs/link.png"/><a href="../../csa/index.html">CS/A65</a></li>
+</ul>
 </li>
 <li class="dir" id="m_hwinfo"><img src="../../imgs/dir.png"/><a href="../../hwinfo/index.html">ICs and Standards Info</a>
 </li>
@@ -122,87 +109,43 @@
 <div id="midcol">
 <DIV class="top" ID="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CBM hardware and mods</a>&gt;&gt;  Build your own VC1581 replica!</DIV>
+&gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">Speed up your 6502!
+</a>&gt;&gt;  Gallery</DIV>
 <DIV class="top" ID="content">
-<a name="topanchor"></a><h1>Roll your own VC1581</h1>
+<a name="topanchor"></a><h1>PET816 Gallery</h1>
 <p class="copyright">(C)
-2006-2006 André  Fachat</p> 
+2010-2010 André  Fachat</p> 
 <div class="overview">
-	<p>This page describes how you can build your own VC1581 using
-	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p>
-<p>
-	</p>
-<p>
-	Basically what you do is to combine the <a href="../../csa/petcpu/index.html">PETCPU</a> and the
-	<a href="../../csa/drvio/index.html">DRVIO</a> boards 
-	into one computer, put the drive ROM into a ROM for the PETCPU ROM socket
-	and there you are. The following sections describe the special settings
-	on the different boards.
-	</p>
-  </div>
-<h2>News:</h2>
-<ul class="news"><li>
-<small>2006-11-26</small>
-	Published the page!
-    </li></ul>
-<h2><a name="">Board settings</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
-	<a href="vc1581drv.jpg"><img class="rightimg" src="vc1581drv-small.jpg"></a>
-	This section describe the CS/A65 boards making up the VC1581.
-	Here is a <a href="vc1581drv.jpg">picture</a> of the two boards on 
-	a backplane. 
-    </p>
-<ul>
-<li class="subitem">
-<a href="../../csa/petcpu/index.html">PETCPU board</a> 
-	The PETCPU board must be set to a maximum of 8k (or 16k) RAM 
-	on the board itself, and a 32k ROM, with bus /IOSEL disabled.
-	(Note: the area $E800-$F000 in the VC1581 ROM is unused, so the
-	bus I/O area could actually be used).
-	Further jumper settings are described on the <a href="../../csa/petcpu/index.html">board page</a>.
-     </li>
-<li class="subitem">
-<a href="../../csa/drvio/index.html">DRVIO board</a> 
-	For the use of the DRVIO board some features had to be implemented. 
-	First of all, the VC1581 does not handle the drive select signal.
-	As the DRVIO board handles two drives, the additional control port
-	selects drive 0 after reset, and any one of the two drives 
-	is always selected. The VC1581 does also not handle the 
-	density selection, so the DRVIO board handles the density with the
-	control port, and double density (for VC1581) is selected on reset.
-	The VC1581 reads the drive ready signal - that does not exist for
-	new PC floppy drives. A 2k2 Ohm resistor constantly pulls the 
-	CIA PA1 input low.
-	The board jumper settings are documented on the <a href="../../csa/drvio/index.html">board page</a>.
-     </li>
-</ul>
-<h2><a name="">ROMs</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
-	I used the 2nd edition of the original Commodore VC1581 ROMs, 
-	that you can get on the <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/new/1581/index.html">CBM archive page</a>.
-    </p>
-<h2><a name="">Pictures</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
-	Some pictures :-)
-    </p>
-<ul>
-<li class="subitem">
-<a href="vc1581drv.jpg">A working VC1581 replica</a> 
-     </li>
-<li class="subitem">
-<a href="vc1581screen.jpg">A simple test</a> 
-     </li>
-</ul>
-<h2>Disclaimer</h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
-All Copyrights are acknowledged.
-The information here is provided under the terms of the
-GNU Public License version 2 unless noted otherwise.
+<p>	
+	On this page I have put some pictures of the board and the benchmarks 
+	I did with the board.
   </p>
+  </div>
+<h2><a name="main">Gallery</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p>
+	<p><img src="gal_8296.png"></p>
+	<p>The Commodore 8296 test system</p>
+	<p><img src="gal_8296_open1.png"></p>
+	<p>The board installed into the 8296. The white connector at the left upper end
+	of the board is an additional power connector, going to the tape port</p>
+	<p><img src="gal_8296_open2.png"></p>
+	<p>The board installed into the 8296. Here you see the additional power cable going
+	out of the case and to the C2N232 connector I reused to get the power ...</p>
+	<p><img src="gal_bench1.png"></p>
+	<p>The benchmark determines the system speed using the screen sync frequency.</p>
+	<p><img src="gal_speed.png"></p>
+	<p>Yeah! The system runs at 10 MHz! </p>
+	<p>Each benchmark has two lines. The first line shows the configuration for the 
+	 clock register ("speed"), and control register ("conf"), plus it names the actual
+	 bits that are set for convenience. The second line shows the benchmark result 
+	 in terms of system cycles for the benchmark loop, and the speed calculated from that.</p>
+	<p><img src="gal_hbogus.png"></p>
+	<p>For certain workloads quite some speedup can be obtained by hiding bogus cycles</p>
+	<p><img src="gal_vread.png"></p>
+	<p>As there is only one screen read cycle per benchmark loop, not much of a speedup is
+	 expected, as shown. But other workloads may differ, esp. when they already run in fast RAM </p>
+     </p>
 <hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 

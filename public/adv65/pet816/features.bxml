@@ -16,6 +16,7 @@
 	Please note that "system bus" refers to the 6502 bus connector.
 	</p>
   </overview>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1573</forum>
   <!--news>
     <item date="2010-01-04">
 	Started this page
@@ -174,7 +175,7 @@
 	comparison between register values and clock speeds (for the 50MHz oscillator used)
 	for some latch values:</p>
 	<table border="1">
-	<tr><th>latch value</th><th>clock speed</th><th>&nbsp;</th></tr>
+	<tr><th>latch value</th><th>clock speed (MHz)</th><th>&nbsp;</th></tr>
 	<tr><td>15</td><td>3.1</td><td>Default</td></tr>
 	<tr><td>9</td><td>5</td></tr>
 	<tr><td>5</td><td>8.3</td></tr>

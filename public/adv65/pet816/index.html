@@ -36,8 +36,10 @@
 <ul class="menu2" >
 <li class="file"><img src="../../imgs/file.png"/><a href="features.html">Board Features</a></li>
 <li class="file"><img src="../../imgs/file.png"/><a href="works.html">How it works</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="gallery.html">Gallery</a></li>
 </ul>
 </li>
+<li class="link"><img src="../../imgs/link.png"/><a href="../../csa/index.html">CS/A65</a></li>
 </ul>
 </li>
 <li class="dir" id="m_hwinfo"><img src="../../imgs/dir.png"/><a href="../../hwinfo/index.html">ICs and Standards Info</a>
@@ -121,7 +123,7 @@
 			up to 1MByte fast RAM (run at CPU speed) plus up to 512k parallel Flash ROM (in-system programmable), that can be used as boot ROM.
 	</p>
 	<div class="rightimg">
-<a href="pet816_8296a.png"><img width="200" src="pet816_8296a_small.png"></a><br>The board prototype installed in a Commodore 8296 
+<a href="gal_speed.png"><img src="gal_speed_small.png"></a><br>The board prototype installed in a Commodore 8296 - running a benchmark at 10 MHz!
 		                </div>	<p>
 The interface itself is, in fact, pretty simple. It is a board that is plugged 
 in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
@@ -131,8 +133,15 @@ a feature in these days.
 		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
 		easier to handle when you have to change things often. But it also now runs in the CBM8296. Tests with other PETs will follow.
 	</p><p>
-		Please also look at the <a href="features.html">features</a> and <a href="works.html">how it works</a> page.
-	</p>
+		Please also look at these pages:
+		</p>
+		<ul>
+<li><a href="features.html">Features page</a></li>
+		<li>
+<a href="works.html">How it works</a> page.</li>
+		<li>
+<a href="gallery.html">Gallery</a> page</li>
+		</ul>
 	</p>
 </div>
 <h2>News:</h2>
@@ -159,8 +168,7 @@ a feature in these days.
 <li><a href="#driver">Driver</a></li>
 <dir>
 <li><a href="#driver1">Testsuite</a></li>
-<li><a href="#driver2">Prototype tests</a></li>
-<li><a href="#driver3">VHDL code</a></li>
+<li><a href="#driver2">VHDL code</a></li>
 </dir>
 <li><a href="#boards">Board Revisions</a></li>
 <dir>
@@ -178,8 +186,33 @@ a feature in these days.
 <div class="toplink"><a href="#top">Top</a></div>
 <H3><A NAME="driver1">Testsuite</A></H3>
 <p><p>Here are some small tests that test the various features of the board.
-		</p><p>Note that building them requires the <code>xa</code> cross assembler, using the <code>-w</code>
-				switch to enable 65816 code, as well as <code>petcat</code> from the VICE emulator package.</p>
+		</p><p>Note that building them requires the <code>xa</code> cross assembler, using 
+		the <code>-w</code> switch to enable 65816 code, as well as <code>petcat</code> 
+		from the VICE emulator package to build the BASIC parts.
+		</p><p>Here is a description of the different tests (by subdirectory):</p>
+		<ul>
+		<li>benchmark - builds the <code>BENCH</code> benchmark program used to check the
+			speed of the various settings. Builds from the <code>BENCH.basic</code> BASIC
+			source as 
+			well as <code>benchcode.a65</code> and <code>eichcode.a65</code> assembler
+			sources.</li>
+		<li>eichtest - builds the burn-in test that, at its start, shows how fast the system
+			actually works (uses screen interrupts to determine system speed, so works
+			on my 2 MHz PET replica as well. Builds the <code>LOOP</code> Commodore
+			PET BASIC executable from <code>LOOP5.basic</code> and 
+			<code>eichcode.a65</code>.</li>
+		<li>maptest - some mapping tests. <code>COPY</code> copies 4k data from the system memory
+			mirror at $e0xxxx to  bank 0. <code>GOFAST</code> copies the system from
+			slow memory over to the fast RAM mirror, and switches to it. <code>MAPTEST</code>
+			compares the slow memory with the system memory mirror at $e0xxxx.</li>
+		<li>modes - builds the <code>GOFAST</code> and <code>GOSLOW</code> programs that
+			move execution to either fast RAM or back into slow memory. <code>GOFAST</code>
+			is updated compared to the maptest version though.</li>
+		<li>progrom - programs the ROM to run a "GOFAST" functionality directly on reset,
+			as a boot rom. If you program your on-board ROM with this <code>PGOFAST</code>
+			code, and set the bootrom jumper, the system will automatically boot into 
+			fast mode.</li>
+		</ul>
 		</p>
 <TABLE class="files">
 <TR CLASS="R1">
@@ -188,64 +221,34 @@ a feature in these days.
 <A HREF="x816tests-1.0.tgz">x816tests-1.0.tgz</A>(Feature test suite)</TD>
 </TR>
 </TABLE>
-<H3><A NAME="driver2">Prototype tests</A></H3>
-<p><p>Here are some small tests that are compiled with the <code>xa</code> cross assembler, using the <code>-w</code>
-				switch to enable 65816 code.</p>
-			<div class="rightimg">
-<a href="pet816_test2.png"><img width="200" src="pet816_test2_small.png"></a><br>Screen shot of a timing measurement with test2. Note that the slow memory runs the code in <code>$ffff-$fcfb</code> cycles, while the code in fast RAM runs in 
-				<code>$ffff-$ff99</code> cycles. The control port is mapped at 60351 in this instance. 
-				More measurements and explanations to follow.
-		</div>	                
-		<p>Note: this tests are basically deprecated now, as they may use wrong control register settings</p>
-		</p>
-<TABLE class="files">
-<TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="test1.a65">test1.a65</A>(Copy system ROM to fast RAM)</TD>
-</TR>
-<TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="test2.a65">test2.a65</A>(Execute and time a loop in fast and slow memory)</TD>
-</TR>
-<TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="test3.a65">test3.a65</A>(Copy 4k memory to fast RAM and back)</TD>
-</TR>
-<TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_driver.gif" ALT="driver"></TD>
-<TD>
-<A HREF="test4.a65">test4.a65</A>(XOR mirrored system memory with bank 0)</TD>
-</TR>
-<TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
-<TD>
-<A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
-</TR>
-</TABLE>
-<H3><A NAME="driver3">VHDL code</A></H3>
+<H3><A NAME="driver2">VHDL code</A></H3>
 <p><p>
 			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
+		</p><p>
+		Version 1.7.1 just has an updated testsuite.
 		</p></p>
 <TABLE class="files">
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.7.tar.bz2">PET816_1.7.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+<A HREF="PET816_1.7.1.tar.bz2">PET816_1.7.1.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R0">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.5.tar.bz2">PET816_1.5.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+<A HREF="PET816_1.7.tar.bz2">PET816_1.7.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
-<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+<A HREF="PET816_1.5.tar.bz2">PET816_1.5.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
 </TR>
 <TR CLASS="R0">
+<TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
+<TD>
+<A HREF="PET816_1.0.tar.bz2">PET816_1.0.tar.bz2</A>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</TD>
+</TR>
+<TR CLASS="R1">
 <TD><IMG SRC="../../imgs/file_logic.gif" ALT="logic"></TD>
 <TD>
 <A HREF="gtkwave.png">gtkwave.png</A>(Sample screenshot of the timing simulation in the testbench)</TD>
@@ -274,11 +277,11 @@ a feature in these days.
 <TD><A HREF="pet_cpu816-v1.2b.sch">pet_cpu816-v1.2b.sch</A></TD>
 </TR>
 <TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD><A HREF="pet_cpu816-v1.2b.brd">pet_cpu816-v1.2b.brd</A></TD>
 </TR>
 <TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD><A HREF="pet_cpu816-v1.2b-sch.png">pet_cpu816-v1.2b-sch.png</A></TD>
 </TR>
 <TR CLASS="R0">
@@ -304,11 +307,11 @@ a feature in these days.
 <TD><A HREF="pet_cpu816-v1.2a.sch">pet_cpu816-v1.2a.sch</A></TD>
 </TR>
 <TR CLASS="R0">
-<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
+<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
 <TD><A HREF="pet_cpu816-v1.2a.brd">pet_cpu816-v1.2a.brd</A></TD>
 </TR>
 <TR CLASS="R1">
-<TD><IMG SRC="../../imgs/file_layout.gif" ALT="layout"></TD>
+<TD><IMG SRC="../../imgs/file_schem.gif" ALT="schem"></TD>
 <TD><A HREF="pet_cpu816-v1.2a-sch.png">pet_cpu816-v1.2a-sch.png</A></TD>
 </TR>
 <TR CLASS="R0">
