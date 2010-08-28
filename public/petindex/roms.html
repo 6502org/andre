@@ -138,10 +138,15 @@
 - André  Fachat</p> 
 <div class="overview">
 <p>This page describes the different ROM versions.
-	There are basically two sections necessary - for the BASIC ROM version
-	and for the so-called editor ROM.
+	There are basically three parts of each ROM set - for the BASIC ROM version
+	and for the so-called editor ROM, and then the kernal.
 	</p>
   </div>
+<h2>News:</h2>
+<ul class="news"><li>
+<small>2010-08-28</small>
+	Added links to history of MS BASIC and Bill Gates' programming tricks.
+    </li></ul>
 <DIV ID="toc">
 <h2>Table of content</h2>
 <div class="toplink"><a href="#top">Top</a></div>
@@ -151,6 +156,7 @@
 <li><a href="#orig">Original ROMs ($C000-$FFFF)</a></li>
 <li><a href="#upgrade">Upgrade ROMs ($C000-$FFFF)</a></li>
 <li><a href="#basic4">4.0 ROMs ($B000-$FFFF)</a></li>
+<li><a href="#hist">BASIC History</a></li>
 </dir>
 <li><a href="#editor">Editor ROM</a></li>
 <li><a href="#charrom">Character ROM</a></li>
@@ -213,6 +219,45 @@ boards #3 and #4)...
 <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/petdis" target="_blank" class="extlink">4.0 ROMs disassembly</a> </li>
 <li>
 <a href="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt" target="_blank" class="extlink">4.0 ROMs memory map</a> </li>
+</ul>
+<H3><a name="hist">BASIC History</a></H3>
+<p><p>
+	The BASIC as used in the Commodore PET computers is actually something programmed
+	by Microsoft - in parts maybe even by Bill Gates himself. At least a comment in the
+	pagetable's MS BASIC history is supposed to be by Bill and says he put the WAIT easter egg there
+	himself (I'd take that with a grain of salt though).
+	</p><p>
+	Anyway, the link below is a great analysis of the different MS BASIC versions,
+	including the versions for Apple and Altair and how they relate to each other. 
+	</p><p>
+	In the second link it is discussed whether Bill Gates could write code. In fact I believe
+	he could. The Commodore BASIC actually uses the "BIT ABS" opcode often to hide a 
+	two-byte opcode in the ABS operand. That was also in the Altair's 8080 BASIC version
+	written by Gates.
+	</p><p>
+	In fact it could even be his influence that this technique was later used even in the 
+	Commodore kernal. The BASIC 1 kernal for example uses
+	<pre>
+ F0B6  A9 40     TALK       LDA #$40      
+ F0B8  D0 02                BNE ATNOUT    
+ F0BA  A9 20     LISTEN     LDA #$20      
+ F0BC  48        ATNOUT     PHA           
+	</pre>
+	while the BASIC 4 kernal uses
+	<pre>
+ F0D2	TALK	LDA #$40
+ F0D4		.byte $2C	; BIT $20A9	note: the "LDA #$20" is hidden in the operand!
+ F0D5	LISTEN	LDA #$20
+ F0D7	ATNOUT	PHA
+	</pre>
+	I didn't do a further thorough research though.
+	</p>
+	</p>
+<ul>
+<li>
+<a href="http://www.pagetable.com/?p=43" target="_blank" class="extlink">Pagetable's MS BASIC history</a> </li>
+<li>
+<a href="http://www.theregister.co.uk/2001/05/15/could_bill_gates_write_code/" target="_blank" class="extlink">Could Bill Gates write code?</a> </li>
 </ul>
 <h2><a name="editor">Editor ROM</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>

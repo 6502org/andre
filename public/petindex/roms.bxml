@@ -8,15 +8,15 @@
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
   <overview><p>This page describes the different ROM versions.
-	There are basically two sections necessary - for the BASIC ROM version
-	and for the so-called editor ROM.
+	There are basically three parts of each ROM set - for the BASIC ROM version
+	and for the so-called editor ROM, and then the kernal.
 	</p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2010-08-28">
+	Added links to history of MS BASIC and Bill Gates' programming tricks.
     </item>
-  </news-->
+  </news>
   <toc/>
   <section toc="main" name="Differences in Software">
     <desc>
@@ -73,6 +73,43 @@ boards #3 and #4)...
 	</desc>
 	<extlink name="4.0 ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/petdis"/>
 	<extlink name="4.0 ROMs memory map" link="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt"/>
+     </subsection>
+
+     <subsection toc="hist" name="BASIC History">
+	<desc><p>
+	The BASIC as used in the Commodore PET computers is actually something programmed
+	by Microsoft - in parts maybe even by Bill Gates himself. At least a comment in the
+	pagetable's MS BASIC history is supposed to be by Bill and says he put the WAIT easter egg there
+	himself (I'd take that with a grain of salt though).
+	</p><p>
+	Anyway, the link below is a great analysis of the different MS BASIC versions,
+	including the versions for Apple and Altair and how they relate to each other. 
+	</p><p>
+	In the second link it is discussed whether Bill Gates could write code. In fact I believe
+	he could. The Commodore BASIC actually uses the "BIT ABS" opcode often to hide a 
+	two-byte opcode in the ABS operand. That was also in the Altair's 8080 BASIC version
+	written by Gates.
+	</p><p>
+	In fact it could even be his influence that this technique was later used even in the 
+	Commodore kernal. The BASIC 1 kernal for example uses
+	<pre>
+ F0B6  A9 40     TALK       LDA #$40      
+ F0B8  D0 02                BNE ATNOUT    
+ F0BA  A9 20     LISTEN     LDA #$20      
+ F0BC  48        ATNOUT     PHA           
+	</pre>
+	while the BASIC 4 kernal uses
+	<pre>
+ F0D2	TALK	LDA #$40
+ F0D4		.byte $2C	; BIT $20A9	note: the "LDA #$20" is hidden in the operand!
+ F0D5	LISTEN	LDA #$20
+ F0D7	ATNOUT	PHA
+	</pre>
+	I didn't do a further thorough research though.
+	</p>
+	</desc>
+	<extlink name="Pagetable's MS BASIC history" link="http://www.pagetable.com/?p=43"/>
+	<extlink name="Could Bill Gates write code?" link="http://www.theregister.co.uk/2001/05/15/could_bill_gates_write_code/"/>
      </subsection>
 
   </section>

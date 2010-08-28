@@ -19,18 +19,18 @@ most (if at all) known are the different so-called 50Hz and 60Hz models.
 Those numbers relate to the power supply line frequency in Europe and
 the USA resp. Because of this difference there were differences
 in the video controller, but Commodore also decided to have different
-keyboards. Later, however, in Europe CBM sold nationalized CBM machines
+keyboards. Later, however, in Europe and even Japan CBM sold nationalized CBM machines
 with german or other keyboards and character sets.
 Therefore I will in this document name the keyboards "chicklet", "graphics"
 and "business-**", where "**" is "us", "uk", "de" etc for the different
 countries.
 </p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2010-08-28">
+	Added pictures of German and Japanese keyboards
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="layout" name="Keyboard Layout">
@@ -266,7 +266,22 @@ Bottom - 225,(Top-24)
 
      <subsection toc="japan" name="Japan">
 	<desc><p>The Japanese PET has a Yen symbol on the keyboard, and no pound symbol.
+	But it also has some Japanese characters.
+	Here are some pictures of the Japanese model (Courtesy MikeS):
 	</p>
+	<table>
+	<tr><td>Japanese chicklet keyboard</td><td><a href="keymap/JapaneseKdbOld.jpg"><img width="300px" src="keymap/JapaneseKdbOld.jpg"/></a></td></tr>
+	<tr><td>Japanese graphics keyboard</td><td><a href="keymap/JapaneseKbdNewL.JPG"><img width="300px" src="keymap/JapaneseKbdNewL.JPG"/></a></td><td><a href="keymap/JapaneseKbdNewR.JPG"><img width="100px" src="keymap/JapaneseKbdNewR.JPG"/></a></td></tr>
+	<tr><td><a href="keymap/JapaneseCG.PDF">Japanese screen character ROM (PDF)</a></td></tr>
+	</table>
+	</desc>
+     </subsection>
+     <subsection toc="japan" name="Germany">
+	<desc><p>This CBM 8296 has the German umlauts.
+	</p>
+	<table>
+	<tr><td>German business keyboard</td><td><a href="keymap/kbd_german.png"><img width="300px" src="keymap/kbd_german.png"/></a></td></tr>
+	</table>
 	</desc>
      </subsection>
   </section>

@@ -43,10 +43,16 @@
 	system just becomes a 64k windows in the CS/A65 1&#160;MByte address space.
       </subitem>
     </items>
+  </itemlist>
+  <section toc="info" name="65xx Information">
+    <desc><p>Here are some links to general 6502 and beyond information</p></desc>
+    <extlink name="The 6502/65C02/65C816 instruction set decoded" link="http://www.llx.com/~nparker/a2/opcodes.html"/>
+    <extlink name="Programming the 65816 (PDF)" link="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf"/>
+  </section>
+ 
     <disclaimer name="Disclaimer">
 @DISCLAIMER@
     </disclaimer>
-  </itemlist>
   <closing>
 <BR/>Last updated 2010-08-28.
   </closing>
