@@ -37,7 +37,7 @@ and internet access.</p>
     <item date="2010-08-02">
 	Improved the CS/A <a href="csa/bios/index.html">BIOS</a> and <a href="csa/cpu/index.html">CPU</a> boards with better timing.
     </item>
-    <item date="2010-06-06" state="hot">
+    <item date="2010-06-06">
 	Major web design update. New (menu) icons, new stylesheet with a new 3-column layout, and a much more functional menu.
 	The menu is now dynamic, and allows filtering it for keywords. I hope you like it. Caveat emptor: I have
 	tested with a number of browsers and system but not everything is perfect yet. Let me know if you find anything
