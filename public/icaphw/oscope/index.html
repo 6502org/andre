@@ -1,0 +1,287 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
+
+<meta name="description" content="Oscilloscope probe tests">
+<meta name="keywords" content="Oscilloscope">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
+<script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
+
+<title>Oscilloscope bits</title>
+</head>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="../../imgs/expand.png"><img id="collapse" src="../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../imgs/cancel.png">
+</form></div>
+<div id="mtree">
+<a class="m_homepage" href="../../index.html">Homepage</a>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir" id="m_petindex"><img src="../../imgs/dir.png"/><a href="../../petindex/index.html">CBM PETindex</a>
+</li>
+<li class="dir" id="m_cbmhw"><img src="../../imgs/dir.png"/><a href="../../cbmhw/index.html">CBM hardware and mods</a>
+</li>
+<li class="separator">Hardware</li>
+<li class="dir" id="m_csa"><img src="../../imgs/dir.png"/><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
+</li>
+<li class="dir" id="m_adv65"><img src="../../imgs/dir.png"/><a href="../../adv65/index.html">Advanced 6502</a>
+</li>
+<li class="dir" id="m_hwinfo"><img src="../../imgs/dir.png"/><a href="../../hwinfo/index.html">ICs and Standards Info</a>
+</li>
+<li class="dir" id="m_mischw"><img src="../../imgs/dir.png"/><a href="../../mischw/index.html">Other hardware (e.g. tools)</a>
+</li>
+<li class="separator">Software</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../osa/index.html">GeckOS operating system</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../lib6502/index.html">Lib6502 standard</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../o65/index.html">O65 file format</a>
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../misc/index.html">Misc software</a>
+</li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir" id="m_icapos"><img src="../../imgs/dir.png"/><a href="../../icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li class="dir" id="m_icaphw"><img src="../../imgs/dir.png"/><a href="../../icaphw/index.html">6502 Hardware Bits</a>
+<ul class="menu1" >
+<li class="file"><img src="../../imgs/file.png"/><a href="../design.html">Hardware design lesson</a></li>
+<li class="dir" id="m_icaphw_oscope"><img src="../../imgs/dir.png"/><a href="index.html" class="mcurrent">Oscilloscope bits</a>
+
+</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../xilinx.html">Xilinx CPLD tools</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../c64ser.html">UART serial interface</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../rdy.html">RDY generation</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../remote.html">Infrared remote control</a></li>
+</ul>
+</li>
+<li class="separator">Misc</li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../contact.html">Contact</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../sneak.html">Sneak preview</a></li>
+<li class="file"><img src="../../imgs/file.png"/><a href="../../design.html">Web design</a></li>
+</ul>
+
+</div>
+		</div>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			</div>
+</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
+		</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div class="top" id="hot">
+<div class="tophead">Hot!</div>
+<div>
+<p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+
+		</div>
+</div>
+</div>
+<div id="midcol">
+<DIV class="top" ID="breadcrumbs">
+<a href="../../index.html">Homepage</a>
+&gt;&gt; <a href="../index.html">6502 Hardware Bits</a>&gt;&gt;  Oscilloscope bits</DIV>
+<DIV class="top" ID="content">
+<a name="topanchor"></a><h1>Oscilloscope bits</h1>
+<p class="copyright">(C)
+2010-2010 André  Fachat</p> 
+<div class="overview">
+<p>	
+	When I started working on 8-bit designs, I did not have many tools. Basically I was working with my brain and
+	a multimeter. But this soon started to be insufficient. So about 20 or more years ago I bought me a used oscilloscope, 
+        <div class="rightimg">
+        <image src="imgs/newnold.png" width="300px"></image><br>
+                <caption>Old and new scope for a size comparison :-)</caption>
+        </div>
+	This <a href="http://www.radiomuseum.org/r/tektronix_cathode_ray_oscilloscope_3.html">radiomuseum link</a> thinks that
+	the scope is from about 1959!
+	This trusty old 'scope still works, but however has now shown its age. I recently started to work on boards with
+	10 MHz and more clock frequency, which is getting close to the scope's bandwidth limit of 15 MHz.
+	Also the trigger circuit is very delicat to handle and difficult to get a stable trigger.
+	</p>
+<p>
+	So now I got me a new scope. A shiny new 200 MHz bandwidth, digital scope. It included 2 new probes, with 
+	300 MHz bandwidth. When I started with the old scope, I used unshielded probes, ones you
+	could use on low frequency (like in audio) signals. In the meantime I had already bought me two other 
+	probes, which, on this page, I will call the "old" probes. I do not anymore know the probe characteristics,
+	so I decided to check them with the new scope. The old probes were all x10 attenuation - meaning a tenth of the voltage 
+	is displayed on the scope, but also much less capacitive load is put on the signal, so the bandwidth is higher.
+	The new probes are switchable between x1 and x10.
+	</p>
+<p>
+	To learn how the new scope works in detail,
+	and to understand the differences between the old and the new scope, I did some measurements on my 
+	<a href="../../adv65/pet816/index.html">PET816</a> card, as the CPU clock can be set via a control register.
+	</p>
+<p>
+	The pictures below show the results of these measurements. The new scope measurements are actually taken using the
+	PC software (unfortunately windows only). For the old scope I took some photos...
+	</p>
+  </div>
+<DIV ID="toc">
+<h2>Table of content</h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<dir>
+<li><a href="#50mhz">50 MHz measurements</a></li>
+<li><a href="#10mhz">10 MHz measurements</a></li>
+<li><a href="#5mhz">5 MHz measurements</a></li>
+<li><a href="#address">Address bus measurements</a></li>
+<li><a href="#summary">Summary</a></li>
+</dir>
+</DIV>
+<h2><a name="50mhz">50 MHz measurements</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	The <a href="../../adv65/pet816/index.html">PET816</a> board has a clock oscillator with 50 MHz 
+	frequency. I used this signal to get some measurements with the old and the new scope.
+	</p>
+	<table border="1" valign="center">
+	<tr>
+<th width="50%">Measuring:</th>
+<th width="50%">50 MHz clock oscillator output</th>
+</tr>
+	<tr>
+<td>new probe, x1<br><br>The total voltage difference between highest and lowest value is only about 1.5V. This is the result of a) the bandwidth being reduced in the x1 setting, and the damping getting higher with the frequency.</td>
+<td><a href="imgs/50MHz_x1_NewProbe.png"><img width="300px" src="imgs/50MHz_x1_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>new probe, x10<br><br>The voltage here shows quite some overshoot, up to 6V and down to -2V.</td>
+<td><a href="imgs/50MHz_x10_NewProbe.png"><img width="300px" src="imgs/50MHz_x10_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>old probe, x10<br><br>The old probe only shows slightly higher overshoot, but otherwise looks very similar to the new probe.</td>
+<td><a href="imgs/50MHz_x10_OldProbe.png"><img width="300px" src="imgs/50MHz_x10_OldProbe.png"></a></td>
+</tr>
+	<tr>
+<td>new probe - old scope, x10<br><br>As you can see, there only is a DC component - 50 MHz is definitely too high for that 15 MHz scope.</td>
+<td><a href="imgs/50MHz_x10_OldScope.png"><img width="300px" src="imgs/50MHz_x10_OldScope_small.png"></a></td>
+</tr>
+	</table>
+     </p>
+<h2><a name="10mhz">10 MHz measurements</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	Here I used the 10 MHz CPU clock input, as generated by the CPLD.
+	</p>
+	<table border="1" valign="center">
+	<tr>
+<th width="50%">Measuring:</th>
+<th width="50%">10 MHz CPU clock input (from CPLD)</th>
+</tr>
+	<tr>
+<td>new probe, x10<br><br>The voltage here shows less overshoot, down to -1.8V. But the flanks are much higher here, due to the higher bandwidth for the harmonics. The high voltage does not show much overshoot anymore, but also is max'd at about 4V.</td>
+<td><a href="imgs/10MHz_x10_NewProbe.png"><img width="300px" src="imgs/10MHz_x10_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>old probe, x10<br><br>The old probe again only shows slightly higher overshoot, but otherwise looks very similar to the new probe.</td>
+<td><a href="imgs/10MHz_x10_OldProbe.png"><img width="300px" src="imgs/10MHz_x10_OldProbe.png"></a></td>
+</tr>
+	</table>
+     </p>
+<h2><a name="5mhz">5 MHz measurements</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	Here I used the 5 MHz CPU clock input, as generated by the CPLD.
+	</p>
+	<table border="1" valign="center">
+	<tr>
+<th width="50%">Measuring:</th>
+<th width="50%">5 MHz CPU clock input (from CPLD)</th>
+</tr>
+	<tr>
+<td>new probe, x10<br><br>Result similar to the 10 MHz case</td>
+<td><a href="imgs/5MHz_x10_NewProbe.png"><img width="300px" src="imgs/5MHz_x10_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>old probe, x10<br><br>Again, similar to the 10 MHz case, only slightly more overshoot</td>
+<td><a href="imgs/5MHz_x10_OldProbe.png"><img width="300px" src="imgs/5MHz_x10_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>old probe, x10, with FFT analysis<br><br>Unfortunately the PC software only exports this small image</td>
+<td><a href="imgs/5MHz_x10_OldProbe_FFT.png"><img width="300px" src="imgs/5MHz_x10_OldProbe_FFT.png"></a></td>
+</tr>
+	<tr>
+<td>new probe, x1<br><br>Not sure what the x1 setting here does. Looks like a clear signal with a distinct bandwidth limit.</td>
+<td><a href="imgs/5MHz_x1_NewProbe.png"><img width="300px" src="imgs/5MHz_x1_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>unshielded probe, x1<br><br>This is the picture with the unshielded probe and shows a lot of overshooting noise involved.</td>
+<td><a href="imgs/5MHz_x1_Unshielded.png"><img width="300px" src="imgs/5MHz_x1_Unshielded.png"></a></td>
+</tr>
+	<tr>
+<td>new probe - old scope, x10<br><br>10 MHz is actually quite well shown for a 15 MHz scope (I think).</td>
+<td><a href="imgs/5MHz_x10_OldScope.png"><img width="300px" src="imgs/5MHz_x10_OldScope_small.png"></a></td>
+</tr>
+	</table>
+     </p>
+<h2><a name="address">Address bus measurements</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	Here I measured RAM Pin 28, which is A13. This signal is generated by the CPU, here at 5 MHz CPU clock.
+	</p>
+	<table border="1" valign="center">
+	<tr>
+<th width="50%">Measuring:</th>
+<th width="50%">Address signal A13 at 5 MHz CPU clock (from CPU)</th>
+</tr>
+	<tr>
+<td>new probe, x10<br><br>Shows a clear signal, with only slight overshoot.</td>
+<td><a href="imgs/RAMP28_5MHz_x10_NewProbe.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_NewProbe.png"></a></td>
+</tr>
+	<tr>
+<td>old probe, x10<br><br>Only slightly worse. Goes into the negative though.</td>
+<td><a href="imgs/RAMP28_5MHz_x10_OldProbe.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_OldProbe.png"></a></td>
+</tr>
+	<tr>
+<td>new probe - old scope, x10<br><br>Shows a nice smooth signal.</td>
+<td><a href="imgs/RAMP28_5MHz_x10_OldScope.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_OldScope_small.png"></a></td>
+</tr>
+	</table>
+     </p>
+<h2><a name="summary">Summary</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
+<p><p>
+	In summary I can say that the scope was a good buy. It has lots of features my old scope does not have, and can show 
+	a lot higher frequencies. 
+	</p><p>
+	On the other hand I am still thinking whether I should actually keep the old scope. While the new one is all electronics,
+	with highly integrated FPGAs internally etc - it is basically not servicable anymore. Looking at the age of the
+	old scope, I suspect that it still works when the new breaks...
+     </p></p>
+<hr>
+<p>Return to <a href="../../index.html">Homepage</a></p>
+
+  </DIV>
+</div>
+</div></body>
+</html> 
+

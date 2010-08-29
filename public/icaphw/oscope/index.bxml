@@ -1,15 +1,42 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name="Oscilloscope...">
+<webpage name="Oscilloscope bits">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
-    <yearstart>1997</yearstart>
+    <yearstart>2010</yearstart>
     <yearend>2010</yearend>
   </author>
-  <keywords>Commodore PET CBM ROM</keywords>
-  <metadesc>Commodore PET CBM ROM descriptions</metadesc>
-  <overview><p>	</p>
+  <keywords>Oscilloscope</keywords>
+  <metadesc>Oscilloscope probe tests</metadesc>
+  <overview><p>	
+	When I started working on 8-bit designs, I did not have many tools. Basically I was working with my brain and
+	a multimeter. But this soon started to be insufficient. So about 20 or more years ago I bought me a used oscilloscope, 
+        <div class="rightimg">
+        <image src="imgs/newnold.png" width="300px"/><br/>
+                <caption>Old and new scope for a size comparison :-)</caption>
+        </div>
+	This <a href="http://www.radiomuseum.org/r/tektronix_cathode_ray_oscilloscope_3.html">radiomuseum link</a> thinks that
+	the scope is from about 1959!
+	This trusty old 'scope still works, but however has now shown its age. I recently started to work on boards with
+	10&nbsp;MHz and more clock frequency, which is getting close to the scope's bandwidth limit of 15&nbsp;MHz.
+	Also the trigger circuit is very delicat to handle and difficult to get a stable trigger.
+	</p><p>
+	So now I got me a new scope. A shiny new 200&nbsp;MHz bandwidth, digital scope. It included 2 new probes, with 
+	300&nbsp;MHz bandwidth. When I started with the old scope, I used unshielded probes, ones you
+	could use on low frequency (like in audio) signals. In the meantime I had already bought me two other 
+	probes, which, on this page, I will call the "old" probes. I do not anymore know the probe characteristics,
+	so I decided to check them with the new scope. The old probes were all x10 attenuation - meaning a tenth of the voltage 
+	is displayed on the scope, but also much less capacitive load is put on the signal, so the bandwidth is higher.
+	The new probes are switchable between x1 and x10.
+	</p><p>
+	To learn how the new scope works in detail,
+	and to understand the differences between the old and the new scope, I did some measurements on my 
+	<a href="../../adv65/pet816/index.html">PET816</a> card, as the CPU clock can be set via a control register.
+	</p><p>
+	The pictures below show the results of these measurements. The new scope measurements are actually taken using the
+	PC software (unfortunately windows only). For the old scope I took some photos...
+	</p>
   </overview>
   <!--news>
     <item date="2010-01-04">
@@ -18,64 +45,71 @@
   </news-->
   <toc/>
 
-  <section toc="main" name="Differences in Software">
-     <desc>
+  <section toc="50mhz" name="50 MHz measurements">
+     <desc><p>
+	The <a href="../../adv65/pet816/index.html">PET816</a> board has a clock oscillator with 50&nbsp;MHz 
+	frequency. I used this signal to get some measurements with the old and the new scope.
+	</p>
+	<table border="1" valign="center">
+	<tr><th width="50%">Measuring:</th><th width="50%">50&nbsp;MHz clock oscillator output</th></tr>
+	<tr><td>new probe, x1<br/><br/>The total voltage difference between highest and lowest value is only about 1.5V. This is the result of a) the bandwidth being reduced in the x1 setting, and the damping getting higher with the frequency.</td><td><a href="imgs/50MHz_x1_NewProbe.png"><img width="300px" src="imgs/50MHz_x1_NewProbe.png"/></a></td></tr>
+	<tr><td>new probe, x10<br/><br/>The voltage here shows quite some overshoot, up to 6V and down to -2V.</td><td><a href="imgs/50MHz_x10_NewProbe.png"><img width="300px" src="imgs/50MHz_x10_NewProbe.png"/></a></td></tr>
+	<tr><td>old probe, x10<br/><br/>The old probe only shows slightly higher overshoot, but otherwise looks very similar to the new probe.</td><td><a href="imgs/50MHz_x10_OldProbe.png"><img width="300px" src="imgs/50MHz_x10_OldProbe.png"/></a></td></tr>
+	<tr><td>new probe - old scope, x10<br/><br/>As you can see, there only is a DC component - 50&nbsp;MHz is definitely too high for that 15&nbsp;MHz scope.</td><td><a href="imgs/50MHz_x10_OldScope.png"><img width="300px" src="imgs/50MHz_x10_OldScope_small.png"/></a></td></tr>
+	</table>
      </desc>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
   </section>
 
-  <section toc="main" name="Differences in Software">
-     <desc>
+  <section toc="10mhz" name="10 MHz measurements">
+     <desc><p>
+	Here I used the 10&nbsp;MHz CPU clock input, as generated by the CPLD.
+	</p>
+	<table border="1" valign="center">
+	<tr><th width="50%">Measuring:</th><th width="50%">10&nbsp;MHz CPU clock input (from CPLD)</th></tr>
+	<tr><td>new probe, x10<br/><br/>The voltage here shows less overshoot, down to -1.8V. But the flanks are much higher here, due to the higher bandwidth for the harmonics. The high voltage does not show much overshoot anymore, but also is max'd at about 4V.</td><td><a href="imgs/10MHz_x10_NewProbe.png"><img width="300px" src="imgs/10MHz_x10_NewProbe.png"/></a></td></tr>
+	<tr><td>old probe, x10<br/><br/>The old probe again only shows slightly higher overshoot, but otherwise looks very similar to the new probe.</td><td><a href="imgs/10MHz_x10_OldProbe.png"><img width="300px" src="imgs/10MHz_x10_OldProbe.png"/></a></td></tr>
+	</table>
      </desc>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
   </section>
 
-  <section toc="main" name="Differences in Software">
-     <desc>
+  <section toc="5mhz" name="5 MHz measurements">
+     <desc><p>
+	Here I used the 5&nbsp;MHz CPU clock input, as generated by the CPLD.
+	</p>
+	<table border="1" valign="center">
+	<tr><th width="50%">Measuring:</th><th width="50%">5&nbsp;MHz CPU clock input (from CPLD)</th></tr>
+	<tr><td>new probe, x10<br/><br/>Result similar to the 10&nbsp;MHz case</td><td><a href="imgs/5MHz_x10_NewProbe.png"><img width="300px" src="imgs/5MHz_x10_NewProbe.png"/></a></td></tr>
+	<tr><td>old probe, x10<br/><br/>Again, similar to the 10&nbsp;MHz case, only slightly more overshoot</td><td><a href="imgs/5MHz_x10_OldProbe.png"><img width="300px" src="imgs/5MHz_x10_NewProbe.png"/></a></td></tr>
+	<tr><td>old probe, x10, with FFT analysis<br/><br/>Unfortunately the PC software only exports this small image</td><td><a href="imgs/5MHz_x10_OldProbe_FFT.png"><img width="300px" src="imgs/5MHz_x10_OldProbe_FFT.png"/></a></td></tr>
+	<tr><td>new probe, x1<br/><br/>Not sure what the x1 setting here does. Looks like a clear signal with a distinct bandwidth limit.</td><td><a href="imgs/5MHz_x1_NewProbe.png"><img width="300px" src="imgs/5MHz_x1_NewProbe.png"/></a></td></tr>
+	<tr><td>unshielded probe, x1<br/><br/>This is the picture with the unshielded probe and shows a lot of overshooting noise involved.</td><td><a href="imgs/5MHz_x1_Unshielded.png"><img width="300px" src="imgs/5MHz_x1_Unshielded.png"/></a></td></tr>
+	<tr><td>new probe - old scope, x10<br/><br/>10&nbsp;MHz is actually quite well shown for a 15&nbsp;MHz scope (I think).</td><td><a href="imgs/5MHz_x10_OldScope.png"><img width="300px" src="imgs/5MHz_x10_OldScope_small.png"/></a></td></tr>
+	</table>
      </desc>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
-     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
-	<desc>
-	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
-     </subsection>
+  </section>
+
+  <section toc="address" name="Address bus measurements">
+     <desc><p>
+	Here I measured RAM Pin 28, which is A13. This signal is generated by the CPU, here at 5&nbsp;MHz CPU clock.
+	</p>
+	<table border="1" valign="center">
+	<tr><th width="50%">Measuring:</th><th width="50%">Address signal A13 at 5&nbsp;MHz CPU clock (from CPU)</th></tr>
+	<tr><td>new probe, x10<br/><br/>Shows a clear signal, with only slight overshoot.</td><td><a href="imgs/RAMP28_5MHz_x10_NewProbe.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_NewProbe.png"/></a></td></tr>
+	<tr><td>old probe, x10<br/><br/>Only slightly worse. Goes into the negative though.</td><td><a href="imgs/RAMP28_5MHz_x10_OldProbe.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_OldProbe.png"/></a></td></tr>
+	<tr><td>new probe - old scope, x10<br/><br/>Shows a nice smooth signal.</td><td><a href="imgs/RAMP28_5MHz_x10_OldScope.png"><img width="300px" src="imgs/RAMP28_5MHz_x10_OldScope_small.png"/></a></td></tr>
+	</table>
+     </desc>
+  </section>
+
+  <section toc="summary" name="Summary">
+     <desc><p>
+	In summary I can say that the scope was a good buy. It has lots of features my old scope does not have, and can show 
+	a lot higher frequencies. 
+	</p><p>
+	On the other hand I am still thinking whether I should actually keep the old scope. While the new one is all electronics,
+	with highly integrated FPGAs internally etc - it is basically not servicable anymore. Looking at the age of the
+	old scope, I suspect that it still works when the new breaks...
+     </p></desc>
   </section>
 
   <closing>
