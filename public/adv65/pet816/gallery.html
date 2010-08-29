@@ -125,27 +125,84 @@
 <h2><a name="main">Gallery</a></h2>
 <div class="toplink"><a href="#top">Top</a></div>
 <p>
-	<p><img src="gal_8296.png"></p>
-	<p>The Commodore 8296 test system</p>
-	<p><img src="gal_8296_open1.png"></p>
-	<p>The board installed into the 8296. The white connector at the left upper end
-	of the board is an additional power connector, going to the tape port</p>
-	<p><img src="gal_8296_open2.png"></p>
-	<p>The board installed into the 8296. Here you see the additional power cable going
-	out of the case and to the C2N232 connector I reused to get the power ...</p>
-	<p><img src="gal_bench1.png"></p>
-	<p>The benchmark determines the system speed using the screen sync frequency.</p>
-	<p><img src="gal_speed.png"></p>
-	<p>Yeah! The system runs at 10 MHz! </p>
-	<p>Each benchmark has two lines. The first line shows the configuration for the 
-	 clock register ("speed"), and control register ("conf"), plus it names the actual
-	 bits that are set for convenience. The second line shows the benchmark result 
-	 in terms of system cycles for the benchmark loop, and the speed calculated from that.</p>
-	<p><img src="gal_hbogus.png"></p>
-	<p>For certain workloads quite some speedup can be obtained by hiding bogus cycles</p>
-	<p><img src="gal_vread.png"></p>
-	<p>As there is only one screen read cycle per benchmark loop, not much of a speedup is
-	 expected, as shown. But other workloads may differ, esp. when they already run in fast RAM </p>
+	<p>Click on the images to enlarge</p>
+	<table border="1" valign="center">
+	<tr>
+<th width="50%"> </th>
+<th width="50%"> </th>
+</tr>
+	<tr>
+<td>The board from top ...</td>
+<td><a href="imgs/pet816_top.png"><img width="200px" src="imgs/pet816_top_small.png"></a></td>
+</tr>
+	<tr>
+<td><a href="imgs/pet816_bottom.png"><img width="200px" src="imgs/pet816_bottom_small.png"></a></td>
+<td>... and from the bottom. You can see the three bridges that make up the difference between V1.2A and V1.2B</td>
+</tr>
+	<tr>
+<td>The Commodore 8296 test system</td>
+<td><a href="imgs/gal_8296.png"><img width="200px" src="imgs/gal_8296_small.png"></a></td>
+</tr>
+	<tr>
+<td><a href="imgs/gal_8296_open1.png"><img width="200px" src="imgs/gal_8296_open1_small.png"></a></td>
+<td>... with the board installed. The white connector at the left upper end of the board is an additional power connector, going to the tape port</td>
+</tr>
+	<tr>
+<td>The board installed into the 8296. Here you see the additional power cable going out of the case and to the C2N232 connector I reused to get the power ...</td>
+<td><a href="imgs/gal_8296_open2.png"><img width="200px" src="imgs/gal_8296_open2_small.png"></a></td>
+</tr>
+	<tr>
+<td><a href="imgs/gal_bench1.png"><img width="200px" src="imgs/gal_bench1_small.png"></a></td>
+<td>The benchmark determines the system speed using the screen sync frequency.</td>
+</tr>
+	<tr>
+<td>Yeah! The system runs at 10 MHz!<br><br> Each benchmark has two lines. The first line shows the configuration for the clock register ("speed"), and control register ("conf"), plus it names the actual bits that are set for convenience. The second line shows the benchmark result in terms of system cycles for the benchmark loop, and the speed calculated from that.</td>
+<td><a href="imgs/gal_speed.png"><img width="200px" src="imgs/gal_speed_small.png"></a></td>
+</tr>
+	<tr>
+<td><a href="imgs/gal_hbogus.png"><img width="200px" src="imgs/gal_hbogus_small.png"></a></td>
+<td>For certain workloads quite some speedup can be obtained by hiding bogus cycles</td>
+</tr>
+	<tr>
+<td>As there is only one screen read cycle per benchmark loop, not much of a speedup is expected, as shown. But other workloads may differ, esp. when they already run in fast RAM </td>
+<td><a href="imgs/gal_vread.png"><img width="200px" src="imgs/gal_vread_small.png"></a></td>
+</tr>
+
+	<tr>
+<th width="50%"> </th>
+<th width="50%"> </th>
+</tr>
+	<tr>
+<td><a href="imgs/pet816_csa.png"><img width="200px" src="imgs/pet816_csa_small.png"></a></td>
+<td>Here the board is installed in my 2 MHz PET replica</td>
+</tr>
+	<tr>
+<td>The benchmark calibrates itself here as well</td>
+<td><a href="imgs/gal_bench_csa.png"><img width="200px" src="imgs/gal_bench_csa_small.png"></a></td>
+</tr>
+	<tr>
+<td><a href="imgs/gal_bench_csa_speed.png"><img width="200px" src="imgs/gal_bench_csa_speed_small.png"></a></td>
+<td>Yeah, runs at 10 MHz as well!</td>
+</tr>
+	<tr>
+<td>This shows the effect of the FASTMODE clock register bit</td>
+<td><a href="imgs/gal_bench_csa_fmode.png"><img width="200px" src="imgs/gal_bench_csa_fmode_small.png"></a></td>
+</tr>
+
+	<tr>
+<th width="50%"> </th>
+<th width="50%"> </th>
+</tr>
+	<tr>
+<td><a href="imgs/pet816_8296a.png"><img width="200px" src="imgs/pet816_8296a_small.png"></a></td>
+<td>The first prototype installed in the 8296 test system</td>
+</tr>
+	<tr>
+<td>The first working prototype (with the fixed address drivers, that weren't '273 in the beginning))</td>
+<td><a href="imgs/pet816_proto.png"><img width="200px" src="imgs/pet816_proto_small.png"></a></td>
+</tr>
+
+	</table>
      </p>
 <hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>

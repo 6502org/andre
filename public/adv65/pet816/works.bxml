@@ -76,7 +76,7 @@
 	done can be anywhere during the slow clock cycle. It could be during PHI1, PHI2 close to any
 	of the transitions, anywhere. That's where the "arbiter" kicks in.
 	</p><div class="rightimg">
-                <a href="timing1.png"><img src="timing1_small.png"/></a><br/>General timing structure
+                <a href="imgs/timing1.png"><img width="250px" src="imgs/timing1_small.png"/></a><br/>General timing structure
                 </div>
 	<p>
 	In this diagram you can see that the first slow access is detected at 2300&nbsp;ns, in the
@@ -158,7 +158,7 @@
 	the previous slow access), and wait for <code>phidelayed</code> going low to initiate
 	a real slow cycle.
 	</p><div class="rightimg">
-                <a href="timing2.png"><img src="timing2_small.png"/></a><br/>Hiding bogus cycles
+                <a href="imgs/timing2.png"><img width="250px" src="imgs/timing2_small.png"/></a><br/>Hiding bogus cycles
                 </div>
 	<p>
 	but when the cpu access is not valid, there is no need to wait for the actual slow cycle.
@@ -222,7 +222,7 @@
 	the logic in the cpld. i will also go into ways of efficient testing as i experienced
 	while developing the board.</p>
 <div class="rightimg">
-                <a href="vhdlstruct.svg"><img src="vhdlstruct.png"/></a><br/>vhdl structure
+                <a href="imgs/vhdlstruct.svg"><img width="250px" src="imgs/vhdlstruct.png"/></a><br/>vhdl structure
                 </div>
 	<p>vhdl defines that logic is separated into modules. each module has input and
 		output signals that define the "interface" of the module. in general you can think
@@ -324,7 +324,7 @@
      <desc><p>
 	Writing VHDL is one thing, making is work is another thing.	
 <div class="rightimg">
-                <a href="vhdltest.svg"><img src="vhdltest.png"/></a><br/>VHDL test setup
+                <a href="imgs/vhdltest.svg"><img width="250px" src="imgs/vhdltest.png"/></a><br/>VHDL test setup
                 </div>
 	Here I describe my way of testing the VHDL with VHDL-based simulation.
      </p></desc>

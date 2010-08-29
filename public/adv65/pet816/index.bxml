@@ -3,7 +3,7 @@
 <board>
 	<name>Commodore PET 65816 CPU card</name>
 	<keywords>Commodore PET 6502 65816 CPU</keywords>
-        <lastmodified>2010-08-14</lastmodified>
+        <lastmodified>2010-08-29</lastmodified>
         <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1573</forum>
         <desc><p>
 			This a PET 65816 CPU card! It speeds up your PET to up to 10MHz.
@@ -12,7 +12,7 @@
 			The board uses a 65816 CPU that runs at up to 10MHz, plus a Xilinx CPLD as logic glue. It includes
 			up to 1MByte fast RAM (run at CPU speed) plus up to 512k parallel Flash ROM (in-system programmable), that can be used as boot ROM.
 	</p>
-	<div class="rightimg"><a href="gal_speed.png"><img src="gal_speed_small.png"/></a><br/>The board prototype installed in a Commodore 8296 - running a benchmark at 10&nbsp;MHz!
+	<div class="rightimg"><a href="imgs/gal_speed.png"><img src="imgs/gal_speed_small.png"/></a><br/>The board prototype installed in a Commodore 8296 - running a benchmark at 10&nbsp;MHz!
 		                </div>	<p>
 The interface itself is, in fact, pretty simple. It is a board that is plugged 
 in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 
@@ -103,7 +103,7 @@ a feature in these days.
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.7.tar.bz2</file>
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.5.tar.bz2</file>
 		<file ltype="logic" ptype="tgz" note="Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. ">PET816_1.0.tar.bz2</file>
-		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">gtkwave.png</file>
+		<file ltype="logic" ptype="png" note="Sample screenshot of the timing simulation in the testbench">imgs/gtkwave.png</file>
         </driver>
         <!--diagram>
             <file>diagram.gif</file>
@@ -112,8 +112,8 @@ a feature in these days.
         </diagram-->
         <rev>
 		<version>1.2b</version>
-		<status>prototype</status>
-		<note type="warn">
+		<status>ok</status>
+		<note type="msg">
 			This board is an update on the 1.2A, and only contains a few small changes:
 			Two delay loops that can be used in the VHDL code have been added. Also
 			an "official" diagnostics pin has been added too, to get easy access to a 
