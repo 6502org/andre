@@ -12,6 +12,9 @@
 	It currently contains a logic probe.
   </overview>
   <news>
+    <item date="2010-08-29">
+	Added links to VHDL and oscilloscope pages
+    </item>
     <item date="2007-05-28">
 	Page started
     </item>
@@ -29,6 +32,16 @@
 	states even when the actual pulses on the hardware signal are too
 	short to be noticed. And it has a latch, so that a signal can 
 	be sampled at a high-low or low-high transition of a second signal.
+      </subitem>
+      <subitem name="vhdl" link="../icaphw/xilinx.html">VHDL<br/>
+	VHDL is a hardware description language, that also allows to simulate 
+	electronic circuits. I did some work with VHDL on various boards, and
+	have written up my experience.
+      </subitem>
+      <subitem name="scope" link="../icaphw/oscope/index.html">Oscilloscope comparison<br/>
+	An oscilloscope is a very good tool for the analysis of problems with 
+	electronics I got me a new oscilloscope and have written up my first experience and
+	a comparison with my old scope.
       </subitem>
    </items>
   </itemlist>

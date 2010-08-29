@@ -1,6 +1,6 @@
 <ul class="menu1" >
 <li class="file"><img src="%xup%imgs/file.png"/><a href="%up%design.html">Hardware design lesson</a></li>
-<li class="dir" id="m_icaphw_oscope"><img src="%xup%imgs/dir.png"/><a href="%up%oscope/index.html">Oscilloscope bits</a>
+<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%oscope/index.html">Oscilloscope bits</a>
 </li>
 <li class="file"><img src="%xup%imgs/file.png"/><a href="%up%xilinx.html">Xilinx CPLD tools</a></li>
 <li class="file"><img src="%xup%imgs/file.png"/><a href="%up%c64ser.html">UART serial interface</a></li>

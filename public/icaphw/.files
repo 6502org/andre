@@ -1,5 +1,5 @@
 f design.html Hardware design lesson
-d oscope Oscilloscope bits
+p oscope Oscilloscope bits
 f xilinx.html Xilinx CPLD tools
 f c64ser.html UART serial interface
 f rdy.html RDY generation
