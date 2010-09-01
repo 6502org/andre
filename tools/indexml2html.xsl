@@ -426,9 +426,10 @@
 <xsl:template name="head">
 <xsl:text>
 </xsl:text>
-<meta name="author" content="{author/name}"/><xsl:text>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1"/><xsl:text>
 </xsl:text>
-<meta http-equiv="content-type" content="text/html; charset=iso8859-1"/><xsl:text>
+<meta name="author" content="{author/name}"/><xsl:text>
+
 </xsl:text>
 <meta name="description" content="{metadesc}"/><xsl:text>
 </xsl:text>
@@ -443,7 +444,7 @@
 <script>myUp="%up%";</script>
 <xsl:text>
 </xsl:text>
-<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/><xsl:text>
+<!--META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/--><xsl:text>
 </xsl:text>
 </xsl:template>
 
