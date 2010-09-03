@@ -272,7 +272,7 @@ div#mtree a:hover {
 div#mtree A.m_homepage {
   font-size: medium;
 }
-
+/* old style - remove once converted */
 DIV#mtree img {
   margin-right:0.1em;
   float:left;
@@ -280,28 +280,22 @@ DIV#mtree img {
 }
 
 /* new style */
-div#mtree div.i_dir {
+div#mtree div {
   background-color: #000000;
-	display:inline;
-	float: left;
+  display:inline;
+  float: left;
   width:1.3em;
+  background:url(imgs/sprite.png) no-repeat;
+}
 
-	background:url(imgs/sprite.png) no-repeat;
-	background-position: 0 -64px;
+div#mtree div.i_dir {
+  background-position: 0 -64px;
 }
 div#mtree div.i_file {
-  background-color: #000000;
-	display:inline;
-	float: left;
-  width:1.3em;
-
-	background:url(imgs/sprite.png) no-repeat;
-	background-position: -128px -64px;
-/*
-  margin-right:0.1em;
-  float:left;
-  width: 1.3em;
-*/
+  background-position: -128px -64px;
+}
+div#mtree div.i_link {
+  background-position: -160px -64px;
 }
 
 /* IE handles display of float (image) in an LI differently
@@ -380,29 +374,43 @@ TABLE.notes TR {
 
 ul.quickfinder li {
 	padding-top: 0em;
+	padding-left: 60px;
+	list-style-type:none;
 }
 
-ul.quickfinder LI.hw {
-	list-style-image:url(imgs/icon_hw.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.sw {
-	list-style-image:url(imgs/icon_sw.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.cbm {
-	list-style-image:url(imgs/icon_cbm.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.icap {
-	list-style-image:url(imgs/icon_icap.jpg);
-        margin-left:50px;
-}
-UL.quickfinder LI.subitem {
-	list-style-image:none;
+ul.quickfinder li li.subitem {
+	list-style-type:circle;
         margin-left:-40px;
+	padding-left: 0;
 }
 
+/* new style */
+ul.quickfinder div {
+	display:block;
+  	width:74px;
+	height:37px;
+	margin-left: -80px;
+	margin-bottom: -14px;
+	background:url(imgs/sprite.png) no-repeat;
+}
+
+ul.quickfinder div.i_cbm {
+	background-position: 0 -110px;
+}
+
+ul.quickfinder div.i_hw {
+	background-position: -75px -110px;
+}
+
+ul.quickfinder div.i_sw {
+	background-position: -150px -110px;
+}
+
+ul.quickfinder div.i_icap {
+	background-position: -225px -110px;
+}
+
+/* allgemeiner style! */
 LI.subitem {
 	list-style-position: outside;
 	margin-top:0.5em;
