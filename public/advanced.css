@@ -1,0 +1,601 @@
+
+/****************************************
+ *
+ * style.css 
+ *
+ * (c) 2010 A. Fachat
+ *
+ * All rights reserved!
+ */
+
+/****************************************
+ *  global 
+ */
+
+BODY {
+ /* non CSS3 browsers */
+ background-color: #888;
+
+	/*font-family: "Arial","Sans Serif";*/
+	font-family: verdana,helvetica,arial,sans-serif;
+	font-size: 100%;
+}
+
+a:visited { color:#000080; text-decoration:none }
+a:link { color:#0000ff; text-decoration:none }
+a:active { color:#8888ff; text-decoration:none }
+a:focus { color:#888888; text-decoration:none }
+a:hover { color:#ff0000; text-decoration:none }
+
+/* top level style */
+DIV.top {
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	background-color: #ffffff; 
+  	margin: 0;
+  	margin-top: 0em;
+  	margin-bottom: 0.6em;
+  	padding: 1em;
+}
+
+/* left/right cols have headers in the top level style */
+DIV.tophead {
+ 	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
+	background-color: #ee8800;
+
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+
+	color: #fff;
+	margin-left: -1em;
+	margin-top: -1em;
+	margin-right: -1em;
+	margin-bottom: 0.3em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+/* left/right cols have headers in the top level style */
+DIV#hot DIV.tophead {
+ 	background: -moz-linear-gradient(top, #f00, #e00 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f00), color-stop(1, #e00));	
+	background-color: #ee0000;
+
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+}
+
+/*
+DIV.overview {
+	font-size:larger;
+	font-weight:bold;
+	background-color: #ffdddd;
+}
+*/
+
+P.copyright {
+	font-size:larger;
+	font-weight:bold;
+}
+
+.quote {
+	font-style: italic;
+}
+
+LI.extlink {
+	list-style-position: outside;
+	list-style-image:url(imgs/icon_extlink.jpg);
+}
+
+A.extlink {
+    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
+    	padding-right: 16px;
+}
+
+H2 {
+	border-top: 2px solid;
+}
+
+div.toplink {
+	float:right;
+	margin-top: -3em;
+}
+
+/****************************************
+ * Layout
+ */
+
+DIV#mainbox {
+   padding-top: 1em;
+   font-size: medium;
+
+ /* W3C Spec *
+ background: linear-gradient(top, #ddd 0, #fff 100%); */
+ /* browser * requires IE code in addition! 
+  * ende der Seite unten nicht klar definiert (left/righcol gehen raus!?)
+  *
+  * #888 -> #fff	Graukeil
+  * #fc6 -> #e80	Orangekeil
+  * #369 -> 7ad		Blaukeil (6502.org)
+  */
+ background: -moz-linear-gradient(top, #888 0, #fff 100%); /* mozilla */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888), color-stop(1, #fff));	/* webkit */
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 */
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 */
+
+}
+
+/****************************************
+ * parts of mainbox 
+ */
+
+DIV#midcol {
+  margin: 0;
+  margin-left: 16%;
+  margin-right: 16%;
+/*
+  margin-left: 17.5em;
+  margin-right: 16.6em;
+/*  min-width: 16em; /* Mindestbreite (der Ueberschrift) verhindert Anzeigefehler in modernen Browsern */
+  font-size:small;
+}
+
+DIV#leftcol {
+  float: left; 
+/*  width: 20em;*/
+  width: 15%;
+  margin: 0; 
+  padding: 0;
+}
+
+DIV#rightcol {
+  float: right; 
+/*  width: 19em;*/
+  width: 15%;
+  margin: 0; 
+  padding: 0;
+  font-size:x-small;
+  /*display: block;*/
+}
+
+/****************************************
+ * visible top level elements, parts of columns
+ */
+
+DIV#oldnewscontent  {
+	height: 40em;
+	overflow-y: scroll;
+	margin-left: -1em;
+ /* FF/GC add the scrollbar to the width, so we need to compensate by making it
+  * smaller. IE includes the scrollbar, so there is a browser fork below
+  * other browsers */
+ /* this is currently for indexadv.html only, check to replace with percentage as above? */
+  	/*width: 17.0em;*/
+	margin-right: -1em;
+}
+
+DIV#browser {
+  display: block;
+  font-size:  xx-small;
+}
+
+DIV#breadcrumbs {
+  display: block;
+}
+
+
+DIV#content {
+  text-align: left;
+}
+
+DIV#footer {
+  border-top: 2px solid;
+}
+
+
+/****************************************
+ * Menu formatting
+ */
+
+DIV#menu {
+  padding-left: 1em;
+  padding-right: 1em; 
+}
+
+div#filter {
+  margin-bottom: 1em;
+  font-size:x-small;
+  display:none;
+}
+
+DIV#filter img {
+  width: 24px;
+  padding: 0.1em;
+  padding-left: 0.2em;
+  margin-bottom: -0.3em;
+}
+
+DIV#mtree ul {
+  list-style-type:none;
+  padding-left: 0em;
+  margin-left: 0em;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+/* only the first one has 0em padding-left, the others do indent */
+DIV#mtree ul ul {
+
+/*  padding-left: 1.2em;*/
+  margin-left: 1.2em;
+  margin-top: 0em;
+
+/*  background-color: #eee; */
+}
+
+/*
+DIV#mtree ul ul ul {
+  background-color: #ddd;
+}
+*/
+
+DIV#mtree li {
+  margin-bottom: 0em;
+  margin-top: 0em;
+  padding-top: 0.2em;
+  padding-bottom: 0em;
+  font-size:small;
+}
+
+div#mtree a { 
+  margin-left: 0em;
+  padding-left: 1.3em;
+  display:block;
+  font-size:small;
+}
+
+div#mtree A.mcurrent {
+  background-color: #ddd;
+}
+
+div#mtree a:hover { 
+  background-color:#ff0; 
+}
+
+div#mtree A.m_homepage {
+  font-size: medium;
+}
+
+DIV#mtree img {
+  margin-right:0.1em;
+  float:left;
+  width: 1.3em;
+}
+
+/* new style */
+div#mtree div.i_dir {
+  background-color: #000000;
+	display:inline;
+	float: left;
+  width:1.3em;
+
+	background:url(imgs/sprite.png) no-repeat;
+	background-position: 0 -64px;
+}
+div#mtree div.i_file {
+  background-color: #000000;
+	display:inline;
+	float: left;
+  width:1.3em;
+
+	background:url(imgs/sprite.png) no-repeat;
+	background-position: -128px -64px;
+/*
+  margin-right:0.1em;
+  float:left;
+  width: 1.3em;
+*/
+}
+
+/* IE handles display of float (image) in an LI differently
+ * so that the anchor must be inline-block instead of block *
+* html div#mtree a {
+  display: inline-block;
+  margin-left: 0.1em;
+}
+*/
+
+/* IE handles display of float (image) in an LI differently
+ * so that the anchor must be inline-block instead of block */
+* html div#mtree li {
+  padding-bottom: 0.1em;
+  padding-top: 0.1em;
+}
+
+
+div#mtree LI.separator {
+  margin-top: 0.1em;
+  font-size:x-small;
+  font-weight:bold;
+}
+
+/****************************************
+ * right side floating elements
+ */
+
+.rightimg {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+.sidenote {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+DIV.rightbar {
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 25em;
+  margin-top: -1.7em;
+  margin-right: -2em;
+  background-color: #dddddd; 
+  font-size:smaller;
+}
+
+/****************************************
+ * board-related styles
+ */
+
+/* used on the boards, for "note_*" icond */
+TD.noteicon {
+	vertical-align:top;
+	text-align:center;
+	padding:5px;
+}
+
+/*
+TABLE.notes TR {
+	background-color: #eeeeee;
+}
+*/
+
+/****************************************
+ * main entry page (quickfinder)
+ */
+
+ul.quickfinder li {
+	padding-top: 0em;
+}
+
+ul.quickfinder LI.hw {
+	list-style-image:url(imgs/icon_hw.jpg);
+        margin-left:50px;
+}
+ul.quickfinder LI.sw {
+	list-style-image:url(imgs/icon_sw.jpg);
+        margin-left:50px;
+}
+ul.quickfinder LI.cbm {
+	list-style-image:url(imgs/icon_cbm.jpg);
+        margin-left:50px;
+}
+ul.quickfinder LI.icap {
+	list-style-image:url(imgs/icon_icap.jpg);
+        margin-left:50px;
+}
+UL.quickfinder LI.subitem {
+	list-style-image:none;
+        margin-left:-40px;
+}
+
+LI.subitem {
+	list-style-position: outside;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
+
+/****************************************
+ * news formatting
+ */
+
+ul.news li {
+	padding-top: 5px;
+	list-style-type: none;
+}
+
+ul.news li div {
+	margin-left:-28px;
+	display:inline;
+	float: left;
+	background:url(imgs/sprite.png) no-repeat;
+	width:28px;
+	height:28px;
+	background-position: -128px -32px;
+}
+
+ul.news div.i_hotnews {
+	background-position: -192px -32px;
+}
+
+ul.news div.i_oldnews {
+	background-position: -160px -32px;
+}
+	
+/****************************************
+ * Interview formatting
+ */
+
+DIV.interview {
+	margin-left:1em;
+}
+
+DIV.interview p.first {
+	text-indent:-1em;
+}
+
+DIV.interview .me {
+	font-weight:bold;
+}
+DIV.interview .other {
+	font-weight:bold;
+}
+
+/****************************************
+ * memory map table
+ */
+
+table.memmap {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.memmap td {
+	width:14mm;
+	padding:3px;
+	font-size:80%;
+}
+table.memmap th {
+	width:14mm;
+	padding:5px;
+	font-size:80%;
+}
+
+/****************************************
+ * general table formatting
+ */
+
+div#content table {
+	font-size: 100%;
+	width:auto;
+}
+
+
+div#content th {
+	background-color: #dddddd;
+}
+
+table.content {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.content td {
+	padding:3px;
+}
+table.content th {
+	padding:5px;
+}
+
+/****************************************
+ * table of content
+ */
+
+div#toc dir {
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	padding-left: 3em;
+}
+
+/****************************************
+ * advanced style
+ */
+.advbutton {
+	position:relative;
+
+	background-color: #888888;
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
+ 	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
+
+  	-moz-border-radius: 14px;
+	-webkit-border-radius:14px;
+
+	color:white;
+	text-decoration:none;
+	text-align:center;
+
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+
+}
+
+.advbutton2 {
+	position:relative;
+	display:block;
+	height:34px;
+	width:160px;
+	padding-top: 1px;
+}
+
+.advbutton2 input {
+	position:absolute;
+
+	height:32px;
+	width:160px;
+	margin:0;
+	
+
+	background-color: #888888;
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
+ 	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
+
+  	-moz-border-radius: 14px;
+	-webkit-border-radius:14px;
+
+	color:white;
+	text-decoration:none;
+	text-align:center;
+
+	/*-webkit-box-shadow:0px 1px 2px #999;*/
+	border: 0;
+}
+
+.advbutton2 span.shine {
+	position:absolute;
+
+	height:10px;
+	width: 156px;
+	-moz-border-radius-topleft: 14px;
+	-moz-border-radius-topright: 14px;
+	-webkit-border-top-left-radius: 14px;
+	-webkit-border-top-right-radius: 14px;
+
+	margin:1px 0 0 2px;
+/*
+	background-color: #f00;
+*/
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 50%, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.0)));
+ 	background-image: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(255,255,255,0) 100%); 
+	border-top:1px solid #dddddd;
+}
+
+.advbutton2 span.glow {
+	position:absolute;
+
+	height:12px;
+	width:140px;
+	margin:16px 0 0 9px; /* x/y 16px/8px minus the margin of span.shine */
+	-webkit-border-radius:15px;
+	-moz-border-radius:15px;
+/*
+	background-color: #0f0;
+*/
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 95%, from(rgba(136, 136, 136, 0.0)), to(rgba(255, 255, 255, 1.0)));
+ 	background-image: -moz-linear-gradient(top, rgba(136,136,136,0.0) 0, rgba(255,255,255,1) 95%); 
+	border-bottom:1px solid #dddddd;
+}
+

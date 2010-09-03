@@ -1,212 +1,115 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="André  Fachat">
 
-	<head>
-	<link rel="SHORTCUT ICON" href="/images/6502.ico">
-	<html>
-		<head>
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			<meta name="author" content="André  Fachat">
+<meta name="description" content="Commodore resp. 8-bit 6502 information">
+<meta name="keywords" content="8-bit,6502,Commodore">
+<link rev="made" href="mailto:afachat@gmx.de">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="advanced.css">
+<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="style.css">
+<script src="jquery-1.4.2.min.js"></script><script src="myscriptsadv.js"></script><script>myUp="";</script>
 
-			<meta name="description" content="Commodore resp. 8-bit 6502 information">
-			<meta name="keywords" content="8-bit,6502,Commodore">
-			<title>André 's 8-bit pages</title>
-			<link rev="made" href="mailto:afachat@gmx.de">
-			<LINK REL="stylesheet" TITLE="Advanced (Def)" TYPE="text/css" HREF="style.css">
-<script src="jquery-1.4.2.js"></script>
-<script src="myscripts.js"></script>
-<script>myUp="";</script>
-			<style><!--
-				body                    { margin: 0px 0px 0px 0px; }
-				td                              { vertical-align: top; text-align: left; }
-				table                   {width: 100%; margin: 0px 0px 0px 0px; border-width: 0px 0px 0px 0px;}
-				form                    {margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;}
-				p                               {padding: 0px 0px 0px 0px; margin: 10px 0px 0px 0px;}
-				li                              {padding-bottom: 5px;}
-
-				.header {font-family: verdana, helvetica, arial, sans-serif; font-size: 10px; text-decoration: none; color:#000000;}
-				.header a:link, a:visited, a:hover { text-decoration: none; color:#000000;}
-
-				.header a:visited               {text-decoration: none; color:#000000;}
-				.header a:hover                 {text-decoration: none; color:#4682B4;}
-
-				td.banner {     background-color: #336699; padding: 4px 0px 4px 4px; }
-
-				td.header { font-size: 10px; padding: 4px 10px 2px 4px;
-		                        border-bottom: #bbbbbb 1px solid; background-color: #eeeeee; }
-			--></style>
-			</head>
-
-			<body>
-			<table cellpadding="0" cellspacing="0">
-		        <tr>
-	                <td class="banner">
-	                    <a href="/" style="color: #336699"><img alt="6502org_logo" src="/images/6502org_logo.gif" /></a>
-	                    </td>
-
-	                    <td class="banner" width="100%">
-                            <img src="/images/spacer.gif" alt=" ">
-	                    </td>
-
-	                    <td class="banner" style="padding-bottom: 5px; padding-right: 5px;">
-		                <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-			        </script>
-			        <script type="text/javascript">
-				        _uacct = "UA-106123-1";
-				        urchinTracker();
-			        </script>
-		                <script type="text/javascript"><!--
-			                google_ad_client = "pub-7837684147242191";
-			                google_ad_width = 468;
-			                google_ad_height = 60;
-			                google_ad_format = "468x60_as";
-			                google_ad_type = "text";
-			                google_ad_channel ="";
-			                google_color_border = "336699";
-			                google_color_bg = "336699";
-			                google_color_link = "DDDDDD";
-			                google_color_text = "DDDDDD";
-			                google_color_url = "FFFFFF";
-		                //--></script>
-		                <script type="text/javascript"
-			                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	                        </script>
-		            </td>
-		        </tr>
-		    </table>
-		    <table cellspacing="0" cellpadding="0" style="padding-top: 2px;">
-		           <tr>
-		            <td width="100%" class="header" style="font-weight: bold;" nowrap>
-			            Andr&eacute;'s 8-bit Pages</td>
-
-		            <td class="header"><img src="/images/spacer.gif" height="14" width="10" alt=" "></td>
-		            <td class="header" nowrap><a href="/homebuilt/"> Projects </a></td>
-
-		            <td class="header"><img src="/images/spacer.gif" height="14" width="10" alt=" "></td>
-			    <td class="header" nowrap><a href="/source/"> Code </a></td>
-
-		            <td class="header"><img src="/images/spacer.gif" height="14" width="10" alt=" "></td>
-		            <td class="header" nowrap><a href="/commercial/"> Resources </a></td>
-
-		            <td class="header"><img src="/images/spacer.gif" height="14" width="10" alt=" "></td>
-		            <td class="header" nowrap><a href="/crossdev/"> Tools </a></td>
-
-		            <td class="header"><img src="/images/spacer.gif" height="14" width="10" alt=" "></td>
-		            <td class="header" nowrap><a href="http://forum.6502.org/"> Forum </a></td>
-
-		            </tr>
-		    </table>
-	    <div style = "padding-left: 10px; padding-right: 10px;">
-
-
+<title>André 's 8-bit pages</title>
 </head>
-<body>
-<div id="mainbox">
-	<div id="leftcol">
-		<DIV class="top" ID="menu">
-		<div class="tophead">navigate</div>
-		<div id="filter">
-			<form action="#"><img id="expand" src="imgs/expand.png"/><img id="collapse" src="imgs/collapse.png"/><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="imgs/cancel.png"></form>
+<body><div id="mainbox">
+<div id="leftcol">
+<div id="menu" class="top">
+<div class="tophead">navigate</div>
+<div id="filter"><form action="#">
+<img id="expand" src="imgs/expand.png"><img id="collapse" src="imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="imgs/cancel.png">
+</form></div>
+<div id="mtree">
+<a class="m_homepage" href="index.html" class="mcurrent">Homepage</a>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="petindex/index.html">CBM PETindex</a>
+</li>
+<li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="cbmhw/index.html">CBM hardware and mods</a>
+</li>
+<li class="separator">Hardware</li>
+<li class="dir" id="m_csa"><img src="imgs/dir.png"/><a href="csa/index.html">CS/A65 Caspaer and Gecko computer</a>
+</li>
+<li class="dir" id="m_adv65"><img src="imgs/dir.png"/><a href="adv65/index.html">Advanced 6502</a>
+</li>
+<li class="dir" id="m_hwinfo"><img src="imgs/dir.png"/><a href="hwinfo/index.html">ICs and Standards Info</a>
+</li>
+<li class="dir" id="m_mischw"><img src="imgs/dir.png"/><a href="mischw/index.html">Other hardware (e.g. tools)</a>
+</li>
+<li class="separator">Software</li>
+<li class="file"><img src="imgs/file.png"/><a href="osa/index.html">GeckOS operating system</a>
+</li>
+<li class="file"><img src="imgs/file.png"/><a href="lib6502/index.html">Lib6502 standard</a>
+</li>
+<li class="file"><img src="imgs/file.png"/><a href="o65/index.html">O65 file format</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="misc/index.html">Misc software</a>
+</li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir" id="m_icapos"><img src="imgs/dir.png"/><a href="icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li class="dir" id="m_icaphw"><img src="imgs/dir.png"/><a href="icaphw/index.html">6502 Hardware Bits</a>
+</li>
+<li class="separator">Misc</li>
+<li class="file"><img src="imgs/file.png"/><a href="contact.html">Contact</a></li>
+<li class="file"><img src="imgs/file.png"/><a href="sneak.html">Sneak preview</a></li>
+<li class="file"><img src="imgs/file.png"/><a href="design.html">Web design</a></li>
+</ul>
+
+</div>
 		</div>
-		<div id="mtree">
-			<a class="m_homepage" href="index.html">Homepage</a>
-			<ul class="menu0" >
-				<li class="separator">Commodore</li>
-				<li class="dir" id="m_petindex"><img src="imgs/dir.png"/><a href="petindex/index.html">CBM PETindex</a>
-				</li>
-				<li class="dir" id="m_cbmhw"><img src="imgs/dir.png"/><a href="cbmhw/index.html">CBM hardware and mods</a>
-				</li>
-				<li class="separator">Hardware</li>
-				<li class="dir" id="m_csa"><img src="imgs/dir.png"/><a href="csa/index.html">CS/A65 Caspaer and Gecko computer</a>
-				</li>
-				<li class="dir" id="m_hwinfo"><img src="imgs/dir.png"/><a href="hwinfo/index.html">ICs and Standards Info</a>
-				</li>
-				<li class="dir" id="m_mischw"><img src="imgs/dir.png"/><a href="mischw/index.html">Other hardware (e.g. tools)</a>
-				</li>
-				<li class="separator">Software</li>
-				<li class="file" id="m_osa"><img src="imgs/dir.png"/><a href="osa/index.html">GeckOS operating system</a>
-				</li>
-				<li class="file" id="m_lib6502"><img src="imgs/dir.png"/><a href="lib6502/index.html">Lib6502 standard</a>
-				</li>
-				<li class="file" id="m_o65"><img src="imgs/dir.png"/><a href="o65/index.html">O65 file format</a>
-				</li>
-				<li class="file" id="m_misc"><img src="imgs/dir.png"/><a href="misc/index.html">Misc software</a>
-				</li>
-				<li class="separator">Knowledge Bits</li>
-				<li class="dir" id="m_icapos"><img src="imgs/dir.png"/><a href="icapos/index.html">Computer/OS Architecture</a>
-				</li>
-				<li class="dir" id="m_icaphw"><img src="imgs/dir.png"/><a href="icaphw/index.html">6502 Hardware Bits</a>
-				</li>
-				<li class="separator">Misc</li>
-				<li class="file"><img src="imgs/file.png"/> <a href="contact.html">Contact</a></li>
-				<li class="file"><img src="imgs/file.png"/> <a href="sneak.html">Sneak preview</a></li>
-			</ul>
-		</div>
-		</DIV>
-                <div class="top" id="browser">
-		                        Site has been tested with Firefox 3.6, IE8 and Google Chrome 5 on Windows, as well as Firefox 3.5 and konqueror 4.3.5 on Linux
-                </div>
-	</div>
-<div id="rightcol">
-	<div class="top" id="google"><div class="tophead">search</div><div>
-		<form method="get" action="http://www.google.com/search">
-			<input type="text" name="q" size="10" maxlength="255" value="" />
-			<input class="advbutton" type="submit" name="s1" value="Search my site" />
-			<div class="advbutton2">
-				<input type="submit" name="s2" value="Search my site" />
-				<span class="shine"/><span class="glow"/>
+<div class="top" id="browser">
+<div class="tophead">browser</div>
+<div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
 			</div>
- 	 		<input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
-		</form> 
-	</div></div>
-  <div class="top" id="twitter"><div class="tophead">follow</div><div>
-	  Follow my 8-bit tweets on 
-	  <a href="http://search.twitter.com/search?q=&ands=&phrase=&ors=&nots=&tag=8bit&lang=all&from=afachat&to=&ref=&near=&within=15&units=mi&since=&until=&rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a>
-  </div></div>
-  <div class="top" id="news"><div class="tophead">updates</div><div>
-<h2>Website News:</h2>
-<ul class="news">
-<li class="hotnews">
+</div>
+</div>
+<div id="rightcol">
+<div class="top" id="google">
+<div class="tophead">search</div>
+<div><form method="get" action="http://www.google.com/search" target="_blank">
+<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
+</form></div>
+</div>
+<div class="top" id="twitter">
+<div class="tophead">follow</div>
+<div>
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br> (In new window)
+		</div>
+</div>
+<div class="top" id="forum">
+<div class="tophead">discuss</div>
+<div>
+<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
+<p>(Forum registration required to post)</p>
+</div>
+</div>
+<div class="top" id="hot">
+<div class="tophead">Hot!</div>
+<div>
+<p>Dive into the retro feeling and build yourself a <a href="cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Interested in electronics design? Look at the <a href="icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+
+		</div>
+</div>
+<div class="top" id="oldnews">
+<div class="tophead">History</div>
+<div id="oldnewscontent"><ul class="news">
+<li><div class="i_oldnews">&nbsp;</div>
 <small>2010-04-20</small>
         I have added a <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz!
     </li>
-<li class="hotnews">
+<li><div class="i_oldnews">&nbsp;</div>
 <small>2010-04-11</small>
 	I finally made my first CPLD design work. See the <a href="csa/cpu816v2/index.html">CSA 65816 CPU</a> page.
     </li>
-<li class="hotnews">
+<li class="oldnews">
 <small>2010-01-12</small>
         During the developement of my <a href="csa/ramdisk/index.html">RAMDisk</a> board I had a very good discussion with <a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Bil_Herd">Bil Herd</a>, the principal design er of the Commodore Plus/4, C16/C116, and the much more successful Commodore 128, in which I learned a lot about hardware design in a mass production setup. Here is a summary of our <a href="icaphw/design.html">discussion about the use of DRAM and schematics and board design in general</a>.
     </li>
-<li>
-<small>2010-05-11</small>
-	Added some links and updates to the <a href="petindex/index.html">PETindex page</a>
-    </li>
-<li>
-<small>2010-05-11</small>
-	Added a patched PET BASIC4 kernal ROM to enable the CS/A PET replica to run at 2MHz
-    </li>
-<li>
-<small>2010-04-21</small>
-	Updated the page for the <a href="icaphw/xilinx.html">Xilinx tools</a> with information about VHDL simulation tools I use.
-    </li>
-<li>
-<small>2010-04-12</small>
-	Added a new error pattern for the <a href="petindex/repairs.html">PET repairs page</a>.
-    </li>
-<li>
-<small>2010-04-11</small>
-	Added a page for the <a href="icaphw/xilinx.html">Xilinx tools</a> I am using for my newest designs
-    </li>
-<li>
-<small>2010-04-11</small>
-	Updated the <a href="petindex/extensions.html">PET extensions</a> page.
-    </li>
-</ul>
-</div></div>
-  <div class="top" id="oldnews">
-	  <h2><a name="oldnews">Old News:</a></h2>
-<ul class="oldnews">
 <li class="oldnews">
 <small>2010-01-06</small>
 	Added a <a href="petindex/extensions.html">PET extension page</a>, as well as a page for the <a href="petindex/drives/harddisk.html">PET harddisks</a> to the PETindex. Fix an error in the keyboard matrix shown on the keyboard page. Improve layout of some PETindex pages.
@@ -354,16 +257,15 @@
      Some of those pages have been rewritten into XML that is transformed
      into HTML by using an XSL transformation.
     </li>
-</ul>
+</ul></div>
 </div>
 </div>
 <div id="midcol">
-	<DIV class="top" ID="breadcrumbs">
-		<a href="index.html">Homepage</a>
-		&gt;&gt; CS/A65 Caspaer and Gecko computer
-	</DIV>
-<DIV class="top" ID="content">
-<h1>André 's 8-bit pages - Web Design testbed</h1>
+<DIV class="top" ID="breadcrumbs">
+<a href="index.html">Homepage</a>
+<!--/DIV>
+<DIV class="top" ID="content"-->
+<a name="topanchor"></a><h1>André 's 8-bit pages</h1>
 <p class="copyright">(C)
 1989-2010 André  Fachat</p> 
 <div class="overview">
@@ -373,39 +275,63 @@ machines with this CPU is there, like new C64 kernals, VC1541 modifications
 etc. A selfbuilt operating system
 features Multitasking, dynamic memory management, a standard library
 and internet access.</p>
-<h3>In the works...</h3>
-<p>
-These are the things I currently have in the works - although actually in the works for about two years now...</p>
-<ul>
-<li>A board with an Ethernet and two USB connections. I have the board and the parts, but I think I still need to get more up to date with SMD soldering...</li>
-<li>I plan to update the GeckOS operating system to
-improve messaging and communication throughput, add C support and more. 
-This is currently planned only.</li>
-<li>A "Blitter" board - to transfer bulk data from one memory location to another - planned.</li>
-</ul>
-
+<p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </div>
-<h2>Quickfinder</h2>
+<h2>News:</h2>
+<ul class="news">
+<li><div class="i_hotnews">&nbsp;</div>
+<small>2010-08-28</small>
+        Again (and again :-) I have updated the <a href="adv65/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card. As far as I am concerned, this version now works as much as I can test it! The page now also contains in-depth explanations of the features and how it works!
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-08-29</small>
+	I have added some experience and sample measurements with my new oscilloscope on the <a href="icaphw/oscope/index.html">oscilloscope bits</a> page.
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-08-22</small>
+        Again I have updated the <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card.
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-08-22</small>
+	Improved the CS/A <a href="csa/vdc/index.html">VDC</a> and <a href="csa/cpu/index.html">CPU</a> boards with better layout and a bug fixed.
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-08-11</small>
+        I have updated the <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 8MHz by replacing the 6502 with a 65816 card.
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-08-02</small>
+	Improved the CS/A <a href="csa/bios/index.html">BIOS</a> and <a href="csa/cpu/index.html">CPU</a> boards with better timing.
+    </li>
+<li><div>&nbsp;</div>
+<small>2010-06-06</small>
+	Major web design update. New (menu) icons, new stylesheet with a new 3-column layout, and a much more functional menu.
+	The menu is now dynamic, and allows filtering it for keywords. I hope you like it. Caveat emptor: I have
+	tested with a number of browsers and system but not everything is perfect yet. Let me know if you find anything
+	annoying.
+    </li>
+</ul>
+<h2><a name="">Quickfinder</a></h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <ul class="quickfinder">
 <li class="cbm">
 <strong>Commodore 8-bit stuff</strong><ul>
 <li class="subitem">
 <a href="petindex/index.html">PETindex</a>  - a list of hardware
-information and links to the old CBM PET machines
-</li>
+information and links to the old CBM PET machines</li>
 <li class="subitem">
 <a href="cbmhw/index.html">Commodore Hardware mods and projects</a> : Various CBM hardware projects, like
 		<a href="cbmhw/scsi/index.html">SCSI</a> interface, or a project to build
 		<a href="cbmhw/ryofat40/index.html">Your own new PET 4032</a>.
 		Other items are C64 kernel mods and <a href="cbmhw/ieee488/index.html">IEEE488 interfaces</a>, including
 		one for the PC to use it as disk drive.
-</li>
+      </li>
 <li class="subitem">
 <a href="cbmhw/pet816/index.html">PET816</a>  - a 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
-</li>
+      </li>
 </ul>
 </li>
-<br><li class="hw">
+<li class="hw">
 <strong>General 6502 hardware stuff</strong><ul>
 <li class="subitem">
 <a href="csa/index.html">CS/A65</a>  and
@@ -414,41 +340,45 @@ multi- resp. singleboard 6502 computers.
 The CS/A65 features virtual memory, video card, a SCSI interface
 and many more stuff
 I have now linked my CS/A65 emulator, based on the VICE emulator,
-to this page.
-</li>
+to this page.</li>
+<li class="subitem">
+<a href="adv65/index.html">The Advanced 6502 page</a> 
+	is there for projects that go beyond the original 6502 design. 
+	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
+	that speeds up a 1 MHz PET up to 10 MHz!
+	This page will also be the home for the future <em>65k</em> project - see my
+	<a href="sneak.html">sneak preview page</a> for more on that.
+      </li>
 <li class="subitem">
 <a href="hwinfo/index.html">Hardware info</a> : Information on various 
 	items and standards used in these pages. Examples are 
 	<a href="hwinfo/crtc/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
 	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
-</li>
+      </li>
 <li class="subitem">
 <a href="mischw/index.html">Hardware Tools and Stuff</a> : Miscellaneous hardware stuff. 
 	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
-</li>
+      </li>
 </ul>
 </li>
-<br><li class="sw">
+<li class="sw">
 <strong>6502 software stuff</strong><ul>
 <li class="subitem">
 <a href="osa/index.html">GeckOS/A65</a> 
 A small 6502 multitasking operating
 system that runs on the Commodore C64 and PET computers, as well as my
 selfbuilt 6502s.
-</li>
+      </li>
 <li class="subitem">
-<a href="lib6502/index.html">LIB6502</a> is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.
-</li>
+<a href="lib6502/index.html">LIB6502</a> is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.</li>
 <li class="subitem">
-<a href="o65/index.html">o65</a> fileformat is a flexible relocatable 6502/65816 fileformat.
-</li>
+<a href="o65/index.html">o65</a> fileformat is a flexible relocatable 6502/65816 fileformat.</li>
 <li class="subitem">
 <a href="misc/index.html">Software</a>  I wrote with relation
-to the 6502. Features cross assembler, C64 basic extension, etc.
-</li>
+to the 6502. Features cross assembler, C64 basic extension, etc.</li>
 </ul>
 </li>
-<br><li class="icap">
+<li class="icap">
 <strong>6502 knowledge bits</strong><ul>
 <li class="subitem">
 <a href="icapos/index.html">Articles</a>  I wrote about computer system and
@@ -456,7 +386,7 @@ to the 6502. Features cross assembler, C64 basic extension, etc.
 	Currently contains a articles about <a href="icapos/mp.html">6502 multiasking</a>,
 	<a href="icapos/mmu65.html">Use of an MMU</a> with the 6502, and about the
 	<a href="icapos/osa65.html">GeckOS/A65 multitasking operating system</a>.
-</li>
+      </li>
 <li class="subitem">
 <a href="icaphw/index.html">6502 hardware related articles</a>  I wrote.
 	Articles are about hardware like <a href="icaphw/rdy.html">RDY generation</a>,
@@ -466,12 +396,12 @@ to the 6502. Features cross assembler, C64 basic extension, etc.
 	the hardware designer of the Commodore 128.
 	Now contains the <a href="icaphw/xilinx/index.html">Xilinx tools</a> page about the CPLD tools I 
 	am using for my newest designs.
-</li>
+      </li>
 </ul>
 </li>
-<br>
 </ul>
 <h2>Disclaimer</h2>
+<div class="toplink"><a href="#top">Top</a></div>
 <p>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
@@ -480,8 +410,7 @@ GNU Public License version 2 unless noted otherwise.
 <hr>
 Last updated 2010-01-07.
   </DIV>
-  </div><!-- midcol -->
-</div><!-- mainbox -->
-</body>
+</div>
+</div></body>
 </html> 
-</div></html>
+
