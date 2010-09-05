@@ -44,7 +44,7 @@
 
 	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td><a href="imgs/gal_4032_open.png"><img width="200px" src="imgs/gal_4032_open_small.png"/></a></td><td>The board installed in a 4032 PET. Note that the 4032 is actually broken. It seems to have some defective RAM chip, but it can actually be used running completely in the 65816 board.</td></tr>
-	<tr><td>Speed benchmark showing the 4032 at about 10&nbsp;MHz. (Note the screen cycles is faked. The code assumes 20000 cycles per screen for 1&nbsp;MHz operation, but this non-CRTC model has about 16000 cycles only.</td><td><a href="imgs/gal_bench_csa.png"><img width="200px" src="imgs/gal_bench_csa_small.png"/></a></td></tr>
+	<tr><td>Speed benchmark showing the 4032 at about 10&nbsp;MHz. (Note the screen cycles is faked. The code assumes 20000 cycles per screen for 1&nbsp;MHz operation, but this non-CRTC model has about 16000 cycles only.</td><td><a href="imgs/gal_4032_speed.png"><img width="200px" src="imgs/gal_4032_speed_small.png"/></a></td></tr>
 
 	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td><a href="imgs/pet816_8296a.png"><img width="200px" src="imgs/pet816_8296a_small.png"/></a></td><td>The first prototype installed in the 8296 test system</td></tr>
