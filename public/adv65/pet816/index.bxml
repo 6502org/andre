@@ -31,6 +31,9 @@ a feature in these days.
 		</ul>
 	</desc>
 	<news>
+		<item date="2010-09-05">
+			Added info and pet debug code for PET 4032
+		</item>
 		<item date="2010-08-28">
 			New 1.2B version of the board, with board layout, and updated VHDL code.
 			Also added <a href="features.html">features</a>, <a href="hardware.html">Hardware</a>, <a href="gallery.html">Gallery</a> and <a href="works.html">how it works</a> page.
