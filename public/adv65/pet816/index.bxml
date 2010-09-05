@@ -44,6 +44,28 @@ a feature in these days.
 		</item>
 	</news>
         <driver>
+                <name>PET 4032 test machine</name>
+		<desc><p>I tried to repair a PET 4032 machine, that seems to have a memory problem.
+			So I put in the 65816 board, with some boot code in the ROM, to run the PET
+			in the 65816 board only. The result can be seen in the gallery, the PET
+			runs at 10&nbsp;MHz.
+			</p> <p>
+			The boot code consists of the original 4032 (non-CRTC) ROMs 
+			plus some init code that copies the ROM contents from the board's ROM
+			(i.e. not from the PET's original ROMs, that could be broken!)
+			to fast RAM, and runs the system completely from the fast RAM.
+			Only I/O is used and I was lucky that this works on my 4032, so I 
+			can use - and debug - the machine even with programs from the disk drive.
+			</p><p>
+			The code in the file below builds a <code>PDEBUG</code> PET binary, that
+			when run, programs the boot ROM of the 65816 board. It assumes a 128k
+			Atmel Flash PROM for the write algorithm, as does the <code>progrom</code>
+			programs below.
+			</p>
+		</desc>
+                <file ltype="driver" ptype="tgz" note="PET 4032 test ROM">petdebug.tar.gz</file>
+        </driver>
+        <driver>
                 <name>Testsuite</name>
 		<desc><p>Here are some small tests that test the various features of the board.
 		</p><p>Note that building them requires the <code>xa</code> cross assembler, using 
@@ -71,7 +93,9 @@ a feature in these days.
 		<li>progrom - programs the ROM to run a "GOFAST" functionality directly on reset,
 			as a boot rom. If you program your on-board ROM with this <code>PGOFAST</code>
 			code, and set the bootrom jumper, the system will automatically boot into 
-			fast mode.</li>
+			fast mode.(Edit: the programming algorithm in <code>proglib.a65</code> has
+			problems with larger blocks - better use the <code>proglib.a65</code> 
+			code from <code>petdebug.tar.gz</code> above)</li>
 		</ul>
 		</desc>
                 <file ltype="driver" ptype="tgz" note="Feature test suite">x816tests-1.0.tgz</file>

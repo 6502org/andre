@@ -48,6 +48,7 @@
     <desc><p>Here are some links to general 6502 and beyond information</p></desc>
     <extlink name="The 6502/65C02/65C816 instruction set decoded" link="http://www.llx.com/~nparker/a2/opcodes.html"/>
     <extlink name="Programming the 65816 (PDF)" link="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf"/>
+    <extlink name="Schematics of the original 6502 (reverse engineered)" link="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/"/>
   </section>
  
     <disclaimer name="Disclaimer">
