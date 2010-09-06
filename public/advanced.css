@@ -60,6 +60,9 @@ DIV.tophead {
 	padding-right: 2em;
 }
 
+/* disable for IE6 */
+* html DIV#hot { display: none; }
+
 /* left/right cols have headers in the top level style */
 DIV#hot DIV.tophead {
  	background: -moz-linear-gradient(top, #f55, #e00 100%); 
@@ -170,15 +173,18 @@ DIV#rightcol {
  * visible top level elements, parts of columns
  */
 
+/* disable for IE6 */
+* html DIV#oldnews { display: none; }
+
 DIV#oldnewscontent  {
 	height: 40em;
-	overflow-y: scroll;
+	overflow: scroll;
 	margin-left: -1em;
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
-  	/*width: 17.0em;*/
+  	/*width: 10.0em;*/
 	margin-right: -1em;
 }
 
@@ -282,7 +288,6 @@ DIV#mtree img {
 
 /* new style */
 div#mtree div {
-  background-color: #000000;
   display:inline;
   float: left;
   width:1.3em;
