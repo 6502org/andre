@@ -6,9 +6,8 @@
 <meta name="description" content="Commodore resp. 8-bit 6502 information">
 <meta name="keywords" content="8-bit,6502,Commodore">
 <link rev="made" href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="advanced.css">
+<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="advanced-min.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="style.css">
-<script src="jquery-1.4.2.min.js"></script><script src="myscriptsadv-min.js"></script><script>myUp="";</script>
 
 <title>André 's 8-bit pages</title>
 </head>
@@ -261,7 +260,7 @@
 </div>
 </div>
 <div id="midcol">
-<DIV class="top" ID="breadcrumbs">
+<DIV class="top" ID="content">
 <a href="index.html">Homepage</a>
 <!--/DIV>
 <DIV class="top" ID="content"-->
@@ -400,6 +399,50 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</li>
 </ul>
 </li>
 </ul>
+<H3><A NAME="board1">Version: 2.0K</A></H3>
+<P>Status: ok</P>
+<H4>Notes</H4>
+<TABLE class="notes">
+<TR>
+<TD><div class="i_note">&nbsp;</div></TD>
+<TD>
+                        This version only improves the layout, in that it finally has decent
+                        GND and VCC power supply networks. Otherwise unchanged from 2.0J.
+                        Note that ICs should be 'ALS. I tried to use 'HCT drivers (the '245)
+                        but they produced slightly different signals when the CPU was replaced
+                        by the PET816 CPU card, which produced errors on the VDC access...
+                        With 'ALS it seems to work.
+                </TD>
+</TR>
+</TABLE>
+<H4>Files</H4>
+<TABLE class="files">
+<TR CLASS="R1">
+<TD><div class="i_desc">&nbsp;</div></TD>
+<TD><A HREF="csa_cpu_v2.0h-desc.txt">csa_cpu_v2.0h-desc.txt</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="imgs/file_parts.gif" ALT="parts"></TD>
+<TD><A HREF="csa_cpu_v2.0h-parts.txt">csa_cpu_v2.0h-parts.txt</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_cpu_v2.0k.sch">csa_cpu_v2.0k.sch</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="imgs/file_schem.gif" ALT="schem"></TD>
+<TD><A HREF="csa_cpu_v2.0k_sch.png">csa_cpu_v2.0k_sch.png</A></TD>
+</TR>
+<TR CLASS="R1">
+<TD><IMG SRC="imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_cpu_v2.0k.brd">csa_cpu_v2.0k.brd</A></TD>
+</TR>
+<TR CLASS="R0">
+<TD><IMG SRC="imgs/file_layout.gif" ALT="layout"></TD>
+<TD><A HREF="csa_cpu_v2.0k_brd.png">csa_cpu_v2.0k_brd.png</A></TD>
+</TR>
+</TABLE>
+
 <h2>Disclaimer</h2>
 <div class="toplink"><a href="#top">Top</a></div>
 <p>
@@ -411,6 +454,9 @@ GNU Public License version 2 unless noted otherwise.
 Last updated 2010-01-07.
   </DIV>
 </div>
-</div></body>
+</div>
+<script>myUp="";</script>
+<script src="scripts.js"></script>
+</body>
 </html> 
 
