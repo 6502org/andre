@@ -276,10 +276,10 @@ function monitorFilter() {
 // setup navigation
 
 function setupFilter() {
-	$("div#menu img#expand").click( expandAll );
-	$("div#menu img#collapse").click( collapseAll );
+	$("div#menu div.i_expand").click( expandAll );
+	$("div#menu div.i_collapse").click( collapseAll );
 
-	$("div#menu img#cancel").click( function() {
+	$("div#menu div.i_cancel").click( function() {
 			isFilterActive = 0;
 			currentFilter = "";
 			expandAll();
