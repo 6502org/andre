@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #888;
+ background-color: #aaa;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -60,10 +60,18 @@ DIV.tophead {
 	padding-right: 2em;
 }
 
+/* disable for IE6 */
+* html DIV#hot { display: none; }
+
+div#ie6warn { display: none; }
+* html DIV#ie6warn { display: block; 
+	background-color: #ff4444;
+}
+
 /* left/right cols have headers in the top level style */
 DIV#hot DIV.tophead {
- 	background: -moz-linear-gradient(top, #f00, #e00 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f00), color-stop(1, #e00));	
+ 	background: -moz-linear-gradient(top, #f55, #e00 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
 	background-color: #ee0000;
 
 	-moz-border-radius-topleft: 10px;
@@ -124,11 +132,12 @@ DIV#mainbox {
   * #888 -> #fff	Graukeil
   * #fc6 -> #e80	Orangekeil
   * #369 -> 7ad		Blaukeil (6502.org)
-  */
- background: -moz-linear-gradient(top, #888 0, #fff 100%); /* mozilla */
- background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888), color-stop(1, #fff));	/* webkit */
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 */
- -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 */
+  *
+ background: -moz-linear-gradient(top, #888 0, #fff 100%); /* mozilla *
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888), color-stop(1, #fff));	/* webkit *
+ filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 *
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 *
+ */
 
 }
 
@@ -169,14 +178,18 @@ DIV#rightcol {
  * visible top level elements, parts of columns
  */
 
+/* disable for IE6 */
+* html DIV#oldnews { display: none; }
+
 DIV#oldnewscontent  {
 	height: 40em;
-	overflow-y: scroll;
+	overflow: scroll;
+	margin-left: -1em;
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
-  	/*width: 17.0em;*/
+  	/*width: 10.0em;*/
 	margin-right: -1em;
 }
 
@@ -187,6 +200,8 @@ DIV#browser {
 
 DIV#breadcrumbs {
   display: block;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid;
 }
 
 
@@ -271,11 +286,29 @@ div#mtree a:hover {
 div#mtree A.m_homepage {
   font-size: medium;
 }
-
+/* old style - remove once converted */
 DIV#mtree img {
   margin-right:0.1em;
   float:left;
   width: 1.3em;
+}
+
+/* new style */
+div#mtree div {
+  display:inline;
+  float: left;
+  width:1.3em;
+  background:url(imgs/sprite.png) no-repeat;
+}
+
+div#mtree div.i_dir {
+  background-position: 0 -64px;
+}
+div#mtree div.i_file {
+  background-position: -128px -64px;
+}
+div#mtree div.i_link {
+  background-position: -160px -64px;
 }
 
 /* IE handles display of float (image) in an LI differently
@@ -299,6 +332,27 @@ div#mtree LI.separator {
   font-size:x-small;
   font-weight:bold;
 }
+
+/* new style */
+div#filter div {
+  	width:20px;
+	height:20px;
+	background:url(imgs/sprite.png) no-repeat;
+}
+
+
+div#filter div.i_expand {
+	background-position: -288 -64px;
+}
+
+div#filter div.i_collapse {
+	background-position: -256 -64px;
+}
+
+div#filter div.i_cancel {
+	background-position: -224 -64px;
+}
+
 
 /****************************************
  * right side floating elements
@@ -342,11 +396,21 @@ TD.noteicon {
 	padding:5px;
 }
 
-/*
-TABLE.notes TR {
-	background-color: #eeeeee;
+/* new design */
+table.notes div.i_note {
+  background: url(imgs/sprite.png) no-repeat;
+  background-position: -32px -32px;
+  width: 32px;
+  height: 32px;
 }
-*/
+
+
+div.i_desc {
+  background: url(imgs/sprite.png) no-repeat;
+  background-position: 0px 0px;
+  width: 32px;
+  height: 32px;
+}
 
 /****************************************
  * main entry page (quickfinder)
@@ -354,29 +418,44 @@ TABLE.notes TR {
 
 ul.quickfinder li {
 	padding-top: 0em;
+	padding-left: 60px;
+	list-style-type:none;
 }
 
-ul.quickfinder LI.hw {
-	list-style-image:url(imgs/icon_hw.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.sw {
-	list-style-image:url(imgs/icon_sw.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.cbm {
-	list-style-image:url(imgs/icon_cbm.jpg);
-        margin-left:50px;
-}
-ul.quickfinder LI.icap {
-	list-style-image:url(imgs/icon_icap.jpg);
-        margin-left:50px;
-}
-UL.quickfinder LI.subitem {
-	list-style-image:none;
+ul.quickfinder li li.subitem {
+	list-style-type:circle;
         margin-left:-40px;
+	padding-left: 0;
 }
 
+/* new style */
+ul.quickfinder div {
+	position:relative;
+  	width:74px;
+	height:37px;
+	left:-80px;
+	top: 15px;
+	background:url(imgs/sprite.png) no-repeat;
+}
+
+
+ul.quickfinder div.i_cbm {
+	background-position: 0 -110px;
+}
+
+ul.quickfinder div.i_hw {
+	background-position: -75px -110px;
+}
+
+ul.quickfinder div.i_sw {
+	background-position: -150px -110px;
+}
+
+ul.quickfinder div.i_icap {
+	background-position: -225px -110px;
+}
+
+/* allgemeiner style! */
 LI.subitem {
 	list-style-position: outside;
 	margin-top:0.5em;
@@ -387,16 +466,29 @@ LI.subitem {
  * news formatting
  */
 
-UL.news {
-	list-style-image:url(imgs/news.gif);
-}
-LI.oldnews {
-	list-style-image:url(imgs/oldnews.gif);
-}
-LI.hotnews {
-	list-style-image:url(imgs/hotnews.gif);
+ul.news li {
+	padding-top: 5px;
+	list-style-type: none;
 }
 
+ul.news li div {
+	margin-left:-28px;
+	display:inline;
+	float: left;
+	background:url(imgs/sprite.png) no-repeat;
+	width:28px;
+	height:28px;
+	background-position: -128px -32px;
+}
+
+ul.news div.i_hotnews {
+	background-position: -192px -32px;
+}
+
+ul.news div.i_oldnews {
+	background-position: -160px -32px;
+}
+	
 /****************************************
  * Interview formatting
  */
