@@ -162,17 +162,8 @@ for i in $root/*.inx; do
 		doinsert1 $t1 $t2 "@BREAD@"
 		v=$?
 		if [ $v -eq 1 ]; then
-#			if [ -f $root/.bread.xml ]; then
-#				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t4
-#				cat $root/.bread.xml \
-#					| sed -e "s@%up%@.@g" \
-#					>> $t4
-#				echo "</DIV>" >> $t4
-#			else
-#				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
-#			fi;
 			if [ -f $root/.name.xml ]; then
-				echo "<DIV class=\"top\" ID=\"breadcrumbs\">" >> $t2
+				echo "<DIV ID=\"breadcrumbs\">" >> $t2
 				#cat $root/.name.xml \
 				buildbread $myname $root \
 					| sed -e "s@%up%@.@g" \

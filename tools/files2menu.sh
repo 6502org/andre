@@ -56,11 +56,11 @@ if [ -f $root/.files ]; then
 	| awk -v upn="$upn" -v xup="$xup" ' \
 		BEGIN { print "<ul class=\"menu" upn "\" >"; } \
 		/^s / { print "<li class=\"separator\">" substr($0, 3) "</li>"; }\
-		/^f / { print "<li class=\"file\"><img src=\"%xup%imgs/file.png\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^l / { print "<li class=\"link\"><img src=\"%xup%imgs/link.png\"/><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
-		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><img src=\"%xup%imgs/dir.png\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
+		/^f / { print "<li><div class=\"i_file\">&nbsp;</div><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^l / { print "<li><div class=\"i_link\">&nbsp;</div><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
+		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><div class=\"i_dir\">&nbsp;</div><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
 			print "@" $2 "@</li>"; }\
-		/^p / { print "<li class=\"file\"><img src=\"%xup%imgs/file.png\"/><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
+		/^p / { print "<li><div class=\"i_file\">&nbsp;</div><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
 			print "</li>"; }\
 		END { print "</ul>"; } \
 	' \

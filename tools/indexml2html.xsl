@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> ] >
+<!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> <!ENTITY nbsp "&#160;"> ] >
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -80,9 +80,9 @@
 <a name="top"/>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
+<xsl:call-template name="ie6warn"/>
+<div class="top" ID="content"><xsl:text>
 @BREAD@
-<div class="top" ID="content">
-<xsl:text>
 </xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
 </xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
@@ -131,10 +131,14 @@
 		<div id="menu" class="top">
 			<div class="tophead">navigate</div>
 	                <div id="filter">
-                            <form action="#"><img id="expand" src="%up%imgs/expand.png"/>
-                            <img id="collapse" src="%up%imgs/collapse.png"/>
-                            <input size="8" name="filter" value="filter" type="text"/>
-                            <img id="cancel" src="%up%imgs/cancel.png"/></form>
+                            <form action="#">
+			     <table><tr>
+ 			      <td><div id="expand" class="i_expand">&nbsp;</div></td>
+                              <td><div id="collapse" class="i_collapse">&nbsp;</div></td>
+                              <td><input size="8" name="filter" value="filter" type="text"/></td>
+                              <td><div id="cancel" class="i_cancel">&nbsp;</div></td>
+			     </tr></table>
+			    </form>
 			</div>
 		@MENU@
 		</div><!-- menu -->
@@ -144,7 +148,7 @@
 		<div class="top" id="browser">
 			<div class="tophead">browser</div>
 			<div>
-			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore, though (lacks news history and Hot! panel).
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
 			</div>
 		</div>
 	</div> <!-- leftcol -->
@@ -158,7 +162,7 @@
 	        </div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br/>
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"/></a><br/> (In new window)
+		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br/> (In new window)
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
 			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
@@ -276,8 +280,12 @@
 <div id="mainbox">
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
+<xsl:call-template name="ie6warn"/>
+<DIV class="top" ID="content">
+<xsl:text>
 @BREAD@
-<DIV class="top" ID="content"><a name="topanchor"/>
+</xsl:text>
+<a name="topanchor"/>
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">
@@ -311,6 +319,7 @@
     <xsl:for-each select="item">
       <li>
 	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+	<xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
 	<strong><xsl:call-template name="aname"/></strong>
           <xsl:apply-templates select="desc"/>
 	  <xsl:if test="subitem|extlink">
@@ -348,14 +357,14 @@
  <h2>News:</h2>
  <ul class="news">
  <xsl:for-each select="item[@state='hot']">
-  <li class="hotnews">
+  <li><div class="i_hotnews">&nbsp;</div>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>
  </xsl:for-each>
  <xsl:for-each select="item[@state='old' or not(@state)]">
-  <li>
-  <xsl:if test="@state='old'"><xsl:attribute name="class">oldnews</xsl:attribute></xsl:if>
+  <li><div>
+  <xsl:if test="@state='old'"><xsl:attribute name="class">i_oldnews</xsl:attribute></xsl:if>&nbsp;</div>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>
@@ -368,10 +377,10 @@
    <xsl:with-param name="hdr">Old News:</xsl:with-param>
    <xsl:with-param name="a">oldnews</xsl:with-param>
  </xsl:call-template-->
- <ul class="oldnews">
+ <ul class="news">
  <xsl:for-each select="item[@state!='off']">
-  <li>
-  <xsl:attribute name="class">oldnews</xsl:attribute>
+  <li><div>
+  <xsl:attribute name="class">i_oldnews</xsl:attribute>&nbsp;</div>
   <small><xsl:value-of select="@date"/></small>
   <xsl:copy-of select="*|text()"/>
   </li>
@@ -412,6 +421,7 @@
 
 <xsl:template match="subitem">
 	<li class="subitem">
+	<xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
 	      <strong>
 	      <xsl:value-of select="@name"/>
 	      </strong>: <!--<br/>-->
@@ -440,12 +450,22 @@
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
 <script src="%up%jquery-1.4.2.min.js"></script>
-<script src="%up%myscripts.js"></script>
+<script src="%up%scripts.js"></script>
 <script>myUp="%up%";</script>
 <xsl:text>
 </xsl:text>
 <!--META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/--><xsl:text>
 </xsl:text>
+</xsl:template>
+
+<xsl:template name="ie6warn">
+<div class="top" ID="ie6warn">
+You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
+more modern browser, like Internet Explorer 8 or later, 
+<a class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a class="extlink" href="http://www.opera.com">Opera</a>.
+</div>
 </xsl:template>
 
 </xsl:stylesheet>
