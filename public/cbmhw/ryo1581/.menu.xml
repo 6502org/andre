@@ -1,4 +1,4 @@
 <ul class="menu2" >
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/petcpu/index.html">PETCPU</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/drvio/index.html">DRVIO</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/petcpu/index.html">PETCPU</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/drvio/index.html">DRVIO</a></li>
 </ul>

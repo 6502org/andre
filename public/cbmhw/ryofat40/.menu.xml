@@ -1,7 +1,7 @@
 <ul class="menu2" >
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/petcpu/index.html">PETCPU</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/petio/index.html">PETIO</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/vdc/index.html">Video</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/cpu/index.html">CPU</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../../csa/bios/index.html">BIOS</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/petcpu/index.html">PETCPU</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/petio/index.html">PETIO</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/vdc/index.html">Video</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/cpu/index.html">CPU</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../../csa/bios/index.html">BIOS</a></li>
 </ul>

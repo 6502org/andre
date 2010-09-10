@@ -1,7 +1,7 @@
 <ul class="menu1" >
 <li class="separator">Hardware Tools</li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%probe/index.html">Logic probe</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%probe/index.html">Logic probe</a>
 </li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../icaphw/xilinx.html">VHDL</a></li>
-<li class="link"><img src="%xup%imgs/link.png"/><a href="%up%../icaphw/oscope/index.html">Oscilloscope bits</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../icaphw/xilinx.html">VHDL</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%../icaphw/oscope/index.html">Oscilloscope bits</a></li>
 </ul>

@@ -1,7 +1,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="author" content="André  Fachat">
 
 <meta name="description" content="CRTC operation">
@@ -9,7 +8,7 @@
 <link rev="made" href="mailto:afachat@gmx.de">
 <LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
 <LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
-<script src="../../jquery-1.4.2.min.js"></script><script src="../../myscripts.js"></script><script>myUp="../../";</script>
+<script src="../../jquery-1.4.2.min.js"></script><script src="../../scripts.js"></script><script>myUp="../../";</script>
 
 <title>CRTC operation</title>
 </head>
@@ -17,60 +16,63 @@
 <div id="leftcol">
 <div id="menu" class="top">
 <div class="tophead">navigate</div>
-<div id="filter"><form action="#">
-<img id="expand" src="../../imgs/expand.png"><img id="collapse" src="../../imgs/collapse.png"><input size="8" name="filter" value="filter" type="text"><img id="cancel" src="../../imgs/cancel.png">
-</form></div>
+<div id="filter"><form action="#"><table><tr>
+<td><div id="expand" class="i_expand"> </div></td>
+<td><div id="collapse" class="i_collapse"> </div></td>
+<td><input size="8" name="filter" value="filter" type="text"></td>
+<td><div id="cancel" class="i_cancel"> </div></td>
+</tr></table></form></div>
 <div id="mtree">
 <a class="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
 <li class="separator">Commodore</li>
-<li class="dir" id="m_petindex"><img src="../../imgs/dir.png"/><a href="../../petindex/index.html">CBM PETindex</a>
+<li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="../../petindex/index.html">CBM PETindex</a>
 </li>
-<li class="dir" id="m_cbmhw"><img src="../../imgs/dir.png"/><a href="../../cbmhw/index.html">CBM hardware and mods</a>
+<li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
-<li class="dir" id="m_csa"><img src="../../imgs/dir.png"/><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
+<li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
-<li class="dir" id="m_adv65"><img src="../../imgs/dir.png"/><a href="../../adv65/index.html">Advanced 6502</a>
+<li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 </li>
-<li class="dir" id="m_hwinfo"><img src="../../imgs/dir.png"/><a href="../../hwinfo/index.html">ICs and Standards Info</a>
+<li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../../hwinfo/index.html">ICs and Standards Info</a>
 <ul class="menu1" >
-<li class="dir" id="m_hwinfo_crtc"><img src="../../imgs/dir.png"/><a href="../crtc/index.html">CRTC 6545/6845</a>
+<li class="dir" id="m_hwinfo_crtc"><div class="i_dir">&nbsp;</div><a href="../crtc/index.html">CRTC 6545/6845</a>
 <ul class="menu2" >
-<li class="file"><img src="../../imgs/file.png"/><a href="internals/index.html">CRTC internals</a>
+<li><div class="i_file">&nbsp;</div><a href="internals/index.html">CRTC internals</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="pet/index.html">CBM PET test programs</a>
+<li><div class="i_file">&nbsp;</div><a href="pet/index.html">CBM PET test programs</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="crtc.html" class="mcurrent">CRTC operation</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="diffs.html">Differences between models</a></li>
+<li><div class="i_file">&nbsp;</div><a href="crtc.html" class="mcurrent">CRTC operation</a></li>
+<li><div class="i_file">&nbsp;</div><a href="diffs.html">Differences between models</a></li>
 </ul>
 </li>
-<li class="dir" id="m_hwinfo_ls610"><img src="../../imgs/dir.png"/><a href="../ls610/index.html">74LS610 MMU</a>
+<li class="dir" id="m_hwinfo_ls610"><div class="i_dir">&nbsp;</div><a href="../ls610/index.html">74LS610 MMU</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../scsi.html">SCSI</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../i2c.html">I2C</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../scsi.html">SCSI</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../i2c.html">I2C</a></li>
 </ul>
 </li>
-<li class="dir" id="m_mischw"><img src="../../imgs/dir.png"/><a href="../../mischw/index.html">Other hardware (e.g. tools)</a>
+<li class="dir" id="m_mischw"><div class="i_dir">&nbsp;</div><a href="../../mischw/index.html">Other hardware (e.g. tools)</a>
 </li>
 <li class="separator">Software</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../osa/index.html">GeckOS operating system</a>
+<li><div class="i_file">&nbsp;</div><a href="../../osa/index.html">GeckOS operating system</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../lib6502/index.html">Lib6502 standard</a>
+<li><div class="i_file">&nbsp;</div><a href="../../lib6502/index.html">Lib6502 standard</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../o65/index.html">O65 file format</a>
+<li><div class="i_file">&nbsp;</div><a href="../../o65/index.html">O65 file format</a>
 </li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../misc/index.html">Misc software</a>
+<li><div class="i_file">&nbsp;</div><a href="../../misc/index.html">Misc software</a>
 </li>
 <li class="separator">Knowledge Bits</li>
-<li class="dir" id="m_icapos"><img src="../../imgs/dir.png"/><a href="../../icapos/index.html">Computer/OS Architecture</a>
+<li class="dir" id="m_icapos"><div class="i_dir">&nbsp;</div><a href="../../icapos/index.html">Computer/OS Architecture</a>
 </li>
-<li class="dir" id="m_icaphw"><img src="../../imgs/dir.png"/><a href="../../icaphw/index.html">6502 Hardware Bits</a>
+<li class="dir" id="m_icaphw"><div class="i_dir">&nbsp;</div><a href="../../icaphw/index.html">6502 Hardware Bits</a>
 </li>
 <li class="separator">Misc</li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../contact.html">Contact</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../sneak.html">Sneak preview</a></li>
-<li class="file"><img src="../../imgs/file.png"/><a href="../../design.html">Web design</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../contact.html">Contact</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../sneak.html">Sneak preview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../design.html">Web design</a></li>
 </ul>
 
 </div>
@@ -78,7 +80,7 @@
 <div class="top" id="browser">
 <div class="tophead">browser</div>
 <div>
-			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript.
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
 			</div>
 </div>
 </div>
@@ -93,7 +95,7 @@
 <div class="top" id="twitter">
 <div class="tophead">follow</div>
 <div>
-		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15"><img src="http://twitter-badges.s3.amazonaws.com/twitter-b.png" alt="twitter"></a><br> (In new window)
+		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br> (In new window)
 		</div>
 </div>
 <div class="top" id="forum">
@@ -114,11 +116,18 @@
 </div>
 </div>
 <div id="midcol">
-<DIV class="top" ID="breadcrumbs">
+<div class="top" ID="ie6warn">
+You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
+more modern browser, like Internet Explorer 8 or later, 
+<a class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a class="extlink" href="http://www.opera.com">Opera</a>.
+</div>
+<DIV class="top" ID="content">
+<DIV ID="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">ICs and Standards Info</a>&gt;&gt;  <a href="index.html">CRTC 6545/6845
 </a>&gt;&gt;  CRTC operation</DIV>
-<DIV class="top" ID="content">
 <a name="topanchor"></a><h1>CRTC operation</h1>
 <p class="copyright">(C)
 1998-2006 André  Fachat</p> 

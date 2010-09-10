@@ -1,13 +1,13 @@
 <ul class="menu2" >
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%arch/index.html">Drive architecture</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%arch/index.html">Drive architecture</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%gallery/index.html">Drive gallery</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%gallery/index.html">Drive gallery</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%roms/index.html">DOS ROMs</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%roms/index.html">DOS ROMs</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%progs/index.html">Drive utilities</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%progs/index.html">Drive utilities</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%drives.html">Drives list</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%harddisk.html">Harddisk info</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%writegap.html">Write gap info</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%drives.html">Drives list</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%harddisk.html">Harddisk info</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%writegap.html">Write gap info</a></li>
 </ul>

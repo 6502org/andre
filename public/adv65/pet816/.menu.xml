@@ -1,6 +1,6 @@
 <ul class="menu2" >
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%features.html">Board Features</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%works.html">How it works</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%gallery.html">Gallery</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%hardware.html">Hardware</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%features.html">Board Features</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%works.html">How it works</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%gallery.html">Gallery</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%hardware.html">Hardware</a></li>
 </ul>

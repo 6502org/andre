@@ -1,31 +1,31 @@
 <ul class="menu1" >
 <li class="separator">General Info</li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%gallery/index.html">PET gallery</a>
+<li><div class="i_file">&nbsp;</div><a href="%up%gallery/index.html">PET gallery</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%versions.html">PET versions</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%boards.html">Board versions</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%pinouts.html">Connectors</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%keyboards.html">Keyboards</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%extensions.html">Extensions</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%open.html">Open questions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%versions.html">PET versions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%boards.html">Board versions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%pinouts.html">Connectors</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%keyboards.html">Keyboards</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%extensions.html">Extensions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%open.html">Open questions</a></li>
 <li class="separator">Specials</li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%superpet.html">SuperPET MMF9000</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%8x96.html">The 8096 and 8296 models</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%superpet.html">SuperPET MMF9000</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%8x96.html">The 8096 and 8296 models</a></li>
 <li class="separator">Peripherals</li>
-<li class="dir" id="m_petindex_drives"><img src="%xup%imgs/dir.png"/><a href="%up%drives/index.html">Disk drives</a>
+<li class="dir" id="m_petindex_drives"><div class="i_dir">&nbsp;</div><a href="%up%drives/index.html">Disk drives</a>
 </li>
 <li class="separator">Programming</li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%progmod.html">Hardware programming</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%roms.html">ROM descriptions</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%crtc.html">CRTC operation</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%progmod.html">Hardware programming</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%roms.html">ROM descriptions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%crtc.html">CRTC operation</a></li>
 <li class="separator">Quirks</li>
-<li class="dir" id="m_petindex_poke"><img src="%xup%imgs/dir.png"/><a href="%up%poke/index.html">Killer poke</a>
+<li class="dir" id="m_petindex_poke"><div class="i_dir">&nbsp;</div><a href="%up%poke/index.html">Killer poke</a>
 </li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%repairs.html">Repairing the PET</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%repairs.html">Repairing the PET</a></li>
 <li class="separator">Links</li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%hw.html">Hardware projects</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%sw.html">Software projects</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%emus.html">PET emulators</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%transfer.html">File transfers</a></li>
-<li class="file"><img src="%xup%imgs/file.png"/><a href="%up%links.html">Links</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%hw.html">Hardware projects</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%sw.html">Software projects</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%emus.html">PET emulators</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%transfer.html">File transfers</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%links.html">Links</a></li>
 </ul>

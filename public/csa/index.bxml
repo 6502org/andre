@@ -302,7 +302,7 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		and thus requires the BIOS board for its operation.
 	  </subitem>
 
-          <subitem name="65816 CPU" link="cpu816/index.html">
+          <subitem name="65816 CPU" link="cpu816v2/index.html">
 		This board uses a 65816 instead of a 6502, and does not use a real MMU.
 		Instead the 1MByte CS/A bus memory is mapped into the 16MByte 65816 address space.
 		The CPU runs at a whopping 8MHz and the board includes 2MByte fast RAM, while
@@ -434,6 +434,13 @@ computers memory into the main memory map.
 interface across 3 ICs, which was not nice for building it on PCBs
 like these, why I moved some of the lines around those days...)
 	</desc>
+
+          <subitem name="65816 V1 CPU" link="cpu816/index.html">
+		The predecessor of the current V2 65816 CPU board.
+		It does not use a CPLD but only a PAL as programmable logic.
+		So it is easier to understand and kept here for reference
+		and educational purposes.
+	  </subitem>
 
           <subitem name="64k CPU" link="cpu65b/index.html">
 		This is a 64k CPU that is actually a stripped down
