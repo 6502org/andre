@@ -75,14 +75,14 @@ run a thread from a different task.
 If only a single tasks has some work to do, however, multiple processors
 could run multiple threads from the same tasks.
 </p><p>
-<img src="mp/threads.gif"/><br/>
+<img src="mp/threads.gif" alt="CPUs run thread contexts which are contained in task (process) contexts"/><br/>
 The diagram shows the relationship between processors, threads, and tasks.
 </p>
     </desc>
   </section>
   <section name="Context switching" toc="cswitch">
-<desc><p>
-<div class="rightimg" width="300px" >Example for switching from userspace thread to kernel and back:
+<desc>
+<div class="rightimg" >Example for switching from userspace thread to kernel and back:
 <ol>
 <li>Save the interrupted address on stack</li>
 <li>Save the CPU registers on stack</li>
@@ -92,7 +92,7 @@ The diagram shows the relationship between processors, threads, and tasks.
 <li>Reload the CPU registers from the stack</li>
 <li>return to the interrupted address</li>
 </ol>
-</div>
+</div><p>
 When a thread is interrupted for example by a timer to switch to another
 thread or tasks, as it has used up its time slice, 
 it has to "switch context". In general this means the
@@ -148,7 +148,7 @@ the CPU faulted on an unmapped page when the fault occurs.
 <subsection name="System Requirements" toc="cswreqs">
 <desc><p>
 To enable on-demand mapping, two major requirements have to be fulfilled 
-by the system:
+by the system:</p>
 <ul>
 <li>The system must be able to detect memory faults. I.e. it must have
 metadata in the page table that describe whether the page exists, is
@@ -163,7 +163,7 @@ fault, and re-execute the opcode again - this time without error.
 An older workstation used a 68000 CPU that did not have that feature, but
 used a second CPU to handle the exception.</li>
 </ul>
-</p></desc>
+</desc>
 </subsection>
   </section>
 
@@ -174,7 +174,7 @@ in mind. It thus lacks the second essential requirement: it can not stop or
 rollback the execution of an opcode, handle an exception (interrupt) and 
 continue with the opcode. Two workaround exists:
 </desc>
-  <subsection name="65816" toc="cswitch65">
+  <subsection name="65816" toc="cswitch816">
 <desc>
 The 65816 [12], a expanded and compatible successor to the 6502 has an "ABORTB" 
 input, that allows it to handle a memory fault: When the ABORTB input is
@@ -244,8 +244,8 @@ the memory location.
 </p>
 </desc></subsection>
 <subsection name="Semaphores" toc="sem">
-<desc><p>
-<div class="rightimg" width="300px">
+<desc>
+<div class="rightimg" >
 Pseudocode implementation of a semaphore:
 <pre>
 initialize(s) {
@@ -260,7 +260,7 @@ V(s) {
 	s = 1;
 }
 </pre>
-</div>
+</div><p>
 A common example is the implementation of a binary semaphore [8,9]. A binary semaphore
 has two operations, "P" and "V" on its state. A P() operation reserves the semaphore if it is not reserved. If it is already reserved, 
 the operation blocks until the semaphore is freed with the V() operation 

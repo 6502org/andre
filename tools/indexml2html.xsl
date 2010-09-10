@@ -2,13 +2,17 @@
 <!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> <!ENTITY nbsp "&#160;"> ] >
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:output method="xml" 
+	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+	doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" />
+
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template name="h2toc">
 	<xsl:param name="hdr"/>
 	<xsl:param name="a"/>
 <xsl:choose>
-  <xsl:when test="$a">
+  <xsl:when test="$a != ''">
 <h2><a name="{$a}"><xsl:value-of select="$hdr"/></a></h2>
   </xsl:when>
   <xsl:otherwise>
@@ -27,36 +31,36 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template name="toc">
-<DIV ID="toc">
+<div id="toc">
 <xsl:call-template name="h2toc">
 	<xsl:with-param name="hdr">Table of content</xsl:with-param>
 </xsl:call-template>
-<dir>
+<ul>
 <xsl:for-each select="section|itemlist">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 <xsl:if test="subsection|items/item">
-<dir>
+<li><ul>
 <xsl:for-each select="subsection|items/item">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 </xsl:for-each>
-</dir>
+</ul></li>
 </xsl:if>
 </xsl:for-each>
 <xsl:if test="driver">
 <li><a href="#driver">Driver</a></li>
-<dir>
+<li><ul>
 <xsl:for-each select="driver">
 <li><a href="#driver{position()}"><xsl:value-of select="name"/></a></li>
 </xsl:for-each>
-</dir>
+</ul></li>
 </xsl:if>
 <xsl:if test="rev">
 <li><a href="#boards">Board Revisions</a></li>
-<dir>
+<li><ul>
 <xsl:for-each select="rev">
 <li><a href="#board{position()}"><xsl:value-of select="version"/></a> (<xsl:value-of select="status"/>)</li>
 </xsl:for-each>
-</dir>
+</ul></li>
 </xsl:if>
 <xsl:if test="diagram">
 <li><a href="#blkdiag">Block diagram</a></li>
@@ -64,8 +68,8 @@
 <!--xsl:if test="oldnews">
 <li><a href="#oldnews">Old News</a></li>
 </xsl:if-->
-</dir>
-</DIV>
+</ul>
+</div>
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -81,9 +85,9 @@
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 <xsl:call-template name="ie6warn"/>
-<div class="top" ID="content"><xsl:text>
+<div class="top" id="content"><xsl:text>
 @BREAD@
-</xsl:text><H1><xsl:value-of select="name"/></H1><xsl:text>
+</xsl:text><h1><xsl:value-of select="name"/></h1><xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
 </xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
 </xsl:text></div>
@@ -114,13 +118,14 @@
 </xsl:if>
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
-<div ID="footer">
-<P><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</P>
+<div id="footer">
+<p><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</p>
 @FOOTER@
 </div> <!-- footer -->
 </div> <!-- content -->
 </div> <!-- midcol -->
 </div> <!-- mainbox -->
+<xsl:call-template name="bottom"/>
 </body></html>
 </xsl:template>
 
@@ -186,11 +191,11 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="desc">
-<p><xsl:copy-of select="*|text()"/></p>
+<xsl:copy-of select="*|text()"/>
 </xsl:template>
 
 <xsl:template match="section">
-<H2><a name="{@toc}"><xsl:value-of select="@name"/></a></H2>
+<h2><a name="{@toc}"><xsl:value-of select="@name"/></a></h2>
 <xsl:apply-templates select="desc"/>
 <xsl:apply-templates select="subsection"/>
 <xsl:if test="subitem|extlink">
@@ -202,7 +207,7 @@
 </xsl:template>
 
 <xsl:template match="subsection">
-<H3><a name="{@toc}"><xsl:value-of select="@name"/></a></H3>
+<h3><a name="{@toc}"><xsl:value-of select="@name"/></a></h3>
 <xsl:apply-templates select="desc"/>
 <xsl:if test="subitem|extlink">
 <ul>
@@ -213,41 +218,41 @@
 </xsl:template>
 
 <xsl:template match="rev">
-<H3><A NAME="board{position()}">Version: <xsl:value-of select="version"/></A></H3><xsl:text>
+<h3><a name="board{position()}">Version: <xsl:value-of select="version"/></a></h3><xsl:text>
 </xsl:text>
-<P>Status: <xsl:value-of select="status"/></P><xsl:text>
+<p>Status: <xsl:value-of select="status"/></p><xsl:text>
 </xsl:text>
 <xsl:if test="note">
-<H4>Notes</H4>
-<TABLE class="notes">
+<h4>Notes</h4>
+<table class="notes">
 <xsl:for-each select="note">
-<TR><TD class="noteicon"><IMG SRC="%up%imgs/note_{@type}.gif" ALT="{@type}"/></TD><xsl:text>
-</xsl:text><TD><xsl:copy-of select="text()|*"/></TD></TR><xsl:text>
+<tr><td class="noteicon"><img src="%up%imgs/note_{@type}.gif" alt="{@type}"/></td><xsl:text>
+</xsl:text><td><xsl:copy-of select="text()|*"/></td></tr><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- note -->
-</TABLE>
+</table>
 </xsl:if>
 <xsl:if test="file">
-<H4>Files</H4>
-<TABLE class="files">
+<h4>Files</h4>
+<table class="files">
 <xsl:apply-templates select="file"/>
-</TABLE></xsl:if><xsl:text>
+</table></xsl:if><xsl:text>
 </xsl:text>
 </xsl:template>
 
 <xsl:template match="driver">
-<H3><A NAME="driver{position()}"><xsl:value-of select="name"/></A></H3>
+<h3><a name="driver{position()}"><xsl:value-of select="name"/></a></h3>
 <xsl:apply-templates select="desc"/>
-<TABLE class="files"><xsl:apply-templates select="file"/></TABLE>
+<table class="files"><xsl:apply-templates select="file"/></table>
 </xsl:template>
 
 <xsl:template match="file">
 <xsl:variable name="note"><xsl:if test="@note">(<xsl:value-of select="@note"/>)</xsl:if></xsl:variable>
 <xsl:text>
-</xsl:text><TR CLASS="R{position() mod 2}"><TD><IMG SRC="%up%imgs/file_{@ltype}.gif" ALT="{@ltype}"/></TD><xsl:text>
-</xsl:text><!-- <TD><xsl:value-of select="@ptype"/></TD><xsl:text>
-</xsl:text>--><TD><A HREF="{.}"><xsl:value-of select="."/></A><xsl:value-of select="$note"/></TD><xsl:text>
-</xsl:text></TR>
+</xsl:text><tr class="R{position() mod 2}"><td><img src="%up%imgs/file_{@ltype}.gif" alt="{@ltype}"/></td><xsl:text>
+</xsl:text><!-- <td><xsl:value-of select="@ptype"/></td><xsl:text>
+</xsl:text>--><td><a href="{.}"><xsl:value-of select="."/></a><xsl:value-of select="$note"/></td><xsl:text>
+</xsl:text></tr>
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -281,7 +286,7 @@
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 <xsl:call-template name="ie6warn"/>
-<DIV class="top" ID="content">
+<div class="top" id="content">
 <xsl:text>
 @BREAD@
 </xsl:text>
@@ -343,9 +348,10 @@
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
-</DIV> <!-- content -->
+</div> <!-- content -->
 </div> <!-- midcol -->
 </div> <!-- mainbox -->
+<xsl:call-template name="bottom"/>
 </body></html>
 <xsl:text> 
 </xsl:text>
@@ -392,7 +398,7 @@
   <xsl:call-template name="h2toc">
     <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
   </xsl:call-template>
-  <p><xsl:copy-of select="*|text()"/></p>
+  <xsl:copy-of select="*|text()"/>
 </xsl:template>
 
 <xsl:template match="closing">
@@ -436,7 +442,7 @@
 <xsl:template name="head">
 <xsl:text>
 </xsl:text>
-<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1"/><xsl:text>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><xsl:text>
 </xsl:text>
 <meta name="author" content="{author/name}"/><xsl:text>
 
@@ -447,25 +453,25 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="%up%style.css"/>
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="%up%advanced.css"/>
-<script src="%up%jquery-1.4.2.min.js"></script>
-<script src="%up%scripts.js"></script>
-<script>myUp="%up%";</script>
+<link rel="stylesheet" title="Default" type="text/css" href="%up%style-min.css"/>
+<link rel="alternate stylesheet" title="Advanced" type="text/css" href="%up%advanced.css"/>
 <xsl:text>
-</xsl:text>
-<!--META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso8859-1"/--><xsl:text>
 </xsl:text>
 </xsl:template>
 
 <xsl:template name="ie6warn">
-<div class="top" ID="ie6warn">
+<div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
 more modern browser, like Internet Explorer 8 or later, 
-<a class="extlink" href="http://www.firefox.com">Firefox</a>,
-<a class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
-<a class="extlink" href="http://www.opera.com">Opera</a>.
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
 </div>
+</xsl:template>
+
+<xsl:template name="bottom">
+  <script type="text/javascript">myUp="%up%";</script>
+  <script type="text/javascript" src="%up%scripts-all.js"></script>
 </xsl:template>
 
 </xsl:stylesheet>

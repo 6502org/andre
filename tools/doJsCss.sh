@@ -3,40 +3,64 @@
 # build the combined and compressed CSS and Javascript files
 #
 
+root=`dirname $0`/..
+
+cpmodified () {
+        from="$1"
+        to="$2"
+	if [ ! -f $to ]; then
+		cp $from $to;
+	else
+		diff -q $to $from
+		if [ $? -eq 1 ]; then
+			cp $from $to;
+		fi	
+	fi;
+	rm $from
+}
+
+#################################################################################
+# CSS
+
+csstarget=$root/public/style
+
+cat $root/src/style.css > ${csstarget}.css.in
+
+yui-compressor --type css ${csstarget}.css.in > ${csstarget}-min.css.in
+
+cpmodified ${csstarget}.css.in ${csstarget}.css
+cpmodified ${csstarget}-min.css.in ${csstarget}-min.css
+
+#################################################################################
+# Javascript jquery lib(s)
 
 
-yui-compressor ../src/style.css > ../public/style-min.css.in
+libtarget=$root/public/jquery
 
-to=../public/style-min.css
-t1=../public/style-min.css.in
-if [ ! -f $to ]; then
-	cp $t1 $to;
-else
-	diff -q $to $t1
-	if [ $? -eq 1 ]; then
-		cp $t1 $to;
-	fi
-fi;
-rm $t1
+cat $root/src/jquery-1.4.2.min.js > ${libtarget}-min.js.in
 
- 
-cat ../src/jquery-1.4.2.min.js > ../public/scripts-min.js.in
+cpmodified ${libtarget}-min.js.in ${libtarget}-min.js
 
-cat ../src/scripts-copyright.txt >> ../public/scripts-min.js.in
+#################################################################################
+# own javascript (base for advanced)
 
-yui-compressor ../src/myscriptsadv.js >> ../public/scripts-min.js.in
+jstarget=$root/public/scripts
 
-to=../public/scripts-min.js
-t1=../public/scripts-min.js.in
-if [ ! -f $to ]; then
-	cp $t1 $to;
-else
-	diff -q $to $t1
-	if [ $? -eq 1 ]; then
-		cp $t1 $to;
-	fi
-fi;
-rm $t1
- 
+cat $root/src/scripts-copyright.txt > ${jstarget}.js.in
+
+cat $root/src/scripts.js >> ${jstarget}.js.in
+
+cpmodified ${jstarget}.js.in ${jstarget}.js
+
+#################################################################################
+# optimized, combined javascript
+
+cat $root/src/scripts-copyright.txt > ${jstarget}-all.js.in
+
+cat ${libtarget}-min.js >> ${jstarget}-all.js.in
+
+yui-compressor --type js ${jstarget}.js >> ${jstarget}-all.js.in
+
+cpmodified ${jstarget}-all.js.in ${jstarget}-all.js
 
 

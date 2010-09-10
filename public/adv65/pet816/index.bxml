@@ -12,7 +12,7 @@
 			The board uses a 65816 CPU that runs at up to 10MHz, plus a Xilinx CPLD as logic glue. It includes
 			up to 1MByte fast RAM (run at CPU speed) plus up to 512k parallel Flash ROM (in-system programmable), that can be used as boot ROM.
 	</p>
-	<div class="rightimg"><a href="imgs/gal_speed.png"><img src="imgs/gal_speed_small.png"/></a><br/>The board prototype installed in a Commodore 8296 - running a benchmark at 10&nbsp;MHz!
+	<div class="rightimg"><a href="imgs/gal_speed.png"><img alt="8296 benchmark screen" src="imgs/gal_speed_small.png"/></a><br/>The board prototype installed in a Commodore 8296 - running a benchmark at 10&nbsp;MHz!
 		                </div>	<p>
 The interface itself is, in fact, pretty simple. It is a board that is plugged 
 in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic, the new clock generator (50MHz), some few support 

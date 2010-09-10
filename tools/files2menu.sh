@@ -103,7 +103,7 @@ if [ -f $root/../.files.xml2 ]; then
 		>> $root/.files.xml2
 
 else
-	echo "<a class=\"m_homepage\" href=\"%up%index.html\">Homepage</a>" > $root/.files.xml2
+	echo "<a id=\"m_homepage\" href=\"%up%index.html\">Homepage</a>" > $root/.files.xml2
 	cat $root/.files.xml \
 		| sed -e "s@%id%@$id@g" \
 		>> $root/.files.xml2

@@ -163,12 +163,12 @@ for i in $root/*.inx; do
 		v=$?
 		if [ $v -eq 1 ]; then
 			if [ -f $root/.name.xml ]; then
-				echo "<DIV ID=\"breadcrumbs\">" >> $t2
+				echo "<div id=\"breadcrumbs\">" >> $t2
 				#cat $root/.name.xml \
 				buildbread $myname $root \
 					| sed -e "s@%up%@.@g" \
 					>> $t2
-				echo "</DIV>" >> $t2
+				echo "</div>" >> $t2
 			else
 				echo "Breadcrumbs not found @ " `pwd` ", root=" $root
 			fi;

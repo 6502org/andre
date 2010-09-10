@@ -1,29 +1,17 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="author" content="André  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="CRTC (Cathode Ray Tube Controller) 6545 internals">
-<meta name="keywords" content="CRTC Cathode Ray Tube Controller 6545 interals description">
-<link rev="made" href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../../style.css">
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../../advanced.css">
-<script src="../../../jquery-1.4.2.min.js"></script><script src="../../../scripts.js"></script><script>myUp="../../../";</script>
-
-<title>The CRTC internals</title>
-</head>
-<body><div id="mainbox">
-<div id="leftcol">
-<div id="menu" class="top">
-<div class="tophead">navigate</div>
-<div id="filter"><form action="#"><table><tr>
-<td><div id="expand" class="i_expand"> </div></td>
-<td><div id="collapse" class="i_collapse"> </div></td>
-<td><input size="8" name="filter" value="filter" type="text"></td>
-<td><div id="cancel" class="i_cancel"> </div></td>
-</tr></table></form></div>
+<meta name="description" content="CRTC (Cathode Ray Tube Controller) 6545 internals" />
+<meta name="keywords" content="CRTC Cathode Ray Tube Controller 6545 interals description" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../../advanced.css" />
+<title>The CRTC internals</title></head>
+<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td><td><input size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table></form></div>
 <div id="mtree">
-<a class="m_homepage" href="../../../index.html">Homepage</a>
+<a id="m_homepage" href="../../../index.html">Homepage</a>
 <ul class="menu0" >
 <li class="separator">Commodore</li>
 <li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="../../../petindex/index.html">CBM PETindex</a>
@@ -77,59 +65,27 @@
 </ul>
 
 </div>
-		</div>
-<div class="top" id="browser">
-<div class="tophead">browser</div>
-<div>
+		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
 			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
-			</div>
-</div>
-</div>
-<div id="rightcol">
-<div class="top" id="google">
-<div class="tophead">search</div>
-<div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
-	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
-</form></div>
-</div>
-<div class="top" id="twitter">
-<div class="tophead">follow</div>
-<div>
-		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br> (In new window)
-		</div>
-</div>
-<div class="top" id="forum">
-<div class="tophead">discuss</div>
-<div>
-<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
-<p>(Forum registration required to post)</p>
-</div>
-</div>
-<div class="top" id="hot">
-<div class="tophead">Hot!</div>
-<div>
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 
-		</div>
-</div>
-</div>
-<div id="midcol">
-<div class="top" ID="ie6warn">
+		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
 more modern browser, like Internet Explorer 8 or later, 
-<a class="extlink" href="http://www.firefox.com">Firefox</a>,
-<a class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
-<a class="extlink" href="http://www.opera.com">Opera</a>.
-</div>
-<DIV class="top" ID="content">
-<DIV ID="breadcrumbs">
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
+</div><div class="top" id="content">
+<div id="breadcrumbs">
 <a href="../../../index.html">Homepage</a>
-&gt;&gt; <a href="../../index.html">ICs and Standards Info</a>&gt;&gt; <a href="../index.html">CRTC 6545/6845</a>&gt;&gt;  CRTC internals</DIV>
-<a name="topanchor"></a><h1>The CRTC internals</h1>
-<p class="copyright">(C)
+&gt;&gt; <a href="../../index.html">ICs and Standards Info</a>&gt;&gt; <a href="../index.html">CRTC 6545/6845</a>&gt;&gt;  CRTC internals</div>
+<a name="topanchor" id="topanchor"></a><h1>The CRTC internals</h1><p class="copyright">(C)
 1999-2010 André  Fachat</p> 
 <div class="overview">
 <p>
@@ -138,8 +94,7 @@ programs an internal structure. The CRTC basically works with
 compare elements that only compare for equality. Thus, by writing
 values lower than the current counter, it is possible to do some
 tricks to the CRTC.
-</p>
-<p>
+</p><p>
 Of course only after I derived the structure myself, I found this
 diagram of the <a href="68B45-10.png">6845</a> internal structure...
 Also I have documented the differences between the different
@@ -149,28 +104,13 @@ CRTC models in the diffs page <a href="../diffs.html">diffs.txt</a>.
 I have to note that my model is only an approximate model, to
 demonstrate the effects in the CRTC. It is not to be understood
 as a correct schematics.
-</p>
-<p>
+</p><p>
 In the following I will use the term <em>rasterline</em> for one
 go of the electron beam from the left to the right border of
 the screen. A <em>characterline</em> consists of a number of
 rasterlines that make up a line of characters.
 </p>
-  </div>
-<DIV ID="toc">
-<h2>Table of content</h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<dir>
-<li><a href="#timingoverview">Timing overview</a></li>
-<li><a href="#rasterline">Rasterline timing</a></li>
-<li><a href="#endline">End-of-line pulse</a></li>
-<li><a href="#vertical">Vertical timing</a></li>
-<li><a href="#memcount">Memory counter</a></li>
-</dir>
-</DIV>
-<h2><a name="timingoverview">Timing overview</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p> 
+  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#timingoverview">Timing overview</a></li><li><a href="#rasterline">Rasterline timing</a></li><li><a href="#endline">End-of-line pulse</a></li><li><a href="#vertical">Vertical timing</a></li><li><a href="#memcount">Memory counter</a></li></ul></div><h2><a name="timingoverview" id="timingoverview">Timing overview</a></h2><div class="toplink"><a href="#top">Top</a></div> 
 <p>
 The CRTC timing is different from, for example, the VIC-II timing
 of the C64. There the underlying timing is fixed and it even needs
@@ -183,15 +123,12 @@ character, not somewhere in the upper left corner of the screens border.
 The end of the CRTC rasterline is thus wrapped around to the left border.
 An overview can be seen in figure 0 (click on the image for a large view).
 </p>
-<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png" width="20%"></a>
-    </p>
-<h2><a name="rasterline">Rasterline timing</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p> 
+<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png" width="20%" /></a>
+    <h2><a name="rasterline" id="rasterline">Rasterline timing</a></h2><div class="toplink"><a href="#top">Top</a></div> 
 <p>
 The rasterline timing is done by the circuits in figure 1.
 </p>
-<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png" width="20%"></a>
+<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png" width="20%" /></a>
 <p>
 The main counter character counter is clocked by the character clock.
 Starting from 0 the counter counts each character. The first comparator
@@ -205,28 +142,22 @@ characters. The output is then used to reset the HDispEnable line,
 i.e. disable the DE line (see below). The DE line is enabled when
 the counter is reset again, enabling the display output.
 </p>
-    </p>
-<h2><a name="endline">End-of-line pulse</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p> 
+    <h2><a name="endline" id="endline">End-of-line pulse</a></h2><div class="toplink"><a href="#top">Top</a></div> 
 <p>
 The EndLine pulse is used by the counter for rasterlines/char.
 </p>
-<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png" width="20%"></a>
+<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png" width="20%" /></a>
 <p>
 Here a very similar mechanics is used to determine the height of
 a charline. The second and third are used to enable the hardware
 cursor (that is not used in the PET).
 </p>
-    </p>
-<h2><a name="vertical">Vertical timing</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p> 
+    <h2><a name="vertical" id="vertical">Vertical timing</a></h2><div class="toplink"><a href="#top">Top</a></div> 
 <p>
 The next part does the vertical timing by counting character lines
 (and rasterlines for the adjust)
 </p>
-<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="20%"></a>
+<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="20%" /></a>
 <p>
 Here the very same technique is assumed to be used as for the
 horizontal timing. In addition to that, however, the rasterline
@@ -235,14 +166,11 @@ adjustment for the vertical timing needs another counter.
 is re-used for this purpose. It would mean one counter less, but the
 counter reset needs to be switched between register 9 and register 5).
 </p>
-    </p>
-<h2><a name="memcount">Memory counter</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p> 
+    <h2><a name="memcount" id="memcount">Memory counter</a></h2><div class="toplink"><a href="#top">Top</a></div> 
 <p>
 Finally the memory counter needs to be discussed.
 </p>
-<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="20%"></a>
+<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="20%" /></a>
 <p>
 The main memory counter is clocked by CCLK. It is loaded at the
 beginning of each new rasterline. When in the last rasterline of
@@ -274,13 +202,9 @@ addressing into a straight binary sequence in order to conserve memory".
 The memory access for both schemes during one frame can be seen
 in the next figure
 </p>
-<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png" width="20%"></a>
-    </p>
-<hr>
+<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png" width="20%" /></a>
+    <hr />
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
-  </DIV>
-</div>
-</div></body>
-</html> 
+  </div></div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts-all.js"></script></body></html> 
 

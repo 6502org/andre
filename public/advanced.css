@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #888;
+ background-color: #aaa;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -62,6 +62,11 @@ DIV.tophead {
 
 /* disable for IE6 */
 * html DIV#hot { display: none; }
+
+div#ie6warn { display: none; }
+* html DIV#ie6warn { display: block; 
+	background-color: #ff4444;
+}
 
 /* left/right cols have headers in the top level style */
 DIV#hot DIV.tophead {
@@ -195,6 +200,8 @@ DIV#browser {
 
 DIV#breadcrumbs {
   display: block;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid;
 }
 
 
@@ -326,6 +333,27 @@ div#mtree LI.separator {
   font-weight:bold;
 }
 
+/* new style */
+div#filter div {
+  	width:20px;
+	height:20px;
+	background:url(imgs/sprite.png) no-repeat;
+}
+
+
+div#filter div.i_expand {
+	background-position: -288 -64px;
+}
+
+div#filter div.i_collapse {
+	background-position: -256 -64px;
+}
+
+div#filter div.i_cancel {
+	background-position: -224 -64px;
+}
+
+
 /****************************************
  * right side floating elements
  */
@@ -368,11 +396,21 @@ TD.noteicon {
 	padding:5px;
 }
 
-/*
-TABLE.notes TR {
-	background-color: #eeeeee;
+/* new design */
+table.notes div.i_note {
+  background: url(imgs/sprite.png) no-repeat;
+  background-position: -32px -32px;
+  width: 32px;
+  height: 32px;
 }
-*/
+
+
+div.i_desc {
+  background: url(imgs/sprite.png) no-repeat;
+  background-position: 0px 0px;
+  width: 32px;
+  height: 32px;
+}
 
 /****************************************
  * main entry page (quickfinder)

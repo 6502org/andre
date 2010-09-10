@@ -13,7 +13,7 @@
 In this article I want to give an overview of virtual memory handling
 for small computers. There also is an example of how to use this
 technique with a 74LS610 chip in a 6502 system.
-<p></p>
+</p><p>
 In 1989 I wanted to built an own 6502 computer. I already had a C64, and
 I decided that it should be possible to address more than 64 kByte. But
 then I thought that the memory managemet should be better than the
@@ -116,7 +116,7 @@ initialize the MMU and only then enable it.
     </desc>
   </section>
 
-  <section toc="6502mmu" name="The MMU in 6502 systems">
+  <section toc="m6502mmu" name="The MMU in 6502 systems">
     <desc> <p>
 I have taken an excerpt (diagram 2) from the schematics of my selfbuilt
 computer to show you how to use this chip. I am only using 8 of the 12
@@ -287,7 +287,7 @@ it from the bus. Therefore the second 2-to-4 decoder inverts the collision
 output from the first one and OR's it with the external -BE. So the output
 -Q1 (now called COLL) of the second decoder is high if an external
 bus master takes the bus or a collision is detected.
-
+</p>
 <pre>
 Fig.1: logic table for collision circuitry
 
@@ -299,7 +299,7 @@ Fig.1: logic table for collision circuitry
   *       *       *      1      *     |     0
   *       *       *      *      1     |     0
   *       1       0      0      0     |     1
-</pre>
+</pre><p>
 The COLL line is now given to the -E input of the data bus CPU bus
 drivers.  If a collision is detected, the CPU is decoupled from the
 bus. But that's not enough. The memory would still see a write attempt

@@ -1,29 +1,17 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="author" content="André  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="A new implementation of the Commodore VC1581">
-<meta name="keywords" content="Commodore disk drives VC1581">
-<link rev="made" href="mailto:afachat@gmx.de">
-<LINK REL="stylesheet" TITLE="Default" TYPE="text/css" HREF="../../style.css">
-<LINK REL="alternate stylesheet" TITLE="Advanced" TYPE="text/css" HREF="../../advanced.css">
-<script src="../../jquery-1.4.2.min.js"></script><script src="../../scripts.js"></script><script>myUp="../../";</script>
-
-<title>Roll your own VC1581</title>
-</head>
-<body><div id="mainbox">
-<div id="leftcol">
-<div id="menu" class="top">
-<div class="tophead">navigate</div>
-<div id="filter"><form action="#"><table><tr>
-<td><div id="expand" class="i_expand"> </div></td>
-<td><div id="collapse" class="i_collapse"> </div></td>
-<td><input size="8" name="filter" value="filter" type="text"></td>
-<td><div id="cancel" class="i_cancel"> </div></td>
-</tr></table></form></div>
+<meta name="description" content="A new implementation of the Commodore VC1581" />
+<meta name="keywords" content="Commodore disk drives VC1581" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
+<title>Roll your own VC1581</title></head>
+<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td><td><input size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table></form></div>
 <div id="mtree">
-<a class="m_homepage" href="../../index.html">Homepage</a>
+<a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
 <li class="separator">Commodore</li>
 <li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="../../petindex/index.html">CBM PETindex</a>
@@ -83,98 +71,52 @@
 </ul>
 
 </div>
-		</div>
-<div class="top" id="browser">
-<div class="tophead">browser</div>
-<div>
+		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
 			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
-			</div>
-</div>
-</div>
-<div id="rightcol">
-<div class="top" id="google">
-<div class="tophead">search</div>
-<div><form method="get" action="http://www.google.com/search" target="_blank">
-<input type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
-	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre">
-</form></div>
-</div>
-<div class="top" id="twitter">
-<div class="tophead">follow</div>
-<div>
-		            Follow my 8-bit tweets on<br><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br> (In new window)
-		</div>
-</div>
-<div class="top" id="forum">
-<div class="tophead">discuss</div>
-<div>
-<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
-<p>(Forum registration required to post)</p>
-</div>
-</div>
-<div class="top" id="hot">
-<div class="tophead">Hot!</div>
-<div>
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 
-		</div>
-</div>
-</div>
-<div id="midcol">
-<div class="top" ID="ie6warn">
+		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
 more modern browser, like Internet Explorer 8 or later, 
-<a class="extlink" href="http://www.firefox.com">Firefox</a>,
-<a class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
-<a class="extlink" href="http://www.opera.com">Opera</a>.
-</div>
-<DIV class="top" ID="content">
-<DIV ID="breadcrumbs">
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
+</div><div class="top" id="content">
+<div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CBM hardware and mods</a>&gt;&gt;  Build your own VC1581 replica!</DIV>
-<a name="topanchor"></a><h1>Roll your own VC1581</h1>
-<p class="copyright">(C)
+&gt;&gt; <a href="../index.html">CBM hardware and mods</a>&gt;&gt;  Build your own VC1581 replica!</div>
+<a name="topanchor" id="topanchor"></a><h1>Roll your own VC1581</h1><p class="copyright">(C)
 2006-2006 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes how you can build your own VC1581 using
-	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p>
-<p>
-	</p>
-<p>
+	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p><p>
+	</p><p>
 	Basically what you do is to combine the <a href="../../csa/petcpu/index.html">PETCPU</a> and the
 	<a href="../../csa/drvio/index.html">DRVIO</a> boards 
 	into one computer, put the drive ROM into a ROM for the PETCPU ROM socket
 	and there you are. The following sections describe the special settings
 	on the different boards.
 	</p>
-  </div>
-<h2>News:</h2>
-<ul class="news"><li>
-<div> </div>
-<small>2006-11-26</small>
+  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2006-11-26</small>
 	Published the page!
-    </li></ul>
-<h2><a name="">Board settings</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
-	<a href="vc1581drv.jpg"><img class="rightimg" src="vc1581drv-small.jpg"></a>
+    </li></ul><h2>Board settings</h2><div class="toplink"><a href="#top">Top</a></div>
+	<a href="vc1581drv.jpg"><img class="rightimg" src="vc1581drv-small.jpg" /></a>
 	This section describe the CS/A65 boards making up the VC1581.
 	Here is a <a href="vc1581drv.jpg">picture</a> of the two boards on 
 	a backplane. 
-    </p>
-<ul>
-<li class="subitem">
-<a href="../../csa/petcpu/index.html">PETCPU board</a> 
+    <ul><li class="subitem"><a href="../../csa/petcpu/index.html">PETCPU board</a> 
 	The PETCPU board must be set to a maximum of 8k (or 16k) RAM 
 	on the board itself, and a 32k ROM, with bus /IOSEL disabled.
 	(Note: the area $E800-$F000 in the VC1581 ROM is unused, so the
 	bus I/O area could actually be used).
 	Further jumper settings are described on the <a href="../../csa/petcpu/index.html">board page</a>.
-     </li>
-<li class="subitem">
-<a href="../../csa/drvio/index.html">DRVIO board</a> 
+     </li><li class="subitem"><a href="../../csa/drvio/index.html">DRVIO board</a> 
 	For the use of the DRVIO board some features had to be implemented. 
 	First of all, the VC1581 does not handle the drive select signal.
 	As the DRVIO board handles two drives, the additional control port
@@ -186,39 +128,19 @@ more modern browser, like Internet Explorer 8 or later,
 	new PC floppy drives. A 2k2 Ohm resistor constantly pulls the 
 	CIA PA1 input low.
 	The board jumper settings are documented on the <a href="../../csa/drvio/index.html">board page</a>.
-     </li>
-</ul>
-<h2><a name="">ROMs</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
+     </li></ul><h2>ROMs</h2><div class="toplink"><a href="#top">Top</a></div>
 	I used the 2nd edition of the original Commodore VC1581 ROMs, 
 	that you can get on the <a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/drives/new/1581/index.html">CBM archive page</a>.
-    </p>
-<h2><a name="">Pictures</a></h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
+    <h2>Pictures</h2><div class="toplink"><a href="#top">Top</a></div>
 	Some pictures :-)
-    </p>
-<ul>
-<li class="subitem">
-<a href="vc1581drv.jpg">A working VC1581 replica</a> 
-     </li>
-<li class="subitem">
-<a href="vc1581screen.jpg">A simple test</a> 
-     </li>
-</ul>
-<h2>Disclaimer</h2>
-<div class="toplink"><a href="#top">Top</a></div>
-<p>
+    <ul><li class="subitem"><a href="vc1581drv.jpg">A working VC1581 replica</a> 
+     </li><li class="subitem"><a href="vc1581screen.jpg">A simple test</a> 
+     </li></ul><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </p>
-<hr>
+  <hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
-  </DIV>
-</div>
-</div></body>
-</html> 
+  </div></div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 
 

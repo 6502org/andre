@@ -260,7 +260,6 @@ nice tight DRAM controller.  If you don't have a higher freq then get
 something consistent by way of delay line to create the relationship
 between RAS, MUX and CAS.
 </p>
-<p>
 <table border="1"
  style='width:482.0pt;margin-left:-.75pt;border-collapse:collapse'>
  <tr  style='height:12.75pt'> <td     style='width:146.0pt;border: none;border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>Min</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>Max</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;border:none; border-bottom:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> 
@@ -374,7 +373,6 @@ between RAS, MUX and CAS.
  <tr  style='height:12.75pt'> <td     style='width:146.0pt;padding: 0in 5.4pt 0in 5.4pt;height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p   style='text-align:center'> <span style='font-size:10.0pt;'>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span style='font-size:10.0pt; '>&#160;</span></p> </td> <td     style='width:48.0pt;padding:0in 5.4pt 0in 5.4pt; height:12.75pt'> <p ><span>&#160;</span></p> </td>
  </tr>
 </table>
-</p>
 <p class="first">I put my answers in the reply into the text, I am reproducing them here 
 slightly edited:</p>
 <p class="first">

@@ -10,31 +10,31 @@
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>PET index</metadesc>
   <overview><!--P>Old: In the latest release I have updated SuperPET and 8x96 information, which mainly consists of photos. I have also updated the boards page with new board
-images for the 8x96.</P>
-<P>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</P-->
-<P>This file is intended to be an index about the
+images for the 8x96.</p>
+<p>Old: Although this is a 1.0 release, it is still a work in progress. I have now updated the links sections, and esp. added the disk drive section. Also I have included links to (partially commented) ROM listings for the PET ROMs!</p-->
+<p>This file is intended to be an index about the
 PET line of Commodore computers. It is compiled out of several
 resources found on the internet. As there are a number of sites
 about the Commodore PET computers, this site concentrates on
 the technical aspects of those machines. Therefore you will
 find hardware and (machine) programming information for the
 PET here.
-</P><P>
+</p><p>
 I started this collection when I was working on the
-<A HREF="http://www.viceteam.org/index.html">VICE</A>
+<a href="http://www.viceteam.org/index.html">VICE</a>
 PET emulator. The VICE emulator now emulates several PET machines from the 2001
 to the 8296, including the old disk drives from 2040 to 8250.
-</P><P>
+</p><p>
 I think all the information is accurate, although it is certainly not
 complete. Also I would like to find some images of the different PET
 cases. I am also looking for the differences of the ROM versions.
 If you find anything that you think is not accurate, please
 tell me about it!
-</P><P>
-I hope you enjoy this document.<BR/>
-<A HREF="http://www.6502.org/users/andre/">A. Fachat</A>
-(<A HREF="mailto:@EMAIL@?subject=PETindex:">@EMAIL@</A>)
-</P>
+</p><p>
+I hope you enjoy this document.<br/>
+<a href="http://www.6502.org/users/andre/">A. Fachat</a>
+(<a href="mailto:@EMAIL@?subject=PETindex:">@EMAIL@</a>)
+</p>
   </overview>
   <news>
     <item date="2010-08-28">
@@ -48,10 +48,10 @@ I hope you enjoy this document.<BR/>
   <!--toc/-->
 
   <section toc="coverage" name="What is covered and what not?">
-     <desc><P>Coverage is the whole line of Commodore PET computers, ranging
+     <desc><p>Coverage is the whole line of Commodore PET computers, ranging
 from the PET 2001 to the CBM 8296, as well as the SuperPET (aka MicroMainFrame 9000 in Europe).
 Not covered are the so-called "CBM-II" machines, the business machines CBM 610-620, 710-720 (also known as B128 and B256)
-and the 510-520 (also known as P500)</P>
+and the 510-520 (also known as P500)</p>
      </desc>
   </section>
 
@@ -63,7 +63,7 @@ and the 510-520 (also known as P500)</P>
 <subitem link="drives/index.html" name="The Disk drive model index"><!--(<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010: harddisk info)-->
 </subitem><subitem link="boards.html" name="Boards"> that make up a PET <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="pinouts.html" name="Pinouts"> of various PET connectors
-</subitem><subitem link="keyboards.html" name="Keyboard"> layouts and Screen control codes (<img src="../imgs/news.gif"/>)
+</subitem><subitem link="keyboards.html" name="Keyboard"> layouts and Screen control codes <!--(<img src="../imgs/news.gif"/>)-->
 </subitem><subitem link="extensions.html" name="Extensions"> extensions of the PET <!--(<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010: RAM expansions, CPU speeders)-->
 </subitem><subitem link="progmod.html" name="Hardware Programming"> information <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="roms.html" name="ROM"> descriptions <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
@@ -83,9 +83,9 @@ and the 510-520 (also known as P500)</P>
   </section>
 
   <section toc="thanks" name="Thanks">
-     <desc><P>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
+     <desc><p>Many thanks to Olaf Seibert, Larry Anderson, Marko M&auml;kel&auml;,
 Ruud Baltissen and all the others that provided this information.
-</P>
+</p>
      </desc>
   </section>
 
