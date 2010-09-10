@@ -39,7 +39,7 @@
 <xsl:for-each select="section|itemlist">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 <xsl:if test="subsection|items/item">
-<li><ul>
+<li style="list-style-type:none;"><ul>
 <xsl:for-each select="subsection|items/item">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
 </xsl:for-each>
@@ -48,7 +48,7 @@
 </xsl:for-each>
 <xsl:if test="driver">
 <li><a href="#driver">Driver</a></li>
-<li><ul>
+<li style="list-style-type:none;"><ul>
 <xsl:for-each select="driver">
 <li><a href="#driver{position()}"><xsl:value-of select="name"/></a></li>
 </xsl:for-each>
@@ -56,7 +56,7 @@
 </xsl:if>
 <xsl:if test="rev">
 <li><a href="#boards">Board Revisions</a></li>
-<li><ul>
+<li style="list-style-type:none;"><ul>
 <xsl:for-each select="rev">
 <li><a href="#board{position()}"><xsl:value-of select="version"/></a> (<xsl:value-of select="status"/>)</li>
 </xsl:for-each>
