@@ -43,4 +43,8 @@ $bin/in2html.sh $dir
 # 4) create the compressed js and css files
 (cd $bin; ./doJsCss.sh)
 
+############################################
+# 5) create sprite image
+(cd $bin; ./doSprite.sh)
+
 
