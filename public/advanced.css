@@ -283,6 +283,7 @@ div#mtree a:hover {
 }
 
 div#mtree A#m_homepage {
+  clear: both;
   font-size: small;
 }
 
