@@ -137,14 +137,17 @@
 			<div class="tophead">navigate</div>
 	                <div id="filter">
                             <form action="#">
-			     <table><tr>
- 			      <td><div id="expand" class="i_expand">&nbsp;</div></td>
-                              <td><div id="collapse" class="i_collapse">&nbsp;</div></td>
+			     <table id="filterbox"><tr>
                               <td><input size="8" name="filter" value="filter" type="text"/></td>
                               <td><div id="cancel" class="i_cancel">&nbsp;</div></td>
 			     </tr></table>
+			     <table id="expcol"><tr>
+ 			      <td><div id="expand" class="i_expand">&nbsp;</div></td>
+                              <td><div id="collapse" class="i_collapse">&nbsp;</div></td>
+			     </tr></table>
 			    </form>
 			</div>
+			<div>&nbsp;</div>  <!-- empty line as both tables above are floating -->
 		@MENU@
 		</div><!-- menu -->
 		<!--div class="top" id="browser">

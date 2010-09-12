@@ -8,6 +8,14 @@
  * All rights reserved!
  */
 
+table#expcol {
+	float:right;
+}
+
+table#filterbox {
+	float:left;
+}
+
 /****************************************
  *  global 
  */

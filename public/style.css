@@ -209,6 +209,14 @@ DIV#footer {
  * Menu formatting
  */
 
+table#expcol {
+	float:left;
+}
+
+table#filterbox {
+	float: left;
+}
+
 DIV#menu {
   padding-left: 1em;
   padding-right: 1em; 
@@ -327,11 +335,11 @@ div#filter div {
 
 
 div#filter div.i_expand {
-	background-position: -288px -64px;
+	background-position: -288px -66px;
 }
 
 div#filter div.i_collapse {
-	background-position: -256px -64px;
+	background-position: -256px -66px;
 }
 
 div#filter div.i_cancel {
