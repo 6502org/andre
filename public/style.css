@@ -174,13 +174,13 @@ DIV#rightcol {
 DIV#oldnewscontent  {
 	height: 40em;
 	overflow: scroll;
-	margin-left: -1em;
+	margin-left: -0.7em;
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	/*width: 10.0em;*/
-	margin-right: -1em;
+	margin-right: -0.7em;
 }
 
 DIV#browser {
@@ -199,11 +199,12 @@ DIV#content {
   text-align: left;
 }
 
+DIV#contentfooter {
+  border-top: 2px solid;
+}
+
 DIV#footer {
   clear: both;
-/*
-  border-top: 2px solid;
-*/
 }
 
 /****************************************
@@ -377,19 +378,38 @@ TD.noteicon {
 }
 
 /* new design */
-table.notes div.i_note {
+table.notes div {
   background: url(imgs/sprite.png) no-repeat;
-  background-position: -32px -32px;
   width: 32px;
   height: 32px;
 }
 
-
-div.i_desc {
+table.files div {
   background: url(imgs/sprite.png) no-repeat;
-  background-position: 0px 0px;
   width: 32px;
   height: 32px;
+}
+
+table.notes div.i_msg { background-position: -32px -32px; }
+table.notes div.i_warn { background-position: -96px -32px; }
+table.notes div.i_stop { background-position: -64px -32px; }
+table.notes div.i_deprecated { background-position: 0px -32px; }
+
+table.files div.i_desc { background-position: 0px 0px; }
+table.files div.i_layout { background-position: -64px 0px; }
+table.files div.i_logic { background-position: -96px 0px; }
+table.files div.i_memmap { background-position: -128px 0px; }
+table.files div.i_parts { background-position: -160px 0px; }
+table.files div.i_photo { background-position: -192px 0px; }
+table.files div.i_schem { background-position: -224px 0px; }
+table.files div.i_driver { background-position: -256px 0px; }
+table.files div.i_timing { background-position: -288px 0px; }
+
+div.i_src { 
+  background: url(imgs/sprite.png) no-repeat;
+  width: 32px;
+  height: 32px;
+  background-position: -32px 0px; 
 }
 
 /****************************************

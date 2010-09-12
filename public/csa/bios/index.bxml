@@ -41,7 +41,7 @@ use a 16550 UART (with FIFO).
 			Low-Power Shottky) TTL types, except where available.
 		</note>
 		<file ltype="desc" ptype="esch">csa_bios_v3.0b-desc.txt</file>
-		<file ltype="schem" ptype="esch">csa_bios_v30d.sch</file>
+		<file ltype="schem" ptype="esch">csa_bios_v3.0d.sch</file>
 		<file ltype="schem" ptype="png">csa_bios_v3.0d_sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_bios_v3.0d.brd</file>
 		<file ltype="layout" ptype="png">csa_bios_v3.0d_brd.png</file>

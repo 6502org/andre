@@ -12,14 +12,14 @@
 	</desc>
 	<diagram>
 		<file>cpu.gif</file>
-		<desc>Block diagram of the cpu board. It shows the MMU,
+		<desc><p>Block diagram of the cpu board. It shows the MMU,
 			but also the port to read the CPU address.
 			Please note that the MMU and the port can be
 			accessed from the bus alone, if the cpu is decoupled
 			from the bus with the drivers. This can be used
 			when the cpu is stopped with the RDY e.g. by
 			a bus error.
-		</desc>
+		</p></desc>
 	</diagram>
 	<rev>
 		<version>2.0K</version>

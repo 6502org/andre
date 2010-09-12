@@ -118,7 +118,7 @@
 </xsl:if>
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
-<div id="footer">
+<div id="contentfooter">
 <p><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</p>
 @FOOTER@
 </div> <!-- footer -->
@@ -228,7 +228,7 @@
 <h4>Notes</h4>
 <table class="notes">
 <xsl:for-each select="note">
-<tr><td class="noteicon"><img src="%up%imgs/note_{@type}.gif" alt="{@type}"/></td><xsl:text>
+<tr><td class="noteicon"><div class="i_{@type}">&nbsp;</div></td><xsl:text>
 </xsl:text><td><xsl:copy-of select="text()|*"/></td></tr><xsl:text>
 </xsl:text>
 </xsl:for-each><!-- note -->
@@ -251,7 +251,7 @@
 <xsl:template match="file">
 <xsl:variable name="note"><xsl:if test="@note">(<xsl:value-of select="@note"/>)</xsl:if></xsl:variable>
 <xsl:text>
-</xsl:text><tr class="R{position() mod 2}"><td><img src="%up%imgs/file_{@ltype}.gif" alt="{@ltype}"/></td><xsl:text>
+</xsl:text><tr class="R{position() mod 2}"><td><div class="i_{@ltype}">&nbsp;</div></td><xsl:text>
 </xsl:text><!-- <td><xsl:value-of select="@ptype"/></td><xsl:text>
 </xsl:text>--><td><a href="{.}"><xsl:value-of select="."/></a><xsl:value-of select="$note"/></td><xsl:text>
 </xsl:text></tr>

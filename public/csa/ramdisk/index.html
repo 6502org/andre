@@ -173,7 +173,7 @@ more modern browser, like Internet Explorer 8 or later,
 	
 </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0C</a> (buggy)</li><li><a href="#board2">1.0B</a> (buggy)</li><li><a href="#board3">1.0A</a> (buggy)</li></ul></li></ul></div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.0C</a></h3>
 <p>Status: buggy</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			With the 65816 CPU board the RAMDisk has been tested
 			and found working for up to 3 modules with 1MByte each.
@@ -181,7 +181,7 @@ more modern browser, like Internet Explorer 8 or later,
 			to work properly. <br />Tests with larger modules (4M)
 			still have to be performed.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td><p>This is the current set of errors.
 			The spurious counter pulses seem gone:</p>
 <p>
@@ -224,25 +224,25 @@ did not improve much, although I had one effect: before adding the caps
 the problems mentioned above in 1) were also seen in addresses $47 and
 $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 </p>		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			I have created this board by modifying the 1.0A board.
 			Currently no layout is available.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk-v1.0c.sch">csa_ramdisk-v1.0c.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</a></td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <p>Status: buggy</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The board timing is not yet fully working.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_stop.gif" alt="stop" /></td>
+<tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This board currently has a problem with the
 			counter on read accesses. Spurious read strobes
@@ -251,25 +251,25 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 			found the source of this problem.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk-v1.0b.sch">csa_ramdisk-v1.0b.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk_v1.0b-sch.png">csa_ramdisk_v1.0b-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk-v1.0b.brd">csa_ramdisk-v1.0b.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</a></td>
 </tr></table>
 <h3><a name="board3" id="board3">Version: 1.0A</a></h3>
 <p>Status: buggy</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The board timing is not yet fully working.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_stop.gif" alt="stop" /></td>
+<tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This board currently has a problem with the
 			counter on read accesses. Spurious read strobes
@@ -277,13 +277,13 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 			(but not on write accesses). I do not yet have
 			found the source of this problem.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_stop.gif" alt="stop" /></td>
+<tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			The board has a timing problem. The delayed
 			2Phi2 signal used with RWDATA by IC6C to generate the 
 			input to IC12A comes to fast. This is fixed in V1.0B.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_stop.gif" alt="stop" /></td>
+<tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			The dynamic RAM draws a lot of power. The CSA PWR
 			board checks the supply voltage, so if this board
@@ -292,25 +292,25 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 			V1.0B contains an additional power supply plug.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk-v1.0a.sch">csa_ramdisk-v1.0a.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk_v1.0a-sch.png">csa_ramdisk_v1.0a-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk-v1.0a.brd">csa_ramdisk-v1.0a.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk_v1.0a-brd.png">csa_ramdisk_v1.0a-brd.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="ramdisk_v1.0a-1.png">ramdisk_v1.0a-1.png</a>(On the left you can see the floppy-type power connector cable I soldered to the bottom)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</a></td>
 </tr></table>
-<div id="footer"><p>Last modified: 2010-01-07.</p>
+<div id="contentfooter"><p>Last modified: 2010-01-07.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div></div><div id="footer"> </div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

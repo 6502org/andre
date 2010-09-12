@@ -9,7 +9,7 @@
 # 1) web directory (default:".")
 #
 
-dir="."
+dir="."; #"`dirname $0`/../public"
 if [ $# -ge 1 ]; then 
    dir=$1;
 fi;

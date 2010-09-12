@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2010-09-12">
+	Some more web design updates. Using web sprites, css and javascript compression should result in better load performance.
+    </item>
     <item date="2010-09-05">
 	I managed to use my <a href="adv65/pet816/index.html">65816</a> board successfully in a PET4032, even use it for debugging
 	the hardware problems of the 4032
@@ -29,6 +32,8 @@ and internet access.</p>
     <item date="2010-08-28" state="hot">
         Again (and again :-) I have updated the <a href="adv65/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card. As far as I am concerned, this version now works as much as I can test it! The page now also contains in-depth explanations of the features and how it works!
     </item>
+ </news>
+  <oldnews>
     <item date="2010-08-22">
         Again I have updated the <a href="cbmhw/pet816/index.html">PET 65816 board</a>, to speed up the PET to 10MHz by replacing the 6502 with a 65816 card.
     </item>
@@ -47,8 +52,6 @@ and internet access.</p>
 	tested with a number of browsers and system but not everything is perfect yet. Let me know if you find anything
 	annoying.
     </item>
- </news>
-  <oldnews>
     <item date="2010-05-31">
 	Added a <a href="sneak.html">Sneak Preview page</a> with my 8-bit plans...
     </item>
@@ -267,7 +270,7 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
 	how to create an infrared <a href="icaphw/remote.html">remote control</a>.
 	Also has a <a href="icaphw/design.html">discussion</a> with - or rather a design lesson I got from - Bil Herd,
 	the hardware designer of the Commodore 128.
-	Now contains the <a href="icaphw/xilinx/index.html">Xilinx tools</a> page about the CPLD tools I 
+	Now contains the <a href="icaphw/xilinx.html">Xilinx tools</a> page about the CPLD tools I 
 	am using for my newest designs.
       </subitem>
      </item>

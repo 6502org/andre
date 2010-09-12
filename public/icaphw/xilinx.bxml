@@ -8,7 +8,7 @@
 	<keywords>Xilinx programmable-logic CPLD FPGA programmer</keywords>
 	<lastmodified>2010-04-11</lastmodified>
 	<overview><p>
-		In my newest designs (for example the <a href="../../csa/cpu816v2/index.html">CSA 65816 CPU V2</a> I 
+		In my newest designs (for example the <a href="../csa/cpu816v2/index.html">CSA 65816 CPU V2</a> I 
 		started to use programmable logic from Xilinx, especially a CPLD - 
 		<a class="extlink" href="http://www.wikipedia.org/wiki/CPLD">Complex Programmable Logic Devicei</a>.
 		</p><p>

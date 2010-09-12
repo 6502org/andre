@@ -160,7 +160,7 @@ more modern browser, like Internet Explorer 8 or later,
 	
 </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2B</a> (prototype)</li><li><a href="#board2">1.1B</a> (prototype)</li><li><a href="#board3">1.1A</a> (prototype with bugs)</li></ul></li></ul></div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.2B</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td><p>
 			This board adds an I2C master (with related <code>RDY</code> generation,
 			as the P8584 does not work on 2MHz).
@@ -168,7 +168,7 @@ more modern browser, like Internet Explorer 8 or later,
 			Also adds a jumper to decouple the 3.3V from the bus.
 			</p>
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The layout is untested (I have built it on a 1.2A version,
 			which is missing JP9 (decouple 3.3V), but also has a serious bug
@@ -176,21 +176,21 @@ more modern browser, like Internet Explorer 8 or later,
 			Therefore I am not publishing the 1.2A version.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr_v1.2b.sch">csa_pwr_v1.2b.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr-v1.2b-sch.png">csa_pwr-v1.2b-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr_v1.2b.brd">csa_pwr_v1.2b.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr-v1.2b-brd.png">csa_pwr-v1.2b-brd.png</a></td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 1.1B</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board has all features. It fixes the bugs in the
 			1.1A version: no /RESET pullup, wrong R17 value for the
@@ -198,47 +198,47 @@ more modern browser, like Internet Explorer 8 or later,
 			I2C ICs. Also it has the addresses of the I2C chips
 			fixed (in V1.1A they have the same I2C address...)
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The layout is untested.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr-v1.1b.sch">csa_pwr-v1.1b.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr_v1.1b-sch.png">csa_pwr_v1.1b-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr-v1.1b.brd">csa_pwr-v1.1b.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr_v1.1b-brd.png">csa_pwr_v1.1b-brd.png</a></td>
 </tr></table>
 <h3><a name="board3" id="board3">Version: 1.1A</a></h3>
 <p>Status: prototype with bugs</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td> 
 			Watch out, this board has a wrong resistor R17 value
 			and other bugs, see description of 1.1B.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr-v1.1a.sch">csa_pwr-v1.1a.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_pwr_v1.1a-sch.png">csa_pwr_v1.1a-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr-v1.1a.brd">csa_pwr-v1.1a.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_pwr_v1.1a-brd.png">csa_pwr_v1.1a-brd.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_pwr_v1.1a.png">csa_pwr_v1.1a.png</a>(Without the battery, though)</td>
 </tr></table>
-<div id="footer"><p>Last modified: 2007-05-19.</p>
+<div id="contentfooter"><p>Last modified: 2007-05-19.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div></div><div id="footer"> </div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

@@ -147,12 +147,12 @@ use a 16550 UART (with FIFO).
 	
 </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0D</a> (ok)</li><li><a href="#board2">3.0C</a> (ok (for 32k RAM))</li><li><a href="#board3">3.0B</a> (ok (for 32k RAM))</li><li><a href="#board4">2.0B</a> (ok)</li><li><a href="#board5">1.x</a> (ok)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 3.0D</a></h3>
 <p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			This board is definitely in for a re-layout, which will probably happen
 			during the next change (&gt;= 3.1), although nothing's planned yet.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			In this version the 512k RAM IC does not get the power supply from the 
 			VBuf line (which is 3.6V), but from the real 5V line. I have found that
@@ -160,35 +160,35 @@ use a 16550 UART (with FIFO).
 			Also my prototype board required a separate MLC bypass capacitor soldered
 			between the Pins 16 and 32 of the RAM IC.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The RS232 problems noted in 3.0B may still be there as I did not change 
 			anything. Might be a problem with the power supply though, see RAM 
 			chip discussion above.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>The TTL parts mainly consist of the 'ALS (advanced
 			Low-Power Shottky) TTL types, except where available.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_desc.gif" alt="desc" /></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csa_bios_v3.0b-desc.txt">csa_bios_v3.0b-desc.txt</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
-<td><a href="csa_bios_v30d.sch">csa_bios_v30d.sch</a></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_bios_v3.0d.sch">csa_bios_v3.0d.sch</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_bios_v3.0d_sch.png">csa_bios_v3.0d_sch.png</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0d.brd">csa_bios_v3.0d.brd</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0d_brd.png">csa_bios_v3.0d_brd.png</a></td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 3.0C</a></h3>
 <p>Status: ok (for 32k RAM)</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			I have found stability problems with the 512k RAM version.
 			Looking into the datasheet of the used RAM it says that Ax must
@@ -196,94 +196,94 @@ use a 16550 UART (with FIFO).
 			Didn't help though, see version 3.0D.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_bios_v3.0c.sch">csa_bios_v3.0c.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_bios_v3.0c_sch.png">csa_bios_v3.0c_sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0c.brd">csa_bios_v3.0c.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0c_brd.png">csa_bios_v3.0c_brd.png</a></td>
 </tr></table>
 <h3><a name="board3" id="board3">Version: 3.0B</a></h3>
 <p>Status: ok (for 32k RAM)</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This is the new version of the board,
 			using larger (up to 512k) RAM and ROM sockets.
 			For this board also Eagle(tm) schematics and layout
 			files are available
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>The RS232 functionality works, although it
 			seems larger capacitors for the RS232 voltage generation
 			could be needed, as my test board looses characters.
 			The same schematics works fine in the Gecko board,
 			though.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>The TTL parts mainly consist of the 'ALS (advanced
 			Low-Power Shottky) TTL types, except where available.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_desc.gif" alt="desc" /></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csa_bios_v3.0b-desc.txt">csa_bios_v3.0b-desc.txt</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_parts.gif" alt="parts" /></td>
+<tr class="R0"><td><div class="i_parts"> </div></td>
 <td><a href="csa_bios_v3.0b-parts.txt">csa_bios_v3.0b-parts.txt</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_bios_v3.0b.sch">csa_bios_v3.0b.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_bios_v3.0b-sch.png">csa_bios_v3.0b-sch.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0b.brd">csa_bios_v3.0b.brd</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_layout.gif" alt="layout" /></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_bios_v3.0b-lay.png">csa_bios_v3.0b-lay.png</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_bios_v3.0b.jpg">csa_bios_v3.0b.jpg</a></td>
 </tr></table>
 <h3><a name="board4" id="board4">Version: 2.0B</a></h3>
 <p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td> This is the old version of the board,
 			using small (up to 32k) RAM and ROM sockets.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csabios2.png">csabios2.png</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csabios2.ps.gz">csabios2.ps.gz</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_desc.gif" alt="desc" /></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csabios2desc.txt">csabios2desc.txt</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_parts.gif" alt="parts" /></td>
+<tr class="R0"><td><div class="i_parts"> </div></td>
 <td><a href="csabios2parts.txt">csabios2parts.txt</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csabios2.jpg">csabios2.jpg</a>(The ROM is currently missing)</td>
 </tr></table>
 <h3><a name="board5" id="board5">Version: 1.x</a></h3>
 <p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_stop.gif" alt="stop" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td> 
 			This is the very first version, using an ACIA
 			for the serial interface. It is (here) only
 			documented as a photo.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csabios.jpg">csabios.jpg</a></td>
 </tr></table>
-<h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="bios.gif" alt="block diagram" />This diagram shows an overview on the board architecture<div id="footer"><p>Last modified: 2006-10-13.</p>
+<h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="bios.gif" alt="block diagram" />This diagram shows an overview on the board architecture<div id="contentfooter"><p>Last modified: 2006-10-13.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div></div><div id="footer"> </div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

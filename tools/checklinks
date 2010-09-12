@@ -1,8 +1,14 @@
 #!/bin/sh
 
+bin=`dirname $0`
+
+root=`cd $bin/../public; pwd`
+
 TMPFILE=`mktemp /tmp/checkmylinks.XXXXXXXXXX` || exit 1
 
-checklink -r -s -l file:///home/fachat/8bit/svn/trunk/public/index.html file:///home/fachat/8bit/svn/trunk/public/index.html | tee $TMPFILE
+#checklink -r -s -l file://$root/index.html file://$root/index.html | tee $TMPFILE
+
+linkchecker --ignore-url=^mailto: file://$root/index.html | tee $TMPFILE
 
 rm $TMPFILE
 

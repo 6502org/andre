@@ -474,19 +474,19 @@ more modern browser, like Internet Explorer 8 or later,
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
 			switch to allow 65816 code.
 		<table class="files">
-<tr class="R1"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="pettest1.a65">pettest1.a65</a>(Copies 4k from (slow) ROM to fast RAM and back to slow RAM. I used it to investigate the stray writes which appeared in the slow memory when writing to the fast memory.)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="pettest2.a65">pettest2.a65</a>(Check if CPU executes code in fast RAM by copying a long ump back to slow memory and executing it)</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="pettest2a.a65">pettest2a.a65</a>(Executes a longer loop in fast memory)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="pettest4.a65">pettest4.a65</a>(Executes a loop in slow memory and in fast memory, and times both with the VIA timer)</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="pettest4a.a65">pettest4a.a65</a>(Use the VIA timer to time exactly one (fast) memory access)</td>
 </tr></table><h3><a name="driver2" id="driver2">PET Fat40 ROM patch</a></h3><p>This patch lets the PET copy the PET ROM from the slow ROM on the BIOS card to the
 		(mirrored) fast bank 0 RAM when it boots. Additional code at address 65080 then switches
@@ -502,29 +502,29 @@ more modern browser, like Internet Explorer 8 or later,
 		</p><p>
 		Also note that IEEE488 has not been tested yet (due to my broken lpt-ieee488 interface).
 		</p><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="petpatch2.a65">petpatch2.a65</a>(CS/A Fat40 65816 setup ROM Patch to apply to a normal 40col CRTC PET ROM)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_driver.gif" alt="driver" /></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="fat40_816v4.bin">fat40_816v4.bin</a>(Precompiled CS/A Fat40 65816 setup ROM (32k))</td>
 </tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.1F</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 1.1E board this board adds a 2k2 pull-up resistor on <code>BRDY</code>. Now
 			the CS/A bus RDY handling works, i.e. a CS/A bus board can slow down the CPU even more
 			if necessary.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v1.1f.sch">csa_cpu816-v1.1f.sch</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v1.1f-sch.png">csa_cpu816-v1.1f-sch.png</a></td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 1.1E</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			The shown schematics has been implemented by patching up
 			an older 1.1 board version. However, as there are too many differences,
@@ -532,7 +532,7 @@ more modern browser, like Internet Explorer 8 or later,
 			With the lessons learned from this version, I'd also rather make
 			a new 1.2 version with a complete new layout.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			There could be an issue with the VDC memory access. I am not sure if this
 			is an issue with the 65816 board or the VDC board and the RAM chip it currently
@@ -541,48 +541,48 @@ more modern browser, like Internet Explorer 8 or later,
 			video memory when scrolling the PET screen. May have been a bad soldering joint
 			though, I currently cannot reproduce it.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_warn.gif" alt="warn" /></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			Preliminary tests indicate that the <code>BRDY</code> handling is not yet correct, i.e.
 			when a CS/A bus board tries to slow down the CPU even more.
 		</td></tr>
-<tr><td class="noteicon"><img src="../../imgs/note_msg.gif" alt="msg" /></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			The TTL types are mostly 'ALS. Please refer to the parts list and not
 			to the schematics for the TTL technology type.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="CPU816 top.PNG">CPU816 top.PNG</a>(65816 prototype board from top with replaced ICs ...)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="CPU816 back.PNG">CPU816 back.PNG</a>(... and from the back - where you can clearly see its status too)</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="PET Loop slow.PNG">PET Loop slow.PNG</a>(A simple delay loop on the 1MHz PET (CS/A version))</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_photo.gif" alt="photo" /></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="PET Loop fast.PNG">PET Loop fast.PNG</a>(And the same delay loop after switching to 8MHz :-))</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_parts.gif" alt="parts" /></td>
+<tr class="R1"><td><div class="i_parts"> </div></td>
 <td><a href="csa_cpu816-v1.1e-parts.txt">csa_cpu816-v1.1e-parts.txt</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v1.1e.sch">csa_cpu816-v1.1e.sch</a></td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_schem.gif" alt="schem" /></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v1.1e-sch.png">csa_cpu816-v1.1e-sch.png</a></td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_logic.gif" alt="logic" /></td>
+<tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="CPU816 V04.PLD">CPU816 V04.PLD</a>(The GAL20V8 source)</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_logic.gif" alt="logic" /></td>
+<tr class="R1"><td><div class="i_logic"> </div></td>
 <td><a href="CPU816V4.jed">CPU816V4.jed</a>(The GAL20V8 compiled logic file)</td>
 </tr>
-<tr class="R0"><td><img src="../../imgs/file_timing.gif" alt="timing" /></td>
+<tr class="R0"><td><div class="i_timing"> </div></td>
 <td><a href="timing1.png">timing1.png</a>(Sample low-res timing diagram)</td>
 </tr>
-<tr class="R1"><td><img src="../../imgs/file_timing.gif" alt="timing" /></td>
+<tr class="R1"><td><div class="i_timing"> </div></td>
 <td><a href="timing2.png">timing2.png</a>(Sample high-res timing diagram)</td>
 </tr></table>
 <h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="diagram.gif" alt="block diagram" />Block diagram of the cpu board. 
@@ -590,7 +590,7 @@ more modern browser, like Internet Explorer 8 or later,
 		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
 		control logic - which is the most complex part here... RDY is used to slow down the CPU during CS/A bus access, which 
 		happens at 1MHz speed instead of the 8MHz CPU speed. 
-		<div id="footer"><p>Last modified: 2010-04-11.</p>
+		<div id="contentfooter"><p>Last modified: 2010-04-11.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div></div><div id="footer"> </div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>
