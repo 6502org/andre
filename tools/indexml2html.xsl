@@ -147,7 +147,6 @@
 			     </tr></table>
 			    </form>
 			</div>
-			<div>&nbsp;</div>  <!-- empty line as both tables above are floating -->
 		@MENU@
 		</div><!-- menu -->
 		<!--div class="top" id="browser">
@@ -473,6 +472,7 @@ more modern browser, like Internet Explorer 8 or later,
 </xsl:template>
 
 <xsl:template name="bottom">
+  <div id="footer">&nbsp;</div>
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts-all.js"></script>
 </xsl:template>
