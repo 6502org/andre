@@ -68,7 +68,6 @@ div#ie6warn { display: none; }
 	background-color: #ff4444;
 }
 
-/* left/right cols have headers in the top level style */
 DIV#hot DIV.tophead {
  	background: -moz-linear-gradient(top, #f55, #e00 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
@@ -79,14 +78,6 @@ DIV#hot DIV.tophead {
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
 }
-
-/*
-DIV.overview {
-	font-size:larger;
-	font-weight:bold;
-	background-color: #ffdddd;
-}
-*/
 
 P.copyright {
 	font-size:larger;
@@ -284,7 +275,7 @@ div#mtree a:hover {
 }
 
 div#mtree A#m_homepage {
-  font-size: medium;
+  font-size: small;
 }
 
 /* new style */
