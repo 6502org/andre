@@ -114,7 +114,9 @@
   <xsl:with-param name="a">blkdiag</xsl:with-param>
 </xsl:call-template>
 <img src="{diagram/file}" alt="block diagram"/>
+<div class="diagcaption">
 <xsl:apply-templates select="diagram/desc"/>
+</div>
 </xsl:if>
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
