@@ -126,6 +126,7 @@
 </div> <!-- footer -->
 </div> <!-- content -->
 </div> <!-- midcol -->
+<div id="footer">&nbsp;</div>
 </div> <!-- mainbox -->
 <xsl:call-template name="bottom"/>
 </body></html>
@@ -354,6 +355,7 @@
 <xsl:apply-templates select="closing"/>
 </div> <!-- content -->
 </div> <!-- midcol -->
+<div id="footer">&nbsp;</div>
 </div> <!-- mainbox -->
 <xsl:call-template name="bottom"/>
 </body></html>
@@ -474,7 +476,6 @@ more modern browser, like Internet Explorer 8 or later,
 </xsl:template>
 
 <xsl:template name="bottom">
-  <div id="footer">&nbsp;</div>
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts-all.js"></script>
 </xsl:template>
