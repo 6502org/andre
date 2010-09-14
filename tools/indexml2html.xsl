@@ -141,7 +141,7 @@
 	                <div id="filter">
                             <form action="#">
 			     <table id="filterbox"><tr>
-                              <td><input size="8" name="filter" value="filter" type="text"/></td>
+                              <td><input alt="menu filter" size="8" name="filter" value="filter" type="text"/></td>
                               <td><div id="cancel" class="i_cancel">&nbsp;</div></td>
 			     </tr></table>
 			     <table id="expcol"><tr>
@@ -165,7 +165,7 @@
 	<div id="rightcol">
 	        <div class="top" id="google"><div class="tophead">search</div><div>
 	                <form method="get" action="http://www.google.com/search" target="_blank">
-       		                <input type="text" name="q" size="10" maxlength="255" value="" />
+       		                <input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" />
 	                        <input class="advbutton" type="submit" value="Search my site" /><br/>(Google, in new window)
 	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
 	                </form>
