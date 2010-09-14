@@ -51,6 +51,10 @@
     <extlink name="Schematics of the original 6502 (reverse engineered)" link="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/"/>
     <extlink name="How the illegal instructions really work" link="http://www.pagetable.com/?p=39."/>
     <extlink name="A reengineered and visually simulated original 6502!" link="http://visual6502.org/"/>
+    <extlink name="The ROR bug in early 6502 revisions!" link="http://www.pagetable.com/?p=45"/>
+    <extlink name="6502.org forum: A taken branch delays interrupt handling by one instruction..." link="http://forum.6502.org/viewtopic.php?t=1634"/>
+    <extlink name="6502.org forum: Improving the 6502, some ideas..." link="http://forum.6502.org/viewtopic.php?t=1419"/>
+    <extlink name="6502.org forum: Prefix bytes: an idea for 65Org816..." link="http://forum.6502.org/viewtopic.php?t=1550"/>
   </section>
  
     <disclaimer name="Disclaimer">

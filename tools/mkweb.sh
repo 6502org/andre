@@ -45,6 +45,7 @@ $bin/in2html.sh $dir
 
 ############################################
 # 5) create sprite image
-(cd $bin; ./doSprite.sh)
+# Not done automatically - always modifies sprite image even if not changed!
+#(cd $bin; ./doSprite.sh)
 
 
