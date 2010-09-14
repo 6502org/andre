@@ -213,10 +213,12 @@ DIV#footer {
 
 table#expcol {
 	float:left;
+	width: auto;
 }
 
 table#filterbox {
 	float: left;
+	width: auto;
 }
 
 /*
