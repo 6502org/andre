@@ -1,0 +1,106 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Blitter">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2007</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>6502 blitter block transfer engine</keywords>
+  <metadesc>6502 block transfer engine</metadesc>
+  <overview><p>Transfering a block of bytes from one memory location to another
+	using the CPU can take a lot of time. A simple transfer loop using absolute
+	addressing uses about 13 cycles per byte. Using zeropage indexed addressing 
+	it takes even more. That is the reason why computers like the Amiga or the
+	later Atari ST have block transfer engines, or PCs have DMA engines in the chipset.
+	The 65816 chip even includes special opcodes to do block transfers, with a rate 
+	of seven cycles per byte.
+	</p><p>
+	I thought I should add a block tranfer engine to the CS/A system. 
+	Back then in 2007 I did a first design - and utterly failed. It implemented
+	two address registers, with a separate adder/incrementer and buffers for each address,
+	so it took a whole lot of board space, so I wasn't able to actually place and 
+	route it. You can see the design below as V1.
+	</p><p>
+	In 2010 I had a better look into CPU architectures, and I got the idea that
+	I could build a blitter using something similar to a CPU architecture. Using 
+	an architecture with address registers, shared busses, and a single ALU I was
+	able to produce a new design (see V2 below) that does not need as much board
+	space and that I was able to place and route with SMD technology.
+	</p><p>
+	In the <a href="works.html">How it works</a> page I have described how the
+	board works in detail.
+	</p>
+  </overview>
+  <news>
+    <item date="2010-09-17">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <!--section toc="main" name="Differences in Software">
+     <desc>
+     </desc>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+  </section>
+
+  <section toc="main" name="Differences in Software">
+     <desc>
+     </desc>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+  </section>
+
+  <section toc="main" name="Differences in Software">
+     <desc>
+     </desc>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+  </section-->
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

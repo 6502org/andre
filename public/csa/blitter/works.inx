@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
+
+<meta name="description" content="6502 blitter block transfer engine" />
+<meta name="keywords" content="6502 blitter block transfer engine" />
+<link rev="made" href="mailto:@EMAIL@" />
+<link rel="stylesheet" title="Default" type="text/css" href="%up%style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="%up%advanced.css" />
+<title>Blitter - how it works</title></head>
+<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+		@MENU@
+		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+			@HOT@
+		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
+You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
+more modern browser, like Internet Explorer 8 or later, 
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
+</div><div class="top" id="content">
+@BREAD@
+<a name="topanchor" id="topanchor"></a><h1>Blitter - how it works</h1><p class="copyright">(C)
+2007-2010 André  Fachat</p> 
+<div class="overview">
+	<p>
+	This page explains how the <a href="index.html">CS/A Blitter</a> works.
+	</p>
+  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-17</small>
+	Started this page
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#main">Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#address">Address Generation</a></li></ul></li><li><a href="#main">Operating Modes</a></li></ul></div><h2><a name="main" id="main">Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The blitter architecture is based on a CPU-like architecture. It uses registers
+	connected to shared busses, and a single ALU between the busses.</p>
+<div><a href="blitter arch.svg"><img src="blitter arch.png" alt="blitter architecture" /></a><p>Blitter architecture (click to enlarge)</p></div>
+	<p>The main components are:</p>
+	<ul>
+	<li>Address generation: creates the blitter addresses to read and write
+		the data bytes.</li>
+	<li>Data transfer register: The register to store the data read in the 
+		first transfer cycle, and to provide it in the second cycle</li>
+	<li>Counter register: counts down the number of bytes to transfer.
+		Also compares the number of bytes to zero, to get an end signal.</li>
+	<li>Control: state control, and a logic array to control all the 
+		registers and buffers</li>
+	</ul>
+     <h3><a name="address" id="address">Address Generation</a></h3>
+	<p>The address generation components are:</p>
+<div class="rightimg"><a href="blitter v01.svg"><img src="blitter v01.png" alt="address generation architecture" /></a><p>Blitter address generation (click to enlarge)</p></div>
+	<ul>
+	<li>LDADDR/STADDR: address registers for load and store addresses</li>
+	<li>LDINC/STINC: registers for address increment</li>
+	<li>ALU: Adder to add the address and the increment</li>
+	<li>ZERO: zero increment (see below for the purpose</li>
+	<li>Address data buffer: connects the INBUS to the CPU data bus</li>
+	<li>Increment data buffer: connects the Increment bus to the CPU data bus</li>
+	<li>Address buffer: drives the address from OUTBUS to the system address bus</li>
+	</ul>
+     <h2><a name="main" id="main">Operating Modes</a></h2><div class="toplink"><a href="#top">Top</a></div><p>This section explains the operating modes of the 
+	address generation.
+	</p>
+	<table border="1" width="100%">
+	<tr><th>Mode</th><th>diagram</th></tr>
+	<tr><td>CPU write address: </td>
+		<td><a href="blitter WRADDR.svg"><img src="blitter WRADDR.png" alt="write address" /></a></td>
+	</tr>
+	<tr><td>CPU read address. Please note that the address is actually taken from the 
+		INBUS, which is the output of the ALU, not of the address register.
+		If the data bus were connected to the address register output, it would
+		require three (for up to 24 address bits) 8-bit drivers. Using the
+		ALU output allows to reuse the data bus drivers used to write the address
+		registers, and only requires a zero input to the ALU increment input -
+		so that the address register value is passed through the ALU unchanged.</td>
+		<td><a href="blitter RDADDR.svg"><img src="blitter RDADDR.png" alt="read address" /></a></td>
+	</tr>
+	<tr><td>CPU write increment: </td>
+		<td><a href="blitter WRINC.svg"><img src="blitter WRINC.png" alt="write increment" /></a></td>
+	</tr>
+	<tr><td>CPU read increment: </td>
+		<td><a href="blitter RDINC.svg"><img src="blitter RDINC.png" alt="read increment" /></a></td>
+	</tr>
+	<tr><td>Blitter read/write data. The output of the address register is passed 
+		through to the system address bus. But this value is also passed to one
+		input of the adder ("ALU"). The other input of the adder is fed from the
+		increment register. Thus the adder output presents the next value for the
+		address register. So at the end of the cycle this new addres is latched
+		into the address register.
+		</td>
+		<td><a href="blitter RD+ST.svg"><img src="blitter RD+ST.png" alt="read/write blitter data" /></a></td>
+	</tr>
+	</table>
+     <hr />
+@FOOTER@
+  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="%up%";</script><script type="text/javascript" src="%up%scripts-all.js"></script></body></html> 
+

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
+
+<meta name="description" content="6502 block transfer engine" />
+<meta name="keywords" content="6502 blitter block transfer engine" />
+<link rev="made" href="mailto:@EMAIL@" />
+<link rel="stylesheet" title="Default" type="text/css" href="%up%style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="%up%advanced.css" />
+<title>Blitter</title></head>
+<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+		@MENU@
+		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+			@HOT@
+		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
+You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
+more modern browser, like Internet Explorer 8 or later, 
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
+</div><div class="top" id="content">
+@BREAD@
+<a name="topanchor" id="topanchor"></a><h1>Blitter</h1><p class="copyright">(C)
+2007-2010 André  Fachat</p> 
+<div class="overview"><p>Transfering a block of bytes from one memory location to another
+	using the CPU can take a lot of time. A simple transfer loop using absolute
+	addressing uses about 13 cycles per byte. Using zeropage indexed addressing 
+	it takes even more. That is the reason why computers like the Amiga or the
+	later Atari ST have block transfer engines, or PCs have DMA engines in the chipset.
+	The 65816 chip even includes special opcodes to do block transfers, with a rate 
+	of seven cycles per byte.
+	</p><p>
+	I thought I should add a block tranfer engine to the CS/A system. 
+	Back then in 2007 I did a first design - and utterly failed. It implemented
+	two address registers, with a separate adder/incrementer and buffers for each address,
+	so it took a whole lot of board space, so I wasn't able to actually place and 
+	route it. You can see the design below as V1.
+	</p><p>
+	In 2010 I had a better look into CPU architectures, and I got the idea that
+	I could build a blitter using something similar to a CPU architecture. Using 
+	an architecture with address registers, shared busses, and a single ALU I was
+	able to produce a new design (see V2 below) that does not need as much board
+	space and that I was able to place and route with SMD technology.
+	</p><p>
+	In the <a href="works.html">How it works</a> page I have described how the
+	board works in detail.
+	</p>
+  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-17</small>
+	Started this page
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul></ul></div><hr />
+@FOOTER@
+  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="%up%";</script><script type="text/javascript" src="%up%scripts-all.js"></script></body></html> 
+

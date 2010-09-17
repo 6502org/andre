@@ -1,0 +1,98 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Blitter - how it works">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2007</yearstart>
+    <yearend>2010</yearend>
+  </author>
+  <keywords>6502 blitter block transfer engine</keywords>
+  <metadesc>6502 blitter block transfer engine</metadesc>
+  <overview>
+	<p>
+	This page explains how the <a href="index.html">CS/A Blitter</a> works.
+	</p>
+  </overview>
+  <news>
+    <item date="2010-09-17">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="main" name="Architecture">
+     <desc><p>The blitter architecture is based on a CPU-like architecture. It uses registers
+	connected to shared busses, and a single ALU between the busses.</p>
+<div><a href="blitter arch.svg"><img src="blitter arch.png" alt="blitter architecture"/></a><p>Blitter architecture (click to enlarge)</p></div>
+	<p>The main components are:</p>
+	<ul>
+	<li>Address generation: creates the blitter addresses to read and write
+		the data bytes.</li>
+	<li>Data transfer register: The register to store the data read in the 
+		first transfer cycle, and to provide it in the second cycle</li>
+	<li>Counter register: counts down the number of bytes to transfer.
+		Also compares the number of bytes to zero, to get an end signal.</li>
+	<li>Control: state control, and a logic array to control all the 
+		registers and buffers</li>
+	</ul>
+     </desc>
+
+     <subsection toc="address" name="Address Generation">
+	<desc>
+	<p>The address generation components are:</p>
+<div class="rightimg"><a href="blitter v01.svg"><img src="blitter v01.png" alt="address generation architecture"/></a><p>Blitter address generation (click to enlarge)</p></div>
+	<ul>
+	<li>LDADDR/STADDR: address registers for load and store addresses</li>
+	<li>LDINC/STINC: registers for address increment</li>
+	<li>ALU: Adder to add the address and the increment</li>
+	<li>ZERO: zero increment (see below for the purpose</li>
+	<li>Address data buffer: connects the INBUS to the CPU data bus</li>
+	<li>Increment data buffer: connects the Increment bus to the CPU data bus</li>
+	<li>Address buffer: drives the address from OUTBUS to the system address bus</li>
+	</ul>
+     </desc>
+   </subsection>
+  </section>
+
+  <section toc="main" name="Operating Modes">
+     <desc><p>This section explains the operating modes of the 
+	address generation.
+	</p>
+	<table border="1" width="100%">
+	<tr><th>Mode</th><th>diagram</th></tr>
+	<tr><td>CPU write address: </td>
+		<td><a href="blitter WRADDR.svg"><img src="blitter WRADDR.png" alt="write address"/></a></td>
+	</tr>
+	<tr><td>CPU read address. Please note that the address is actually taken from the 
+		INBUS, which is the output of the ALU, not of the address register.
+		If the data bus were connected to the address register output, it would
+		require three (for up to 24 address bits) 8-bit drivers. Using the
+		ALU output allows to reuse the data bus drivers used to write the address
+		registers, and only requires a zero input to the ALU increment input -
+		so that the address register value is passed through the ALU unchanged.</td>
+		<td><a href="blitter RDADDR.svg"><img src="blitter RDADDR.png" alt="read address"/></a></td>
+	</tr>
+	<tr><td>CPU write increment: </td>
+		<td><a href="blitter WRINC.svg"><img src="blitter WRINC.png" alt="write increment"/></a></td>
+	</tr>
+	<tr><td>CPU read increment: </td>
+		<td><a href="blitter RDINC.svg"><img src="blitter RDINC.png" alt="read increment"/></a></td>
+	</tr>
+	<tr><td>Blitter read/write data. The output of the address register is passed 
+		through to the system address bus. But this value is also passed to one
+		input of the adder ("ALU"). The other input of the adder is fed from the
+		increment register. Thus the adder output presents the next value for the
+		address register. So at the end of the cycle this new addres is latched
+		into the address register.
+		</td>
+		<td><a href="blitter RD+ST.svg"><img src="blitter RD+ST.png" alt="read/write blitter data"/></a></td>
+	</tr>
+	</table>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
