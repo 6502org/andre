@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="" />
-<meta name="keywords" content="" />
+<meta name="description" content="6502 16bit 32bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>CS/A65 Emulator</title></head>
+<title>The 65k Project</title></head>
 <body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -20,74 +20,18 @@
 </li>
 <li class="separator">Hardware</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
-<ul class="menu1" >
-<li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
-<li class="separator">Specifications</li>
-<li><div class="i_file">&nbsp;</div><a href="../bus.html">Bus V1.0</a></li>
-<li><div class="i_file">&nbsp;</div><a href="../bus-1.1.html">Bus V1.1</a></li>
-<li class="separator">Main boards</li>
-<li><div class="i_file">&nbsp;</div><a href="../cpu/index.html">CS/A65 CPU</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../bios/index.html">CS/A65 BIOS </a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../cpu816v2/index.html">65816 CPU V2</a>
-</li>
-<li class="dir" id="m_csa_petcpu"><div class="i_dir">&nbsp;</div><a href="../petcpu/index.html">64k PET CPU</a>
-</li>
-<li class="dir" id="m_csa_gecko"><div class="i_dir">&nbsp;</div><a href="../gecko/index.html">Gecko</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../auxcpu/index.html">Auxiliary CPU</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
-</li>
-<li class="separator">I/O boards</li>
-<li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../petio/index.html">CBM PET I/O</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../shug/index.html">PC floppy</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../drvio/index.html">DRVIO floppy and IEC</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../duart/index.html">Double UART (RS232)</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../scsi/index.html">SCSI/I2C board</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../spi/index.html">MMC/SD-Card</a>
-</li>
-<li class="separator">Special purpose</li>
-<li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="../blitter/index.html">Block Transfer</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../ramdisk/index.html">SIMM RAMDisk</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../copro/index.html">Coprocessor board</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../cpuemu/index.html">Emulate a 6502</a>
-
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../keyemu/index.html">Emulate a keyboard</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../viaproto/index.html">VIA prototyping</a>
-</li>
-<li class="separator">Deprecated boards</li>
-<li><div class="i_file">&nbsp;</div><a href="../cpu816/index.html">65816 CPU V1</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../cpu65b/index.html">64k CPU</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../key/index.html">Keyboard and RS232</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../iec/index.html">IEEE488 and CBM IEC</a>
-</li>
-<li class="separator">Other links</li>
-<li><div class="i_file">&nbsp;</div><a href="../gallery/index.html">Gallery</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">VICE emu of CS/A65</a>
-</li>
-<li><div class="i_link">&nbsp;</div><a href="../../cbmhw/c64csa/index.html">C64 CS/A adapter</a></li>
-<li><div class="i_link">&nbsp;</div><a href="../../cbmhw/petcsa/index.html">PET CS/A adapter</a></li>
-</ul>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
+<ul class="menu1" >
+<li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
+</li>
+<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">The 65k Project</a>
+<ul class="menu2" >
+<li><div class="i_file">&nbsp;</div><a href="features.html">Features</a></li>
+</ul>
+</li>
+<li><div class="i_link">&nbsp;</div><a href="../../csa/index.html">CS/A65</a></li>
+</ul>
 </li>
 <li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../../hwinfo/index.html">ICs and Standards Info</a>
 </li>
@@ -133,41 +77,63 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content">
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  VICE emu of CS/A65</div>
-<a name="topanchor" id="topanchor"></a><h1>CS/A65 Emulator</h1><p class="copyright">(C)
-1998-2010 André  Fachat</p> 
-<div class="overview"><p>Long ago (or so it seems) I have added a CS/A65 emulation to the
-VICE emulator.
-As you can see from the text below, it <strong>is</strong> an old
-emulator. Nevertheless it should still work. If I get the time,
-I'll probably update it to the new VICE 1.0 code, some day...
-</p><p>
-The emulator is derived from the
-PET emulator, and allows running an old version (1.3.3) of the OS/A65
-operating system (Well, meanwhile it can run the new not-yet-published
-version 1.4) A copy of the 1.3.3 ROM as well as the pre-1.4 csarom-1.3.94p
- is included. For more information see the
-<a href="../index.html">GeckOS pages</a>. The source archive, a
-patched VICE 0.12.0.16
-version can be found as <a href="vice.16-csa-20.tar.gz">vice.16-csa-20.tar.gz</a>.
-Now even the hardware cursor of the 6545 crtc controller works,
-and it should be much faster (than previous versions, not compared to VICE
-itself...) on slow machines now.
-the <code>-20</code> version fixes a segmentation fault that could sometimes
-occur, and also includes some rudimentary ACIA 6551 rs232 emulation.
-</p><p> Some hints: 
-You compile it with the usual "./configure", then "make xcsa"
-(it is not included in the normal build
-procedure, but you can still build all other emulators with the ususal "make")
-and install it with "make install_xcsa". 
-There are no RS232 devices emulated, only dummy devices
-and the video device. On virtual terminal 1 a shell is running, on
-virtual terminal 2 a monitor is running. The "@" key switches between the
-virtual terminals (4 with 40 cols "-video40" option, or 2 with 80 cols).
-Drive C:-F: are IEEE drives 8-11, i.e. on drive 11 you find the Unix
-directory under VICE.
+&gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  The 65k Project</div>
+<a name="topanchor" id="topanchor"></a><h1>The 65k Project</h1><p class="copyright">(C)
+2010- André  Fachat</p> 
+<div class="overview">
+	<p>
+	The <em>65k project</em> is my project to expand the original 6502 processor with
+	new opcodes, new and/or larger registers and other advanced features.
+	I chose the <em>65k</em> name to 
+        honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+	</p><p>
+	The current state of the project is the requirements, decision, and partly design phase.
+	I.e. I am defining the goals I want to achieve with the 65k processor, what features it
+	should have, how it should be done - but I am not writing any VHDL code for now.
+	</p><p>
+	On the <a href="features.html">features page</a> you can read about the requirements
+	and features I have decided on for the 65k.
 	</p>
-  </div><hr />
+  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
+	Started this page
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#roadmap">65k Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#65002">65002</a></li><li><a href="#65010">65010</a></li><li><a href="#65020">65020</a></li><li><a href="#65030">65030</a></li><li><a href="#io">652xx</a></li><li><a href="#refs">References</a></li></ul></li></ul></div><h2><a name="roadmap" id="roadmap">65k Roadmap</a></h2><div class="toplink"><a href="#top">Top</a></div><p>This section describes the different versions of the 65k processor, at least what the
+	current plans for it are.
+	</p>
+     <h3><a name="65002" id="65002">65002</a></h3><p>Design goals for the 65002 CPU replacement are:</p>
+<ul>
+<li>Provide original 6502 (legal) opcodes; optionally some of the illegal ones (SAX, LAX) as they fit</li>
+<li>16bit ALU - make it a 6502 as it could have been ...</li>
+<li>eliminate bogus memory cycles</li>
+<li>abort-ability - i.e. ability to abort an opcode in mid-process and roll it back</li>
+<li>No mode bits - as opposed to the 65816 an opcode should have exactly one meaning (except for the original BCD bit)</li>
+<li>Not sure yet if I extend the original registers to 16 bit, or simply add a set of new 16 bit registers</li>
+<li>Prefix opcodes for specific (e.g. 16bit) arithmetic functions, vector ops, and cpu control</li>
+</ul>
+    <h3><a name="65010" id="65010">65010</a></h3><p>Design goals for the 65010 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65002 CPU from above</li>
+<li>Add vector operations to the CPU core, like vector add. Allow different address offsets for source and target (from 0 up to 256)</li>
+<li>Include for example blitter functions</li>
+<li>possibly requires extra registers, depending on whether new 16bit registers are added or existing registers extended</li>
+</ul>
+    <h3><a name="65020" id="65020">65020</a></h3><p>Design goals for the 65020 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65010 CPU from above (maybe optionally 65002 also)</li>
+<li>Add MMU functionality - similar to the CS/A CPU board, but using a page table register and dynamic page table lookup fetch</li>
+<li>Use 16bit page table entries, with e.g. 12 bit address extension and 4 bit special bits (read-only, no-execute, not-mapped, privileged)</li>
+<li>Basic "ring 0" functionality - separation of OS and user spaces</li>
+<li>Optionally 16bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16bit</li>
+</ul>
+    <h3><a name="65030" id="65030">65030</a></h3><p>This one is really sketchy for now...Design goals for the 65030 CPU replacement are:</p>
+<ul>
+<li>Extension of the 65020 CPU from above</li>
+<li>Add multi-core functionality - coordinating/synchronizing multiple cores in a single FPGA</li>
+<li>Possibly/optionally include L1 read caches in addition to the 16bit memory interface. Not sure if L1 is shared between cores or not</li>
+<li>Possibly/optionally include cache coherency protocol between multiple FPGAs</li>
+</ul>
+    <h3><a name="io" id="io">652xx</a></h3><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
+    <h3><a name="refs" id="refs">References</a></h3>
+        <ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li></ul><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 
