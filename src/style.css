@@ -575,6 +575,15 @@ div#toc dir {
 }
 
 /****************************************
+ * text formatting
+ */
+
+div#content p.conclusion {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+/****************************************
  * advanced style
  */
 .advbutton {

@@ -86,7 +86,7 @@ more modern browser, like Internet Explorer 8 or later,
 	requirements definition for the new processor.
 	</p><p>
 	All requirements are based on the original NMOS 6502 processor, using the 
-	"legal" opcodes. Knowledge of the 6502 is required...
+	"legal" opcodes. The 65k should run original NMOS 6502 code without modifications.
 	</p><p>
 	Goal of these requirements is that they should be:
 	</p>
@@ -129,11 +129,63 @@ more modern browser, like Internet Explorer 8 or later,
 		The first idea to add 16 bit registers to the 6502 is to add new 16 bit 
 		registers <code>U,V,W</code> that work as 16 bit accumulator and index registers.
 	</p><p>
-		A first design approach is in <a href="65k opcodes alternatives 1.txt">65k opcodes alternatives 1.txt</a>
-	</p><h3><a name="regexpalt2" id="regexpalt2">Alternative 2: Prefix Bytes</a></h3>
-	<h3><a name="regexpcomp" id="regexpcomp">Comparison</a></h3>
-	<h3><a name="regexpconcl" id="regexpconcl">Conclusion</a></h3>
-	<h2><a name="regnum" id="regnum">Number of Register</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. 
+		My first naive design approach is in <a href="65k opcodes alternative 1.txt">65k opcodes alternatives 1.txt</a>
+	</p><p>
+		The approach shown in the file has a number of drawbacks:
+	</p>
+	<ul>
+		<li>It makes the system even more "non-symmetric". The new registers have different capabilities than their
+			8 bit counterparts. Already on the original 6502, the X and Y registers are not completely symmetric
+			and these registers make the situation even worse.</li>
+		<li>Each new operation consumes an extra opcode, filling up the opcode space
+			quite quickly.</li>
+		<li>Linked with the missing symmetry - it might be easier to implement these registers with an own
+			complete ALU and internal busses. This would require more logic to implement and thus more chip estate</li>
+		<li>It's not elegant, it would violate the design goals from above</li>
+	</ul>
+	<p>On the other hand they keep the code small and make fetching the code faster.</p>
+	<h3><a name="regexpalt2" id="regexpalt2">Alternative 2: Prefix Bytes</a></h3><p>A Prefix Byte modifies the behaviour of the opcode following the prefix byte. Prefix bytes have a long
+		history, they reach back to the Z80 and maybe even further. Also the 6809 used them to expand the opcode space.
+		There are two types of prefix bytes:</p>
+	<ul>
+		<li>Modifier prefix: the following opcode is basically the same as before, but modified for example by using a 
+			different number of bits (8 bit vs. 16 bit) or different registers</li>
+		<li>Multi-byte opcodes: a single byte starting a two-byte opcode enables 256 new opcodes in an otherwise 
+			single-byte opcode machine. These two-byte opcodes need not have to have anything in common with their
+			single-byte counterparts.</li>
+	</ul>
+		<p>The Z80 for example used both types of prefix bytes.</p>
+		<p>To expand the 6502 registers a prefix byte could be used that modifies the existing opcode to use registers
+		with an expanded number of bits</p>
+	<ul><li><a href="http://books.google.de/books?id=tfP4UND566AC&amp;pg=PA280&amp;lpg=PA280&amp;dq=prefix+bytes&amp;source=bl&amp;ots=SmY9zqmD8h&amp;sig=x06ib73uLa0bb5ZYzI1rlrqHAIc&amp;hl=de&amp;ei=md-VTLm5M8vMswby3clk&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=9&amp;ved=0CEgQ6AEwCA" target="_blank" class="extlink">Write Great Code page 280 (Google Books) - about 80x86 prefix bytes</a> </li></ul><h3><a name="regexpcomp" id="regexpcomp">Comparison</a></h3><p>Here is a comparison of the different approaches to expand the 6502 register width:</p>
+	<table border="1">
+	<tr><th></th><th>Mode bits</th><th>New registers</th><th>Prefix bytes</th></tr>
+	<tr><th>Description</th><td>"Hidden state" mode bits switch the existing registers and opcodes between 8 and 16 bit</td>
+				<td>A new set of 16 bit registers with complete new opcodes augment the existing 
+					8 bit registers and opcodes</td>
+				<td>A modifier prefix byte modifies the existing opcodes to use a wider register size</td>
+			</tr>
+	<tr><th>Program size (and thus fetch speed)</th><td>+ (kept short)</td><td>+ (kept short)</td><td>- (longer for each operation)</td></tr>
+	<tr><th>Switching between 8 and 16 bit</th><td>- (extra instructions)</td><td>+ (by instruction, no extra cost)</td><td>+ (by instruction, no extra cost)</td></tr>
+	<tr><th>Interoperatbility between 8 and 16 bit</th><td>+ (same registers)</td><td>- (different registers, need transfer)</td><td>+ (same registers)</td></tr>
+	<tr><th>Opcode space usage</th><td>+ (Only single mode switch opcode)</td><td>0 (lots of new opcodes - but could be implemented as multi-byte opcode)</td><td>+ (one modifier prefix would basically suffice)</td></tr>
+	<tr><th>Implementation complexity</th><td>+ (single register set, modified opcodes)</td><td>- (new registers, new opcodes)</td><td>+ (single register set, modified opcodes)</td></tr>
+	<tr><th>Number of registers</th><td>- (no new registers)</td><td>+ (new set of registers)</td><td>- (no new registers)</td></tr>
+	</table>
+	<h3><a name="regexpconcl" id="regexpconcl">Conclusion</a></h3><p>All options basically compare at the same level. The difference is in how I weigh the different options.
+	WDC obviously has chosen to go for the small code size route, taking the cost of extra switching opcodes between 8 bit and
+	16 bit operations. 
+	</p><p>
+	I don't weigh the code size as much. For me it is important to not use hidden state in the CPU as an architectural principle,
+	so I weigh the option to switch between 8 and 16 bit operation higher. Also that allows me to easily use short 8 bit
+	code sparsly intermingled with 16 bit operations.
+	</p><p>
+	The option to add new registers and new opcodes requires to add new registers to the processor, requiring more 
+	chip estate. These registers are not "symmetric" to the existing ones (different width) and require new opcodes, maybe
+	even a new ALU. Although this was my first design approach, this complexity rules it out.
+	</p><p class="conclusion">
+	The 65k will use <em>modifier prefix bytes</em> to extend the existing registers and opcodes to 16 bit width.
+	</p><h2><a name="regnum" id="regnum">Number of Register</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. 
 	Compared to other (larger) processors this is a very low number. The 68k for example
 	has 8 address and 8 data registers - each 32 bit wide. 
 	So how can the number of registers be increased?
