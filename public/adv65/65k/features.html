@@ -8,7 +8,7 @@
 <meta name="keywords" content="6502 16bit 32bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>The 65k project - features</title></head>
+<title>The 65k project - Feature Discussion</title></head>
 <body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -79,10 +79,10 @@ more modern browser, like Internet Explorer 8 or later,
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">The 65k Project
 </a>&gt;&gt;  Features</div>
-<a name="topanchor" id="topanchor"></a><h1>The 65k project - features</h1><p class="copyright">(C)
+<a name="topanchor" id="topanchor"></a><h1>The 65k project - Feature Discussion</h1><p class="copyright">(C)
 2010-2010 André  Fachat</p> 
 <div class="overview"><p>	
-	This page defines the features of the <em>65k</em> processor family, thus acts as the
+	This page discusses and defines the features of the <em>65k</em> processor family, thus acts as the
 	requirements definition for the new processor.
 	</p><p>
 	All requirements are based on the original NMOS 6502 processor, using the 
@@ -101,7 +101,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</ul>
   </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segment Base Registers</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Bus Features</a></li><li><a href="#addrexpcsa">CS/A65 Bus Features</a></li><li><a href="#addrexpmp">Multiprocessor/-core Synchronization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="regexp" id="regexp">Register Width Expansion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. These three registers serve
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Bus Features</a></li><li><a href="#addrexpcsa">CS/A65 Bus Features</a></li><li><a href="#addrexpmp">Multiprocessor/-core Synchronization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="regexp" id="regexp">Register Width Expansion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. These three registers serve
 	as accumulator and index registers, and are each 8 bit wide.
 	Lacking 16 bit operations is one of the main issues with the 6502 in modern times.
 	So the goal of the register expansion is to provide 16 bit registers and arithmetic operations.
@@ -111,6 +111,11 @@ more modern browser, like Internet Explorer 8 or later,
 		is being set by a special instruction. When it is set, the register operations are 
 		performed on all 16 bit, but using the original opcodes. I.e. an opcode
 		<pre>A9 00 : LDA #$00</pre> becomes <pre>A9 00 00 : LDA #$0000</pre> for example.
+		</p><p>
+		The registers are always used as 16 bit. Modifying AC with an 8 bit width opcode
+		leaves the upper 8 bit unchanged. This has strange consequences, when an 8 bit
+		AC is being transferred into a 16 bit XR or YR. The unmodified high byte is transferred
+		as well, resulting in a value that maybe was not wanted.
 		</p><p>
 		This approach has advantages and disadvantages. First of all, the 16 bit code can
 		be basically as short as the 8 bit code (not counting the larger data). 
@@ -185,17 +190,92 @@ more modern browser, like Internet Explorer 8 or later,
 	even a new ALU. Although this was my first design approach, this complexity rules it out.
 	</p><p class="conclusion">
 	The 65k will use <em>modifier prefix bytes</em> to extend the existing registers and opcodes to 16 bit width.
+	</p><h2><a name="signext" id="signext">Sign extension handling</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="signext816" id="signext816">65816, 80x86 Sign extension handling</a></h3><p>In a 65816 all registers are always used as 16 bit registers.
+	As mentioned above, the 65816 does not modify the high byte of the 16 bit AC
+	register when modifying the lower 8 bit only. This is similar to the behaviour of the
+	80x86 architecture, that when computing 8- or 16-bit values no extension happens.
+	</p><p>
+	This approach is - in case of the 80x86 - also motivated by the fact that historically the 16 bit
+	registers actually are two 8 bit registers combined.
+	In the case of the 65816 the AC high byte can be used to "store" extra values that can be swapped
+	into AC low byte with the <code>XBA</code> opcode.
+	</p><p>
+	At least the 80x86 seems to have extra instructions to sign-extend a register.
+	</p><h3><a name="signextauto" id="signextauto">Automatic Extension</a></h3><p>Similar to the automatic setting of the status register bits (Z, N for example)
+	in the 6502, the processor could automatically extend the sign of an operation.
+	This could have advantages when the resulting value is a relative value. It would then
+	automatically preserve whether the value is positive or negative.
+	</p><p>
+	The only operation with relative values is the branch operation. Here the default is 
+	8 bit - but not even a register value.
+	</p><h3><a name="signextforce0" id="signextforce0">Force Zero</a></h3><p>
+	The 65816 uses a different behaviour for AC and the index registers. The high byte of the
+	XR and YR registers is forced to all zeros when 8 bit index register operation is selected.
+	This allows to use increment/decrement opcodes without caring about the register size.
+	</p><h3><a name="signextconcl" id="signextconcl">Conclusion</a></h3><p>
+	In a "6502 mode" of the 65k, the high byte could always be zero when not using 16 bit
+	registers at all. 8 bit operations would only modify the low 8 bits, leaving the others
+	to zero.
+	Only care would have to be taken to set the high byte to zero when going back
+	from 16 bit to 8 bit operations.
+	</p><p>
+	A new instruction could be used to clear a register completely - no matter what number of bits
+	the register internally has (this should preferably a single-byte opcode to even provide 
+	improvement over the original 6502).
+	</p><p class="conclusion">
+	The 65k will not automatically extend the sign from an 8 bit operation to the full
+	register width. It will instead provide extension opcodes to extend sign, zeros, or ones.
+	It will also provide separate instructions to clear the full register.
 	</p><h2><a name="regnum" id="regnum">Number of Register</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. 
 	Compared to other (larger) processors this is a very low number. The 68k for example
 	has 8 address and 8 data registers - each 32 bit wide. 
 	So how can the number of registers be increased?
-     </p><h3><a name="regnumset" id="regnumset">Register Sets</a></h3>
-	<h3><a name="regnumzp" id="regnumzp">Zeropage as Registers</a></h3>
-	<h3><a name="regnumcomp" id="regnumcomp">Comparison</a></h3>
-	<h3><a name="regnumconcl" id="regnumconcl">Conclusion</a></h3>
+     </p><h3><a name="regnumset" id="regnumset">Register Sets</a></h3><p>Register sets duplicate (or multiply) an existing set of registers with the
+		same set of features, and make them
+		available via specific exchange instructions. The Z80 for example provides a second set of 
+		registers (the <em>'</em> registers) that are supposed to be used by fast interrupt
+		routines for example. 
+	</p><h3><a name="regnumzp" id="regnumzp">Zeropage as Registers</a></h3><p>The 6502 has a specific addressing mode, zeropage, addressing the lowest page
+		in memory. The zeropage location is determined
+		by the second byte of the opcode. <pre>LDA $12</pre> for example puts the value from
+		zeropage location $12 into the accumulator. The zeropage location could be interpreted
+		as a register number.
+	</p><p>
+		Unfortunately even though the zeropage provides 256 bytes, it still is a scarce resource
+		and also requires a memory access - which makes it slower than a simple register access.
+		The 65816 provides a direct register to move the zeropage to anywhere in bank 0.
+	</p><h3><a name="regnumnew" id="regnumnew">Additional, Separate Registers</a></h3><p>The processor could simply get new registers in addition to the existing ones.
+		In contrast to register sets this would mean new opcodes for operations on these
+		new registers.
+	</p><p>
+		As the 6502 has no means of "numbering" registers, there is no easy means of
+		extending the existing operations with new registers. A separate set of
+		operations would have to be implemented, a prefix to existing opcodes would not be enough.
+	</p><h3><a name="regnumcomp" id="regnumcomp">Comparison</a></h3><p>Here is a comparison of the different approaches to expand the number of registers:</p>
+	<table border="1">
+	<tr><th></th><th>Register Sets</th><th>Zeropage</th><th>More registers</th></tr>
+	<tr><th>Speed</th><td>+ (either prefix, or exchange operation, but no memory access)</td><td>- (zeropage "register number", plus memory access)</td><td>+ (either prefix, or new single byte ops)</td></tr>
+	<tr><th>Number of registers</th><td>- (small multiple of 3)</td><td>+ (256 byte resp. 128 word registers)</td><td>- (small) </td></tr>
+	<tr><th>Simplicity</th><td>- (new set of operations, prefix, or exchange opcodes)</td><td>+ (already existing opcodes)</td><td>- (new set of operations)</td></tr>
+	<tr><th>Interrupt Handling</th><td>- (Need to be explicitely saved - or not used either outside or inside the interrupt)</td><td>+ (no action needed)</td><td>- (Need to be explicitely saved - or not used either outside or inside the interrupt)</td></tr>
+	</table>
+	<h3><a name="regnumconcl" id="regnumconcl">Conclusion</a></h3><p>The zeropage alternative actually competes quite well, even though it is an "external" 
+	solution and requires memory access.
+	</p><p>
+	Zeropage register access is actually simple and "known" - the operations already exist in the
+	6502.
+	</p><p> To speed up the memory access it should be possible to 
+	provide a separate zeropage (write-through) cache that does not require memory access 
+	(if the processor is faster than memory). A zeropage addressing base register could provide
+	a means of easily replacing the "zeropage register set" with another one.
+	</p>
+	<p class="conclusion">
+		The 65k will use zeropage "registers", with zeropage cache where applicable, and a base
+		register to move the "zeropage register set".
+	</p>
 	<h2><a name="addrexp" id="addrexp">Address Expansion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 	The 6502 has a 16 bit address bus. This amounts to a whopping 64 kByte of memory.
-	Even the old and famous C64 already had some bank switching schemes to expand the address
+	Even already the old and famous C64 already had some bank switching schemes to expand the address
 	space to more than that. So there is a need to expand the number of address lines available.
 	</p><p>
 	Also the stack registers and stack size are important here. The 6502 stack is only
@@ -205,10 +285,56 @@ more modern browser, like Internet Explorer 8 or later,
 	If they stay at <code>$FFFC-$FFFF</code>, they would probably be in the middle of the 
 	system's RAM instead of ROM. On the other hand RAM is faster than ROM these days.
 	</p>
-     <h3><a name="addrexp816" id="addrexp816">65816 Address Expansion: Bank Registers</a></h3>
-	<h3><a name="addrexpcsa" id="addrexpcsa">CS/A65 Address Expansion: MMU</a></h3>
-	<h3><a name="addrexpbase" id="addrexpbase">80x86 - Segment Base Registers</a></h3>
-	<h3><a name="addrexpvirt" id="addrexpvirt">Address Virtualization</a></h3>
+     <h3><a name="addrexp816" id="addrexp816">65816 Address Expansion: Bank Registers</a></h3><p>The 65816 still has a 16 bit program counter register (PC). This
+	register is extended by an 8 bit Program Bank Register (PBR) to give
+	a 24 bit physical address.
+	</p><p>
+	Virtual data addresses are also still 16 bit values, and are extended by 
+	a Data Bank Register (DBR) to provide a 24 bit physical address.
+	The program counter can thus not cross bank boundaries, it wraps around from 
+	$XXFFFF to $XX0000. Only special instructions that modify the PBR change the
+	execution bank.
+	</p><p>
+	"Direct" addressing modes - formerly known as zeropage addressing - however 	
+	is determined by the 16 bit Direct register (D) and always results in a 
+	physical address in bank 0 ($000000-$00FFFF). Also the stack can only be in 
+	bank 0 - its position is determined by the stack high byte register.
+	</p><p>
+	</p><h3><a name="addrexpcsa" id="addrexpcsa">CS/A65 Address Expansion: MMU</a></h3><p>The <a href="../../csa/index.html">CS/A65</a> computer expands the 6502 CPU
+	with an MMU, that maps any of the 16 4k-blocks of virtual (CPU) address space into 
+	256 4k-blocks physical address space. The physical address space is 
+	1 MByte and filled with RAM and ROM. The later versions also include memory management
+	features like "no-execute", "write-protect" and "not-mapped" bits.
+	This approach is commonly called paging.
+	</p><p>The instruction pointer is still always 16 bit, as the CPU only sees 16 bit
+	virtual address space.
+	</p><p>Using this MMU requires to load the up to 16 MMU registers during a context switch.
+	This can provde costly in a multitasking operating system.
+	</p><p>
+	Modern systems use a slightly different approach. The program only sets a memory address
+	to the MMU, and the MMU then loads the mappings from these memory locations - as needed.
+	The loaded "Page Table Entries (PTEs)" are stored in a "Translation Lookaside Buffer (TLB)".
+	</p><p>Loading PTEs on demand however, can make opcode timing non-deterministic - when crossing
+	an MMU block boundary an extra memory access to read the PTE may be inserted.
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Memory_management_unit" target="_blank" class="extlink">Wikipedia on MMU</a> </li></ul><h3><a name="addrexpbase" id="addrexpbase">80x86 - Segmentation</a></h3><p>The 80x86 architecture since its first 8086 incarnation uses segment registers. In the 
+	8088/8086 the segment register was 16 bit. Shifted 4 bits to the left was used as base 
+	address for a 64k window into the 1 MByte physical address space.
+	</p><p>Since the 80286 the segment register content points to a descriptor table in memory, 
+	that describes the segment. This description includes the - physical - base address, segment
+	size (which is being checked), write protection and execute-only protection. 
+	</p><p>
+	Segmentation has the advantage that it can quickly be changed for example in case of a 
+	context switch.
+	</p><p>
+	Even newer 80x86 also use an MMU and paging in addition to segmentation.
+	</p><p>
+	The 80x86 can have a 16 bit, 32 bit or 64 bit instruction pointer, depending
+	on the mode of operation. The 16 bit is extended with a 48 bit value to create
+	a 64 bit virtual address space. The 32 bit instruction pointer is zero-extended.
+	</p><p>
+	"Canonical addressing" means that all unused address bits on the upper end (say address bits
+	63 down to 48 when address bits 0-47 form the physical address) are either all zeros or all ones.
+	</p><h3><a name="addrexpvirt" id="addrexpvirt">Address Virtualization</a></h3>
 	<h3><a name="addrexpcomp" id="addrexpcomp">Comparison</a></h3>
 	<h3><a name="addrexpconcl" id="addrexpconcl">Conclusion</a></h3>
 	<h2><a name="advbus" id="advbus">Advanced Bus Features</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
@@ -333,6 +459,19 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>completely relative programs</li>
 	</ul>
      <h3><a name="addrmodes816" id="addrmodes816">65816 Address Modes</a></h3>
+	<ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li></ul><h3><a name="addrmodescomp" id="addrmodescomp">Comparison</a></h3>
+	<h3><a name="addrmodesconcl" id="addrmodesconcl">Conclusion</a></h3>
+	<h2><a name="opcodes" id="opcodes">Advanced Opcodes</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	- time stamp register
+	- LEA
+	</p>
+     <h3><a name="addrmodes816" id="addrmodes816">65816 Address Modes</a></h3>
+	<ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li></ul><h3><a name="addrmodescomp" id="addrmodescomp">Comparison</a></h3>
+	<h3><a name="addrmodesconcl" id="addrmodesconcl">Conclusion</a></h3>
+	<h2><a name="opmodes" id="opmodes">Operating Modes</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	"user space"
+	"kernal space"
+     </p><h3><a name="addrmodes816" id="addrmodes816">65816 Address Modes</a></h3>
 	<ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li></ul><h3><a name="addrmodescomp" id="addrmodescomp">Comparison</a></h3>
 	<h3><a name="addrmodesconcl" id="addrmodesconcl">Conclusion</a></h3>
 	<h2><a name="memif" id="memif">Memory Interface</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
