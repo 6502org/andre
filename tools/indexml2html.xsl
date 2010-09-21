@@ -94,20 +94,8 @@
 <xsl:apply-templates select="news"/>
 <xsl:call-template name="toc"/>
 <xsl:apply-templates select="section"/>
-<xsl:if test="driver">
-<xsl:call-template name="h2toc">
-  <xsl:with-param name="hdr">Driver</xsl:with-param>
-  <xsl:with-param name="a">driver</xsl:with-param>
-</xsl:call-template>
-<xsl:apply-templates select="driver"/>
-</xsl:if>
-<xsl:if test="rev">
-<xsl:call-template name="h2toc">
-  <xsl:with-param name="hdr">Board revisions</xsl:with-param>
-  <xsl:with-param name="a">boards</xsl:with-param>
-</xsl:call-template>
-<xsl:apply-templates select="rev"/>
-</xsl:if>
+<xsl:call-template name="alldriver"/>
+<xsl:call-template name="allrev"/>
 <xsl:if test="diagram">
 <xsl:call-template name="h2toc">
   <xsl:with-param name="hdr">Block diagram</xsl:with-param>
@@ -200,7 +188,10 @@
 </xsl:template>
 
 <xsl:template match="section">
-<h2><a name="{@toc}"><xsl:value-of select="@name"/></a></h2>
+  <xsl:call-template name="h2toc">
+    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+    <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
+  </xsl:call-template>
 <xsl:apply-templates select="desc"/>
 <xsl:apply-templates select="subsection"/>
 <xsl:if test="subitem|extlink">
@@ -220,6 +211,16 @@
 <xsl:apply-templates select="extlink"/>
 </ul>
 </xsl:if>
+</xsl:template>
+
+<xsl:template name="allrev">
+  <xsl:if test="rev">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr">Board revisions</xsl:with-param>
+      <xsl:with-param name="a">boards</xsl:with-param>
+    </xsl:call-template>
+    <xsl:apply-templates select="rev"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="rev">
@@ -243,6 +244,16 @@
 <xsl:apply-templates select="file"/>
 </table></xsl:if><xsl:text>
 </xsl:text>
+</xsl:template>
+
+<xsl:template name="alldriver">
+  <xsl:if test="driver">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr">Driver</xsl:with-param>
+      <xsl:with-param name="a">driver</xsl:with-param>
+    </xsl:call-template>
+    <xsl:apply-templates select="driver"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="driver">
@@ -319,6 +330,7 @@
   </xsl:call-template>
   <xsl:apply-templates select="desc"/>
   <xsl:apply-templates select="subsection"/>
+  <!-- (very) old style pages may still use this -->
   <xsl:for-each select="items[item|subitem|file]">
     <xsl:if test="file">
 	<h3>Files</h3>
@@ -350,6 +362,9 @@
   </xsl:if>
   <xsl:apply-templates select="disclaimer"/>
 </xsl:for-each>
+<!-- board drivers and revisions -->
+<xsl:call-template name="alldriver"/>
+<xsl:call-template name="allrev"/>
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
