@@ -278,11 +278,51 @@
 	Also the stack registers and stack size are important here. The 6502 stack is only
 	256&nbsp;byte long - and needs to be expanded for larger systems as well.
 	</p><p>
+	One goal is to extend the address space beyond the original 64k. On the other hand it
+	should be possible to run 16&nbsp;bit programs in all of the expanded memory. This can only
+	be achieved by some kind of address translation.
+	</p>
+	<div class="sidenote">A Commodore PET would need 5 memory areas (if you don't count unmapped memory):
+	up to 32k RAM, 2k video RAM (I/O), 24k ROM ($8800-$e7ff), 256 Byte I/O, and 4.75k ROM ($e900-$ffff).
+	A Commodore 64 would need even more memory areas: 8 (depending on memory configuration. Using power
+	on default): 0-1 CPU register, ~1k RAM ($0002-$03ff), 1k video RAM ($0400-$07ff), 38k RAM ($0800-$9ffff), 8k ROM ($a000-$bfff), 4k RAM ($c000-$cfff),
+	4k I/O ($d000-$dfff), 8k ROM ($e000-$ffff). This could be reduced to 6 if a "low priority" RAM mapping
+	for the whole 64k could be used that is being overlayed by the other mappings.</div>
+	<p>
+	Switching the memory translation should be efficient, and as far as possible done in hardware.
+	One test use case would be to switch from a simulated Commodore PET to a simulated Commodore 64
+	memory environment.
+	</p><p>
+	In addition to relocation, the memory management coming with the address expansion 
+	should allow for protection and sharing. Protection means that a process must not be able
+	to access or modify memory areas it should not access or modify without permission. 
+	This "prevents a malicious or malfunctioning program from interfering with the operation
+	of other running programs" (Wikipedia on Memory management, link below).
+	The other feature that should be possible is share memory areas between processes as a fast means
+	of interprocess communication. A server process for example could directly write data into
+	the calling process' memory.
+	</p><p>
 	The location of the reset and interrupt vectors also needs to be discussed. 
 	If they stay at <code>$FFFC-$FFFF</code>, they would probably be in the middle of the 
 	system's RAM instead of ROM. On the other hand RAM is faster than ROM these days.
 	</p>
      </desc>
+     <extlink name="Wikipedia on Memory Management" link="http://en.wikipedia.org/wiki/Memory_management"/>
+
+     <subsection toc="addrexpnat" name="Natural Address Expansion">
+	<desc><p>
+	One goal is to make the address expansion as "natural" as possible. This means similar to
+	how absolute (16&nbsp;bit) addressing expands zeropage addressing, larger address space
+	addressing modes should expand the old 16&nbsp;bit addressing. A consequence of this is
+	that the PC, the program counter has the full number of address bits. 16&nbsp;bit addressing
+	would simply address the low 64&nbsp;kByte of memory.
+	</p><p>
+	There is one caveat with this approach though - return addresses are two byte on the stack.
+	A JSR from outside the low 64k requires more than two byte on the stack, and also an own
+	RTS code to use these three bytes. This is probably the reason why WDC decided on their
+	banking approach.
+	</p></desc>
+     </subsection>
 
      <subsection toc="addrexp816" name="65816 Address Expansion: Bank Registers">
 	<desc><p>The 65816 still has a 16&nbsp;bit program counter register (PC). This
@@ -335,7 +375,7 @@
 	Segmentation has the advantage that it can quickly be changed for example in case of a 
 	context switch.
 	</p><p>
-	Even newer 80x86 also use an MMU and paging in addition to segmentation.
+	Newer 80x86 also use an MMU and paging in addition to segmentation.
 	</p><p>
 	The 80x86 can have a 16&nbsp;bit, 32&nbsp;bit or 64&nbsp;bit instruction pointer, depending
 	on the mode of operation. The 16&nbsp;bit is extended with a 48&nbsp;bit value to create
@@ -344,14 +384,92 @@
 	"Canonical addressing" means that all unused address bits on the upper end (say address bits
 	63 down to 48 when address bits 0-47 form the physical address) are either all zeros or all ones.
 	</p></desc>
+	<extlink name="Wikipedia on Memory Segmentation" link="http://en.wikipedia.org/wiki/Memory_segmentation"/>
+     </subsection>
+
+     <subsection toc="addrexppwr" name="PowerPC Address Translation">
+	<desc><p>
+	The PowerPC actually has two different types of address translation. The Block Address Translation (BAT
+	Registers map variable sized memory regions from virtual to physical ("real" in PowerPC terms) 
+	addresses. There is only a limited number of these registers. The Segmented Translation
+	"breaks virtual memory into segments, which are divided into 4&nbsp;kByte pages, each representing
+	physical memory". 
+	</p><p>
+	For segmented translation, the virtual address is split into segment number, page address, and byte
+	within the block. The segment number is used to look up a segment id, that is hashed with the page
+	address, the hash is then used as index in the page table to retrieve the real page number.
+	This lookup is cached, however, in TLBs.
+	</p><p>
+	For block address translation, which seems to be more interesting here, there are four (resp. eight)
+	block address translation CPU registers each for data and instructions. 
+	Each BAT includes a virtual block address, and a block length definition, that allows to match 
+	virtual address blocks from 128&nbsp;kByte to 
+	256&nbsp;MByte. The virtual address is truncated to the "block length", and OR'd with 
+	the real page number for that block, to retrieve the physical address.
+	</p><p>
+	The advantage of this approach is that due to the variable size, only a few entries suffice to
+	map large memory areas. 
+	</p><p>
+	Block address translation is not implemented in all PowerPC processors, notably not in the G4 and G5.
+	But it is used in the 4xx embedded processors.
+	</p></desc>
+	<extlink name="PowerPC Address Translation" link="http://book.chinaunix.net/special/ebook/PrenticeHall/PrenticeHallPTRTheLinuxKernelPrimer/0131181637/ch08lev1sec3.html"/>
      </subsection>
 
      <subsection toc="addrexpvirt" name="Address Virtualization">
-	<desc>
+	<desc><p>Virtualization of a processor hides the physical properties of a processor from the
+	running program, but only show an abstraction of the processor. The software that controls the
+	virtualization is called "hypervisor" or "virtual machine monitor" (it used to be "control program").
+	</p><p>
+	Virtualization in the 6502 world has not been implemented yet, as the 6502 has no hardware
+	protection features. A virtualized 6502 has to</p>
+	<ul>
+	<li>provide a virtual address space for the virtualized 6502</li>
+	<li>processor registers can be stored away on context switches to the hypervisor similar to interrupts</li>
+	<li>interrupts must be caught by the hypervisor and dispatched to the virtualized 6502 as needed
+		This requires specific placement of interrupt vectors</li>
+	<li>I/O address space must be trapped</li>
+	<li>Some 6502 instructions must be made privileged or be virtualized, like the SEI instruction, to
+		fulfill the Popek and Goldberg virtualization requirement.</li>
+	<li>All registers - including memory management registers(!) - must be readable, or be available
+		only to privileged instructions, so that the hypervisor can monitor changes. This
+		has interesting implications for example when an operating system that uses page tables
+		is virtualized. Page tables are stored in main memory, but to track changes by the 
+		virtualized operating system, the hardware MMU can not be used. These page tables are
+		tracked by page faults on write, the entries translated and written to the physical MMU.
+		This process can have a severe performance impact.</li>
+	</ul>
 	</desc>
+	<extlink name="Wikipedia on Full Virtualization" link="http://en.wikipedia.org/wiki/Full_virtualization"/>
+	<extlink name="Wikipedia on Hardware Virtualization" link="http://en.wikipedia.org/wiki/Hardware_virtualization"/>
+	<extlink name="Popek and Goldberg virtualization requirements" link="http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements"/>
+	<extlink name="Shadow Page Tables" link="http://en.wikipedia.org/wiki/Shadow_page_tables#Software-based_virtualization"/>
      </subsection>
      <subsection toc="addrexpcomp" name="Comparison">
-	<desc>
+	<desc><p>
+	Comparing the different approaches above, there are two main approaches, MMU and BAT.
+	A paged MMU is used by CS/A65, as well as all modern CPU architectures (above a certain size).
+	They have evolved to provide different page sizes, from 4k as in the beginning up to 4M sizes.
+	The BAT approach - conceptually an extension to the segmentation - on the other side provides
+	differently sized segments from the start, and can map these segments to physical memory.
+	Systems using segmentation or BAT have evolved to include paged mapping as well though.
+	</p><p>
+	All approaches can use TLBs - a translation cache - to speed up the mapping for addresses
+	recently used.
+	</p><p>Here is a comparison of the different approaches to expand the address space:</p>
+	<table border="1">
+	<tr><th/><th>MMU</th><th>BAT</th></tr>
+	<tr><th>Description</th><td>A paged memory management unit translates fixed sized blocks
+			from virtual to physical addresses via page table lookups</td>
+		<td>A set of segment descriptors or BAT registers describe variable sized memory
+			ranges and map them to physical addresses</td></tr>
+	<tr><th>Lazy-Loading</th><td>+ (a paged MMU can automatically traverse the page table tree
+			when a translation is needed, as a specific virtual offset maps to defined 
+			entries in that tree)</td><td>- (At least the matching part of all BAT registers
+			must be available to the CPU, as a lookup cannot be automated due to the
+			variable sized blocks)</td></tr>
+	<tr><th>Variable sized memory mappings (e.g. to virtualize a Commodore PET (min size 256 Byte) or even C64 (min size 2 Byte)</th><td>- (a paged MMU normally only have a single block size, typically 4k, or additionally a large page size of something like 4M)</td><td>+ (The BAT registers provide variable sized mappings, although not necessarily in the granularity required)</td></tr>
+	</table>
 	</desc>
      </subsection>
      <subsection toc="addrexpconcl" name="Conclusion">
@@ -501,6 +619,27 @@
 	<li>object-oriented programming</li>
 	<li>completely relative programs</li>
 	</ul>
+     </desc>
+     <subsection toc="addrmodes816" name="65816 Address Modes">
+	<desc>
+	</desc>
+	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
+     </subsection>
+     <subsection toc="addrmodescomp" name="Comparison">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="addrmodesconcl" name="Conclusion">
+	<desc>
+	</desc>
+     </subsection>
+  </section>
+
+  <section toc="opcodes" name="More prioritized types of interrupts">
+     <desc><p>
+	- time stamp register
+	- LEA
+	</p>
      </desc>
      <subsection toc="addrmodes816" name="65816 Address Modes">
 	<desc>
