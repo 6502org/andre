@@ -604,7 +604,7 @@
 	The signals decided upon here also need to be located either between CPU core and MMU (even if the
 	MMU is integrated into the CPU), or between CPU (including MMU) and the system.
      </p></desc>
-     <subsection toc="addrexp816" name="65816 Bus Features">
+     <subsection toc="advbus816" name="65816 Bus Features">
 	<desc><p>
 		The 65816 has a number of additional signals:
 	</p><table border="1">
@@ -617,7 +617,7 @@
 			is aborted, the CPU can change the memory mapping so that the memory
 			location becomes valid, and then rerun the opcode.</td></tr>
 	<tr><td>VPA/VDA</td><td>These CPU output signals tell the system whether the current
-			cylce is an opcode fetch (VDA+VPA), valid program address (VPA),
+			cycle is an opcode fetch (VDA+VPA), valid program address (VPA),
 			valid data address (VDA) or invalid (none asserted).</td>
 			<td>Replaces the SYNC output. Allows to speed up (avoid wait states)
 			for invalid cycles when the CPU can run faster than the system.
@@ -641,7 +641,7 @@
 		candidates for 65k.
 	</p></desc>
      </subsection>
-     <subsection toc="addrexpcsa" name="CS/A65 Bus Features">
+     <subsection toc="advbuscsa" name="CS/A65 Bus Features">
 	<desc><p>
 		In my <a href="../../csa/index.html">CS/A65</a> system I have implemented some
 		other advanced features:</p>
@@ -676,7 +676,8 @@
 	</table>
 	</desc>
      </subsection>
-     <subsection toc="addrexpmp" name="Multiprocessor/-core Synchronization">
+
+     <subsection toc="advbusmp" name="Multiprocessor/-core Synchronization">
 	<desc><p>
 		More modern CPUs provide features to synchronize multiple cores and/or CPUs.
 	</p><table border="1">
@@ -702,13 +703,55 @@
 	</table>
 	</desc>
      </subsection>
+
+     <subsection toc="advirq" name="Prioritized IRQs">
+	<desc><p>
+	The 6502 has a two-staged interrupt process. The standard IRQ interrupts the CPU, which 
+	then passes the PC and the status to the stack, fetches the interrupt vector and continues
+	execution there. The IRQ can be prevented by setting the "I" flag in the processor status
+	register. The NMI works similar, but can not be prevented. While the IRQ is level-triggered,
+	the NMI is edge-triggered to prevent an infinite loop.
+	</p><p>
+	More modern CPUs have multiple interrupt lines, where each interrupt has a different priority.
+	A CPU being in a specific interrupt level can be interrupted by a higher level interrupt.
+	</p></desc>
+     </subsection>
+
      <subsection toc="addrexpcomp" name="Comparison">
-	<desc>
-	</desc>
+	<desc><p>The features mentioned above work at different parts of the architecture.
+		The ABORT functionality is a functionality of the processor core - each register
+		must have a shadow copy, that is updated only when the operation completed
+		successfully (i.e. without an ABORT).
+		</p><p>
+		The read-only, no-execute etc bits are features of the memory management unit,
+		not of the processor core. 	
+		A separate component can then use these bits - together with the CPU's 
+		R/-W, SYNC etc outputs - to generate the CPU's ABORT input.
+		</p><p>
+		The bus synchronization can be implemented by signals that the CPU generates
+		(either ML, or one signal for LL/SC each), that are passed through the
+		MMU and/or Cache, and are used by an external arbiter to synchronize the
+		multiple processors.
+	</p></desc>
      </subsection>
      <subsection toc="addrexpconcl" name="Conclusion">
-	<desc>
-	</desc>
+	<desc><p class="conclusion">
+		The 65k core will provide the fetch type signals (RDY, or VPA/VDA).
+		It will have an ABORT input to provide for an opcode rollback.
+	</p><p class="conclusion">
+		The 65k MMU will provide at least read-only, no-execute, and not-mapped
+		bits for each memory location. A separate component will use these 
+		bits to detect bus error conditions and create the ABORT signal.
+	</p><p class="conclusion">
+		The processor bus interface will provide tri-state bus drivers, as well as 
+		an arbiter interface (BE, RDY), so the external
+		bus can be multiplexed. This includes ML resp. LL/SC signals for an
+		interprocess synchronization.
+	</p><p class="conclusion">
+		In addition to the IRQ and NMI interrupt signals, the CPU has at least two
+		more intermediary interrupt lines with interrupt prioritization. This
+		includes appropriate opcodes and interrupt vectors.
+	</p></desc>
      </subsection>
   </section>
 
@@ -719,27 +762,6 @@
 	<li>object-oriented programming</li>
 	<li>completely relative programs</li>
 	</ul>
-     </desc>
-     <subsection toc="addrmodes816" name="65816 Address Modes">
-	<desc>
-	</desc>
-	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
-     </subsection>
-     <subsection toc="addrmodescomp" name="Comparison">
-	<desc>
-	</desc>
-     </subsection>
-     <subsection toc="addrmodesconcl" name="Conclusion">
-	<desc>
-	</desc>
-     </subsection>
-  </section>
-
-  <section toc="opcodes" name="More prioritized types of interrupts">
-     <desc><p>
-	- time stamp register
-	- LEA
-	</p>
      </desc>
      <subsection toc="addrmodes816" name="65816 Address Modes">
 	<desc>
