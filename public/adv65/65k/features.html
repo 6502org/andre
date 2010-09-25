@@ -23,12 +23,12 @@
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
-</li>
 <li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html" class="mcurrent">Features</a></li>
 </ul>
+</li>
+<li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
 </li>
 <li><div class="i_link">&nbsp;</div><a href="../../csa/index.html">CS/A65</a></li>
 </ul>
@@ -99,9 +99,75 @@ more modern browser, like Internet Explorer 8 or later,
 		<li>Elegant - make an elegant design. This is not really a measurable goal, but a
 			goal nevertheless.</li>
 	</ul>
+	<p>On one hand the processor should fit use cases for embedded systems. It could 
+	implement a complete system-on-a-chip with a little ROM, some RAM, and I/O in a single
+	FPGA. As a CPU-only it should also be a 
+	(more or less) direct replacement for the 6502, with additional features
+	e.g. in terms of wider registers. On the other hand it should provide - maybe in a 
+	different packaging - extended linear address space and features comparable to 
+	about an early 68k processor.</p>
   </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexp816">65816 Bus Features</a></li><li><a href="#addrexpcsa">CS/A65 Bus Features</a></li><li><a href="#addrexpmp">Multiprocessor/-core Synchronization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="regexp" id="regexp">Register Width Expansion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. These three registers serve
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modular">Modularization</a></li><li><a href="#virtual">Virtualization</a></li><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexpnat">Natural Address Expansion</a></li><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexppwr">PowerPC Address Translation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#advbus816">65816 Bus Features</a></li><li><a href="#advbuscsa">CS/A65 Bus Features</a></li><li><a href="#advbusmp">Multiprocessor/-core Synchronization</a></li><li><a href="#advirq">Prioritized IRQs</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="modular" id="modular">Modularization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The NMOS 6502 basically always has the same core, i.e. the same instructions
+	Differences for example to the 6504 consisted of how many address lines were routed from the
+	core to the chip's outside.
+	</p><p>
+	Providing the right solution from embedded solutions to personal computing requires that the
+	core can be customized, providing different features for different requirements.
+	An embedded system or a 6502 replacement may not need any MMU or virtualization, but 
+	can very much profit from wider registers and wider arithmetics.
+     </p>
+     <p class="conclusion">
+	The 65k will provide a modular implementation. The minimum core will provide 6502-like features
+	with wider registers. Virtualization, MMU, Cache, and different bus width may be modular options.
+	More details to follow in the processor roadmap and the specs.
+     </p><h2><a name="virtual" id="virtual">Virtualization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 does not have any virtualization features. Virtualization in its strongest form 
+	- "Full Virtualization" - 
+	means that a program running in a virtual machine can not distinguish the virtual machine it runs
+	in from a real processor. In particular this means that an unaltered operating system for that
+	processor can run in a full-virtualization-virtual-machine on that processor.
+	The efficiency argument defines that the uncritical processor opcodes 
+	executed in the virtual machine are executed natively on the processor. The critical operations
+	are those that modify the system resources, like I/O, or processor status registers - not the
+	arithmetic flags, but the system flags like "I" - on the 6502 SEI would be a critical opcode.
+	The virtual machine monitor must be in complete control of those resources.
+     </p><p>
+     	A common way to handle critical operations is to "trap-and-emulate". When such an operation
+	is detected, the processor traps into the virtual machine monitor (also known as hypervisor)
+	and the opcode is emulated. This can even be required for simple reads or writes to I/O address
+	space!
+     </p><p>
+	Partial virtualization does not provide enough virtualization to run an unaltered operating
+	system in the virtual machine. 
+     </p><p>
+	Virtualization in the 6502 world has not been implemented yet, as the 6502 has no hardware
+	protection features. A virtualized 6502 has to</p>
+	<ul>
+	<li>provide a virtual address space for the virtualized 6502</li>
+	<li>processor registers can be stored away on context switches to the hypervisor similar to interrupts</li>
+	<li>interrupts must be caught by the hypervisor and dispatched to the virtualized 6502 as needed
+		This requires specific placement of interrupt vectors</li>
+	<li>I/O address space must be trapped</li>
+	<li>Some 6502 instructions must be made privileged or be virtualized, like the SEI instruction, to
+		fulfill the Popek and Goldberg virtualization requirement.</li>
+	<li>All registers - including memory management registers(!) - must be readable, or be available
+		only to privileged instructions, so that the hypervisor can monitor changes. This
+		has interesting implications for example when an operating system that uses page tables
+		is virtualized. Page tables are stored in main memory, but to track changes by the 
+		virtualized operating system, the hardware MMU can not be used. These page tables are
+		tracked by page faults on write, the entries translated and written to the physical MMU.
+		This process can have a severe performance impact.</li>
+	</ul>
+     <p class="conclusion">
+	The 65k will provide partial virtualization, with a) a hypervisor and a user space mode, 
+	b) virtualization of critical CPU resources like the "I" flag, 
+	c) trapping of critical opcodes when in user space mode, 
+	d) virtual memory and I/O address mappings that can only be changed in hypervisor mode,
+	e) interrupt virtualization
+     </p><p class="conclusion">
+	With these features, the 65k provides enough virtualization to run a pure 6502 operating system
+	in a virtual machine.
+     </p><ul><li><a href="http://en.wikipedia.org/wiki/Full_virtualization" target="_blank" class="extlink">Wikipedia on Full Virtualization</a> </li><li><a href="http://en.wikipedia.org/wiki/Hardware_virtualization" target="_blank" class="extlink">Wikipedia on Hardware Virtualization</a> </li><li><a href="http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements" target="_blank" class="extlink">Popek and Goldberg virtualization requirements</a> </li><li><a href="http://en.wikipedia.org/wiki/Shadow_page_tables#Software-based_virtualization" target="_blank" class="extlink">Shadow Page Tables</a> </li></ul><h2><a name="regexp" id="regexp">Register Width Expansion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The 6502 has three main registers, <code>AC, XR, YR</code>. These three registers serve
 	as accumulator and index registers, and are each 8 bit wide.
 	Lacking 16 bit operations is one of the main issues with the 6502 in modern times.
 	So the goal of the register expansion is to provide 16 bit registers and arithmetic operations.
@@ -281,11 +347,46 @@ more modern browser, like Internet Explorer 8 or later,
 	Also the stack registers and stack size are important here. The 6502 stack is only
 	256 byte long - and needs to be expanded for larger systems as well.
 	</p><p>
+	One goal is to extend the address space beyond the original 64k. On the other hand it
+	should be possible to run 16 bit programs in all of the expanded memory. This can only
+	be achieved by some kind of address translation.
+	</p>
+	<div class="sidenote">A Commodore PET would need 5 memory areas (if you don't count unmapped memory):
+	up to 32k RAM, 2k video RAM (I/O), 24k ROM ($8800-$e7ff), 256 Byte I/O, and 4.75k ROM ($e900-$ffff).
+	A Commodore 64 would need even more memory areas: 8 (depending on memory configuration. Using power
+	on default): 0-1 CPU register, ~1k RAM ($0002-$03ff), 1k video RAM ($0400-$07ff), 38k RAM ($0800-$9ffff), 8k ROM ($a000-$bfff), 4k RAM ($c000-$cfff),
+	4k I/O ($d000-$dfff), 8k ROM ($e000-$ffff). This could be reduced to 6 if a "low priority" RAM mapping
+	for the whole 64k could be used that is being overlayed by the other mappings.</div>
+	<p>
+	Switching the memory translation should be efficient, and as far as possible done in hardware.
+	One test use case would be to switch from a simulated Commodore PET to a simulated Commodore 64
+	memory environment.
+	</p><p>
+	In addition to relocation, the memory management coming with the address expansion 
+	should allow for protection and sharing. Protection means that a process must not be able
+	to access or modify memory areas it should not access or modify without permission. 
+	This "prevents a malicious or malfunctioning program from interfering with the operation
+	of other running programs" (Wikipedia on Memory management, link below).
+	The other feature that should be possible is share memory areas between processes as a fast means
+	of interprocess communication. A server process for example could directly write data into
+	the calling process' memory.
+	</p><p>
 	The location of the reset and interrupt vectors also needs to be discussed. 
 	If they stay at <code>$FFFC-$FFFF</code>, they would probably be in the middle of the 
 	system's RAM instead of ROM. On the other hand RAM is faster than ROM these days.
 	</p>
-     <h3><a name="addrexp816" id="addrexp816">65816 Address Expansion: Bank Registers</a></h3><p>The 65816 still has a 16 bit program counter register (PC). This
+     <h3><a name="addrexpnat" id="addrexpnat">Natural Address Expansion</a></h3><p>
+	One goal is to make the address expansion as "natural" as possible. This means similar to
+	how absolute (16 bit) addressing expands zeropage addressing, larger address space
+	addressing modes should expand the old 16 bit addressing. A consequence of this is
+	that the PC, the program counter has the full number of address bits. 16 bit addressing
+	would simply address the low 64 kByte of memory.
+	</p><p>
+	There is one caveat with this approach though - return addresses are two byte on the stack.
+	A JSR from outside the low 64k requires more than two byte on the stack, and also an own
+	RTS code to use these three bytes. This is probably the reason why WDC decided on their
+	banking approach.
+	</p><h3><a name="addrexp816" id="addrexp816">65816 Address Expansion: Bank Registers</a></h3><p>The 65816 still has a 16 bit program counter register (PC). This
 	register is extended by an 8 bit Program Bank Register (PBR) to give
 	a 24 bit physical address.
 	</p><p>
@@ -309,7 +410,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>The instruction pointer is still always 16 bit, as the CPU only sees 16 bit
 	virtual address space.
 	</p><p>Using this MMU requires to load the up to 16 MMU registers during a context switch.
-	This can provde costly in a multitasking operating system.
+	This can prove costly in a multitasking operating system.
 	</p><p>
 	Modern systems use a slightly different approach. The program only sets a memory address
 	to the MMU, and the MMU then loads the mappings from these memory locations - as needed.
@@ -326,7 +427,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Segmentation has the advantage that it can quickly be changed for example in case of a 
 	context switch.
 	</p><p>
-	Even newer 80x86 also use an MMU and paging in addition to segmentation.
+	Newer 80x86 also use an MMU and paging in addition to segmentation.
 	</p><p>
 	The 80x86 can have a 16 bit, 32 bit or 64 bit instruction pointer, depending
 	on the mode of operation. The 16 bit is extended with a 48 bit value to create
@@ -334,10 +435,103 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	"Canonical addressing" means that all unused address bits on the upper end (say address bits
 	63 down to 48 when address bits 0-47 form the physical address) are either all zeros or all ones.
-	</p><h3><a name="addrexpvirt" id="addrexpvirt">Address Virtualization</a></h3>
-	<h3><a name="addrexpcomp" id="addrexpcomp">Comparison</a></h3>
-	<h3><a name="addrexpconcl" id="addrexpconcl">Conclusion</a></h3>
-	<h2><a name="advbus" id="advbus">Advanced Bus Features</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Memory_segmentation" target="_blank" class="extlink">Wikipedia on Memory Segmentation</a> </li></ul><h3><a name="addrexppwr" id="addrexppwr">PowerPC Address Translation</a></h3><p>
+	The PowerPC actually has two different types of address translation. The Block Address Translation (BAT
+	Registers map variable sized memory regions from virtual to physical ("real" in PowerPC terms) 
+	addresses. There is only a limited number of these registers. The Segmented Translation
+	"breaks virtual memory into segments, which are divided into 4 kByte pages, each representing
+	physical memory". 
+	</p><p>
+	For segmented translation, the virtual address is split into segment number, page address, and byte
+	within the block. The segment number is used to look up a segment id, that is hashed with the page
+	address, the hash is then used as index in the page table to retrieve the real page number.
+	This lookup is cached, however, in TLBs.
+	</p><p>
+	For block address translation, which seems to be more interesting here, there are four (resp. eight)
+	block address translation CPU registers each for data and instructions. 
+	Each BAT includes a virtual block address, and a block length definition, that allows to match 
+	virtual address blocks from 128 kByte to 
+	256 MByte. The virtual address is truncated to the "block length", and OR'd with 
+	the real page number for that block, to retrieve the physical address.
+	</p><p>
+	The advantage of this approach is that due to the variable size, only a few entries suffice to
+	map large memory areas. 
+	</p><p>
+	Block address translation is not implemented in all PowerPC processors, notably not in the G4 and G5.
+	But it is used in the 4xx embedded processors.
+	</p><ul><li><a href="http://book.chinaunix.net/special/ebook/PrenticeHall/PrenticeHallPTRTheLinuxKernelPrimer/0131181637/ch08lev1sec3.html" target="_blank" class="extlink">PowerPC Address Translation</a> </li></ul><h3><a name="addrexpvirt" id="addrexpvirt">Address Virtualization</a></h3><p>Virtualization of a processor hides the physical properties of a processor from the
+	running program, but only show an abstraction of the processor. The program running in the
+	virtual machine should in the best case not be able to find out that it is running in a
+	virtual machine and not on real hardware. The 65k should provide virtualization to such an
+	extent that a normal 6502 operating system could run in the virtual machine.
+	</p><p>
+	Providing address space virtualization requires that any changes to the memory management
+	subsystem are privileged operations and must be trapped when executed in user space mode.
+	</p><p>
+	When trapped, the processor enters hypervisor mode, and must be able to find out what a
+	virtual address means in the physical address space. A specific instruction, possibly
+	an opcode prefix could calculate a) the effective virtual address of an opcode, and 
+	another instruction could then translate this virtual address to a physical address.
+	The other way around is not possible, as a physical address could be mapped multiple times.
+	</p><h3><a name="addrexpcomp" id="addrexpcomp">Comparison</a></h3><p>
+	Comparing the different approaches above, there are two main approaches, MMU and BAT.
+	A paged MMU is used by CS/A65, as well as all modern CPU architectures (above a certain size).
+	They have evolved to provide different page sizes, from 4k as in the beginning up to 4M sizes.
+	The BAT approach - conceptually an extension to the segmentation - on the other side provides
+	differently sized segments from the start, and can map these segments to physical memory.
+	Systems using segmentation or BAT have evolved to include paged mapping as well though.
+	</p><p>
+	All approaches can use TLBs - a translation cache - to speed up the mapping for addresses
+	recently used.
+	</p><p>Here is a comparison of the different approaches to expand the address space:</p>
+	<table border="1">
+	<tr><th></th><th>MMU</th><th>BAT</th></tr>
+	<tr><th>Description</th><td>A paged memory management unit translates fixed sized blocks
+			from virtual to physical addresses via page table lookups</td>
+		<td>A set of segment descriptors or BAT registers describe variable sized memory
+			ranges and map them to physical addresses</td></tr>
+	<tr><th>Lazy-Loading (Loading speed)</th><td>+ (a paged MMU can automatically traverse the page table tree
+			when a translation is needed, as a specific virtual offset maps to defined 
+			entries in that tree)</td><td>- (At least the matching part of all BAT registers
+			must be available to the CPU, as a lookup cannot be automated due to the
+			variable sized blocks)</td></tr>
+	<tr><th>Translation Speed</th><td>- A lazy-loading MMU needs to traverse the page tables to actually find
+			the correct mapping, which involves additional memory operations.
+			Note an MMU where the mapping is loaded on context switch is faster, but 
+			not feasible due to the large number of required mappings.)</td>
+			<td>+ (the BAT registers must be loaded at context switch, no memory operations
+			are required, so translation speed is fast - maybe even TLBs can be avoided)</td></tr>
+	<tr><th>Variable sized memory mappings (e.g. to virtualize a Commodore PET (min size 256 Byte) or 
+			even C64 (min size 2 Byte)</th><td>- (paged MMUs normally only have a single 
+			block size, typically 4k, or additionally a large page size of something like 4M)</td>
+			<td>+ (The BAT registers provide variable sized mappings, although not necessarily 
+			in the granularity required)</td></tr>
+	<tr><th>System managment</th><td>+ (PTEs can provide system management info like write protection, 
+			no-execute bits, tags, ...)</td>
+			<td>+ (BATs can provide system management info like write protection, 
+			no-execute bits, tags, ...)</td></tr>
+	</table>
+	<p>Two requirements working against each other weigh in here:</p>
+	<ul>
+	<li>Differently-sized memory mappings like for a Commodore emulator, from 2 byte, via 256 byte, up to 
+			38kByte. Boundaries on arbitrary addresses?</li>
+	<li>The runtime effort to map large memory areas on a personal computing system</li>
+	</ul>
+	<p>A two-staged approach may be the solution here</p>
+	<h3><a name="addrexpconcl" id="addrexpconcl">Conclusion</a></h3><p>
+	</p><p class="conclusion">
+		The 65k will use a three-staged approach.<br />
+		First the virtual user space address will be truncated to a definable number of address
+		bits via masking.<br />
+		Secondly the address is matched against one of 4 (or 8?) BAT-like segments. These segments
+		have a start address and end address. 
+		Each segment has two modes. Either it directly provides a physical start address for the
+		memory segment. Or it provides the start address of an MMU mapping, together with the 
+		selection of one of a few possible mapping block lengths.
+	</p><p class="conclusion">
+		Each memory mapping provides at least a read-only bit, no-execute protection, 
+		a valid bit, as well as a hypervisor bit (for mappings only available to the hypervisor).
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Memory_management" target="_blank" class="extlink">Wikipedia on Memory Management</a> </li></ul><h2><a name="advbus" id="advbus">Advanced Bus Features</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 	The 6502 has a very simple bus interface. Clock, r/-w, address and data lines. The only
 	special input signal is <code>RDY</code> that allows to halt the CPU to wait for slow
 	memory. <code>SYNC</code> signals the system when an opcode is fetched. 
@@ -361,7 +555,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	The signals decided upon here also need to be located either between CPU core and MMU (even if the
 	MMU is integrated into the CPU), or between CPU (including MMU) and the system.
-     </p><h3><a name="addrexp816" id="addrexp816">65816 Bus Features</a></h3><p>
+     </p><h3><a name="advbus816" id="advbus816">65816 Bus Features</a></h3><p>
 		The 65816 has a number of additional signals:
 	</p><table border="1">
 	<tr><th>Signal</th><th>Feature</th><th>Reason</th></tr>
@@ -373,7 +567,7 @@ more modern browser, like Internet Explorer 8 or later,
 			is aborted, the CPU can change the memory mapping so that the memory
 			location becomes valid, and then rerun the opcode.</td></tr>
 	<tr><td>VPA/VDA</td><td>These CPU output signals tell the system whether the current
-			cylce is an opcode fetch (VDA+VPA), valid program address (VPA),
+			cycle is an opcode fetch (VDA+VPA), valid program address (VPA),
 			valid data address (VDA) or invalid (none asserted).</td>
 			<td>Replaces the SYNC output. Allows to speed up (avoid wait states)
 			for invalid cycles when the CPU can run faster than the system.
@@ -395,7 +589,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<p>Of these signals, <code>M/X</code> and <code>E</code> are 65816 specific.
 		The signals <code>ABORT, VPA/VDA, /VP, BE</code> and <code>/ML</code> signals are
 		candidates for 65k.
-	</p><h3><a name="addrexpcsa" id="addrexpcsa">CS/A65 Bus Features</a></h3><p>
+	</p><h3><a name="advbuscsa" id="advbuscsa">CS/A65 Bus Features</a></h3><p>
 		In my <a href="../../csa/index.html">CS/A65</a> system I have implemented some
 		other advanced features:</p>
 	<table border="1">
@@ -427,7 +621,7 @@ more modern browser, like Internet Explorer 8 or later,
 			<td>This feature is implemented to provide safe synchronization between 
 			the two processors.</td></tr>
 	</table>
-	<h3><a name="addrexpmp" id="addrexpmp">Multiprocessor/-core Synchronization</a></h3><p>
+	<h3><a name="advbusmp" id="advbusmp">Multiprocessor/-core Synchronization</a></h3><p>
 		More modern CPUs provide features to synchronize multiple cores and/or CPUs.
 	</p><table border="1">
 	<tr><th>Feature</th><th>Description</th><th>Reason</th></tr>
@@ -450,9 +644,46 @@ more modern browser, like Internet Explorer 8 or later,
 			</td>
 			<td>Used to synchronize multiple CPUs. Requires bus snooping.</td></tr>
 	</table>
-	<h3><a name="addrexpcomp" id="addrexpcomp">Comparison</a></h3>
-	<h3><a name="addrexpconcl" id="addrexpconcl">Conclusion</a></h3>
-	<h2><a name="addrmodes" id="addrmodes">Addressing Modes</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	<h3><a name="advirq" id="advirq">Prioritized IRQs</a></h3><p>
+	The 6502 has a two-staged interrupt process. The standard IRQ interrupts the CPU, which 
+	then passes the PC and the status to the stack, fetches the interrupt vector and continues
+	execution there. The IRQ can be prevented by setting the "I" flag in the processor status
+	register. The NMI works similar, but can not be prevented. While the IRQ is level-triggered,
+	the NMI is edge-triggered to prevent an infinite loop.
+	</p><p>
+	More modern CPUs have multiple interrupt lines, where each interrupt has a different priority.
+	A CPU being in a specific interrupt level can be interrupted by a higher level interrupt.
+	</p><h3><a name="addrexpcomp" id="addrexpcomp">Comparison</a></h3><p>The features mentioned above work at different parts of the architecture.
+		The ABORT functionality is a functionality of the processor core - each register
+		must have a shadow copy, that is updated only when the operation completed
+		successfully (i.e. without an ABORT).
+		</p><p>
+		The read-only, no-execute etc bits are features of the memory management unit,
+		not of the processor core. 	
+		A separate component can then use these bits - together with the CPU's 
+		R/-W, SYNC etc outputs - to generate the CPU's ABORT input.
+		</p><p>
+		The bus synchronization can be implemented by signals that the CPU generates
+		(either ML, or one signal for LL/SC each), that are passed through the
+		MMU and/or Cache, and are used by an external arbiter to synchronize the
+		multiple processors.
+	</p><h3><a name="addrexpconcl" id="addrexpconcl">Conclusion</a></h3><p class="conclusion">
+		The 65k core will provide the fetch type signals (RDY, or VPA/VDA).
+		It will have an ABORT input to provide for an opcode rollback.
+	</p><p class="conclusion">
+		The 65k MMU will provide at least read-only, no-execute, and not-mapped
+		bits for each memory location. A separate component will use these 
+		bits to detect bus error conditions and create the ABORT signal.
+	</p><p class="conclusion">
+		The processor bus interface will provide tri-state bus drivers, as well as 
+		an arbiter interface (BE, RDY), so the external
+		bus can be multiplexed. This includes ML resp. LL/SC signals for an
+		interprocess synchronization.
+	</p><p class="conclusion">
+		In addition to the IRQ and NMI interrupt signals, the CPU has at least two
+		more intermediary interrupt lines with interrupt prioritization. This
+		includes appropriate opcodes and interrupt vectors.
+	</p><h2><a name="addrmodes" id="addrmodes">Addressing Modes</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 	The 6502 is lacking some important addressing modes that are needed for</p>
 	<ul>
 	<li>object-oriented programming</li>

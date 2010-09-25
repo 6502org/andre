@@ -163,7 +163,36 @@ more modern browser, like Internet Explorer 8 or later,
 	</p>
   </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-17</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul></ul></div><hr />
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (not working)</li></ul></li></ul></div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+<p>Status: not working</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td>
+			This is an example of how not to do it. The schematics sport an own 
+			adder resp. incrementer for each address, load and store, and the increment value.
+			The board layout shows why I decided to start from scratch - no way to route this
+			on a two-layer Eurocard PCB. 
+                </td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			The board was supposed to have a daughter board with exchangeable logic 
+			to implement transparent DMA - hiding the DMA accesses in the bogus cycles
+			between the valid CPU access cycles. That's what the TDMA connector was for.
+			Looking at the discussions about how the CPU handles interrupts (they start
+			after the opcode fetch, so you'd have to monitor either writes or the interrupt
+			line as well) I decided to skip this feature. This also removed the need to
+			read the counter register.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v1.0b.sch">csa_blitter-v1.0b.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v1.0b-sch.png">csa_blitter-v1.0b-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v1.0b-brd.png">csa_blitter-v1.0b-brd.png</a></td>
+</tr></table>
+<hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

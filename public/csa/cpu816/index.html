@@ -149,7 +149,7 @@ more modern browser, like Internet Explorer 8 or later,
 		as main logic element. If you don't have access to a Xilinx CPLD environment or don't want to use them, 
 		you may still want to look at the version 1 page here.</p>
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#timinglo">Timing - low resolution</a></li><li><a href="#timinghi">Timing - high resolution</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li><li><a href="#driver2">PET Fat40 ROM patch</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1F</a> (prototype)</li><li><a href="#board2">1.1E</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><p>
+</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#timinglo">Timing - low resolution</a></li><li><a href="#timinghi">Timing - high resolution</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li><li><a href="#driver2">PET Fat40 ROM patch</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1F</a> (prototype)</li><li><a href="#board2">1.1E</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 			The 65816 board took a long time in the making. First of all, to get the
 			amount of memory I had imagined, I had to resort to using SMD chips for the
 			memory - something I had not done before, but it worked out well.
@@ -214,7 +214,7 @@ more modern browser, like Internet Explorer 8 or later,
 			</p><p>
 			By the way, the PET bell tone becomes a very short chirp when run in 8MHz speed :-)
 			</p>
-		<h2><a name="discussion" id="discussion">Discussion</a></h2><p>
+		<h2><a name="discussion" id="discussion">Discussion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 			In this section I want to discuss various parts of the schematics
 			</p><p>
 			<code>IC13 (V6)</code> in the schematics is the new synchronous clock counter
@@ -278,7 +278,7 @@ more modern browser, like Internet Explorer 8 or later,
 			Finally <code>ICs 1, 2, 3, 23</code> are the 4 512k static RAM chips that provide
 			the onboard 2 MByte fast RAM.
 			</p>
-		<h2><a name="timinglo" id="timinglo">Timing - low resolution</a></h2><p>
+		<h2><a name="timinglo" id="timinglo">Timing - low resolution</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 		This section describes the basic <quote>low-res</quote> timing for the different timing
 		signals that control the access to the slow memory. Please use the 
 		<a href="timing1.png">first timing diagram</a> as sample reference.
@@ -348,7 +348,7 @@ more modern browser, like Internet Explorer 8 or later,
 		can be and are timing related effects on the signals. 
 		</p><p>
 		More on these timing effects can be seen in the next section.
-		</p><h2><a name="timinghi" id="timinghi">Timing - high resolution</a></h2><p>
+		</p><h2><a name="timinghi" id="timinghi">Timing - high resolution</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 		This section describes the timing of the board in a higher resolution. Please use the 
 		<a href="timing2.png">second timing diagram</a> as reference. Its purpose was to determine
 		why I still had stray writes at the end of a slow memory access.
@@ -415,7 +415,7 @@ more modern browser, like Internet Explorer 8 or later,
 		What this diagram shows is that contrary to 1MHz or 2MHz circuits, faster circuits have 
 		much harder timing requirements and when with 1MHz you may get away with the proverbial murder,
 		with higher clock frequences the timing police will get you...
-		</p><h2><a name="memmap" id="memmap">Memory Map</a></h2>
+		</p><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div>
 		<p>The memory map is relatively simple. There are two modes, <code>BOOT</code> and <code>/BOOT</code>.
 		During <code>BOOT</code> the lowest 64k RAM are mapped into the CS/A bus space. Of the lowest
 		64k, all but 2k at <code>$8000</code> are directly mapped on the bus. The 2k at
@@ -446,7 +446,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<code>A23</code>, the whole memory setup is mirrored at <code>$400000</code>,
 		<code>$800000</code> and <code>$c00000</code>.
 		</p>
-		<h2><a name="future" id="future">Notes and possible future enhancements</a></h2><p>
+		<h2><a name="future" id="future">Notes and possible future enhancements</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 		This section describes some notes and possible future enhancements of the board
 		</p><p>
 		1) <code>DRDY</code> is only used to disable <code>/SLOWMEM</code>, so that <code>RRDY</code>

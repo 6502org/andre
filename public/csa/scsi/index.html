@@ -158,7 +158,7 @@ more modern browser, like Internet Explorer 8 or later,
                         Added new board revision (with I2C interface) and new driver code.
                 </li><li><div> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#hwarc">Hardware Architecture</a></li><li><a href="#swarc">Software Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#hwlay">Hardware layer</a></li><li><a href="#part">Partition layer</a></li><li><a href="#fs">Filesystem level</a></li><li><a href="#drvs">Drivers</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 I2C driver</a></li><li><a href="#driver2">PETCPU fat40 I2C driver</a></li><li><a href="#driver3">PETCPU fat40 SCSI driver</a></li><li><a href="#driver4">OS/A65 SCSI driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2B</a> (untested)</li><li><a href="#board2">1.1A</a> (ok)</li><li><a href="#board3">1.0A</a> (ok)</li></ul></li></ul></div><h2><a name="hwarc" id="hwarc">Hardware Architecture</a></h2>
+                </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#hwarc">Hardware Architecture</a></li><li><a href="#swarc">Software Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#hwlay">Hardware layer</a></li><li><a href="#part">Partition layer</a></li><li><a href="#fs">Filesystem level</a></li><li><a href="#drvs">Drivers</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 I2C driver</a></li><li><a href="#driver2">PETCPU fat40 I2C driver</a></li><li><a href="#driver3">PETCPU fat40 SCSI driver</a></li><li><a href="#driver4">OS/A65 SCSI driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2B</a> (untested)</li><li><a href="#board2">1.1A</a> (ok)</li><li><a href="#board3">1.0A</a> (ok)</li></ul></li></ul></div><h2><a name="hwarc" id="hwarc">Hardware Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div>
 		<p>
 		The hardware architecture is actually very simple. As 
 		only asynchronous data transfer is needed, the board
@@ -171,7 +171,7 @@ more modern browser, like Internet Explorer 8 or later,
 interface from the german elektor magazin (around '88 or so).
 It has been reworked to get more SCSI-II compliance, but it is still
 not there. It works, however, with my Seagate ST1096N harddisk :-)
-		</p><h2><a name="swarc" id="swarc">Software Architecture</a></h2><p>The software architecture is kept as flexible as possible.
+		</p><h2><a name="swarc" id="swarc">Software Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The software architecture is kept as flexible as possible.
 Three levels work together, the hardware driver, the partition
 level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the

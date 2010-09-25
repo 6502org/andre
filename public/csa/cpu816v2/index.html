@@ -164,7 +164,7 @@ more modern browser, like Internet Explorer 8 or later,
 		With this board I was able to achieve a <b>speed increase of over 8 times</b> compared to the 1MHz system :-)
 		</p>
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0B</a> (prototype)</li><li><a href="#board2">2.0A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><p>
+</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0B</a> (prototype)</li><li><a href="#board2">2.0A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 			When building the <a href="../cpu816/index.html">version 1 board</a> I found that it is very
 			tedious replacig parts, cutting traces and soldering new connections each time I had to test
 			something. So I decided to try out more integrated programmable logic (more integrated than a GAL
@@ -208,7 +208,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			By the way, the PET bell tone already becomes noticably faster even if you only speed up the 
 			bogus 6502 CPU cycles (which results in them not showing on the 1MHz bus).
 			</p>
-		<h2><a name="memmap" id="memmap">Memory Map</a></h2>
+		<h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div>
 			<p>The memory map is relatively simple, only the lowest 64k are more complicated:
 				<table class="content" border="1"><tr><th>Memory area</th><th>Range</th><th>no BOOTROM, no SLOW64k</th><th>BOOTROM, no SLOW64k</th><th>no BOOTROM, SLOW64k</th></tr>
 					<tr><th>$000000-$007fff</th><td>32k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td></tr>
@@ -233,7 +233,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 				second 64k on the CS/A bus, where normally the VDC card with its video memory is located.
 				I/O is mapped on the /IOSEL select line on the CS/A bus.
 		</p>
-		<h2><a name="control" id="control">Control port</a></h2><p>This section describes the control port for the CPU board.
+		<h2><a name="control" id="control">Control port</a></h2><div class="toplink"><a href="#top">Top</a></div><p>This section describes the control port for the CPU board.
 				The port is located at $EFFF in the I/O area and is (currently) write-only.
 				The different bits are used as described in this table:
 				<table border="1" class="content" width="80%">
@@ -253,7 +253,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 						<tr><td>1,0</td><td>2,1</td><td>CLKDIV (reserved)</td><td>These bits are reserved for a clock divider value</td><td>00</td><td>This is actually used in the (somewhat compatible) PET 65816 board</td></tr>
 				</table>
 			</p>
-		<h2><a name="future" id="future">Notes and possible future enhancements</a></h2><p>
+		<h2><a name="future" id="future">Notes and possible future enhancements</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 				This section describes some notes and possible future enhancements of the board.
 				Of the possible enhancements from version 1, actually only the too small GAL
 				has been addressed. The following are thus mostly still from the version 1 list:
