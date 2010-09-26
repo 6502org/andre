@@ -572,8 +572,14 @@
 		memory segment. Or it provides the start address of an MMU mapping, together with the 
 		selection of one of a few possible mapping block lengths.
 	</p><p class="conclusion">
+		A processor option may be to leave out the paged MMU, but the segment regsisters are
+		required. For a processor with optional cache, an additional MMU bit whether the
+		caching is allowed is required.
+	</p><p class="conclusion">
 		Each memory mapping provides at least a read-only bit, no-execute protection, 
 		a valid bit, as well as a hypervisor bit (for mappings only available to the hypervisor).
+		The segment registers also provide external (physical) bus width, either "native" or 
+		8&nbsp;bit (for I/O).
 	</p></desc>
      </subsection>
   </section>
@@ -704,6 +710,29 @@
 	</desc>
      </subsection>
 
+     <subsection toc="advbusmpcached" name="Multiprocessor/-core Synchronization with caches">
+	<desc><p>
+		Modern CPUs use caches to improve performance in the presence of memory
+		slower than the CPU would need it. For the 65k a cache is optional as well 
+		(see below). So these have to be taken into account for Multicore/-processor
+		synchronization.
+	</p><p>
+		A good example of how a memory model has been refined in the light of
+		upcoming multicore processors is the Java programming language memory model.
+	</p><p>
+		I will not go further into this discussion, but present the following conclusion.
+	</p><p class="conclusion">
+		To allow the implementation of a proper "happens-before" relationship, the
+		 65k will provide memory barrier instructions to a) flush all writes to memory,
+		and b) flush the read cache, both in total and for a given address (maybe address
+		range).
+	</p></desc>
+	
+	<extlink name="Wikipedia on Java Memory Model (see also links on this page)" link="http://en.wikipedia.org/wiki/Java_Memory_Model"/>
+	<extlink name="developerworks on the new Java5 memory model" link="http://www.ibm.com/developerworks/library/j-jtp03304/"/>
+	<extlink name="Wikipedia on Memory Barriers" link="http://en.wikipedia.org/wiki/Memory_barrier"/>
+     </subsection>
+
      <subsection toc="advirq" name="Prioritized IRQs">
 	<desc><p>
 	The 6502 has a two-staged interrupt process. The standard IRQ interrupts the CPU, which 
@@ -831,16 +860,53 @@
 	</p>
      </desc>
      <subsection toc="memifwide" name="Wide Memory bus">
-	<desc>
-	</desc>
+	<desc><p>Depending on the processor option, the memory bus could be 8, 16, or even 32&nbsp;bit wide.
+	The processor core on the other hand has internal 8&nbsp;bit (opcode, small registers), but also
+	16 or maybe 32&nbsp;bit reads and writes. Unfortunately the wide reads and writes are not always
+	aligned with the memory width. 
+	</p><p>
+	An (unaligned) write of 16&nbsp;bit on an odd address of a 
+	16&nbsp;bit may need a 16&nbsp;bit read of the first address, modify its second byte, write back the 
+	16&nbsp;bit word, then read the second 16&nbsp;bit address, modify its first byte and write it back.
+	</p><p>
+	Also an unaligned read of a wide data (or code) fragment could trigger two separate reads.
+	In fact for reading a 16&nbsp;bit absolute value on an 8&nbsp;bit bus this is exactly what the
+	6502 currently does.
+	</p><p>
+	On the other hand, reading say a 32&nbsp;bit value from the PC contains a complete (6502) opcode
+	and reads - in a single cycle - all those bytes that are needed to read the opcode and which
+	the 6502 would need multiple cycles for.
+	</p><p>
+	A fully wide bus interface is not the whole solution, though. I/O chips for example usually only
+	have an 8&nbsp;bit interface. Mapping them on the memory bus would mean that their
+	addresses would have two bytes or even four bytes address difference. This would not allow 
+	any kind of old systems emulation, where I/O devices normally have consecutive addresses. 
+	</p></desc>
      </subsection>
      <subsection toc="memifcache" name="Cache">
-	<desc>
-	</desc>
+	<desc><p>
+	A cache only makes sense when the memory access is slower than the CPU can handle the data read.
+	On the 6502 a cache does not make much sense - the processor can handle the data as fast as it
+	comes in - it sometimes even needs "bogus" cycles where it does some internal work. 
+	</p><p>
+	On a 65k the situation might be different. If the core is run at, say 100&nbsp;MHz, and memory
+	can only deliver at 10&nbsp;MHz, a cache very well makes sense. 
+	</p><p>
+	A cache can also help if the bus width is extended from 8&nbsp;bit to say 32&nbsp;bit. 
+	The wide bus interface allows to read the complete (6502) opcode, plus the following opcode.
+	discardng this information does not make sense, so instead of reading it again and again,
+	it should be cached.
+	</p><p>
+	The data cache (if instruction and data are separate) should provide some kind of "zeropage"
+	flag to give zeropage addresses priority in the cache, thus implementing the zeropage cache
+	mentioned above.
+	</p></desc>
+	<extlink name="Wikipedia on Cache" link="http://en.wikipedia.org/wiki/CPU_cache#Address_translation"/>
      </subsection>
      <subsection toc="memifwrite" name="Write Pipeline">
-	<desc>
-	</desc>
+	<desc><p>
+	When the processor writes a wide data element, it needs to TODO
+	</p></desc>
      </subsection>
      <subsection toc="memifcomp" name="Comparison">
 	<desc>
@@ -848,6 +914,17 @@
      </subsection>
      <subsection toc="memifconcl" name="Conclusion">
 	<desc>
+	<p class="conclusion">The 65k will have different options for memory bus widths, each bus width
+	requires read- and write-sequencers to break down wider or misaligned memory accesses.
+	</p>
+	<p class="conclusion">The BAT registers of the MMU will provide information about whether
+	the external (physical) memory is native width (depending on processor option), or 
+	8&nbsp;bit for I/O.
+	</p>
+	<p class="conclusion">The 65k, when using a bus width larger than 8&nbsp;bit will 
+	cache the wide data read at least for the next access. Optionally a larger cache
+	can be provided (Details to be determined).
+	</p>
 	</desc>
      </subsection>
   </section>

@@ -108,7 +108,7 @@ more modern browser, like Internet Explorer 8 or later,
 	about an early 68k processor.</p>
   </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modular">Modularization</a></li><li><a href="#virtual">Virtualization</a></li><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexpnat">Natural Address Expansion</a></li><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexppwr">PowerPC Address Translation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#advbus816">65816 Bus Features</a></li><li><a href="#advbuscsa">CS/A65 Bus Features</a></li><li><a href="#advbusmp">Multiprocessor/-core Synchronization</a></li><li><a href="#advirq">Prioritized IRQs</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="modular" id="modular">Modularization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The NMOS 6502 basically always has the same core, i.e. the same instructions
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modular">Modularization</a></li><li><a href="#virtual">Virtualization</a></li><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexpnat">Natural Address Expansion</a></li><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexppwr">PowerPC Address Translation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#advbus816">65816 Bus Features</a></li><li><a href="#advbuscsa">CS/A65 Bus Features</a></li><li><a href="#advbusmp">Multiprocessor/-core Synchronization</a></li><li><a href="#advbusmpcached">Multiprocessor/-core Synchronization with caches</a></li><li><a href="#advirq">Prioritized IRQs</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Address Modes</a></li><li><a href="#addrmodescomp">Comparison</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifcomp">Comparison</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#mathcomp">Comparison</a></li><li><a href="#mathconcl">Conclusion</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="modular" id="modular">Modularization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The NMOS 6502 basically always has the same core, i.e. the same instructions
 	Differences for example to the 6504 consisted of how many address lines were routed from the
 	core to the chip's outside.
 	</p><p>
@@ -529,8 +529,14 @@ more modern browser, like Internet Explorer 8 or later,
 		memory segment. Or it provides the start address of an MMU mapping, together with the 
 		selection of one of a few possible mapping block lengths.
 	</p><p class="conclusion">
+		A processor option may be to leave out the paged MMU, but the segment regsisters are
+		required. For a processor with optional cache, an additional MMU bit whether the
+		caching is allowed is required.
+	</p><p class="conclusion">
 		Each memory mapping provides at least a read-only bit, no-execute protection, 
 		a valid bit, as well as a hypervisor bit (for mappings only available to the hypervisor).
+		The segment registers also provide external (physical) bus width, either "native" or 
+		8 bit (for I/O).
 	</p><ul><li><a href="http://en.wikipedia.org/wiki/Memory_management" target="_blank" class="extlink">Wikipedia on Memory Management</a> </li></ul><h2><a name="advbus" id="advbus">Advanced Bus Features</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 	The 6502 has a very simple bus interface. Clock, r/-w, address and data lines. The only
 	special input signal is <code>RDY</code> that allows to halt the CPU to wait for slow
@@ -644,7 +650,22 @@ more modern browser, like Internet Explorer 8 or later,
 			</td>
 			<td>Used to synchronize multiple CPUs. Requires bus snooping.</td></tr>
 	</table>
-	<h3><a name="advirq" id="advirq">Prioritized IRQs</a></h3><p>
+	<h3><a name="advbusmpcached" id="advbusmpcached">Multiprocessor/-core Synchronization with caches</a></h3><p>
+		Modern CPUs use caches to improve performance in the presence of memory
+		slower than the CPU would need it. For the 65k a cache is optional as well 
+		(see below). So these have to be taken into account for Multicore/-processor
+		synchronization.
+	</p><p>
+		A good example of how a memory model has been refined in the light of
+		upcoming multicore processors is the Java programming language memory model.
+	</p><p>
+		I will not go further into this discussion, but present the following conclusion.
+	</p><p class="conclusion">
+		To allow the implementation of a proper "happens-before" relationship, the
+		 65k will provide memory barrier instructions to a) flush all writes to memory,
+		and b) flush the read cache, both in total and for a given address (maybe address
+		range).
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Java_Memory_Model" target="_blank" class="extlink">Wikipedia on Java Memory Model (see also links on this page)</a> </li><li><a href="http://www.ibm.com/developerworks/library/j-jtp03304/" target="_blank" class="extlink">developerworks on the new Java5 memory model</a> </li><li><a href="http://en.wikipedia.org/wiki/Memory_barrier" target="_blank" class="extlink">Wikipedia on Memory Barriers</a> </li></ul><h3><a name="advirq" id="advirq">Prioritized IRQs</a></h3><p>
 	The 6502 has a two-staged interrupt process. The standard IRQ interrupts the CPU, which 
 	then passes the PC and the status to the stack, fetches the interrupt vector and continues
 	execution there. The IRQ can be prevented by setting the "I" flag in the processor status
@@ -713,11 +734,58 @@ more modern browser, like Internet Explorer 8 or later,
 	Additionally a cache can be used to improve the memory bandwidth - by not requiring to read
 	some data when it is in the cache already.
 	</p>
-     <h3><a name="memifwide" id="memifwide">Wide Memory bus</a></h3>
-	<h3><a name="memifcache" id="memifcache">Cache</a></h3>
-	<h3><a name="memifwrite" id="memifwrite">Write Pipeline</a></h3>
-	<h3><a name="memifcomp" id="memifcomp">Comparison</a></h3>
+     <h3><a name="memifwide" id="memifwide">Wide Memory bus</a></h3><p>Depending on the processor option, the memory bus could be 8, 16, or even 32 bit wide.
+	The processor core on the other hand has internal 8 bit (opcode, small registers), but also
+	16 or maybe 32 bit reads and writes. Unfortunately the wide reads and writes are not always
+	aligned with the memory width. 
+	</p><p>
+	An (unaligned) write of 16 bit on an odd address of a 
+	16 bit may need a 16 bit read of the first address, modify its second byte, write back the 
+	16 bit word, then read the second 16 bit address, modify its first byte and write it back.
+	</p><p>
+	Also an unaligned read of a wide data (or code) fragment could trigger two separate reads.
+	In fact for reading a 16 bit absolute value on an 8 bit bus this is exactly what the
+	6502 currently does.
+	</p><p>
+	On the other hand, reading say a 32 bit value from the PC contains a complete (6502) opcode
+	and reads - in a single cycle - all those bytes that are needed to read the opcode and which
+	the 6502 would need multiple cycles for.
+	</p><p>
+	A fully wide bus interface is not the whole solution, though. I/O chips for example usually only
+	have an 8 bit interface. Mapping them on the memory bus would mean that their
+	addresses would have two bytes or even four bytes address difference. This would not allow 
+	any kind of old systems emulation, where I/O devices normally have consecutive addresses. 
+	</p><h3><a name="memifcache" id="memifcache">Cache</a></h3><p>
+	A cache only makes sense when the memory access is slower than the CPU can handle the data read.
+	On the 6502 a cache does not make much sense - the processor can handle the data as fast as it
+	comes in - it sometimes even needs "bogus" cycles where it does some internal work. 
+	</p><p>
+	On a 65k the situation might be different. If the core is run at, say 100 MHz, and memory
+	can only deliver at 10 MHz, a cache very well makes sense. 
+	</p><p>
+	A cache can also help if the bus width is extended from 8 bit to say 32 bit. 
+	The wide bus interface allows to read the complete (6502) opcode, plus the following opcode.
+	discardng this information does not make sense, so instead of reading it again and again,
+	it should be cached.
+	</p><p>
+	The data cache (if instruction and data are separate) should provide some kind of "zeropage"
+	flag to give zeropage addresses priority in the cache, thus implementing the zeropage cache
+	mentioned above.
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/CPU_cache#Address_translation" target="_blank" class="extlink">Wikipedia on Cache</a> </li></ul><h3><a name="memifwrite" id="memifwrite">Write Pipeline</a></h3><p>
+	When the processor writes a wide data element, it needs to TODO
+	</p><h3><a name="memifcomp" id="memifcomp">Comparison</a></h3>
 	<h3><a name="memifconcl" id="memifconcl">Conclusion</a></h3>
+	<p class="conclusion">The 65k will have different options for memory bus widths, each bus width
+	requires read- and write-sequencers to break down wider or misaligned memory accesses.
+	</p>
+	<p class="conclusion">The BAT registers of the MMU will provide information about whether
+	the external (physical) memory is native width (depending on processor option), or 
+	8 bit for I/O.
+	</p>
+	<p class="conclusion">The 65k, when using a bus width larger than 8 bit will 
+	cache the wide data read at least for the next access. Optionally a larger cache
+	can be provided (Details to be determined).
+	</p>
 	<h2><a name="math" id="math">Mathematics</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 	The 6502 only has simple mathematics operations. A multiply would be a great addition,
 	but also operations for checksums, or even SIMD (single instruction, multiple data)

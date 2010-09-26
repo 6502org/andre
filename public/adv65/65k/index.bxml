@@ -16,6 +16,10 @@
 	I chose the <em>65k</em> name to 
         honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
 	</p><p>
+	Before you ask why - I am doing this purely for personal education purposes.
+	I have no idea if this processor will ever be finished or even implemented, but at least
+	I'll try. It may take some time though.
+	</p><p>
 	The current state of the project is the requirements, decision, and partly design phase.
 	I.e. I am defining the goals I want to achieve with the 65k processor, what features it
 	should have, how it should be done - but I am not writing any VHDL code for now.
@@ -23,6 +27,9 @@
 	On the <a href="features.html">features page</a> you can read about the requirements
 	and features I have decided on for the 65k.
 	</p>
+	<ul>
+	<li><a href="features.html">Feature discussion</a></li>
+	</ul>
   </overview>
   <news>
     <item date="2010-09-18">
