@@ -905,25 +905,35 @@
      </subsection>
      <subsection toc="memifwrite" name="Write Pipeline">
 	<desc><p>
-	When the processor writes a wide data element, it needs to TODO
+	When the processor writes a wide data element, it needs to separate it into parts in case the data
+	element is misaligned with the memory address. This is one cause for creating multiple cycles 
+	on a wide memory access. Another one is when only a part of a memory location is modified. 
+	If the memory interface does not provide a way to do that - e.g. by providing select lines per
+	byte - this requires reading the full memory word, modifying the part, and writing the 
+	whole word back. So writing byte back into a word-sized memory could require two cycles.
+	</p><p>
+	The memory interface should thus provide per-byte select lines.
+	This can either be used to write only the affected data, or to trigger a special (optimized)
+	read-mofify-write memory access cycle, where only the affected data is modified.
+	</p><p>
+	If the 65k implements a cache, each write must either invalidate the cache for the 
+	relevant memory locations, or overwrite the cached value. 
 	</p></desc>
-     </subsection>
-     <subsection toc="memifcomp" name="Comparison">
-	<desc>
-	</desc>
      </subsection>
      <subsection toc="memifconcl" name="Conclusion">
 	<desc>
 	<p class="conclusion">The 65k will have different options for memory bus widths, each bus width
 	requires read- and write-sequencers to break down wider or misaligned memory accesses.
 	</p>
-	<p class="conclusion">The BAT registers of the MMU will provide information about whether
+	<p class="conclusion">The segment registers of the MMU will provide information about whether
 	the external (physical) memory is native width (depending on processor option), or 
 	8&nbsp;bit for I/O.
 	</p>
 	<p class="conclusion">The 65k, when using a bus width larger than 8&nbsp;bit will 
-	cache the wide data read at least for the next access. Optionally a larger cache
-	can be provided (Details to be determined).
+	cache the wide data read at least for the next access - separately for
+	instruction and data. Optionally a larger cache can be provided (Details to be determined).
+	</p>
+	<p class="conclusion">The memory interface will provide per-byte select lines.
 	</p>
 	</desc>
      </subsection>
