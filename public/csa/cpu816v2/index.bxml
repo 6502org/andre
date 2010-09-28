@@ -181,6 +181,26 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		<file ltype="driver" ptype="a65" note="copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM ">test1.a65</file>
 	</driver>
 	<rev>
+		<version>2.0C</version>
+		<status>prototype</status>
+		<note type="msg">
+			Compared to the 2.0B board it adds a protection resistor for the RDY signal. 
+			When the CPU executes a WAI instruction, RDY is pulled low, this may overload the
+			chip drivers, thus the resistor. Untested though.
+		</note>
+		<note type="warn">
+			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
+		</note>
+		<file ltype="schem" ptype="esch">csa_cpu816-v2.0c.sch</file>
+		<file ltype="schem" ptype="png">csa_cpu816-v2.0c-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_cpu816-v2.0c.brd</file>
+		<file ltype="layout" ptype="png">csa_cpu816-v2.0c-brd.png</file>
+		<file ltype="parts" ptype="txt">csa_cpu816-v2.0b.parts</file>
+		<file ltype="logic" ptype="vhd" note="CPLD VHDL source">csa_cpu816-v2.0b.vhd</file>
+		<file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">csa_cpu816-v2.0b.ucf</file>
+		<file ltype="logic" ptype="jed" note="CPLD compiled source">csa_cpu816-v2.0b.jed</file>
+	</rev>
+	<rev>
 		<version>2.0B</version>
 		<status>prototype</status>
 		<note type="msg">
