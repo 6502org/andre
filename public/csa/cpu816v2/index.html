@@ -164,7 +164,7 @@ more modern browser, like Internet Explorer 8 or later,
 		With this board I was able to achieve a <b>speed increase of over 8 times</b> compared to the 1MHz system :-)
 		</p>
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0B</a> (prototype)</li><li><a href="#board2">2.0A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0C</a> (prototype)</li><li><a href="#board2">2.0B</a> (prototype)</li><li><a href="#board3">2.0A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
 			When building the <a href="../cpu816/index.html">version 1 board</a> I found that it is very
 			tedious replacig parts, cutting traces and soldering new connections each time I had to test
 			something. So I decided to try out more integrated programmable logic (more integrated than a GAL
@@ -290,7 +290,44 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		<table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test1.a65">test1.a65</a>(copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM )</td>
-</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 2.0B</a></h3>
+</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 2.0C</a></h3>
+<p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			Compared to the 2.0B board it adds a protection resistor for the RDY signal. 
+			When the CPU executes a WAI instruction, RDY is pulled low, this may overload the
+			chip drivers, thus the resistor. Untested though.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_cpu816-v2.0c.sch">csa_cpu816-v2.0c.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_cpu816-v2.0c-sch.png">csa_cpu816-v2.0c-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_cpu816-v2.0c.brd">csa_cpu816-v2.0c.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_cpu816-v2.0c-brd.png">csa_cpu816-v2.0c-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_parts"> </div></td>
+<td><a href="csa_cpu816-v2.0b.parts">csa_cpu816-v2.0b.parts</a></td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="csa_cpu816-v2.0b.vhd">csa_cpu816-v2.0b.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="csa_cpu816-v2.0b.ucf">csa_cpu816-v2.0b.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 2.0B</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -325,7 +362,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.0A</a></h3>
+<h3><a name="board3" id="board3">Version: 2.0A</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>

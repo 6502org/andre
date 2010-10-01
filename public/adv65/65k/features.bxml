@@ -16,6 +16,10 @@
 	All requirements are based on the original NMOS 6502 processor, using the 
 	&quot;legal&quot; opcodes. The 65k should run original NMOS 6502 code without modifications.
 	</p><p>
+	Currently this page is a somewhat fragmented list of requirements, it may be sorted later
+	when requirements and features are more finalized. They will be condensed into the actual
+	processor specifications.
+	</p><p>
 	Goal of these requirements is that they should be:
 	</p>
 	<ul>
@@ -26,6 +30,8 @@
 			try to minimize the lines of code to implement the features.</li>
 		<li>Elegant - make an elegant design. This is not really a measurable goal, but a
 			goal nevertheless.</li>
+		<li>Least Surprise - a feature should be "natural" to use and not "surprise"
+			developers and coders with strange or unexpected features</li>
 	</ul>
 	<p>On one hand the processor should fit use cases for embedded systems. It could 
 	implement a complete system-on-a-chip with a little ROM, some RAM, and I/O in a single
@@ -105,7 +111,7 @@
 	e) interrupt virtualization
      </p><p class="conclusion">
 	With these features, the 65k provides enough virtualization to run a pure 6502 operating system
-	in a virtual machine.
+	in user space mode.
      </p></desc>
 	<extlink name="Wikipedia on Full Virtualization" link="http://en.wikipedia.org/wiki/Full_virtualization"/>
 	<extlink name="Wikipedia on Hardware Virtualization" link="http://en.wikipedia.org/wiki/Hardware_virtualization"/>
@@ -240,6 +246,33 @@
 	into AC low byte with the <code>XBA</code> opcode.
 	</p><p>
 	At least the 80x86 seems to have extra instructions to sign-extend a register.
+	</p><p>
+	The 68k has two different types of registers, the address and the data registers.
+	When assigning values to address registers, the value is sign-extended. When
+	assigning to data registers, the register is only modified in the width as given
+	by the instruction (which can be byte, word, or long - 8, 16 or 32&nbsp;bit 
+	respectively).
+	</p><p>
+	One goal of the extension handling is that code written for a narrow register
+	width will also run on a system with wider registers. Interoperability should
+	be ensured when calling narrow code from wide code (e.g. by zero-extending
+	narrow registers). It should be possible to have processor options with
+	16, 32 or maybe even 64&nbsp;bit register width.
+	</p></desc>
+     </subsection>
+
+     <subsection toc="signextopvsop" name="Operand vs. Operation extension">
+	<desc><p>
+	Sign extension can happen at two places. When reading an operand it can be
+	extended to fit the operation size. For example a</p>
+	<pre>ADC.L #$01</pre><p>could extend the byte-sized operand to a 32&nbsp;bit
+	("L") operation input. When the result of an operation is 
+	written back, it can be extended to the register size. An </p>
+	<pre>
+	LDA.L #$01
+	ADC.B #$80
+	</pre><p>could then result in AC being sign extended to $FFFFFF81.
+	This has implications, though, when AC is being used as an unsigned value.
 	</p></desc>
      </subsection>
 
@@ -248,6 +281,8 @@
 	in the 6502, the processor could automatically extend the sign of an operation.
 	This could have advantages when the resulting value is a relative value. It would then
 	automatically preserve whether the value is positive or negative.
+	</p><p>
+	On the other hand unsigned values above $7F would be extended to a value that is not expected.
 	</p><p>
 	The only operation with relative values is the branch operation. Here the default is 
 	8&nbsp;bit - but not even a register value.
@@ -264,7 +299,7 @@
 
      <subsection toc="signextconcl" name="Conclusion">
 	<desc><p>
-	In a "6502 mode" of the 65k, the high byte could always be zero when not using 16&nbsp;bit
+	After reset, the high byte could always be zero when not using 16&nbsp;bit
 	registers at all. 8&nbsp;bit operations would only modify the low 8&nbsp;bits, leaving the others
 	to zero.
 	Only care would have to be taken to set the high byte to zero when going back
@@ -274,9 +309,21 @@
 	the register internally has (this should preferably a single-byte opcode to even provide 
 	improvement over the original 6502).
 	</p><p class="conclusion">
-	The 65k will not automatically extend the sign from an 8&nbsp;bit operation to the full
-	register width. It will instead provide extension opcodes to extend sign, zeros, or ones.
-	It will also provide separate instructions to clear the full register.
+	There will be no extension when reading an operand for an operation.
+	</p><p class="conclusion">
+	When writing to a register, to support the principle of least surprise,
+	the 65k will automatically zero-extend the result from an operation to the full
+	register width. I.e. the result of 8&nbsp;bit instructions will be extended with zeros
+	to the full register width, be it 16, 32 or even 64&nbsp;bit. Results of 16&nbsp;bit
+	operations will be extended with zeros if the target register is 32 or 64&nbsp;bit
+	and so on.
+	</p><p class="conclusion">
+	The 65k will provide extension opcodes to extend sign, zeros, or ones.
+	It will also provide separate instructions to clear the full register (no matter how wide
+	the register actually is)
+	</p><p class="conclusion">
+	Optionally it may include a prefix operation to NOT zero-extend the result of an operation to 
+	the target register's full width.
 	</p></desc>
      </subsection>
   </section>
@@ -512,6 +559,14 @@
 	</p></desc>
      </subsection>
 
+     <subsection toc="addrexpselect" name="Address Space Selection">
+	<desc><p>
+	The 68k provides a function code mapping for address space translation. I.e. the translation
+	registers can be loaded with function code and a function code mask, and if the 
+	operation's function code matches the translation register's function code, it is active.
+	</p></desc>
+     </subsection>
+
      <subsection toc="addrexpcomp" name="Comparison">
 	<desc><p>
 	Comparing the different approaches above, there are two main approaches, MMU and BAT.
@@ -525,31 +580,47 @@
 	recently used.
 	</p><p>Here is a comparison of the different approaches to expand the address space:</p>
 	<table border="1">
-	<tr><th/><th>MMU</th><th>BAT</th></tr>
+	<tr><th/><th>MMU</th><th>BAT</th><th>BAT with select mask</th></tr>
 	<tr><th>Description</th><td>A paged memory management unit translates fixed sized blocks
 			from virtual to physical addresses via page table lookups</td>
 		<td>A set of segment descriptors or BAT registers describe variable sized memory
-			ranges and map them to physical addresses</td></tr>
+			ranges and map them to physical addresses</td>
+		<td>Similar to BAT registers, but with additional match code to automatically
+			select active entries</td>
+		</tr>
 	<tr><th>Lazy-Loading (Loading speed)</th><td>+ (a paged MMU can automatically traverse the page table tree
 			when a translation is needed, as a specific virtual offset maps to defined 
 			entries in that tree)</td><td>- (At least the matching part of all BAT registers
 			must be available to the CPU, as a lookup cannot be automated due to the
-			variable sized blocks)</td></tr>
+			variable sized blocks)</td>
+			<td>0 - BAT registers can be loaded in advance and dynamically be selected 
+			using match codes. If more BAT registers are required than are available, they
+			need to be reloaded dynamically though.</td>
+		</tr>
 	<tr><th>Translation Speed</th><td>- A lazy-loading MMU needs to traverse the page tables to actually find
 			the correct mapping, which involves additional memory operations.
 			Note an MMU where the mapping is loaded on context switch is faster, but 
 			not feasible due to the large number of required mappings.)</td>
 			<td>+ (the BAT registers must be loaded at context switch, no memory operations
-			are required, so translation speed is fast - maybe even TLBs can be avoided)</td></tr>
+			are required, so translation speed is fast - maybe even TLBs can be avoided)</td>
+			<td>+ (the BAT registers must be loaded at context switch, no memory operations
+			are required, so translation speed is fast - maybe even TLBs can be avoided)</td>
+		</tr>
 	<tr><th>Variable sized memory mappings (e.g. to virtualize a Commodore PET (min size 256 Byte) or 
 			even C64 (min size 2 Byte)</th><td>- (paged MMUs normally only have a single 
 			block size, typically 4k, or additionally a large page size of something like 4M)</td>
 			<td>+ (The BAT registers provide variable sized mappings, although not necessarily 
-			in the granularity required)</td></tr>
+			in the granularity required)</td>
+			<td>+ (The BAT registers provide variable sized mappings, although not necessarily 
+			in the granularity required)</td>
+		</tr>
 	<tr><th>System managment</th><td>+ (PTEs can provide system management info like write protection, 
 			no-execute bits, tags, ...)</td>
 			<td>+ (BATs can provide system management info like write protection, 
-			no-execute bits, tags, ...)</td></tr>
+			no-execute bits, tags, ...)</td>
+			<td>+ (BATs can provide system management info like write protection, 
+			no-execute bits, tags, ...)</td>
+		</tr>
 	</table>
 	<p>Two requirements working against each other weigh in here:</p>
 	<ul>
@@ -579,7 +650,11 @@
 		Each memory mapping provides at least a read-only bit, no-execute protection, 
 		a valid bit, as well as a hypervisor bit (for mappings only available to the hypervisor).
 		The segment registers also provide external (physical) bus width, either "native" or 
-		8&nbsp;bit (for I/O).
+		8&nbsp;bit (for I/O). 
+	</p><p class="conclusion">
+		To select the active segment registers, match codes per register are used. Memory environments
+		are identified by an (8&nbsp;bit) environment number, which is mapped to the match code.
+		The segment register is active when the memory enviorment number matches the match code.
 	</p></desc>
      </subsection>
   </section>
@@ -792,59 +867,339 @@
 	<li>completely relative programs</li>
 	</ul>
      </desc>
-     <subsection toc="addrmodes816" name="65816 Address Modes">
-	<desc>
-	</desc>
+     <subsection toc="addrmodes816" name="65816 Addressing Modes">
+	<desc><p>The 65816 has a number of new addressing modes. Most importantly the memory
+	address space is separated into banks of 64kByte each.
+	</p><p>
+	There are two new 8&nbsp;bit registers, the program bank register and the data bank register
+	that determine the bank of the opcode fetch and the bank for the data access respectively.
+	The data bank register is used for the 6502 addressing modes that specify a 16&nbsp;bit address
+	only. Some of the new addressing modes are introduced to allow the specification of a 24&nbsp;bit
+	address directly, without the need for the data bank register. 
+	</p><p>
+	Additionally there is the 16&nbsp;bit direct register. Former zeropage addressing modes add the
+	value in this register to the "zeropage" offset, and are now called "direct" addressing modes.
+	The "Direct page" always is in bank zero, i.e. all former "zeropage" addressing modes work in 
+	bank zero.
+	</p><p>
+	Relative addressing for long branches has been extended to 16&nbsp;bit, from -32768 to +32767.
+	</p><p>
+	Stack on the 65816 can also only be in bank zero, but in native mode the stack pointer is 16&nbsp;bit.
+	A new stack-relative addressing mode has been added, where the effective address is the sum of the
+	stack pointer and an 8&nbsp;bit offset. The last addressing mode is "Stack relative Indirect Indexed" -
+	The stack pointer and an 8&nbsp;bit offset are added to form an address in bank zero. From this
+	address a 16&nbsp;bit address is read, the data bank register is added to form a 24&nbsp;bit address.
+	Then finally YR is added to this 24&nbsp;bit address. 
+	</p></desc>
 	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
      </subsection>
-     <subsection toc="addrmodescomp" name="Comparison">
-	<desc>
+     <subsection toc="addrmodes68k" name="68000 Addressing Modes">
+	<desc><p>
+	The 68k opcodes are quite systematic and symmetric in terms of source and target operand.
+	In the 6502, the target operand (or the source operand in case of stores) is defined by the
+	opcode (LDA vs. LDY etc). In the 68k the opcode defines the operation, and two operands define
+	the source and target operand for the operation.
+	The 68k has a number of addressing modes, some of which are similar to the 6502 modes...</p>
+	<ul>
+	<li>Register direct - defines a register as source or target operand</li>
+	<li>Absolute - the operand defines the address, from which the operand value is read</li>
+	<li>Program Counter Relative - program counter plus offset (plus index register
+		on 68020 or later)</li>
+	<li>Register indirect - the content of an register is used as address, optionally with register
+		predecrement, postincrement, or offsets (plus index register on 68020 and later)</li>
+	<li>Immediate - the value following the opcode</li>
+	<li>Implied - register implied as defined by the opcode</li>
+	</ul>
+	<p>
+	The 68k has pre-decrement and post-increment operations. I.e. when a register is used as an index, 
+	it can be decremented before or incremented after the actual operation.
+	From 68020 and later there is an addressing mode that adds an index register
+	(data or address register) to an address register, plus an offset, and uses the result as 
+	effective address. 
+	</p></desc>
+     </subsection>
+     <subsection toc="addrmodesdraft" name="65k Addressing Modes Draft">
+	<desc><p>
+	In the 65k all registers have the full length of the address bus, 16&nbsp;bit on 16&nbsp;bit options,
+	32&nbsp;bit on 32&nbsp;bit options and so on. The address space is not segmented, but linear.
+	Only segment registers (see above) "confine" addressing to a defined address space.
+	</p><p>
+	Using this approach, using long index registers provide easy access to the whole address space 
+	already. Consider a 32&nbsp;bit XR with
+	</p><pre>LDA $00,X</pre><p>
+	To "naturally" extend the addressing modes, zeropage and absolute addressing modes (plus their
+	indexed variants) are extended by absolute long addressing modes that use 32&nbsp;bit addresses.
+	So it is possible to write</p>
+	<pre>LDA $12345678,X</pre>
+	<p>Indirect addressing modes are extended by long indexed addressing modes where the address
+	pointed to by the opcode is a 32&nbsp;bit address. For example</p>
+	<pre>LDA [$00],Y</pre>
+	<p>means that at address $00000000 there is a 32&nbsp;bit (4&nbsp;byte) address, which is added to YR
+	to get the effective address.
+	</p><p>
+	To support relative code, branch opcodes will be augmented with wide (16&nbsp;bit) and long (32&nbsp;bit)
+	offsets (when 32&nbsp;bit option implemented).
+	</p><p>
+	For object-oriented programming and other modern programming styles, there will be one (maybe two) additional
+	"base registers", and other (prefix) operations:</p>
+	<ul>
+	<li>Add the value of the base register to the data address after all other processing (prefix to other opcodes)</li>
+	<li>Add the value of the stack register to the data address after all other processing (prefix to other opcodes)</li>
+	<li>push base register on stack and replace with value given</li>
+	<li>pull base register from stack</li>
+	<li>new jump and jump subroutine addressing modes</li>
+	</ul><p>
+	This allows for the following scenario: Consider an object-oriented setting. Each object instance contains, in its
+	first address, a pointer to the class definition where the actual method code is stored.
+	</p><pre>
+class1	bra method1
+	bra method2
+	...
+
+object1	.long class1
+	.word attribute1	; data value
+	.long object2		; object reference
+	...
+object2	.long class1
+	.word attribute1
+	.long 0
+	</pre><p>
+	The base register could contain the address of the current object. When executing a method on object1,
+	then calling a method of object2 could then be implemented like this:</p>
+	<pre>
+	...			; context is object1 (i.e. base register contains address of object1)
+	LDA.L 6,B		; load AC "L"ong (32&nbsp;bit) from "B"ase address, 
+				; 6 is offset of object2 ptr to base address (address of object1)
+				; AC now contains base address for object2
+	PRB			; push base address, replace with value of AC
+				; now base address contains address of object2
+	LDY.0 #3		; "method number" times 3 (zero-extend byte immediate value to full register size)
+	JSR (0,B),Y		; jump subroutine, Add offset 0 to "B"ase address,
+				; read address from there, add YR to get final (16&nbsp;bit) address to JSR to
+				; (similar to indirect-Y, but add base address before indirection)
+				; this results in address of method2 on object2
+
+	...			; execute method2 on object2
+	RTS			; return subroutine (16&nbsp;bit)
+
+	PLB			; pull base register from stack
+	...			; continue in the context of object1
+	</pre>
+	<p>To be clear, normal opcodes still work without the base registers. Adding base register, or
+	similarly stack pointer, requires an additional prefix. This increases memory and number of cycles,
+	but is offset because during "offset" operation shorter addressing modes can be used.
+	</p><p>
+	An extra opcode is</p>
+	<pre>LEA addressing_mode ; Load Effective Address</pre>
+	<p>allows to load AC with the effective address of an addressing mode. It is subject to all prefixes
+	(register width, base registers) as other opcodes.
+	</p><p>
+	No post-/pre-indecrement or decrement opcodes are provided, as with the IN* opcodes an effective 
+	replacement exists. An example could be</p>
+	<pre>
+	LDA.W ($12),Y
+	INY #2
+	</pre><p>
+	INY could not be replaced with INY.W, as the latter would increment the Y register by 1, but using
+	16&nbsp;bit width. For the advanced "INY immediate" opcode see below.
+	</p>
 	</desc>
      </subsection>
      <subsection toc="addrmodesconcl" name="Conclusion">
-	<desc>
-	</desc>
+	<desc><p>
+	When interpreting the zeropage values as kind of registers, the 6502 addressing modes
+	are quite powerful already. Adding a base register, resp. the stack register or the program counter
+	to the address, the addressing modes become even more powerful.
+	</p><p>
+	The 68k offset addressing modes are similar to the 6502's zeropage indexed or absolute indexed
+	addressing modes. The new 68020+ indexed addressing modes could be interpreted as similar to 
+	the 6502 indirect addressing modes, if the zeropage location is interpreted as a register.
+	</p><p class="conclusion">
+	The 65k will add absolute long, as well as long indirect addressing modes (as described above).
+	Branch operations will allow wide and long relative offsets. Addresses can be offset by
+	a either a new base register, the stack register or the program counter.
+	</p></desc>
      </subsection>
   </section>
 
   <section toc="opcodes" name="Advanced Opcodes">
      <desc><p>
-	- time stamp register
-	- LEA
-	</p>
+	This section summarizes requirements for new functionality and new opcodes, like</p>
+	<ul>
+	<li>base register - extended addressing mode, see above</li>
+	<li>time stamp counter - count opcode cycles etc</li>
+	<li>advanced functionality - LEA, INY immediate, ...</li>
+	</ul>
      </desc>
-     <subsection toc="addrmodes816" name="65816 Address Modes">
-	<desc>
+     <subsection toc="opcbasereg" name="Base Register">
+	<desc><p>
+	The base register is an extension to the existing addressing modes. It needs to be set, 
+	but to allow for easy object-oriented programming it needs to be put on the stack and back.</p>
+	<ul>
+	<li>TAB	- transfer AC into base register</li>
+	<li>PRB - push old base register on stack, and transfer AC into base register (Push and Replace Base register)</li>
+	<li>PHB - push base register on stack</li>
+	<li>PLB - pull base register from stack</li>
+	</ul> 
 	</desc>
-	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
      </subsection>
-     <subsection toc="addrmodescomp" name="Comparison">
-	<desc>
-	</desc>
+     <subsection toc="opcwidth" name="Width Handling of Stack Register, Base Register, ...">
+	<desc><p>
+	Upon reset the Stack register is set to $00000100. The existing 6502 opcodes TXS and TXS
+	work on the lowest 8 bit, resulting an 6502 compatible operation. 
+	Using width extension prefixes is a natural extension to a wider stack register size.
+	</p><p>
+	Upon reset the base register is set to $00000000.
+	Similarly the base register operations are subject to the operation width and width extension
+	prefixes.
+	</p><p>
+	The SWP ("SWaP") opcode exchanges high order and low oder parts of the operand. It can be
+	applied to AC (implied) or a memory location, in which case it is a read-modify-write operation.
+	The 8-bit version (no prefix) exchanges the high order nibble with the low order nibble in the byte
+	operand. The wide version (16&nbsp;bit operation width prefix) exchanges the high order byte with the
+	low order byte, and so on.
+	</p></desc>
      </subsection>
-     <subsection toc="addrmodesconcl" name="Conclusion">
-	<desc>
-	</desc>
+     <subsection toc="opciny" name="IN?/DE? immediate">
+	<desc><p>
+	To accomodate increments and decrements of the index registers for wide and long operations, the
+	INY, INX, DEY and DEX opcodes get a new variation with an immediate operand, that determines the 
+	increment resp. decrement. The opcodes are applicable to the operation width and width extension
+	prefixes.
+	</p></desc>
+     </subsection>
+     <subsection toc="opcjsr" name="Jump Subroutine">
+	<desc><p>
+	The jump subroutine gets more powerful addressing modes, to allow for better use in object-oriented
+	programming for example.</p>
+	<ul>
+	<li>JSR (zp),Y - indirect-Y</li>
+	<li>JSR (abs,X) - X-indirect</li>
+	</ul>
+	These opcodes use 16&nbsp;bit addresses. To use wider addresses, a new opcode must be defined, 
+	plus a corresponding return opcode.
+	<ul>
+	<li>JSRL abs</li>
+	<li>JSRL abslong</li>
+	<li>JSRL (zp),Y</li>
+	<li>JSRL [zp],Y</li>
+	<li>RTSL</li>
+	</ul><p>
+	The operands that are not full-width are sign-extended to the full address register width.
+	Note: these could possibly be implemented by applying operation width prefix to the normal
+	JSR and RTS opcodes.
+	</p></desc>
+     </subsection>
+     <subsection toc="opcirq" name="Interrupts, RTI">
+	<desc><p>
+	Interrupts always jump into hypervisor more (see below). A BRK opcode works similar (in hardware)
+	as an interrupt, in fact the 6502 implements the interrupt as a BRK opcode. 
+	A 6502 interrupt pushes the interrupt location to the stack, then the status register.
+	</p><p>
+	However, this stack frame is not sufficient when the address is larger than 16&nbsp;bit, or
+	the status register is extended to more than 8&nbsp;bit.
+	</p><p>
+	This stack frame can easily be extended, though. The 6502 status register has bit 5 always 1.
+	If the status on the stack has bit 5 cleared, the stack frame can be different:
+	</p><pre>
+		byt STATUS		- existing status register, bit 5 cleared
+		byt EXTSTATUS		- extended status (to be defined)
+		long RETADDR		- long return address (possibly wide - 16&nbsp;bit - depending on ext. status)
+	</pre><p>
+	The RTI opcode then does not need to be prefixed depending on address space. Instead it 
+	reacts on the data on the stack.
+	</p><p>
+	If the interrupt flag is set, this operation may be trapped as privileged operation.
+	</p></desc>
+     </subsection>
+     <subsection toc="opcbranch" name="Branches">
+	<desc><p>
+	The 65k will provide</p>
+	<pre>BRA jump_target</pre><p>"BRanch Always" relative jump, as well as</p>
+	<pre>
+		BSR jsr_target
+		BSRL jsr_target
+	</pre>
+	<p>"Branch SubRoutine" relative jump to subroutine opcodes. The BSR opcode 
+	puts a two-byte return address on the stack, BSRL puts four-byte return address
+	on stack.
+	</p></desc>
      </subsection>
   </section>
 
   <section toc="opmodes" name="Operating Modes">
-     <desc><p>
-	"user space"
-	"kernal space"
+     <desc><p>The 65k provides two operating modes, user mode and supervisor mode.
+	Within user mode, address space is virtualized, BRK is used to break out from user mode into
+	supervisor mode. Special opcodes are provided to return from BRK resp.
+	jump to interrupt vectors (reset, irq, nmi) in user space.
+	In supervisor mode address space is not virtualized, but directly mapped to 
+	physical addresses.
+	</p><p>
+	The stack pointer exists in two versions, one for the user mode, one for the supervisor mode,
+	to easily switch between modes.
+	</p><p>
+	Supervisor mode environment number is 1 (see address mapping above). 
+	The user mode environment number is stored in a separate register.
      </p></desc>
-     <subsection toc="addrmodes816" name="65816 Address Modes">
-	<desc>
+     <subsection toc="opmodessp" name="Stack Pointer">
+	<desc><p>
+	The opcodes TXS and TSX operate on the respective stack pointer, the supervisor stack pointer
+	in supervisor mode, the user mode stack pointer in user mode.
+	</p><p>
+	In addition to the existing TXS and TSX operations there will be two more privileged operations to handle the 
+	user space stack pointer from supervisor mode:</p>
+	<ul>
+	<li>TUSX - move user space stack pointer to XR</li>
+	<li>TXUS - move XR to user space stack pointer</li>
+	</ul>
 	</desc>
-	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
+	<!--extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/-->
      </subsection>
-     <subsection toc="addrmodescomp" name="Comparison">
-	<desc>
-	</desc>
+     <subsection toc="opmodestoum" name="Access to user mode">
+	<desc><p>
+	From supervisor mode data must be read from or written to user mode environments. 
+	For this purpose some specific privileged prefix opcodes are provided:</p>
+	<ul>
+	<li>TUEX - move user mode environment number to XR</li>
+	<li>TXUE - move XR to user mode environment number</li>
+	<li>MEN - next opcode operates on user mode memory environment</li>
+	</ul><p>
+	Loading data from another - e.g. user mode - environment would look like:</p>
+	<pre>
+	LDY #2		; environment number
+	TXUE
+	LDX usp		; load address of environment user stack pointer to XR
+	MEN		; next opcode on memory environment YR
+	LDA.W 0,X	; load word data from user mode stack in environment #2
+	</pre>
+	<p>
+	With the operation size prefix for the load operation, automatically multiple
+	bytes could be read from an environment - even across mapping borders.
+	</p><p>
+	To jump to user space, MEMY and MEMX could be used as well</p>
+	<pre>
+	LDX usp		; load address of environment user stack pointer to XR
+	TXUS
+	LDX #2
+	TXUE
+	...
+	MEN
+	JMP addr_in_env2
+	</pre>
+	<p>These prefixes do not work on jump subroutine. The prefixed jump operation automatically
+	switches to user mode.
+	</p></desc>
      </subsection>
-     <subsection toc="addrmodesconcl" name="Conclusion">
-	<desc>
-	</desc>
+     <subsection toc="opmodescall" name="Call to supervisor mode from user mode">
+	<desc><p>
+	To switch from user mode to supervisor mode a new CALL opcode is used. It works similarly to the BRK
+	opcode, but has a different opcode value (to keep compatibility with BRK operation). The byte behind the
+	CALL opcode determines the operation. Program counter is put on the user mode stack
+	before ...
+	</p><p>
+	The RTC opcode returns from a CALL operation, by switching to user mode, pulling the program counter from
+	the stack resuming operation.
+	</p></desc>
      </subsection>
   </section>
 
@@ -943,7 +1298,7 @@
      <desc><p>
 	The 6502 only has simple mathematics operations. A multiply would be a great addition,
 	but also operations for checksums, or even SIMD (single instruction, multiple data)
-	operations.
+	operations. Bit manipulation operations have been implemented in the CMOS 6502.
 	</p><p>
 	Floating point operations would also be a great addition. 
 	</p>
