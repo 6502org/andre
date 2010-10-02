@@ -16,7 +16,8 @@
 	All requirements are based on the original NMOS 6502 processor, using the 
 	&quot;legal&quot; opcodes. The 65k should run original NMOS 6502 code without modifications.
 	</p><p>
-	Currently this page is a somewhat fragmented list of requirements, it may be sorted later
+	Currently this page is a somewhat fragmented list of requirements, neither complete nor necessarily consistent.
+	It may be sorted later
 	when requirements and features are more finalized. They will be condensed into the actual
 	processor specifications.
 	</p><p>
@@ -1296,32 +1297,86 @@ object2	.long class1
 
   <section toc="math" name="Mathematics">
      <desc><p>
-	The 6502 only has simple mathematics operations. A multiply would be a great addition,
+	The 6502 only has simple mathematics operations, ADC and SBC. A multiply would be a great addition,
 	but also operations for checksums, or even SIMD (single instruction, multiple data)
-	operations. Bit manipulation operations have been implemented in the CMOS 6502.
+	operations. Bit manipulation operations have been implemented in the CMOS 6502 for example.
 	</p><p>
 	Floating point operations would also be a great addition. 
 	</p>
      </desc>
-     <subsection toc="memifwide" name="Wide Memory bus">
-	<desc>
-	</desc>
+     <subsection toc="mathint" name="Integer Mathematics">
+	<desc><p>
+	The 65k will provide integer arithmetic ADC and SBC operations at the same widths as 
+	available for the other operations. Decimal mode will be supported. 
+	</p><p>
+	Integer multiply will be supported signed and unsigned with</p>
+	<pre>
+	LDA.W #1	; operand 1
+	MULS.W #2	; operand 2
+	</pre><p>
+	Result will be in AC. If the MUL operation is defined as byte operation, the 
+	result will be wide (16&nbsp;bit), and so on. If two values of the maximum register
+	width are multiplied (e.g. 32x32 bit multiply with 32&nbsp;bit registers) the high
+	order half of the result is discarded. The overflow bit will be set if result does not fit in AC,
+	i.e. if the high order half is not the sign extension of the low order half.
+	</p><p>
+	Integer division will also be provided in signed and unsigned variants.
+	One variant divides AC by the given operand of the same size, and stores the resulting quotient in 
+	AC at the same size. The remainder is discarded.
+	The extended variant uses the AC in twice the size of the operand. A byte division thus takes a
+	16&nbsp;bit AC, divides it by an 8&nbsp;bit operand, then stores the quotient in the lower 
+	half of AC, and the remainder in the high order half of AC. Details are to be defined.
+	</p></desc>
      </subsection>
-     <subsection toc="memifcache" name="Cache">
-	<desc>
-	</desc>
+     <subsection toc="mathbit" name="Bit Manipulation Operations">
+	<desc><p>
+	The 65C02 provides a number of bit operations:</p>
+	<ul>
+	<li>SMB - set a single memory bit in a zeropage location</li>
+	<li>RMB - clear a single memory bit in a zeropage location</li>
+	<li>BBR - branch on zeropage location bit reset</li>
+	<li>BBS - branch on zeropage location bit set</li>
+	<li>TSB - test and set memory bit (zeropage and absolute)</li>
+	<li>TRB - test and reset memory bit (zeropage and absolute)</li>
+	</ul><p>
+	The TSB and TRB take an immediate byte operand. The Z-flag is set by the bitwise AND and the value of the memory
+	location given. The memory location is then ORd with the immediate byte and stored back (TSB), or ANDed with the
+	complement of the immediate byte operand, and stored back again. This opcodes implements the atomic test-and-set
+	instruction, that could be used for multithreaded synchronization (the 65C02 can not synchronize multiple CPUs).
+	</p><p>
+	The SMB, RMB, as well as the BBR and BBS opcodes do not provide more functionaliy than can be achieved with
+	BIT and BNE/BEQ, resp. the normal AND and ORA opcodes. They are more efficient though, as they do not change
+	(or not even use) the AC. They work on zeropage locations only.
+	</p><p>
+	The 68k has these four operations:</p>
+	<ul>
+	<li>BCHG - change a single bit in the operand</li>
+	<li>BSET - set a single bit in the operand</li>
+	<li>BCLR - clear a single bit in the operand</li>
+	<li>BTST - Test a single bit in the operand</li>
+	</ul><p>
+	Compared to the 65C02 they are more versatile in the addressing modes (not only zeropage), but handle single
+	bits only. The 68k provides an extra test-and-set operation (TAS) on byte locations, that set the high order bit (7)
+	only.
+	</p><p>
+	To make the opcodes useful, they should provide more addressing modes than the 65C02 versions.
+	</p><p class="conclusion">
+	The 65k will provide Single Bit Change, Set, Clear and Test operations, on byte-sized operands, with the "usual" addressing modes.
+	A Test-and-set resp. test-and-clear operation will provide the atomic synchronization operations.
+	</p></desc>
+	<extlink name="65C02 opcodes, esp. the bit operations" link="http://www.6502.org/tutorials/65c02opcodes.html"/>
      </subsection>
-     <subsection toc="memifwrite" name="Write Pipeline">
-	<desc>
-	</desc>
+     <subsection toc="mathops" name="Other Operations">
+	<desc><p class="conclusion">
+	The 65k will provide operations to count one-bits in an operand. The 65k will optionally provide sliced operations.
+	I.e. N 8&nbsp;bit operations in an N*8&nbsp;bit register size. 
+	</p></desc>
      </subsection>
-     <subsection toc="mathcomp" name="Comparison">
-	<desc>
-	</desc>
-     </subsection>
-     <subsection toc="mathconcl" name="Conclusion">
-	<desc>
-	</desc>
+     <subsection toc="mathcwfloatcomp" name="Floating Point Operations">
+	<desc><p>
+	At this point in time no floating point operations are planned. A prefix opcode will be reserved for 
+	floating point operations.
+	</p></desc>
      </subsection>
   </section>
 
