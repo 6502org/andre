@@ -26,6 +26,7 @@
 <li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html" class="mcurrent">Features</a></li>
+<li><div class="i_file">&nbsp;</div><a href="specsprog.html">Programming Model</a></li>
 </ul>
 </li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
@@ -113,9 +114,11 @@ more modern browser, like Internet Explorer 8 or later,
 	e.g. in terms of wider registers. On the other hand it should provide - maybe in a 
 	different packaging - extended linear address space and features comparable to 
 	about an early 68k processor.</p>
-  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
+  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-10-03</small>
+	First working draft finished
+    </li><li><div> </div><small>2010-09-18</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modular">Modularization</a></li><li><a href="#virtual">Virtualization</a></li><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextopvsop">Operand vs. Operation extension</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexpnat">Natural Address Expansion</a></li><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexppwr">PowerPC Address Translation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpselect">Address Space Selection</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#advbus816">65816 Bus Features</a></li><li><a href="#advbuscsa">CS/A65 Bus Features</a></li><li><a href="#advbusmp">Multiprocessor/-core Synchronization</a></li><li><a href="#advbusmpcached">Multiprocessor/-core Synchronization with caches</a></li><li><a href="#advirq">Prioritized IRQs</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Addressing Modes</a></li><li><a href="#addrmodes68k">68000 Addressing Modes</a></li><li><a href="#addrmodesdraft">65k Addressing Modes Draft</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#opcbasereg">Base Register</a></li><li><a href="#opcwidth">Width Handling of Stack Register, Base Register, ...</a></li><li><a href="#opciny">IN?/DE? immediate</a></li><li><a href="#opcjsr">Jump Subroutine</a></li><li><a href="#opcirq">Interrupts, RTI</a></li><li><a href="#opcbranch">Branches</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#opmodessp">Stack Pointer</a></li><li><a href="#opmodestoum">Access to user mode</a></li><li><a href="#opmodescall">Call to supervisor mode from user mode</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#mathint">Integer Mathematics</a></li><li><a href="#mathbit">Bit Manipulation Operations</a></li><li><a href="#mathops">Other Operations</a></li><li><a href="#mathcwfloatcomp">Floating Point Operations</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#blockblitter">Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="modular" id="modular">Modularization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The NMOS 6502 basically always has the same core, i.e. the same instructions
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modular">Modularization</a></li><li><a href="#virtual">Virtualization</a></li><li><a href="#regexp">Register Width Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#regexp816">Register expansion in the 65816</a></li><li><a href="#regexpalt1">Alternative 1: New Registers</a></li><li><a href="#regexpalt2">Alternative 2: Prefix Bytes</a></li><li><a href="#regexpcomp">Comparison</a></li><li><a href="#regexpconcl">Conclusion</a></li></ul></li><li><a href="#signext">Sign extension handling</a></li><li style="list-style-type:none;"><ul><li><a href="#signext816">65816, 80x86 Sign extension handling</a></li><li><a href="#signextopvsop">Operand vs. Operation extension</a></li><li><a href="#signextauto">Automatic Extension</a></li><li><a href="#signextforce0">Force Zero</a></li><li><a href="#signextconcl">Conclusion</a></li></ul></li><li><a href="#regnum">Number of Register</a></li><li style="list-style-type:none;"><ul><li><a href="#regnumset">Register Sets</a></li><li><a href="#regnumzp">Zeropage as Registers</a></li><li><a href="#regnumnew">Additional, Separate Registers</a></li><li><a href="#regnumcomp">Comparison</a></li><li><a href="#regnumconcl">Conclusion</a></li></ul></li><li><a href="#addrexp">Address Expansion</a></li><li style="list-style-type:none;"><ul><li><a href="#addrexpnat">Natural Address Expansion</a></li><li><a href="#addrexp816">65816 Address Expansion: Bank Registers</a></li><li><a href="#addrexpcsa">CS/A65 Address Expansion: MMU</a></li><li><a href="#addrexpbase">80x86 - Segmentation</a></li><li><a href="#addrexppwr">PowerPC Address Translation</a></li><li><a href="#addrexpvirt">Address Virtualization</a></li><li><a href="#addrexpselect">Address Space Selection</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#advbus">Advanced Bus Features</a></li><li style="list-style-type:none;"><ul><li><a href="#advbus816">65816 Bus Features</a></li><li><a href="#advbuscsa">CS/A65 Bus Features</a></li><li><a href="#advbusmp">Multiprocessor/-core Synchronization</a></li><li><a href="#advbusmpcached">Multiprocessor/-core Synchronization with caches</a></li><li><a href="#advirq">Prioritized IRQs</a></li><li><a href="#addrexpcomp">Comparison</a></li><li><a href="#addrexpconcl">Conclusion</a></li></ul></li><li><a href="#addrmodes">Addressing Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#addrmodes816">65816 Addressing Modes</a></li><li><a href="#addrmodes68k">68000 Addressing Modes</a></li><li><a href="#addrmodesdraft">65k Addressing Modes Draft</a></li><li><a href="#addrmodesconcl">Conclusion</a></li></ul></li><li><a href="#opcodes">Advanced Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#opcbasereg">Base Register</a></li><li><a href="#opcwidth">Width Handling of Stack Register, Base Register, ...</a></li><li><a href="#opciny">IN?/DE? immediate</a></li><li><a href="#opcjsr">Jump Subroutine</a></li><li><a href="#opcirq">Interrupts, RTI</a></li><li><a href="#opcbranch">Branches</a></li></ul></li><li><a href="#opmodes">Operating Modes</a></li><li style="list-style-type:none;"><ul><li><a href="#opmodessp">Stack Pointer</a></li><li><a href="#opmodestoum">Access to user mode</a></li><li><a href="#opmodescall">Call to supervisor mode from user mode</a></li></ul></li><li><a href="#memif">Memory Interface</a></li><li style="list-style-type:none;"><ul><li><a href="#memifwide">Wide Memory bus</a></li><li><a href="#memifcache">Cache</a></li><li><a href="#memifwrite">Write Pipeline</a></li><li><a href="#memifconcl">Conclusion</a></li></ul></li><li><a href="#math">Mathematics</a></li><li style="list-style-type:none;"><ul><li><a href="#mathint">Integer Mathematics</a></li><li><a href="#mathbit">Bit Manipulation Operations</a></li><li><a href="#mathops">Other Operations</a></li><li><a href="#mathcwfloatcomp">Floating Point Operations</a></li></ul></li><li><a href="#block">Vector and Block Operations</a></li><li style="list-style-type:none;"><ul><li><a href="#block816">65816 MVN/MVP Operations</a></li><li><a href="#block68k">68k MOVEM, MOVE16 Operations</a></li><li><a href="#blockcsa">CS/A Blitter Operations</a></li><li><a href="#blockblit">Graphics Blitter Operations</a></li><li><a href="#blockcomp">Comparison</a></li><li><a href="#blockconcl">Conclusion</a></li></ul></li></ul></div><h2><a name="modular" id="modular">Modularization</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The NMOS 6502 basically always has the same core, i.e. the same instructions
 	Differences for example to the 6504 consisted of how many address lines were routed from the
 	core to the chip's outside.
 	</p><p>
@@ -1205,14 +1208,94 @@ object2	.long class1
 	At this point in time no floating point operations are planned. A prefix opcode will be reserved for 
 	floating point operations.
 	</p><h2><a name="block" id="block">Vector and Block Operations</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
-	The 65816 already has block move operations.
+	The 65816 already has block move operations, also the 68k has
+	operations to move multiple data elements. For the CS/A computer
+	I am working on a block transfer engine as well.
 	</p><p>
 	</p>
-     <h3><a name="block816" id="block816">65816 MVN/MVP Operations</a></h3>
-	<h3><a name="blockblitter" id="blockblitter">Blitter Operations</a></h3>
-	<h3><a name="blockcomp" id="blockcomp">Comparison</a></h3>
-	<h3><a name="blockconcl" id="blockconcl">Conclusion</a></h3>
-	<hr />
+     <h3><a name="block816" id="block816">65816 MVN/MVP Operations</a></h3><p>The MVN and MVP operations use the X and Y registers as
+	source and destination start addresses, and two bytes follwing the opcode
+	as their respective bank numbers. The 16 bit AC contains one less than the
+	number of bytes to transfer (i.e. AC=$ffff transfers $10000 bytes).
+	</p><p>There is a "negative" MVN and a "positive" MVP operation. The positive operation
+	increases the start addresses after each transfer, the negative operation decreases the
+	addresses. This helps transferring overlapping memory areas. 
+	</p><p>
+	As there is a bank byte in the opcode, data can either be transferred within a bank, or 
+	from one bank to another - but each of the source or destination memory areas may not span
+	a bank boundary.
+	</p><h3><a name="block68k" id="block68k">68k MOVEM, MOVE16 Operations</a></h3><p>
+	The 68k does not have a "bulk" data movement operation. There is the MOVEM opcode that allows
+	to transfer multiple registers to memory and back - which is helpful for interrupt routines though.
+	</p><p>
+	The 68040 extends this with the MOVE16 opcode. It can transfer a cache line of 16 bytes. 
+	Source or target cache lines must be aligned at 16 byte address boundaries - postincrement addressing
+	however starts at the given (maybe unaligned) address, then wraps around at the cache line boundary.
+	</p><p>
+	Thus the data transfer is always a full 16 consecutive byte, and data has to be aligned. 
+	</p><h3><a name="blockcsa" id="blockcsa">CS/A Blitter Operations</a></h3><p>
+	The CS/A blitter (block transfer engine) allows to set a full source, a full destination address, and
+	a counter of up to 256 bytes. Additionally an 8 bit increment can be set for each source and destination address.
+	Each address can either increment or decrement indepently from the other address (so a swap copy is possible).
+	It works byte-wide though.
+	</p><h3><a name="blockblit" id="blockblit">Graphics Blitter Operations</a></h3><p>
+	The original "blitter" name derives from "Bit BLIT", which stands for "bit-block image transfer" (see wikipedia link).
+	It is a "a computer graphics operation in which several bitmaps are combined into one using a raster operator".
+	This means that during transfer of data from one location to another one a "raster operator" - basically a
+	boolean formula - is used to manipulate the data. This could be to AND a source value with the destination, OR it, 
+	invert it or even XOR it. When using more than one source, a mask could be applied as well.
+	</p><p>
+	However, "modern graphics hardware and software has almost completely replaced bitwise operations with 
+	mathematical operations such as alpha compositing". I.e. a blitter is not used for graphics anymore
+	these days.
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Bit_blit" target="_blank" class="extlink">wikipedia on Bit blit</a> </li></ul><h3><a name="blockcomp" id="blockcomp">Comparison</a></h3><p>Here is a feature comparison of the approaches mentioned above:</p>
+	<table border="1">
+	<tr><th> </th><th>65816</th><th>68k MOVE16</th><th>CS/A Blitter</th><th>Graphics Blitter</th></tr>
+	<tr><th>Transfer size</th><td>+ (1 byte up to 64k)</td>
+					<td>- (fixed 16 byte)</td>
+					<td>0 (1 up to 256 byte)</td>
+					<td>+ (flexible in general)</td>
+			</tr>
+	<tr><th>Source and Destination</th><td>0 (only within a bank)</td>
+					<td>- (aligned at 16 byte boundary)</td>
+					<td>+ (any address)</td>
+					<td>+ (any address)</td>
+			</tr>
+	<tr><th>increment/decrement</th><td>0 (only either increment or decrement both addresses by 1)</td>
+					<td>- (only postincrement)</td>
+					<td>+ (flexible increments of -256 to +256 interleave per address</td>
+					<td>+ (flexible increments per address</td>
+			</tr>
+	<tr><th>Speed, cycles</th><td>0 (7 cycles per byte transfer)</td>
+					<td>+ (burst read of cache line)</td>
+					<td>+ (2 cycles per byte transfer, which is maximum for a byte-wide bus)</td>
+					<td>depending on operation and implementation</td>
+			</tr>
+	<tr><th>Operations</th><td>- None</td>
+					<td>- (None)</td>
+					<td>- (None)</td>
+					<td>+ (boolean operations, even including more than two inputs)</td>
+			</tr>
+	</table>
+	<h3><a name="blockconcl" id="blockconcl">Conclusion</a></h3><p>The 65k will have options for bus interfaces with different width, from one byte, two byte, even more.
+	Using an interleaved approach will cost performance, as each memory cycle is only partially used
+	(e.g. one byte per 16 bit memory read), but interesting effects could be implemented with it.
+	</p><p>
+	The implementation effort for graphics operations could be quite high, and the benefits at this time
+	are not really clear. 
+	</p><p class="conclusion">
+	The 65k will implement two block move operations similar to the 65816 versions, but allowing for the
+	X and Y registers to hold full addresses, and AC holding the number of bytes (maybe -1) to transfer.
+	</p><p class="conclusion">
+	The MVN and MVP operations may be interruptible (to improve interrupt latency), carry could be set
+	as sign for an interruption so that a </p>
+	<pre>
+dotrans	MVP
+	BCS dotrans
+	</pre><p class="conclusion">
+	would ensure that all bytes were transferred. A prefix byte opcode will be reserved for 
+	blitter operations implemented as a future extension.
+	</p><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

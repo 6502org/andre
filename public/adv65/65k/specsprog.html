@@ -8,7 +8,7 @@
 <meta name="keywords" content="6502 16bit 32bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>The 65k Project</title></head>
+<title>The 65k Project - Implementation Specs</title></head>
 <body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -23,10 +23,10 @@
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">The 65k Project</a>
+<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html">Features</a></li>
-<li><div class="i_file">&nbsp;</div><a href="specsprog.html">Programming Model</a></li>
+<li><div class="i_file">&nbsp;</div><a href="specsprog.html" class="mcurrent">Programming Model</a></li>
 </ul>
 </li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
@@ -78,76 +78,47 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content">
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  The 65k Project</div>
-<a name="topanchor" id="topanchor"></a><h1>The 65k Project</h1><p class="copyright">(C)
+&gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">The 65k Project
+</a>&gt;&gt;  Programming Model</div>
+<a name="topanchor" id="topanchor"></a><h1>The 65k Project - Implementation Specs</h1><p class="copyright">(C)
 2010- André  Fachat</p> 
-<div class="overview">
-	<p>
-	The <em>65k project</em> is my project to expand the original 6502 processor with
-	new opcodes, new and/or larger registers and other advanced features.
-	I chose the <em>65k</em> name to 
-        honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+<div class="overview"><p>
+	This page describes the implementation specs for my 65k line of processors.
+	For a reasoning why a feature is implemented as it is, see the <a href="features.html">Features discussion</a>
+	page.
 	</p><p>
-	Before you ask why - I am doing this purely for personal education purposes.
-	I have no idea if this processor will ever be finished or even implemented, but at least
-	I'll try. It may take some time though.
+	The 65k will be available in different "sizes" - mainly in terms of register widths.
+	For example options for 16 bit, 32 bit, and even 64 bit registers are defined.
+	The first section will thus describe the options available.
 	</p><p>
-	The current state of the project is the requirements, decision, and partly design phase.
-	I.e. I am defining the goals I want to achieve with the 65k processor, what features it
-	should have, how it should be done - but I am not writing any VHDL code for now.
+	The second section will then give an overview on the opcodes and their addressing modes,
+	while the third section dives into opcode details.
 	</p><p>
-	On the <a href="features.html">features page</a> you can read about the requirements
-	and features I have decided on for the 65k.
-	</p>
-	<ul>
-	<li><a href="features.html">Feature discussion</a>, possibly inconsistent and incomplete - working draft</li>
-	<li><a href="specsprog.html">Implementation specs I - programming model</a> - opcode definitions, register sets, functional definition - initial draft</li>
-	<li>Implementation specs II - hardware model - external interface options, signal definitions - to be done</li>
-	<li>Architecture overview - processor architecture, component definitions - to be done</li>
-	<li>Test setup - Before starting the implementation, define how to test it - to be done</li>
-	<li>Implementation - Implementation documentation - to be done</li>
-	<li>Hardware implementation - FPGA boards and hardware setups - to be done</li>
-	</ul>
-  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-09-18</small>
+	The fourth section describes reset, interrupt and other special behaviour.
+  </p></div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-10-03</small>
 	Started this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#roadmap">65k Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#65002">65002</a></li><li><a href="#65010">65010</a></li><li><a href="#65020">65020</a></li><li><a href="#65030">65030</a></li><li><a href="#io">652xx</a></li><li><a href="#refs">References</a></li></ul></li></ul></div><h2><a name="roadmap" id="roadmap">65k Roadmap</a></h2><div class="toplink"><a href="#top">Top</a></div><p>This section describes the different versions of the 65k processor, at least what the
-	current plans for it are.
+    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li></ul></div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div><p>This section describes the different versions of the 65k processor
 	</p>
-     <h3><a name="65002" id="65002">65002</a></h3><p>Design goals for the 65002 CPU replacement are:</p>
-<ul>
-<li>Provide original 6502 (legal) opcodes; optionally some of the illegal ones (SAX, LAX) as they fit</li>
-<li>16bit ALU - make it a 6502 as it could have been ...</li>
-<li>eliminate bogus memory cycles</li>
-<li>abort-ability - i.e. ability to abort an opcode in mid-process and roll it back</li>
-<li>No mode bits - as opposed to the 65816 an opcode should have exactly one meaning (except for the original BCD bit)</li>
-<li>Not sure yet if I extend the original registers to 16 bit, or simply add a set of new 16 bit registers</li>
-<li>Prefix opcodes for specific (e.g. 16bit) arithmetic functions, vector ops, and cpu control</li>
-</ul>
-    <h3><a name="65010" id="65010">65010</a></h3><p>Design goals for the 65010 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65002 CPU from above</li>
-<li>Add vector operations to the CPU core, like vector add. Allow different address offsets for source and target (from 0 up to 256)</li>
-<li>Include for example blitter functions</li>
-<li>possibly requires extra registers, depending on whether new 16bit registers are added or existing registers extended</li>
-</ul>
-    <h3><a name="65020" id="65020">65020</a></h3><p>Design goals for the 65020 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65010 CPU from above (maybe optionally 65002 also)</li>
-<li>Add MMU functionality - similar to the CS/A CPU board, but using a page table register and dynamic page table lookup fetch</li>
-<li>Use 16bit page table entries, with e.g. 12 bit address extension and 4 bit special bits (read-only, no-execute, not-mapped, privileged)</li>
-<li>Basic "ring 0" functionality - separation of OS and user spaces</li>
-<li>Optionally 16bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16bit</li>
-</ul>
-    <h3><a name="65030" id="65030">65030</a></h3><p>This one is really sketchy for now...Design goals for the 65030 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65020 CPU from above</li>
-<li>Add multi-core functionality - coordinating/synchronizing multiple cores in a single FPGA</li>
-<li>Possibly/optionally include L1 read caches in addition to the 16bit memory interface. Not sure if L1 is shared between cores or not</li>
-<li>Possibly/optionally include cache coherency protocol between multiple FPGAs</li>
-</ul>
-    <h3><a name="io" id="io">652xx</a></h3><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
-    <h3><a name="refs" id="refs">References</a></h3>
-        <ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt" target="_blank" class="extlink">6502 history and future</a> </li><li><a href="http://www.stevechamberlin.com/cpu/2010/03/27/8-bit-cpu-comparison/" target="_blank" class="extlink">Big Mess O' Wires comparison of CPUs</a> </li><li><a href="http://www.stevechamberlin.com/cpu/bmow1/" target="_blank" class="extlink">Big Mess O' Wires CPU architecture</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1603&amp;start=17" target="_blank" class="extlink">6502.org: kc5tja's wishlist</a> </li><li><a href="http://www.geocities.jp/team_zero_three/FC/index_e.html" target="_blank" class="extlink">FC Hardware preservation project</a> </li></ul><hr />
+     <h3><a name="optswidth" id="optswidth">Register Widths Options</a></h3><p>
+	The 65k will be available in different "register widths". Register here means all address registers
+	(stack pointer (SP), program counter (PC), base offset register (BR)), but also all data registers (AC, XR, YR).
+	This does not include the status register for example. For details see the register model below.
+	Address and Data registers will always have the same width to accomodate for address offsets computed
+	in data registers.
+	</p><p>
+	The following options are available:</p>
+	<ul>
+	<li>16 bit - a small extension to the original 6502 programming model, the PC stays 16 bit as 
+		it already is in the 6502.</li>
+	<li>32 bit - all data and address registers extended to 32 bit</li>
+	<li>64 bit - all data and address registers extended to 64 bit</li>
+	</ul><p>
+	The original register width for most of the registers is a byte. To use the registers with more than
+	8 bit a prefix opcode to the existing 8 bit opcodes is used. 2 bit of the prefix opcode are
+	reserved for operation width, which allows to address registers as 8, 16, 32 or 64 bit.
+    	</p><h3><a name="optssuper" id="optssuper">Supervisor Mode Option</a></h3><p>
+    	</p><h3><a name="optsmmu" id="optsmmu">MMU Option</a></h3><p>
+    	</p><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

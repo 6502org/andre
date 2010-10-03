@@ -43,6 +43,9 @@
 	about an early 68k processor.</p>
   </overview>
   <news>
+    <item date="2010-10-03">
+	First working draft finished
+    </item>
     <item date="2010-09-18">
 	Started this page
     </item>
@@ -1382,25 +1385,112 @@ object2	.long class1
 
   <section toc="block" name="Vector and Block Operations">
      <desc><p>
-	The 65816 already has block move operations.
+	The 65816 already has block move operations, also the 68k has
+	operations to move multiple data elements. For the CS/A computer
+	I am working on a block transfer engine as well.
 	</p><p>
 	</p>
      </desc>
      <subsection toc="block816" name="65816 MVN/MVP Operations">
-	<desc>
-	</desc>
+	<desc><p>The MVN and MVP operations use the X and Y registers as
+	source and destination start addresses, and two bytes follwing the opcode
+	as their respective bank numbers. The 16&nbsp;bit AC contains one less than the
+	number of bytes to transfer (i.e. AC=$ffff transfers $10000 bytes).
+	</p><p>There is a "negative" MVN and a "positive" MVP operation. The positive operation
+	increases the start addresses after each transfer, the negative operation decreases the
+	addresses. This helps transferring overlapping memory areas. 
+	</p><p>
+	As there is a bank byte in the opcode, data can either be transferred within a bank, or 
+	from one bank to another - but each of the source or destination memory areas may not span
+	a bank boundary.
+	</p></desc>
      </subsection>
-     <subsection toc="blockblitter" name="Blitter Operations">
-	<desc>
-	</desc>
+     <subsection toc="block68k" name="68k MOVEM, MOVE16 Operations">
+	<desc><p>
+	The 68k does not have a "bulk" data movement operation. There is the MOVEM opcode that allows
+	to transfer multiple registers to memory and back - which is helpful for interrupt routines though.
+	</p><p>
+	The 68040 extends this with the MOVE16 opcode. It can transfer a cache line of 16 bytes. 
+	Source or target cache lines must be aligned at 16 byte address boundaries - postincrement addressing
+	however starts at the given (maybe unaligned) address, then wraps around at the cache line boundary.
+	</p><p>
+	Thus the data transfer is always a full 16 consecutive byte, and data has to be aligned. 
+	</p></desc>
+     </subsection>
+     <subsection toc="blockcsa" name="CS/A Blitter Operations">
+	<desc><p>
+	The CS/A blitter (block transfer engine) allows to set a full source, a full destination address, and
+	a counter of up to 256 bytes. Additionally an 8&nbsp;bit increment can be set for each source and destination address.
+	Each address can either increment or decrement indepently from the other address (so a swap copy is possible).
+	It works byte-wide though.
+	</p></desc>
+     </subsection>
+     <subsection toc="blockblit" name="Graphics Blitter Operations">
+	<desc><p>
+	The original "blitter" name derives from "Bit BLIT", which stands for "bit-block image transfer" (see wikipedia link).
+	It is a "a computer graphics operation in which several bitmaps are combined into one using a raster operator".
+	This means that during transfer of data from one location to another one a "raster operator" - basically a
+	boolean formula - is used to manipulate the data. This could be to AND a source value with the destination, OR it, 
+	invert it or even XOR it. When using more than one source, a mask could be applied as well.
+	</p><p>
+	However, "modern graphics hardware and software has almost completely replaced bitwise operations with 
+	mathematical operations such as alpha compositing". I.e. a blitter is not used for graphics anymore
+	these days.
+	</p></desc>
+	<extlink name="wikipedia on Bit blit" link="http://en.wikipedia.org/wiki/Bit_blit"/>
      </subsection>
      <subsection toc="blockcomp" name="Comparison">
-	<desc>
+	<desc><p>Here is a feature comparison of the approaches mentioned above:</p>
+	<table border="1">
+	<tr><th>&nbsp;</th><th>65816</th><th>68k MOVE16</th><th>CS/A Blitter</th><th>Graphics Blitter</th></tr>
+	<tr><th>Transfer size</th><td>+ (1 byte up to 64k)</td>
+					<td>- (fixed 16 byte)</td>
+					<td>0 (1 up to 256 byte)</td>
+					<td>+ (flexible in general)</td>
+			</tr>
+	<tr><th>Source and Destination</th><td>0 (only within a bank)</td>
+					<td>- (aligned at 16 byte boundary)</td>
+					<td>+ (any address)</td>
+					<td>+ (any address)</td>
+			</tr>
+	<tr><th>increment/decrement</th><td>0 (only either increment or decrement both addresses by 1)</td>
+					<td>- (only postincrement)</td>
+					<td>+ (flexible increments of -256 to +256 interleave per address</td>
+					<td>+ (flexible increments per address</td>
+			</tr>
+	<tr><th>Speed, cycles</th><td>0 (7 cycles per byte transfer)</td>
+					<td>+ (burst read of cache line)</td>
+					<td>+ (2 cycles per byte transfer, which is maximum for a byte-wide bus)</td>
+					<td>depending on operation and implementation</td>
+			</tr>
+	<tr><th>Operations</th><td>- None</td>
+					<td>- (None)</td>
+					<td>- (None)</td>
+					<td>+ (boolean operations, even including more than two inputs)</td>
+			</tr>
+	</table>
 	</desc>
      </subsection>
      <subsection toc="blockconcl" name="Conclusion">
-	<desc>
-	</desc>
+	<desc><p>The 65k will have options for bus interfaces with different width, from one byte, two byte, even more.
+	Using an interleaved approach will cost performance, as each memory cycle is only partially used
+	(e.g. one byte per 16&nbsp;bit memory read), but interesting effects could be implemented with it.
+	</p><p>
+	The implementation effort for graphics operations could be quite high, and the benefits at this time
+	are not really clear. 
+	</p><p class="conclusion">
+	The 65k will implement two block move operations similar to the 65816 versions, but allowing for the
+	X and Y registers to hold full addresses, and AC holding the number of bytes (maybe -1) to transfer.
+	</p><p class="conclusion">
+	The MVN and MVP operations may be interruptible (to improve interrupt latency), carry could be set
+	as sign for an interruption so that a </p>
+	<pre>
+dotrans	MVP
+	BCS dotrans
+	</pre><p class="conclusion">
+	would ensure that all bytes were transferred. A prefix byte opcode will be reserved for 
+	blitter operations implemented as a future extension.
+	</p></desc>
      </subsection>
   </section>
 
