@@ -9,6 +9,7 @@
   </author>
   <keywords>6502 16bit 32bit expansion</keywords>
   <metadesc>6502 16bit 32bit expansion</metadesc>
+  <style>optable.css</style>
   <overview><p>
 	This page describes the implementation specs for my 65k line of processors.
 	For a reasoning why a feature is implemented as it is, see the <a href="features.html">Features discussion</a>
@@ -57,10 +58,133 @@
 
        <subsection toc="optssuper" name="Supervisor Mode Option">
 	<desc><p>
+	The 65k will optionally provide a supervisor mode. When using a supervisor mode, critical instructions -
+	those that modify system state - become privileged and are thus only allowed in supervisor mode.
+	Supervisor mode allows to separate user space programs from kernel space, and protects the kernel from
+	unwanted modifications from user space.
     	</p></desc>
        </subsection>
 
        <subsection toc="optsmmu" name="MMU Option">
+	<desc><p>
+	The 65k will optionally provide an MMU to translate virtual addresses (opcode effective addresses) into
+	physical addresses. When the MMU is not included, virtual addresses are directly taken as physical addresses.
+    	</p></desc>
+       </subsection>
+
+  </section>
+
+  <section toc="overview" name="65k Opcode and Addressing Mode Overview">
+     <desc><p>
+	This section describes in an overview the opcodes and addressing modes of the 65k.
+	</p>
+     </desc>
+       <subsection toc="ovops" name="Opcodes Overview">
+	<desc>
+<table class="optable">
+<tr><th>MSB \ LSB</th>	<th>0</th>			<th>1</th>		<th>2</th>			<th>3</th>			<th>4</th>			<th>5</th>		<th>6</th>		<th>7</th>				<th>8</th>		<th>9</th>			<th>A</th>			<th>B</th>			<th>C</th>			<th>D</th>		<th>E</th>			<th>F</th></tr>
+<tr><th>0</th>		<td>BRK</td>			<td>ORA (ind,X)</td>	<td class="c65k">LDA zp,Y</td><td class="prefix">prefix</td>	<td class="c65k">MMU prefix</td><td>ORA zp</td>		<td>ASL zp</td>		<td class="prefix">prefix</td>		<td>PHP</td>		<td>ORA imm</td>		<td>ASL A</td>			<td class="prefix">prefix</td>	<td class="cmos">TSB abs</td>	<td>ORA abs</td>	<td>ASL abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>1</th>		<td>BPL rel</td>		<td>ORA (ind),Y</td>	<td class="cmos">ORA (ind)</td>	<td class="prefix">prefix</td>	<td class="cmos">TRB zp</td>	<td>ORA zp,X</td>	<td>ASL zp,X</td>	<td class="prefix">prefix</td>		<td>CLC</td>		<td>ORA abs,y</td>		<td class="cmos">INC A</td>	<td class="prefix">prefix</td>	<td class="cmos">TRB abs</td>	<td>ORA abs,X</td>	<td>ASL abs,X</td>		<td class="prefix">prefix</td></tr>	
+<tr><th>2</th>		<td>JSR abs</td>		<td>AND (ind,X)</td>	<td class="c65k">STA zp,Y</td><td class="prefix">prefix</td>	<td>BIT zp</td>			<td>AND zp</td>		<td>ROL zp</td>		<td class="prefix">prefix</td>		<td>PLP</td>		<td>AND imm</td>		<td>ROL A</td>			<td class="prefix">prefix</td>	<td>BIT abs</td>		<td>AND abs</td>	<td>ROL abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>3</th>		<td>BMI rel</td>		<td>AND (ind),Y</td>	<td class="cmos">AND (ind)</td>	<td class="prefix">prefix</td>	<td class="cmos">BIT zp,X</td>	<td>AND zp,X</td>	<td>ROL zp,X</td>	<td class="prefix">prefix</td>		<td>SEC</td>		<td>AND abs,Y</td>		<td class="cmos">DEC A</td>	<td class="prefix">prefix</td>	<td class="cmos">BIT abs,X</td>	<td>AND abs,X</td>	<td>ROL abs,X</td>		<td class="prefix">prefix</td></tr>
+<tr><th>4</th>		<td>RTI</td>			<td>EOR (ind,X)</td>	<td class="c65k">LDA (abs),Y</td><td class="prefix">prefix</td>	<td class="c65k">FP prefix</td><td>EOR zp</td>		<td>LSR zp</td>		<td class="prefix">prefix</td>		<td>PHA</td>		<td>EOR imm</td>		<td>LSR imm</td>		<td class="prefix">prefix</td>	<td>JMP abs</td>		<td>EOR abs</td>	<td>LSR abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (ind),Y</td>	<td class="cmos">EOR (ind)</td>	<td class="prefix">prefix</td>	<td class="c65k">SYS prefix</td><td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix</td>	<td class="unused">reserved</td><td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="prefix">prefix</td></tr>
+<tr><th>6</th>		<td>RTS</td>			<td>ADC (ind,X)</td>	<td class="c65k">LDA (abs,X)</td><td class="prefix">prefix</td>	<td class="cmos">STZ zp</td>	<td>ADC zp</td>		<td>ROR zp</td>		<td class="prefix">prefix</td>		<td>PLA</td>		<td>ADC imm</td>		<td>ROR A</td>			<td class="prefix">prefix</td>	<td>JMP (abs)</td>		<td>ADC abs</td>	<td>ROR abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>7</th>		<td>BVS rel</td>		<td>ADC (ind),Y</td>	<td class="cmos">ADC (ind)</td>	<td class="prefix">prefix</td>	<td class="cmos">STZ zp,X</td>	<td>ADC zp,X</td>	<td>ROR zp,X</td>	<td class="prefix">prefix</td>		<td>SEI</td>		<td>ADC abs,Y</td>		<td class="cmos">PLY</td>	<td class="prefix">prefix</td>	<td class="cmos">JMP (abs,X)</td><td>ADC abs,X</td>	<td>ROR abs,X</td>		<td class="prefix">prefix</td></tr>
+<tr><th>8</th>		<td class="cmos">BRA rel</td>	<td>STA (ind,X)</td>	<td class="c65k">BSR rel</td>	<td class="prefix">prefix</td>	<td>STY zp</td>			<td>STA zp</td>		<td>STX zp</td>		<td class="prefix">prefix</td>		<td>DEY</td>		<td class="cmos">BIT imm</td>	<td>TXA</td>			<td class="prefix">prefix</td>	<td>STY abs</td>		<td>STA abs</td>	<td>STX abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>9</th>		<td>BCC rel</td>		<td>STA (ind),Y</td>	<td class="cmos">STA (ind)</td>	<td class="prefix">prefix</td>	<td>STY zp,X</td>		<td>STA zp,X</td>	<td>STX zp,Y</td>	<td class="prefix">prefix</td>		<td>TYA</td>		<td>STA abs,Y</td>		<td>TXS</td>			<td class="prefix">prefix</td>	<td class="cmos">STZ abs</td>	<td>STA abs,X</td>	<td class="cmos">STZ abs,X</td>	<td class="prefix">prefix</td></tr>
+<tr><th>A</th>		<td>LDY imm</td>		<td>LDA (ind,X)</td>	<td>LDX imm</td>		<td class="prefix">prefix</td>	<td>LDY zp</td>			<td>LDA zp</td>		<td>LDX zp</td>		<td class="prefix">prefix</td>		<td>TAY</td>		<td>LDA imm</td>		<td>TAX</td>			<td class="prefix">prefix</td>	<td>LDY abs</td>		<td>LDA abs</td>	<td>LDX abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>B</th>		<td>BCS rel</td>		<td>LDA (ind),Y</td>	<td class="cmos">LDA (ind)</td>	<td class="prefix">prefix</td>	<td>LDY zp,X</td>		<td>LDA zp,X</td>	<td>LDX zp,Y</td>	<td class="prefix">prefix</td>		<td>CLV</td>		<td>LDA abs,Y</td>		<td>TSX</td>			<td class="prefix">prefix</td>	<td>LDY abs,X</td>		<td>LDA abs,X</td>	<td>LDX abs,Y</td>		<td class="prefix">prefix</td></tr>
+<tr><th>C</th>		<td>CPY imm</td>		<td>CMP (ind,X)</td>	<td class="c65k">STA (abs),Y</td><td class="prefix">prefix</td>	<td>CPY zp</td>			<td>CMP zp</td>		<td>DEC zp</td>		<td class="prefix">prefix</td>		<td>INY</td>		<td>CMP imm</td>		<td>DEX</td>			<td class="prefix">prefix</td>	<td>CPY abs</td>		<td>CMP abs</td>	<td>DEC abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>D</th>		<td>BNE rel</td>		<td>CMP (ind),Y</td>	<td class="cmos">CMP (ind)</td>	<td class="prefix">prefix</td>	<td class="c65k">QUICK prefix</td><td>CMP zp,X</td>	<td>DEC zp,X</td>	<td class="prefix">prefix</td>		<td>CLD</td>		<td>CMP abs,Y</td>		<td class="cmos">PHX</td>	<td class="prefix">prefix</td>	<td class="unused">reserved</td><td>CMP abs,X</td>	<td>DEC abs,X</td>		<td class="prefix">prefix</td></tr>
+<tr><th>E</th>		<td>CPX imm</td>		<td>SBC (ind,X)</td>	<td class="c65k">STA (abs,X)</td><td class="prefix">prefix</td>	<td>CPX zp</td>			<td>SBC zp</td>		<td>INC zp</td>		<td class="prefix">prefix</td>		<td>INX</td>		<td>SBC imm</td>		<td>NOP</td>			<td class="prefix">prefix</td>	<td>CPX abs</td>		<td>SBC abs</td>	<td>INX abs</td>		<td class="prefix">prefix</td></tr>
+<tr><th>F</th>		<td>BEQ rel</td>		<td>SBC (ind),Y</td>	<td class="cmos">SBC (ind)</td>	<td class="prefix">prefix</td>	<td class="c65k">TRAP</td>	<td>SBC zp,X</td>	<td>INC zp,X</td>	<td class="prefix">prefix</td>		<td>SED</td>		<td>SBC abs,Y</td>		<td class="cmos">PLX</td>	<td class="prefix">prefix</td>	<td class="unused">reserved</td><td>SBC abs,X</td>	<td>INC abs,X</td>		<td class="prefix">prefix</td></tr>
+</table><p>Legend:</p>
+<table class="optable">
+<tr><td>NMOS Opcodes</td><td class="cmos">CMOS Opcodes</td><td class="c65k">New 65k opcodes</td><td class="prefix">65k Prefix codes</td><td class="unused">Unused/Reserved</td></tr>
+</table>
+    	</desc>
+       </subsection>
+
+       <subsection toc="ovpref" name="Prefix Overview">
+	<desc><p>
+	In the opcode map there are 64 codes designated as "prefix". These opcodes are no operations in themselves, but
+	modify the following operation. The prefix has these values:</p>
+<table class="bittable">
+<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>OF1</td><td>OF0</td><td>RS1</td><td>RS0</td><td>ZE</td><td>AM</td><td>1</td><td>1</td></tr>
+</table><p>
+	I.e. the lowest two bits are always one, but all of the other six bits have a special meaning:</p>
+<table class="optable">
+<tr><th>AM</th><th>Adressing Modes</th></tr>
+<tr><td>0</td><td>normal addressing modes (8 / 16 bit)</td></tr>
+<tr><td>1</td><td>extended addressing modes (32 / 64 bit)</td></tr>
+<tr><th>ZE</th><th>Zero extension</th></tr>
+<tr><td>0</td><td>Zero-extend values to full register width when writing to a register</td></tr>
+<tr><td>1</td><td>Do not extend values to full register width when writing to a register</td></tr>
+<tr><th>RS1/RS0</th><th>Register Size</th></tr>
+<tr><td>0/0</td><td>8 bit register</td></tr>
+<tr><td>0/1</td><td>16 bit register</td></tr>
+<tr><td>1/0</td><td>32 bit register</td></tr>
+<tr><td>1/1</td><td>64 bit register</td></tr>
+<tr><th>OF1/OF0</th><th>Register Size</th></tr>
+<tr><td>0/0</td><td>No offset added to address</td></tr>
+<tr><td>0/1</td><td>Add Program Counter (PC) to address</td></tr>
+<tr><td>1/0</td><td>Add Stack Pointer (SP) to address</td></tr>
+<tr><td>1/1</td><td>Add Base Offset Register (BR) to address</td></tr>
+</table><p>
+	These prefix opcodes modify the following opcodes in various aspects. The following opcodes
+	are taken from the original 8&nbsp;bit opcodes. I.e. there could be a new opcode
+	</p><pre>
+	LDA.L #$12345678
+	</pre><p>to load the accumulator with a long (32&nbsp;bit) value, that is implemented as
+	</p><pre>
+	23 A9 78 56 34 12
+	</pre><p>. Here 23 is the prefix with RS=%10, i.e. 32&nbsp;bit registers, and A9 is the original
+	LDA immediate opcode - only the parameter is now 4 byte (32&nbsp;bit) not 1 byte anymore.
+	</p><p>
+	Please note that when all variable prefix bits are zero, the original 6502 operation is executed.
+	The following sections describe the different options:
+	</p>
+	<h3>Addressing Modes</h3>
+	<p>The addressing modes bit AM allows to extend the existing addressing modes from zeropage (8&nbsp;bit) and
+	absolute (16&nbsp;bit) to long (32&nbsp;bit) and longlong (64&nbsp;bit). The following table shows the
+	modifications when AM is set.</p>
+<table class="optable">
+<tr><th>Original Addressing Mode</th><th>New Addressing Mode</th><th>Comment</th></tr>
+<tr><td>zp</td><td>long</td><td>use a long (32&nbsp;bit) address instead of a zeropage address</td></tr>
+<tr><td>zp,X</td><td>long,X</td><td>use a long (32&nbsp;bit) address instead of a zeropage address</td></tr>
+<tr><td>zp,Y</td><td>long,Y</td><td>use a long (32&nbsp;bit) address instead of a zeropage address</td></tr>
+<tr><td>abs</td><td>longlong</td><td>use a longlong (64&nbsp;bit) address instead of an absolute address</td></tr>
+<tr><td>abs,X</td><td>longlong,X</td><td>use a longlong (64&nbsp;bit) address instead of an absolute address</td></tr>
+<tr><td>abs,Y</td><td>longlong,Y</td><td>use a longlong (64&nbsp;bit) address instead of an absolute address</td></tr>
+<tr><td>(ind)</td><td>[ind]</td><td>from the given zeropage location, read a long address instead of an absolute address</td></tr>
+<tr><td>(ind),Y</td><td>[ind],Y</td><td>from the given zeropage location, read a long address instead of an absolute address, then add YR</td></tr>
+<tr><td>(ind,X)</td><td>[ind,X]</td><td>from the given zeropage location (plus XR as given by the addressing mode), read a long address instead of an absolute address</td></tr>
+<tr><td>(abs)</td><td>[abs]</td><td>from the given absolute location, read a long address instead of an absolute address</td></tr>
+<tr><td>(abs),Y</td><td>[abs],Y</td><td>from the given absolute location, read a long address instead of an absolute address, then add YR</td></tr>
+<tr><td>(abs,X)</td><td>[abs,X]</td><td>from the given absolute location (plus XR as given by the addressing mode), read a long address instead of an absolute address</td></tr>
+<tr><td>imm</td><td>imm</td><td>unchanged</td></tr>
+<tr><td>implied</td><td>implied</td><td>unchanged</td></tr>
+<tr><td>rel</td><td>rel</td><td>unchanged</td></tr>
+</table><p>
+	Note there currently are some restrictions, most notably the indirect addressing modes only extend to a long
+	indirect addressing mode, there is no longlong addressing mode.
+	</p><p>
+	TODO: to extend to longlong, reuse the prefix opcodes after the original prefix?
+	</p>
+	<h3>Zero Extension</h3>
+	<p>
+	
+    	</p></desc>
+       </subsection>
+
+       <subsection toc="optswidth" name="Register Widths Options">
+	<desc><p>
+    	</p></desc>
+       </subsection>
+
+       <subsection toc="optswidth" name="Register Widths Options">
 	<desc><p>
     	</p></desc>
        </subsection>

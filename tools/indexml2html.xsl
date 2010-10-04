@@ -476,6 +476,9 @@
 </xsl:text>
 <link rel="stylesheet" title="Default" type="text/css" href="%up%style-min.css"/>
 <link rel="alternate stylesheet" title="Advanced" type="text/css" href="%up%advanced.css"/>
+<xsl:if test="style">
+  <link rel="stylesheet" type="text/css" href="{style}"/>
+</xsl:if>
 <xsl:text>
 </xsl:text>
 </xsl:template>

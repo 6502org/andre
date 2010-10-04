@@ -14,7 +14,7 @@
 	requirements definition for the new processor.
 	</p><p>
 	All requirements are based on the original NMOS 6502 processor, using the 
-	&quot;legal&quot; opcodes. The 65k should run original NMOS 6502 code without modifications.
+	&quot;legal&quot; opcodes. The 65k should run original NMOS 6502 (maybe 65C02) code without modifications.
 	</p><p>
 	Currently this page is a somewhat fragmented list of requirements, neither complete nor necessarily consistent.
 	It may be sorted later
@@ -33,6 +33,9 @@
 			goal nevertheless.</li>
 		<li>Least Surprise - a feature should be "natural" to use and not "surprise"
 			developers and coders with strange or unexpected features</li>
+		<li>Keep the 6502-ishness - don't try to add a RISC CPU, or add (many) more complex (CISC)
+			addressing modes or operations, but try to build on the 6502 advantages like zeropage
+			addressing</li>
 	</ul>
 	<p>On one hand the processor should fit use cases for embedded systems. It could 
 	implement a complete system-on-a-chip with a little ROM, some RAM, and I/O in a single
