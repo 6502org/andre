@@ -11,15 +11,22 @@
 <xsl:template name="h2toc">
 	<xsl:param name="hdr"/>
 	<xsl:param name="a"/>
-<xsl:choose>
-  <xsl:when test="$a != ''">
-<h2><a name="{$a}"><xsl:value-of select="$hdr"/></a></h2>
-  </xsl:when>
-  <xsl:otherwise>
-<h2><xsl:value-of select="$hdr"/></h2>
-  </xsl:otherwise>
-</xsl:choose>
-<div class="toplink"><a href="#top">Top</a></div>
+  <div class="h2h">
+    <div class="h2t">&nbsp;</div>
+    <xsl:choose>
+      <xsl:when test="$a != ''">
+      	<h2>
+          <a name="{$a}"><xsl:value-of select="$hdr"/></a>
+        </h2>
+      </xsl:when>
+      <xsl:otherwise>
+        <h2>
+          <xsl:value-of select="$hdr"/>
+        </h2>
+      </xsl:otherwise>
+    </xsl:choose>
+    <div class="toplink"><a href="#top">Top</a></div>
+  </div>
 </xsl:template>
 
 <!--xsl:template name="h2">
@@ -31,10 +38,11 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template name="toc">
-<div id="toc">
+<div id="toc" class="h2">
 <xsl:call-template name="h2toc">
 	<xsl:with-param name="hdr">Table of content</xsl:with-param>
 </xsl:call-template>
+<div class="h2c">
 <ul>
 <xsl:for-each select="section|itemlist">
 <li><a href="#{@toc}"><xsl:value-of select="@name"/></a></li>
@@ -67,9 +75,10 @@
 </xsl:if>
 <!--xsl:if test="oldnews">
 <li><a href="#oldnews">Old News</a></li>
-</xsl:if-->
+</xsl:if -->
 </ul>
-</div>
+</div><!-- h2c -->
+</div><!-- toc h2 -->
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -97,14 +106,18 @@
 <xsl:call-template name="alldriver"/>
 <xsl:call-template name="allrev"/>
 <xsl:if test="diagram">
-<xsl:call-template name="h2toc">
-  <xsl:with-param name="hdr">Block diagram</xsl:with-param>
-  <xsl:with-param name="a">blkdiag</xsl:with-param>
-</xsl:call-template>
-<img src="{diagram/file}" alt="block diagram"/>
-<div class="diagcaption">
-<xsl:apply-templates select="diagram/desc"/>
-</div>
+  <div class="h2">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr">Block diagram</xsl:with-param>
+      <xsl:with-param name="a">blkdiag</xsl:with-param>
+    </xsl:call-template>
+    <div class="h2c">
+      <img src="{diagram/file}" alt="block diagram"/>
+      <div class="diagcaption">
+        <xsl:apply-templates select="diagram/desc"/>
+      </div>
+    </div><!-- h2c -->
+  </div><!-- h2 -->
 </xsl:if>
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
@@ -188,18 +201,22 @@
 </xsl:template>
 
 <xsl:template match="section">
-  <xsl:call-template name="h2toc">
-    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
-    <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
-  </xsl:call-template>
-<xsl:apply-templates select="desc"/>
-<xsl:apply-templates select="subsection"/>
-<xsl:if test="subitem|extlink">
-<ul>
-<xsl:apply-templates select="subitem"/>
-<xsl:apply-templates select="extlink"/>
-</ul>
-</xsl:if>
+  <div class="h2">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+      <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
+    </xsl:call-template>
+    <div class="h2c">
+      <xsl:apply-templates select="desc"/>
+      <xsl:apply-templates select="subsection"/>
+      <xsl:if test="subitem|extlink">
+        <ul>
+          <xsl:apply-templates select="subitem"/>
+          <xsl:apply-templates select="extlink"/>
+        </ul>
+      </xsl:if>
+    </div><!-- h2c -->
+  </div><!-- h2 -->
 </xsl:template>
 
 <xsl:template match="subsection">
@@ -215,11 +232,15 @@
 
 <xsl:template name="allrev">
   <xsl:if test="rev">
-    <xsl:call-template name="h2toc">
-      <xsl:with-param name="hdr">Board revisions</xsl:with-param>
-      <xsl:with-param name="a">boards</xsl:with-param>
-    </xsl:call-template>
-    <xsl:apply-templates select="rev"/>
+    <div class="h2">
+      <xsl:call-template name="h2toc">
+        <xsl:with-param name="hdr">Board revisions</xsl:with-param>
+        <xsl:with-param name="a">boards</xsl:with-param>
+      </xsl:call-template>
+      <div class="h2c">
+        <xsl:apply-templates select="rev"/>
+      </div><!-- h2c -->
+    </div><!-- h2 -->
   </xsl:if>
 </xsl:template>
 
@@ -248,11 +269,15 @@
 
 <xsl:template name="alldriver">
   <xsl:if test="driver">
-    <xsl:call-template name="h2toc">
-      <xsl:with-param name="hdr">Driver</xsl:with-param>
-      <xsl:with-param name="a">driver</xsl:with-param>
-    </xsl:call-template>
-    <xsl:apply-templates select="driver"/>
+    <div class="h2">
+      <xsl:call-template name="h2toc">
+        <xsl:with-param name="hdr">Driver</xsl:with-param>
+        <xsl:with-param name="a">driver</xsl:with-param>
+      </xsl:call-template>
+      <div class="h2c">
+        <xsl:apply-templates select="driver"/>
+      </div><!-- h2c -->
+    </div><!-- h2 -->
   </xsl:if>
 </xsl:template>
 
@@ -324,43 +349,47 @@
 <xsl:apply-templates select="news"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
-  <xsl:call-template name="h2toc">
-    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
-    <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
-  </xsl:call-template>
-  <xsl:apply-templates select="desc"/>
-  <xsl:apply-templates select="subsection"/>
-  <!-- (very) old style pages may still use this -->
-  <xsl:for-each select="items[item|subitem|file]">
-    <xsl:if test="file">
-	<h3>Files</h3>
-	<table><xsl:apply-templates select="file"/></table>
-    </xsl:if>
-   <ul>
-    <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-    <xsl:for-each select="item">
-      <li>
-	<xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
-	<xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
-	<strong><xsl:call-template name="aname"/></strong>
-          <xsl:apply-templates select="desc"/>
-	  <xsl:if test="subitem|extlink">
-	<ul>
+  <div class="h2">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+      <xsl:with-param name="a"><xsl:value-of select="@toc"/></xsl:with-param>
+    </xsl:call-template>
+    <div class="h2c">
+      <xsl:apply-templates select="desc"/>
+      <xsl:apply-templates select="subsection"/>
+      <!-- (very) old style pages may still use this -->
+      <xsl:for-each select="items[item|subitem|file]">
+        <xsl:if test="file">
+	  <h3>Files</h3>
+	  <table><xsl:apply-templates select="file"/></table>
+        </xsl:if>
+        <ul>
+          <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+          <xsl:for-each select="item">
+            <li>
+	      <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+	      <xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
+	      <strong><xsl:call-template name="aname"/></strong>
+              <xsl:apply-templates select="desc"/>
+	      <xsl:if test="subitem|extlink">
+	        <ul>
+                  <xsl:apply-templates select="subitem"/>
+                  <xsl:apply-templates select="extlink"/>
+	        </ul>
+	      </xsl:if>
+            </li>
+          </xsl:for-each>
           <xsl:apply-templates select="subitem"/>
+        </ul>
+      </xsl:for-each>
+      <xsl:if test="extlink">
+        <ul>
           <xsl:apply-templates select="extlink"/>
-	</ul>
-	  </xsl:if>
-      </li>
-    </xsl:for-each>
-    <xsl:apply-templates select="subitem"/>
-   </ul>
-  </xsl:for-each>
-  <xsl:if test="extlink">
-   <ul>
-    <xsl:apply-templates select="extlink"/>
-   </ul>
-  </xsl:if>
-  <xsl:apply-templates select="disclaimer"/>
+        </ul>
+      </xsl:if>
+      <xsl:apply-templates select="disclaimer"/>
+    </div><!-- h2c -->
+  </div><!-- h2 -->
 </xsl:for-each>
 <!-- board drivers and revisions -->
 <xsl:call-template name="alldriver"/>
@@ -381,22 +410,29 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="news">
- <h2>News:</h2>
- <ul class="news">
- <xsl:for-each select="item[@state='hot']">
-  <li><div class="i_hotnews">&nbsp;</div>
-  <small><xsl:value-of select="@date"/></small>
-  <xsl:copy-of select="*|text()"/>
-  </li>
- </xsl:for-each>
- <xsl:for-each select="item[@state='old' or not(@state)]">
-  <li><div>
-  <xsl:if test="@state='old'"><xsl:attribute name="class">i_oldnews</xsl:attribute></xsl:if>&nbsp;</div>
-  <small><xsl:value-of select="@date"/></small>
-  <xsl:copy-of select="*|text()"/>
-  </li>
- </xsl:for-each>
- </ul>
+ <div class="h2">
+   <xsl:call-template name="h2toc">
+     <xsl:with-param name="hdr">News:</xsl:with-param>
+     <xsl:with-param name="a">news</xsl:with-param>
+   </xsl:call-template>
+   <div class="h2c">
+     <ul class="news">
+     <xsl:for-each select="item[@state='hot']">
+      <li><div class="i_hotnews">&nbsp;</div>
+        <small><xsl:value-of select="@date"/></small>
+        <xsl:copy-of select="*|text()"/>
+      </li>
+    </xsl:for-each>
+    <xsl:for-each select="item[@state='old' or not(@state)]">
+      <li><div>
+        <xsl:if test="@state='old'"><xsl:attribute name="class">i_oldnews</xsl:attribute></xsl:if>&nbsp;</div>
+        <small><xsl:value-of select="@date"/></small>
+        <xsl:copy-of select="*|text()"/>
+      </li>
+    </xsl:for-each>
+    </ul>
+  </div><!-- h2c -->
+ </div><!-- h2 -->
 </xsl:template>
 
 <xsl:template match="oldnews">
@@ -416,10 +452,14 @@
 </xsl:template>
 
 <xsl:template match="disclaimer">
-  <xsl:call-template name="h2toc">
-    <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
-  </xsl:call-template>
-  <xsl:copy-of select="*|text()"/>
+  <div class="h2">
+    <xsl:call-template name="h2toc">
+      <xsl:with-param name="hdr"><xsl:value-of select="@name"/></xsl:with-param>
+    </xsl:call-template>
+    <div class="h2c">
+      <xsl:copy-of select="*|text()"/>
+    </div><!-- h2c -->
+  </div><!-- h2 -->
 </xsl:template>
 
 <xsl:template match="closing">
