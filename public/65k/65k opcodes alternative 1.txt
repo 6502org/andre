@@ -1,0 +1,118 @@
+
+
+NMOS6502 free opcodes
+=====================
+
+MSB             LSB      #opcodes
+---------------------------------
+8 		0	-> 1
+0-9,b-f 	2	-> 15
+0-f 		3	-> 16
+0-1,3-7,d,f 	4	-> 9
+0-f 		7	-> 16
+8 		9	-> 1
+1,3,5,7,d,f 	a	-> 6
+0-f 		b	-> 16
+0-1,3,5,7,9,d,f c	-> 8
+9 		e	-> 1
+0-f 		f	-> 16
+---------------------------------
+Sum free opcodes:	-> 105
+
+
+Use: common illegal opcodes
+===========================
+
+- no illegal opcodes supported due to lack of
+  free opcodes
+  Use arithmetic coprocessor prefixed operations for that
+
+
+Use: Add. registers
+===================
+
+3 additional 16 bit registers, U,V,W
+U,V more like index, W more like accumulator
+
+"usual" load/store/transfer opcodes:
+
+	LDU/V/W IMM/ABS/ZP/INDX/INDY/ABSX	-> 18
+	STU/V/W ABS/ZP/INDX/INDY/ABSX		-> 15
+	LDW ABSU/ABSV/INDU/INDV			-> 4
+	STW ABSU/ABSV/INDU/INDV			-> 4
+	TUW/TWU/TVW/TWV				-> 4
+	PHW/PLW					-> 2
+	SWPW (swap W high/low byte)		-> 1
+	TAW/TWA					-> 2
+
+extended stack opcodes (optional?)
+
+	PHX/PHY/PLX/PLY				-> (4)
+	PHU/PHV/PLU/PLV				-> (4)
+
+push/pull "state", i.e.  all registers
+
+	PHS/PLS					-> (2)
+
+extended accumulator ops, using U/V/W:		-> 8 total
+
+	LDA ABSU/ABSV/INDU/INDV	
+	STA ABSU/ABSV/INDU/INDV
+
+arithmetic extended addressing			-> 24 total
+
+	ADC ABSU/ABSV/INDU/INDV
+	SBC ABSU/ABSV/INDU/INDV
+	CMP ABSU/ABSV/INDU/INDV
+	ORA ABSU/ABSV/INDU/INDV
+	AND ABSU/ABSV/INDU/INDV
+	EOR ABSU/ABSV/INDU/INDV
+
+arithmetic (16bit ALU)				-> 4
+
+	ADCW 	(W+A->W)
+	ADUW	(W+U->U)
+	SBCW	(W-A->W)
+	SBUW	(W-U->W)
+	LSRW/ASLW/ROLW/RORW			-> 4
+
+	CMPW ABSU/ABSV/INDU/INDV
+	ORAW ABSU/ABSV/INDU/INDV
+	ANDW ABSU/ABSV/INDU/INDV
+	EORW ABSU/ABSV/INDU/INDV
+
+Use: flow control
+=================
+
+long branches
+	BEQL/BNEL/BCCL/BCSL/BVCL/BVSL/BMIL/BPLL	-> 8
+
+branch always/never
+	BRA/BRAL				-> 2
+	BRN/BRNL				-> (2)
+
+jump
+	JMP/JSR ABSXIND				-> 2
+
+
+Use: misc
+=========
+
+arithmetic
+	BIT IMM					-> 1
+	
+
+Use: Prefixes
+=============
+
+Prefixes for complex operations, like vector ops, memory management, core mgmt, ...
+
+	vector engine prefix			-> 1
+	memory management prefix		-> 1
+	cpu core management prefix		-> 1
+	coprocessor prefix			-> 1
+
+
+=========================================================	
+Total new opcodes				> too many
+
