@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
 <title>Advanced 6502</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,12 +19,13 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="65k/index.html">The 65k Project</a>
-</li>
+<li><div class="i_link">&nbsp;</div><a href="../65k">The 65k Project</a></li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="pet816/index.html">Speed up your 6502!</a>
 </li>
 <li><div class="i_link">&nbsp;</div><a href="../csa/index.html">CS/A65</a></li>
@@ -71,19 +72,19 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  Advanced 6502</div>
-<a name="topanchor" id="topanchor"></a><h1>Advanced 6502</h1><p class="copyright">(C)
+<h1>Advanced 6502</h1><p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview">
 	Here I have projects that extend the usual 6502 processor in various bits.
 	In the future (see the <a href="../sneak.html">sneak preview</a> page) this page
 	will also host the <em>65k</em> project.
-  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-08-28</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-08-28</small>
 	Created this page.
-    </li></ul><h2>Quickfinder</h2><div class="toplink"><a href="#top">Top</a></div><ul><li class="subitem"><a href="pet816/index.html">PET816</a>  - 
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Quickfinder</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li class="subitem"><a href="pet816/index.html">PET816</a>  - 
 	The <a href="pet816/index.html">PET816</a> board replaces the 6502 in a normal 6502 computer
 	with a 65816 board. The 65816 can be clocked up to 10 MHz, using the additional RAM that
 	is on the board - making for a really fast PET. With different memory selection logic in the
@@ -102,11 +103,48 @@ more modern browser, like Internet Explorer 8 or later,
 	Finally the <a href="../csa/cpuemu/index.html">CPU emulator</a> board allows to replace the
 	6502 in a normal system with a connection to the CS/A computer - where the 64k of the emulated
 	system just becomes a 64k windows in the CS/A65 1 MByte address space.
-      </li></ul><h2><a name="info" id="info">65xx Information</a></h2><div class="toplink"><a href="#top">Top</a></div><p>Here are some links to general 6502 and beyond information</p><ul><li><a href="http://www.llx.com/~nparker/a2/opcodes.html" target="_blank" class="extlink">The 6502/65C02/65C816 instruction set decoded</a> </li><li><a href="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf" target="_blank" class="extlink">Programming the 65816 (PDF)</a> </li><li><a href="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/" target="_blank" class="extlink">Schematics of the original 6502 (reverse engineered)</a> </li><li><a href="http://www.pagetable.com/?p=39." target="_blank" class="extlink">How the illegal instructions really work</a> </li><li><a href="http://visual6502.org/" target="_blank" class="extlink">A reengineered and visually simulated original 6502!</a> </li><li><a href="http://www.pagetable.com/?p=45" target="_blank" class="extlink">The ROR bug in early 6502 revisions!</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634" target="_blank" class="extlink">6502.org forum: A taken branch delays interrupt handling by one instruction...</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1419" target="_blank" class="extlink">6502.org forum: Improving the 6502, some ideas...</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1550" target="_blank" class="extlink">6502.org forum: Prefix bytes: an idea for 65Org816...</a> </li><li><a href="http://www.cs.clemson.edu/~mark/admired_designs.html#wilson" target="_blank" class="extlink">Admired designs...</a> </li><li><a href="http://6502.org/tutorials/decimal_mode.html" target="_blank" class="extlink">The 6502 decimal flag</a> </li></ul><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div>
+      </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="other" id="other">Other 6502 extension projects</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section contains links to various projects of other people that extended the 6502</p>
+	<h3><a name="65gz032" id="65gz032">65GZ032</a></h3><p>With the 65GZ032 Gideo Zweijtzer has built a VHDL core that is 6502 compatible, but extends the
+		8  bit core with a 32  bit design. From the programmers reference manual:
+		</p>
+		<ul>
+		<li>Full 32 bit design</li>
+		<li>Pipelined RISC architecture, with instruction and data caches</li>
+		<li>Eight 32 bit registers (five are all-purpose) and one 16 bit register</li>
+		<li>Several new opcodes</li>
+		<li>New addressing modes</li>
+		<li>Highly orthogonal architecture (very few fixed function registers)</li>
+		<li>Can access 4GB of linear memory (no segments, bank switching, etc)</li>
+		<li>Built-in paged memory management unit</li>
+		<li>Much higher clock speeds (33 MHz)</li>
+		</ul>
+		<p>The processor is able to operate on 8, 16, and 32 bit wide operands, address and data busses are
+		32  bit each. The 65GZ032 opcodes are interleaved with the 6502 opcodes in that the first byte
+		has to lowest two bits set - which are all illegal opcodes in the 6502 - and a second opcode bytes
+		then gives an opcode space of 14  bit, i.e. 16384 possible native instructions.
+		6502 opcodes are translated into one or two of the CPU's 32  bit native opcodes
+		when the instruction is fetched.
+		</p><p>
+		The CPU has been used in the C=1 system, but it is difficult to find further references anymore. According
+		to the commodorefree interview with Gideo it may have been abandoned.
+		</p><ul><li><a href="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65GZ032prg_v0.11.pdf" target="_blank" class="extlink">65GZ032 programmers reference (PDF)</a> </li><li><a href="http://commodore-gg.hobby.nl/verhaal51.htm" target="_blank" class="extlink">Hardware development (of the 65GZ032)</a> </li><li><a href="http://www.commodorefree.com/magazine/vol3/issue35.html#GIDEON" target="_blank" class="extlink">Commodorefree interview with Gideon</a> </li></ul><h3><a name="kimklone" id="kimklone">KimKlone</a></h3><p>The KimKlone is a very intersting 6502 extension. The system catches 65C02 undefined opcodes, and
+		executes them aside the original processor. This way also the address space is extended to 24  bit.
+		</p><ul><li><a href="http://laughtonelectronics.com/arcana/BrideOfSonPg1.html" target="_blank" class="extlink">KimKlone homepage</a> </li></ul><h3><a name="mycpu" id="mycpu">MyCPU</a></h3><p>
+		The MyCPU is a computer completely built from logic ICs - no highly integrated parts used! I.e. the processor consists
+		of basically 74-series logic ICs plus a number of ROMs. The internals are 8  bit, as using wider busses and registers
+		would have used many more parts.
+		</p><p>
+		The MyCPU computer is only barely fitting into this 6502 page - it is not binary compatible.</p>
+		<p class="quote">The processor has only 5 universal and 1 special purpose register: A, X, Y, P and SP are universal 8-bit registers, whereas the Program Counter (PC) is a special purpose 16-bit register whose contents can be incremented by one through a dedicated signal. The P-register is only an internal register used by the microcode to store temporary data and is not visible to assembly programs. In my implementation the microcode covers many commands and addressing modes of the good old 6502 processor, but MyCPU is not binary compatible to it.</p>
+		<p>As you can see from that description, the processor has nevertheless been inspired by the 6502.
+		</p><p>
+		In the meantime the author, Dennis Kuschel, has built a VHDL version of the MyCPU, built into a Xilinx Spartan3 FPGA,
+		called "MyCPU Compact". The development is still ongoing!
+		</p><ul><li><a href="http://www.mycpu.eu/" target="_blank" class="extlink">MyCPU homepage</a> </li></ul><h3><a name="m02" id="m02">M02</a></h3><p>Dieter MÜ ller has built a 6502-compatible CPU from logic parts as well</p><ul><li><a href="http://www.6502.org/users/dieter/m02/m02.htm" target="_blank" class="extlink">M02</a> </li></ul><h3><a name="m02" id="m02">65CE02</a></h3><p>The 65CE02 was a modernization of the 6502, developed by Commodore itself back in the days</p><ul><li><a href="http://www.commodore.ca/manuals/funet/cbm/documents/chipdata/65ce02.txt" target="_blank" class="extlink">65CE02</a> </li><li><a href="http://img716.imageshack.us/i/65ce02blockdiagram.jpg/" target="_blank" class="extlink">Block diagram</a> </li></ul><h3><a name="ttl6502" id="ttl6502">Ruud's Build your own 6502</a></h3><p>Ruud Baltissen started work on a TTL6502</p><ul><li><a href="http://www.baltissen.org/newhtm/ttl6502.htm" target="_blank" class="extlink">TTL6502</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="info" id="info">65xx Information</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>Here are some links to general 6502 and beyond information</p><ul><li><a href="http://www.llx.com/~nparker/a2/opcodes.html" target="_blank" class="extlink">The 6502/65C02/65C816 instruction set decoded</a> </li><li><a href="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf" target="_blank" class="extlink">Programming the 65816 (PDF)</a> </li><li><a href="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/" target="_blank" class="extlink">Schematics of the original 6502 (reverse engineered)</a> </li><li><a href="http://www.pagetable.com/?p=39." target="_blank" class="extlink">How the illegal instructions really work</a> </li><li><a href="http://visual6502.org/" target="_blank" class="extlink">A reengineered and visually simulated original 6502!</a> </li><li><a href="http://www.pagetable.com/?p=45" target="_blank" class="extlink">The ROR bug in early 6502 revisions!</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634" target="_blank" class="extlink">6502.org forum: A taken branch delays interrupt handling by one instruction...</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1419" target="_blank" class="extlink">6502.org forum: Improving the 6502, some ideas...</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1550" target="_blank" class="extlink">6502.org forum: Prefix bytes: an idea for 65Org816...</a> </li><li><a href="http://www.cs.clemson.edu/~mark/admired_designs.html#wilson" target="_blank" class="extlink">Admired designs...</a> </li><li><a href="http://6502.org/tutorials/decimal_mode.html" target="_blank" class="extlink">The 6502 decimal flag</a> </li><li><a href="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784" target="_blank" class="extlink">Experience from writing a 6502 core</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="other" id="other">Other CPU links</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>Some links about other, non-6502 compatible (homebrew) CPUs</p><ul><li><a href="http://www.stevechamberlin.com/cpu/bmow1/" target="_blank" class="extlink">Big Mess-oWires</a> </li><li><a href="http://en.wikipedia.org/wiki/ARM_architecture" target="_blank" class="extlink">The original ARM architecture was inspired by the 6502 (wikipedia)</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-    <hr />
-<BR></BR>Last updated 2010-09-16.
+    </div></div><hr />
+<BR></BR>Last updated 2010-10-10.
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 
 

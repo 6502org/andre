@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
@@ -132,7 +134,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Gecko</div>
@@ -164,14 +166,14 @@ I/O space</LI>
 		<p>An old description up to version 2.1 can be found in
 			<a href="indexold.html">the old page</a></p>.
 	
-</div><h2>News:</h2><ul class="news"><li><div> </div><small>2007-06-27</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2007-06-27</small>
 			Added a new re-design of the Gecko board. See the 
 			board description below.
                 </li><li><div> </div><small>2007-06-27</small>
 			I have relicensed the board to use the same license
 			as the other boards (previously it was non-commercial
 			only)
-                </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#overview">System Overview</a></li><li><a href="#drivers">Driver Setup</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Serial PET</a></li><li><a href="#driver2">Infrared Driver</a></li><li><a href="#driver3">IEC Driver</a></li><li><a href="#driver4">Keyboard driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0D</a> (schematics tested)</li><li><a href="#board2">3.0C</a> (schematics tested)</li><li><a href="#board3">3.0A</a> (tested with bugs)</li><li><a href="#board4">2.1A</a> (ok)</li><li><a href="#board5">2.0A</a> (ok)</li></ul></li></ul></div><h2><a name="overview" id="overview">System Overview</a></h2><div class="toplink"><a href="#top">Top</a></div>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#overview">System Overview</a></li><li><a href="#drivers">Driver Setup</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Serial PET</a></li><li><a href="#driver2">Infrared Driver</a></li><li><a href="#driver3">IEC Driver</a></li><li><a href="#driver4">Keyboard driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0D</a> (schematics tested)</li><li><a href="#board2">3.0C</a> (schematics tested)</li><li><a href="#board3">3.0A</a> (tested with bugs)</li><li><a href="#board4">2.1A</a> (ok)</li><li><a href="#board5">2.0A</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">System Overview</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 		<p>The System is built from a 6502 with some RAM and ROM.
 		Additionally it contains a UART 16550A for an RS232 interface,
 		as well as a VIA 6522 for some other I/O:</p>
@@ -188,12 +190,12 @@ I/O space</LI>
 		board itself. Here a number of ICs must be removed
 		and some jumpers set specifically.
 		</p>
-	<h2><a name="drivers" id="drivers">Driver Setup</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="drivers" id="drivers">Driver Setup</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 		Most of the drivers have been tested using the 
 		board in the slave mode - using the PET setup of the
 		CS/A65 computer (The PET setup uses the IEEE488
 		interface to load the files).
-		<h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="driver1" id="driver1">Serial PET</a></h3><p>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">Serial PET</a></h3><p>
 			This driver implements a normal PET ROM - but
 			using the Serial (RS232) interface as terminal.
 			I.e. it replaces the standard PET Basic4 editor
@@ -249,7 +251,7 @@ I/O space</LI>
 </tr>
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="minikey2.jpg">minikey2.jpg</a></td>
-</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 3.0D</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 3.0D</a></h3>
 <p>Status: schematics tested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td><p>
@@ -355,7 +357,7 @@ I/O space</LI>
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="gecko.png">gecko.png</a></td>
 </tr></table>
-<div id="contentfooter"><p>Last modified: 2007-06-27.</p>
+</div></div><div id="contentfooter"><p>Last modified: 2007-06-27.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

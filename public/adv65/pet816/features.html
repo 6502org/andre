@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>65816 board features</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,12 +19,13 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
-</li>
+<li><div class="i_link">&nbsp;</div><a href="../../65k">The 65k Project</a></li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html" class="mcurrent">Board Features</a></li>
@@ -77,12 +78,12 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">Speed up your 6502!
 </a>&gt;&gt;  Board Features</div>
-<a name="topanchor" id="topanchor"></a><h1>65816 board features</h1><p class="copyright">(C)
+<h1>65816 board features</h1><p class="copyright">(C)
 2010-2010 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes the features of the 65816 board,
@@ -90,7 +91,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	Please note that "system bus" refers to the 6502 bus connector.
 	</p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#hw">Hardware Features</a></li><li style="list-style-type:none;"><ul><li><a href="#jumpers">Jumpers and Connectors</a></li></ul></li><li><a href="#sw">Software</a></li><li style="list-style-type:none;"><ul><li><a href="#control">Control Register</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#speedmap">Speed Map</a></li><li><a href="#clock">Clock register</a></li></ul></li></ul></div><h2><a name="hw" id="hw">Hardware Features</a></h2><div class="toplink"><a href="#top">Top</a></div>This section describes the hardware features of the board that are available
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#hw">Hardware Features</a></li><li style="list-style-type:none;"><ul><li><a href="#jumpers">Jumpers and Connectors</a></li></ul></li><li><a href="#sw">Software</a></li><li style="list-style-type:none;"><ul><li><a href="#control">Control Register</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#speedmap">Speed Map</a></li><li><a href="#clock">Clock register</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hw" id="hw">Hardware Features</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">This section describes the hardware features of the board that are available
 	in the form of jumpers, and only selected ones. 
 	For a more detailled hardware description see the 
 	<a href="hardware.html">hardware page</a>.
@@ -100,7 +101,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>JP1: BOOTROM - when set to on, the on-board ROM is mapped into the lowest 64k
 		address space upon reset, so the board can take the system over on power-up</li>
 	</ul>
-	<h2><a name="sw" id="sw">Software</a></h2><div class="toplink"><a href="#top">Top</a></div>This section describes the software-side features of the board. These features
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">This section describes the software-side features of the board. These features
 	are implemented as part of the CPLD logic.
      <h3><a name="control" id="control">Control Register</a></h3><p>The CPLD implements a control register at the address $ExyF, where "xy" is determined
 	by the jumper settings JP7/8/9. Unfortunately this register currently is write-only.
@@ -200,7 +201,7 @@ more modern browser, like Internet Explorer 8 or later,
 	more about it in the <a href="works.html">How it works</a> page).
 	Just remember that fastmode should be set on a 2MHz host system bus, and not
 	on a 1MHz bus.</p>
-	<hr />
+	</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

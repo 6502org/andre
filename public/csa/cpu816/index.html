@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
@@ -130,7 +132,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  65816 CPU V1</div>
@@ -149,7 +151,7 @@ more modern browser, like Internet Explorer 8 or later,
 		as main logic element. If you don't have access to a Xilinx CPLD environment or don't want to use them, 
 		you may still want to look at the version 1 page here.</p>
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#making">Making of</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#timinglo">Timing - low resolution</a></li><li><a href="#timinghi">Timing - high resolution</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li><li><a href="#driver2">PET Fat40 ROM patch</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1F</a> (prototype)</li><li><a href="#board2">1.1E</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#making">Making of</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#timinglo">Timing - low resolution</a></li><li><a href="#timinghi">Timing - high resolution</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li><li><a href="#driver2">PET Fat40 ROM patch</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1F</a> (prototype)</li><li><a href="#board2">1.1E</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 			The 65816 board took a long time in the making. First of all, to get the
 			amount of memory I had imagined, I had to resort to using SMD chips for the
 			memory - something I had not done before, but it worked out well.
@@ -214,7 +216,7 @@ more modern browser, like Internet Explorer 8 or later,
 			</p><p>
 			By the way, the PET bell tone becomes a very short chirp when run in 8MHz speed :-)
 			</p>
-		<h2><a name="discussion" id="discussion">Discussion</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="discussion" id="discussion">Discussion</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 			In this section I want to discuss various parts of the schematics
 			</p><p>
 			<code>IC13 (V6)</code> in the schematics is the new synchronous clock counter
@@ -278,7 +280,7 @@ more modern browser, like Internet Explorer 8 or later,
 			Finally <code>ICs 1, 2, 3, 23</code> are the 4 512k static RAM chips that provide
 			the onboard 2 MByte fast RAM.
 			</p>
-		<h2><a name="timinglo" id="timinglo">Timing - low resolution</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="timinglo" id="timinglo">Timing - low resolution</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 		This section describes the basic <quote>low-res</quote> timing for the different timing
 		signals that control the access to the slow memory. Please use the 
 		<a href="timing1.png">first timing diagram</a> as sample reference.
@@ -348,7 +350,7 @@ more modern browser, like Internet Explorer 8 or later,
 		can be and are timing related effects on the signals. 
 		</p><p>
 		More on these timing effects can be seen in the next section.
-		</p><h2><a name="timinghi" id="timinghi">Timing - high resolution</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="timinghi" id="timinghi">Timing - high resolution</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 		This section describes the timing of the board in a higher resolution. Please use the 
 		<a href="timing2.png">second timing diagram</a> as reference. Its purpose was to determine
 		why I still had stray writes at the end of a slow memory access.
@@ -415,7 +417,7 @@ more modern browser, like Internet Explorer 8 or later,
 		What this diagram shows is that contrary to 1MHz or 2MHz circuits, faster circuits have 
 		much harder timing requirements and when with 1MHz you may get away with the proverbial murder,
 		with higher clock frequences the timing police will get you...
-		</p><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div>
+		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 		<p>The memory map is relatively simple. There are two modes, <code>BOOT</code> and <code>/BOOT</code>.
 		During <code>BOOT</code> the lowest 64k RAM are mapped into the CS/A bus space. Of the lowest
 		64k, all but 2k at <code>$8000</code> are directly mapped on the bus. The 2k at
@@ -446,7 +448,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<code>A23</code>, the whole memory setup is mirrored at <code>$400000</code>,
 		<code>$800000</code> and <code>$c00000</code>.
 		</p>
-		<h2><a name="future" id="future">Notes and possible future enhancements</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="future" id="future">Notes and possible future enhancements</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 		This section describes some notes and possible future enhancements of the board
 		</p><p>
 		1) <code>DRDY</code> is only used to disable <code>/SLOWMEM</code>, so that <code>RRDY</code>
@@ -470,7 +472,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<code>Q7</code>, when <code>XQ7</code> is sampled by <code>8Phi2</code>, 65ns before 
 		<code>Phi2</code> goes low. This may or may not be a problem for slow memory that uses
 		<code>RDY</code>.
- 		</p><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="driver1" id="driver1">Simple test suite</a></h3>These tests test the basic functionality of the board, and also do some timing
+ 		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">Simple test suite</a></h3>These tests test the basic functionality of the board, and also do some timing
 			measurement to actually see if the access is fast or not.
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
@@ -509,7 +511,7 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="fat40_816v4.bin">fat40_816v4.bin</a>(Precompiled CS/A Fat40 65816 setup ROM (32k))</td>
-</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.1F</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.1F</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -587,12 +589,12 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_timing"> </div></td>
 <td><a href="timing2.png">timing2.png</a>(Sample high-res timing diagram)</td>
 </tr></table>
-<h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="diagram.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. 
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="diagram.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. 
 		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
 		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
 		control logic - which is the most complex part here... RDY is used to slow down the CPU during CS/A bus access, which 
 		happens at 1MHz speed instead of the 8MHz CPU speed. 
-		</div><div id="contentfooter"><p>Last modified: 2010-04-11.</p>
+		</div></div></div><div id="contentfooter"><p>Last modified: 2010-04-11.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

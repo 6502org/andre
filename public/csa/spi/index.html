@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
@@ -130,7 +132,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  MMC/SD-Card</div>
@@ -141,7 +143,7 @@ more modern browser, like Internet Explorer 8 or later,
 		to the 6502. The first part actually is the interface
 		to the SPI interface of MMC and SD-Cards.</p>
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#modes">SPI</a></li><li style="list-style-type:none;"><ul><li><a href="#modes">SPI Modes</a></li><li><a href="#spilinks">Links</a></li></ul></li><li><a href="#mmcsdc">MMC and SD-Cards</a></li><li style="list-style-type:none;"><ul><li><a href="#spimodes">MMC/SD SPI mode</a></li></ul></li><li><a href="#sdc65">MMC and SD-Cards in a 6502 system</a></li><li style="list-style-type:none;"><ul><li><a href="#65volt">Operating Voltage</a></li><li><a href="#65clk">SPI Mode</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 SPI driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div><h2><a name="modes" id="modes">SPI</a></h2><div class="toplink"><a href="#top">Top</a></div>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#modes">SPI</a></li><li style="list-style-type:none;"><ul><li><a href="#modes">SPI Modes</a></li><li><a href="#spilinks">Links</a></li></ul></li><li><a href="#mmcsdc">MMC and SD-Cards</a></li><li style="list-style-type:none;"><ul><li><a href="#spimodes">MMC/SD SPI mode</a></li></ul></li><li><a href="#sdc65">MMC and SD-Cards in a 6502 system</a></li><li style="list-style-type:none;"><ul><li><a href="#65volt">Operating Voltage</a></li><li><a href="#65clk">SPI Mode</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 SPI driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="modes" id="modes">SPI</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
                 <p>SPI means "Serial Peripheral Interface Bus" and is a very
 		simple four-wire protocol. Some of the advantages are:
 		<ul>
@@ -179,7 +181,7 @@ more modern browser, like Internet Explorer 8 or later,
                 	</p><h3><a name="spilinks" id="spilinks">Links</a></h3>
 			<ul><li><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> has some more detailled info</li>
 			</ul>
-			<h2><a name="mmcsdc" id="mmcsdc">MMC and SD-Cards</a></h2><div class="toplink"><a href="#top">Top</a></div>
+			</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mmcsdc" id="mmcsdc">MMC and SD-Cards</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
                 <p>
 		MMC-Card and SD-Cards are cheap means of getting large amounts
 		of storage memory nowadays. And they are getting larger and
@@ -211,7 +213,7 @@ more modern browser, like Internet Explorer 8 or later,
 			rising edge of the clock, but not what 
 			clock level would be correct. By experimentation
 			I found that MMCs and SD-Cards use mode 0.
-			</p><h2><a name="sdc65" id="sdc65">MMC and SD-Cards in a 6502 system</a></h2><div class="toplink"><a href="#top">Top</a></div>
+			</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sdc65" id="sdc65">MMC and SD-Cards in a 6502 system</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	<p>
 		In a 6502 system several issues have to be considered:
 	</p>
@@ -252,7 +254,7 @@ more modern browser, like Internet Explorer 8 or later,
 			register. This approach seemed to make sense 
 			with the VIA SR, as transfers work in both directions
 			at the same time. Now it is just a convenience.
-		</p><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="driver1" id="driver1">OS/A65 SPI driver</a></h3><p>
+		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 SPI driver</a></h3><p>
 			This is a test driver for the SPI schematics below.
 			It initializes the card, reads the operations conditions
 			register, the card id data, and can read and write
@@ -262,7 +264,7 @@ more modern browser, like Internet Explorer 8 or later,
                 <table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="sdcard.tar.gz">sdcard.tar.gz</a></td>
-</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -289,7 +291,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_viaspi_v1.0a-sch.png">csa_viaspi_v1.0a-sch.png</a></td>
 </tr></table>
-<div id="contentfooter"><p>Last modified: 2007-06-07.</p>
+</div></div><div id="contentfooter"><p>Last modified: 2007-06-07.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

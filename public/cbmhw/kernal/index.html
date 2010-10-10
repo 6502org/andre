@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>New C64 Kernals</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -39,6 +39,8 @@
 </ul>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
@@ -84,15 +86,15 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CBM hardware and mods</a>&gt;&gt;  C64 kernal modifications</div>
-<a name="topanchor" id="topanchor"></a><h1>New C64 Kernals</h1><p class="copyright">(C)
+<h1>New C64 Kernals</h1><p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview"><p>This is Copyright A.Fachat, for distributing use my own
 <a href="MYCOPYING.ASC">License</a></p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boot">Boot ROM</a></li><li><a href="#roms">Improved ROMs</a></li><li style="list-style-type:none;"><ul><li><a href="#use">How to use</a></li><li><a href="#archives">Archive descriptions</a></li></ul></li><li><a href="#disc">Disclaimer</a></li></ul></div><h2><a name="boot" id="boot">Boot ROM</a></h2><div class="toplink"><a href="#top">Top</a></div><p> This is a small patch to allow the C64 to boot an arbitrary
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boot">Boot ROM</a></li><li><a href="#roms">Improved ROMs</a></li><li style="list-style-type:none;"><ul><li><a href="#use">How to use</a></li><li><a href="#archives">Archive descriptions</a></li></ul></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boot" id="boot">Boot ROM</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p> This is a small patch to allow the C64 to boot an arbitrary
 file (i.e. "B*") from disk 8 when being Reset.
 Well, it also does it when doing "stop/restore", but is that a bug or
 a feature now?
@@ -103,7 +105,7 @@ To assemble, you have to place my <a href="../../misc/index.html">@ASS</a>
 at $7000 in memory (or somewhere else if you correct the SYS statement).
 The you have the modified kernal in the RAM under the kernal ROM.
 </p>
-    <h2><a name="roms" id="roms">Improved ROMs</a></h2><div class="toplink"><a href="#top">Top</a></div><p> These kernal ROMs do have a lot more new features than the
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="roms" id="roms">Improved ROMs</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p> These kernal ROMs do have a lot more new features than the
 standard kernal. The place has been taken from the tape routines
 and the RS232 routines (the latter have been replaced).
 </p>
@@ -201,7 +203,7 @@ browse the <a href="c64bs2">archive</a>-->.</h3><pre>
           A ROM image for 1.31, 1.32 and 1.40 is included. The ROM images have
           the UART/ACIA at $d600 and the TPI at $df00.
 </pre>
-	<h2><a name="disc" id="disc">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div><p> BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disc" id="disc">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p> BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
 FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
 OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
 PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
@@ -221,7 +223,7 @@ OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
 PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 	</p>
-	<hr />
+	</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

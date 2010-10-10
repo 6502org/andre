@@ -606,3 +606,24 @@ div#content p.conclusion {
 }
 
 
+/****************************************
+ * twisties
+ */
+.h2t {
+	display: none;		/* only if enabled with javascript */
+	float: left;
+	margin-top: 0.4em;
+	background:url(imgs/sprite.png) no-repeat;
+	width:2em;
+	background-position: -288px -32px;
+}
+
+/****************************************
+ * min/max link
+ */
+
+#minmax {
+	display: none;
+	float: right;
+}
+

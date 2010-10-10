@@ -332,12 +332,45 @@ function twisty() {
 }
 
 // ----------------------------------------------------------------------------------------------------------
+// min/max handling
+
+function setupMinmax() {
+	var t = $("#minmax");
+	$(t).html("<a href=\"#\">Maximize</a>");
+	$(t).children("a").click( minmax );
+	$(t).show();
+}
+
+function minmax() {
+	var left = $("#leftcol");
+	var right = $("#rightcol");
+	var mid = $("#midcol");
+	if ( $(left).is(':visible') ) {
+		// maximize
+		$(left).hide();
+		$(right).hide();
+		$(mid).css({'margin-left':'1%'});
+		$(mid).css({'margin-right':'1%'});
+		$(this).html("Minimize");
+	} else {
+		// minimize
+		$(mid).css({'margin-left':'16%'});
+		$(mid).css({'margin-right':'16%'});
+		$(left).show();
+		$(right).show();
+		$(this).html("Maximize");
+	}
+}
+
+// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
 function doInit() {
 	// filter is only usable with javascript, so hidden by default
 	$("div#filter").show();
+	// initialize minmax
+	setupMinmax();
 	// initialize twisties
 	setupTwisties();
 	// initialize menu

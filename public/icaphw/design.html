@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
 <title>Bil Herd helping me out - a lesson in hardware design</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../adv65/index.html">Advanced 6502</a>
@@ -73,12 +75,12 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  <a href="index.html">6502 Hardware Bits
 </a>&gt;&gt;  Hardware design lesson</div>
-<a name="topanchor" id="topanchor"></a><h1>Bil Herd helping me out - a lesson in hardware design</h1><p class="copyright">(C)
+<h1>Bil Herd helping me out - a lesson in hardware design</h1><p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview"><p>
 	While creating and debugging my - still somewhat unfinished - <a href="../csa/ramdisk/index.html">CS/A RAMDisk board</a>,
@@ -94,9 +96,9 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	Many thanks to Bil for his understanding and help in these issues!
 	</p>
-  </div><h2>News:</h2><ul class="news"><li><div> </div><small>2010-01-07</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-01-07</small>
 	Created this page
-    </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#beginning">The Beginning</a></li><li style="list-style-type:none;"><ul><li><a href="#buffer">Buffer as hold time</a></li></ul></li><li><a href="#dram">DRAM Design</a></li><li style="list-style-type:none;"><ul><li><a href="#drambasic">Basic DRAM design</a></li><li><a href="#tests">DRAM testing</a></li></ul></li><li><a href="#csa">Feedback on my designs</a></li><li style="list-style-type:none;"><ul><li><a href="#vdc">VDC feedback</a></li><li><a href="#ramdisk">RAMDisk feedback</a></li><li><a href="#debugging">Debugging DRAM</a></li></ul></li><li><a href="#practices">Further Best Practices</a></li><li style="list-style-type:none;"><ul><li><a href="#board_design">Advice on board design</a></li><li><a href="#physics">More Physics</a></li></ul></li><li><a href="#final">Final words</a></li><li style="list-style-type:none;"><ul><li><a href="#status">RAMDisk Status</a></li><li><a href="#license">Permission</a></li></ul></li></ul></div><h2><a name="beginning" id="beginning">The Beginning</a></h2><div class="toplink"><a href="#top">Top</a></div>It all started on the cbm-hackers mailing list, when I made a comment that I used a buffer to increas the hold time of a data signal.
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#beginning">The Beginning</a></li><li style="list-style-type:none;"><ul><li><a href="#buffer">Buffer as hold time</a></li></ul></li><li><a href="#dram">DRAM Design</a></li><li style="list-style-type:none;"><ul><li><a href="#drambasic">Basic DRAM design</a></li><li><a href="#tests">DRAM testing</a></li></ul></li><li><a href="#csa">Feedback on my designs</a></li><li style="list-style-type:none;"><ul><li><a href="#vdc">VDC feedback</a></li><li><a href="#ramdisk">RAMDisk feedback</a></li><li><a href="#debugging">Debugging DRAM</a></li></ul></li><li><a href="#practices">Further Best Practices</a></li><li style="list-style-type:none;"><ul><li><a href="#board_design">Advice on board design</a></li><li><a href="#physics">More Physics</a></li></ul></li><li><a href="#final">Final words</a></li><li style="list-style-type:none;"><ul><li><a href="#status">RAMDisk Status</a></li><li><a href="#license">Permission</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="beginning" id="beginning">The Beginning</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">It all started on the cbm-hackers mailing list, when I made a comment that I used a buffer to increas the hold time of a data signal.
 	<p>
     </p><h3><a name="buffer" id="buffer">Buffer as hold time</a></h3><p>
 	This answer shows off the difficulties you run into when using buffers as delay. What I realized is of course in a mass-production 
@@ -123,7 +125,7 @@ You also slow things time by the TProp of the buffer so at best you pick up a ho
 This was a recurring stickyness to 6502 designs, I used PHI0 (clock source instead of clock output)  a lot and thought about using long traces on data
 lines (joke) among other things... more than one engineer got everything else right except for this part.
 	</p></div>
-	<h2><a name="dram" id="dram">DRAM Design</a></h2><div class="toplink"><a href="#top">Top</a></div>The discussion quickly went on about the design for using DRAMs - which are kind of monstrous beasts compared to other 8-bit 
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dram" id="dram">DRAM Design</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">The discussion quickly went on about the design for using DRAMs - which are kind of monstrous beasts compared to other 8-bit 
 		technologies.<h3><a name="drambasic" id="drambasic">Basic DRAM design</a></h3>
 	<p>Here I learned the basics of DRAM design, unfortunately after the fact of the RAMDisk board design. And in Bil's speak I have not
 		yet earned the 'DRAM badge'. After all I only have the architectural issues right, the timing it seems probably only partly, but
@@ -232,7 +234,7 @@ fact a lot of dram testors used to run the parts at 4.6v and 5.4 to catch failur
 When you scope you should get an area around /RAS and /CAS signals that is completely clear of any transitions including termination effects.  If your
 scope trace isn't perfectly clean (trigger on CAS and RAS) then you will probably have problems.
 	</p></div>
-	<h2><a name="csa" id="csa">Feedback on my designs</a></h2><div class="toplink"><a href="#top">Top</a></div>The discussion so far was based on just mails and my description of my system. Finally Bil had a look at my <a href="../csa/vdc/index.html">VDC</a> and <a href="../csa/ramdisk/index.html">RAMDisk board</a> and gave some feedback<h3><a name="vdc" id="vdc">VDC feedback</a></h3>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="csa" id="csa">Feedback on my designs</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">The discussion so far was based on just mails and my description of my system. Finally Bil had a look at my <a href="../csa/vdc/index.html">VDC</a> and <a href="../csa/ramdisk/index.html">RAMDisk board</a> and gave some feedback<h3><a name="vdc" id="vdc">VDC feedback</a></h3>
 	<div class="interview">
 <p class="first"><span class="other">Bil:</span>Does the graphics card have any known issues?  What is the part number you use for DRAM on that?  I see some things I can make general comments about as
 kind of good practices but if you had beat the heck out of the card and had no known issues it would change some of my comments.  Have you run extensive
@@ -581,7 +583,7 @@ board socketed as it was significant if TI DRAMS changed the error vs. Micron.
 Hope this helps.
 </p>
 </div>
-<h2><a name="practices" id="practices">Further Best Practices</a></h2><div class="toplink"><a href="#top">Top</a></div>Here Bil gave me some more about best practices<h3><a name="board_design" id="board_design">Advice on board design</a></h3>
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="practices" id="practices">Further Best Practices</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">Here Bil gave me some more about best practices<h3><a name="board_design" id="board_design">Advice on board design</a></h3>
 <div class="interview">
 <p class="first"><span class="other">Bil:</span>
 When driving DRAMs it is important to understand that these parts, let
@@ -792,7 +794,7 @@ simulate your problems so it is cheaper, easier and faster than building
 circuits and troubleshooting them.  I got lazy I would actually not
 check enough for errors because it was so easy to recompile and test
 again.
-</p></div><h2><a name="final" id="final">Final words</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="status" id="status">RAMDisk Status</a></h3>
+</p></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="final" id="final">Final words</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="status" id="status">RAMDisk Status</a></h3>
 <p>Well, unfortunately so far I did not have the time and tools yet to actually do the measurements suggested. But I accidently found that removing one module removes the errors. Which seems to indicate that there is "environmental" issue with the power supply. 
 As the discussion has taken place "after the fact" of my current design, I am not sure if I will actually build a new design with all the things I have learned (like DRAM timing signals, series/terminator resistors etc). What I have learned however is the min/max timing calculations, which helped me
 solve the timing problems with my 65816 board.</p>
@@ -810,7 +812,7 @@ an unlinked page or send it to you so you can check)
 of a fact wrong as it has been many many years since I worked too
 actively with most of this, this is all form memory.
 
-</p></div><hr />
+</p></div></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 

@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>Differences of CRTC models</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
@@ -80,12 +82,12 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">ICs and Standards Info</a>&gt;&gt;  <a href="index.html">CRTC 6545/6845
 </a>&gt;&gt;  Differences between models</div>
-<a name="topanchor" id="topanchor"></a><h1>Differences of CRTC models</h1><p class="copyright">(C)
+<h1>Differences of CRTC models</h1><p class="copyright">(C)
 1999-2006 André  Fachat</p> 
 <div class="overview">
 	<P>
@@ -105,9 +107,9 @@ more modern browser, like Internet Explorer 8 or later,
 	I will not go into details that are common to all chips. If you have further questions please refer to the CRTC documentation on <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html</a> and 
 	<a href="http://www.6502.org/documents/datasheets/">http://www.6502.org/documents/datasheets/</a>.
 	</P>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#pinout">Pinout</a></li><li><a href="#statusreg">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#regdiffs">The major differences in the register file</a></li><li style="list-style-type:none;"><ul><li><a href="#diffr3">R3, sync widths</a></li><li><a href="#diffr8">R8, Mode Control</a></li></ul></li><li><a href="#opmodes">Different Modes of Operation</a></li><li style="list-style-type:none;"><ul><li><a href="#rowcol">Straight binary vs. row/column addressing</a></li><li><a href="#interlace">Interlace and Video modes (All but Commodore)</a></li><li><a href="#transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></li></ul></li></ul></div><h2><a name="pinout" id="pinout">Pinout</a></h2><div class="toplink"><a href="#top">Top</a></div>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#pinout">Pinout</a></li><li><a href="#statusreg">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#regdiffs">The major differences in the register file</a></li><li style="list-style-type:none;"><ul><li><a href="#diffr3">R3, sync widths</a></li><li><a href="#diffr8">R8, Mode Control</a></li></ul></li><li><a href="#opmodes">Different Modes of Operation</a></li><li style="list-style-type:none;"><ul><li><a href="#rowcol">Straight binary vs. row/column addressing</a></li><li><a href="#interlace">Interlace and Video modes (All but Commodore)</a></li><li><a href="#transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="pinout" id="pinout">Pinout</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	Although the pin naming is different, the pinout itself is the same for all chips, and all pins have the same meaning.
-    <h2><a name="statusreg" id="statusreg">Status Register</a></h2><div class="toplink"><a href="#top">Top</a></div>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="statusreg" id="statusreg">Status Register</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	The Status register is read when the register select (RS) pin is low (when writing to this address, the index in the CRTC register file is written).
 	<pre>
 Commodore 6545-1, Rockwell 6545-1
@@ -140,7 +142,7 @@ Motorola 6845, 6845-1, Hitachi 46505
     before vertical retrace ends to ensure that critical timings for
     refresh RAM is met."
 	</pre>
-    <h2><a name="registers" id="registers">Register File</a></h2><div class="toplink"><a href="#top">Top</a></div>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="registers" id="registers">Register File</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	The following registers are basically the same for all chips (see notes):
 	<pre>
 R0	Horizontal Total (-1)
@@ -169,7 +171,7 @@ R17	Lightpen address low (8 bit)
     All others can only read R14-R17.
 	</pre>
 	Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
-    <h2><a name="regdiffs" id="regdiffs">The major differences in the register file</a></h2><div class="toplink"><a href="#top">Top</a></div>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="regdiffs" id="regdiffs">The major differences in the register file</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	The following items describe the major register file differences.
     <ul><li><strong><a name="diffr3" id="diffr3">R3, sync widths</a></strong>
 <pre>
@@ -259,7 +261,7 @@ Motorola 6845-1
 </p><p>
 Now lets explain certain features that are mentioned in the table.
 </p>
-	</li></ul><h2><a name="opmodes" id="opmodes">Different Modes of Operation</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opmodes" id="opmodes">Different Modes of Operation</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	The following sections explain the different modes of operation
 	of the different models.
     <ul><li><strong><a name="rowcol" id="rowcol">Straight binary vs. row/column addressing</a></strong>
@@ -299,11 +301,11 @@ After each update access the address in the update register is incremented by 1.
 Interestingly the Commodore 8563 VDC chip used in the C128 computer seems to be a direct descendant of the CRTC. The first 20 registers (with the exception of the mode register, R8) are the same as the Rockwell 6545 registers. Specifically the VDC only allows the transparent addressing. Therefore even R31 is kept - here the data to be transferred to/from the video memory must be written to/read from. Because this access is horribly slow, the VDC can also do copy operations in the video RAM by itself.
 	</p><p>
 	</p>
-	</li></ul><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div>
+	</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  <hr />
+  </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 	
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

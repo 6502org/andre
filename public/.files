@@ -2,6 +2,7 @@ s Commodore
 d petindex CBM PETindex
 d cbmhw CBM hardware and mods
 s Hardware
+d 65k The 65k Project
 d csa CS/A65 Caspaer and Gecko computer
 d adv65 Advanced 6502
 d hwinfo ICs and Standards Info

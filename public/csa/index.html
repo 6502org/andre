@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="memmap.html">Memory Map</a></li>
@@ -160,7 +162,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  CS/A65 Caspaer and Gecko computer</div>
@@ -171,7 +173,7 @@ The boards can be used in different setups, but the <a href="#caspaer">Caspaer</
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	
-</div><h2>News:</h2><ul class="news"><li><div class="i_hotnews"> </div><small>2010-04-20</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2010-04-20</small>
 			Finally here it is - Part II! 
 			I already overhauled the 65816 board and made a second version, based on a CPLD
 			Find it at the <a href="cpu816v2/index.html">65816 CPU V2</a> page.
@@ -191,7 +193,7 @@ that in itself is a complete, single-board computer.</p>
 		</li><li><div> </div><small>2010-01-07</small>
 			Tested the <a href="ramdisk/index.html">RAMDisk board</a> and found it working in some
 			configurations. 
-		</li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#overview">Introduction</a></li><li><a href="#general">General considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#othercpu">Other CPUs</a></li><li><a href="#bus">Bus</a></li><li><a href="#tech">Technology</a></li><li><a href="#schem">Schematics</a></li><li><a href="#age">Age</a></li></ul></li><li><a href="#setups">Setups</a></li><li style="list-style-type:none;"><ul><li><a href="#caspaer">Caspaer</a></li><li><a href="#legacy">CS/A65 legacy</a></li><li><a href="#gecko">Gecko</a></li><li><a href="#fat40">Fat40</a></li><li><a href="#vc1581">VC1581</a></li></ul></li><li><a href="#sw">Software</a></li><li><a href="#boards">Boards</a></li><li style="list-style-type:none;"><ul><li><a href="#mainboards">Main Boards</a></li><li><a href="#ioboards">I/O boards</a></li><li><a href="#specialboards">Special purpose boards</a></li><li><a href="#deprecatedboards">Deprecated boards</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li><a href="#numbering">Board numbering scheme</a></li></ul></div><h2><a name="disclaimer" id="disclaimer">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div>
+		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#overview">Introduction</a></li><li><a href="#general">General considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#othercpu">Other CPUs</a></li><li><a href="#bus">Bus</a></li><li><a href="#tech">Technology</a></li><li><a href="#schem">Schematics</a></li><li><a href="#age">Age</a></li></ul></li><li><a href="#setups">Setups</a></li><li style="list-style-type:none;"><ul><li><a href="#caspaer">Caspaer</a></li><li><a href="#legacy">CS/A65 legacy</a></li><li><a href="#gecko">Gecko</a></li><li><a href="#fat40">Fat40</a></li><li><a href="#vc1581">VC1581</a></li></ul></li><li><a href="#sw">Software</a></li><li><a href="#boards">Boards</a></li><li style="list-style-type:none;"><ul><li><a href="#mainboards">Main Boards</a></li><li><a href="#ioboards">I/O boards</a></li><li><a href="#specialboards">Special purpose boards</a></li><li><a href="#deprecatedboards">Deprecated boards</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li><a href="#numbering">Board numbering scheme</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disclaimer" id="disclaimer">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	<P class="disclaimer">Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
 to be used in any important or even life-critical systems.
@@ -200,7 +202,7 @@ are provided 'as is', without warranty of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
 servicing, repair or correction.</P>
-	<h2><a name="motivation" id="motivation">Motivation</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="motivation" id="motivation">Motivation</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 		Why do I do all this? Good question. It all started with 
 		modifications to my trusty old Commodore 64 (that I still own
 		but rarely use, though). Together with a friend I developed
@@ -221,7 +223,7 @@ servicing, repair or correction.</P>
 		everything in standard logic chips. 
 		Although nowadays FPGAs look very interesting (and advanced) :-)
 		</p>
-	<h2><a name="dist" id="dist">Distribution</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dist" id="dist">Distribution</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 <p>The boards, i.e. the schematics, and layout artworks are distributed
 under the terms of the <a href="../osa/COPYING">GNU public license version 2</a>.
 </p><p>
@@ -229,7 +231,7 @@ The <a href="bus-1.1.html">bus design</a> is completely in the public domain.
 It can be used as long as any changes to the original specs are marked as such
 (to not let incompatibilites slip in unnoticed).
 </p>
-	<h2><a name="overview" id="overview">Introduction</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Introduction</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	<p>The CS/A65 computer is a modular computer based on a passive
 	backplane and a number of active boards. The system is based around
 	the 6502 technology originating from the long gone MOS technologies.
@@ -245,7 +247,7 @@ It can be used as long as any changes to the original specs are marked as such
 	as well as PC floppy interface, or a 6502 emulator.</p>
 	<p>A software emulator based on the VICE commodore emulator
 	is used for software development for the system</p>
-	<h2><a name="general" id="general">General considerations</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="othercpu" id="othercpu">Other CPUs</a></h3>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="general" id="general">General considerations</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="othercpu" id="othercpu">Other CPUs</a></h3>
 <p>
 Currently the system is based on the 6502 processor, although other
 configurations (65816, 6809) should be possible. The software I use
@@ -309,7 +311,7 @@ And my hand-drawing is still the authoritative source.</p>
 <p>For the newer boards you can be pretty sure that the Eagle schematics
 and board layout works when the board description indicates that I have
 tested the board and found no problem.
-	</p><h2><a name="setups" id="setups">Setups</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="setups" id="setups">Setups</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	In this section some supported setups are described.
 	<h3><a name="caspaer" id="caspaer">Caspaer</a></h3><div class="rightimg">
 		<a href="gallery/caspaer.jpg"><img src="gallery/caspaer-small.jpg" /></a><br />A Caspaer setup
@@ -350,7 +352,7 @@ tested the board and found no problem.
 	<h3><a name="vc1581" id="vc1581">VC1581</a></h3>The VC1581 setup also uses the <a href="petcpu/index.html">PETCPU</a> board, but uses the 
 		<a href="drvio/index.html">DRVIO board</a> to emulate a Commodore VC1581 disk drive.
 		The VC1581 setup has its own <a href="../cbmhw/ryo1581/index.html">VC1581 page</a>.
-	<h2><a name="sw" id="sw">Software</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 <p>
 The software used is the <a href="../osa/index.html">GeckOS/A65</a>
 operating system. It features the handling of the MMU, serial devices,
@@ -363,7 +365,7 @@ VICE emulator, that now emulates a subset of the CS/A65 hardware.
 Please check it out at its <a href="emu/index.html">site</a>.
 </p>
 <p>The board pages contain driver code where appropriate and available.</p>
-	<h2><a name="boards" id="boards">Boards</a></h2><div class="toplink"><a href="#top">Top</a></div>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Boards</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	This section describes the different boards and links to the schematics and more detailled descriptions.<h3><a name="mainboards" id="mainboards">Main Boards</a></h3>Those boards are the heart of the CS/A65 and Gecko computers.<ul><li class="subitem"><a href="cpu/index.html">CS/A65 CPU</a> 
 		The main CPU board features an MMU, and newer versions also
 		sport bus error condition detection. It is a CPU-only board
@@ -480,9 +482,9 @@ like these, why I moved some of the lines around those days...)
 		computer can be used as drive by the PET or C64. This 
 		board is replaced by the PETIO and 
 		DRVIO boards.
-	  </li></ul><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div>A memory map on the I/O memory addresses can now be found in the
+	  </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">A memory map on the I/O memory addresses can now be found in the
 		<a href="memmap.html">Memory Map page</a>.
-	<h2><a name="numbering" id="numbering">Board numbering scheme</a></h2><div class="toplink"><a href="#top">Top</a></div><p>The boards are numbered with a major and a minor version number,
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="numbering" id="numbering">Board numbering scheme</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>The boards are numbered with a major and a minor version number,
 		plus a letter denoting the revision of the board. So for
 		example a video board is numbered "1.3E", means that 
 		it is major version 1, minor version 3, and the fifth revision
@@ -514,7 +516,7 @@ like these, why I moved some of the lines around those days...)
 		I try to keep the numbering consistent, but I am only
 		human ;-)
 		</p>
-	<div id="contentfooter"><p>Last modified: 2006-12-30.</p>
+	</div></div><div id="contentfooter"><p>Last modified: 2006-12-30.</p>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html>

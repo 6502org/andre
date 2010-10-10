@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>How does the 65816 board work?</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,12 +19,13 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
-</li>
+<li><div class="i_link">&nbsp;</div><a href="../../65k">The 65k Project</a></li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html">Board Features</a></li>
@@ -77,19 +78,19 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">Speed up your 6502!
 </a>&gt;&gt;  How it works</div>
-<a name="topanchor" id="topanchor"></a><h1>How does the 65816 board work?</h1><p class="copyright">(C)
+<h1>How does the 65816 board work?</h1><p class="copyright">(C)
 2010-2010 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes the inner workings of the 65816 board,
 	what external and internal signals are there and how they work together. Also it
 	explains the different parts of the VHDL code.
 	</p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#gen">General</a></li><li style="list-style-type:none;"><ul><li><a href="#challenge">The challenge...</a></li><li><a href="#sync">Clock Synchronization</a></li><li><a href="#jitter">Jitter</a></li><li><a href="#origbus">Original bus access</a></li><li><a href="#bugus">Bogus cycle elimination</a></li><li><a href="#2mhz">2 mhz operation</a></li><li><a href="#clocks">clock duty cycle</a></li></ul></li><li><a href="#vhdl">vhdl explained...</a></li><li style="list-style-type:none;"><ul><li><a href="#core">pet816.vhd</a></li><li><a href="#core">core.vhd</a></li><li><a href="#map">systemmap.vhd</a></li><li><a href="#div">clockdivider.vhd</a></li><li><a href="#shift">ClockShift.vhd</a></li><li><a href="#sync">ClockSync.vhd</a></li><li><a href="#div">ControlRegister.vhd</a></li><li><a href="#div">BoardMemSel.vhd</a></li></ul></li><li><a href="#tests">VHDL Testing</a></li><li style="list-style-type:none;"><ul><li><a href="#testsetup">Test Setup</a></li><li><a href="#testexec">Test Execution</a></li><li><a href="#testclock">Clock Testing</a></li><li><a href="#testtiming">Test Timing</a></li></ul></li></ul></div><h2><a name="gen" id="gen">General</a></h2><div class="toplink"><a href="#top">Top</a></div><p>Here the general design is discussed</p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#gen">General</a></li><li style="list-style-type:none;"><ul><li><a href="#challenge">The challenge...</a></li><li><a href="#sync">Clock Synchronization</a></li><li><a href="#jitter">Jitter</a></li><li><a href="#origbus">Original bus access</a></li><li><a href="#bugus">Bogus cycle elimination</a></li><li><a href="#2mhz">2 mhz operation</a></li><li><a href="#clocks">clock duty cycle</a></li></ul></li><li><a href="#vhdl">vhdl explained...</a></li><li style="list-style-type:none;"><ul><li><a href="#core">pet816.vhd</a></li><li><a href="#core">core.vhd</a></li><li><a href="#map">systemmap.vhd</a></li><li><a href="#div">clockdivider.vhd</a></li><li><a href="#shift">ClockShift.vhd</a></li><li><a href="#sync">ClockSync.vhd</a></li><li><a href="#div">ControlRegister.vhd</a></li><li><a href="#div">BoardMemSel.vhd</a></li></ul></li><li><a href="#tests">VHDL Testing</a></li><li style="list-style-type:none;"><ul><li><a href="#testsetup">Test Setup</a></li><li><a href="#testexec">Test Execution</a></li><li><a href="#testclock">Clock Testing</a></li><li><a href="#testtiming">Test Timing</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gen" id="gen">General</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>Here the general design is discussed</p>
      <h3><a name="challenge" id="challenge">The challenge...</a></h3><p>As there are already 65816-based boards (like my <a href="../../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
 	Well, it's the timing! In my other 65816 board the actual system clock is derived from the
 	65816 fast clock in a synchronous way. But in a 6502 replacement no such synchronous clock is
@@ -256,7 +257,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Admittedly this signal is out of specs for the static RAM chip I use, which is rated 55 ns
 	access time. Using the burn-in test however, I found it still works. I might get me a faster
 	RAM IC though.
-	</p><h2><a name="vhdl" id="vhdl">vhdl explained...</a></h2><div class="toplink"><a href="#top">Top</a></div><p>in this section i will describe the main structure of the vhdl code that implements
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="vhdl" id="vhdl">vhdl explained...</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>in this section i will describe the main structure of the vhdl code that implements
 	the logic in the cpld. i will also go into ways of efficient testing as i experienced
 	while developing the board.</p>
 <div class="rightimg">
@@ -331,7 +332,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><h3><a name="div" id="div">BoardMemSel.vhd</a></h3><p>
 	This module creates the select lines for the onboard RAM and ROM ICs, including the 
 	ROM's write-enable (for the programming).
-	</p><h2><a name="tests" id="tests">VHDL Testing</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="tests" id="tests">VHDL Testing</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	Writing VHDL is one thing, making is work is another thing.	
 <div class="rightimg">
                 <a href="imgs/vhdltest.svg"><img width="250px" src="imgs/vhdltest.png" /></a><br />VHDL test setup
@@ -432,7 +433,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	As far as I understand the transport and inertial delays are ignored when doing the actual
 	synthesis, but I haven't tried it so far, though.
-	</p><hr />
+	</p></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

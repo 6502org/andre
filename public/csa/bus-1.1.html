@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
 <title>CS/A bus connector</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="memmap.html">Memory Map</a></li>
@@ -129,12 +131,12 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  <a href="index.html">CS/A65 Caspaer and Gecko computer
 </a>&gt;&gt;  Bus V1.1</div>
-<a name="topanchor" id="topanchor"></a><h1>CS/A bus connector</h1><p class="copyright">(C)
+<h1>CS/A bus connector</h1><p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview"><p>	Note: superseded by bus specification <a href="bus-1.1.html">version 1.1</a>
 </p><p>
@@ -143,7 +145,7 @@ where only 64 pins (rows a+c) are used.
 The board itself has the male connector. It can be plugged into a bus
 plane with female connectors.
 </p>
-  </div><h2><a name="layout" id="layout">Layout</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>The bus layout is:
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="layout" id="layout">Layout</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The bus layout is:
 </p>
 <pre>
         a       c
@@ -235,7 +237,7 @@ Using -RDY and BE should allow an external bus master to take the
 bus, although it has not been tested so far.</li>
 </ul>
 	</p>
-	<hr />
+	</div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 

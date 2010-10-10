@@ -94,9 +94,13 @@
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 <xsl:call-template name="ie6warn"/>
-<div class="top" id="content"><xsl:text>
+<div class="top" id="content">
+<div id="minmax"/>
+<xsl:text>
 @BREAD@
-</xsl:text><h1><xsl:value-of select="name"/></h1><xsl:text>
+</xsl:text>
+<h1><xsl:value-of select="name"/></h1>
+<xsl:text>
 </xsl:text><xsl:apply-templates select="copyright"/><xsl:text>
 </xsl:text><div class="overview"><xsl:apply-templates select="desc"/><xsl:text>
 </xsl:text></div>
@@ -319,19 +323,18 @@
 <html><head> 
 	<xsl:call-template name="head"/>
 	<title><xsl:value-of select="@name"/></title>
-</head>
-<xsl:text>
-</xsl:text>
-<body>
+</head><xsl:text>
+</xsl:text><body>
 <div id="mainbox">
+<a name="top"/>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
 <xsl:call-template name="ie6warn"/>
 <div class="top" id="content">
+<div id="minmax"/>
 <xsl:text>
 @BREAD@
 </xsl:text>
-<a name="topanchor"/>
 <h1><xsl:value-of select="@name"/></h1>
 
 <xsl:for-each select="author">

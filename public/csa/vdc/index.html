@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
@@ -130,7 +132,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Video board</div>
@@ -143,12 +145,12 @@ more modern browser, like Internet Explorer 8 or later,
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
 	
-</div><h2>News:</h2><ul class="news"><li><div class="i_oldnews"> </div><small>2007-06-29</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_oldnews"> </div><small>2007-06-29</small>
                         Added helper boards that convert the video signals
 			to composite video.
                 </li><li><div class="i_oldnews"> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">Composite Video (pet revealed) 1.0C</a> (ok)</li><li><a href="#board2">Composite Video (pucoe) 1.0C</a> (ok)</li><li><a href="#board3">1.4B</a> (untested)</li><li><a href="#board4">1.4A</a> (untested)</li><li><a href="#board5">1.3E</a> (prototype)</li><li><a href="#board6">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">Composite Video (pet revealed) 1.0C</a> (ok)</li><li><a href="#board2">Composite Video (pucoe) 1.0C</a> (ok)</li><li><a href="#board3">1.4B</a> (untested)</li><li><a href="#board4">1.4A</a> (untested)</li><li><a href="#board5">1.3E</a> (prototype)</li><li><a href="#board6">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -165,7 +167,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(VDC driver excerpt)</td>
-</tr></table><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: Composite Video (pet revealed) 1.0C</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: Composite Video (pet revealed) 1.0C</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -386,7 +388,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csavdcflip.jpg">csavdcflip.jpg</a>(The flipside - just for the fun of it... :-))</td>
 </tr></table>
-<h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="vdc.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the vdc board. Only some relevant info
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="vdc.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the vdc board. Only some relevant info
 			is shown. It is actually a pretty simple design, if
 			it were not for the timing...
 			The CPU accesses the memory during Phi2 high, so 
@@ -400,7 +402,7 @@ more modern browser, like Internet Explorer 8 or later,
 			is then shifted out to the video output.
 			More on how the CRTC works can be found on the
 			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
-		</div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
+		</div></div></div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

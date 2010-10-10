@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>65816 board hardware</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -19,12 +19,13 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
 <ul class="menu1" >
-<li class="dir" id="m_adv65_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
-</li>
+<li><div class="i_link">&nbsp;</div><a href="../../65k">The 65k Project</a></li>
 <li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="../pet816/index.html">Speed up your 6502!</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="features.html">Board Features</a></li>
@@ -77,17 +78,17 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">Advanced 6502</a>&gt;&gt;  <a href="index.html">Speed up your 6502!
 </a>&gt;&gt;  Hardware</div>
-<a name="topanchor" id="topanchor"></a><h1>65816 board hardware</h1><p class="copyright">(C)
+<h1>65816 board hardware</h1><p class="copyright">(C)
 2010-2010 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes the hardware of the 65816 board.
 	</p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#structure">Hardware Design</a></li><li style="list-style-type:none;"><ul><li><a href="#cpu">CPU domain</a></li><li><a href="#sys">System domain</a></li><li><a href="#buf">Buffers</a></li></ul></li><li><a href="#ics">ICs</a></li><li><a href="#jumpers">Jumpers and Connectors</a></li></ul></div><h2><a name="structure" id="structure">Hardware Design</a></h2><div class="toplink"><a href="#top">Top</a></div><p>In this section I describe the hardware design.</p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#structure">Hardware Design</a></li><li style="list-style-type:none;"><ul><li><a href="#cpu">CPU domain</a></li><li><a href="#sys">System domain</a></li><li><a href="#buf">Buffers</a></li></ul></li><li><a href="#ics">ICs</a></li><li><a href="#jumpers">Jumpers and Connectors</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="structure" id="structure">Hardware Design</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>In this section I describe the hardware design.</p>
 <div class="rightimg"><a href="imgs/diagram.gif"><img width="300px" src="imgs/diagram.gif" /></a><br />The board design overview (click to enlarge) </div>
 	<p>The board is actually quite simple. It has a CPU domain, with the CPU, RAM and ROM (incl. 
 	the '573 bank byte latch). It has a system domain, with the connection that goes into the
@@ -106,7 +107,7 @@ more modern browser, like Internet Explorer 8 or later,
 	In fact the CPLD makes the address and R/-W only change exactly once a slow cycle.
 	Either the address is set to the CPU address when a (slow) system access is performed,
 	or zero, when the slow bus is not needed (as the CPU is running on fast clock).
-	</p><h2><a name="ics" id="ics">ICs</a></h2><div class="toplink"><a href="#top">Top</a></div><p>Looking at the board <a href="pet_cpu816-v1.2b-brd.png">layout</a> you can see that
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ics" id="ics">ICs</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>Looking at the board <a href="pet_cpu816-v1.2b-brd.png">layout</a> you can see that
 	of course it has the 65816 CPU, but also 2 RAM ICs with 512k each, and a socket for a
 	ROM chip of between 32k and 512k. A 50MHz oscillator gives the clocks.
 	Also the board has three driver ICs (2 '273, 1 '245), one latch (a '573), and a comparator (a '688).
@@ -133,7 +134,7 @@ more modern browser, like Internet Explorer 8 or later,
 	It is used to select two addresses in the I/O range for the CPLD's control and clock
 	registers.
 	</p>
-	<h2><a name="jumpers" id="jumpers">Jumpers and Connectors</a></h2><div class="toplink"><a href="#top">Top</a></div><p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="jumpers" id="jumpers">Jumpers and Connectors</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	The board has a number of jumpers and connectors:</p>
 	<ul>
 	<li>JP1: BOOTROM - when set to on, the on-board ROM is mapped into the lowest 64k
@@ -155,7 +156,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>JP3: pwr - additional power supply</li>
 	<li>SV1: JTAG - programming connector for the CPLD</li>
 	</ul>
-	<hr />
+	</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>SCSI-64: SCSI controller for the C64 and other 6502</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -42,6 +42,8 @@
 </ul>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
@@ -87,18 +89,18 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CBM hardware and mods</a>&gt;&gt;  CBM SCSI interfaces</div>
-<a name="topanchor" id="topanchor"></a><h1>SCSI-64: SCSI controller for the C64 and other 6502</h1><p class="copyright">(C)
+<h1>SCSI-64: SCSI controller for the C64 and other 6502</h1><p class="copyright">(C)
 - André  Fachat</p> 
 <div class="overview"><p>This is the description of several SCSI controllers for the Commodore C64
 computer. Some of them may be used with a VIC20 or C128 as well.
 All of the controllers are based on one hardware interface that is built
 into different setups.
 	</p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#desc">Description</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#dist">Distribution</a></li><li><a href="#std">Standard</a></li><li><a href="#genscsi">Generic 6502 SCSI Interface</a></li><li><a href="#swarch">Software Architecture</a></li><li><a href="#hwproj">Hardware Projects</a></li><li style="list-style-type:none;"><ul><li><a href="#c64scsi">C64 SCSI (harddisk) adapter</a></li><li><a href="#vcscsi10">VC-SCSI 1.0 drive</a></li><li><a href="#vcscsi1x">VC-SCSI 1.x drive</a></li><li><a href="#vcscsi20">VC-SCSI 2.0 drive</a></li></ul></li></ul></div><h2><a name="desc" id="desc">Description</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>After going a bit into the SCSI standard first I
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#desc">Description</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#dist">Distribution</a></li><li><a href="#std">Standard</a></li><li><a href="#genscsi">Generic 6502 SCSI Interface</a></li><li><a href="#swarch">Software Architecture</a></li><li><a href="#hwproj">Hardware Projects</a></li><li style="list-style-type:none;"><ul><li><a href="#c64scsi">C64 SCSI (harddisk) adapter</a></li><li><a href="#vcscsi10">VC-SCSI 1.0 drive</a></li><li><a href="#vcscsi1x">VC-SCSI 1.x drive</a></li><li><a href="#vcscsi20">VC-SCSI 2.0 drive</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Description</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>After going a bit into the SCSI standard first I
 present the generic interface.
 (You can download a slightly older page and all schematics in one archive in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/scsi/scsi64-1.tar.gz">scsi64-1.tar.gz</a>. The link to the SCSI standard below is missing).
@@ -113,7 +115,7 @@ The different hardware projects using the generic SCSI interface are described
 in the third chapter. Those include a SCSI interface directly for the C64,
 as well as disk-drive-like small computers that can be used via the
 C64s serial IEC bus.
-    </p><h2><a name="disc" id="disc">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div> <p><em>Before you go on, you should know that all this stuff
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disc" id="disc">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p><em>Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
 to be used in any important or even life-critical systems.
 The hardware schematics and software
@@ -121,15 +123,15 @@ are provided 'AS IS', WITHOUT WARRANTY of any kind. The entire risk as
 to the quality and performance of the hard- and software is with you. Should
 the hard- or software prove defective, you assume the cost of all necessary
 servicing, repair or correction.
-    </em></p><h2><a name="dist" id="dist">Distribution</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>This computer system is distributed under the GNU Public License V2.</p>
-    <h2><a name="std" id="std">Standard</a></h2><div class="toplink"><a href="#top">Top</a></div>
+    </em></p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dist" id="dist">Distribution</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>This computer system is distributed under the GNU Public License V2.</p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="std" id="std">Standard</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
     <p>
 SCSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
 disks, scanners, CD-ROMs etc. As such it is very flexible.
 </p><p>
 More on the SCSI standard can be found on its <a href="../../hwinfo/scsi.html">SCSI page</a> on this site.
-    </p><h2><a name="genscsi" id="genscsi">Generic 6502 SCSI Interface</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>In my SCSI interfaces and devices for the Commodore computers I use a
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="genscsi" id="genscsi">Generic 6502 SCSI Interface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>In my SCSI interfaces and devices for the Commodore computers I use a
 generic 6502 SCSI interface I developed for the <a href="../../csa/index.html">CS/A65</a> computer. The SCSI interface has its own <a href="../../csa/scsi/index.html">place</a> there.
 </p><p>
 This interface has been designed for the
@@ -142,7 +144,7 @@ and it is used on selfbuilt computers as well as the C64,
 as will be seen below. The 6809 has the same bus interface as the 6502,
 so it could even be used with this CPU (although no drivers exist for
 the 6809).
-    </p><h2><a name="swarch" id="swarch">Software Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>The software architecture is kept as flexible as possible.
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="swarch" id="swarch">Software Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The software architecture is kept as flexible as possible.
 Three levels work together, the hardware driver, the partition
 level that transforms block numbers in a partition into
 block numbers in the device, and the third level which is the
@@ -158,7 +160,7 @@ that implement a fileserver task for the GeckOS/A65 operating
 system. It handles PC-style disks with the FAT12 or FAT16 filesystem
 (no FAT32 and no long filenames). But be warned, it is an early
 beta!!! Don't ever try it on a disk that contains anything valuable to you!!!
-    </p><h2><a name="hwproj" id="hwproj">Hardware Projects</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hwproj" id="hwproj">Hardware Projects</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 Now I will describe the different approaches to use the generic
 SCSI interface in a Commodore system, more specifically with a
 C64 or C128.
@@ -299,7 +301,7 @@ $E3** is not (yet) used, so there is place for a disk controller or whatever.
               Schematics exist, but they are preliminary, untested, and
 a mess! Again, they are provided AS IS, without warranty!</li></ul>
 	</p>
-	<hr />
+	</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

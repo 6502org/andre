@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
 <title>PET index - Killer Poke</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -53,6 +53,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
@@ -98,11 +100,11 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CBM PETindex</a>&gt;&gt;  Killer poke</div>
-<a name="topanchor" id="topanchor"></a><h1>PET index - Killer Poke</h1><p class="copyright">(C)
+<h1>PET index - Killer Poke</h1><p class="copyright">(C)
 1999-2010 André  Fachat</p> 
 <div class="overview"><p>The so-called <EM>Fast Print</EM> or <EM>Killer Poke</EM> has much
 been talked about.
@@ -122,7 +124,7 @@ the poke might be able to kill a certain PET model.
 If you find any inaccuracy in the technical description, please let me
 know.
    </p>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#history">History</a></li><li><a href="#details">Technical Detail</a></li><li style="list-style-type:none;"><ul><li><a href="#oldpet">The old PETs</a></li><li><a href="#vulnerable">Possibly vulnerable PETs</a></li><li><a href="#fixed">Fixed PETs</a></li></ul></li></ul></div><h2><a name="history" id="history">History</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#history">History</a></li><li><a href="#details">Technical Detail</a></li><li style="list-style-type:none;"><ul><li><a href="#oldpet">The old PETs</a></li><li><a href="#vulnerable">Possibly vulnerable PETs</a></li><li><a href="#fixed">Fixed PETs</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="history" id="history">History</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 The very first PET models (board #1) had very slow video RAM.
 Its access rate was the same as the rate of the main memory, 1 MHz.
 Therefore only the CPU or the video logic could access the video
@@ -175,7 +177,7 @@ retrace.
 Also it seems that this change made the PET vulnerable
 to the Poke. A possible explanation, however, is quite technical and
 given in the next section.
-    </p><h2><a name="details" id="details">Technical Detail</a></h2><div class="toplink"><a href="#top">Top</a></div> <p>To understand the nature of the problem one has to know a bit about
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="details" id="details">Technical Detail</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>To understand the nature of the problem one has to know a bit about
 digital and analog electronics.
 First of all, we cannot assume that what we are talking about is purely
 digital in the sense that all voltages are 0V or 5V, and none else.
@@ -289,7 +291,7 @@ As a late model I assumed it has the fix, but kept my finger close
 to the reset button, though.
 As far as I can see from the screen the CRT now simply does not
 get any sync anymore, the screen just moves.
-      </p><hr />
+      </p></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 

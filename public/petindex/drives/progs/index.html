@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../../advanced.css" />
 <title>PET index - Drive utilities</title></head>
-<body><div id="mainbox"><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../../index.html">Homepage</a>
 <ul class="menu0" >
@@ -64,6 +64,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../../adv65/index.html">Advanced 6502</a>
@@ -109,14 +111,14 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../../index.html">Homepage</a>
 &gt;&gt; <a href="../../index.html">CBM PETindex</a>&gt;&gt; <a href="../index.html">Disk drives</a>&gt;&gt;  Drive utilities</div>
-<a name="topanchor" id="topanchor"></a><h1>PET index - Drive utilities</h1><p class="copyright">(C)
+<h1>PET index - Drive utilities</h1><p class="copyright">(C)
 1998-2010 André  Fachat</p> 
 <div class="overview"><P>This page contains some small utilities for the Commodore disk drives.</P>
-  </div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#roms">Read Disk Drive ROMs</a></li><li><a href="#imgs">Read Disk Images</a></li><li><a href="#other">Other Utilities</a></li></ul></div><h2><a name="roms" id="roms">Read Disk Drive ROMs</a></h2><div class="toplink"><a href="#top">Top</a></div><P>These two programs read out the drive ROMs. There is one - simple - program
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#roms">Read Disk Drive ROMs</a></li><li><a href="#imgs">Read Disk Images</a></li><li><a href="#other">Other Utilities</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="roms" id="roms">Read Disk Drive ROMs</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><P>These two programs read out the drive ROMs. There is one - simple - program
 to read out the DOS ROM. It actually reads the upper 16k.
 Another more complicated one is used to read out the FDC ROM. For this purpose it transfers some code into the drive buffer and lets it execute by the FDC
 CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffers so that they can be read by the readout programm.</P>
@@ -125,7 +127,7 @@ CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffer
 <TR><TD>Read FDC ROM</TD><TD><A HREF="readfdc">readfdc</A></TD><TD><A HREF="readfdc.lst">readfdc.lst</A></TD><TD>Read the FDC ROM from a dual processor drive. As after the reading the FDC CPU is stuck in an endless loop, the drive must be reset during execution.</TD></TR>
 <TR><TD>Read DOS ROM</TD><TD><A HREF="readdos">readdos</A></TD><TD><A HREF="readdos.lst">readdos.lst</A></TD><TD>Read the upper 16k of the DOS CPU address space from a dual processor drive. This includes the ROM image and is large enough for all dual CPU DOS versions.</TD></TR>
 </TABLE>
-     <h2><a name="imgs" id="imgs">Read Disk Images</a></h2><div class="toplink"><a href="#top">Top</a></div><P>These programmes can be used to read disks into disk images and
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="imgs" id="imgs">Read Disk Images</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><P>These programmes can be used to read disks into disk images and
 write the images back into disks. These files are linked from the
 <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/index.html">CBM archive</A> (except for the listings).</P>
 <TABLE BORDER="1" class="content">
@@ -135,11 +137,11 @@ write the images back into disks. These files are linked from the
 <TR><TD>Write image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/file2dsk.prg">file2dsk.prg</A></TD><TD><A HREF="file2dsk.lst">file2dsk.lst</A></TD><TD>A BASIC/ML program to restore any CBM disk from a fitting disk image (like .d64 restore to a VC1541).</TD></TR>
 <TR><TD>Read/Write disk image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.prg">emutil.prg</A></TD><TD><A HREF="emutil.lst">emutil.lst</A></TD><TD>EMUTIL is a disk image archiver for the Commodore 64 and 16K+ CBM/PET computers. It supports all known Commodore disk drives, of all capacities. It also supports all CMD HD and RL Native partitions. Programmed by Bo Zimmerman and André  Fachat.(See also <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.readme">emutil.readme</A>)</TD></TR>
 </TABLE>
-     <h2><a name="other" id="other">Other Utilities</a></h2><div class="toplink"><a href="#top">Top</a></div><TABLE BORDER="1" class="content">
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="other" id="other">Other Utilities</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><TABLE BORDER="1" class="content">
 <TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
 <TR><TD>diskcopy</TD><TD><A HREF="diskcopy.zip">diskcopy.zip</A></TD><TD></TD><TD>Diskcopy by <a href="http://www.baltissen.org">Ruud Baltissen</a> copies a disk from one drive to another.</TD></TR>
 </TABLE>
-     <hr />
+     </div></div><hr />
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts-all.js"></script></body></html> 

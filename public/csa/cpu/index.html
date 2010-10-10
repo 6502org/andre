@@ -19,6 +19,8 @@
 <li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
 </li>
 <li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+</li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="../memmap.html">Memory Map</a></li>
@@ -130,7 +132,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
 <a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
 <a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content">
+</div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  CS/A65 CPU</div>
@@ -143,7 +145,7 @@ more modern browser, like Internet Explorer 8 or later,
 		clock and dRAM signal generation (2Phi2), bus drivers, 
 		and - in the newer versions - bus error detection circuits.
 	
-</div><div id="toc"><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0K</a> (ok)</li><li><a href="#board2">2.0J</a> (ok)</li><li><a href="#board3">2.0H</a> (prototype)</li><li><a href="#board4">2.0G</a> (prototype with bugs)</li><li><a href="#board5">1.3B</a> (ok)</li><li><a href="#board6">1.2C</a> (ok)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div><h3><a name="board1" id="board1">Version: 2.0K</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0K</a> (ok)</li><li><a href="#board2">2.0J</a> (ok)</li><li><a href="#board3">2.0H</a> (prototype)</li><li><a href="#board4">2.0G</a> (prototype with bugs)</li><li><a href="#board5">1.3B</a> (ok)</li><li><a href="#board6">1.2C</a> (ok)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0K</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -335,14 +337,14 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="cpu65.jpg">cpu65.jpg</a>(The IC on top and the 74LS244 on the right are testbeds for the new 2Phi2 generation and the write protect as implemented in newer versions)</td>
 </tr></table>
-<h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div><img src="cpu.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. It shows the MMU,
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="cpu.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. It shows the MMU,
 			but also the port to read the CPU address.
 			Please note that the MMU and the port can be
 			accessed from the bus alone, if the cpu is decoupled
 			from the bus with the drivers. This can be used
 			when the cpu is stopped with the RDY e.g. by
 			a bus error.
-		</div><div id="contentfooter"><p>Last modified: 2006-10-13.</p>
+		</div></div></div><div id="contentfooter"><p>Last modified: 2006-10-13.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

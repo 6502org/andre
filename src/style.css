@@ -618,3 +618,12 @@ div#content p.conclusion {
 	background-position: -288px -32px;
 }
 
+/****************************************
+ * min/max link
+ */
+
+#minmax {
+	display: none;
+	float: right;
+}
+
