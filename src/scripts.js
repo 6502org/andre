@@ -309,14 +309,41 @@ function setupFilter() {
 }
 
 // ----------------------------------------------------------------------------------------------------------
+// setup twisties
+
+function setupTwisties() {
+	
+	$("div.h2t").each( function(i, e) {
+		//$(e).show();
+		$(e).css({'display': 'block'});
+		$(e).click( twisty );
+	});
+}
+
+function twisty() {
+	var content = $(this).parent().parent().children(".h2c");
+	if ( $(content).is(':visible') ) {
+		$(this).css({'background-position': '-256px -32px'});
+		$(content).hide();
+	} else {
+		$(this).css({'background-position': '-288px -32px'});
+		$(content).css({'display': 'block'});
+	}
+}
+
+// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
 function doInit() {
 	// filter is only usable with javascript, so hidden by default
 	$("div#filter").show();
-	bindMenu($("div#menu"));
+	// initialize twisties
+	setupTwisties();
+	// initialize menu
+	// setup Ajax error on menu
 	setupAjax();
+	bindMenu($("div#menu"));
 	setupFilter();
 }
 
