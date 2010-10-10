@@ -1,4 +1,4 @@
-<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY uuml "&#220; "> <!ENTITY nbsp "&#160; "> ]>
 <webpage name="Advanced 6502">
   <author>
     <name>Andr&eacute; Fachat</name> 
@@ -44,6 +44,81 @@
       </subitem>
     </items>
   </itemlist>
+
+  <section toc="other" name="Other 6502 extension projects">
+	<desc><p>This section contains links to various projects of other people that extended the 6502</p>
+	</desc>
+
+	<subsection toc="65gz032" name="65GZ032">
+		<desc><p>With the 65GZ032 Gideo Zweijtzer has built a VHDL core that is 6502 compatible, but extends the
+		8&nbsp;bit core with a 32&nbsp;bit design. From the programmers reference manual:
+		</p>
+		<ul>
+		<li>Full 32 bit design</li>
+		<li>Pipelined RISC architecture, with instruction and data caches</li>
+		<li>Eight 32 bit registers (five are all-purpose) and one 16 bit register</li>
+		<li>Several new opcodes</li>
+		<li>New addressing modes</li>
+		<li>Highly orthogonal architecture (very few fixed function registers)</li>
+		<li>Can access 4GB of linear memory (no segments, bank switching, etc)</li>
+		<li>Built-in paged memory management unit</li>
+		<li>Much higher clock speeds (33 MHz)</li>
+		</ul>
+		<p>The processor is able to operate on 8, 16, and 32 bit wide operands, address and data busses are
+		32&nbsp;bit each. The 65GZ032 opcodes are interleaved with the 6502 opcodes in that the first byte
+		has to lowest two bits set - which are all illegal opcodes in the 6502 - and a second opcode bytes
+		then gives an opcode space of 14&nbsp;bit, i.e. 16384 possible native instructions.
+		6502 opcodes are translated into one or two of the CPU's 32&nbsp;bit native opcodes
+		when the instruction is fetched.
+		</p><p>
+		The CPU has been used in the C=1 system, but it is difficult to find further references anymore. According
+		to the commodorefree interview with Gideo it may have been abandoned.
+		</p></desc>
+		<extlink name="65GZ032 programmers reference (PDF)" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65GZ032prg_v0.11.pdf"/>
+		<extlink name="Hardware development (of the 65GZ032)" link="http://commodore-gg.hobby.nl/verhaal51.htm"/>
+		<extlink name="Commodorefree interview with Gideon" link="http://www.commodorefree.com/magazine/vol3/issue35.html#GIDEON"/>
+	</subsection>
+
+	<subsection toc="kimklone" name="KimKlone">
+		<desc><p>The KimKlone is a very intersting 6502 extension. The system catches 65C02 undefined opcodes, and
+		executes them aside the original processor. This way also the address space is extended to 24&nbsp;bit.
+		</p></desc>
+		<extlink name="KimKlone homepage" link="http://laughtonelectronics.com/arcana/BrideOfSonPg1.html"/>
+	</subsection>
+
+	<subsection toc="mycpu" name="MyCPU">
+		<desc><p>
+		The MyCPU is a computer completely built from logic ICs - no highly integrated parts used! I.e. the processor consists
+		of basically 74-series logic ICs plus a number of ROMs. The internals are 8&nbsp;bit, as using wider busses and registers
+		would have used many more parts.
+		</p><p>
+		The MyCPU computer is only barely fitting into this 6502 page - it is not binary compatible.</p>
+		<p class="quote">The processor has only 5 universal and 1 special purpose register: A, X, Y, P and SP are universal 8-bit registers, whereas the Program Counter (PC) is a special purpose 16-bit register whose contents can be incremented by one through a dedicated signal. The P-register is only an internal register used by the microcode to store temporary data and is not visible to assembly programs. In my implementation the microcode covers many commands and addressing modes of the good old 6502 processor, but MyCPU is not binary compatible to it.</p>
+		<p>As you can see from that description, the processor has nevertheless been inspired by the 6502.
+		</p><p>
+		In the meantime the author, Dennis Kuschel, has built a VHDL version of the MyCPU, built into a Xilinx Spartan3 FPGA,
+		called "MyCPU Compact". The development is still ongoing!
+		</p></desc>
+		<extlink name="MyCPU homepage" link="http://www.mycpu.eu/"/>
+	</subsection>
+
+	<subsection toc="m02" name="M02">
+		<desc><p>Dieter M&uuml;ller has built a 6502-compatible CPU from logic parts as well</p></desc>
+		<extlink name="M02" link="http://www.6502.org/users/dieter/m02/m02.htm"/>
+	</subsection>
+
+	<subsection toc="m02" name="65CE02">
+		<desc><p>The 65CE02 was a modernization of the 6502, developed by Commodore itself back in the days</p></desc>
+		<extlink name="65CE02" link="http://www.commodore.ca/manuals/funet/cbm/documents/chipdata/65ce02.txt"/>
+		<extlink name="Block diagram" link="http://img716.imageshack.us/i/65ce02blockdiagram.jpg/"/>
+	</subsection>
+
+	<subsection toc="ttl6502" name="Ruud's Build your own 6502">
+		<desc><p>Ruud Baltissen started work on a TTL6502</p></desc>
+		<extlink name="TTL6502" link="http://www.baltissen.org/newhtm/ttl6502.htm"/>
+	</subsection>
+  </section>
+
   <section toc="info" name="65xx Information">
     <desc><p>Here are some links to general 6502 and beyond information</p></desc>
     <extlink name="The 6502/65C02/65C816 instruction set decoded" link="http://www.llx.com/~nparker/a2/opcodes.html"/>
@@ -57,12 +132,19 @@
     <extlink name="6502.org forum: Prefix bytes: an idea for 65Org816..." link="http://forum.6502.org/viewtopic.php?t=1550"/>
     <extlink name="Admired designs..." link="http://www.cs.clemson.edu/~mark/admired_designs.html#wilson"/>
     <extlink name="The 6502 decimal flag" link="http://6502.org/tutorials/decimal_mode.html"/>
+    <extlink name="Experience from writing a 6502 core" link="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784"/>
   </section>
  
+  <section toc="other" name="Other CPU links">
+    <desc><p>Some links about other, non-6502 compatible (homebrew) CPUs</p></desc>
+    <extlink name="Big Mess-oWires" link="http://www.stevechamberlin.com/cpu/bmow1/"/>
+    <extlink name="The original ARM architecture was inspired by the 6502 (wikipedia)" link="http://en.wikipedia.org/wiki/ARM_architecture"/>
+  </section>
+
     <disclaimer name="Disclaimer">
 @DISCLAIMER@
     </disclaimer>
   <closing>
-<BR/>Last updated 2010-09-16.
+<BR/>Last updated 2010-10-10.
   </closing>
 </webpage>
