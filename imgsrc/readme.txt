@@ -1,8 +1,4 @@
 
-TODO: 
-
-- make build scripts for sprites (see below)
-
 
 create sprite:
 
