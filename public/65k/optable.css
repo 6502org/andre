@@ -49,3 +49,11 @@ table.optable td.unused {
 	background-color: #aaaaaa;
 }
 
+table.optable td.dup {
+	background-color: #aaffaa;
+}
+
+table.optable td.x {
+	background-color: #ffaaaa;
+}
+

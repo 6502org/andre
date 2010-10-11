@@ -62,8 +62,8 @@ mycompose $sprite $imgs/news.gif "+128+32"
 mycompose $sprite $imgs/oldnews.gif "+160+32" 
 mycompose $sprite $imgs/hotnews.gif "+192+32" 
 
-mycompose $sprite $imgs/twisties_right.png "+256+32" "41%"
-mycompose $sprite $imgs/twisties_down.png "+288+32" "41%"
+mycompose $sprite $imgs/twisties_right.png "+256+32" "35%"
+mycompose $sprite $imgs/twisties_down.png "+288+32" "35%"
 
 mycompose $sprite $imgs/dir.png "+0+64" "41%"
 mycompose $sprite $imgs/dirp.png "+32+64" "41%"
