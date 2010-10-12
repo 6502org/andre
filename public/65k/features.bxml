@@ -1497,6 +1497,10 @@ dotrans	MVP
      </subsection>
   </section>
 
+  <disclaimer>
+        No warranty! There is no guarantee that this specification will actually work,
+        or will ever be implemented
+  </disclaimer>
 
   <closing>
 @FOOTER@
