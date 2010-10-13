@@ -92,7 +92,7 @@ more modern browser, like Internet Explorer 8 or later,
 	The fourth section describes reset, interrupt and other special behaviour.
   </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-03</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">MMU opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#env">Environments</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">MMU opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#env">Environments</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
 	</p>
      <h3><a name="optswidth" id="optswidth">Register Widths Options</a></h3><p>
 	The 65k will be available in different "register widths". Register here means all address registers
@@ -119,7 +119,9 @@ more modern browser, like Internet Explorer 8 or later,
     	</p><h3><a name="optsmmu" id="optsmmu">MMU Option</a></h3><p>
 	The 65k will optionally provide an MMU to translate virtual addresses (opcode effective addresses) into
 	physical addresses. When the MMU is not included, virtual addresses are directly taken as physical addresses.
-    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">65k Opcode and Addressing Mode Overview</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="regs" id="regs">Register Set</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	TODO
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">65k Opcode and Addressing Mode Overview</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes in an overview the opcodes and addressing modes of the 65k.
 	</p>
      <h3><a name="ovops" id="ovops">Opcodes Overview</a></h3>
@@ -481,8 +483,35 @@ more modern browser, like Internet Explorer 8 or later,
 	<p>TODO: Mult/Div opcodes; Interrupt base register opcodes</p>
 	<h3><a name="ovfp" id="ovfp">FP opcodes</a></h3><p>
     	</p><h3><a name="ovmmu" id="ovmmu">MMU opcodes</a></h3><p>
-    	</p><h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>
-    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sys" id="sys">System Environment</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    	</p><h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>This section gives an overview over the system opcodes that handle system
+	configuration registers etc.
+	</p>
+<table class="optable">
+<tr><th>LSB-&gt;<br />MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>	<th>D</th>	<th>E</th>	<th>F</th></tr>
+<tr><th>0</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TIA</td></tr>	
+<tr><th>2</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAT</td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TTA</td></tr>
+<tr><th>4</th>		<td></td>	<td></td>	<td></td>	<td></td> 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+</table><p>Here is a short explanation of the new opcodes</p>
+	<ul>
+	<li>TAI - transfer accumulator to interrupt base register</li>
+	<li>TIA - transfer interrupt base register to accumulator</li>
+	<li>TAT - transfer accumulator to trap vector base register</li>
+	<li>TTA - transfer trap vector base register to accumulator</li>
+	</ul>
+    	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sys" id="sys">System Environment</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes the general system environment
     </p><h3><a name="reset" id="reset">Reset</a></h3><p>
 	Upon Reset the processor fetches a two-byte Reset vector from "-4".
@@ -508,6 +537,9 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	The interrupt base register determines the address of a 256 byte 
 	aligned block with interrupt vectors, i.e. the register's lowest 8 bit are unused.
+	The interrupt vectors are counted down from the top of the block.
+	I.e. the default Reset vector is an interrupt as well. The BRK opcode 
+	fetches the uppermost interrupt vector.
 	</p><p>
 	These interrupt base register bits can be used as configuration.
 	The two lowest bits determine the size of the interrupt vector.
@@ -517,10 +549,106 @@ more modern browser, like Internet Explorer 8 or later,
 	interrupt vectors form a list of consecutive values.
 	</p><p>
 	Upon reset the register is initialized to $FFFFFFFFFFFFFF00.
+	The following table shows the different options:
+	</p>
+	<table class="optable">
+	<tr><th>Default interrupt base:</th><th>$FFFFFFFFFFFFFF00</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFC/D</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFA/B</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF02</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFC/D/E/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF4/5/6/7</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFEC/D/E/F</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE4/5/6/7</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF03</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3/4/4/6/7</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B/C/D/E/F</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3/4/5/6/7</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD8/9/A/B/C/D/E/F</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD0/1/2/3/4/5/6/7</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC8/9/A/B/C/D/E/F</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC0/1/2/3/4/5/6/7</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$000000000000FF00</th></tr>
+	<tr><td>$000000000000FFFE/F</td><td>BRK vector</td></tr>
+	<tr><td>$000000000000FFFC/D</td><td>Reset vector</td></tr>
+	<tr><td>$000000000000FFFA/B</td><td>Abort vector</td></tr>
+	<tr><td>$000000000000FFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$000000000000FFF6/7</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$000000000000FFF4/5</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$000000000000FFF2/3</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$000000000000FFF0/1</td><td>Interrupt 4 vector</td></tr>
+	</table>
+	<p>Note: all unused bits must be set to zero</p>
+      <h3><a name="trap" id="trap">Trap handling</a></h3><p>
+	The 65k has a TRAP opcode that allows to trap from a program into supervisor mode
+	(if available), resp. into a system program via a given trap vector.
+	The current version allows for 256 trap vectors, as the trap operand is byte-wide.
+      </p><p>
+	The trap handling is similar to the interrupt handling. There is a trap vector base
+	register similar to the interrupt base register. Again the lowest two bit of the
+	trap vector base register determine the size of the vector used. 
+      </p><p>
+	As there are 256 trap vectors, with 2 byte vectors the trap table is 
+	512 byte. With 4 byte vectors the trap table is 1024 bytes, and 2048 bytes
+	for 8 byte vectors. Therefore the used bits from the trap vector base register
+	differ. For 2 byte vectors all but the lowest 9 bit from the register are
+	used, for 4 byte vectors all but the lowest 10 bit from the register are used
+	and all but the lowest 11 bit from the vector are used. This way the used
+	part of the register can simply be ORd with the shifted trap number to compute
+	the effective vector address.
+      </p><p>
+	As a possible extension the bits 2/3 of the trap vector base register are reserved and
+	must be set to zero. In later extensions they can be used to define larger tables for 
+	more TRAP operands.
+      </p>
+	<table class="optable">
+	<tr><th>Default trap vector base:</th><th>$FFFFFFFFFFFFFE00</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>TRAP #$FF</td></tr>
+	<tr><td>...</td><td>...</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1</td><td>TRAP #$00</td></tr>
+	<tr><th>trap vector base:</th><th>$FFFFFFFFFFFFF803</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>TRAP #$FF</td></tr>
+	<tr><td>...</td><td>...</td></tr>
+	<tr><td>$FFFFFFFFFFFFF800/1/2/3/4/5/6/7</td><td>TRAP #$00</td></tr>
+	</table>
+      <p>
+	Note: all unused bits must be set to zero
+      </p><h3><a name="intproc" id="intproc">Interrupt and Trap Procedure</a></h3><p>
+	What happens when an interrupt or a trap occurs? The interrupt procedure is very similar to the
+	original 6502 interrupt.
+      </p><p>
+	First the program counter is written to the stack. 
+	As the program counter can be wider than the original 6502's program counter, the value
+	written on the stack can be variable width. I.e. if the address is a "canonical address" - 
+	the uppermost 33 resp. 49 bits are all ones, or all zeros (i.e. sign-extended 
+	32 resp. 16 bit address values) the value written on the stack can be shortened.
+      </p><p>
+	After the address the extended status register is written to the stack. I.e. first the 
+	high status byte, then the low status byte (that mirrors the original 6502 status register).
+	The high status byte contains two address width bits that allow the RTI opcode to determine
+	the width of the stored return address.
+      </p><p>
+	After that the respective address vector is fetched and jumped to.
+      </p><p>
+	This procedure means that similar to the 6502 no other registers are stored on the stack, 
+	this must be done by the interrupt routine.
       </p><h3><a name="env" id="env">Environments</a></h3><p>
-	
+	Environments are an optional feature.
       </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-	No warranty! There is no guarantee that this specification will actually work,
+	No warranty! 
+	Subject to change without notice!
+	There is no guarantee that this specification will actually work,
 	or will ever be implemented
   </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>

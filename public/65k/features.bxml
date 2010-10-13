@@ -1498,7 +1498,9 @@ dotrans	MVP
   </section>
 
   <disclaimer>
-        No warranty! There is no guarantee that this specification will actually work,
+        No warranty! 
+	Subject to change without notice!
+	There is no guarantee that this specification will actually work,
         or will ever be implemented
   </disclaimer>
 

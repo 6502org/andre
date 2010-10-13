@@ -74,6 +74,12 @@
 
   </section>
 
+  <section toc="regs" name="Register Set">
+    <desc><p>
+	TODO
+    </p></desc>
+  </section>
+
   <section toc="overview" name="65k Opcode and Addressing Mode Overview">
      <desc><p>
 	This section describes in an overview the opcodes and addressing modes of the 65k.
@@ -467,8 +473,35 @@
        </subsection>
 
        <subsection toc="ovsys" name="SYS opcodes">
-	<desc><p>
-    	</p></desc>
+	<desc><p>This section gives an overview over the system opcodes that handle system
+	configuration registers etc.
+	</p>
+<table class="optable">
+<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>	<th>D</th>	<th>E</th>	<th>F</th></tr>
+<tr><th>0</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TIA</td></tr>	
+<tr><th>2</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAT</td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TTA</td></tr>
+<tr><th>4</th>		<td></td>	<td></td>	<td></td>	<td></td> 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+</table><p>Here is a short explanation of the new opcodes</p>
+	<ul>
+	<li>TAI - transfer accumulator to interrupt base register</li>
+	<li>TIA - transfer interrupt base register to accumulator</li>
+	<li>TAT - transfer accumulator to trap vector base register</li>
+	<li>TTA - transfer trap vector base register to accumulator</li>
+	</ul>
+    	</desc>
        </subsection>
 
   </section>
@@ -507,6 +540,9 @@
 	</p><p>
 	The interrupt base register determines the address of a 256&nbsp;byte 
 	aligned block with interrupt vectors, i.e. the register's lowest 8&nbsp;bit are unused.
+	The interrupt vectors are counted down from the top of the block.
+	I.e. the default Reset vector is an interrupt as well. The BRK opcode 
+	fetches the uppermost interrupt vector.
 	</p><p>
 	These interrupt base register bits can be used as configuration.
 	The two lowest bits determine the size of the interrupt vector.
@@ -516,19 +552,123 @@
 	interrupt vectors form a list of consecutive values.
 	</p><p>
 	Upon reset the register is initialized to $FFFFFFFFFFFFFF00.
+	The following table shows the different options:
+	</p>
+	<table class="optable">
+	<tr><th>Default interrupt base:</th><th>$FFFFFFFFFFFFFF00</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFC/D</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFA/B</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF02</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFC/D/E/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF4/5/6/7</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFEC/D/E/F</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE4/5/6/7</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF03</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>BRK vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3/4/4/6/7</td><td>Reset vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B/C/D/E/F</td><td>Abort vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3/4/5/6/7</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD8/9/A/B/C/D/E/F</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD0/1/2/3/4/5/6/7</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC8/9/A/B/C/D/E/F</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC0/1/2/3/4/5/6/7</td><td>Interrupt 4 vector</td></tr>
+	<tr><th>Interrupt base:</th><th>$000000000000FF00</th></tr>
+	<tr><td>$000000000000FFFE/F</td><td>BRK vector</td></tr>
+	<tr><td>$000000000000FFFC/D</td><td>Reset vector</td></tr>
+	<tr><td>$000000000000FFFA/B</td><td>Abort vector</td></tr>
+	<tr><td>$000000000000FFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$000000000000FFF6/7</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$000000000000FFF4/5</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$000000000000FFF2/3</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$000000000000FFF0/1</td><td>Interrupt 4 vector</td></tr>
+	</table>
+	<p>Note: all unused bits must be set to zero</p>
+      </desc>
+    </subsection>
+
+    <subsection toc="trap" name="Trap handling">
+      <desc><p>
+	The 65k has a TRAP opcode that allows to trap from a program into supervisor mode
+	(if available), resp. into a system program via a given trap vector.
+	The current version allows for 256 trap vectors, as the trap operand is byte-wide.
+      </p><p>
+	The trap handling is similar to the interrupt handling. There is a trap vector base
+	register similar to the interrupt base register. Again the lowest two bit of the
+	trap vector base register determine the size of the vector used. 
+      </p><p>
+	As there are 256 trap vectors, with 2&nbsp;byte vectors the trap table is 
+	512 byte. With 4&nbsp;byte vectors the trap table is 1024 bytes, and 2048 bytes
+	for 8&nbsp;byte vectors. Therefore the used bits from the trap vector base register
+	differ. For 2&nbsp;byte vectors all but the lowest 9&nbsp;bit from the register are
+	used, for 4&nbsp;byte vectors all but the lowest 10&nbsp;bit from the register are used
+	and all but the lowest 11&nbsp;bit from the vector are used. This way the used
+	part of the register can simply be ORd with the shifted trap number to compute
+	the effective vector address.
+      </p><p>
+	As a possible extension the bits 2/3 of the trap vector base register are reserved and
+	must be set to zero. In later extensions they can be used to define larger tables for 
+	more TRAP operands.
+      </p>
+	<table class="optable">
+	<tr><th>Default trap vector base:</th><th>$FFFFFFFFFFFFFE00</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>TRAP #$FF</td></tr>
+	<tr><td>...</td><td>...</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1</td><td>TRAP #$00</td></tr>
+	<tr><th>trap vector base:</th><th>$FFFFFFFFFFFFF803</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>TRAP #$FF</td></tr>
+	<tr><td>...</td><td>...</td></tr>
+	<tr><td>$FFFFFFFFFFFFF800/1/2/3/4/5/6/7</td><td>TRAP #$00</td></tr>
+	</table>
+      <p>
+	Note: all unused bits must be set to zero
+      </p></desc>
+    </subsection>
+
+    <subsection toc="intproc" name="Interrupt and Trap Procedure">
+      <desc><p>
+	What happens when an interrupt or a trap occurs? The interrupt procedure is very similar to the
+	original 6502 interrupt.
+      </p><p>
+	First the program counter is written to the stack. 
+	As the program counter can be wider than the original 6502's program counter, the value
+	written on the stack can be variable width. I.e. if the address is a "canonical address" - 
+	the uppermost 33 resp. 49 bits are all ones, or all zeros (i.e. sign-extended 
+	32 resp. 16 bit address values) the value written on the stack can be shortened.
+      </p><p>
+	After the address the extended status register is written to the stack. I.e. first the 
+	high status byte, then the low status byte (that mirrors the original 6502 status register).
+	The high status byte contains two address width bits that allow the RTI opcode to determine
+	the width of the stored return address.
+      </p><p>
+	After that the respective address vector is fetched and jumped to.
+      </p><p>
+	This procedure means that similar to the 6502 no other registers are stored on the stack, 
+	this must be done by the interrupt routine.
       </p></desc>
     </subsection>
 
     <subsection toc="env" name="Environments">
       <desc><p>
-	
+	Environments are an optional feature.
       </p></desc>
     </subsection>
 
   </section>
 
   <disclaimer>
-	No warranty! There is no guarantee that this specification will actually work,
+	No warranty! 
+	Subject to change without notice!
+	There is no guarantee that this specification will actually work,
 	or will ever be implemented
   </disclaimer>
 
