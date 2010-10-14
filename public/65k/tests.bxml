@@ -1,0 +1,71 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="The 65k Project - Testing">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2010</yearstart>
+    <yearend></yearend>
+  </author>
+  <keywords>6502 16bit 32bit expansion</keywords>
+  <metadesc>6502 16bit 32bit expansion</metadesc>
+  <overview>
+	<p>
+	Before knowing whether a system works as expected, you need to test it. This page describes the
+	test setup (as is currently planned).
+	</p><p>
+	As the processor is implemented as VHDL, there are two test options - one is to implement it in a
+	programmable logic device, but also simulating the VHDL directly on a PC. Both type of tests
+	are (will be) described here.
+	</p>
+  </overview>
+  <news>
+    <item date="2010-10-14">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="sim" name="Simulation Tests">
+     <desc><p>
+	The VHDL implementation will be written compatible to the GHDL compiler of the GNU compiler collection.
+	The GHDL compiler allows to simulate VHDL code. It also allows to link C-code to the VHDL code during
+	the link process. Therefore the VHDL test cases will be controlled using code written in C, that allows
+	to load test data input from files and use it for example as ROM content, 
+	and compare VHDL simulation output with other test data also read
+	from a file. This way test cases can easily be written, with test data as 65k executable code
+	being provided as a file, and output comparable with pre-computed data.
+	</p>
+     </desc>
+     <!--subsection toc="65010" name="65010">
+	<desc>
+	  <p>Design goals for the 65010 CPU replacement are:</p>
+       	</desc>
+     </subsection-->
+
+  </section>
+
+  <section toc="hw" name="Hardware Tests">
+     <desc><p>
+	
+	</p>
+     </desc>
+     <!--subsection toc="65010" name="65010">
+	<desc>
+	  <p>Design goals for the 65010 CPU replacement are:</p>
+       	</desc>
+     </subsection-->
+
+  </section>
+
+  <disclaimer>
+        No warranty! 
+	Subject to change without notice!
+	There is no guarantee that this specification will actually work,
+        or will ever be implemented
+  </disclaimer>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

@@ -29,10 +29,10 @@
 	</p>
 	<ul>
 	<li><a href="features.html">Feature discussion</a>, possibly inconsistent and incomplete - working draft</li>
-	<li><a href="specsprog.html">Implementation specs I - programming model</a> - opcode definitions, register sets, functional definition - initial draft</li>
+	<li><a href="specsprog.html">Implementation specs I - programming model</a> - opcode definitions, register sets, functional definition - working draft</li>
 	<li>Implementation specs II - hardware model - external interface options, signal definitions - to be done</li>
-	<li>Architecture overview - processor architecture, component definitions - to be done</li>
-	<li>Test setup - Before starting the implementation, define how to test it - to be done</li>
+	<li><a href="arch.html">Architecture overview</a> - processor architecture, component definitions - initial draft</li>
+	<li><a href="tests.html">Test setup</a> - Before starting the implementation, define how to test it - initial draft</li>
 	<li>Implementation - Implementation documentation - to be done</li>
 	<li>Hardware implementation - FPGA boards and hardware setups - to be done</li>
 	</ul>
