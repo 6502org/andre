@@ -22,8 +22,185 @@
   </news>
   <toc/>
 
+  <section toc="general" name="General Considerations">
+    <desc>
+      <p>
+	This section describes general considerations for the processor design.
+      </p>
+    </desc>
+    <subsection toc="genrwseq" name="Read/Write Sequencers">
+      <desc>
+	<p>
+	The processor has one problem: addresses are at byte level, bus and register
+	widths are in general more than one byte wide - so misaligned accesses can happen:
+	</p>
+	<table border="1">
+	<tr><th>Access Type</th><th>Bus width</th><th>Alignment</th><th>Comment</th></tr>
+	<tr><td>Byte data read</td><td>any width</td><td>yes/no</td><td>The data can be read in any width from
+									the bus, and the relevant byte be picked
+									from it and given to the bus</td></tr>
+	<tr><td>Byte data write</td><td>byte width</td><td>automatic</td><td>just write the byte</td></tr>
+	<tr><td>Byte data write</td><td>word or larger width</td><td>yes/no</td><td>If the data can not be written
+									as byte width but must use a larger width,
+									the original data must be read, the relevant
+									byte be modified, and the data word be 
+									written back</td></tr>
+	<tr><td>word or larger data read/write access</td><td>byte width</td><td>automatic</td>
+									<td>The data access can just be executed
+									one after the other</td></tr>
+	<tr><td>word data read/write access</td><td>word width</td><td>aligned</td>
+									<td>Just do the access</td></tr>
+	<tr><td>word data read/write access</td><td>word width</td><td>misaligned</td>
+									<td>The word access must be broken up into
+									two byte accesses, and executed as 
+									byte acces on a word bus as described above.
+									</td></tr>
+	<tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+	</table>
+	<p>
+	The table only shows a subset of possible combinations. To resolve this problem, specific 
+	components are used, read and write sequencers. These components take a read or write request from the
+	core and break them up into accesses that the external bus can execute.
+	</p><p>
+	If some address area is accessed as byte-wide I/O, and other parts of the address area as word-wide or wider
+	memory, the processor must have multiple read and write sequencer, one per address width (or a sequencer
+	that can handle multiple widths).
+	</p><p>
+	Doing misaligned accesses slows the processor down from its optimum speed. In general wider bus width
+	is still faster than narrower bus widths.
+	</p>
+      </desc>
+    </subsection>
+     <subsection toc="smt" name="Simultaneous Multithreading">
+	<desc>
+	  <p>
+	The 6502 - as well as the 65k - is very efficient concerning bus cycles per opcode.
+	If, however, a misaligned wide access is broken down into two or more smaller memory
+	accesses, the core is waiting.
+	  </p><p>
+	In this case the core could switch to a separate set of registers, and execute 
+	code for a second processor - what is called these days as SMT, simultaneous multithreading.
+	  </p><p>
+	But as the processor is very memory access efficient, a second thread may not have time
+	for many memory accesses on its own. 
+	  </p><p>
+	This is a topic for a later version though anyway.
+	  </p>
+       	</desc>
+     </subsection>
+
+  </section>
+
   <section toc="top" name="Top Level Architecture">
+     <desc><p>This section describes the top level architecture, i.e. the top level
+	building blocks of the processor and their relations. Compared to the 6502
+	there are more such building blocks, the processor is more complex. The 6502
+	basically compares to the core - which is described in more detail below.</p>
+	<div class="rightimg"><a href="archtop.svg"><img width="300" src="archtop.png"/></a>The top level
+	architecture</div>
+	<p>
+	The following sections describe the components.
+	</p>
+     </desc>
+     <subsection toc="topcore" name="Core">
+	<desc>
+	<p>
+	The core is the actual processor. It contains registers, ALU, and so on. With the 
+	rest of the system it communicates using three bus interfaces:
+	</p>
+	<ol>
+	<li>Instruction fetch bus - read the next instruction</li>
+	<li>Data read bus - read some data word</li>
+	<li>Data write bus - write some data word </li>
+	</ol>
+	<p>
+	</p>
+       	</desc>
+     </subsection>
+     <subsection toc="toprwseq" name="Read / Write Data Sequencer, Read Arbiter">
+	<desc>
+	  <p>
+	  The read and write sequencers break down misaligned memory accesses
+	  into accesses that can be executed on the external bus.
+	  </p><p>
+	  The separate read data and instruction fetch sequencers may look like overkill.
+	  But this approach has the advantage that the instruction fetch sequencer can
+	  cache data it has already been read but has not yet been used by the CPU - without
+	  it being flushed by a data read.
+	  </p><p>
+	  The place between the read sequencers and the read arbiter can be a good place
+	  for a L1 cache - separate for data and instructions - in later versions.
+	  On the other hand the place between read arbiter and MMU can be used for a L1
+	  cache. Both places must be connected to the write bus, to invalidate modified 
+	  cache lines - to allow for self-modifying code.
+	  </p><p>
+	  Note that the sequencers must be before the MMU, as each of the broken
+	  down accesses may result in a different mapping.
+	  </p>
+	<h3>Write Data Sequencer</h3>
+	  <p>
+	  The write data sequencer takes a write request from the core, then checks 
+	  if the access is aligned or not. If it is not aligned, the access is broken
+	  into two separate accesses and forwarded to the MMU.
+	  </p>
+	<h3>Read Data Sequencer</h3>
+	  <p>
+	  The read data sequencer takes a read request from the core, then checks 
+	  if the access is aligned or not. If it is not aligned, the access is broken
+	  into two separate accesses and forwarded to the read arbiter.
+	  The result is consolidated and sent to the CPU when the whole data has been read.
+	  </p>
+	<h3>Instruction Fetch Sequencer</h3>
+	  <p>
+	  The instruction fetch sequencer takes a fetch request from the CPU,
+	  then tries to fulfill as much of it as possible. As the CPU does not know
+	  how many bytes an instruction takes, the CPU requests as many bytes as possible,
+	  but accepts less bytes than requested. The CPU then decides if it needs more
+	  instruction data. 
+	  </p>
+	<h3>Read Arbiter</h3>
+	  <p>
+	  The read arbiter takes requests from the read data sequencer and the instruction fetch
+	  sequencer, then decides which one to forward to the MMU. 
+	  </p>
+       	</desc>
+     </subsection>
+
+     <subsection toc="topmmu" name="Memory Management Unit">
+	<desc>
+	  <p>
+	The memory management unit is an optional feature. It translates the
+	read and write requests from the CPU (actually from the read arbiter and from the
+	write sequencer) from effective to physical addresses.
+	  </p><p>
+	More details are described below.
+	  </p>
+       	</desc>
+     </subsection>
+
+     <subsection toc="topbusif" name="Bus Interface">
+	<desc>
+	  <p>
+	The bus interface takes the read and write requests from the MMU and executes
+	them on the physical - external - bus interface. 
+	  </p><p>
+	For a misaligned bus write access (e.g. a byte write to a word wide bus) the bus
+	interface also implements read-modify-write cycles. I.e. the wide bus memory data
+	is read, the narrower data from the CPU is set into this memory word, and the 
+	data is written back.
+	  </p><p>
+	Also the bus interface does a bus snoop in case the external bus allows this. The
+	bus snooping is used to invalidate cache lines. It also detects accesses that
+	invalidates Load-linked/Store-conditional sequences.
+	  </p>
+       	</desc>
+     </subsection>
+
+  </section>
+
+  <section toc="core" name="Core">
      <desc><p>
+	
 	</p>
      </desc>
      <!--subsection toc="65010" name="65010">
@@ -34,7 +211,20 @@
 
   </section>
 
-  <section toc="hw" name="Hardware Tests">
+  <section toc="mmu" name="MMU">
+     <desc><p>
+	
+	</p>
+     </desc>
+     <!--subsection toc="65010" name="65010">
+	<desc>
+	  <p>Design goals for the 65010 CPU replacement are:</p>
+       	</desc>
+     </subsection-->
+
+  </section>
+
+  <section toc="busif" name="Bus Interface">
      <desc><p>
 	
 	</p>
