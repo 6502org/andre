@@ -22,7 +22,9 @@
 <li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="features.html">Features</a></li>
+<li class="separator">Specification</li>
 <li><div class="i_file">&nbsp;</div><a href="specsprog.html">Programming Model</a></li>
+<li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="arch.html" class="mcurrent">Architecture Overview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
@@ -86,7 +88,26 @@ more modern browser, like Internet Explorer 8 or later,
 	</p>
   </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-14</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li></ul></li><li><a href="#top">Top Level Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#topcore">Core</a></li><li><a href="#toprwseq">Read / Write Data Sequencer, Read Arbiter</a></li><li><a href="#topmmu">Memory Management Unit</a></li><li><a href="#topbusif">Bus Interface</a></li></ul></li><li><a href="#core">Core</a></li><li><a href="#mmu">MMU</a></li><li><a href="#busif">Bus Interface</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="general" id="general">General Considerations</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li></ul></li><li><a href="#top">Top Level Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#topcore">Core</a></li><li><a href="#toprwseq">Read / Write Data Sequencer, Read Arbiter</a></li><li><a href="#topmmu">Memory Management Unit</a></li><li><a href="#topbusif">Bus Interface</a></li></ul></li><li><a href="#core">Core</a></li><li><a href="#mmu">MMU</a></li><li><a href="#busif">Bus Interface</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+        This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
+    </p><p>
+        Note this "content" includes this web page, but does not include the 6502.org header
+        and the left and right web page columns.  Click on the "Maximize" link to see
+        the contents covered by this license.
+    </p><ul><li><a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode" target="_blank" class="extlink">CC-BY-SA legal code</a> </li><li><a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" class="extlink">CC-BY-SA license deed (short form)</a> </li></ul><h3><a name="disc" id="disc">Disclaimer</a></h3><p>
+        The content comes with no warranty at all!
+        There is no guarantee and no promise that this specification is correct, consistent, will actually work,
+        or will ever be implemented at all.
+    </p><p>
+        Subject to change without notice!
+    </p><h3><a name="cont" id="cont">Contributors</a></h3><ul>
+        <li>André  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
+    </ul><h3><a name="chg" id="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
+      <table border="1">
+        <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
+        <!--tr><td>2010-10-03</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr-->
+      </table>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="general" id="general">General Considerations</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
       <p>
 	This section describes general considerations for the processor design.
       </p>
@@ -241,12 +262,7 @@ more modern browser, like Internet Explorer 8 or later,
      </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="busif" id="busif">Bus Interface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	
 	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-        No warranty! 
-	Subject to change without notice!
-	There is no guarantee that this specification will actually work,
-        or will ever be implemented
-  </div></div><hr />
+     </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 

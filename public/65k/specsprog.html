@@ -22,7 +22,9 @@
 <li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="features.html">Features</a></li>
+<li class="separator">Specification</li>
 <li><div class="i_file">&nbsp;</div><a href="specsprog.html" class="mcurrent">Programming Model</a></li>
+<li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="arch.html">Architecture Overview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
@@ -94,7 +96,26 @@ more modern browser, like Internet Explorer 8 or later,
 	The fourth section describes reset, interrupt and other special behaviour.
   </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-03</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">MMU opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#env">Environments</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#env">Environments</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+        This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
+    </p><p>
+        Note this "content" includes this web page, but does not include the 6502.org header
+        and the left and right web page columns.  Click on the "Maximize" link to see
+        the contents covered by this license.
+    </p><ul><li><a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode" target="_blank" class="extlink">CC-BY-SA legal code</a> </li><li><a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" class="extlink">CC-BY-SA license deed (short form)</a> </li></ul><h3><a name="disc" id="disc">Disclaimer</a></h3><p>
+        The content comes with no warranty at all!
+        There is no guarantee and no promise that this specification is correct, consistent, will actually work,
+        or will ever be implemented at all.
+    </p><p>
+        Subject to change without notice!
+    </p><h3><a name="cont" id="cont">Contributors</a></h3><ul>
+        <li>André  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
+    </ul><h3><a name="chg" id="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
+      <table border="1">
+        <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
+        <!--tr><td>2010-10-03</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr-->
+      </table>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
 	</p>
      <h3><a name="optswidth" id="optswidth">Register Widths Options</a></h3><p>
 	The 65k will be available in different "register widths". Register here means all address registers
@@ -134,7 +155,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><th>2</th>		<td>JSR abs</td>		<td>AND (zp,X)</td>	<td class="c65k">STA zp,Y</td><td class="prefix">prefix1</td>	<td>BIT zp</td>			<td>AND zp</td>		<td>ROL zp</td>		<td class="prefix">prefix1</td>		<td>PLP</td>		<td>AND imm</td>		<td>ROL A</td>			<td class="prefix">prefix2</td>	<td>BIT abs</td>		<td>AND abs</td>	<td>ROL abs</td>		<td class="c65k">SAB</td></tr>
 <tr><th>3</th>		<td>BMI rel</td>		<td>AND (zp),Y</td>	<td class="cmos">AND (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">BIT zp,X</td>	<td>AND zp,X</td>	<td>ROL zp,X</td>	<td class="prefix">prefix1</td>		<td>SEC</td>		<td>AND abs,Y</td>		<td class="cmos">DEC A</td>	<td class="prefix">prefix2</td>	<td class="cmos">BIT abs,X</td>	<td>AND abs,X</td>	<td>ROL abs,X</td>		<td class="c65k">PRB</td></tr>
 <tr><th>4</th>		<td>RTI</td>			<td>EOR (zp,X)</td>	<td class="c65k">LDA (abs),Y</td><td class="prefix">prefix1</td><td class="c65k">FP prefix</td><td>EOR zp</td>		<td>LSR zp</td>		<td class="prefix">prefix1</td>		<td>PHA</td>		<td>EOR imm</td>		<td>LSR imm</td>		<td class="prefix">prefix2</td>	<td>JMP abs</td>		<td>EOR abs</td>	<td>LSR abs</td>		<td class="c65k">SAX</td></tr>
-<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (zp),Y</td>	<td class="cmos">EOR (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">SYS prefix</td><td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix1</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix2</td>	<td class="c65k">MMU prefix</td><td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="c65k">SAY</td></tr>
+<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (zp),Y</td>	<td class="cmos">EOR (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">SYS prefix</td><td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix1</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix2</td>	<td class="c65k">Blitter prefix</td><td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="c65k">SAY</td></tr>
 <tr><th>6</th>		<td>RTS</td>			<td>ADC (zp,X)</td>	<td class="c65k">LDA (abs,X)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp</td>	<td>ADC zp</td>		<td>ROR zp</td>		<td class="prefix">prefix1</td>		<td>PLA</td>		<td>ADC imm</td>		<td>ROR A</td>			<td class="prefix">prefix2</td>	<td>JMP (abs)</td>		<td>ADC abs</td>	<td>ROR abs</td>		<td class="c65k">SXY</td></tr>
 <tr><th>7</th>		<td>BVS rel</td>		<td>ADC (zp),Y</td>	<td class="cmos">ADC (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">STZ zp,X</td>	<td>ADC zp,X</td>	<td>ROR zp,X</td>	<td class="prefix">prefix1</td>		<td>SEI</td>		<td>ADC abs,Y</td>		<td class="cmos">PLY</td>	<td class="prefix">prefix2</td>	<td class="cmos">JMP (abs,X)</td><td>ADC abs,X</td>	<td>ROR abs,X</td>		<td class="c65k">NOP zp</td></tr>
 <tr><th>8</th>		<td class="cmos">BRA rel</td>	<td>STA (zp,X)</td>	<td class="c65k">BSR rel</td>	<td class="prefix">prefix1</td>	<td>STY zp</td>			<td>STA zp</td>		<td>STX zp</td>		<td class="prefix">prefix1</td>		<td>DEY</td>		<td class="cmos">BIT imm</td>	<td>TXA</td>			<td class="prefix">prefix2</td>	<td>STY abs</td>		<td>STA abs</td>	<td>STX abs</td>		<td class="c65k">NOP abs</td></tr>
@@ -150,7 +171,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>NMOS Opcodes</td><td class="cmos">CMOS Opcodes</td><td class="c65k">New 65k opcodes</td><td class="prefix">65k Prefix codes</td><td class="unused">Unused/Reserved</td></tr>
 </table>
 	<p>
-	Some of the opcodes are named prefix1 and prefix2, for those see below. Others are named like "QUICK prefix" or "MMU prefix".
+	Some of the opcodes are named prefix1 and prefix2, for those see below. 
+	Others are named like "QUICK prefix" or "EXT prefix".
 	These opcodes provide a way to extend the opcode list by having a second opcode byte follow the prefix. Thus there 
 	could be 256 additional "QUICK" opcodes, and 256 additional "MMU opcodes" and so on. These opcode pages are
 	described below.
@@ -484,7 +506,11 @@ more modern browser, like Internet Explorer 8 or later,
 	</ol>
 	<p>TODO: Mult/Div opcodes; Interrupt base register opcodes</p>
 	<h3><a name="ovfp" id="ovfp">FP opcodes</a></h3><p>
-    	</p><h3><a name="ovmmu" id="ovmmu">MMU opcodes</a></h3><p>
+	Note: this section still needs to be worked out.
+    	</p><h3><a name="ovmmu" id="ovmmu">Blitter opcodes</a></h3><p>
+	Note: this section still needs to be worked out. It is not clear if the blitter opcodes
+	could not be implemented column in the SYS opcodes table. Blitter opcodes would be 
+	privileged.
     	</p><h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>This section gives an overview over the system opcodes that handle system
 	configuration registers etc.
 	</p>
@@ -647,12 +673,7 @@ more modern browser, like Internet Explorer 8 or later,
 	this must be done by the interrupt routine.
       </p><h3><a name="env" id="env">Environments</a></h3><p>
 	Environments are an optional feature.
-      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-	No warranty! 
-	Subject to change without notice!
-	There is no guarantee that this specification will actually work,
-	or will ever be implemented
-  </div></div><hr />
+      </p></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 

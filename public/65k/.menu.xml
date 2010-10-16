@@ -1,6 +1,8 @@
 <ul class="menu1" >
 <li><div class="i_file">&nbsp;</div><a href="%up%features.html">Features</a></li>
+<li class="separator">Specification</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%specsprog.html">Programming Model</a></li>
+<li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%arch.html">Architecture Overview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="%up%tests.html">Test setup</a></li>
 </ul>
