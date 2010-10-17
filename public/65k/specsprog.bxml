@@ -127,7 +127,8 @@
 	<tr><td>A</td><td>Accumulator</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
 	<tr><td>X</td><td>X register</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
 	<tr><td>Y</td><td>Y register</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
-	<tr><td>S</td><td>Stack pointer</td><td>8 bit, with high byte set to 1</td><td>W bit</td><td></td></tr>
+	<tr><td>S(U)</td><td>User mode Stack pointer</td><td>-</td><td>W bit</td><td></td></tr>
+	<tr><td>S(H)</td><td>Hypervisor mode Stack pointer</td><td>8 bit, with high byte set to 1</td><td>W bit</td><td></td></tr>
 	<tr><td>ST</td><td>Status Register</td><td>8 bit, with bit 5 set to 1</td><td>16 bit</td><td>TBD</td></tr>
 	<tr><td>PC</td><td>Program Counter</td><td>16 bit</td><td>W bit</td><td></td></tr>
 	<tr><td>E</td><td>Effective Address Register</td><td>-</td><td>W bit</td><td>Stores effective address for opcodes</td></tr>
@@ -135,6 +136,35 @@
 	<tr><th colspan="5">System Management Registers</th></tr>
 	<tr><td>I</td><td>Interrupt base register</td><td>-</td><td>W bit</td><td>Base address for interrupt vectors</td></tr>
 	<tr><td>T</td><td>Trap vector base register</td><td>-</td><td>W bit</td><td>Base address for trap vectors</td></tr>
+	<tr><td>M(U)</td><td>User Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for user mode</td></tr>
+	<tr><td>M(H)</td><td>Hypervisor Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for hypervisor mode</td></tr>
+    </table>
+    <p>The status register is divided into two bytes. The first mirrors the original 6502 status byte:</p>
+    <table border="1">
+<tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
+<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>N</td><td>V</td><td>1</td><td>B</td><td>D</td><td>I</td><td>Z</td><td>C</td></tr>
+    </table>
+    <table border="1">
+<tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
+<tr><td>N</td><td>Negative</td><td>Set when operation results in a negative value (bit 7 set)</td></tr>
+<tr><td>V</td><td>Overflow</td><td>Set when arithmetic operation or compare results in an overflow value</td></tr>
+<tr><td>B</td><td>Break</td><td>Set when a BRK opcode has been executed, is only written to the stack</td></tr>
+<tr><td>D</td><td>Decimal</td><td>Decimal flag</td></tr>
+<tr><td>I</td><td>Interrupt</td><td>Set to disable interrupts (deprecated)</td></tr>
+<tr><td>Z</td><td>Zero</td><td>Set when operation results in a zero value</td></tr>
+<tr><td>C</td><td>Carry</td><td>Carry for arithmetic operations and compares</td></tr>
+    </table>
+    <p>The second byte is an extended status byte:</p>
+    <table border="1">
+<tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
+<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>H</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td colspan="2">Stack frame size</td></tr>
+    </table>
+    <table border="1">
+<tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
+<tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode (will be reset on RTU/RTI)</td></tr>
+<tr><td>Stack frame size</td><td>FRAME</td><td>Determines the stack frame size for a TRAP or an interrupt</td></tr>
     </table>
     </desc>
   </subsection>
@@ -150,7 +180,9 @@
 	<tr><td>Addr offset/container control</td><td>0-7: Container control<br/>
 					8-W: address offset value</td><td></td></tr>
     </table><p>
-	For a full explanation see below
+	There can be any number of register sets. The number can be read from a configuration register. 
+	If there are register sets, there must be at least four sets.
+	For a full explanation see below.
     </p>
     </desc>
   </subsection>
@@ -332,11 +364,11 @@
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>				<th>2</th>				<th>3</th>					<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>						<th>8</th>			<th>9</th>				<th>A</th>			<th>B</th>		<th>C</th>				<th>D</th>				<th>E</th>				<th>F</th></tr>
-<tr><th>0</th>		<td class="unused"></td>	<td>ORA (zp,X)<br/>AM,OF,RS,ZE</td>	<td>LDA zp,Y<br/>AM,OF,RS,ZE</td>	<td class="dup">ORA (zp,X)<br/>AM,OF,RS,ZE</td>	<td>TSB zp<br/>AM,OF,RS</td>		<td>ORA zp<br/>AM,OF,RS,ZE</td>		<td>ASL zp<br/>AM,OF,RS,ZE</td>		<td class="dup"></td>					<td class="unused"></td>	<td>ORA imm<br/>RS,ZE</td>		<td>ASL A<br/>RS,ZE</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,ZE</td>	<td>ORA abs<br/>AM,OF,RS,ZE</td>	<td>ASL abs<br/>AM,OF,RS</td>		<td>PLB<br/>RS,ZE</td></tr>
+<tr><th>0</th>		<td class="unused"></td>	<td>ORA (zp,X)<br/>AM,OF,RS,ZE</td>	<td>LDA zp,Y<br/>AM,OF,RS,ZE</td>	<td class="dup">ORA (zp,X)<br/>AM,OF,RS,ZE</td>	<td>TSB zp<br/>AM,OF,RS</td>		<td>ORA zp<br/>AM,OF,RS,ZE</td>		<td>ASL zp<br/>AM,OF,RS,ZE</td>		<td class="dup">JMP (abs)<br/>AM,OF</td>		<td class="unused"></td>	<td>ORA imm<br/>RS,ZE</td>		<td>ASL A<br/>RS,ZE</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,ZE</td>	<td>ORA abs<br/>AM,OF,RS,ZE</td>	<td>ASL abs<br/>AM,OF,RS</td>		<td>PLB<br/>RS,ZE</td></tr>
 <tr><th>1</th>		<td>BPL rel<br/>RS</td>		<td>ORA (zp),Y<br/>AM,OF,RS,ZE</td>	<td>ORA (zp)<br/>AM,OF,RS,ZE</td>	<td class="dup">ORA (zp),Y<br/>AM,OF,RS,ZE</td>	<td>TRB zp<br/>AM,OF,RS</td>		<td>ORA zp,X<br/>AM,OF,RS,ZE</td>	<td>ASL zp,X<br/>AM,OF,RS,ZE</td>	<td class="dup">ORA (zp)<br/>AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>ORA abs,y<br/>AM,OF,RS,ZE</td>	<td>INC A<br/>RS,ZE</td>	<td class="x"></td>	<td>TRB abs<br/>AM,OF,RS,ZE</td>	<td>ORA abs,X<br/>AM,OF,RS,ZE</td>	<td>ASL abs,X<br/>AM,OF,RS</td>		<td>PHB<br/>RS</td></tr>	
-<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,ZE</td>	<td>STA zp,Y<br/>AM,OF,RS,ZE</td>	<td class="dup">AND (zp,X)<br/>AM,OF,RS,ZE</td>	<td>BIT zp<br/>AM,OF,RS</td>		<td>AND zp<br/>AM,OF,RS,ZE</td>		<td>ROL zp<br/>AM,OF,RS,ZE</td>		<td class="dup"></td>					<td class="unused"></td>	<td>AND imm<br/>RS,ZE</td>		<td>ROL A<br/>RS,ZE</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,ZE</td>	<td>AND abs<br/>AM,OF,RS,ZE</td>	<td>ROL abs<br/>AM,OF,RS</td>		<td>SAB<br/>RS,ZE</td></tr>
+<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,ZE</td>	<td>STA zp,Y<br/>AM,OF,RS,ZE</td>	<td class="dup">AND (zp,X)<br/>AM,OF,RS,ZE</td>	<td>BIT zp<br/>AM,OF,RS</td>		<td>AND zp<br/>AM,OF,RS,ZE</td>		<td>ROL zp<br/>AM,OF,RS,ZE</td>		<td class="dup">JMP (abs),X<br/>AM,OF</td>		<td class="unused"></td>	<td>AND imm<br/>RS,ZE</td>		<td>ROL A<br/>RS,ZE</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,ZE</td>	<td>AND abs<br/>AM,OF,RS,ZE</td>	<td>ROL abs<br/>AM,OF,RS</td>		<td>SAB<br/>RS,ZE</td></tr>
 <tr><th>3</th>		<td>BMI rel<br/>RS</td>		<td>AND (zp),Y<br/>AM,OF,RS,ZE</td>	<td>AND (zp)<br/>AM,OF,RS,ZE</td>	<td class="dup">AND (zp),Y<br/>AM,OF,RS,ZE</td>	<td>BIT zp,X<br/>AM,OF,RS</td>		<td>AND zp,X<br/>AM,OF,RS,ZE</td>	<td>ROL zp,X<br/>AM,OF,RS,ZE</td>	<td class="dup">AND (zp)<br/>AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>AND abs,Y<br/>AM,OF,RS,ZE</td>	<td>DEC A<br/>RS,ZE</td>	<td class="x"></td>	<td>BIT abs,X<br/>AM,OF,RS,ZE</td>	<td>AND abs,X<br/>AM,OF,RS,ZE</td>	<td>ROL abs,X<br/>AM,OF,RS</td>		<td>PRB<br/>RS,ZE</td></tr>
-<tr><th>4</th>		<td class="unused"></td>	<td>EOR (zp,X)<br/>AM,OF,RS,ZE</td>	<td>LDA (abs),Y<br/>AM,OF,RS,ZE</td>	<td class="dup">EOR (zp,X)<br/>AM,OF,RS,ZE</td>	<td class="dup">BSR rel<br/>RS</td>	<td>EOR zp<br/>AM,OF,RS,ZE</td>		<td>LSR zp<br/>AM,OF,RS,ZE</td>		<td class="dup">LDA (abs),Y<br/>AM,OF,RS,ZE</td>	<td>PHA<br/>RS</td>		<td>EOR imm<br/>RS,ZE</td>		<td>LSR imm<br/>RS,ZE</td>	<td class="x"></td>	<td>JMP abs<br/>AM</td>			<td>EOR abs<br/>AM,OF,RS,ZE</td>	<td>LSR abs<br/>AM,OF,RS</td>		<td>SAX<br/>RS,ZE</td></tr>
+<tr><th>4</th>		<td class="unused"></td>	<td>EOR (zp,X)<br/>AM,OF,RS,ZE</td>	<td>LDA (abs),Y<br/>AM,OF,RS,ZE</td>	<td class="dup">EOR (zp,X)<br/>AM,OF,RS,ZE</td>	<td class="dup">BSR rel<br/>RS</td>	<td>EOR zp<br/>AM,OF,RS,ZE</td>		<td>LSR zp<br/>AM,OF,RS,ZE</td>		<td class="dup">LDA (abs),Y<br/>AM,OF,RS,ZE</td>	<td>PHA<br/>RS</td>		<td>EOR imm<br/>RS,ZE</td>		<td>LSR imm<br/>RS,ZE</td>	<td class="x"></td>	<td>JMP abs<br/>AM,OF</td>		<td>EOR abs<br/>AM,OF,RS,ZE</td>	<td>LSR abs<br/>AM,OF,RS</td>		<td>SAX<br/>RS,ZE</td></tr>
 <tr><th>5</th>		<td>BVC rel<br/>RS</td>		<td>EOR (zp),Y<br/>AM,OF,RS,ZE</td>	<td>EOR (zp)<br/>AM,OF,RS,ZE</td>	<td class="dup">EOR (zp),Y<br/>AM,OF,RS,ZE</td>	<td class="dup">BSR rel<br/>RS</td>	<td>EOR zp,X<br/>AM,OF,RS,ZE</td>	<td>LSR zp,X<br/>AM,OF,RS,ZE</td>	<td class="dup">EOR (zp)<br/>AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>EOR abs,Y<br/>AM,OF,RS,ZE</td>	<td>PHY<br/>RS</td>		<td class="x"></td>	<td class="unused"></td>		<td>EOR abs,X<br/>AM,OF,RS,ZE</td>	<td>LSR abs,X<br/>AM,OF,RS</td>		<td>SAY<br/>RS,ZE</td></tr>
 <tr><th>6</th>		<td>RTS<br/>AM,RS</td>		<td>ADC (zp,X)<br/>AM,OF,RS,ZE</td>	<td>LDA (abs,X)<br/>AM,OF,RS,ZE</td>	<td class="dup">ADC (zp,X)<br/>AM,OF,RS,ZE</td>	<td>STZ zp<br/>AM,OF,RS</td>		<td>ADC zp<br/>AM,OF,RS,ZE</td>		<td>ROR zp<br/>AM,OF,RS,ZE</td>		<td class="dup">LDA (abs,X)<br/>AM,OF,RS,ZE</td>	<td>PLA<br/>RS,ZE</td>		<td>ADC imm<br/>RS,ZE</td>		<td>ROR A<br/>RS,ZE</td>	<td class="x"></td>	<td>JMP (abs)<br/>AM,OF</td>		<td>ADC abs<br/>AM,OF,RS,ZE</td>	<td>ROR abs<br/>AM,OF,RS</td>		<td>SXY<br/>RS,ZE</td></tr>
 <tr><th>7</th>		<td>BVS rel<br/>RS</td>		<td>ADC (zp),Y<br/>AM,OF,RS,ZE</td>	<td>ADC (zp)<br/>AM,OF,RS,ZE</td>	<td class="dup">ADC (zp),Y<br/>AM,OF,RS,ZE</td>	<td>STZ zp,X<br/>AM,OF,RS</td>		<td>ADC zp,X<br/>AM,OF,RS,ZE</td>	<td>ROR zp,X<br/>AM,OF,RS,ZE</td>	<td class="dup">ADC (zp)<br/>AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>ADC abs,Y<br/>AM,OF,RS,ZE</td>	<td>PLY<br/>RS,ZE</td>		<td class="x"></td>	<td>JMP (abs,X)<br/>AM,OF</td>		<td>ADC abs,X<br/>AM,OF,RS,ZE</td>	<td>ROR abs,X<br/>AM,OF,RS</td>		<td>NOP zp<br/>AM</td></tr>
@@ -578,30 +610,38 @@
 	configuration registers etc. These opcodes are all privileged.
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>	<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td>LCR imm</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAI</td></tr>
-<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TIA</td></tr>	
-<tr><th>2</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAT</td></tr>
-<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TTA</td></tr>
-<tr><th>4</th>		<td></td>	<td></td>	<td></td>	<td></td> 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>6</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
+<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
+<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
+<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TUA</td></tr>
+<tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 </table><p>Here is a short explanation of the new opcodes</p>
 	<ul>
 	<li>TAI - transfer accumulator to interrupt base register</li>
 	<li>TIA - transfer interrupt base register to accumulator</li>
 	<li>TAT - transfer accumulator to trap vector base register</li>
 	<li>TTA - transfer trap vector base register to accumulator</li>
+	<li>TAU - transfer accumulator to user space stack pointer</li>
+	<li>TUA - transfer user space stack pointer to accumulator</li>
 	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
+	<li>SHM - Set Hypervisor Match register: Store accumulator into hypervisor mode match register</li>
+	<li>SUM - Set User mode Match register: Store accumulator into user mode match register</li>
+	<li>JPU - Jump to user space. Go from hypervisor to user mode, then read the effective address from the
+			user mode address space and execute the jump</li>
+	<li>RTU - return to user space from a Trap opcode: go to user mode, pull return address from user mode
+			stack and execute RTS</li>
 	</ul><p>
 	The configuration value registers are basically constant values that the program can query from the
 	processor. These values can then be used by the program to identify the processor, resp. adapt
@@ -744,6 +784,9 @@
 	</table>
       <p>
 	Note: all unused bits must be set to zero
+      </p><p>
+	Note: need to discuss if one vector for interrupt and trap would suffice. With the
+	current definition, upon reset the interrupts would be the last 8 trap vectors.
       </p></desc>
     </subsection>
 
@@ -758,15 +801,34 @@
 	the uppermost 33 resp. 49 bits are all ones, or all zeros (i.e. sign-extended 
 	32 resp. 16 bit address values) the value written on the stack can be shortened.
       </p><p>
-	After the address the extended status register is written to the stack. I.e. first the 
-	high status byte, then the low status byte (that mirrors the original 6502 status register).
+	After the address the extended status register is written to the stack. I.e. the 
+	high status byte.
 	The high status byte contains two address width bits that allow the RTI opcode to determine
 	the width of the stored return address.
       </p><p>
-	After that the respective address vector is fetched and jumped to.
+	In case of an interrupt then the low status byte (that mirrors the original 6502 status register)
+	is written to the stack. This is not done on TRAP, as the return from TRAP should not overwrite
+	returned status values. Bit5 of the status byte, however, is set to 0. When pulling this
+	from the stack this indicates the extended stack frame.
+      </p><p>
+	After that the processor goes into hypervisor more (concerning matchcode and stack pointer),
+	then the respective address vector is fetched and jumped to.
       </p><p>
 	This procedure means that similar to the 6502 no other registers are stored on the stack, 
 	this must be done by the interrupt routine.
+      </p></desc>
+    </subsection>
+
+    <subsection toc="intret" name="Interrupt and Trap Return">
+      <desc><p>
+	For the return from a TRAP, there is the RTU opcode, Return to User space. It switches to user mode,
+	then pulls the extended status byte from the stack. It determines the stack frame size from there,
+	pulls the return address and jumps there.
+      </p><p>
+	For the return from an interrupt, there is the RTI opcode. It goes to user space mode, then pulls
+	the status byte from the stack and restores it. If bit 5 is zero, it pulls the extended stack frame
+	similar to the the TRAP opcode. It bit 5 is one, it goes into 6502 compatibility mode - pulls a two
+	byte return address from the stack and jumps there.
       </p></desc>
     </subsection>
   </section>
@@ -857,12 +919,9 @@
       </p></desc>
     </subsection>
     
-    <subsection toc="seg" name="Segmentation">
+    <subsection toc="mmu" name="Paged Memory Management Unit (MMU)">
       <desc><p>
-	Segments are an optional feature, but they are essential for virtualization. An "environment" is
-	a kind of virtual address space. It is defined by an address range, and an offset. The address range is
-	defined by a bit mask and a value. The actual address is ANDed with the mask, and if it the result is the same
-	as the value, the environment address "matches".
+	TBD
       </p></desc>
     </subsection>
 
