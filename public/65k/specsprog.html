@@ -97,7 +97,7 @@ more modern browser, like Internet Explorer 8 or later,
 	documentation from the same source that generates the VHDL control tables.
   </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-03</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#cont">Container</a></li><li><a href="#seg">Segmentation</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Supervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li style="list-style-type:none;"><ul><li><a href="#regcore">Core register</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li></ul></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li><li><a href="#cont">Container</a></li><li><a href="#seg">Segmentation</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
@@ -146,8 +146,10 @@ more modern browser, like Internet Explorer 8 or later,
     	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="regs" id="regs">Register Set</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	The register set is very similar to the 6502, with only a few extensions...
 	As there are different options for register widths, "W" describes the width
-	option, i.e. either 16, 32 or 64 bit.
+	option, i.e. either 16, 32 or 64 bit. 
+	</p><p>In addition to the core registers there are registers for the memory management.
     </p>
+    <h3><a name="regcore" id="regcore">Core register</a></h3>
     <table border="1">
 	<tr><th>Register</th><th>Name</th><th>6502</th><th>65k</th><th>Comment</th></tr>
 	<tr><td>A</td><td>Accumulator</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
@@ -162,6 +164,19 @@ more modern browser, like Internet Explorer 8 or later,
 	<tr><td>I</td><td>Interrupt base register</td><td>-</td><td>W bit</td><td>Base address for interrupt vectors</td></tr>
 	<tr><td>T</td><td>Trap vector base register</td><td>-</td><td>W bit</td><td>Base address for trap vectors</td></tr>
     </table>
+    <h3><a name="regmem" id="regmem">Memory Management Register</a></h3><p>The container management has a number of register sets. Each set contains three full size (W bits) 
+	registers:</p>
+    <table border="1">
+	<tr><th>Container-Register</th><th>Definition</th><th>Comment</th></tr>
+	<tr><td>Addr/matchcode mask</td><td>0-7: matchcode mask<br />
+					8-W: address mask</td><td></td></tr>
+	<tr><td>Addr/matchcode compare value</td><td>0-7: matchcode compare value<br />
+					8-W: address compare value</td><td></td></tr>
+	<tr><td>Addr offset/container control</td><td>0-7: Container control<br />
+					8-W: address offset value</td><td></td></tr>
+    </table><p>
+	For a full explanation see below
+    </p>
     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">65k Opcode and Addressing Mode Overview</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes in an overview the opcodes and addressing modes of the 65k.
 	</p>
@@ -554,7 +569,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br />MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>	<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>0</th>		<td>LCR imm</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAI</td></tr>
 <tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TIA</td></tr>	
 <tr><th>2</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TAT</td></tr>
 <tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>TTA</td></tr>
@@ -576,7 +591,19 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>TIA - transfer interrupt base register to accumulator</li>
 	<li>TAT - transfer accumulator to trap vector base register</li>
 	<li>TTA - transfer trap vector base register to accumulator</li>
-	</ul>
+	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
+	</ul><p>
+	The configuration value registers are basically constant values that the program can query from the
+	processor. These values can then be used by the program to identify the processor, resp. adapt
+	itself to the processor features present.
+	The following processor configuration registers are defined (note narrow values are always zero-extended):</p>
+<table border="1">
+<tr><th>Register#</th><th>Name</th><th>Width</th><th>Value</th></tr>
+<tr><td>$00</td><td>VENDOR</td><td>16 bit</td><td>Defines the vendor of the processor.
+			Currently defined are:
+			<table><tr><td>$AF</td><td>A. Fachat</td></tr></table></td></tr>
+<tr><td>$10</td><td>MM_CONT</td><td>8 bit</td><td>Number of memory management containers</td></tr>
+</table>
     	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sys" id="sys">System Environment</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes the general system environment
     </p><h3><a name="reset" id="reset">Reset</a></h3><p>
@@ -709,14 +736,81 @@ more modern browser, like Internet Explorer 8 or later,
       </p><p>
 	This procedure means that similar to the 6502 no other registers are stored on the stack, 
 	this must be done by the interrupt routine.
+      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	This section describes the memory management features of the 65k. Those features are
+	optional. They are decoupled from the main core by the means of "match codes".
+    </p><h3><a name="match" id="match">Match code</a></h3><p>
+	The match code is an 8 bit value set by the core, for every memory access.
+	It is used by the MMU to select which translation should be used to translate from
+	effective to physical address.
       </p><h3><a name="cont" id="cont">Container</a></h3><p>
 	Container are an optional feature together with the hypervisor mode.
 	A container confines the processor into a defined address area. This is done by ANDing the
-	effective address of the opcode with a bit mask. Then a fixed offset is ORd with the
-	result, to get the "confined address".
-      </p>
-      <h3>Container selection</h3>
+	effective address of the opcode with a bit mask, then comparing it with an address value.
+	When the masked address equals the address value, the container address matches.
+	Then a fixed offset is ORd with the
+	result, to get the "confined address". The smallest memory area that can be confined is
+	256 byte.
+      </p><p>
+	The MMU has a number of such container definitions. Each definition is matched against
+	the current effective address coming from the CPU. As the matchable memory area is 
+	at least 256 byte, the lowest 8 bit in the mask and address value are used to match the matchcode:
+	the 8 bit matchcode is ANDed with the lowest 8 mask bits, then compared to the 
+	lowest 8 offset bits. If they are equal, then the container definition matches.
+      </p><p>
+	If multiple containers are matching the address and match code, then the container
+	definition with the lowest number is effective.
+	If no container matches (e.g. upon reset) then the effective address becomes the confined
+	address without any translation.
+      </p><p>
+	In addition to mask and offset the container definition has an extra byte in the
+	low 8 bit of the address offset that determines memory mapping metadata: </p>
+	<table border="1">
+	<tr><th>Bit</th><th>Name</th><th>Function</th></tr>
+	<tr><td>0</td><td>VALID</td><td>If set, the address mapping is valid. If the container
+				becomes effective, but the valid bit is not set, a Bus error condition
+				occurs</td></tr>
+	<tr><td>1</td><td>HYPERVISOR</td><td>If set, the address mapping is only available in hypevisor
+				mode. If hypervisor mode is off, this mapping never matches</td></tr>
+	<tr><td>2</td><td>READONLY</td><td>If set, the memory area mapped here is read-only, writes are ignored if TRAPWRITE is not set</td></tr>
+	<tr><td>3</td><td>TRAPWRITE</td><td>If set, and READONLY is set, then a bus error condition occurs on writes</td></tr>
+	<tr><td>4</td><td>NOEXECUTE</td><td>If set, a bus error condition occurs when the processor
+				tries to read an opcode from this mapping</td></tr>
+	<tr><td>5</td><td>TRANSIENT</td><td>If set, the memory address cannot be cached</td></tr>
+	<tr><td>6/7</td><td>WIDTH</td><td>Memory access width. 00=8 bit, 01=16 bit, 10=32 bit, 11=64 bit. 
+			If the width selected here is wider than the physical width, the upper bits are ignored on writes
+			and zero on reads.</td></tr>
+	</table>
       <p>
+	A memory management setup to emulate a Commodore PET would for example look like (in a 32 bit option) the
+	table below, where the matchcode $12 is assumed to be the PET's matchcode, the system's I/O is at $E0000000,
+	Video memory at $D0000000 and normal bus is 16 bit. The "PET emulator" memory is at $100000000.
+	</p>
+      <table border="1">
+	<tr><th>Container#</th><th>Addr/Matchcode Mask</th><th>Addr/Matchcode value</th><th>Addr Offset/Container Control</th></tr>
+	<tr><td>0</td><td>$FFFFFF/$FF</td><td>$0000E8/$12 (256 byte at $0000E800)</td><td>$E00000/%00110001 (8 Bit, TRANSIENT, NOEXECUTE, VALID)</td></tr>
+	<tr><td>1</td><td>$FFFFF0/$FF</td><td>$000080/$12 (4kB at $00008000)</td><td>$D00000/%01110001 (16 Bit, TRANSIENT, NOEXECUTE, VALID)</td></tr>
+	<tr><td>2</td><td>$FFFF80/$FF</td><td>$000000/$12 (32kB at $00000000)</td><td>$100000/%01000001 (16 Bit, VALID)</td></tr>
+	<tr><td>3</td><td>$FFFF80/$FF</td><td>$000080/$12 (32kB at $00008000)</td><td>$100000/%01000101 (16 Bit, READONLY, VALID)</td></tr>
+      </table><p>
+	Using a matchcode mask of $FE instead of $FF in the first mapping would for example allow to share the
+	mapping of container #0 between matchcode $12 and $13. This allows for shared memory segments.
+      </p><p>
+	Also note that the matching memory areas overlap. Here the preference rule says the one with the lower container
+	number is effective. 
+      </p><p>
+	The table shows that this type of mapping has some restrictions, it is not possible to arbitrarily map memory 
+	areas around, but it can still be used flexibly. The effective addresses for this approach are all 
+	starting at zero - you could for example emulate an 8k-only 6504 - but the address offset then
+	translates the address to the correct physical address space.
+      </p><p>
+	Note: this section must be further worked over. There is no way to define a write-through cache (e.g. video memory
+	could be written (slowly) to a video board, but mirrored and cached in fast memory. On the other hand is this
+	situation very common? Writes to read-only memory could always trap, so TRAPWRITE would not be needed.
+	Are there two WIDTH bits required? Would not one bit be enough to indicate 8 bit access. This would
+	suffice for compatibility. Also it would allow to have the default to "native" width - in the current
+	proposal above the processor must know which memory access width it actually uses to write the correct
+	width value.
       </p><h3><a name="seg" id="seg">Segmentation</a></h3><p>
 	Segments are an optional feature, but they are essential for virtualization. An "environment" is
 	a kind of virtual address space. It is defined by an address range, and an offset. The address range is
