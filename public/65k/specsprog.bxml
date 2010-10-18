@@ -50,6 +50,9 @@
         There is no guarantee and no promise that this specification is correct, consistent, will actually work,
         or will ever be implemented at all.
     </p><p>
+	To my understanding the techniques described here have been used by various processors for decades already.
+	Still there is no guarantee that a processor according to this spec would not be covered by some patents.
+    </p><p>
         Subject to change without notice!
     </p></desc>
   </subsection>
@@ -94,11 +97,11 @@
     	</p></desc>
        </subsection>
 
-       <subsection toc="optssuper" name="Supervisor Mode Option">
+       <subsection toc="optssuper" name="Hypervisor Mode Option">
 	<desc><p>
-	The 65k will optionally provide a supervisor mode. When using a supervisor mode, critical instructions -
-	those that modify system state - become privileged and are thus only allowed in supervisor mode.
-	Supervisor mode allows to separate user space programs from kernel space, and protects the kernel from
+	The 65k will optionally provide a hypervisor mode. When using a hypervisor mode, critical instructions -
+	those that modify system state - become privileged and are thus only allowed in hypervisor mode.
+	Hypervisor mode allows to separate user space programs from kernel space, and protects the kernel from
 	unwanted modifications from user space.
     	</p></desc>
        </subsection>
@@ -134,9 +137,9 @@
 	<tr><td>E</td><td>Effective Address Register</td><td>-</td><td>W bit</td><td>Stores effective address for opcodes</td></tr>
 	<tr><td>B</td><td>Base Offset Register</td><td>-</td><td>W bit</td><td>Address offset for addressing modes</td></tr>
 	<tr><th colspan="5">System Management Registers</th></tr>
-	<tr><td>I</td><td>Interrupt base register</td><td>-</td><td>W bit</td><td>Base address for interrupt vectors</td></tr>
-	<tr><td>T</td><td>Trap vector base register</td><td>-</td><td>W bit</td><td>Base address for trap vectors</td></tr>
-	<tr><td>M(U)</td><td>User Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for user mode</td></tr>
+	<tr><td>IV</td><td>Interrupt base register</td><td>-</td><td>W bit</td><td>Base address for interrupt vectors</td></tr>
+	<tr><td>TV</td><td>Trap vector base register</td><td>-</td><td>W bit</td><td>Base address for trap vectors</td></tr>
+	<tr><td>M(U)</td><td>User Mode Match register</td><td>-</td><td>8/8 bit</td><td>Match register for user mode</td></tr>
 	<tr><td>M(H)</td><td>Hypervisor Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for hypervisor mode</td></tr>
     </table>
     <p>The status register is divided into two bytes. The first mirrors the original 6502 status byte:</p>
@@ -159,12 +162,29 @@
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>H</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td colspan="2">Stack frame size</td></tr>
+<tr><td>-</td><td>IM2</td><td>IM1</td><td>IM0</td><td>H</td><td>P</td><td>SF1</td><td>SF0</td></tr>
+    </table>
+    <table border="1">
+<tr><th>Bit</th><th>Name</th><th>Explanation</th><th>State on Reset</th></tr>
+<tr><td>IM2/IM1/IM0</td><td>Interrupt Priority Mask</td><td>Defines a number from 0 to 7. Each interrupt that 
+	has a vector number below the value set here is disabled</td><td>111 (all interrupts disabled)</td></tr>
+<tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode</td><td>1</td></tr>
+<tr><td>P</td><td>Previous hypervisor mode</td><td>Copy of the Hypervisor mode bit made on TRAP or interrupt</td><td>1</td></tr>
+<tr><td>SF1/SF0</td><td>Stack Frame Size</td><td>Determines the stack frame size for a TRAP or an interrupt</td><td>00</td></tr>
+    </table>
+    <p>The User mode match register is divided into two parts: the low byte is the actual match code. The high byte is
+	a set of control bits for the user mode:</p>
+    <table border="1">
+<tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
+<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td colspan="3">U</td></tr>
     </table>
     <table border="1">
 <tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
-<tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode (will be reset on RTU/RTI)</td></tr>
-<tr><td>Stack frame size</td><td>FRAME</td><td>Determines the stack frame size for a TRAP or an interrupt</td></tr>
+<tr><td>U</td><td>User mode interrupt selector</td><td>Selects one of the processor's five external interrupt
+	sources as user mode interrupt. I.e. when in user mode and the interrupt occurs, a standard 6502
+	interrupt sequence is initiated. If the processor is in hypervisor mode and the interrupt occurs, the
+	interrupt is suspended until after the RTU, JPU etc opcodes.</td></tr>
     </table>
     </desc>
   </subsection>
@@ -610,23 +630,23 @@
 	configuration registers etc. These opcodes are all privileged.
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>	<th>5</th>	<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
-<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
-<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
-<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
-<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
-<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TUA</td></tr>
-<tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
-<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>		<th>5</th>		<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
+<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>	<td>ORA SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
+<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>	<td>AND SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
+<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td></td>		<td>EOR SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TUA</td></tr>
+<tr><th>6</th>		<td>RTU</td>	<td>LHM</td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td></td>	<td>LUM</td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 </table><p>Here is a short explanation of the new opcodes</p>
 	<ul>
 	<li>TAI - transfer accumulator to interrupt base register</li>
@@ -638,10 +658,16 @@
 	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
 	<li>SHM - Set Hypervisor Match register: Store accumulator into hypervisor mode match register</li>
 	<li>SUM - Set User mode Match register: Store accumulator into user mode match register</li>
+	<li>LHM - Load Hypervisor Match register: Load accumulator from hypervisor mode match register</li>
+	<li>LUM - Load User mode Match register: Load accumulator from user mode match register</li>
 	<li>JPU - Jump to user space. Go from hypervisor to user mode, then read the effective address from the
 			user mode address space and execute the jump</li>
 	<li>RTU - return to user space from a Trap opcode: go to user mode, pull return address from user mode
 			stack and execute RTS</li>
+	<li>SENV - the byte operand determines the environment number, first variant: AC, XR and YR determine the 
+			address mask, address value and address offset registers. Second variant: the byte operand
+			determines the environment number, E gives the memory address of the address mask, value and offset</li>
+	<li>AND/ORA/EOR SR - operations on the status register, always word wide</li>
 	</ul><p>
 	The configuration value registers are basically constant values that the program can query from the
 	processor. These values can then be used by the program to identify the processor, resp. adapt
@@ -795,7 +821,7 @@
 	What happens when an interrupt or a trap occurs? The interrupt procedure is very similar to the
 	original 6502 interrupt.
       </p><p>
-	First the program counter is written to the stack. 
+	Then the program counter is written to the stack. 
 	As the program counter can be wider than the original 6502's program counter, the value
 	written on the stack can be variable width. I.e. if the address is a "canonical address" - 
 	the uppermost 33 resp. 49 bits are all ones, or all zeros (i.e. sign-extended 
@@ -811,8 +837,13 @@
 	returned status values. Bit5 of the status byte, however, is set to 0. When pulling this
 	from the stack this indicates the extended stack frame.
       </p><p>
-	After that the processor goes into hypervisor more (concerning matchcode and stack pointer),
-	then the respective address vector is fetched and jumped to.
+	After that the processor goes into hypervisor mode (concerning matchcode and stack pointer).
+	Then the respective address vector is fetched and jumped to.
+      </p><p>
+	This results in the situation that in case of TRAP the exception stack frame as well as the
+	interrupt exception stack frame are stored on the user mode stack.
+	The previous hypervisor status bit is stored in the extended status register (so RTI knows
+	from where to pull the exception stack frame, resp. stacked interrupts work!) 
       </p><p>
 	This procedure means that similar to the 6502 no other registers are stored on the stack, 
 	this must be done by the interrupt routine.
@@ -821,15 +852,34 @@
 
     <subsection toc="intret" name="Interrupt and Trap Return">
       <desc><p>
-	For the return from a TRAP, there is the RTU opcode, Return to User space. It switches to user mode,
-	then pulls the extended status byte from the stack. It determines the stack frame size from there,
+	For the return from a TRAP, there is the RTU opcode, Return to User space. It determines the
+	previous hypervisor state bit (from the current extended status byte) and determines from that
+	from which enviroment (user mode or hypervisor mode stack pointer / match code) to pull the exception stack frame.
+	It then pulls the extended status byte from this stack. It determines the stack frame size from there,
 	pulls the return address and jumps there.
       </p><p>
-	For the return from an interrupt, there is the RTI opcode. It goes to user space mode, then pulls
-	the status byte from the stack and restores it. If bit 5 is zero, it pulls the extended stack frame
+	For the return from an interrupt, there is the RTI opcode. It first determines the environment
+	to pull the execption stack frame from as in the RTU opcode.
+	It then pulls the status byte from this stack and restores it. If bit 5 is zero, it pulls the extended stack frame
 	similar to the the TRAP opcode. It bit 5 is one, it goes into 6502 compatibility mode - pulls a two
-	byte return address from the stack and jumps there.
+	byte return address from the stack. 
+	It then jumps to the return address.
       </p></desc>
+    </subsection>
+
+    <subsection toc="jpu" name="Jump to User Mode">
+      <desc><p>
+	To go to a user space program - as set up by the user mode matchcode and user mode 
+	stack pointer - the JPU opcode is used. It reads the operand address (from hypervisor mode),
+	then clears the hypervisor bit. After that it either jumps to the operand address in
+	user mode (absolute jump), or it reads the effective address from user mode (indirect jump)
+	and jumps there.
+      </p><p>
+	To emulate the behaviour of the original 6502, you would do a</p>
+	<pre>
+	JPU ($FFFC)
+	</pre>
+      </desc>
     </subsection>
   </section>
 
@@ -927,6 +977,15 @@
 
   </section>
 
+  <section toc="smp" name="Multiprocessing">
+      <desc><p>
+	The 65k will support multiprocessing. With the LLA and SCA it supports load-linked and store-conditional
+	multiprocessor-safe synchronization primitives. 
+	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB) may or may 
+	not be multiprocessor-safe.
+      </p></desc>
+  </section>
+   
   <closing>
 @FOOTER@
   </closing>

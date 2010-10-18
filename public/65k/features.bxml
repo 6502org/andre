@@ -76,6 +76,9 @@
 	There is no guarantee and no promise that this specification is correct, consistent, will actually work,
         or will ever be implemented at all.
     </p><p>
+        To my understanding the techniques described here have been used by various processors for decades already.
+        Still there is no guarantee that a processor according to this spec would not be covered by some patents.
+    </p><p>
 	Subject to change without notice!
     </p></desc>
   </subsection>

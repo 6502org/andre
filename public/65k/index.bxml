@@ -39,6 +39,9 @@
 	separate from the actual specification. The description documents are also under 
 	Creative Commons Attribution Share-Alike, but I have not yet decided on the VHDL code 
 	license, although I am tending to GPL or LGPL.
+    </p><p>
+        To my understanding the techniques described here have been used by various processors for decades already.
+        Still there is no guarantee that a processor according to this spec would not be covered by some patents.
 	</p>
   </overview>
   <news>
