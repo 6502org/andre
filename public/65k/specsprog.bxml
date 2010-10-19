@@ -94,7 +94,18 @@
 	The original register width for most of the registers is a byte. To use the registers with more than
 	8&nbsp;bit a prefix opcode to the existing 8&nbsp;bit opcodes is used. 2 bit of the prefix opcode are
 	reserved for operation width, which allows to address registers as 8, 16, 32 or 64&nbsp;bit.
-    	</p></desc>
+	</p><p>
+	The different register or operand widths are noted by a prefix. These prefixes are defined and used
+	here:</p>
+	<table border="1">
+	<tr><th>Prefix</th><th>Width</th><th>Comment</th></tr>
+	<tr><td>&nbsp;</td><td>8</td><td>no prefix gives the 6502 8&nbsp;bit behaviour</td></tr>
+	<tr><td>W</td><td>16</td><td>Word</td></tr>
+	<tr><td>L</td><td>32</td><td>Long</td></tr>
+	<tr><td>Q</td><td>64</td><td>Quadword</td></tr>
+	<tr><td>LL</td><td>64</td><td>LongLong - equivalent to Q, deprecated</td></tr>
+	</table>
+    	</desc>
        </subsection>
 
        <subsection toc="optssuper" name="Hypervisor Mode Option">
@@ -132,7 +143,7 @@
 	<tr><td>Y</td><td>Y register</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
 	<tr><td>S(U)</td><td>User mode Stack pointer</td><td>-</td><td>W bit</td><td></td></tr>
 	<tr><td>S(H)</td><td>Hypervisor mode Stack pointer</td><td>8 bit, with high byte set to 1</td><td>W bit</td><td></td></tr>
-	<tr><td>ST</td><td>Status Register</td><td>8 bit, with bit 5 set to 1</td><td>16 bit</td><td>TBD</td></tr>
+	<tr><td>ST</td><td>Status Register</td><td>8 bit, with bit 5 set to 1</td><td>8/8/8 bit</td><td>low 8 bit are the same as 6502, bit5 set to 0, high 8 bit see below</td></tr>
 	<tr><td>PC</td><td>Program Counter</td><td>16 bit</td><td>W bit</td><td></td></tr>
 	<tr><td>E</td><td>Effective Address Register</td><td>-</td><td>W bit</td><td>Stores effective address for opcodes</td></tr>
 	<tr><td>B</td><td>Base Offset Register</td><td>-</td><td>W bit</td><td>Address offset for addressing modes</td></tr>
@@ -142,11 +153,11 @@
 	<tr><td>M(U)</td><td>User Mode Match register</td><td>-</td><td>8/8 bit</td><td>Match register for user mode</td></tr>
 	<tr><td>M(H)</td><td>Hypervisor Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for hypervisor mode</td></tr>
     </table>
-    <p>The status register is divided into two bytes. The first mirrors the original 6502 status byte:</p>
+    <p>The status register is divided into three bytes. The first mirrors the original 6502 status byte:</p>
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>N</td><td>V</td><td>1</td><td>B</td><td>D</td><td>I</td><td>Z</td><td>C</td></tr>
+<tr><td>N</td><td>V</td><td>0</td><td>B</td><td>D</td><td>I</td><td>Z</td><td>C</td></tr>
     </table>
     <table border="1">
 <tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
@@ -158,33 +169,58 @@
 <tr><td>Z</td><td>Zero</td><td>Set when operation results in a zero value</td></tr>
 <tr><td>C</td><td>Carry</td><td>Carry for arithmetic operations and compares</td></tr>
     </table>
-    <p>The second byte is an extended status byte:</p>
+    <p>The second byte is an extended status byte. It is for example written to the interrupt and TRAP 
+	stack frames:</p>
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>-</td><td>IM2</td><td>IM1</td><td>IM0</td><td>H</td><td>P</td><td>SF1</td><td>SF0</td></tr>
+<tr><td>0</td><td>-</td><td>IM1</td><td>IM0</td><td>H</td><td>P</td><td>SF1</td><td>SF0</td></tr>
     </table>
     <table border="1">
 <tr><th>Bit</th><th>Name</th><th>Explanation</th><th>State on Reset</th></tr>
-<tr><td>IM2/IM1/IM0</td><td>Interrupt Priority Mask</td><td>Defines a number from 0 to 7. Each interrupt that 
-	has a vector number below the value set here is disabled</td><td>111 (all interrupts disabled)</td></tr>
+<tr><td>IM1/IM0</td><td>Interrupt Priority Mask</td><td>Defines a number from 0 to 3. Each interrupt that 
+	has a vector number above the value set here is disabled.
+	I.e. value 0 disables all interrupts but NMI. Value 3 enables all interrupts.
+	</td><td>00 (all interrupts disabled)</td></tr>
 <tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode</td><td>1</td></tr>
 <tr><td>P</td><td>Previous hypervisor mode</td><td>Copy of the Hypervisor mode bit made on TRAP or interrupt</td><td>1</td></tr>
-<tr><td>SF1/SF0</td><td>Stack Frame Size</td><td>Determines the stack frame size for a TRAP or an interrupt</td><td>00</td></tr>
+<tr><td>SF1/SF0</td><td>Stack Frame Size</td><td>Determines the stack frame size for a TRAP or an interrupt
+	(01=2 byte, 10=4 byte, 11=8 byte return address. 00 is reserved)
+	</td><td>01</td></tr>
     </table>
+
+    <p>The third byte is a transient status byte. It allows to query the current system state and
+	is not saved in stack frames:
+	</p>
+    <table border="1">
+<tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
+<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>-</td><td>-</td><td>IL1</td><td>IL0</td><td>-</td><td>A2</td><td>A1</td><td>A0</td></tr>
+    </table>
+    <table border="1">
+<tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
+<tr><td>IL1/IL0</td><td>Interrupt Priority Level</td><td>Defines a number from 0 to 3 that determines the
+	current interrupt level, i.e. the highest priority of all current - maskable - active interrupts,
+	even if the interrupt itself is masked. 00 means no interrupt. For example 01 means interrupt 1 is active,
+	but none other, while 10 means interrupt 2 is active, no matter if interrupt 1 is active or not.
+	</td></tr>
+<tr><td>A2/A1/A0</td><td>Abort error condition</td><td>The number defines the error condition on an ABORT 
+	interrupt (values TBD)</td></tr>
+    </table>
+
     <p>The User mode match register is divided into two parts: the low byte is the actual match code. The high byte is
 	a set of control bits for the user mode:</p>
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td colspan="3">U</td></tr>
+<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td><td>U1</td><td>U0</td></tr>
     </table>
     <table border="1">
-<tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
-<tr><td>U</td><td>User mode interrupt selector</td><td>Selects one of the processor's five external interrupt
+<tr><th>Bit</th><th>Name</th><th>Explanation</th><th>State on Reset</th></tr>
+<tr><td>U1/U0</td><td>User mode interrupt selector</td><td>Selects one of the processor's three  external non-NMI interrupt
 	sources as user mode interrupt. I.e. when in user mode and the interrupt occurs, a standard 6502
 	interrupt sequence is initiated. If the processor is in hypervisor mode and the interrupt occurs, the
-	interrupt is suspended until after the RTU, JPU etc opcodes.</td></tr>
+	interrupt is suspended until after the RTU, JPU etc opcodes.</td><td>00 = no interrupt source</td></tr>
     </table>
     </desc>
   </subsection>
@@ -607,7 +643,7 @@
 		The Overflow bit V is set 
 		when the effective address is larger than what is possible with the given RS prefix</li>
 	</ol>
-	<p>TODO: Mult/Div opcodes; Interrupt base register opcodes</p>
+	<p>TODO: Mult/Div opcodes</p>
 	</desc>
        </subsection>
 
@@ -631,13 +667,13 @@
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>		<th>5</th>		<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>	<td>ORA SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
+<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>	<td>ORA SR,imm<br/>RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
 <tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
-<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>	<td>AND SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
+<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>	<td>AND SR,imm<br/>RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
 <tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
-<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td></td>		<td>EOR SR,imm</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
+<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td>SMMU</td>		<td>EOR SR,imm<br/>RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
 <tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TUA</td></tr>
-<tr><th>6</th>		<td>RTU</td>	<td>LHM</td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td>RTU</td>	<td>LHM</td>	<td></td>	<td></td>	<td></td>		<td>LDA SR<br/>RS</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>8</th>		<td></td>	<td>LUM</td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
@@ -667,7 +703,9 @@
 	<li>SENV - the byte operand determines the environment number, first variant: AC, XR and YR determine the 
 			address mask, address value and address offset registers. Second variant: the byte operand
 			determines the environment number, E gives the memory address of the address mask, value and offset</li>
-	<li>AND/ORA/EOR SR - operations on the status register, always word wide</li>
+	<li>AND/ORA/EOR SR - operations on the status register (can do 8, 16, or 24 (zero-extended 32) bit)</li>
+	<li>LDA SR - Load AC from status register (can do 8, 16, or 24 (zero-extended 32) bit)</li>
+	<li>SMMU - Set the MMU base configuration address (TBD)</li>
 	</ul><p>
 	The configuration value registers are basically constant values that the program can query from the
 	processor. These values can then be used by the program to identify the processor, resp. adapt
@@ -738,38 +776,38 @@
 	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>BRK vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFFC/D</td><td>Reset vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFFA/B</td><td>Abort vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Interrupt 4 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9</td><td>Reserved</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Interrupt 3 vector</td></tr>
 	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF02</th></tr>
 	<tr><td>$FFFFFFFFFFFFFFFC/D/E/F</td><td>BRK vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B</td><td>Reset vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF4/5/6/7</td><td>Abort vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFEC/D/E/F</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE4/5/6/7</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3</td><td>Interrupt 4 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3</td><td>Reserved</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFEC/D/E/F</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE4/5/6/7</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3</td><td>Interrupt 3 vector</td></tr>
 	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF03</th></tr>
 	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>BRK vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3/4/4/6/7</td><td>Reset vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B/C/D/E/F</td><td>Abort vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3/4/5/6/7</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD8/9/A/B/C/D/E/F</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD0/1/2/3/4/5/6/7</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC8/9/A/B/C/D/E/F</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC0/1/2/3/4/5/6/7</td><td>Interrupt 4 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3/4/5/6/7</td><td>Reserved</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD8/9/A/B/C/D/E/F</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFD0/1/2/3/4/5/6/7</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC8/9/A/B/C/D/E/F</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFC0/1/2/3/4/5/6/7</td><td>Interrupt 3 vector</td></tr>
 	<tr><th>Interrupt base:</th><th>$000000000000FF00</th></tr>
 	<tr><td>$000000000000FFFE/F</td><td>BRK vector</td></tr>
 	<tr><td>$000000000000FFFC/D</td><td>Reset vector</td></tr>
 	<tr><td>$000000000000FFFA/B</td><td>Abort vector</td></tr>
-	<tr><td>$000000000000FFF8/9</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$000000000000FFF6/7</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$000000000000FFF4/5</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$000000000000FFF2/3</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$000000000000FFF0/1</td><td>Interrupt 4 vector</td></tr>
+	<tr><td>$000000000000FFF8/9</td><td>Reserved</td></tr>
+	<tr><td>$000000000000FFF6/7</td><td>Interrupt 0 vector (NMI)</td></tr>
+	<tr><td>$000000000000FFF4/5</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$000000000000FFF2/3</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$000000000000FFF0/1</td><td>Interrupt 3 vector</td></tr>
 	</table>
 	<p>Note: all unused bits must be set to zero</p>
       </desc>
@@ -981,8 +1019,8 @@
       <desc><p>
 	The 65k will support multiprocessing. With the LLA and SCA it supports load-linked and store-conditional
 	multiprocessor-safe synchronization primitives. 
-	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB) may or may 
-	not be multiprocessor-safe.
+	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB) are in general 
+	not multiprocessor-safe. They may be multicore-safe (two cores on one processor).
       </p></desc>
   </section>
    
