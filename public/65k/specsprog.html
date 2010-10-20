@@ -97,7 +97,7 @@ more modern browser, like Internet Explorer 8 or later,
 	documentation from the same source that generates the VHDL control tables.
   </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-03</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Hypervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li style="list-style-type:none;"><ul><li><a href="#regcore">Core register</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#intret">Interrupt and Trap Return</a></li><li><a href="#jpu">Jump to User Mode</a></li></ul></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li><li><a href="#cont">Container</a></li><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></li><li><a href="#smp">Multiprocessing</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Hypervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li style="list-style-type:none;"><ul><li><a href="#regcore">Core register</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#intret">Interrupt and Trap Return</a></li><li><a href="#jpu">Jump to User Mode</a></li><li><a href="#irqfw">Forward an interrupt to user mode</a></li></ul></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li><li><a href="#cont">Container</a></li><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></li><li><a href="#smp">Multiprocessing</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
@@ -235,6 +235,15 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>A2/A1/A0</td><td>Abort error condition</td><td>The number defines the error condition on an ABORT 
 	interrupt (values TBD)</td></tr>
     </table>
+    <table border="1">
+<tr><th>Abort code</th><th>Name</th><th>Explanation</th></tr>
+<tr><td>000</td><td>NONE</td><td>After reset, or successful entry into hypervisor mode</td></tr>
+<tr><td>001</td><td>NOMEM</td><td>No memory mapping available for address (also user mode access on memory available only on hypervisor mode)</td></tr>
+<tr><td>010</td><td>WPROT</td><td>Write attempt into read-only memory</td></tr>
+<tr><td>011</td><td>NOEXEC</td><td>Opcode fetch on a no-execute memory area</td></tr>
+<tr><td>100</td><td>PRIVRTI</td><td>Attempt to set the hypervisor bit from stack via RTI for example</td></tr>
+<tr><td>101</td><td>PRIVOP</td><td>Attempt to execute a privileged operation</td></tr>
+    </table>
 
     <p>The User mode match register is divided into two parts: the low byte is the actual match code. The high byte is
 	a set of control bits for the user mode:</p>
@@ -248,7 +257,9 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>U1/U0</td><td>User mode interrupt selector</td><td>Selects one of the processor's three  external non-NMI interrupt
 	sources as user mode interrupt. I.e. when in user mode and the interrupt occurs, a standard 6502
 	interrupt sequence is initiated. If the processor is in hypervisor mode and the interrupt occurs, the
-	interrupt is suspended until after the RTU, JPU etc opcodes.</td><td>00 = no interrupt source</td></tr>
+	standard interrupt sequence is initiated. If the interrupt is to be forwarded to the 
+	user mode, the hypervisor mode interrupt routine has to explicitely setup the user mode stack
+	and jump there.</td><td>00 = no interrupt source</td></tr>
     </table>
     <h3><a name="regmem" id="regmem">Memory Management Register</a></h3><p>The container management has a number of register sets. Each set contains three full size (W bits) 
 	registers:</p>
@@ -295,7 +306,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Some of the opcodes are named prefix1 and prefix2, for those see below. 
 	Others are named like "QUICK prefix" or "EXT prefix".
 	These opcodes provide a way to extend the opcode list by having a second opcode byte follow the prefix. Thus there 
-	could be 256 additional "QUICK" opcodes, and 256 additional "MMU opcodes" and so on. These opcode pages are
+	could be 256 additional "QUICK" opcodes, and 256 additional "MMU opcodes" and so on. These opcode planes are
 	described below.
 	</p><p>
 	Here is a short description of the new opcodes:
@@ -385,7 +396,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><th colspan="8">prefix2</th></tr>
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>reserved</td><td>reserved</td><td>reserved</td><td>ZE</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>UM</td><td>reserved</td><td>reserved</td><td>ZE</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
 </table><p>
 	For prefix2 the low four bit are fixed, bit 5 is the ZE bit, the other bits are reserved.
 </p><p>
@@ -408,6 +419,9 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>0/1</td><td>Add Program Counter (PC) to address</td></tr>
 <tr><td>1/0</td><td>Add Stack Pointer (SP) to address</td></tr>
 <tr><td>1/1</td><td>Add Base Offset Register (BR) to address</td></tr>
+<tr><th>UM</th><th>User mode selector</th></tr>
+<tr><td>0</td><td>Current mode environment (user space/hypervisor mode)</td></tr>
+<tr><td>1</td><td>User mode environment, privileged operation; Stack Pointer for OF=10 is also User Space stack pointer </td></tr>
 </table><p>
 	These prefix opcodes modify the following opcodes in various aspects. The following opcodes
 	are taken from the original 8 bit opcodes. I.e. there could be a new opcode
@@ -429,23 +443,23 @@ more modern browser, like Internet Explorer 8 or later,
 	The following table describes which prefix bit is applicable to which opcode:
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>				<th>2</th>				<th>3</th>					<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>						<th>8</th>			<th>9</th>				<th>A</th>			<th>B</th>		<th>C</th>				<th>D</th>				<th>E</th>				<th>F</th></tr>
-<tr><th>0</th>		<td class="unused"></td>	<td>ORA (zp,X)<br />AM,OF,RS,ZE</td>	<td>LDA zp,Y<br />AM,OF,RS,ZE</td>	<td class="dup">ORA (zp,X)<br />AM,OF,RS,ZE</td>	<td>TSB zp<br />AM,OF,RS</td>		<td>ORA zp<br />AM,OF,RS,ZE</td>		<td>ASL zp<br />AM,OF,RS,ZE</td>		<td class="dup">JMP (abs)<br />AM,OF</td>		<td class="unused"></td>	<td>ORA imm<br />RS,ZE</td>		<td>ASL A<br />RS,ZE</td>	<td class="x"></td>	<td>TSB abs<br />AM,OF,RS,ZE</td>	<td>ORA abs<br />AM,OF,RS,ZE</td>	<td>ASL abs<br />AM,OF,RS</td>		<td>PLB<br />RS,ZE</td></tr>
-<tr><th>1</th>		<td>BPL rel<br />RS</td>		<td>ORA (zp),Y<br />AM,OF,RS,ZE</td>	<td>ORA (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">ORA (zp),Y<br />AM,OF,RS,ZE</td>	<td>TRB zp<br />AM,OF,RS</td>		<td>ORA zp,X<br />AM,OF,RS,ZE</td>	<td>ASL zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">ORA (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>ORA abs,y<br />AM,OF,RS,ZE</td>	<td>INC A<br />RS,ZE</td>	<td class="x"></td>	<td>TRB abs<br />AM,OF,RS,ZE</td>	<td>ORA abs,X<br />AM,OF,RS,ZE</td>	<td>ASL abs,X<br />AM,OF,RS</td>		<td>PHB<br />RS</td></tr>	
-<tr><th>2</th>		<td>JSR abs<br />AM,OF,RS</td>	<td>AND (zp,X)<br />AM,OF,RS,ZE</td>	<td>STA zp,Y<br />AM,OF,RS,ZE</td>	<td class="dup">AND (zp,X)<br />AM,OF,RS,ZE</td>	<td>BIT zp<br />AM,OF,RS</td>		<td>AND zp<br />AM,OF,RS,ZE</td>		<td>ROL zp<br />AM,OF,RS,ZE</td>		<td class="dup">JMP (abs),X<br />AM,OF</td>		<td class="unused"></td>	<td>AND imm<br />RS,ZE</td>		<td>ROL A<br />RS,ZE</td>	<td class="x"></td>	<td>BIT abs<br />AM,OF,RS,ZE</td>	<td>AND abs<br />AM,OF,RS,ZE</td>	<td>ROL abs<br />AM,OF,RS</td>		<td>SAB<br />RS,ZE</td></tr>
-<tr><th>3</th>		<td>BMI rel<br />RS</td>		<td>AND (zp),Y<br />AM,OF,RS,ZE</td>	<td>AND (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">AND (zp),Y<br />AM,OF,RS,ZE</td>	<td>BIT zp,X<br />AM,OF,RS</td>		<td>AND zp,X<br />AM,OF,RS,ZE</td>	<td>ROL zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">AND (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>AND abs,Y<br />AM,OF,RS,ZE</td>	<td>DEC A<br />RS,ZE</td>	<td class="x"></td>	<td>BIT abs,X<br />AM,OF,RS,ZE</td>	<td>AND abs,X<br />AM,OF,RS,ZE</td>	<td>ROL abs,X<br />AM,OF,RS</td>		<td>PRB<br />RS,ZE</td></tr>
-<tr><th>4</th>		<td class="unused"></td>	<td>EOR (zp,X)<br />AM,OF,RS,ZE</td>	<td>LDA (abs),Y<br />AM,OF,RS,ZE</td>	<td class="dup">EOR (zp,X)<br />AM,OF,RS,ZE</td>	<td class="dup">BSR rel<br />RS</td>	<td>EOR zp<br />AM,OF,RS,ZE</td>		<td>LSR zp<br />AM,OF,RS,ZE</td>		<td class="dup">LDA (abs),Y<br />AM,OF,RS,ZE</td>	<td>PHA<br />RS</td>		<td>EOR imm<br />RS,ZE</td>		<td>LSR imm<br />RS,ZE</td>	<td class="x"></td>	<td>JMP abs<br />AM,OF</td>		<td>EOR abs<br />AM,OF,RS,ZE</td>	<td>LSR abs<br />AM,OF,RS</td>		<td>SAX<br />RS,ZE</td></tr>
-<tr><th>5</th>		<td>BVC rel<br />RS</td>		<td>EOR (zp),Y<br />AM,OF,RS,ZE</td>	<td>EOR (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">EOR (zp),Y<br />AM,OF,RS,ZE</td>	<td class="dup">BSR rel<br />RS</td>	<td>EOR zp,X<br />AM,OF,RS,ZE</td>	<td>LSR zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">EOR (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>EOR abs,Y<br />AM,OF,RS,ZE</td>	<td>PHY<br />RS</td>		<td class="x"></td>	<td class="unused"></td>		<td>EOR abs,X<br />AM,OF,RS,ZE</td>	<td>LSR abs,X<br />AM,OF,RS</td>		<td>SAY<br />RS,ZE</td></tr>
-<tr><th>6</th>		<td>RTS<br />AM,RS</td>		<td>ADC (zp,X)<br />AM,OF,RS,ZE</td>	<td>LDA (abs,X)<br />AM,OF,RS,ZE</td>	<td class="dup">ADC (zp,X)<br />AM,OF,RS,ZE</td>	<td>STZ zp<br />AM,OF,RS</td>		<td>ADC zp<br />AM,OF,RS,ZE</td>		<td>ROR zp<br />AM,OF,RS,ZE</td>		<td class="dup">LDA (abs,X)<br />AM,OF,RS,ZE</td>	<td>PLA<br />RS,ZE</td>		<td>ADC imm<br />RS,ZE</td>		<td>ROR A<br />RS,ZE</td>	<td class="x"></td>	<td>JMP (abs)<br />AM,OF</td>		<td>ADC abs<br />AM,OF,RS,ZE</td>	<td>ROR abs<br />AM,OF,RS</td>		<td>SXY<br />RS,ZE</td></tr>
-<tr><th>7</th>		<td>BVS rel<br />RS</td>		<td>ADC (zp),Y<br />AM,OF,RS,ZE</td>	<td>ADC (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">ADC (zp),Y<br />AM,OF,RS,ZE</td>	<td>STZ zp,X<br />AM,OF,RS</td>		<td>ADC zp,X<br />AM,OF,RS,ZE</td>	<td>ROR zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">ADC (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>ADC abs,Y<br />AM,OF,RS,ZE</td>	<td>PLY<br />RS,ZE</td>		<td class="x"></td>	<td>JMP (abs,X)<br />AM,OF</td>		<td>ADC abs,X<br />AM,OF,RS,ZE</td>	<td>ROR abs,X<br />AM,OF,RS</td>		<td>NOP zp<br />AM</td></tr>
-<tr><th>8</th>		<td>BRA rel<br />RS</td>		<td>STA (zp,X)<br />AM,OF,RS,ZE</td>	<td>BSR rel<br />RS</td>			<td class="dup">STA (zp,X)<br />AM,OF,RS,ZE</td>	<td>STY zp<br />AM,OF,RS</td>		<td>STA zp<br />AM,OF,RS,ZE</td>		<td>STX zp<br />AM,OF,RS</td>		<td class="dup"></td>					<td>DEY<br />RS,ZE</td>		<td>BIT imm<br />RS,ZE</td>		<td>TXA<br />RS,ZE</td>		<td class="x"></td>	<td>STY abs<br />AM,OF,RS</td>		<td>STA abs<br />AM,OF,RS</td>		<td>STX abs<br />AM,OF,RS</td>		<td>NOP abs<br />AM</td></tr>
-<tr><th>9</th>		<td>BCC rel<br />RS</td>		<td>STA (zp),Y<br />AM,OF,RS,ZE</td>	<td>STA (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">STA (zp),Y<br />AM,OF,RS,ZE</td>	<td>STY zp,X<br />AM,OF,RS</td>		<td>STA zp,X<br />AM,OF,RS,ZE</td>	<td>STX zp,Y<br />AM,OF,RS</td>		<td class="dup">STA (zp)<br />AM,OF,RS,ZE</td>		<td>TYA<br />RS,ZE</td>		<td>STA abs,Y<br />AM,OF,RS</td>		<td>TXS<br />RS,ZE</td>		<td class="x"></td>	<td>STZ abs<br />AM,OF,RS</td>		<td>STA abs,X<br />AM,OF,RS</td>		<td>STZ abs,X<br />AM,OF,RS</td>		<td>TPA<br />RS,ZE</td></tr>
-<tr><th>A</th>		<td>LDY imm<br />RS,ZE</td>	<td>LDA (zp,X)<br />AM,OF,RS,ZE</td>	<td>LDX imm<br />RS</td>			<td class="dup">LDA (zp,X)<br />AM,OF,RS,ZE</td>	<td>LDY zp<br />AM,OF,RS,ZE</td>		<td>LDA zp<br />AM,OF,RS,ZE</td>		<td>LDX zp<br />AM,OF,RS,ZE</td>		<td class="dup"></td>					<td>TAY<br />RS,ZE</td>		<td>LDA imm<br />RS,ZE</td>		<td>TAX<br />RS,ZE</td>		<td class="x"></td>	<td>LDY abs<br />AM,OF,RS,ZE</td>	<td>LDA abs<br />AM,OF,RS,ZE</td>	<td>LDX abs<br />AM,OF,RS,ZE</td>	<td>SWP<br />RS,ZE</td></tr>
-<tr><th>B</th>		<td>BCS rel<br />RS</td>		<td>LDA (zp),Y<br />AM,OF,RS,ZE</td>	<td>LDA (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">LDA (zp),Y<br />AM,OF,RS,ZE</td>	<td>LDY zp,X<br />AM,OF,RS,ZE</td>	<td>LDA zp,X<br />AM,OF,RS,ZE</td>	<td>LDX zp,Y<br />AM,OF,RS,ZE</td>	<td class="dup">LDA (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>LDA abs,Y<br />AM,OF,RS,ZE</td>	<td>TSX</td>			<td class="x"></td>	<td>LDY abs,X<br />AM,OF,RS,ZE</td>	<td>LDA abs,X<br />AM,OF,RS,ZE</td>	<td>LDX abs,Y<br />AM,OF,RS,ZE</td>	<td>CLX<br />RS</td></tr>
-<tr><th>C</th>		<td>CPY imm<br />RS</td>		<td>CMP (zp,X)<br />AM,OF,RS</td>	<td>STA (abs),Y<br />AM,OF,RS,ZE</td>	<td class="dup">CMP (zp,X)<br />AM,OF,RS</td>	<td>CPY zp<br />AM,OF,RS</td>		<td>CMP zp<br />AM,OF,RS</td>		<td>DEC zp<br />AM,OF,RS,ZE</td>		<td class="dup"></td>					<td>INY<br />RS,ZE</td>		<td>CMP imm<br />RS</td>			<td>DEX<br />RS,ZE</td>		<td class="x"></td>	<td>CPY abs<br />AM,OF,RS</td>		<td>CMP abs<br />AM,OF,RS</td>		<td>DEC abs<br />AM,OF,RS</td>		<td>CLY<br />RS</td></tr>
-<tr><th>D</th>		<td>BNE rel<br />RS</td>		<td>CMP (zp),Y<br />AM,OF,RS</td>	<td>CMP (zp)<br />AM,OF,RS</td>		<td class="dup">CMP (zp),Y<br />AM,OF,RS</td>	<td class="unused"></td>		<td>CMP zp,X<br />AM,OF,RS</td>		<td>DEC zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">CMP (zp)<br />AM,OF,RS</td>		<td class="unused"></td>	<td>CMP abs,Y<br />AM,OF,RS</td>		<td>PHX<br />RS</td>		<td class="x"></td>	<td>JSR (abs)<br />AM,OF,RS</td>		<td>CMP abs,X<br />AM,OF,RS</td>		<td>DEC abs,X<br />AM,OF,RS</td>		<td class="dup">JSR (abs)<br />AM,OF,RS</td></tr>
-<tr><th>E</th>		<td>CPX imm<br />RS</td>		<td>SBC (zp,X)<br />AM,OF,RS,ZE</td>	<td>STA (abs,X)<br />AM,OF,RS,ZE</td>	<td class="dup">SBC (zp,X)<br />AM,OF,RS,ZE</td>	<td>CPX zp<br />AM,OF,RS</td>		<td>SBC zp<br />AM,OF,RS,ZE</td>		<td>INC zp<br />AM,OF,RS,ZE</td>		<td class="dup"></td>					<td>INX<br />RS,ZE</td>		<td>SBC imm<br />RS,ZE</td>		<td class="unused"></td>	<td class="x"></td>	<td>CPX abs<br />AM,OF,RS</td>		<td>SBC abs<br />AM,OF,RS,ZE</td>	<td>INC abs<br />AM,OF,RS</td>		<td>CLA<br />RS</td></tr>
-<tr><th>F</th>		<td>BEQ rel<br />RS</td>		<td>SBC (zp),Y<br />AM,OF,RS,ZE</td>	<td>SBC (zp)<br />AM,OF,RS,ZE</td>	<td class="dup">SBC (zp),Y<br />AM,OF,RS,ZE</td>	<td class="unused">TRAP<br />RS</td>	<td>SBC zp,X<br />AM,OF,RS,ZE</td>	<td>INC zp,X<br />AM,OF,RS,ZE</td>	<td class="dup">SBC (zp)<br />AM,OF,RS,ZE</td>		<td class="unused"></td>	<td>SBC abs,Y<br />AM,OF,RS,ZE</td>	<td>PLX<br />RS,ZE</td>		<td class="x"></td>	<td>JSR (abs,X)<br />AM,OF,RS</td>	<td>SBC abs,X<br />AM,OF,RS,ZE</td>	<td>INC abs,X<br />AM,OF,RS</td>		<td class="dup">JSR (abs,X)<br />AM,OF,RS</td></tr>
+<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>				<th>2</th>				<th>3</th>						<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>						<th>8</th>			<th>9</th>				<th>A</th>			<th>B</th>		<th>C</th>				<th>D</th>				<th>E</th>				<th>F</th></tr>
+<tr><th>0</th>		<td class="unused"></td>	<td>ORA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>LDA zp,Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ORA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>TSB zp<br />AM,OF,RS,UM</td>		<td>ORA zp<br />AM,OF,RS,ZE,UM</td>	<td>ASL zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup">JMP (abs)<br />AM,OF</td>		<td class="unused"></td>	<td>ORA imm<br />RS,ZE</td>		<td>ASL A<br />RS,ZE</td>	<td class="x"></td>	<td>TSB abs<br />AM,OF,RS,ZE,UM</td>	<td>ORA abs<br />AM,OF,RS,ZE,UM</td>	<td>ASL abs<br />AM,OF,RS,UM</td>	<td>PLB<br />RS,ZE,UM</td></tr>
+<tr><th>1</th>		<td>BPL rel<br />RS</td>		<td>ORA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>ORA (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ORA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>TRB zp<br />AM,OF,RS,UM</td>		<td>ORA zp,X<br />AM,OF,RS,ZE,UM</td>	<td>ASL zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ORA (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>ORA abs,y<br />AM,OF,RS,ZE,UM</td>	<td>INC A<br />RS,ZE</td>	<td class="x"></td>	<td>TRB abs<br />AM,OF,RS,ZE,UM</td>	<td>ORA abs,X<br />AM,OF,RS,ZE,UM</td>	<td>ASL abs,X<br />AM,OF,RS,UM</td>	<td>PHB<br />RS,UM</td></tr>	
+<tr><th>2</th>		<td>JSR abs<br />AM,OF,RS</td>	<td>AND (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>STA zp,Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">AND (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>BIT zp<br />AM,OF,RS,UM</td>		<td>AND zp<br />AM,OF,RS,ZE,UM</td>	<td>ROL zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup">JMP (abs),X<br />AM,OF,UM</td>		<td class="unused"></td>	<td>AND imm<br />RS,ZE</td>		<td>ROL A<br />RS,ZE</td>	<td class="x"></td>	<td>BIT abs<br />AM,OF,RS,ZE,UM</td>	<td>AND abs<br />AM,OF,RS,ZE,UM</td>	<td>ROL abs<br />AM,OF,RS,UM</td>	<td>SAB<br />RS,ZE</td></tr>
+<tr><th>3</th>		<td>BMI rel<br />RS</td>		<td>AND (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>AND (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">AND (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>BIT zp,X<br />AM,OF,RS,UM</td>	<td>AND zp,X<br />AM,OF,RS,ZE,UM</td>	<td>ROL zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">AND (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>AND abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>DEC A<br />RS,ZE</td>	<td class="x"></td>	<td>BIT abs,X<br />AM,OF,RS,ZE,UM</td>	<td>AND abs,X<br />AM,OF,RS,ZE,UM</td>	<td>ROL abs,X<br />AM,OF,RS,UM</td>	<td>PRB<br />RS,ZE,UM</td></tr>
+<tr><th>4</th>		<td class="unused"></td>	<td>EOR (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>LDA (abs),Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">EOR (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">BSR rel<br />RS</td>	<td>EOR zp<br />AM,OF,RS,ZE,UM</td>	<td>LSR zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup">LDA (abs),Y<br />AM,OF,RS,ZE,UM</td>	<td>PHA<br />RS,UM</td>		<td>EOR imm<br />RS,ZE</td>		<td>LSR imm<br />RS,ZE</td>	<td class="x"></td>	<td>JMP abs<br />AM,OF</td>		<td>EOR abs<br />AM,OF,RS,ZE,UM</td>	<td>LSR abs<br />AM,OF,RS,UM</td>	<td>SAX<br />RS,ZE</td></tr>
+<tr><th>5</th>		<td>BVC rel<br />RS</td>		<td>EOR (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>EOR (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">EOR (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">BSR rel<br />RS</td>	<td>EOR zp,X<br />AM,OF,RS,ZE,UM</td>	<td>LSR zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">EOR (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>EOR abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>PHY<br />RS,UM</td>		<td class="x"></td>	<td class="unused"></td>		<td>EOR abs,X<br />AM,OF,RS,ZE,UM</td>	<td>LSR abs,X<br />AM,OF,RS,UM</td>	<td>SAY<br />RS,ZE</td></tr>
+<tr><th>6</th>		<td>RTS<br />AM,RS</td>		<td>ADC (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>LDA (abs,X)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ADC (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>STZ zp<br />AM,OF,RS,UM</td>		<td>ADC zp<br />AM,OF,RS,ZE,UM</td>	<td>ROR zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup">LDA (abs,X)<br />AM,OF,RS,ZE,UM</td>	<td>PLA<br />RS,ZE,UM</td>	<td>ADC imm<br />RS,ZE</td>		<td>ROR A<br />RS,ZE</td>	<td class="x"></td>	<td>JMP (abs)<br />AM,OF</td>		<td>ADC abs<br />AM,OF,RS,ZE,UM</td>	<td>ROR abs<br />AM,OF,RS,UM</td>	<td>SXY<br />RS,ZE</td></tr>
+<tr><th>7</th>		<td>BVS rel<br />RS</td>		<td>ADC (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>ADC (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ADC (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>STZ zp,X<br />AM,OF,RS,UM</td>	<td>ADC zp,X<br />AM,OF,RS,ZE,UM</td>	<td>ROR zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">ADC (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>ADC abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>PLY<br />RS,ZE,UM</td>	<td class="x"></td>	<td>JMP (abs,X)<br />AM,OF</td>		<td>ADC abs,X<br />AM,OF,RS,ZE,UM</td>	<td>ROR abs,X<br />AM,OF,RS,UM</td>	<td>NOP zp<br />AM</td></tr>
+<tr><th>8</th>		<td>BRA rel<br />RS</td>		<td>STA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>BSR rel<br />RS</td>			<td class="dup">STA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>STY zp<br />AM,OF,RS,UM</td>		<td>STA zp<br />AM,OF,RS,ZE,UM</td>	<td>STX zp<br />AM,OF,RS,UM</td>		<td class="dup"></td>					<td>DEY<br />RS,ZE</td>		<td>BIT imm<br />RS,ZE</td>		<td>TXA<br />RS,ZE</td>		<td class="x"></td>	<td>STY abs<br />AM,OF,RS,UM</td>	<td>STA abs<br />AM,OF,RS,UM</td>	<td>STX abs<br />AM,OF,RS,UM</td>	<td>NOP abs<br />AM</td></tr>
+<tr><th>9</th>		<td>BCC rel<br />RS</td>		<td>STA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>STA (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">STA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>STY zp,X<br />AM,OF,RS,UM</td>	<td>STA zp,X<br />AM,OF,RS,ZE,UM</td>	<td>STX zp,Y<br />AM,OF,RS,UM</td>	<td class="dup">STA (zp)<br />AM,OF,RS,ZE,UM</td>	<td>TYA<br />RS,ZE</td>		<td>STA abs,Y<br />AM,OF,RS,UM</td>	<td>TXS<br />RS,ZE,UM</td>	<td class="x"></td>	<td>STZ abs<br />AM,OF,RS,UM</td>	<td>STA abs,X<br />AM,OF,RS,UM</td>	<td>STZ abs,X<br />AM,OF,RS,UM</td>	<td>TPA<br />RS,ZE</td></tr>
+<tr><th>A</th>		<td>LDY imm<br />RS,ZE</td>	<td>LDA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>LDX imm<br />RS</td>			<td class="dup">LDA (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>LDY zp<br />AM,OF,RS,ZE,UM</td>	<td>LDA zp<br />AM,OF,RS,ZE,UM</td>	<td>LDX zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup"></td>					<td>TAY<br />RS,ZE</td>		<td>LDA imm<br />RS,ZE</td>		<td>TAX<br />RS,ZE</td>		<td class="x"></td>	<td>LDY abs<br />AM,OF,RS,ZE,UM</td>	<td>LDA abs<br />AM,OF,RS,ZE,UM</td>	<td>LDX abs<br />AM,OF,RS,ZE,UM</td>	<td>SWP<br />RS,ZE</td></tr>
+<tr><th>B</th>		<td>BCS rel<br />RS</td>		<td>LDA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>LDA (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">LDA (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>LDY zp,X<br />AM,OF,RS,ZE,UM</td>	<td>LDA zp,X<br />AM,OF,RS,ZE,UM</td>	<td>LDX zp,Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">LDA (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>LDA abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>TSX<br />UM</td>		<td class="x"></td>	<td>LDY abs,X<br />AM,OF,RS,ZE,UM</td>	<td>LDA abs,X<br />AM,OF,RS,ZE,UM</td>	<td>LDX abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>CLX<br />RS</td></tr>
+<tr><th>C</th>		<td>CPY imm<br />RS</td>		<td>CMP (zp,X)<br />AM,OF,RS,UM</td>	<td>STA (abs),Y<br />AM,OF,RS,ZE,UM</td>	<td class="dup">CMP (zp,X)<br />AM,OF,RS,UM</td>		<td>CPY zp<br />AM,OF,RS,UM</td>		<td>CMP zp<br />AM,OF,RS,UM</td>		<td>DEC zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup"></td>					<td>INY<br />RS,ZE</td>		<td>CMP imm<br />RS</td>			<td>DEX<br />RS,ZE</td>		<td class="x"></td>	<td>CPY abs<br />AM,OF,RS,UM</td>	<td>CMP abs<br />AM,OF,RS,UM</td>	<td>DEC abs<br />AM,OF,RS,UM</td>	<td>CLY<br />RS</td></tr>
+<tr><th>D</th>		<td>BNE rel<br />RS</td>		<td>CMP (zp),Y<br />AM,OF,RS,UM</td>	<td>CMP (zp)<br />AM,OF,RS,UM</td>	<td class="dup">CMP (zp),Y<br />AM,OF,RS,UM</td>		<td class="unused"></td>		<td>CMP zp,X<br />AM,OF,RS,UM</td>	<td>DEC zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">CMP (zp)<br />AM,OF,RS,UM</td>		<td class="unused"></td>	<td>CMP abs,Y<br />AM,OF,RS,UM</td>	<td>PHX<br />RS,UM</td>		<td class="x"></td>	<td>JSR (abs)<br />AM,OF,RS,UM</td>	<td>CMP abs,X<br />AM,OF,RS,UM</td>	<td>DEC abs,X<br />AM,OF,RS,UM</td>	<td class="dup">JSR (abs)<br />AM,OF,RS</td></tr>
+<tr><th>E</th>		<td>CPX imm<br />RS</td>		<td>SBC (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>STA (abs,X)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">SBC (zp,X)<br />AM,OF,RS,ZE,UM</td>	<td>CPX zp<br />AM,OF,RS,UM</td>		<td>SBC zp<br />AM,OF,RS,ZE,UM</td>	<td>INC zp<br />AM,OF,RS,ZE,UM</td>	<td class="dup"></td>					<td>INX<br />RS,ZE</td>		<td>SBC imm<br />RS,ZE</td>		<td class="unused"></td>	<td class="x"></td>	<td>CPX abs<br />AM,OF,RS,UM</td>	<td>SBC abs<br />AM,OF,RS,ZE,UM</td>	<td>INC abs<br />AM,OF,RS,UM</td>	<td>CLA<br />RS</td></tr>
+<tr><th>F</th>		<td>BEQ rel<br />RS</td>		<td>SBC (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td>SBC (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="dup">SBC (zp),Y<br />AM,OF,RS,ZE,UM</td>	<td class="unused">TRAP<br />RS</td>	<td>SBC zp,X<br />AM,OF,RS,ZE,UM</td>	<td>INC zp,X<br />AM,OF,RS,ZE,UM</td>	<td class="dup">SBC (zp)<br />AM,OF,RS,ZE,UM</td>	<td class="unused"></td>	<td>SBC abs,Y<br />AM,OF,RS,ZE,UM</td>	<td>PLX<br />RS,ZE,UM</td>	<td class="x"></td>	<td>JSR (abs,X)<br />AM,OF,RS,UM</td>	<td>SBC abs,X<br />AM,OF,RS,ZE,UM</td>	<td>INC abs,X<br />AM,OF,RS,UM</td>	<td class="dup">JSR (abs,X)<br />AM,OF,RS</td></tr>
 </table>	<p>
 	</p><p>
 	Note that the Register size option for the RTS and JSR opcodes determine the size of the 
@@ -560,6 +574,24 @@ more modern browser, like Internet Explorer 8 or later,
 	LDA.Z #$56
 	</pre><p>results in the value $1256 in the Accumulator.
     	</p>
+	<h3>User Mode selector</h3>
+	<p>
+	Normally the opcode uses the current processor mode - user or hypervisor - to compute the correct address.
+	For the supervisor mode there is an option, however, to use an address from user mode as operand.
+	This is what the User Mode selector bit (UM) is for.
+	</p><p>
+	When the User Mode selector is set, the operand following the opcode is read from the current (hypervisor mode)
+	memory environment (as defined by the matchcode). Then the processor temporarily switches to user mode, 
+	using the user mode matchcode and usermode stack pointer. For non-indirect addressing modes then the operand
+	is written to or read from the computed address. For indirect addressing modes the indirect address is
+	read from user mode, then the actual operand is read from or written to user mode as well.
+	</p><p>
+	Note that this bit is a privileged operation - unavailable if no hypervisor mode option is present, and 
+	trapping into an abort if executed in user mode.
+	</p><p>
+	With the user mode selector such operations as PHA or PLX etc can be easily redirected to the user space
+	stack.
+	</p>
 	<h3><a name="ovquick" id="ovquick">Quick Opcodes</a></h3><p>These opcodes are defined by the "QUICK prefix" byte, being followed by an additional opcode byte.
 	These opcodes may still even be modified by the prefix1 and prefix2 opcodes though!
 	</p><p>
@@ -593,27 +625,30 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>INB - increment B register by values 1 to 8</li>
 	<li>DEB - increment B register by values 1 to 8</li>
 	</ul>
+	<p>Note that the zp, and (E) addressing modes can be modified by the UM prefix bit, all Y,X and AC related opcodes
+	can be modified by the RS and ZE prefix. The new INE, DEE, INB, DEB opcodes always work on the full size.
+	</p>
     	<h3><a name="ovfp" id="ovfp">EXT opcodes</a></h3><p>These opcodes extend the opcode space with rarely used, but still useful general purpose
 	opcodes.
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>	<th>1</th>			<th>2</th>			<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>		<th>7</th>	<th>8</th>	<th>9</th>			<th>A</th>		<th>B</th>	<th>C</th>			<th>D</th>			<th>E</th>		<th>F</th></tr>
-<tr><th>0</th>		<td></td>		<td></td>			<td>LEA zp,Y<br />AM,OF</td>	<td></td>	<td>MVN</td>			<td></td>			<td></td>		<td></td>	<td></td>	<td>ORA (E)<br />RS,ZE</td>	<td>BCN<br />RS</td>	<td></td>	<td>TSB (E)<br />RS,ZE</td>	<td></td>			<td>BCN (E)<br />RS</td>	<td></td></tr>
-<tr><th>1</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td>MVP</td>			<td></td>			<td></td>		<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br />RS,ZE</td>	<td></td>			<td></td>		<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br />RS</td>	<td></td>			<td>PEA zp,Y<br />AM,OF</td>	<td></td>	<td></td>			<td></td>			<td>ADE imm<br />RS,ZE</td><td></td>	<td></td>	<td>AND (E)<br />RS,ZE</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>3</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td></td>			<td></td>			<td></td>		<td></td>	<td></td>	<td>LDE imm<br />RS,ZE</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>4</th>		<td></td>		<td></td>			<td>LEA (abs),Y<br />AM,OF</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br />RS,ZE</td><td></td>	<td></td>	<td>EOR (E)<br />RS,ZE</td>	<td></td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>		<td></td></tr>
-<tr><th>5</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td></td>			<td></td>			<td></td>		<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>6</th>		<td></td>		<td></td>			<td>LEA (abs,X)<br />AM,OF</td>	<td></td>	<td></td>			<td></td>			<td>ADB imm<br />RS,ZE</td><td></td>	<td></td>	<td>ORA (E)<br />RS,ZE</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>7</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td></td>			<td></td>			<td></td>		<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>8</th>		<td>LEA rel<br />RS</td>	<td>PEA (zp,X)<br />AM,OF</td>	<td>PEA rel<br />RS</td>		<td></td>	<td>SCA (E)<br />RS</td>		<td>PEA zp<br />AM,OF</td>	<td></td>		<td></td>	<td></td>	<td>BIT (E)<br />RS,ZE</td>	<td>TEA</td>		<td></td>	<td></td>			<td>PEA abs<br />AM,OF</td>	<td></td>		<td></td></tr>
-<tr><th>9</th>		<td></td>		<td>PEA (zp),Y<br />AM,OF</td>	<td>PEA (zp)<br />AM,OF</td>	<td></td>	<td>WMB</td>			<td>PEA zp,X<br />AM,OF</td>	<td>WMB (E)</td>	<td></td>	<td></td>	<td>PEA abs,Y<br />AM,OF</td>	<td>TYS</td>		<td></td>	<td>STZ (E)<br />RS</td>		<td>PEA abs,X<br />AM,OF</td>	<td></td>		<td></td></tr>
-<tr><th>A</th>		<td>LDY (E)<br />RS,ZE</td><td>LEA (zp,X)<br />AM,OF</td>	<td>LDX (E)<br />RS,ZE</td>	<td></td>	<td>LLA (E)<br />RS,ZE</td>	<td>LEA zp<br />AM,OF</td>	<td>SBE imm<br />RS,ZE</td><td></td>	<td></td>	<td>LDA (E)<br />RS,ZE</td>	<td>TAE</td>		<td></td>	<td></td>			<td>LEA abs<br />AM,OF</td>	<td></td>		<td></td></tr>
-<tr><th>B</th>		<td></td>		<td>LEA (zp),Y<br />AM,OF</td>	<td>LEA (zp)<br />AM,OF</td>	<td></td>	<td>RMB</td>			<td>LEA zp,X<br />AM,OF</td>	<td>RMB (E)</td>	<td></td>	<td></td>	<td>LEA abs,Y<br />AM,OF</td>	<td>TSY</td>		<td></td>	<td></td>			<td>LEA abs,X<br />AM,OF</td>	<td></td>		<td></td></tr>
-<tr><th>C</th>		<td>CPY (E)<br />RS</td>	<td></td>			<td>PEA (abs),Y<br />AM,OF</td>	<td></td>	<td></td>			<td></td>			<td>SBS imm<br />RS,ZE</td><td></td>	<td></td>	<td>CMP (E)<br />RS,ZE</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>D</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td></td>			<td></td>			<td></td>		<td></td>	<td></td>	<td></td>			<td>PHE</td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>E</th>		<td>CPX (E)<br />RS</td>	<td></td>			<td>PEA (abs,X)<br />AM,OF</td>	<td></td>	<td></td>			<td></td>			<td>SBB imm<br />RS,ZE</td><td></td>	<td></td>	<td>SBC (E)<br />RS,ZE</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
-<tr><th>F</th>		<td></td>		<td></td>			<td></td>			<td></td>	<td></td>			<td></td>			<td></td>		<td></td>	<td></td>	<td></td>			<td>PLE</td>		<td></td>	<td></td>			<td></td>			<td></td>		<td></td></tr>
+<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>			<th>2</th>				<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>			<th>7</th>	<th>8</th>	<th>9</th>			<th>A</th>		<th>B</th>	<th>C</th>			<th>D</th>			<th>E</th>			<th>F</th></tr>
+<tr><th>0</th>		<td></td>			<td></td>			<td>LEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td>MVN</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>ORA (E)<br />RS,ZE,UM</td>	<td>BCN<br />RS</td>	<td></td>	<td>TSB (E)<br />RS,ZE,UM</td>	<td></td>			<td>BCN (E)<br />RS,UM</td>	<td></td></tr>
+<tr><th>1</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td>MVP</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br />RS,ZE,UM</td>	<td></td>			<td></td>			<td></td></tr>	
+<tr><th>2</th>		<td>JSR (E)<br />RS</td>		<td></td>			<td>PEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td></td>			<td></td>			<td>ADE imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>3</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>LDE imm<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>4</th>		<td></td>			<td></td>			<td>LEA (abs),Y<br />AM,OF,UM</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br />RS,ZE,UM</td>	<td></td>	<td></td>	<td>EOR (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>			<td></td></tr>
+<tr><th>5</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>6</th>		<td></td>			<td></td>			<td>LEA (abs,X)<br />AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>ADB imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>ORA (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>7</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>8</th>		<td>LEA rel<br />RS,UM</td>	<td>PEA (zp,X)<br />AM,OF,UM</td><td>PEA rel<br />RS,UM</td>		<td></td>	<td>SCA (E)<br />RS,UM</td>	<td>PEA zp<br />AM,OF,UM</td>	<td></td>			<td></td>	<td></td>	<td>BIT (E)<br />RS,ZE,UM</td>	<td>TEA</td>		<td></td>	<td></td>			<td>PEA abs<br />AM,OF,UM</td>	<td></td>			<td></td></tr>
+<tr><th>9</th>		<td></td>			<td>PEA (zp),Y<br />AM,OF,UM</td><td>PEA (zp)<br />AM,OF,UM</td>		<td></td>	<td>WMB<br />UM</td>		<td>PEA zp,X<br />AM,OF,UM</td>	<td>WMB (E)<br />UM</td>		<td></td>	<td></td>	<td>PEA abs,Y<br />AM,OF,UM</td>	<td>TYS<br />UM</td>	<td></td>	<td>STZ (E)<br />RS,UM</td>	<td>PEA abs,X<br />AM,OF,UM</td>	<td></td>			<td></td></tr>
+<tr><th>A</th>		<td>LDY (E)<br />RS,ZE,UM</td>	<td>LEA (zp,X)<br />AM,OF,UM</td><td>LDX (E)<br />RS,ZE,UM</td>		<td></td>	<td>LLA (E)<br />RS,ZE,UM</td>	<td>LEA zp<br />AM,OF,UM</td>	<td>SBE imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>LDA (E)<br />RS,ZE,UM</td>	<td>TAE</td>		<td></td>	<td></td>			<td>LEA abs<br />AM,OF,UM</td>	<td></td>			<td></td></tr>
+<tr><th>B</th>		<td></td>			<td>LEA (zp),Y<br />AM,OF,UM</td><td>LEA (zp)<br />AM,OF,UM</td>		<td></td>	<td>RMB<br />UM</td>		<td>LEA zp,X<br />AM,OF,UM</td>	<td>RMB (E)<br />UM</td>		<td></td>	<td></td>	<td>LEA abs,Y<br />AM,OF,UM</td>	<td>TSY<br />UM</td>	<td></td>	<td></td>			<td>LEA abs,X<br />AM,OF,UM</td>	<td></td>			<td></td></tr>
+<tr><th>C</th>		<td>CPY (E)<br />RS,UM</td>	<td></td>			<td>PEA (abs),Y<br />AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>SBS imm<br />RS,ZE,UM</td>	<td></td>	<td></td>	<td>CMP (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>D</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td>PHE<br />UM</td>	<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>E</th>		<td>CPX (E)<br />RS,UM</td>	<td></td>			<td>PEA (abs,X)<br />AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>SBB imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>SBC (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>F</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td>PLE<br />UM</td>	<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 </table>    
 	<p>Note that including the prefix bytes an opcode may be three bytes long (prefix1, EXT prefix, and opcode). 
 	Prefix2 is (currently) not used with EXT opcodes.
@@ -624,7 +659,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>LDE - Load value into E (effective address) register</li>
 	<li>TAE - transfer Accumulator to E register</li>
 	<li>TEA - transfer E register to Accumulator</li>
-	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1]</li>
+	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1][2]</li>
 	<li>ADE - ADd to E register</li>
 	<li>ADB - ADd to B register</li>
 	<li>ADS - ADd to Stack pointer</li>
@@ -644,15 +679,11 @@ more modern browser, like Internet Explorer 8 or later,
 		The value is always sign-extended, ZE prefix is not supported.
 		The Overflow bit V is set 
 		when the effective address is larger than what is possible with the given RS prefix</li>
+	<li>The UM prefix selects the user mode stack pointer, so the effective address is pushed
+		from hypervisor mode onto the user mode stack</li>
 	</ol>
 	<p>TODO: Mult/Div opcodes</p>
-	<h3><a name="ovfp" id="ovfp">FP opcodes</a></h3><p>
-	Note: this section still needs to be worked out.
-    	</p><h3><a name="ovmmu" id="ovmmu">Blitter opcodes</a></h3><p>
-	Note: this section still needs to be worked out. It is not clear if the blitter opcodes
-	could not be implemented column in the SYS opcodes table. Blitter opcodes would be 
-	privileged.
-    	</p><h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>This section gives an overview over the system opcodes that handle system
+	<h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>This section gives an overview over the system opcodes that handle system
 	configuration registers etc. These opcodes are all privileged.
 	</p>
 <table class="optable">
@@ -661,8 +692,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
 <tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>	<td>AND SR,imm<br />RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
 <tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
-<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td>SMMU</td>		<td>EOR SR,imm<br />RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br />OF,AM</td><td></td>	<td></td>	<td>TAU</td></tr>
-<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TUA</td></tr>
+<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td>SMMU</td>		<td>EOR SR,imm<br />RS</td><td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>6</th>		<td>RTU</td>	<td>LHM</td>	<td></td>	<td></td>	<td></td>		<td>LDA SR<br />RS</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>8</th>		<td></td>	<td>LUM</td>	<td></td>	<td></td>	<td></td>		<td></td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
@@ -679,8 +710,8 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>TIA - transfer interrupt base register to accumulator</li>
 	<li>TAT - transfer accumulator to trap vector base register</li>
 	<li>TTA - transfer trap vector base register to accumulator</li>
-	<li>TAU - transfer accumulator to user space stack pointer</li>
-	<li>TUA - transfer user space stack pointer to accumulator</li>
+	<li>TAU - transfer accumulator to user space stack pointer -- deprecated, replaced by TXS.U and TXS.U</li>
+	<li>TUA - transfer user space stack pointer to accumulator -- deprecated, replaced by TXS.U and TXS.U</li>
 	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
 	<li>SHM - Set Hypervisor Match register: Store accumulator into hypervisor mode match register</li>
 	<li>SUM - Set User mode Match register: Store accumulator into user mode match register</li>
@@ -695,8 +726,12 @@ more modern browser, like Internet Explorer 8 or later,
 			determines the environment number, E gives the memory address of the address mask, value and offset</li>
 	<li>AND/ORA/EOR SR - operations on the status register (can do 8, 16, or 24 (zero-extended 32) bit)</li>
 	<li>LDA SR - Load AC from status register (can do 8, 16, or 24 (zero-extended 32) bit)</li>
-	<li>SMMU - Set the MMU base configuration address (TBD)</li>
+	<li>SMMU - Set the MMU base configuration address (to be defined)</li>
 	</ul><p>
+	TODO: SR transient byte cannot be read with a 16 bit option?
+	</p><p>
+	TODO: Load ABORT value? - Or rather use more jump vectors?
+	</p><p>
 	The configuration value registers are basically constant values that the program can query from the
 	processor. These values can then be used by the program to identify the processor, resp. adapt
 	itself to the processor features present.
@@ -708,7 +743,13 @@ more modern browser, like Internet Explorer 8 or later,
 			<table><tr><td>$AF</td><td>A. Fachat</td></tr></table></td></tr>
 <tr><td>$10</td><td>MM_CONT</td><td>8 bit</td><td>Number of memory management containers</td></tr>
 </table>
-    	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sys" id="sys">System Environment</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    	<h3><a name="ovfp" id="ovfp">FP opcodes</a></h3><p>
+	Note: this section still needs to be worked out.
+    	</p><h3><a name="ovmmu" id="ovmmu">Blitter opcodes</a></h3><p>
+	Note: this section still needs to be worked out. It is not clear if the blitter opcodes
+	could not be implemented column in the SYS opcodes table. Blitter opcodes would be 
+	privileged.
+    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sys" id="sys">System Environment</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes the general system environment
     </p><h3><a name="reset" id="reset">Reset</a></h3><p>
 	Upon Reset the processor fetches a two-byte Reset vector from "-4".
@@ -847,8 +888,9 @@ more modern browser, like Internet Explorer 8 or later,
 	After that the processor goes into hypervisor mode (concerning matchcode and stack pointer).
 	Then the respective address vector is fetched and jumped to.
       </p><p>
-	This results in the situation that in case of TRAP the exception stack frame as well as the
-	interrupt exception stack frame are stored on the user mode stack.
+	This results in the situation that the TRAP exception stack frame as well as the
+	interrupt exception stack frame are stored on the user mode stack (if execution happens
+	during user mode).
 	The previous hypervisor status bit is stored in the extended status register (so RTI knows
 	from where to pull the exception stack frame, resp. stacked interrupts work!) 
       </p><p>
@@ -861,12 +903,21 @@ more modern browser, like Internet Explorer 8 or later,
 	It then pulls the extended status byte from this stack. It determines the stack frame size from there,
 	pulls the return address and jumps there.
       </p><p>
+	Note that to not have a possible security leak the "previous" hypervisor mode bit must not be modifiable
+	from user space! It is set when entering a TRAP or interrupt vector, which are the only ways of
+	entering the hypervisor mode, so hypervisor always has a valid value. When restoring the previous 
+	hypervisor mode bit from an RTU or RTI opcode, it is always set.
+      </p><p>
 	For the return from an interrupt, there is the RTI opcode. It first determines the environment
 	to pull the execption stack frame from as in the RTU opcode.
 	It then pulls the status byte from this stack and restores it. If bit 5 is zero, it pulls the extended stack frame
 	similar to the the TRAP opcode. It bit 5 is one, it goes into 6502 compatibility mode - pulls a two
 	byte return address from the stack. 
 	It then jumps to the return address.
+      </p><p>
+	If an RTI opcode is executed from user space, the previous hypervisor bit is cleared no matter what is
+	read from the stack. When it tries to restore an extended stack with a hypervisor bit set, then
+	a privilege exception is executed.
       </p><h3><a name="jpu" id="jpu">Jump to User Mode</a></h3><p>
 	To go to a user space program - as set up by the user mode matchcode and user mode 
 	stack pointer - the JPU opcode is used. It reads the operand address (from hypervisor mode),
@@ -878,6 +929,26 @@ more modern browser, like Internet Explorer 8 or later,
 	<pre>
 	JPU ($FFFC)
 	</pre>
+      <h3><a name="irqfw" id="irqfw">Forward an interrupt to user mode</a></h3><p>
+	If you want to forward an interrupt to a user mode program, you can on one side forward the interrupt
+	by using the user mode interrupt selector control bits. But this only works while in user mode.
+	When in hypervisor mode, the standard interrupt procedure is initiated. To also forward this interrupt
+	the following sequence has to take place:
+	</p>
+	<ol>
+	<li>Save the registers from the hypervisor mode (in hypervisor mode, so user mode cannot modify them
+		on the stack)</li>
+	<li>Change the environment to the one to forward the interrupt to</li>
+	<li>push an extended status byte with the hypervisor bit set onto user space stack</li>
+	<li>push a standard status byte with bit5 cleared - extended stack frame marker - onto user space stack</li>
+	<li>JMP.U ($FFFE)</li>
+	<li>When user space executes an RTI, it finds the hypervisor bit set. This triggers 
+		a privilege exception that goes to a defined entry point into the hypervisor mode</li>
+	<li>Check that the RTI comes from an actual interrupt forward</li>
+	<li>Clear user mode stack</li>
+	<li>From the privilege exception, restore the hypervisor mode registers and execute an RTI
+		in hypervisor to end the standard interrupt procedure.</li>
+	</ol>
       </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes the memory management features of the 65k. Those features are
 	optional. They are decoupled from the main core by the means of "match codes".
