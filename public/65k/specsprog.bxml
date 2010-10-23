@@ -10,7 +10,7 @@
   <keywords>6502 16bit 32bit expansion</keywords>
   <metadesc>6502 16bit 32bit expansion</metadesc>
   <style>optable.css</style>
-  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?p=12180</forum>
   <overview><p>
 	This page describes the implementation specs for my 65k line of processors.
 	For a reasoning why a feature is implemented as it is, see the <a href="features.html">Features discussion</a>
