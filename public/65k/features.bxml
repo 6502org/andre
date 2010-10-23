@@ -9,6 +9,7 @@
   </author>
   <keywords>6502 16bit 32bit expansion</keywords>
   <metadesc>6502 16bit 32bit expansion</metadesc>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
   <overview><p>	
 	This page discusses and defines the features of the <em>65k</em> processor family, thus acts as the
 	requirements definition for the new processor.
@@ -46,6 +47,12 @@
 	about an early 68k processor.</p>
   </overview>
   <news>
+    <item date="2010-10-23">
+	Published the page
+    </item>
+    <item date="2010-10-23">
+	Added section about Accumulator-Memory architecture
+    </item>
     <item date="2010-10-17">
 	Added section about effective address register
     </item>
@@ -385,6 +392,24 @@
 	has 8 address and 8 data registers - each 32&nbsp;bit wide. 
 	So how can the number of registers be increased?
      </p></desc>
+     <subsection toc="accmem" name="Accumulator-Memory architecture">
+        <desc>
+          <p>
+        The 6502 has a memory-accumulator architecture. I.e. most opcodes combine the value from
+        accumulator or another register with a value from memory, or stores a register to memory.
+        This is different from a processor like the 68k, that has many operations involving two
+        registers and no memory location.
+        </p><p>
+        With the 6502 you could say that as almost every cycle is a valid memory access, the
+        processor has many opportunities where it can possibly wait for the memory. This is the
+        inherent result of the 6502's accumulator-memory architecture. I.e. on most opcodes the
+        accumulator is combined with a value from memory or stored in memory.
+          </p><p>
+        The one way around this limitation would be to increase the number of registers, so more
+	operations could reduce the number of memory accesses.
+          </p>
+        </desc>
+     </subsection>
      <subsection toc="regnumset" name="Register Sets">
 	<desc><p>Register sets duplicate (or multiply) an existing set of registers with the
 		same set of features, and make them

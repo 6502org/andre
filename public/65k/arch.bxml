@@ -9,6 +9,7 @@
   </author>
   <keywords>6502 16bit 32bit expansion</keywords>
   <metadesc>6502 16bit 32bit expansion</metadesc>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
   <overview>
 	<p>
 	This page describes an overview on the 65k architecture.
@@ -16,6 +17,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2010-10-23">
+	Published this page
+    </item>
     <item date="2010-10-14">
 	Started this page
     </item>
@@ -110,10 +114,11 @@
 	</p>
       </desc>
     </subsection>
+
      <subsection toc="smt" name="Simultaneous Multithreading">
 	<desc>
 	  <p>
-	The 6502 - as well as the 65k - is very efficient concerning bus cycles per opcode.
+	The 6502 - as well as the 65k - is very efficient concerning bus read/write cycles per opcode.
 	If, however, a misaligned wide access is broken down into two or more smaller memory
 	accesses, the core is waiting.
 	  </p><p>
@@ -126,6 +131,40 @@
 	This is a topic for a later version though anyway.
 	  </p>
        	</desc>
+     </subsection>
+
+     <subsection toc="pipelining" name="Pipelining">
+	<desc><p>
+	Pipelining is a processor technique that divides the execution of an opcode into different
+	stages like fetch, decoding, execution and store. Modern processors have pipelines up to 
+	31 such stages (Pentium 4, Pentium D, see link). 
+	</p><p>
+	An advantage of pipelining is that more than
+	one opcode can be executed in parallel. The first opcode could be writing back data, the next one
+	executing, and next one being decoded and the last one being fetched. This way more functional
+	units (fetch, decode, ...) can be used at any time, making the system more efficient. Even
+	if each opcode requires more than one cycle, each cycle can start - and finish - an opcode,
+	making the processor faster in terms of opcodes per cycle.
+	</p><p>
+	A disadvantage is that branches can invalidate all the work that has been done for the following
+	cycles. Therefore branch prediction techniques have been developed to reduce the cost of 
+	pipeline invalidation due to branches.
+	</p><p>
+	The 6502 already has a limited form of pipelining. The last cycle of any opcode actually is the fetch
+	of the next opcode. That is also the reason why the 6502 is little-endian: the processor fetches
+	two-byte operands with the low byte first. After the first fetch an index register is added to the
+	low byte, while the high byte is being fetched. Then in the next cycle the carry is added to the high
+	byte. In fact there is an optimization that eliminates the last cyle when no carry needs to be added
+	to the high byte. 
+	Here too branches lead to problems: When a branch is taken, the "official" end of the opcode is not reached
+	and interrupt handling suspended until the end of the next opcode. 
+	</p><p>
+	The 65k architecture will in the current version implement pipelining similar to the 6502.
+	  </p>
+       	</desc>
+	<extlink name="Instruction Pipeline" link="http://en.wikipedia.org/wiki/Instruction_pipeline"/>
+	<extlink name="Endianness" link="http://en.wikipedia.org/wiki/Little-endian"/>
+	<extlink name="6502.org forum: A branch taken delays interrupt ..." link="http://forum.6502.org/viewtopic.php?t=1634&amp;sid=5dae06f4d153431ee0c86b4cc2b01fa6"/>
      </subsection>
 
   </section>
@@ -237,17 +276,138 @@
 
   </section>
 
-  <section toc="core" name="Core">
+  <section toc="coreanalysis" name="Core Analysis">
      <desc><p>
-	
+	This section analyses the requirements for the core architecture.
 	</p>
      </desc>
-     <!--subsection toc="65010" name="65010">
+     <subsection toc="adanalysis" name="Addressing Mode Analysis">
 	<desc>
-	  <p>Design goals for the 65010 CPU replacement are:</p>
-       	</desc>
-     </subsection-->
+	  <p>To define the necessary data paths in the core between registers, ALU and other components,
+	here the addressing modes are analysed. As the internal register and data path widths is 
+	always full width, arithmethic operations (adds) do not need to be broken up into 
+	smaller chunks.
+	The example used here is to load a value into the accumulator. They start with 
+	the program counter on the address bus and the opcode parameter on the data bus.
+	</p><p>
+	Note that using a register and taking a new value into the same register can take place
+	on the same clock cycle if registers are assumed (as opposed to transparent latches as in the
+	original 6502). 
+	</p>
 
+	<h3>Immediate</h3>
+	<p>The immediate addressing mode is easy...</p>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; AC</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the register</td></tr>
+	</table>
+
+	<h3>Zeropage and Absolute</h3>
+	<p>The zeropage and absolute - including the new long and quad - addressing modes
+	have one indirection - the opcode parameter is an address used to fetch the actual value</p>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the temporary register (Note 1)</td></tr>
+	<tr><td rowspan="2">2</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	</table>
+
+	<h3>Zeropage and Absolute Indexed</h3>
+	<p>In this addressing mode an index register value is added to the address before reading the actual address.
+	</p>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the temporary register</td></tr>
+	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A (Note 3)</td></tr> 
+	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
+	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><td rowspan="3">3</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
+	<tr><th colspan="3"></th></tr>
+	<tr><td rowspan="2">4</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	</table>
+
+	<h3>Zeropage and Absolute Indexed Indirect</h3>
+	<p>This is an extension to the previous addressing mode. The value read from the addressing mode above
+	is interpreted as address to read the actual value from</p>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the temporary (or the data in) register</td></tr>
+	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
+	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><td rowspan="3">3</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
+	<tr><th colspan="3"></th></tr>
+	<tr><td rowspan="2">4</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the temp register</td></tr> 
+	<tr><td rowspan="2">5</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	</table>
+
+
+	<h3>Zeropage and Absolute Indirect Indexed</h3>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the temporary (or the data in) register</td></tr>
+	<tr><th colspan="3">Step 2 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
+	<tr><th colspan="3"></th></tr>
+	<tr><td rowspan="2">3</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the temp register</td></tr> 
+	<tr><td rowspan="3">4</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
+	<tr><td rowspan="2">5</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	</table>
+
+	<h3>Relative</h3>
+	<p>The relative addressing mode is for jumps only</p>
+	<table border="1">
+	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
+	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the temporary (or the data in) register</td></tr>
+	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td>PC -&gt; ALU B</td><td>The Program counter value is put to ALU input B</td></tr> 
+	<tr><td>ALU out -&gt; PC</td><td>The ALU output is written to the Program counter</td></tr> 
+	</table>
+
+
+	<h3>Notes</h3>
+	<ol>
+	<li>The value written to the temp register could directly be written to the address bus output register
+	and to be put on the address bus in the next step, eliminating the need for the temp register here.</li>
+	<li>The ALU output value could be directly written to the address bus. This, however, would add the
+	ALU processing time to the setup time for the address bus, limiting the possible clock speeds.</li>
+	<li>As the opcode operand is always read full width before actually adding the register value, 
+	there can be no optimization by eliminating the high byte add. The processor always works as if there
+	was a carry - and thus a 16 bit 65k with 8 bit data bus will actually be one cycle slower than the 6502
+	if there is no carry</li>
+	</ol>
+       	</desc>
+     </subsection>
+  </section>
+
+  <section toc="core" name="Core Architecture">
+     <desc><p>
+	This section describes the architecture of the processor core.
+	</p>
+	<div class="rightimg"><a href="archcore.svg"><img width="300" src="archcore.png"/></a>The core 
+	architecture</div>
+     </desc>
   </section>
 
   <section toc="mmu" name="MMU">

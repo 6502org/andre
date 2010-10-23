@@ -10,6 +10,7 @@
   <keywords>6502 16bit 32bit expansion</keywords>
   <metadesc>6502 16bit 32bit expansion</metadesc>
   <style>optable.css</style>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
   <overview><p>
 	This page describes the implementation specs for my 65k line of processors.
 	For a reasoning why a feature is implemented as it is, see the <a href="features.html">Features discussion</a>
@@ -26,6 +27,9 @@
 	documentation from the same source that generates the VHDL control tables.
   </p></overview>
   <news>
+    <item date="2010-10-23">
+	Published this page
+    </item>
     <item date="2010-10-03">
 	Started this page
     </item>
@@ -65,7 +69,7 @@
     <desc><p>This section describes the changes to the document:</p>
       <table border="1">
         <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
-        <!--tr><td>2010-10-03</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr-->
+        <tr><td>2010-10-23</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr>
       </table>
     </desc>
   </subsection>
