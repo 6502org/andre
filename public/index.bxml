@@ -19,8 +19,8 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
-    <item date="2010-10-23">
-	Published the first draft of my <a href="65k/index.html">65k</a> processor design - Pimp your 6502 with 64 bit! :-)
+    <item date="2010-10-23" state="hot">
+	It took a while, but now I published the first draft of my <a href="65k/index.html">65k processor design</a> - Pimp your 6502 with 64 bit! :-)
     </item>
     <item date="2010-09-12">
 	Some more web design updates. Using web sprites, css and javascript compression should result in better load performance. Total files for this start page goes from 23 down to 9, the total size to load goes from 182k down to 150k.
