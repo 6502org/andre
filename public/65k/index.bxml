@@ -151,8 +151,9 @@
         <subsection toc="io" name="652xx"><desc><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
     </desc>
     </subsection>
+  </section>
 
-    <subsection toc="refs" name="References">
+    <section toc="refs" name="References">
         <desc>
         </desc>
         <extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
@@ -160,9 +161,7 @@
         <extlink name="Big Mess O' Wires CPU architecture" link="http://www.stevechamberlin.com/cpu/bmow1/"/>
         <extlink name="6502.org: kc5tja's wishlist" link="http://forum.6502.org/viewtopic.php?t=1603&amp;start=17"/>
         <extlink name="FC Hardware preservation project" link="http://www.geocities.jp/team_zero_three/FC/index_e.html"/>
-    </subsection>
-
-  </section>
+    </section>
 
   <disclaimer>
         No warranty! 

@@ -59,7 +59,7 @@
     <desc><p>This section describes the changes to the document:</p>
       <table border="1">
         <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
-        <!--tr><td>2010-10-03</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr-->
+        <tr><td>2010-10-25</td><td>Andr&eacute; Fachat</td><td>Updated Core Architecture Diagram and Description</td></tr>
       </table>
     </desc>
   </subsection>
@@ -408,6 +408,19 @@
 	<div class="rightimg"><a href="archcore.svg"><img width="300" src="archcore.png"/></a>The core 
 	architecture</div>
      </desc>
+
+     <subsection toc="regfile" name="Register File">
+     <desc><p>
+	
+     </p></desc>
+     </subsection>
+
+     <subsection toc="alu" name="ALU">
+     <desc><p>
+	
+     </p></desc>
+     </subsection>
+
   </section>
 
   <section toc="mmu" name="MMU">
