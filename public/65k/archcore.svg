@@ -958,6 +958,27 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3190"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3188"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3219"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -966,9 +987,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.41518155"
+     inkscape:zoom="0.8303631"
      inkscape:cx="412.92884"
-     inkscape:cy="819.04926"
+     inkscape:cy="1576.8095"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -986,7 +1007,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1902,17 +1923,6 @@
          id="tspan5159-0" /></text>
     <text
        xml:space="preserve"
-       style="font-size:144px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="-23.629095"
-       y="-162.1763"
-       id="text5189"
-       transform="matrix(0.64838918,-0.76130905,0.76130905,0.64838918,0,0)"><tspan
-         sodipodi:role="line"
-         id="tspan5191"
-         x="-23.629095"
-         y="-162.1763">Preliminary</tspan></text>
-    <text
-       xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
        x="285.9285"
        y="431.99539"
@@ -1920,7 +1930,7 @@
          sodipodi:role="line"
          id="tspan5195"
          x="285.9285"
-         y="431.99539">65k Core 20101025</tspan><tspan
+         y="431.99539">65k Core 20101030</tspan><tspan
          sodipodi:role="line"
          x="285.9285"
          y="481.99539"
@@ -2001,10 +2011,10 @@
          sodipodi:role="line"
          id="tspan2883-2-7-9-2-1"
          x="425.1344"
-         y="-1016.4409">Pass (5)</tspan><tspan
+         y="-1016.4409">Pass (6)</tspan><tspan
          sodipodi:role="line"
          x="425.1344"
-         y="-985.91699"
+         y="-985.91705"
          id="tspan4245">&lt;</tspan></text>
     <text
        xml:space="preserve"
@@ -2306,5 +2316,80 @@
          id="tspan4365"
          x="125.24641"
          y="1418.6565">&gt;</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 357.67485,1047.7344 192.68679,-1.2043"
+       id="path3176"
+       transform="translate(-480.0015,-1216.208)" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="-111.48801"
+       y="-174.49506"
+       id="text3178"><tspan
+         sodipodi:role="line"
+         id="tspan3180"
+         x="-111.48801"
+         y="-174.49506">Status</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:17.3294487px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="306.04776"
+       y="-522.33344"
+       id="text3178-0"
+       transform="scale(0.92180283,1.0848307)"><tspan
+         sodipodi:role="line"
+         id="tspan3180-7"
+         x="306.04776"
+         y="-522.33344">Int. Status,</tspan><tspan
+         sodipodi:role="line"
+         x="306.04776"
+         y="-500.67163"
+         id="tspan3207">Int. Control</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 360.08344,1146.4864 156.55801,1.2043 -2.40858,-464.85689 333.589,-2.40859 1.2043,55.39746"
+       id="path3174"
+       transform="translate(-480.0015,-1216.208)" />
+    <text
+       xml:space="preserve"
+       style="font-size:144px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="-23.629095"
+       y="-162.1763"
+       id="text5189"
+       transform="matrix(0.64838918,-0.76130905,0.76130905,0.64838918,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan5191"
+         x="-23.629095"
+         y="-162.1763">Preliminary</tspan></text>
+    <rect
+       style="fill:#6c6f89;fill-opacity:1;stroke:none"
+       id="rect3776-2-1-1-99-2-4-6-43"
+       width="167.73853"
+       height="25.419027"
+       x="313.0473"
+       y="-1005.3285" />
+    <rect
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none"
+       id="rect3590-2-1-8-3-3"
+       width="93.137611"
+       height="79.917435"
+       x="347.53058"
+       y="-1033.48" />
+    <text
+       xml:space="preserve"
+       style="font-size:24.41910934px;font-style:normal;font-weight:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="425.90097"
+       y="-922.70581"
+       id="text2881-7-84-8-0-9-7"
+       transform="scale(0.92478108,1.081337)"><tspan
+         sodipodi:role="line"
+         id="tspan2883-2-7-9-2-1-4"
+         x="425.90097"
+         y="-922.70581">Pass (5)</tspan><tspan
+         sodipodi:role="line"
+         x="425.90097"
+         y="-892.18195"
+         id="tspan4245-5">&lt;</tspan></text>
   </g>
 </svg>

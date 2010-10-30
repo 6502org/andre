@@ -386,7 +386,7 @@
      </subsection>
   </section>
 	
-  <section toc="regnum" name="Number of Register">
+  <section toc="regnum" name="Number of Registers">
      <desc><p>The 6502 has three main registers, <code>AC, XR, YR</code>. 
 	Compared to other (larger) processors this is a very low number. The 68k for example
 	has 8 address and 8 data registers - each 32&nbsp;bit wide. 

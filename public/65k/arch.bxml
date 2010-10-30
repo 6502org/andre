@@ -308,9 +308,10 @@
 	have one indirection - the opcode parameter is an address used to fetch the actual value</p>
 	<table border="1">
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
-	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
-		is transferred into the temporary register (Note 1)</td></tr>
-	<tr><td rowspan="2">2</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the data bus input register (Note 1)</td></tr>
+	<tr><td rowspan="2">2</td><td>Data bus input reg. -&gt; address bus</td><td>The data bus input 
+		register is put onto the address bus</td></tr> 
 	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
 	</table>
 
@@ -319,9 +320,9 @@
 	</p>
 	<table border="1">
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
-	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
-		is transferred into the temporary register</td></tr>
-	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A (Note 3)</td></tr> 
+	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the data bus input register</td></tr>
+	<tr><td rowspan="3">2</td><td>Data bus input reg. -&gt; ALU A</td><td>The data bus input register value is put to ALU input A (Note 3)</td></tr> 
 	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
 	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
@@ -330,7 +331,7 @@
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
 	<tr><th colspan="3"></th></tr>
 	<tr><td rowspan="2">4</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
-	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register (via Pass5)</td></tr> 
 	</table>
 
 	<h3>Zeropage and Absolute Indexed Indirect</h3>
@@ -338,9 +339,9 @@
 	is interpreted as address to read the actual value from</p>
 	<table border="1">
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
-	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
 		is transferred into the temporary (or the data in) register</td></tr>
-	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td rowspan="3">2</td><td>Data bus input reg. -&gt; ALU A</td><td>The data bus input register value is put to ALU input A</td></tr> 
 	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
 	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
@@ -351,21 +352,23 @@
 	<tr><td rowspan="2">4</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
 	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the temp register</td></tr> 
 	<tr><td rowspan="2">5</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
-	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register</td></tr> 
+	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the register (via Pass5)</td></tr> 
 	</table>
 
 
 	<h3>Zeropage and Absolute Indirect Indexed</h3>
 	<table border="1">
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
-	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
-		is transferred into the temporary (or the data in) register</td></tr>
+	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
+		is transferred into the data bus input register</td></tr>
 	<tr><th colspan="3">Step 2 is optional if B,S or P are added (prefix OF bits</th></tr>
-	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td rowspan="3">2</td><td>data bus input reg. -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
 	<tr><th colspan="3"></th></tr>
-	<tr><td rowspan="2">3</td><td>temp -&gt; address bus</td><td>The temporary register is put onto the address bus</td></tr> 
+	<tr><td rowspan="2">3</td><td>temp/data bus input register -&gt; address bus</td><td>The 
+		temporary register (resp. the data bus input register if step 2 is not taken) 
+		is put onto the address bus (ALU passthrough)</td></tr> 
 	<tr><td>data bus -&gt; AC</td><td>The value read from the data bus is taken into the temp register</td></tr> 
 	<tr><td rowspan="3">4</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
@@ -378,9 +381,9 @@
 	<p>The relative addressing mode is for jumps only</p>
 	<table border="1">
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
-	<tr><td>1</td><td>Data bus -&gt; temp</td><td>The opcode parameter value fetched and on the data bus 
+	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
 		is transferred into the temporary (or the data in) register</td></tr>
-	<tr><td rowspan="3">2</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
+	<tr><td rowspan="3">2</td><td>data bus input reg. -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>PC -&gt; ALU B</td><td>The Program counter value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; PC</td><td>The ALU output is written to the Program counter</td></tr> 
 	</table>
@@ -403,19 +406,62 @@
 
   <section toc="core" name="Core Architecture">
      <desc><p>
-	This section describes the architecture of the processor core.
+	This section describes the architecture of the processor core. A block diagram is on the right side, 
+	click it to enlarge.
 	</p>
 	<div class="rightimg"><a href="archcore.svg"><img width="300" src="archcore.png"/></a>The core 
 	architecture</div>
+	<p>
+	The general principle of the core is that every action takes one cycle, from falling phi2 to falling phi2.
+	That is with the exception of simple transfer operations.
+	This has advantages and disadvantages. The advantage is that the clock can be made faster than if some
+	action has to be confined into half a clock cycle. The disadvantage is that computing (adding up)
+	an address value at the beginning of the cycle and putting it on the address bus in the same cycle is
+	not possible, thus takes an additional cycle. This results in the fact that the processor always 
+	behaves as if the original 6502 had used an additiona cycle due to page crossing.
+	</p>
      </desc>
 
      <subsection toc="regfile" name="Register File">
+     <desc><p>
+	Each of the registers is implemented twice - for example "E" and shadow register "E'". These registers are required
+	for abort handling. During an abort, the register value from before the opcode must be restored.
+	Therefore the shadow register keeps the register value at the beginning of the opcode execution.
+	</p>
+	<table border="1">
+	<tr><th>Register</th><th>Name</th></tr>
+	<tr><td>A</td><td>Accumulator</td></tr>
+	<tr><td>X</td><td>X register</td></tr>
+	<tr><td>Y</td><td>Y register</td></tr>
+	<tr><td>B</td><td>Base offset register</td></tr>
+	<tr><td>E</td><td>Effective address register</td></tr>
+	<tr><td>S</td><td>Stack pointer</td></tr>
+	<tr><td>P</td><td>Status register</td></tr>
+	<tr><td>ISR</td><td>Interrupt status register</td></tr>
+	<tr><td>ICR</td><td>Interrupt control register</td></tr>
+	<tr><td>PCRs</td><td>Processor configuration registers</td></tr>
+	</table>
+     </desc>
+     </subsection>
+
+     <subsection toc="pc" name="PC">
+     <desc><p>
+	The Program Counter is a special register in that it is used to fetch opcodes and also that it
+	is incremented automatically. For this there is the PC increment adder that can add constant values
+	selected by the control logic to the PC.
+	</p><p>
+	The Pass1 and Pass2 drivers separate the PC input and output from the other register's input and
+	output busses.
+     </p></desc>
+     </subsection>
+
+     <subsection toc="alu" name="ALU">
      <desc><p>
 	
      </p></desc>
      </subsection>
 
-     <subsection toc="alu" name="ALU">
+     <subsection toc="ctrl" name="Control (Interrupt, clock counter, opcode fetch)">
      <desc><p>
 	
      </p></desc>
