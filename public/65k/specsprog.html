@@ -121,6 +121,10 @@ more modern browser, like Internet Explorer 8 or later,
       <table border="1">
         <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
         <tr><td>2010-10-23</td><td>André  Fachat</td><td>First working draft</td></tr>
+        <tr><td>2010-11-04</td><td>André  Fachat</td><td>Defined the interrupt status/mask/effective 
+		mask register; Constrained the interrupt/trap/abort vectors to two-byte vectors;
+		integrated the various extra registers into the configuration register file (for less
+		opcodes necessary); add WAI, STP and FIL/FILU</td></tr>
       </table>
     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
 	</p>
@@ -149,8 +153,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<tr><td> </td><td>8</td><td>no prefix gives the 6502 8 bit behaviour</td></tr>
 	<tr><td>W</td><td>16</td><td>Word</td></tr>
 	<tr><td>L</td><td>32</td><td>Long</td></tr>
-	<tr><td>Q</td><td>64</td><td>Quadword</td></tr>
-	<tr><td>LL</td><td>64</td><td>LongLong - equivalent to Q, deprecated</td></tr>
+	<tr><td>Q</td><td>64</td><td>Quadword (alternatively LL, but Q should be used)</td></tr>
 	</table>
     	<h3><a name="optssuper" id="optssuper">Hypervisor Mode Option</a></h3><p>
 	The 65k will optionally provide a hypervisor mode. When using a hypervisor mode, critical instructions -
@@ -172,16 +175,21 @@ more modern browser, like Internet Explorer 8 or later,
 	<tr><td>A</td><td>Accumulator</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
 	<tr><td>X</td><td>X register</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
 	<tr><td>Y</td><td>Y register</td><td>8 bit</td><td>W bit</td><td>Operations can be done in 8, 16, 32, 64 bit (up to W)</td></tr>
+	<tr><td>E</td><td>Effective Address Register</td><td>-</td><td>W bit</td><td>Stores effective address for opcodes</td></tr>
+	<tr><td>B</td><td>Base Offset Register</td><td>-</td><td>W bit</td><td>Address offset for addressing modes</td></tr>
 	<tr><td>S(U)</td><td>User mode Stack pointer</td><td>-</td><td>W bit</td><td></td></tr>
 	<tr><td>S(H)</td><td>Hypervisor mode Stack pointer</td><td>8 bit, with high byte set to 1</td><td>W bit</td><td></td></tr>
 	<tr><td>SR</td><td>Status Register</td><td>8 bit, with bit 5 set to 1</td><td>8/8 bit</td><td>low 8 bit are the same as 6502, bit5 set to 0, high 8 bit see below</td></tr>
-	<tr><td>ISR</td><td>Interrupt Status Register</td><td>-</td><td>8 bit</td><td>Interrupt line status</td></tr>
+	<tr><th colspan="5">Interrupt Management Registers</th></tr>
+	<tr><td>IMR</td><td>Interrupt Level Mask Register</td><td>-</td><td>8 bit</td><td>Interrupt Mask - define which interrupt levels are accepted</td></tr>
+	<tr><td>EIM</td><td>Effective Interrupt Level Mask Register</td><td>-</td><td>8 bit</td><td>Temporary Interrupt Mask. set from the ISR when an interrupt routine is initiated. Reset to IMR on RTI.</td></tr>
+	<tr><td>ISR</td><td>Interrupt Level Status Register</td><td>-</td><td>8 bit</td><td>Interrupt line status - number of highest active interrupt line</td></tr>
 	<tr><td>PC</td><td>Program Counter</td><td>16 bit</td><td>W bit</td><td></td></tr>
-	<tr><td>E</td><td>Effective Address Register</td><td>-</td><td>W bit</td><td>Stores effective address for opcodes</td></tr>
-	<tr><td>B</td><td>Base Offset Register</td><td>-</td><td>W bit</td><td>Address offset for addressing modes</td></tr>
 	<tr><th colspan="5">System Management Registers</th></tr>
 	<tr><td>IV</td><td>Interrupt base register</td><td>-</td><td>W bit</td><td>Base address for interrupt vectors</td></tr>
 	<tr><td>TV</td><td>Trap vector base register</td><td>-</td><td>W bit</td><td>Base address for trap vectors</td></tr>
+	<tr><td>AV</td><td>Abort vector base register</td><td>-</td><td>W bit</td><td>Base address for abort vectors</td></tr>
+	<tr><td>TMV</td><td>Trap maximum allowed vector number</td><td>-</td><td>W bit</td><td>set the maximum allowed trap vector number</td></tr>
 	<tr><td>M(U)</td><td>User Mode Match register</td><td>-</td><td>8/8 bit</td><td>Match register for user mode</td></tr>
 	<tr><td>M(H)</td><td>Hypervisor Mode Match register</td><td>-</td><td>8 bit</td><td>Match register for hypervisor mode</td></tr>
     </table>
@@ -206,14 +214,10 @@ more modern browser, like Internet Explorer 8 or later,
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>0</td><td>IM2</td><td>IM1</td><td>IM0</td><td>H</td><td>P</td><td>SF1</td><td>SF0</td></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>H</td><td>P</td><td>SF1</td><td>SF0</td></tr>
     </table>
     <table border="1">
 <tr><th>Bit</th><th>Name</th><th>Explanation</th><th>State on Reset</th></tr>
-<tr><td>IM2/IM1/IM0</td><td>Interrupt Priority Mask</td><td>Defines a number from 0 to 3. Each interrupt that 
-	has a vector number above the value set here is disabled.
-	I.e. value 0 disables all interrupts but NMI. Value 3 enables all interrupts.
-	</td><td>00 (all interrupts disabled)</td></tr>
 <tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode</td><td>1</td></tr>
 <tr><td>P</td><td>Previous hypervisor mode</td><td>Copy of the Hypervisor mode bit made on TRAP or interrupt</td><td>1</td></tr>
 <tr><td>SF1/SF0</td><td>Stack Frame Size</td><td>Determines the stack frame size for a TRAP or an interrupt
@@ -221,39 +225,71 @@ more modern browser, like Internet Explorer 8 or later,
 	</td><td>01</td></tr>
 	<p>
 	Note that the value read from the stack on RTI and RTU opcodes is fully evaluated only when read from the
-	supervisor stack. When read from the user mode stack the interrupt mask IM is ignored, as is the previous 
-	hypervisor mode bit P. If the hypervisor mode bit H is set, a privilege violation abort (PRIVRTI) is executed.
+	supervisor stack. When read from the previous 
+	hypervisor mode bit P is ignored. 
+	If the hypervisor mode bit H is set, a privilege violation abort (PRIVRTI) is executed.
 	If H is not set, the stack frame size bits SF are evaluated and the return address is read from the stack
 	with a size according to SF.
 	</p>
     </table>
 
-    <p>The interrupt status register ISR allows to query the current interrupt state and
-	is not saved in stack frames:
+    <p>The interrupt registers allow to query the current interrupt state and
+	to control interrupt execution. They are not stored on the stack frame.
 	</p>
     <table border="1">
-<tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
-<tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>0</td><td>IL2</td><td>IL1</td><td>IL0</td><td>0</td><td>TIM2</td><td>TIM1</td><td>TIM0</td></tr>
+<tr><th>Register</th><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
+<tr><th>Value</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><th>IMR</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>IMR2</td><td>IMR1</td><td>IMR0</td></tr>
+<tr><th>EIM</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>EIM2</td><td>EIM1</td><td>EIM0</td></tr>
+<tr><th>ISR</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>ISR2</td><td>ISR1</td><td>ISR0</td></tr>
     </table>
     <table border="1">
-<tr><th>Bit</th><th>Name</th><th>Explanation</th></tr>
-<tr><td>IL2/IL1/IL0</td><td>Interrupt Priority Level</td><td>Defines a number from 0 to 3 that determines the
+<tr><th>Bit</th><th>Name</th><th>Explanation</th><th>Default</th></tr>
+<tr><td>IMR2/IMR1/IMR0</td><td>Interrupt Priority Mask</td><td>Defines a number from 0 to 3. Each interrupt that 
+	has a vector number above the value set here is disabled. Lower or equal interrupt numbers are enabled.
+	I.e. value 0 disables all interrupts but NMI. Value 3 enables all interrupts.
+	</td><td>00 (all interrupts disabled)</td></tr>
+<tr><td>ISR2/ISR1/ISR0</td><td>Interrupt Status Register</td><td>Defines a number from 0 to 3 that determines the
 	current interrupt level, i.e. the highest priority of all current - maskable - active interrupts,
 	even if the interrupt itself is masked. 00 means no interrupt. For example 01 means interrupt 1 is active,
 	but none other, while 10 means interrupt 2 is active, no matter if interrupt 1 is active or not.
 	</td></tr>
-<tr><td>TIM2/TIM1/TIM0</td><td>Temporary Interrupt Priority Mask</td><td>This value is set from the 
-	interrupt mask register on RTI and CLISR (both only on hypervisor mode), and set to the 
+<tr><td>EIM2/EIM1/EIM0</td><td>Temporary Interrupt Priority Mask</td><td>This value is set from the 
+	interrupt mask register on RTI and CLEIM (both only on hypervisor mode), and set to the 
 	interrupt level when the interrupt occurs. An interrupt routine is initiated when 
-	TIM has a lower value than IL - e.g. after an RTI or CLISR when a lower priority interrupt is pending.</td></tr>
+	EIM has a lower value than ISR - e.g. after an RTI or CLEIM when a lower priority interrupt is pending.</td></tr>
     </table>
-    <p>The interrupt status registers has two parts, the temporary interrupt mask, and the interrupt level.
-	The temporary interrupt mask is the effective mask. It is set to the current interrupt level
-	when the interrupt sequence starts and prevents further interrupts of a level with lower priority than the current
-	interrupt routine. It is reset to the interrupt mask register from the extended status register
-	on RTI or CLISR when executed in supervisor mode.
+    <p>The three interrupt registers work as follows.
+
+	The supervisor-writable IMR defines which interrupts initiate 
+	an interrupt routine. For example if the value is set to 2, interrupts with priority 0 (NMI), 1 and 2 are enabled.
+	Interrupt with priority 3 and more are disabled.
+
+	The ISR presents the "highest" interrupt level (lowest value(!)) that is currently active. 
+	For example if interrupt lines 2, 5, and 7 are active, the ISR presents "2" as current status.
+
+	When the ISR has a value that is lower or equal than the IMR value, an interrupt routine is initiated. 
+	To stop the processor from continously starting the interrupt routine, when an interrupt routine is
+	initiated, the EIM is used. It is the effective interrupt mask and normally set to the IMR value.
+	When an interrupt routine is initiated, the EIM is set to the ISR value plus one. Then, as ISR is less than
+	EIM, no further (stacked) interrupt routine is initiated. Only when a new interrupt with a higher
+	priority (lower value) appears, the ISR value gets lower or less than EIM and a stacked interrupt routine
+	is initiated.
+
+	EIM is reset to the interrupt mask register 
+	on RTI or CLEIM when executed in supervisor mode.
     </p>
+
+    <p>The vector base registers allow define the addresses where interrupt, trap and abort vectors are 
+	fetched from.
+	</p>
+    <table border="1">
+<tr><th>Register</th><th>Description</th></tr>
+<tr><th>IV</th><td>Address of interrupt vectors table; lowest 8 bit are reserved and must be 0</td></tr>
+<tr><th>TV</th><td>Address of trap vectors table; lowest 8 bit are reserved and must be 0</td></tr>
+<tr><th>AV</th><td>Address of abort vectors table; lowest 8 bit are reserved and must be 0</td></tr>
+    </table>
+
     <p>The User mode match register is divided into two parts: the low byte is the actual match code. The high byte is
 	a set of control bits for the user mode:</p>
     <table border="1">
@@ -268,7 +304,7 @@ more modern browser, like Internet Explorer 8 or later,
 	interrupt sequence is initiated. If the processor is in hypervisor mode and the interrupt occurs, the
 	standard interrupt sequence is initiated. If the interrupt is to be forwarded to the 
 	user mode, the hypervisor mode interrupt routine has to explicitely setup the user mode stack
-	and jump there.</td><td>00 = no interrupt source</td></tr>
+	and jump there.</td><td>000 = no interrupt source</td></tr>
     </table>
     <h3><a name="regmem" id="regmem">Memory Management Register</a></h3><p>The container management has a number of register sets. Each set contains three full size (W bits) 
 	registers:</p>
@@ -561,7 +597,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<tr><td>00</td><td>8</td><td></td><td>LDA #$12</td></tr>
 	<tr><td>01</td><td>16</td><td>.W</td><td>LDA.W #$1234</td></tr>
 	<tr><td>10</td><td>32</td><td>.L</td><td>LDA.L #$12345678</td></tr>
-	<tr><td>11</td><td>64</td><td>.LL</td><td>LDA.LL #$123456789ABCDEF0</td></tr>
+	<tr><td>11</td><td>64</td><td>.Q</td><td>LDA.Q #$123456789ABCDEF0</td></tr>
 	</table><p>
 	Please note that 8 bit width has no postfix.
 	</p><p>
@@ -644,7 +680,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>			<th>2</th>				<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>			<th>7</th>	<th>8</th>	<th>9</th>			<th>A</th>		<th>B</th>	<th>C</th>			<th>D</th>			<th>E</th>			<th>F</th></tr>
 <tr><th>0</th>		<td></td>			<td></td>			<td>LEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td>MVN</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>ORA (E)<br />RS,ZE,UM</td>	<td>BCN<br />RS</td>	<td></td>	<td>TSB (E)<br />RS,ZE,UM</td>	<td></td>			<td>BCN (E)<br />RS,UM</td>	<td></td></tr>
 <tr><th>1</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td>MVP</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br />RS,ZE,UM</td>	<td></td>			<td></td>			<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br />RS</td>		<td></td>			<td>PEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td></td>			<td></td>			<td>ADE imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>2</th>		<td>JSR (E)<br />RS</td>		<td></td>			<td>PEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td>FIL</td>			<td></td>			<td>ADE imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>3</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>LDE imm<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>4</th>		<td></td>			<td></td>			<td>LEA (abs),Y<br />AM,OF,UM</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br />RS,ZE,UM</td>	<td></td>	<td></td>	<td>EOR (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>			<td></td></tr>
 <tr><th>5</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
@@ -657,7 +693,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><th>C</th>		<td>CPY (E)<br />RS,UM</td>	<td></td>			<td>PEA (abs),Y<br />AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>SBS imm<br />RS,ZE,UM</td>	<td></td>	<td></td>	<td>CMP (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>D</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td>PHE<br />UM</td>	<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>E</th>		<td>CPX (E)<br />RS,UM</td>	<td></td>			<td>PEA (abs,X)<br />AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>SBB imm<br />RS,ZE</td>	<td></td>	<td></td>	<td>SBC (E)<br />RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
-<tr><th>F</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td>PLE<br />UM</td>	<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>F</th>		<td></td>			<td>WAI</td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td>PLE<br />UM</td>	<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 </table>    
 	<p>Note that including the prefix bytes an opcode may be three bytes long (prefix1, EXT prefix, and opcode). 
 	Prefix2 is (currently) not used with EXT opcodes.
@@ -682,6 +718,8 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>SCA - Store Conditional AC, succeeds only if address has not been externally modified. Sets overflow V bit on error</li>
 	<li>RMB - Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
 	<li>WMB - Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
+	<li>WAI - Wait for interrupt - stops execution of current core until next interrupt</li>
+	<li>FIL - Fill memory area with a byte value</li>
 	</ul><p>Notes:</p>
 	<ol>
 	<li>The RS prefix determines the computation width of the effective address. 
@@ -697,35 +735,27 @@ more modern browser, like Internet Explorer 8 or later,
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br />MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>		<td>ORA SR,imm<br />RS</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAI</td></tr>
-<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TIA</td></tr>	
-<tr><th>2</th>		<td></td>	<td>SHM</td>	<td></td>	<td></td>	<td>BIT SR,imm<br />RS</td>	<td>AND SR,imm<br />RS</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TAT</td></tr>
-<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>BIT ISR,imm</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td>TTA</td></tr>
-<tr><th>4</th>		<td></td>	<td>SUM</td>	<td></td>	<td></td> 	<td>SMMU</td>			<td>EOR SR,imm<br />RS</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
-<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td>CLISR</td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>6</th>		<td>RTU</td>	<td>LHM</td>	<td></td>	<td></td>	<td></td>			<td>LDA SR<br />RS</td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
-<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>8</th>		<td></td>	<td>LUM</td>	<td></td>	<td></td>	<td></td>			<td>LDA ISR</td>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>	
+<tr><th>2</th>		<td></td>	<td>SCR imm</td><td></td>	<td></td>	<td>BIT SR,imm<br />RS</td>	<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>BIT ISR,imm</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>4</th>		<td></td>	<td>BCR imm</td><td></td>	<td></td> 	<td>SMMU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td>CLEIM</td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>FILU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVPFU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>F</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVPTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td></td>	<td>STP</td>	<td></td>	<td></td>	<td>MVPTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 </table><p>Here is a short explanation of the new opcodes</p>
 	<ul>
-	<li>TAI - transfer accumulator to interrupt base register</li>
-	<li>TIA - transfer interrupt base register to accumulator</li>
-	<li>TAT - transfer accumulator to trap vector base register</li>
-	<li>TTA - transfer trap vector base register to accumulator</li>
-	<li>TAU - transfer accumulator to user space stack pointer -- deprecated, replaced by TXS.U and TXS.U</li>
-	<li>TUA - transfer user space stack pointer to accumulator -- deprecated, replaced by TXS.U and TXS.U</li>
 	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
-	<li>SHM - Set Hypervisor Match register: Store accumulator into hypervisor mode match register</li>
-	<li>SUM - Set User mode Match register: Store accumulator into user mode match register</li>
-	<li>LHM - Load Hypervisor Match register: Load accumulator from hypervisor mode match register</li>
-	<li>LUM - Load User mode Match register: Load accumulator from user mode match register</li>
+	<li>SCR - Store value from AC to configuration register. The immediate value gives the register number.</li>
+	<li>BCR - BIT value from AC with configuration register. The immediate value gives the register number.</li>
 	<li>JPU - Jump to user space. Go from hypervisor to user mode, then read the effective address from the
 			user mode address space and execute the jump</li>
 	<li>RTU - return to user space from a Trap opcode: go to user mode, pull return address from user mode
@@ -733,29 +763,60 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>SENV - the byte operand determines the environment number, first variant: AC, XR and YR determine the 
 			address mask, address value and address offset registers. Second variant: the byte operand
 			determines the environment number, E gives the memory address of the address mask, value and offset</li>
-	<li>AND/ORA/EOR/BIT SR - operations on the status register (can do 8, 16, or 24 (zero-extended 32) bit)</li>
-	<li>LDA SR - Load AC from status register (can do 8 or 16 bit)</li>
-	<li>LDA ISR - Load AC from interrupt status register (can do 8 bit)</li>
-	<li>BIT ISR - Test interrupt status register (can do 8 bit)</li>
-	<li>CLISR - Clear ISR: load TIM bits from IM bits; start interrupt if IL bits have higher interrupt than TIM</li>
+	<li>CLEIM - Clear EIM: load EIM bits from IMR bits; start interrupt if ISR bits have higher interrupt than EIM</li>
 	<li>SMMU - Set the MMU base configuration address (to be defined)</li>
 	<li>MVNTU - MVN but target is in user space</li>
 	<li>MVNFU - MVN but source is in user space</li>
 	<li>MVPTU - MVP but target is in user space</li>
 	<li>MVPFU - MVP but source is in user space</li>
+	<li>FILU - Fill user space area (i.e. use user mode match code)</li>
+	<li>STP - Stop current core until reset (core 0) resp. enabling via core control register.</li>
 	</ul><p>
+	Note: these have been deprecated:</p>
+	<ul>
+	<li>TAI - transfer accumulator to interrupt base register (deprecated, replaced by LCR/SCR)</li>
+	<li>TIA - transfer interrupt base register to accumulator (deprecated, replaced by LCR/SCR)</li>
+	<li>TAT - transfer accumulator to trap vector base register (deprecated, replaced by LCR/SCR)</li>
+	<li>TTA - transfer trap vector base register to accumulator (deprecated, replaced by LCR/SCR)</li>
+	<li>TAU - transfer accumulator to user space stack pointer -- deprecated, replaced by TXS.U and TXS.U</li>
+	<li>TUA - transfer user space stack pointer to accumulator -- deprecated, replaced by TXS.U and TXS.U</li>
+	<li>SHM - Set Hypervisor Match register: Store accumulator into hypervisor mode match register (deprecated, replaced by LCR/SCR)</li>
+	<li>SUM - Set User mode Match register: Store accumulator into user mode match register (deprecated, replaced by LCR/SCR)</li>
+	<li>LHM - Load Hypervisor Match register: Load accumulator from hypervisor mode match register (deprecated, replaced by LCR/SCR)</li>
+	<li>LUM - Load User mode Match register: Load accumulator from user mode match register (deprecated, replaced by LCR/SCR)</li>
+	<li>LDA SR - Load AC from status register (can do 8 or 16 bit) (deprecated, replaced by LCR/SCR)</li>
+	<li>LDA ISR - Load AC from interrupt status register (can do 8 bit) (deprecated, replaced by LCR/SCR)</li>
+	<li>BIT ISR - Test interrupt status register (can do 8 bit) (deprecated, replaced by BCR)</li>
+	<li>AND/ORA/EOR/BIT SR - operations on the status register (can do 8, 16, or 24 (zero-extended 32) bit) (no replacement)</li>
+	</ul>
+	<p>
 	The configuration value registers are basically constant values that the program can query from the
 	processor. These values can then be used by the program to identify the processor, resp. adapt
 	itself to the processor features present.
 	The following processor configuration registers are defined (note narrow values are always zero-extended):</p>
 <table border="1">
-<tr><th>Register#</th><th>Name</th><th>Width</th><th>Value</th></tr>
-<tr><td>$00</td><td>VENDOR</td><td>16 bit</td><td>Defines the vendor of the processor.
+<tr><th>Register#</th><th>rw/ro</th><th>global/per core</th><th>Name</th><th>Width</th><th>Value</th></tr>
+<tr><td>$00</td><td>ro</td><td>global</td><td>VENDOR</td><td>16 bit</td><td>Defines the vendor of the processor.
 			Currently defined are:
 			<table><tr><td>$AF</td><td>A. Fachat</td></tr></table></td></tr>
-<tr><td>$10</td><td>MM_NCORE</td><td>W bit</td><td>Number of cores</td></tr>
-<tr><td>$11</td><td>MM_MYCORE</td><td>W bit</td><td>Number of the core executing the load</td></tr>
-<tr><td>$20</td><td>MM_CONT</td><td>8 bit</td><td>Number of memory management containers</td></tr>
+<tr><td>$01</td><td>ro</td><td>per core</td><td>MC_MYCORE</td><td>W bit</td><td>Number of the core executing the load</td></tr>
+<tr><td>$02</td><td>ro</td><td>global</td><td>MC_NCORE</td><td>W bit</td><td>Number of cores</td></tr>
+<tr><td>$03</td><td>ro</td><td>global</td><td>MC_ACTCORE</td><td>W bit</td><td>Bitmask of active cores, can be set to start cores and cleared to stop them (except the own core)</td></tr>
+
+<tr><td>$10</td><td>ro</td><td>per core</td><td>ST_SR</td><td>16 bit</td><td>Status register</td></tr>
+<tr><td>$11</td><td>rw</td><td>global</td><td>ST_IMR</td><td>8 bit</td><td>interrupt mask register</td></tr>
+<tr><td>$12</td><td>ro</td><td>global</td><td>ST_ISR</td><td>8 bit</td><td>interrupt status register</td></tr>
+<tr><td>$13</td><td>ro</td><td>global</td><td>ST_EIM</td><td>8 bit</td><td>effective interrupt mask register</td></tr>
+<tr><td>$14</td><td>ro</td><td>per core</td><td>ST_SP</td><td>8 bit</td><td>stack pointer (hypervisor)</td></tr>
+<tr><td>$15</td><td>ro</td><td>per core</td><td>ST_USP</td><td>8 bit</td><td>stack pointer (user mode)</td></tr>
+<tr><td>$16</td><td>rw</td><td>per core</td><td>ST_MH</td><td>8 bit</td><td>match code (hypervisor)</td></tr>
+<tr><td>$17</td><td>rw</td><td>per core</td><td>ST_MU</td><td>8 bit</td><td>match code (user mode)</td></tr>
+
+<tr><td>$20</td><td>rw</td><td>global</td><td>ST_IV</td><td>W bit</td><td>Interrupt vector base register</td></tr>
+<tr><td>$21</td><td>rw</td><td>global</td><td>ST_AV</td><td>W bit</td><td>Abort vector base register</td></tr>
+<tr><td>$22</td><td>rw</td><td>global</td><td>ST_TV</td><td>W bit</td><td>Trap vector base register</td></tr>
+
+<tr><td>$30</td><td>ro</td><td>global</td><td>MM_CONT</td><td>8 bit</td><td>Number of memory management containers</td></tr>
 </table>
     	<h3><a name="ovfp" id="ovfp">FP opcodes</a></h3><p>
 	Note: this section still needs to be worked out.
@@ -780,31 +841,65 @@ more modern browser, like Internet Explorer 8 or later,
 	address(es) computed here are physical addresses. 
 	</p><p>
 	If a supervisor mode feature is available, the processor goes into supervisor mode.
-      </p><h3><a name="int" id="int">Interrupts</a></h3><p>
+	</p><p>
+	Upon Reset the following vectors are used:
+	</p>
+	<table class="optable">
+	<tr><th>Address:</th><th>Vector</th></tr>
+	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>BRK/IRQ</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFC/D</td><td>RESET</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFFA/B</td><td>NMI</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF8/9</td><td>ABORT</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>TRAP</td></tr>
+	</table>
+	<p>The IRQ vector folds all interrupts into one vector, the interrupt condition can be read from the
+	EIM.</p>
+	<p>Note that there is no way to determine the ABORT condition when not using the 
+	abort vector table. The trap condition can be determined by reading the 
+	program counter from the stack and reading the operand byte from there - but
+	this is much more complicated than using the trap vector table (also this only
+	works with a fixed width trap operand!)</p>
+      <h3><a name="int" id="int">Interrupts</a></h3><p>
 	The processor can have a number of interrupt lines. For each of the
 	interrupt lines a separate interrupt vector can be used. I.e. interrupts
 	are numbered, and the number is used as index in a table of interrupt vectors.
 	The interrupt vectors are fetched from an address that is determined
-	by the interrupt base register, I.
+	by the interrupt base register, IV.
 	</p><p>
 	The interrupt base register determines the address of a 256 byte 
 	aligned block with interrupt vectors, i.e. the register's lowest 8 bit are unused.
-	The interrupt vectors are counted down from the top of the block.
-	I.e. the default Reset vector is an interrupt as well. The BRK opcode 
-	fetches the uppermost interrupt vector.
+	The interrupt vectors are counted up from the bottom of the block.
 	</p><p>
-	These interrupt base register bits can be used as configuration.
-	The two lowest bits determine the size of the interrupt vector.
-	"0x" means abs (two byte), "10" means long (four byte), 
-	"11" means longlong (eight byte) interrupt vector size.
-	The interrupt number is shifted appropriately, by 1, 2, or 4 bit so that
-	interrupt vectors form a list of consecutive values.
+	The interrupt vectors are (currently) always two byte, i.e. define only 
+	a 16 bit address. The vector addresses are thus augmented with the 
+	upper bytes of the interrupt vector register. I.e. the interrupt
+	routines must be within the 64k space defined by the interrupt vector base
+	register. If more space is needed, long jumps must be used.
 	</p><p>
-	Upon reset the register is initialized to $FFFFFFFFFFFFFF00.
-	The following table shows the different options:
+	Note: the lowest 8 bit of the vector base register are reserved and must be zero.
+	In later versions these could be used to configure the vector size.
+	</p><p>
+	Upon reset the register is not used, instead the standard 6502 single interrupt
+	vector is used at $FFFFFFFFFFFFFFFE. Only when the interrupt vector base register
+	is set for the first time, the base register becomes active.
 	</p>
 	<table class="optable">
-	<tr><th>Default interrupt base:</th><th>$FFFFFFFFFFFFFF00</th></tr>
+	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF00</th></tr>
+	<tr><td>$FFFFFFFFFFFFFF0E/F</td><td>Interrupt 7 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF0C/D</td><td>Interrupt 6 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF0A/B</td><td>Interrupt 5 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF08/9</td><td>Interrupt 4 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF06/7</td><td>Interrupt 3 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF04/5</td><td>Interrupt 2 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF02/3</td><td>Interrupt 1 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFF00/1</td><td>Interrupt 0 vector (NMI)</td></tr>
+	</table>
+	<p>
+	The abort vector table works the same way as the interrupt vector base register.
+	The abort vectors are assigned from top down though.
+	</p>
+	<table class="optable">
+	<tr><th>Abort base:</th><th>$FFFFFFFFFFFFFF00</th></tr>
 	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>BRK vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFFC/D</td><td>Reset vector</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFFA/B</td><td>Abort NOMEM</td></tr>
@@ -812,68 +907,8 @@ more modern browser, like Internet Explorer 8 or later,
 	<tr><td>$FFFFFFFFFFFFFFF6/7</td><td>Abort NOEXEC</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Abort PRIVRTI</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Abort PRIVOP</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>-</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFEE/F</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFEC/D</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFEA/B</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE8/9</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE6/7</td><td>Interrupt 4 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE4/5</td><td>Interrupt 5 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE2/3</td><td>Interrupt 6 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0/1</td><td>Interrupt 7 vector</td></tr>
-	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF02</th></tr>
-	<tr><td>$FFFFFFFFFFFFFFFC/D/E/F</td><td>BRK vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B</td><td>Reset vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF4/5/6/7</td><td>Abort NOMEM</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF0/1/2/3</td><td>Abort WPROT</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFEC/D/E/F</td><td>Abort NOEXEC</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE8/9/A/B</td><td>Abort PRIVRTI</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE4/5/6/7</td><td>Abort PRIVOP</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0/1/2/3</td><td>-</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFDC/D/E/F</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD8/9/A/B</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD4/5/6/7</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD0/1/2/3</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFCC/D/E/F</td><td>Interrupt 4 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC8/9/A/B</td><td>Interrupt 5 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC4/5/6/7</td><td>Interrupt 6 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC0/1/2/3</td><td>Interrupt 7 vector</td></tr>
-	<tr><th>Interrupt base:</th><th>$FFFFFFFFFFFFFF03</th></tr>
-	<tr><td>$FFFFFFFFFFFFFFF8-F</td><td>BRK vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFF0-7</td><td>Reset vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE8-F</td><td>Abort NOMEM</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0-7</td><td>Abort WPROT</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD8-F</td><td>Abort NOEXEC</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFD0-7</td><td>Abort PRIVRTI</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC8-F</td><td>Abort PRIVOP</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFC0-7</td><td>-</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFB8-F</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFB0-7</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFA8-F</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFA0-7</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFF98-F</td><td>Interrupt 4 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFF90-7</td><td>Interrupt 5 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFF88-F</td><td>Interrupt 6 vector</td></tr>
-	<tr><td>$FFFFFFFFFFFFFF80-7</td><td>Interrupt 7 vector</td></tr>
-	<tr><th>Interrupt base:</th><th>$000000000000FF00</th></tr>
-	<tr><td>$000000000000FFFE/F</td><td>BRK vector</td></tr>
-	<tr><td>$000000000000FFFC/D</td><td>Reset vector</td></tr>
-	<tr><td>$000000000000FFFA/B</td><td>Abort NOMEM</td></tr>
-	<tr><td>$000000000000FFF8/9</td><td>Abort WPROT</td></tr>
-	<tr><td>$000000000000FFF6/7</td><td>Abort NOEXEC</td></tr>
-	<tr><td>$000000000000FFF4/5</td><td>Abort PRIVRTI</td></tr>
-	<tr><td>$000000000000FFF2/3</td><td>Abort PRIVOP</td></tr>
-	<tr><td>$000000000000FFF0/1</td><td>-</td></tr>
-	<tr><td>$000000000000FFEE/F</td><td>Interrupt 0 vector (NMI)</td></tr>
-	<tr><td>$000000000000FFEC/D</td><td>Interrupt 1 vector</td></tr>
-	<tr><td>$000000000000FFEA/B</td><td>Interrupt 2 vector</td></tr>
-	<tr><td>$000000000000FFE8/9</td><td>Interrupt 3 vector</td></tr>
-	<tr><td>$000000000000FFE6/7</td><td>Interrupt 4 vector</td></tr>
-	<tr><td>$000000000000FFE4/5</td><td>Interrupt 5 vector</td></tr>
-	<tr><td>$000000000000FFE2/3</td><td>Interrupt 6 vector</td></tr>
-	<tr><td>$000000000000FFE0/1</td><td>Interrupt 7 vector</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Abort MAXTRAP</td></tr>
 	</table>
-	<p>Note: all unused bits must be set to zero</p>
 	<p>The following table describes the abort conditions:</p>
     <table border="1">
 <tr><th>Name</th><th>Explanation</th></tr>
@@ -882,45 +917,35 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>NOEXEC</td><td>Opcode fetch on a no-execute memory area</td></tr>
 <tr><td>PRIVRTI</td><td>Attempt to set the hypervisor bit from stack via RTI for example</td></tr>
 <tr><td>PRIVOP</td><td>Attempt to execute a privileged operation</td></tr>
+<tr><td>MAXTRAP</td><td>Attempt to execute a TRAP opcode with a trap number above the allowed maximum value</td></tr>
     </table>
       <h3><a name="trap" id="trap">Trap handling</a></h3><p>
 	The 65k has a TRAP opcode that allows to trap from a program into supervisor mode
 	(if available), resp. into a system program via a given trap vector.
-	The current version allows for 256 trap vectors, as the trap operand is byte-wide.
+	The current version allows for a maximum of 255 trap vectors, as the trap operand is byte-wide.
+      </p><p>
+	The TMV register determines the maximum number of trap vectors allowed. Default after reset is zero,
+	which means no trap vectors allowed. If a trap vector number used is lower than
+	the TMV register value, the trap is allowed. Otherwise a MAXTRAP abort is initiated.
       </p><p>
 	The trap handling is similar to the interrupt handling. There is a trap vector base
-	register similar to the interrupt base register. Again the lowest two bit of the
-	trap vector base register determine the size of the vector used. 
+	register similar to the interrupt base register. Here the lowest nine bit of the
+	trap vector base register are reserved and must be zero. Trap vectors are always
+	two byte, the address is in the same 64k bank as the vectors.
       </p><p>
 	As there are 256 trap vectors, with 2 byte vectors the trap table is 
-	512 byte. With 4 byte vectors the trap table is 1024 bytes, and 2048 bytes
-	for 8 byte vectors. Therefore the used bits from the trap vector base register
-	differ. For 2 byte vectors all but the lowest 9 bit from the register are
-	used, for 4 byte vectors all but the lowest 10 bit from the register are used
-	and all but the lowest 11 bit from the vector are used. This way the used
+	512 byte. For 2 byte vectors all but the lowest 9 bit from the register are
+	used. This way the used
 	part of the register can simply be ORd with the shifted trap number to compute
 	the effective vector address.
-      </p><p>
-	As a possible extension the bits 2/3 of the trap vector base register are reserved and
-	must be set to zero. In later extensions they can be used to define larger tables for 
-	more TRAP operands.
       </p>
 	<table class="optable">
-	<tr><th>Default trap vector base:</th><th>$FFFFFFFFFFFFFE00</th></tr>
+	<tr><th>Trap vector base:</th><th>$FFFFFFFFFFFFFE00</th></tr>
 	<tr><td>$FFFFFFFFFFFFFFFE/F</td><td>TRAP #$FF</td></tr>
 	<tr><td>...</td><td>...</td></tr>
-	<tr><td>$FFFFFFFFFFFFFFE0/1</td><td>TRAP #$00</td></tr>
-	<tr><th>trap vector base:</th><th>$FFFFFFFFFFFFF803</th></tr>
-	<tr><td>$FFFFFFFFFFFFFFF8/9/A/B/C/D/E/F</td><td>TRAP #$FF</td></tr>
-	<tr><td>...</td><td>...</td></tr>
-	<tr><td>$FFFFFFFFFFFFF800/1/2/3/4/5/6/7</td><td>TRAP #$00</td></tr>
+	<tr><td>$FFFFFFFFFFFFFE00/1</td><td>TRAP #$00</td></tr>
 	</table>
-      <p>
-	Note: all unused bits must be set to zero
-      </p><p>
-	Note: need to discuss if one vector for interrupt and trap would suffice. With the
-	current definition, upon reset the interrupts would be the last 8 trap vectors.
-      </p><h3><a name="intproc" id="intproc">Interrupt and Trap Procedure</a></h3><p>
+      <h3><a name="intproc" id="intproc">Interrupt and Trap Procedure</a></h3><p>
 	What happens when an interrupt or a trap occurs? The interrupt procedure is very similar to the
 	original 6502 interrupt.
       </p><p>

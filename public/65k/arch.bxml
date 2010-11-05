@@ -325,7 +325,7 @@
 	<tr><td rowspan="3">2</td><td>Data bus input reg. -&gt; ALU A</td><td>The data bus input register value is put to ALU input A (Note 3)</td></tr> 
 	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
-	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits)</th></tr>
 	<tr><td rowspan="3">3</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
@@ -344,7 +344,7 @@
 	<tr><td rowspan="3">2</td><td>Data bus input reg. -&gt; ALU A</td><td>The data bus input register value is put to ALU input A</td></tr> 
 	<tr><td>index register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register</td></tr> 
-	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><th colspan="3">Step 3 is optional if B,S or P are added (prefix OF bits)</th></tr>
 	<tr><td rowspan="3">3</td><td>temp -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 
@@ -361,7 +361,7 @@
 	<tr><th>Step</th><th>Transfer</th><th>Description</th></tr>
 	<tr><td>1</td><td>Data bus -&gt; data bus input reg.</td><td>The opcode parameter value fetched and on the data bus 
 		is transferred into the data bus input register</td></tr>
-	<tr><th colspan="3">Step 2 is optional if B,S or P are added (prefix OF bits</th></tr>
+	<tr><th colspan="3">Step 2 is optional if B,S or P are added (prefix OF bits)</th></tr>
 	<tr><td rowspan="3">2</td><td>data bus input reg. -&gt; ALU A</td><td>The temporary register value is put to ALU input A</td></tr> 
 	<tr><td>B,S or PC register -&gt; ALU B</td><td>The index register value is put to ALU input B</td></tr> 
 	<tr><td>ALU out -&gt; temp</td><td>The ALU output is written to the temp register (Note 2)</td></tr> 

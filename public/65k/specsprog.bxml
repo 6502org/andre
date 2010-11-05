@@ -73,7 +73,7 @@
         <tr><td>2010-11-04</td><td>Andr&eacute; Fachat</td><td>Defined the interrupt status/mask/effective 
 		mask register; Constrained the interrupt/trap/abort vectors to two-byte vectors;
 		integrated the various extra registers into the configuration register file (for less
-		opcodes necessary); add WAI and STP</td></tr>
+		opcodes necessary); add WAI, STP and FIL/FILU</td></tr>
       </table>
     </desc>
   </subsection>
@@ -679,7 +679,7 @@
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>			<th>2</th>				<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>			<th>7</th>	<th>8</th>	<th>9</th>			<th>A</th>		<th>B</th>	<th>C</th>			<th>D</th>			<th>E</th>			<th>F</th></tr>
 <tr><th>0</th>		<td></td>			<td></td>			<td>LEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>MVN</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM</td>	<td>BCN<br/>RS</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM</td>	<td></td>			<td>BCN (E)<br/>RS,UM</td>	<td></td></tr>
 <tr><th>1</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td>MVP</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM</td>	<td></td>			<td></td>			<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br/>RS</td>		<td></td>			<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td></td>			<td></td>			<td>ADE imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>2</th>		<td>JSR (E)<br/>RS</td>		<td></td>			<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>			<td></td>			<td>ADE imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>3</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>LDE imm<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>4</th>		<td></td>			<td></td>			<td>LEA (abs),Y<br/>AM,OF,UM</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br/>RS,ZE,UM</td>	<td></td>	<td></td>	<td>EOR (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>			<td></td></tr>
 <tr><th>5</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
@@ -718,6 +718,7 @@
 	<li>RMB - Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
 	<li>WMB - Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
 	<li>WAI - Wait for interrupt - stops execution of current core until next interrupt</li>
+	<li>FIL - Fill memory area with a byte value</li>
 	</ul><p>Notes:</p>
 	<ol>
 	<li>The RS prefix determines the computation width of the effective address. 
@@ -744,7 +745,7 @@
 <tr><th>4</th>		<td></td>	<td>BCR imm</td><td></td>	<td></td> 	<td>SMMU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td>CLEIM</td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
-<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>FILU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
@@ -771,6 +772,7 @@
 	<li>MVNFU - MVN but source is in user space</li>
 	<li>MVPTU - MVP but target is in user space</li>
 	<li>MVPFU - MVP but source is in user space</li>
+	<li>FILU - Fill user space area (i.e. use user mode match code)</li>
 	<li>STP - Stop current core until reset (core 0) resp. enabling via core control register.</li>
 	</ul><p>
 	Note: these have been deprecated:</p>
