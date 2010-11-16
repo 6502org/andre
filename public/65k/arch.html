@@ -91,7 +91,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Published this page
     </li><li><div> </div><small>2010-10-14</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#top">Top Level Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#topcore">Core</a></li><li><a href="#toprwseq">Read / Write Data Sequencer, Read Arbiter</a></li><li><a href="#topmmu">Memory Management Unit</a></li><li><a href="#topbusif">Bus Interface</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li></ul></li><li><a href="#core">Core Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#regfile">Register File</a></li><li><a href="#pc">PC</a></li><li><a href="#alu">ALU</a></li><li><a href="#ctrl">Control (Interrupt, clock counter, opcode fetch)</a></li></ul></li><li><a href="#mmu">MMU</a></li><li><a href="#busif">Bus Interface</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#top">Top Level Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#topcore">Core</a></li><li><a href="#toprwseq">Read / Write Data Sequencer, Read Arbiter</a></li><li><a href="#topmmu">Memory Management Unit</a></li><li><a href="#topbusif">Bus Interface</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li><li><a href="#opanalysis">Opcode Data Path Analysis</a></li></ul></li><li><a href="#core">Core Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#regfile">Register File</a></li><li><a href="#pc">PC</a></li><li><a href="#alu">ALU</a></li><li><a href="#ctrl">Control (Interrupt, clock counter, opcode fetch)</a></li></ul></li><li><a href="#mmu">MMU</a></li><li><a href="#busif">Bus Interface</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
@@ -300,6 +300,9 @@ more modern browser, like Internet Explorer 8 or later,
 	Note that using a register and taking a new value into the same register can take place
 	on the same clock cycle if registers are assumed (as opposed to transparent latches as in the
 	original 6502). 
+	</p><p>
+	Also note that the initial parameter fetch comes as opcode parameter, thus from a different
+	input bus, which has to be taken into account in the core design.
 	</p>
 
 	<h3>Immediate</h3>
@@ -407,9 +410,109 @@ more modern browser, like Internet Explorer 8 or later,
 	was a carry - and thus a 16 bit 65k with 8 bit data bus will actually be one cycle slower than the 6502
 	if there is no carry</li>
 	</ol>
+       	<h3><a name="opanalysis" id="opanalysis">Opcode Data Path Analysis</a></h3>
+	<p>In this section is an analysis of the different types of opcodes. </p>
+	<h3>Load/Store</h3>
+	<p>Opcodes: LDA, LDX, LDY, STA, STX, STY, STZ</p>
+	<p>Load opcodes load a register with a value from memory. Store opcodes write data to a memory location.
+	These opcodes work the same way as the bare addressing modes described above. Only for stores, not 
+	just the address value is put on the bus, but also the register value.
+	</p><p>
+	Note: this poses a problem that during the zeropage and absolute addressing modes, during 
+	parameter fetch the value read as parameter must be available as address on the data address bus, while 
+	at the same time the register value has to be put onto the data bus. This has to be considered in the 
+	core design.
+	</p>
+	<h3>Load Effective Address</h3>
+	<p>The LEA opcode can actually work similar to the load opcodes as above, i.e. basically transferring the
+	value of the address output register into E. But a cycle can be saved instead if the address value is
+	directly stored in E instead of the address output register. This can be decided depending on implementation
+	details.</p>
+	<h3>Arithmetic Operations</h3>
+	<p>Opcodes: ADC, SBC, CMP, ORA, AND, EOR, CPX, CPY, TSB, TRB, BIT, ADS, ADE, ADB, SBS, SBE, SBB</p>
+	<p>These opcodes read an operand value, process it in the ALU, then store it in the AC (together with the
+	relevant status bits). I.e. in the last addressing mode cycle as above, the value is read and stored
+	in the temp register. In the following cycle, the temp register and the AC are put on the ALU A and B
+	inputs respectively. The ALU output is passed on to the AC, which takes the value over at the 
+	end of the cycle. In this very cycle the next opcode can be read using the opcode fetch circuitry - 
+	as on the 6502.</p>
+	<h3>Read-Modify-Write Operations</h3>
+	<p>Opcodes: DEC, DEX, DEY, INC, INX, INY, ROL, ROR, ASL, LSR, SWP, BCN</p>
+	<p>For the accumulator-addressing mode opcodes (ROL A, ROR A, LSR A, ASL A, SWP A, BCN A), it is simple. After opcode
+	fetch and decode, the AC is given to the ALU and the result is transferred back to AC at the end of the
+	cylce.</p>
+	<p>For the other opcodes during the load cycle, the value is read into the temp register. During the 
+	second cycle the ALU performs the operation, and stores the value in the data bus output driver, but
+	does not perform a valid write. During the third cycle the data is actually written.
+	In fact during the second cycle the next opcode fetch may actually already be performed (Note 1)
+	</p>
+	<h3>Register Transfer Operations</h3>
+	<p>Opcodes: TAX, TXA, TAY, TYA, TXS, TSX, TPA, TSY, TYS, TEA, TAE, TBA, TAB</p>
+	<p>These opcodes are simple. In the cylce after the opcode fetch the source register value is put
+	on the internal bus, and transferred to the register input bus (using the pass gates), and stored
+	in the register at the end of the cycle. During this transfer cycle the next opcode can be fetched.
+	</p>
+	<h3>Register Swap Operations</h3>
+	<p>Opcodes: SAB, SAX, SAY, SXY, SAE, SAB</p>
+	<p>These opcodes are more complicated. In the first cycle, AC is transferred into the temp register.
+	In the second cycle the other (S/X/Y) register is transferred into AC. In the third cycle then the
+	temp register is stored into the other register. (Note 2)
+	</p>
+
+	<h3>Status Register Operations</h3>
+	<p>Opcodes: SEC, CLC, SED, CLD, SEI, CLI, CLV</p>
+	<p>TODO</p>
+	<h3>Clear Operations</h3>
+	<p>Opcodes: CLY, CLX, CLA</p>
+	<p>TODO</p>
+	<h3>Stack Operations</h3>
+	<p>Opcodes: PLA, PHA, PLX, PHX, PLY, PHY, PLB, PHB, PLE, PHE, PRB</p>
+	<p>TODO</p>
+	<h3>Jump Operations</h3>
+	<p>Opcodes: JMP, JPU</p>
+	<p>TODO</p>
+	<h3>Jump Subroutine Operations</h3>
+	<p>Opcodes: JSR, BSR</p>
+	<p>TODO</p>
+	<h3>Return Subroutine Operations</h3>
+	<p>Opcodes: RTS, RTI, RTU</p>
+	<p>TODO</p>
+	<h3>Branch Operations</h3>
+	<p>Opcodes: BNE, BEQ, BPL, BMI, BVS, BVC, BCC, BCS, BRA</p>
+	<p>TODO</p>
+	<h3>Branch Operations</h3>
+	<p>Opcodes: BNE, BEQ, BPL, BMI, BVS, BVC, BCC, BCS, BRA</p>
+	<p>TODO</p>
+	<h3>Move Operations</h3>
+	<p>Opcodes: MVN, MVP, MVNTU, MVNFU, MVPTU, MVPFU</p>
+	<p>TODO</p>
+	<h3>Fill Operations</h3>
+	<p>Opcodes: FILU</p>
+	<p>TODO</p>
+	<h3>Quick Operations</h3>
+	<p>Opcodes: DEC, DEY, DEX, INC, INY, INX, ROL, ROR, ASL, LSR, INE, DEE, INB, DEB - quick addressing modes</p>
+	<p>TODO</p>
+	<h3>Control Register Operations I</h3>
+	<p>Opcodes: LCR, SCR, BCR</p>
+	<p>TODO</p>
+	<h3>Control Register Operations II</h3>
+	<p>Opcodes: SENV, SMMU</p>
+	<p>TODO</p>
+	<h3>Memory Control Operations</h3>
+	<p>Opcodes: SCA, LLA, WMB, RMB</p>
+	<p>TODO</p>
+
+	<h3>Notes</h3>
+	<ol>
+	<li>The ALU output value could be directly written to the data bus. This, however, would add the
+	ALU processing time to the setup time for the data bus, limiting the possible clock speeds.</li>
+	<li>If the ALU does not provide a pass-through mode, then a pass gate from the temp register output to 
+	the register input bus is required</li>
+	</ol>
        	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="core" id="core">Core Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section describes the architecture of the processor core. A block diagram is on the right side, 
 	click it to enlarge.
+	</p><p>NOTE: THE DIAGRAM IS VERY PRELIMINARY AND NOT NECESSARILY CONSISTENT WITH THE DESCRIPTIONS ABOVE
 	</p>
 	<div class="rightimg"><a href="archcore.svg"><img width="300" src="archcore.png" /></a>The core 
 	architecture</div>
@@ -427,19 +530,7 @@ more modern browser, like Internet Explorer 8 or later,
 	for abort handling. During an abort, the register value from before the opcode must be restored.
 	Therefore the shadow register keeps the register value at the beginning of the opcode execution.
 	</p>
-	<table border="1">
-	<tr><th>Register</th><th>Name</th></tr>
-	<tr><td>A</td><td>Accumulator</td></tr>
-	<tr><td>X</td><td>X register</td></tr>
-	<tr><td>Y</td><td>Y register</td></tr>
-	<tr><td>B</td><td>Base offset register</td></tr>
-	<tr><td>E</td><td>Effective address register</td></tr>
-	<tr><td>S</td><td>Stack pointer</td></tr>
-	<tr><td>P</td><td>Status register</td></tr>
-	<tr><td>ISR</td><td>Interrupt status register</td></tr>
-	<tr><td>ICR</td><td>Interrupt control register</td></tr>
-	<tr><td>PCRs</td><td>Processor configuration registers</td></tr>
-	</table>
+	
      <h3><a name="pc" id="pc">PC</a></h3><p>
 	The Program Counter is a special register in that it is used to fetch opcodes and also that it
 	is incremented automatically. For this there is the PC increment adder that can add constant values

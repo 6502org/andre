@@ -677,13 +677,13 @@
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>			<th>2</th>				<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>			<th>7</th>	<th>8</th>	<th>9</th>			<th>A</th>		<th>B</th>	<th>C</th>			<th>D</th>			<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td></td>			<td></td>			<td>LEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>MVN</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM</td>	<td>BCN<br/>RS</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM</td>	<td></td>			<td>BCN (E)<br/>RS,UM</td>	<td></td></tr>
-<tr><th>1</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td>MVP</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM</td>	<td></td>			<td></td>			<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br/>RS</td>		<td></td>			<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>			<td></td>			<td>ADE imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>0</th>		<td></td>			<td></td>			<td>LEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>MVN</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM</td>	<td>BCN<br/>RS</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM</td>	<td></td>			<td>BCN (E)<br/>RS,UM</td>	<td>PLE</td></tr>
+<tr><th>1</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td>MVP</td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM</td>	<td></td>			<td></td>			<td>PHE</td></tr>	
+<tr><th>2</th>		<td>JSR (E)<br/>RS</td>		<td></td>			<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>			<td></td>			<td>ADE imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>AND (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td>SAE</td></tr>
 <tr><th>3</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td>LDE imm<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
-<tr><th>4</th>		<td></td>			<td></td>			<td>LEA (abs),Y<br/>AM,OF,UM</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br/>RS,ZE,UM</td>	<td></td>	<td></td>	<td>EOR (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>			<td></td></tr>
+<tr><th>4</th>		<td></td>			<td></td>			<td>LEA (abs),Y<br/>AM,OF,UM</td>	<td></td> 	<td></td>			<td></td>			<td>ADS imm<br/>RS,ZE,UM</td>	<td></td>	<td></td>	<td>EOR (E)<br/>RS,ZE,UM</td>	<td>TBA</td>		<td></td>	<td>JMP (E)</td>		<td></td>			<td></td>			<td></td></tr>
 <tr><th>5</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
-<tr><th>6</th>		<td></td>			<td></td>			<td>LEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>ADB imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM</td>	<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
+<tr><th>6</th>		<td></td>			<td></td>			<td>LEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td></td>			<td></td>			<td>ADB imm<br/>RS,ZE</td>	<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM</td>	<td>TAB</td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>7</th>		<td></td>			<td></td>			<td></td>				<td></td>	<td></td>			<td></td>			<td></td>			<td></td>	<td></td>	<td></td>			<td></td>		<td></td>	<td></td>			<td></td>			<td></td>			<td></td></tr>
 <tr><th>8</th>		<td>LEA rel<br/>RS,UM</td>	<td>PEA (zp,X)<br/>AM,OF,UM</td><td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>	<td>PEA zp<br/>AM,OF,UM</td>	<td></td>			<td></td>	<td></td>	<td>BIT (E)<br/>RS,ZE,UM</td>	<td>TEA</td>		<td></td>	<td></td>			<td>PEA abs<br/>AM,OF,UM</td>	<td></td>			<td></td></tr>
 <tr><th>9</th>		<td></td>			<td>PEA (zp),Y<br/>AM,OF,UM</td><td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td>WMB<br/>UM</td>		<td>PEA zp,X<br/>AM,OF,UM</td>	<td>WMB (E)<br/>UM</td>		<td></td>	<td></td>	<td>PEA abs,Y<br/>AM,OF,UM</td>	<td>TYS<br/>UM</td>	<td></td>	<td>STZ (E)<br/>RS,UM</td>	<td>PEA abs,X<br/>AM,OF,UM</td>	<td></td>			<td></td></tr>
@@ -701,9 +701,12 @@
 	<ul>
 	<li>LEA - Load Effective Address: compute the effective address and store it in the E (effective Address) register (always full width)</li>
 	<li>LDE - Load value into E (effective address) register</li>
-	<li>TAE - transfer Accumulator to E register</li>
-	<li>TEA - transfer E register to Accumulator</li>
+	<li>TAE - Transfer Accumulator to E register</li>
+	<li>TEA - Transfer E register to Accumulator</li>
 	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1][2]</li>
+	<li>PHE - Push E register</li>
+	<li>PLE - Pull E register</li>
+	<li>SAE - Swap AC with E register</li>
 	<li>ADE - ADd to E register</li>
 	<li>ADB - ADd to B register</li>
 	<li>ADS - ADd to Stack pointer</li>
@@ -759,8 +762,9 @@
 	<li>LCR - Load value from configuration register into AC. The immediate value gives the register number.</li>
 	<li>SCR - Store value from AC to configuration register. The immediate value gives the register number.</li>
 	<li>BCR - BIT value from AC with configuration register. The immediate value gives the register number.</li>
-	<li>JPU - Jump to user space. Go from hypervisor to user mode, then read the effective address from the
-			user mode address space and execute the jump</li>
+	<li>JPU - Jump to user space. Read parameter, then go from hypervisor to user mode, 
+			then read the effective address from the
+			user mode address space (for abs indirect mode) and execute the jump</li>
 	<li>RTU - return to user space from a Trap opcode: go to user mode, pull return address from user mode
 			stack and execute RTS</li>
 	<li>SENV - the byte operand determines the environment number, first variant: AC, XR and YR determine the 
