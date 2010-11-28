@@ -185,6 +185,10 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	</desc>
 	<extlink name="PET prattle #1" link="http://www.icpug.org.uk/national/archives/020227ar.htm"></extlink>
      </subsection>
+     <subsection toc="hrt" name="High-Res Technologies Graphics Board">
+	<desc>This is another high resolution graphics board</desc>
+     	<extlink name="Mike's page on the HRT board" link="http://mikenaberezny.com/hardware/projects/high-res-technologies-graphics-board/"/>
+     </subsection>
    </section>
 
   <section toc="composite" name="Composite Video">
