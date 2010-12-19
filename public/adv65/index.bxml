@@ -132,6 +132,7 @@
     <extlink name="6502.org forum: Prefix bytes: an idea for 65Org816..." link="http://forum.6502.org/viewtopic.php?t=1550"/>
     <extlink name="Admired designs..." link="http://www.cs.clemson.edu/~mark/admired_designs.html#wilson"/>
     <extlink name="The 6502 decimal flag" link="http://6502.org/tutorials/decimal_mode.html"/>
+    <extlink name="... and the errata to the decimal flag explanation" link="http://6502org.wikidot.com/errata-other-decmode"/>
     <extlink name="Experience from writing a 6502 core" link="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784"/>
   </section>
  
