@@ -45,6 +45,15 @@ with the commodore BASIC startup message :-)</DD>
      </desc>
   </section>
 
+  <section toc="demo" name="Demos">
+     <desc><P>This section contains PET demos.</P>
+<DL>
+<DT><A HREF="http://pouet.net/prod.php?which=56410">No PETs allowed!</A></DT> 
+<DD>A really cool demo for a 50Hz 4032 PET (with CRTC)</DD>
+</DL>
+     </desc>
+  </section>
+
   <section toc="archives" name="Software Archives">
      <desc><P>This section contains links to archives with PET software.</P>
 <UL>
