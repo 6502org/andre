@@ -144,12 +144,15 @@ more modern browser, like Internet Explorer 8 or later,
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_oldnews"> </div><small>2007-06-29</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-12-20</small>
+                	Separated the composite video generation circuits
+                	into their <a href="../../hwinfo/crtc/composite.html">own page</a>.
+                </li><li><div class="i_oldnews"> </div><small>2007-06-29</small>
                         Added helper boards that convert the video signals
 			to composite video.
                 </li><li><div class="i_oldnews"> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">Composite Video (pet revealed) 1.0C</a> (ok)</li><li><a href="#board2">Composite Video (pucoe) 1.0C</a> (ok)</li><li><a href="#board3">1.4B</a> (untested)</li><li><a href="#board4">1.4A</a> (untested)</li><li><a href="#board5">1.3E</a> (prototype)</li><li><a href="#board6">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4B</a> (untested)</li><li><a href="#board2">1.4A</a> (untested)</li><li><a href="#board3">1.3E</a> (prototype)</li><li><a href="#board4">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -166,74 +169,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(VDC driver excerpt)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: Composite Video (pet revealed) 1.0C</a></h3>
-<p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			To use the vdc board with a standard TV set for
-			example, a so-called "composite video" signal
-			must be generated, that includes all three
-			video, horizontal sync and vertical sync signals.
-			This board is derived from the "Composite Video Circuit"
-			from the book "The PET revealed".
-		</td></tr>
-<tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			This circuit produces a not so bright picture
-			on my TV set, and I did not investigate how improve
-			brightness (might even be my TV).
-		</td></tr>
-</table><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="comp_pet_revealed_v1.0c-sch.png">comp_pet_revealed_v1.0c-sch.png</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="comp_pet_revealed_v1.0c.sch">comp_pet_revealed_v1.0c.sch</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="comp_pet_revealed_v1.0c-brd.png">comp_pet_revealed_v1.0c-brd.png</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="comp_pet_revealed_v1.0c.brd">comp_pet_revealed_v1.0c.brd</a></td>
-</tr>
-<tr class="R1"><td><div class="i_photo"> </div></td>
-<td><a href="composite2.jpg">composite2.jpg</a></td>
-</tr></table>
-<h3><a name="board2" id="board2">Version: Composite Video (pucoe) 1.0C</a></h3>
-<p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			To use the vdc board with a standard TV set for
-			example, a so-called "composite video" signal
-			must be generated, that includes all three
-			video, horizontal sync and vertical sync signals.
-			This board is derived from the "PET Video Mixer"
-			by the PET users club of England.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			The original board did not have R2 and R5, and 
-			produces a very bright picture on my TV set.
-			Therefore I introduced R2 and R5 to adjust brightness
-			This modification is untested, though.
-		</td></tr>
-</table><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="comp_pucoe_v1.0c-sch.png">comp_pucoe_v1.0c-sch.png</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="comp_pucoe-v1.0c.sch">comp_pucoe-v1.0c.sch</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="comp_pucoe_v1.0c-brd.png">comp_pucoe_v1.0c-brd.png</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="comp_pucoe-v1.0c.brd">comp_pucoe-v1.0c.brd</a></td>
-</tr>
-<tr class="R1"><td><div class="i_photo"> </div></td>
-<td><a href="composite1.jpg">composite1.jpg</a>(This picture shows an older version without R2/R5)</td>
-</tr></table>
-<h3><a name="board3" id="board3">Version: 1.4B</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.4B</a></h3>
 <p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -278,7 +214,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</a></td>
 </tr></table>
-<h3><a name="board4" id="board4">Version: 1.4A</a></h3>
+<h3><a name="board2" id="board2">Version: 1.4A</a></h3>
 <p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -324,7 +260,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</a></td>
 </tr></table>
-<h3><a name="board5" id="board5">Version: 1.3E</a></h3>
+<h3><a name="board3" id="board3">Version: 1.3E</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This board version is a redo of the
@@ -354,7 +290,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</a></td>
 </tr></table>
-<h3><a name="board6" id="board6">Version: 1.3C</a></h3>
+<h3><a name="board4" id="board4">Version: 1.3C</a></h3>
 <p>Status: prototype with bugs</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This is the original video board. 
