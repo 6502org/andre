@@ -42,6 +42,10 @@
 	create "raster-effects" by using the CRTC interrupt in the
 	PET to dynamically change the register values. 
      </subitem>
+     <subitem name="CS/A VDC" link="../../csa/vdc/index.html">
+	An example of a CRTC-based video card. Also contains schematics
+	to create PAL composite video from the board's output.
+     </subitem>
      <!--item name="">
       <subitem name="" link=""></subitem>
      </item-->

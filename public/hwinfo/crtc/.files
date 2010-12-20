@@ -2,4 +2,5 @@ p internals CRTC internals
 p pet CBM PET test programs
 f crtc.html CRTC operation
 f diffs.html Differences between models
+l ../../csa/vdc/index.html CS/A VDC board
 
