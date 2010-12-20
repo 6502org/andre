@@ -67,6 +67,13 @@
     <!--disclaimer name="">
     </disclaimer-->
   </itemlist>
+
+  <itemlist name="CRTC-related projects">
+    <desc><p>Here are links to CRTC-related projects.</p>
+    </desc>
+    	<extlink name="NO PETs Allowed demo!" link="http://pouet.net/prod.php?which=56410"/>
+  </itemlist>
+
   <disclaimer name="Disclaimer">
 	@DISCLAIMER@
   </disclaimer>

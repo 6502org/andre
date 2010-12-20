@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2010-12-20">
+	Reorganized the <a href="hwinfo/crtc/index.html">CRTC pages</a>.
+    </item>
     <item date="2010-10-23" state="hot">
 	It took a while, but now I published the first draft of my <a href="65k/index.html">65k processor design</a> - Pimp your 6502 with 64 bit! :-)
     </item>
