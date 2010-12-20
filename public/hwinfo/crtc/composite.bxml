@@ -1,62 +1,34 @@
 <?xml version="1.0"?>
 <board>
 	<name>CS/A65 Video board</name>
-	<keywords>CSA65 VDC video CRTC 6545 6845</keywords>	
-	<lastmodified>2006-11-01</lastmodified>
-	<desc>This board implements the a video board for the CS/A65 bus.
-		The board uses 64k dynamic RAM that is accessed in a
-		time-shared way, by the CPU at Phi2 high, and by the
-		video at Phi2 low. Due to this interlock the board can
-		display 40 columns a line at 1MHz system clock, and 80 columns
-		a line at 2MHz system clock.
+	<keywords>CRTC composite video 6545 6845</keywords>	
+	<lastmodified>2010-12-20</lastmodified>
+	<desc><p>This page describes schematics to generate 
+		composite video signals from CRTC output signals.
+		</p><p>
+		Please note that this only does video signal combination, and 
+		level conversion. It does not do any timing modification.
+		Thus, to create signals with valid timing, the CRTC must be
+		programmed appropriately.
+		</p>
 	</desc>
         <news>
-                <item date="2007-06-29" state="old">
-                        Added helper boards that convert the video signals
-			to composite video.
-                </item>
-                <item date="2006-11-01" state="old">
-                        Added driver code.
+                <item date="2010-12-20">
+                	Separated from the <a href="../../csa/vdc/index.html">CS/A 65 VDC page</a>
                 </item>
         </news>
-	<driver>
+	<!--driver>
 		<name>OS/A65 VDC hardware driver</name>
 		<desc>This is the video-specific hardware part of the 
-			CS/A65 console driver. It provides the following
-			methods:
-			<ul>
-			<li><code>inivid</code> - initialize video hardware</li>
-			<li><code>setact</code> - set the CRTC display address to the current screen</li>
-			<li><code>crsron</code> - set the CRTC cursor to the correct address (the hardware cursor is actually flashing all the time)</li>
-			</ul>
-			The video memory is memory-mapped into CPU address space,
-			so the rest of the console driver (the hardware independent part)
-			acts on this memory mapped video.
-			The console can actually work in 40 columns (1MHz CPU clock) and
-			80 columns mode (2MHz CPU clock). This is detected by 
-			checking bit 7 of the <code>freq</code> variable.
 		</desc>
 
                 <file ltype="driver" ptype="a65" note="VDC driver excerpt">con_csa.a65</file>
-	</driver>
-	<diagram>
+	</driver-->
+	<!--diagram>
 		<file>vdc.gif</file>
 		<desc>Block diagram of the vdc board. Only some relevant info
-			is shown. It is actually a pretty simple design, if
-			it were not for the timing...
-			The CPU accesses the memory during Phi2 high, so 
-			then the BUSA0-15 and D0-7 are connected to the
-			memory address and bus lines. During Phi2 low the
-			video accesses the memory and thus RA0-13 is connected
-			to the memory. The byte read for the video is latched
-			and given to the character ROM as input. The CA0-2
-			lines select the correct scan line of the character 
-			in the character ROM. The output of the character ROM
-			is then shifted out to the video output.
-			More on how the CRTC works can be found on the
-			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
 		</desc>
-	</diagram>
+	</diagram-->
 	<rev>
 		<version>Composite Video (pet revealed) 1.0C</version>
 		<status>ok</status>
@@ -101,105 +73,5 @@
 		<file ltype="layout" ptype="png">comp_pucoe_v1.0c-brd.png</file>
 		<file ltype="layout" ptype="ebrd">comp_pucoe-v1.0c.brd</file>
 		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
-	</rev>
-	<rev>
-		<version>1.4B</version>
-		<status>untested</status>
-		<note type="msg">
-			The board has an improved layout on the 1.4A board, in that it 
-			has decent GND and VCC supply networks. Also it removes the delayed
-			/CAS input to /RAMWE, as this was a bug. The board also got a jumper
-			to set the external graphics character mode (for the PET emulation)
-			via control register. The input to IC14A is inverted, to avoid jitter 
-			in the SR load line (adds an inverter from IC15 into the input line)
-		</note>
-		<note type="warn">
-			This layout is untested.
-		</note>
-		<note type="msg">
-			Most of the TTL chips are 'ALS technology, but a few
-			have to be 'LS for timing requirements: IC9 is a
-			74LS245 so that the data read from the RAM is held
-			on the bus longer, as the CPU requires a certain
-			hold time of that data. IC21 is a 74ALS14(!) so that the
-			delay between /RAS and /CAS is still long enough.
-			IC9 may probably be an 'ALS04 as well, but never
-			change a running system... IC15 is a 74LS04.
-		</note>
-		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
-		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
-		<file ltype="schem" ptype="png">csa_vdc_v1.4a-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_vdc_v1.4a.sch</file>
-		<file ltype="layout" ptype="png">csa_vdc_v1.4a-brd.png</file>
-		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4a.brd</file>
-	</rev>
-	<rev>
-		<version>1.4A</version>
-		<status>untested</status>
-		<note type="msg">
-			In addition to the timing bugs this board implements
-			a larger character ROM - now the character can be
-			more than 8 pixels high. Also the crude 
-			circuit for the generation of the composite video
-			signal is gone. Instead the video connector has 
-			an additional supply voltage pin, so the video plug
-			can implement any better composite generation.
-		</note>
-		<note type="warn">
-			This layout is untested.
-		</note>
-		<note type="msg">
-			Most of the TTL chips are 'ALS technology, but a few
-			have to be 'LS for timing requirements: IC9 is a
-			74LS245 so that the data read from the RAM is held
-			on the bus longer, as the CPU requires a certain
-			hold time of that data. IC21 is a 'LS so that the
-			delay between /RAS and /CAS is still long enough.
-			IC9 may probably be an 'ALS04 as well, but never
-			change a running system...
-		</note>
-		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
-		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
-		<file ltype="schem" ptype="png">csa_vdc_v1.4a-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_vdc_v1.4a.sch</file>
-		<file ltype="layout" ptype="png">csa_vdc_v1.4a-brd.png</file>
-		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4a.brd</file>
-	</rev>
-	<rev>
-		<version>1.3E</version>
-		<status>prototype</status>
-		<note type="msg">This board version is a redo of the
-			original board, with the known bugs fixed.
-		</note>
-		<note type="warn">During testing with the PETCPU and
-			new CS/A board - with 74ALS technology I decided to
-			better restrict the timing on the video board 
-			(which was not the cause of the problem), so 
-			I patched the board. The results can be found in
-			version 1.4.
-		</note>
-		<file ltype="schem" ptype="png">csa_vdc_v1.3e-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_vdc_v1.3e.sch</file>
-		<file ltype="layout" ptype="png">csa_vdc_v1.3e-lay.png</file>
-		<file ltype="layout" ptype="ebrd">csa_vdc_v1.3e.brd</file>
-		<file ltype="photo" ptype="jpg">csa_vdc_v1.3e.jpg</file>
-	</rev>
-	<rev>
-		<version>1.3C</version>
-		<status>prototype with bugs</status>
-		<note type="msg">This is the original video board. 
-		</note>
-		<note type="stop">This schematics has a bug in the
-			circuit to generate the shift register load 
-			signal. It went unnoticed as my prototype board
-			was manually soldered.
-		</note>
-		<file ltype="desc" ptype="txt">csavdcdesc.txt</file>
-		<file ltype="parts" ptype="txt">csavdcparts.txt</file>
-		<file ltype="schem" ptype="png">csavdc.png</file>
-		<file ltype="schem" ptype="fig">csavdc.fig</file>
-		<file ltype="schem" ptype="psgz">csavdc.ps.gz</file>
-		<file ltype="photo" ptype="jpg">csavdc.jpg</file>
-		<file ltype="photo" ptype="jpg" note="The flipside - just for the fun of it... :-)">csavdcflip.jpg</file>
 	</rev>
 </board>

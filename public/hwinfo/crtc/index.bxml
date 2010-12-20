@@ -14,7 +14,12 @@
 	chips.
   </overview>
   <news>
-    <item date="2007-02-02">
+    <item date="2010-12-20">
+	Reorganized the CRTC pages, added the systems integration page (separated from the 
+	CRTC operations page, and moved the composite video signal generation here to a
+	separate page.
+    </item>
+    <item date="2007-02-02" state="old">
 	Added information on the CRTC status register.
     </item>
   </news>
@@ -30,11 +35,20 @@
 	This document describes the differences between a number of
 	CRTC implementations from Rockwell, MOS, and others.
      </subitem>
+     <subitem name="CRTC system integration" link="uses.html">
+	This page describes how the CRTC is integrated into the
+	system, how memory is connected, video output is shifted out
+	and so on.
+     </subitem>
      <subitem name="CRTC internals" link="internals/index.html">
 	This document describes the internal structure of the
 	CRTC. I.e. it tries to show the internal CRTC counters,
 	compares, etc. It explains in greater depth how the CRTC
 	works.
+     </subitem>
+     <subitem name="Composite video signal generation" link="composite.html">
+	Generate composite video signals from the CRTC output, to use as input
+	for a normal TV set.
      </subitem>
      <subitem name="Test programs" link="pet/index.html">
 	This page shows a number of test programs and the results

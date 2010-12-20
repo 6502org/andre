@@ -11,6 +11,10 @@
 		a line at 2MHz system clock.
 	</desc>
         <news>
+                <item date="2010-12-20">
+                	Separated the composite video generation circuits
+                	into their <a href="../../hwinfo/crtc/composite.html">own page</a>.
+                </item>
                 <item date="2007-06-29" state="old">
                         Added helper boards that convert the video signals
 			to composite video.
@@ -57,7 +61,7 @@
 			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
 		</desc>
 	</diagram>
-	<rev>
+	<!-- rev>
 		<version>Composite Video (pet revealed) 1.0C</version>
 		<status>ok</status>
 		<note type="msg">
@@ -101,7 +105,7 @@
 		<file ltype="layout" ptype="png">comp_pucoe_v1.0c-brd.png</file>
 		<file ltype="layout" ptype="ebrd">comp_pucoe-v1.0c.brd</file>
 		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
-	</rev>
+	</rev -->
 	<rev>
 		<version>1.4B</version>
 		<status>untested</status>

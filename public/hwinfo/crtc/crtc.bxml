@@ -43,6 +43,7 @@ computer page or in the PET schematics on the
     </item>
   </news-->
   <toc/>
+
   <itemlist name="General Description" toc="desc">
     <desc>
 <P>
@@ -79,6 +80,7 @@ PET line of computers, the normal non-interlaced
 sync mode.
 </P>
     </desc>
+
      <subsection name="Status Register" toc="sr">A
 	<desc>
 	The status register can be read by the CPU at CRTC address 0
@@ -106,7 +108,51 @@ Please note that the UR is not available on all models, and VRT bit is handled
 differently by different models. 
 	</desc>
      </subsection>
-     <subsection name="Timing" toc="timing">
+
+  <subsection name="Register File" toc="registers">
+    <desc><p>
+	The registers are written to (only some can be read) by writing the register number
+	to the CRTC address (+0) and write (resp. read) the value to (from) CRTC address plus 1.
+	</p><p>
+        The registers are basically the same for all chips (see the <a href="diffs.html">Diffs page</a>):
+	</p>
+        <pre>
+R0      Horizontal Total (-1)
+R1      Horizontal Display
+R2      Horizontal Sync position [1]
+R3      Horizontal Sync Width [4]
+
+R4      Vertical total character lines (-1) (7 bit)
+R5      Vertical total adjust rasterlines (5 bit)
+R6      Vertical displayed character lines (7 bit)
+R7      Vertical Sync position (7 bit) [1]
+
+R8      Mode control [4]
+
+R9      Number of rasterlines per characterline (-1) [2]
+
+R10     Cursor start rasterline + cursor mode control (5+2 bit)
+R11     Cursor end rasterline (5 bit)
+R12     Display start address high (6 bit) [3]
+R13     Display start address low (8 bit) [3]
+R14     Cursor address high (6 bit)
+R15     Cursor address low (8 bit)
+R16     Lightpen address high (6 bit)
+R17     Lightpen address low (8 bit)
+
+[1] Motorola states that "(Set data) = (Designated Data) - 1",
+    as it is known for R0, R4, and R9
+[2] Commodore does not mention the "-1"
+[3] It is possible to read R12 and R13 on Motorola CRTCs only.
+    All others can only read R14-R17.
+[4] Horizonal width and mode control are different from
+    model to model (e.g. 6545 vs. 6845.)
+        </pre>
+        Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
+    </desc>
+  </subsection>
+
+     <subsection name="Horizontal Timing" toc="horizontal">
       <desc>
 <P>
 The word <EM>Line</EM> in a video context can have two meanings: The
@@ -158,8 +204,12 @@ the memory address of the start of the line is presented, and for
 each following CCLK cycle the MA0-13 address lines are increased
 by one. Memory addresses are only valid, to be displayed addresses
 when the Display Enable signal is active (high).
-</P><P>
-A character line now consists of a number of scanlines
+</P></desc>
+     </subsection>
+     <subsection name="Character Line Timing" toc="charline">
+      <desc>
+<P>
+A character line consists of a number of scanlines.
 </P>
 <PRE>
 R9   Maximum Scan Line Address Reg.  Number of scanlines per character
@@ -202,6 +252,10 @@ R12  Start Address Reg. H (bit 0-5)  Bits 8-13 of the start of display
 R13  Start Address Reg. L            Bits 0-7 of the start of display
                                      memory address
 </PRE>
+</desc>
+     </subsection>
+     <subsection name="Vertical Timing" toc="vertical">
+      <desc>
 <P>
 To control the vertical timing there are other registers
 </P>
@@ -259,208 +313,6 @@ mode is selected.
 </P>
       </desc>
      </subsection>
-  </itemlist>
-  <itemlist name="Example CRTC use in the Commodore PET" toc="pet">
-      <desc>
-<P>
-There are a few things that might be different from other implementations
-in the PET. The CRTC has been used in 40 columns and 80 columns models.
-The CCLK frequency however is 1 MHz in both cases. 80 columns mode
-is achieved by reading not one byte but two byte in each CCLK
-cycle with the same
-MA0-13, thus effectively using the MA0-9 as A1-10.
-</P>
-<P>
-As only MA0-9 are used, Commodore decided to use the uppermost two
-bits (MA12 and MA13) as additional control lines. MA12 is used
-to invert the complete pixel stream video output, probably to be able
-to cope with different video hardware. MA13 is used as an additional
-A11 to switch the 2k halfs of a newer 4k charrom. This is used
-for nationalized character sets?
-</P>
-<P>
-Only seven bit of the data read from memory are used for character
-ROM addressing. The 8th bit is instead directly fed to an inverter,
-inverting the pixel stream if set - thus inverting the character.
-</P>
-<P>
-The Cursor hardware is not used.
-</P>
-<P>
-If more than 8 scanlines per character are used the hardware automatically
-blanks the scanlines for the scanlines beyond the 8th.
-Without that and only RA0-2 used for character ROM address the
-same character would be redisplayed from the start.
-</P>
-    </desc>
-	<subsection name="PET 4032 'Fat40'" toc="fat40">
-	<desc>
-<P>The so-called 'Fat40' is a 4032 model that has a 12&quot; screen
-and a "universal board" - a board that can be used for the 8032 or the
-4032. Thus it uses the CRTC as video chip. A separate static memory
-separate from main memory is used as video RAM.
-</P>
-<PRE>
-PET 4032 CRTC usage block diagram
----------------------------------
-
-
-                |               CRTC                                                      |
-                ---------------------------------------------------------------------------
-           MA0-9  |                              RA0-2 |    -------                   DE|
-                  |                                    |    |     |                     |
-                  |  -----      -------                -----|A0-2 |      -----          |  ---
-                  |  |   |      |     |       -----         |     |D0-7  |   |     ---  +--| | Video
-                  +--|   | A0-9 |     | D0-7  |   |    D0-6 |     |------|   |-----| |     |&gt;|---
-                     | &gt; |------| RAM |---+---|   |---+-----|A3-8 |      |   |     | |-----| |
- CPU A0-9 -----------|   |      |     |   |   |   |   |     |     |      -----   +-| |     ---
-                     |   |      |     |   |   -----   |     -------      shift   | ---      AND
-                     -----      -------   |   Latch   |     Charrom     register |  XOR
-                   Mux 2-to-1             |           |D7                        |
-                                          |           +--------------------------+
-                     -----                |
-                     |   |                |
- CPU D0-7 -----------|   |----------------+
-                     |   |
-                     -----
-                    Buffer
-</PRE>
-<P>
-During Phi2 low (Processor does not use the bus) the Mux chip selects
-the MA0-9 address lines from the CRTC. The video RAM then outputs the
-character value and it is saved in the latch. The latch output is then
-used as input for the Charrom. The output of which is given to the
-shift register that makes a pixel stream rather than a byte stream.
-</P>
-<P>
-When Phi2 is high then the Mux selects the CPU address lines for the
-video RAM, allowing normal CPU memory accesses.
-</P>
-<P>
-The Vertical Sync signal of the CRTC is not only used for video
-hardware control but it is also (inverted and) connected to the
-PIA1 CB1 line to
-generate system interrupts with the frame rate. Also the state
-of this line can be checked with VIA PB5.
-</P>
-	</desc>
-	</subsection>
-	<subsection name="PET 8032" toc="8032">
-	<desc>
-<P>The universal board can also be used in the 8032. As the 8032 also
-runs on 1MHz only, there is a problem with the memory bandwidth.
-The memory used was static RAM with a maximum access frequency of
-2MHz. As half the cycles were reserved for the CPU (Phi2 high),
-only 1MHz video RAM bandwidth was left, which is only enough for
-40 columns a line - with an 8 bit graphics data bus.
-</P><P>In the 8032, however, Commodore decided to use a 16 bit
-graphics data bus. How does this work? The video memory is separated
-into to areas of 1kByte each, that the CPU can write to independetly
-with 8 bit access. One area is for even addresses, the other for
-odd CPU memory addresses. The video circuitry, however, reads both
-the RAM areas at the same time (thus twice 8bit = 16bit access), and
-latches both values. To generate the video signal than first the
-value from the even area, then the one from the odd area is used.
-</P>
-<PRE>
-PET 8032 CRTC usage block diagram
----------------------------------
-
-
-                |               CRTC                                                        |
-                -----------------------------------------------------------------------------
-           MA0-9  |                                RA0-2 |    -------                   DE|
-                  |                                      |    |     |                     |
-                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
-                  |  |   |      |     |         -----         |     |D0-7  |   |     ---  +--| | Video
-                  +--|   | A0-9 | even| D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|---
-                     | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |
- CPU A0-9 -----------|   |   |  |     |   |     |   | | |     |     |      -----   +-| |     ---
-                     |   |   |  |     |   |     ----- | |     -------      shift   | ---      AND
-                     -----   |  -------   |     Latch | |     Charrom     register |  XOR
-                      Mux    |            |           | |  D7                      |
-                     2-to-1  |            |           | +--------------------------+
-                             |  -------   |      odd  |
-                             |  |     |   |     ----- |D0-7
-                             |  | odd |   |     |   | |
-                             +--| RAM |--/|\-+--|   |-+
-                                |     |   |  |  |   |
-                                |     |   |  |  -----
-                     even       -------   |  |  Latch
-                     -----                |  |
-                     |   |                |  |
- CPU D0-7 ------+----|   |-----------------  |
-                |    |   |                   |
-                |    -----                   |
-                |     odd                    |
-                |    -----                   |
-                |    |   |                   |
-                -----|   |-------------------+
-                     |   |
-                     -----
-                     Buffer
-</PRE>
-<P>This diagram shows how the RAM and latches are doubled for even and odd addresses.
-It also makes it clear that it is a relatively simple addition to the 4032 to display
-80 columns. This is one reason why universal boards are actually feasible.
-</P><P>This setup also explains why even the 80 columns PET actually initialize the
-CRTC video chip with 40 columns - as the video RAM bus width is 16bit instead of 8bit,
-each of the CRTC character actually is two characters on the screen.
-</P>
-	</desc>
-	</subsection>
-	<subsection name="PET 8296" toc="8296">
-	<desc>
-<P>The 8296 is a different beast altogether. Here the separate static video memory is
-completely gone. All the memory of the system (actually 128k, of which 96k can be
-used as main memory and 4k as video memory) is put into two dynamic RAM banks of
-64k each.
-</P>
-<PRE>
-PET 8296 CRTC usage block diagram
----------------------------------
-
-
-                |               CRTC                                                        |
-                -----------------------------------------------------------------------------
-           MA0-9  |                                RA0-2 |    -------                   DE|
-                  |                                      |    |     |                     |
-                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
-                  |  |   | DRM  |     |         -----         |     |D0-7  |   |     ---  +--| | Video
-                  +--|   | 0-7  | 64k | D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|---
-                  |  | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |
-                  +--|   |   |  |     |   |     |   | | |     |     |      -----   +-| |     ---
-                     |   |   |  |     |   |     ----- | |     -------      shift   | ---      AND
-                     -----   |  -------   |     Latch | |     Charrom     register |  XOR
-                      Mux    |            |           | |  D7                      |
-                     2-to-1  |            |           | +--------------------------+
-                     -----   |  -------   |      odd  |
-                     |   |   |  |     |   |     ----- |D0-7
-               +-----|   |   |  | 64k |   |     |   | |
- CPU A0-15 ----+     | &gt; |---+--| RAM |---+-----|   |-+
-               +-----|   |      |     |   |     |   |
-                     |   |      |     |   |     -----
-                     -----      -------   |     Latch
-                                          |
-                     -----                |
-                     |   |                |
- CPU D0-7 -----------|   |-----------------
-                     |   |
-                     -----
-</PRE>
-<P>As opposed to static RAM, dynamic RAM requires multiplexed address
-lines. Therefore both, the CPU and CRTC address lines are multiplexed
-separately with 74ls257 ICs that are enabled only when the CPU or
-CRTC respectively accesses the memory.</P>
-<P>The diagram shows that now the dRAM address and data lines are
-shared between the two 64k memory banks. This means that only one access
-can happen at a time. as a result, to display 80 columns, it is necessary
-that the memory is accessed faster than 2MHz. In fact it is accessed
-faster, with approx. 4Mhz, as can be seen in the description of the UC2
-PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
-</P>
-	</desc>
-	</subsection>
   </itemlist>
   <itemlist name="PET timing examples" toc="pettiming">
 	<desc>
