@@ -20,6 +20,9 @@ and internet access.</p>
   </overview>
   <news>
     <item date="2010-12-22">
+	Minor update to the <a href="65k/index.html">65k</a> programming specs - added the "NF" prefix bit.
+    </item>
+    <item date="2010-12-22">
         Updated the <a href="csa/cpu816v2/index.html">CPU816 board (v2)</a>
         to fix the ROM programming, and make it compatible with the <a href="adv65/pet816/index.html">PET816</a> board.
     </item>
