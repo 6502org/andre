@@ -165,7 +165,11 @@ more modern browser, like Internet Explorer 8 or later,
 		With this board I was able to achieve a <b>speed increase of over 8 times</b> compared to the 1MHz system :-)
 		</p>
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0C</a> (prototype)</li><li><a href="#board2">2.0B</a> (prototype)</li><li><a href="#board3">2.0A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-12-22</small>
+           	The schematics and VHDL is updated and fixed. It is now compatible to the
+           	<a href="../../adv65/pet816/index.html">PET816</a> board (with the exception of the speed register), 
+           	so the same programs run on both systems. 
+           </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#making">Making of</a></li><li><a href="#memmap">Memory Map</a></li><li><a href="#control">Control port</a></li><li><a href="#future">Notes and possible future enhancements</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0E</a> (prototype)</li><li><a href="#board2">2.0C</a> (deprecated)</li><li><a href="#board3">2.0B</a> (deprecated)</li><li><a href="#board4">2.0A</a> (deprecated)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="making" id="making">Making of</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 			When building the <a href="../cpu816/index.html">version 1 board</a> I found that it is very
 			tedious replacig parts, cutting traces and soldering new connections each time I had to test
 			something. So I decided to try out more integrated programmable logic (more integrated than a GAL
@@ -211,16 +215,16 @@ Now that the version 1 board was working, I decided to use this as a starting po
 			</p>
 		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 			<p>The memory map is relatively simple, only the lowest 64k are more complicated:
-				<table class="content" border="1"><tr><th>Memory area</th><th>Range</th><th>no BOOTROM, no SLOW64k</th><th>BOOTROM, no SLOW64k</th><th>no BOOTROM, SLOW64k</th></tr>
-					<tr><th>$000000-$007fff</th><td>32k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td></tr>
-					<tr><th>$008000-$0087ff</th><td>2k</td><td colspan="3">CS/A bus (video memory) $18000-$187ff</td></tr>
-					<tr><th>$008800-$00e7ff</th><td>24k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td></tr>
-					<tr><th>$00e800-$00efff</th><td>2k</td><td colspan="3">CS/A bus (io)</td></tr>
-					<tr><th>$00f000-$00ffff</th><td>4k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td></tr>
+				<table class="content" border="1"><tr><th>Memory area</th><th>Range</th><th>no BOOTROM, no SLOW64k</th><th>BOOTROM, no SLOW64k</th><th>no BOOTROM, SLOW64k</th><th>Comments</th></tr>
+					<tr><th>$000000-$007fff</th><td>32k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
+					<tr><th>$008000-$0087ff</th><td>2k</td><td colspan="3">CS/A bus (video memory) $18000-$187ff</td><td>Note: If the FASTVREAD control register bit is set, only writes go to the system bus (and write through to FastRAM), but reads only go to FastRAM.</td></tr>
+					<tr><th>$008800-$00e7ff</th><td>24k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
+					<tr><th>$00e800-$00efff</th><td>2k</td><td colspan="3">CS/A bus (io)</td><td>Writes always also go to FastRAM (write through)</td></tr>
+					<tr><th>$00f000-$00ffff</th><td>4k</td><td>FastRAM</td><td>BootROM</td><td>CS/A bus</td><td>Writes always also go to FastRAM (write through)</td></tr>
 					<tr><th>$010000-$17ffff</th><td>1472k (3*512k-64k)</td><td colspan="3">FastRAM</td></tr>
 					<tr><th>$180000-$dfffff</th><td></td><td colspan="3">---</td></tr>
 					<tr><th>$e00000-$efffff</th><td>1024k</td><td colspan="3">CS/A bus (memory)</td></tr>
-					<tr><th>$f00000-$f7ffff</th><td>512k</td><td colspan="3">---</td></tr>
+					<tr><th>$f00000-$f7ffff</th><td>512k</td><td colspan="3">FastRAM mirror of $000000-$07ffff</td></tr>
 					<tr><th>$f80000-$ffffff</th><td>512k</td><td colspan="3">ROM</td></tr>
 				</table>
 				The memory map is controlled by two bits, BOOTROM and SLOW64k, in the control register 
@@ -235,23 +239,26 @@ Now that the version 1 board was working, I decided to use this as a starting po
 				I/O is mapped on the /IOSEL select line on the CS/A bus.
 		</p>
 		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="control" id="control">Control port</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the control port for the CPU board.
-				The port is located at $EFFF in the I/O area and is (currently) write-only.
+				The port is located at $EBFF in the I/O area and is (currently) write-only
+				(It can be relocated to $EFFF via jumper, but due to incompatibilities with my
+				CS/A setup I decided to use $EBFF as standard location).
 				The different bits are used as described in this table:
 				<table border="1" class="content" width="80%">
 					<tr><th>Bit</th><th>Value</th><th>Name</th><th>Description</th><th>Init value</th><th>Notes</th></tr>
 					<tr><td>7</td><td>128</td><td>PRGROM</td><td>When set, allows write access to the built-in ROM. Note that specific algorithms are required to do the programming, random access does not work</td><td>0</td></tr>
-					<tr><td>6</td><td>64</td><td>BOOTROM</td><td>When set, the lowest 64k CPU address space are mapped to the built-in ROM (except video and I/O, see above)</td><td>Bootrom jumper</td></tr>
+					<tr><td>6</td><td>64</td><td>BOOTROM</td><td>When set, the lowest 64k CPU address space are mapped to the built-in ROM (except video and I/O, see above)</td><td>Bootrom jumper</td><td>Note this allows to unmap the system ROM after boot by setting this bit to 0. Only the initial value is taken from the Bootrom jumper.</td></tr>
 					<tr><td>5</td><td>32</td><td>SLOW64K</td><td>When set, the lowest 64k CPU address space are mapped to the CS/A bus (except video and I/O, see above)</td><td>1</td></tr>
-					<tr><td>4</td><td>16</td><td>SLOWONLY</td><td>When set, use slow access even on fast memory</td><td>1</td><td>This is subject to change slightly. Currently the VDA/VPA CPU signals are used to "hide" bogus CPU memory cycles, which changes the timing, I might change that bit to include bogus cycle removal</td></tr>
-					<tr><td>3,2</td><td>16,8</td><td>WPROTECT</td><td>Write protect upper parts of the lowest 64k of FastRAM 
-									<table><tr><th>Value</th><th>Protected Area</th></tr>
-										<tr><td>00</td><td>None</td></tr>
-										<tr><td>01</td><td>$A000-$FFFF</td></tr>
-										<tr><td>10</td><td>$C000-$FFFF</td></tr>
-										<tr><td>11</td><td>$E000-$FFFF</td></tr>
-									</table>
-						</td><td>00</td></tr>
-						<tr><td>1,0</td><td>2,1</td><td>CLKDIV (reserved)</td><td>These bits are reserved for a clock divider value</td><td>00</td><td>This is actually used in the (somewhat compatible) PET 65816 board</td></tr>
+					<tr><td>4</td><td>16</td><td>SLOWCLK</td><td>When set, use slow access even on fast memory</td><td>1</td></tr>
+					<tr><td>3</td><td>8</td><td>HIDEBOGUS</td><td>When set, hide the CPU's bogus cycles - as indicated by VPA and VDA both 0 - from the system bus when possible.</td><td>1</td></tr>
+					<tr><td>2</td><td>4</td><td>FASTVREAD</td><td>When set, read the video RAM area from the fast RAM (writes still go to the slow system RAM)</td><td>1</td></tr>
+					<tr><td>1,0</td><td>2,1</td><td>WPROTECT</td><td>Write protect upper parts of the lowest 64k of FastRAM 
+						<table><tr><th>Value</th><th>Protected Area</th></tr>
+							<tr><td>00</td><td>None</td></tr>
+							<tr><td>01</td><td>$A000-$FFFF</td></tr>
+							<tr><td>10</td><td>$C000-$FFFF</td></tr>
+							<tr><td>11</td><td>$E000-$FFFF</td></tr>
+						</table>
+					</td><td>00</td></tr>
 				</table>
 			</p>
 		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="future" id="future">Notes and possible future enhancements</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
@@ -291,13 +298,53 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		<table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test1.a65">test1.a65</a>(copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM )</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0C</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0E</a></h3>
 <p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This version adds a jumper to define the control port address.
+			Also the new <code>/ROMOE</code> signal enables writing the ROM in-system...
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			The layout has not been tested, I fixed my 2.0A version up to 2.0E.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_cpu816-v2.0e.sch">csa_cpu816-v2.0e.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_cpu816-v2.0e-sch.png">csa_cpu816-v2.0e-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_cpu816-v2.0e.brd">csa_cpu816-v2.0e.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_cpu816-v2.0e-brd.png">csa_cpu816-v2.0e-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_parts"> </div></td>
+<td><a href="csa_cpu816-v2.0e.parts">csa_cpu816-v2.0e.parts</a></td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="csacpu816-v2.0e.vhd">csacpu816-v2.0e.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="csacpu816-v2.0e.ucf">csacpu816-v2.0e.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="csacpu816-v2.0e.jed">csacpu816-v2.0e.jed</a>(CPLD compiled source)</td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 2.0C</a></h3>
+<p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 2.0B board it adds a protection resistor for the RDY signal. 
 			When the CPU executes a WAI instruction, RDY is pulled low, this may overload the
 			chip drivers, thus the resistor. Untested though.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			The in-system ROM programming is not working.
 		</td></tr>
 <tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -328,8 +375,8 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.0B</a></h3>
-<p>Status: prototype</p>
+<h3><a name="board3" id="board3">Version: 2.0B</a></h3>
+<p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 2.0A board it fixes the timing bugs.
@@ -363,8 +410,8 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 2.0A</a></h3>
-<p>Status: prototype</p>
+<h3><a name="board4" id="board4">Version: 2.0A</a></h3>
+<p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			There are a few timing issues, and the main bug is that the counter counts the wrong way - so

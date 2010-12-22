@@ -15,6 +15,10 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2010-12-22">
+			Updated the <a href="cpu816v2/index.html">CPU816 board (v2)</a> 
+			to fix the ROM programming, and make it compatible with the <a href="../adv65/pet816/index.html">PET816</a> board.
+		</item>
 		<item date="2010-08-22">
 			Updated the <a href="vdc/index.html">VDC</a> and 
 			<a href="cpu/index.html">CPU</a> boards with versions with better layout

@@ -1,0 +1,60 @@
+
+
+NET "CPUADDR_64K<23>"			LOC = "P4";
+NET "CPUADDR_64K<22>"			LOC = "P1";
+NET "CPUADDR_64K<20>"			LOC = "P2";
+NET "CPUADDR_2K<11>"				LOC = "P18";
+NET "CPUADDR_2K<12>"				LOC = "P20";
+NET "CPUADDR_64K<21>"			LOC = "P14";
+NET "CPUADDR_2K<15>"				LOC = "P15";
+NET "CPUADDR_2K<14>"				LOC = "P24";
+NET "CPUADDR_2K<13>"				LOC = "P25";
+NET "CPUADDR_64K<18>"			LOC = "P32";
+NET "CPUADDR_64K<17>"			LOC = "P34";
+NET "CPUADDR_64K<19>"			LOC = "P33";
+
+NET "CPUADDR_64K<16>"			LOC = "P84";
+NET "CPUADDR_0<2>"				LOC = "P82";
+NET "CPUADDR_0<3>"				LOC = "P83";
+NET "CPUADDR_0<1>"				LOC = "P81";
+NET "CPUADDR_0<0>"				LOC = "P80";
+
+NET "CPUDATA<0>"					LOC = "P72";
+NET "CPUDATA<1>"					LOC = "P70";
+NET "CPUDATA<2>"					LOC = "P68";
+NET "CPUDATA<3>"					LOC = "P63";
+NET "CPUDATA<4>"					LOC = "P67";
+NET "CPUDATA<5>"					LOC = "P69";
+NET "CPUDATA<6>"					LOC = "P71";
+NET "CPUDATA<7>"					LOC = "P75";
+
+NET "BRDY"							LOC = "P31";
+NET "NSLOWDATEN"					LOC = "P6";
+
+NET "CPUVPA"						LOC = "P79";
+NET "CPUVDA"						LOC = "P66";
+NET "LATCHEN"						LOC = "P7";
+
+NET "NRAMCS<0>"					LOC = "P58";
+NET "NRAMCS<1>"					LOC = "P43";
+NET "NRAMCS<2>"					LOC = "P53";
+NET "NROMCS"						LOC = "P45";
+NET "NROMOE"						LOC = "P47";
+NET "RESET"							LOC = "P56";
+
+NET "CPURDY"						LOC = "P19";
+NET "CPURNW"						LOC = "P48";
+NET "NCPUADDR_MYIO"				LOC = "P26";
+NET "C8PHI2"						LOC = "P9";
+
+NET "BOOTROMIN"					LOC = "P40";
+NET "XMA16"							LOC = "P50";
+NET "NIOSEL"						LOC = "P17";
+NET "NMEMSEL"						LOC = "P3";
+NET "BE"								LOC = "P5";
+NET "DPHI2"							LOC = "P13";
+
+NET "DIAG"							LOC = "P11";
+
+#NET "PHI2"							LOC = "P37";
+NET "NPHI2"							LOC = "P37";
