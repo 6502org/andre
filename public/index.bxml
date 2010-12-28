@@ -19,8 +19,13 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
-    <item date="2010-12-22">
+    <item date="2010-12-28">
+        Updated the <a href="csa/ramdisk/index.html">CS/A Ramdisk board</a>.
+        Now a CPLD-based version is available in addition to the older TTL-based version.
+    </item>
+    <item date="2010-12-28/2010-12-22">
 	Minor update to the <a href="65k/index.html">65k</a> programming specs - added the "NF" prefix bit.
+	Moved some LSB $f opcodes to ext page to add "abs,Y" addressing mode opcodes.
     </item>
     <item date="2010-12-22">
         Updated the <a href="csa/cpu816v2/index.html">CPU816 board (v2)</a>

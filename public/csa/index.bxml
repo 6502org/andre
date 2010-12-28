@@ -15,6 +15,10 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2010-12-28">
+			Updated the <a href="ramdisk/index.html">Ramdisk board</a>.
+			Now a CPLD-based version is available in addition to the older TTL-based version.
+		</item>
 		<item date="2010-12-22">
 			Updated the <a href="cpu816v2/index.html">CPU816 board (v2)</a> 
 			to fix the ROM programming, and make it compatible with the <a href="../adv65/pet816/index.html">PET816</a> board.

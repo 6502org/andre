@@ -143,7 +143,13 @@ more modern browser, like Internet Explorer 8 or later,
 		is accessible via a single register, using an auto-increment
 		byte address counter (8-bit byte address within page only).
 		</p><p>
-		The current status is that the board works in some specific 
+		Two major board versions are available. The first one is more a concept
+		and is built from TTL logic glue. The second one uses a CPLD to implement
+		the DRAM controller.
+		</p><p>
+		The CPLD board is brand new and undergoing tests now.
+		</p><p>
+		The current status of the TTL board is that it works in some specific 
 		configurations. I built the board over two years ago and 
 		encountered a number of errors (see notes below). 
 		Only recently I have tested it with the
@@ -172,9 +178,40 @@ more modern browser, like Internet Explorer 8 or later,
 		<li>Maybe even use an FPGA to implement a DRAM controller</li>
 		</ul>
 		<p>See the <a href="../../icaphw/design.html">this page</a> for the full discussion</p>
-		<p>I am currently looking into a CPLD-based design for this board.</p>
+		<p>The CPLD-based design for this board reflects these discussions.</p>
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0C</a> (buggy)</li><li><a href="#board2">1.0B</a> (buggy)</li><li><a href="#board3">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0C</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0C</a> (prototype)</li><li><a href="#board2">1.0C</a> (buggy)</li><li><a href="#board3">1.0B</a> (buggy)</li><li><a href="#board4">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0C</a></h3>
+<p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This is a complete redesign - using a CPLD instead of 
+			a set of TTL logic glue. Also it now adds - by design -
+			series and termination resistor networks to improve
+			signal quality.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_ramdisk-v2.0c.sch">csa_ramdisk-v2.0c.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_ramdisk-v2.0c-sch.png">csa_ramdisk-v2.0c-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_ramdisk-v2.0c.brd">csa_ramdisk-v2.0c.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_ramdisk-v2.0c-brd.png">csa_ramdisk-v2.0c-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0c.vhd">dramctrl-v2.0c.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0c.ucf">dramctrl-v2.0c.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0c.jed">dramctrl-v2.0c.jed</a>(CPLD compiled source)</td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.0C</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -239,7 +276,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.0B</a></h3>
+<h3><a name="board3" id="board3">Version: 1.0B</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -266,7 +303,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</a></td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 1.0A</a></h3>
+<h3><a name="board4" id="board4">Version: 1.0A</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -313,7 +350,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2010-01-07.</p>
+</div></div><div id="contentfooter"><p>Last modified: 2010-12-28.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>
