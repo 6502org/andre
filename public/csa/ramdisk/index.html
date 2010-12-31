@@ -180,7 +180,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<p>See the <a href="../../icaphw/design.html">this page</a> for the full discussion</p>
 		<p>The CPLD-based design for this board reflects these discussions.</p>
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0C</a> (prototype)</li><li><a href="#board2">1.0C</a> (buggy)</li><li><a href="#board3">1.0B</a> (buggy)</li><li><a href="#board4">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0C</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0D</a> (prototype)</li><li><a href="#board2">1.0C</a> (buggy)</li><li><a href="#board3">1.0B</a> (buggy)</li><li><a href="#board4">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0D</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -189,27 +189,54 @@ more modern browser, like Internet Explorer 8 or later,
 			series and termination resistor networks to improve
 			signal quality.
 		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			The /CAS, /RAS, and DRAM address lines have series as well as termination
+			resistors. I found that the terminator combination in the schematics (2k2/3k3) seems to
+			draw a lot of current from the CPLD. I currently use a 4k7 terminator to ground,
+			but none to VCC.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			I've tested the board with three types of SIMM modules. One is a three-chip low profile module
+			with parity (which isn't used), one is an industry module with nine separate SMD memory chips (i.e. also with
+			parity), and the third one is simple board where I soldered eight separate chips (through hole).
+			All modules have 1MByte (although I thought the three-chip module would be 4MByte, I cannot remember
+			giving this one away, just as I cannot see a defect in the address decoding).
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			The '245 bus driver MUST be an 'LS type, not an 'ALS. If you use an 'ALS,
+			it somehow at some point seems to drive against the DRAM while reading.
+			I found ripples of up to 550mV on the power supply lines on both(!) sides
+			of the board (bus power supply and external power supply)
+			when using the 'ALS type. Even when the external power supply was regulated
+			out of a 12V that did not show those ripples.
+			Shortening the active period (/EN) for example by masking the signal with RAS
+			helps with the power ripples - but makes the data unreliable. The 'LS seems to
+			work fine so far.
+		</td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_ramdisk-v2.0c.sch">csa_ramdisk-v2.0c.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_ramdisk-v2.0c-sch.png">csa_ramdisk-v2.0c-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_ramdisk-v2.0c.brd">csa_ramdisk-v2.0c.brd</a></td>
+<td><a href="csa_ramdisk-v2.0d-sch.png">csa_ramdisk-v2.0d-sch.png</a></td>
 </tr>
 <tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_ramdisk-v2.0c-brd.png">csa_ramdisk-v2.0c-brd.png</a></td>
+<td><a href="csa_ramdisk-v2.0d.brd">csa_ramdisk-v2.0d.brd</a></td>
 </tr>
-<tr class="R1"><td><div class="i_logic"> </div></td>
-<td><a href="dramctrl-v2.0c.vhd">dramctrl-v2.0c.vhd</a>(CPLD VHDL source)</td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_ramdisk-v2.0d-brd.png">csa_ramdisk-v2.0d-brd.png</a></td>
 </tr>
 <tr class="R0"><td><div class="i_logic"> </div></td>
-<td><a href="dramctrl-v2.0c.ucf">dramctrl-v2.0c.ucf</a>(CPLD constraints file (pin mapping))</td>
+<td><a href="dramctrl-v2.0d.vhd">dramctrl-v2.0d.vhd</a>(CPLD VHDL source)</td>
 </tr>
 <tr class="R1"><td><div class="i_logic"> </div></td>
-<td><a href="dramctrl-v2.0c.jed">dramctrl-v2.0c.jed</a>(CPLD compiled source)</td>
+<td><a href="dramctrl-v2.0d.ucf">dramctrl-v2.0d.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0d.jed">dramctrl-v2.0d.jed</a>(CPLD compiled source)</td>
+</tr>
+<tr class="R1"><td><div class="i_src"> </div></td>
+<td><a href="ramdisk-tests.tar.gz">ramdisk-tests.tar.gz</a>(Test programs)</td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 1.0C</a></h3>
 <p>Status: buggy</p>

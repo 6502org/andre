@@ -53,7 +53,7 @@
 		</desc>
 	</diagram-->
 	<rev>
-		<version>2.0C</version>
+		<version>2.0D</version>
 		<status>prototype</status>
 		<note type="msg">
 			This is a complete redesign - using a CPLD instead of 
@@ -61,13 +61,37 @@
 			series and termination resistor networks to improve
 			signal quality.
 		</note>
-		<file ltype="schem" ptype="esch">csa_ramdisk-v2.0c.sch</file>
-		<file ltype="schem" ptype="png">csa_ramdisk-v2.0c-sch.png</file>
-		<file ltype="layout" ptype="ebrd">csa_ramdisk-v2.0c.brd</file>
-		<file ltype="layout" ptype="png">csa_ramdisk-v2.0c-brd.png</file>
-                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">dramctrl-v2.0c.vhd</file>
-                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">dramctrl-v2.0c.ucf</file>
-                <file ltype="logic" ptype="jed" note="CPLD compiled source">dramctrl-v2.0c.jed</file>
+		<note type="msg">
+			The /CAS, /RAS, and DRAM address lines have series as well as termination
+			resistors. I found that the terminator combination in the schematics (2k2/3k3) seems to
+			draw a lot of current from the CPLD. I currently use a 4k7 terminator to ground,
+			but none to VCC.
+		</note>
+		<note type="msg">
+			I've tested the board with three types of SIMM modules. One is a three-chip low profile module
+			with parity (which isn't used), one is an industry module with nine separate SMD memory chips (i.e. also with
+			parity), and the third one is simple board where I soldered eight separate chips (through hole).
+			All modules have 1MByte (although I thought the three-chip module would be 4MByte, I cannot remember
+			giving this one away, just as I cannot see a defect in the address decoding).
+		</note>
+		<note type="warn">
+			The '245 bus driver MUST be an 'LS type, not an 'ALS. If you use an 'ALS,
+			it somehow at some point seems to drive against the DRAM while reading.
+			I found ripples of up to 550mV on the power supply lines on both(!) sides
+			of the board (bus power supply and external power supply)
+			when using the 'ALS type. Even when the external power supply was regulated
+			out of a 12V that did not show those ripples.
+			Shortening the active period (/EN) for example by masking the signal with RAS
+			helps with the power ripples - but makes the data unreliable. The 'LS seems to
+			work fine so far.
+		</note>
+		<file ltype="schem" ptype="png">csa_ramdisk-v2.0d-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v2.0d.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk-v2.0d-brd.png</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">dramctrl-v2.0d.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">dramctrl-v2.0d.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">dramctrl-v2.0d.jed</file>
+                <file ltype="src" ptype="tgz" note="Test programs">ramdisk-tests.tar.gz</file>
 	</rev>
 	<rev>
 		<version>1.0C</version>
