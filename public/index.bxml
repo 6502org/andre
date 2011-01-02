@@ -19,7 +19,11 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
-    <item date="2010-12-28">
+    <item date="2011-01-02">
+	Some small updates to the <a href="65k/index.html">65k</a> programming specs. Moved some opcodes around
+	to achieve a more regular mapping
+    </item>
+    <item date="2011-01-02">
         Updated the <a href="csa/ramdisk/index.html">CS/A Ramdisk board</a>.
         Now a CPLD-based version is available in addition to the older TTL-based version.
     </item>

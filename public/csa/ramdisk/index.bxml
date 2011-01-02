@@ -13,7 +13,13 @@
 		and is built from TTL logic glue. The second one uses a CPLD to implement
 		the DRAM controller.
 		</p><p>
-		The CPLD board is brand new and undergoing tests now.
+		The CPLD board is brand new and undergoing tests. With version 2.0E the power
+		glitch has been fixed - the '245 driver was activated too early so it reached
+		into the previous refresh cycle. The board works stable at 1MHz bus 
+		frequency, with 4 DRAM modules. At 2MHz write timing is stable, but there are read
+		glitches (repeated reads vary). On the scope the signals look fine, from timing
+		and shape, and seem to work for writing, so I am investigating 
+		bus terminators for the main system bus now.
 		</p><p>
 		The current status of the TTL board is that it works in some specific 
 		configurations. I built the board over two years ago and 
@@ -53,6 +59,29 @@
 		</desc>
 	</diagram-->
 	<rev>
+		<version>2.0E</version>
+		<status>prototype</status>
+		<note type="msg">
+			This board works stable at 1MHz system bus frequency, tested with up to 4 modules with 1 MByte each.
+		</note>
+		<note type="msg">
+			I currently use 4k7 Ohm terminators both to GND and to VCC.
+		</note>
+		<note type="msg">
+			Compared to the 2.0D it has only a small layout fix (so the GND for the '245 driver is
+			routed directly to its bypass cap, not closer to the DRAM GND... The CPLD has fixed timing,
+			and some glitch prevention from the main bus. The '245 can now be 'LS or 'ALS.
+		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v2.0e.sch</file>
+		<file ltype="schem" ptype="png">csa_ramdisk-v2.0e-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v2.0e.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk-v2.0e-brd.png</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">dramctrl-v2.0e.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">dramctrl-v2.0e.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">dramctrl-v2.0e.jed</file>
+                <file ltype="driver" ptype="tgz" note="Test programs">ramdisk-tests.tar.gz</file>
+	</rev>
+	<rev>
 		<version>2.0D</version>
 		<status>prototype</status>
 		<note type="msg">
@@ -85,13 +114,14 @@
 			helps with the power ripples - but makes the data unreliable. The 'LS seems to
 			work fine so far.
 		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v2.0d.sch</file>
 		<file ltype="schem" ptype="png">csa_ramdisk-v2.0d-sch.png</file>
 		<file ltype="layout" ptype="ebrd">csa_ramdisk-v2.0d.brd</file>
 		<file ltype="layout" ptype="png">csa_ramdisk-v2.0d-brd.png</file>
                 <file ltype="logic" ptype="vhd" note="CPLD VHDL source">dramctrl-v2.0d.vhd</file>
                 <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">dramctrl-v2.0d.ucf</file>
                 <file ltype="logic" ptype="jed" note="CPLD compiled source">dramctrl-v2.0d.jed</file>
-                <file ltype="src" ptype="tgz" note="Test programs">ramdisk-tests.tar.gz</file>
+                <file ltype="driver" ptype="tgz" note="Test programs">ramdisk-tests.tar.gz</file>
 	</rev>
 	<rev>
 		<version>1.0C</version>
