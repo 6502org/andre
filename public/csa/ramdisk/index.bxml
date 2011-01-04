@@ -51,6 +51,10 @@
 		</ul>
 		<p>See the <a href="../../icaphw/design.html">this page</a> for the full discussion</p>
 		<p>The CPLD-based design for this board reflects these discussions.</p>
+                <div class="rightimg">
+                     <a href="board.png"><img width="300px" src="board-small.png"/></a><br/>The Ethernet board in
+                                              the '4245 option.
+                </div>
 	</desc>
 	<!--diagram>
 		<file>keyemu.gif</file>

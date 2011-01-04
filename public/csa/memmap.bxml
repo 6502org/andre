@@ -34,6 +34,7 @@
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (default)</td><td>CRTC, Control (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (default)</td><td>PIA2 (default)</td><td></td><td>VIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
+<tr> <th>Ethernet</th><td/><td></td><td></td><td></td><td></td><td/><td/><td/><td/><td/><td/><td/><td>CS8900A (default)</td><td>CS8900A (opt)</td><td/><td/></tr>
 <tr> <th>PC floppy</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD1770 (opt)</td><td>VIA (opt)</td><td>WD1770 (default)</td><td>VIA (default)</td></tr>
 <tr> <th>DRVIO</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>WD177x, Control (default)</td><td>CIA (default)</td><td></td><td></td><td>WD177x, Control (opt)</td><td>CIA (opt)</td></tr>
 <tr> <th>DUART</th><td/><td/><td/><td/><td/><td>UART1, UART2</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
@@ -45,6 +46,16 @@
 <tr> <th>csakey</th><td/><td>PIA1, ACIA (default)</td><td/><td/><td/><td/><td/><td/><td/><td>PIA1, ACIA (opt)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>csaiec</th><td/><td/><td>PIA</td><td/><td>VIA</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>
 </table>
+</desc></subsection>
+
+<subsection toc="ioc" name="I/O $EB**"><desc>
+<table border="1" class="memmap">
+<caption>Table for $b** I/O addresses</caption>
+<tr> <th></th><th>$b0*</th> <th>$b1*</th> <th>$b2*</th> <th>$b3*</th> <th>$b4*</th> <th>$b5*</th> <th>$b6*</th> <th>$b7*</th> <th>$b8*</th> <th>$b9*</th> <th>$ba*</th> <th>$bb*</th> <th>$bc*</th> <th>$bd*</th> <th>$be*</th> <th>$bf*</th> </tr>
+<tr> <th colspan="17" class="separator">Main boards</th> </tr>
+<tr> <th>CPU816</th><td></td><td></td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>$ebff Control (default)</td></tr>
+</table>
+
 </desc></subsection>
 <subsection toc="ioc" name="I/O $EC**"><desc>
 <table border="1" class="memmap">
@@ -77,6 +88,7 @@
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>Main CPU</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control reg, CPU addr</td> <td></td> <td>MMU</td> </tr>
 <tr> <th>Main BIOS</th><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>Control, UART (opt)</td><td/><td>Control, UART (default)</td> <td></td> </tr>
+<tr> <th>CPU816</th><td></td><td></td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td>$efff Control (opt)</td></tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td/><td/><td/><td/><td/><td/><td/><td/><td>CRTC, Control (opt since 1.4)</td><td>CRTC, Control (opt since 1.4)</td><td/><td/><td/><td/><td/><td/></tr>
 <tr> <th>PETIO</th><td/><td>PIA1 (opt)</td><td>PIA2 (opt)</td><td></td><td>VIA (opt)</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/></tr>

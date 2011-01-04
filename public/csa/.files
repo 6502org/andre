@@ -13,6 +13,7 @@ p pwr Power Supply
 s I/O boards
 p vdc Video board
 p petio CBM PET I/O
+p etholi Ethernet
 p shug PC floppy
 p drvio DRVIO floppy and IEC
 p duart Double UART (RS232)

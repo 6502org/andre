@@ -6,7 +6,7 @@
 	<copyright>
 		<author>Andr&eacute; Fachat</author>
 		<start>1989</start>
-		<end>2010</end>
+		<end>2011</end>
 	</copyright>
 	<forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
 	<desc><p>20th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p><p>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard. 
@@ -15,6 +15,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2011-01-04" state="hot">
+			Added a completely new <a href="etholi/index.html">Ethernet board</a>!
+		</item>
 		<item date="2011-01-02">
 			Updated the <a href="ramdisk/index.html">Ramdisk board</a>.
 			Now a CPLD-based version is available in addition to the older TTL-based version.

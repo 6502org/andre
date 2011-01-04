@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2011</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2011-01-04" state="hot">
+	Added a completely new <a href="csa/etholi/index.html">Ethernet board</a> to my <a href="csa/index.html">CS/A computer</a>.
+    </item>
     <item date="2011-01-02">
 	Some small updates to the <a href="65k/index.html">65k</a> programming specs. Moved some opcodes around
 	to achieve a more regular mapping

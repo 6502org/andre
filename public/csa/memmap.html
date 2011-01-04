@@ -47,6 +47,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="petio/index.html">CBM PET I/O</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="etholi/index.html">Ethernet</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="shug/index.html">PC floppy</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="drvio/index.html">DRVIO floppy and IEC</a>
@@ -141,7 +143,7 @@ more modern browser, like Internet Explorer 8 or later,
 	This page gives a memory map of the currently available boards,
 	so you can plan which boards can be combined in what ways.
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#iomap">I/O Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#io8">I/O $E8**</a></li><li><a href="#ioc">I/O $EC**</a></li><li><a href="#iod">I/O $ED**</a></li><li><a href="#iof">I/O $EF**</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#mem">Map</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="iomap" id="iomap">I/O Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#iomap">I/O Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#io8">I/O $E8**</a></li><li><a href="#ioc">I/O $EB**</a></li><li><a href="#ioc">I/O $EC**</a></li><li><a href="#iod">I/O $ED**</a></li><li><a href="#iof">I/O $EF**</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#mem">Map</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="iomap" id="iomap">I/O Memory Map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 		This section summarizes the I/O memory addresses used by
 		the different boards into one table, so you can try to 
 		find out which boards are compatible.
@@ -161,6 +163,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>CRTC, Control (default)</td><td>CRTC, Control (opt)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr> <th>PETIO</th><td></td><td>PIA1 (default)</td><td>PIA2 (default)</td><td></td><td>VIA (default)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr> <th>Ethernet</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>CS8900A (default)</td><td>CS8900A (opt)</td><td></td><td></td></tr>
 <tr> <th>PC floppy</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>WD1770 (opt)</td><td>VIA (opt)</td><td>WD1770 (default)</td><td>VIA (default)</td></tr>
 <tr> <th>DRVIO</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>WD177x, Control (default)</td><td>CIA (default)</td><td></td><td></td><td>WD177x, Control (opt)</td><td>CIA (opt)</td></tr>
 <tr> <th>DUART</th><td></td><td></td><td></td><td></td><td></td><td>UART1, UART2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -172,6 +175,14 @@ more modern browser, like Internet Explorer 8 or later,
 <tr> <th>csakey</th><td></td><td>PIA1, ACIA (default)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>PIA1, ACIA (opt)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr> <th>csaiec</th><td></td><td></td><td>PIA</td><td></td><td>VIA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
+<h3><a name="ioc" id="ioc">I/O $EB**</a></h3>
+<table border="1" class="memmap">
+<caption>Table for $b** I/O addresses</caption>
+<tr> <th></th><th>$b0*</th> <th>$b1*</th> <th>$b2*</th> <th>$b3*</th> <th>$b4*</th> <th>$b5*</th> <th>$b6*</th> <th>$b7*</th> <th>$b8*</th> <th>$b9*</th> <th>$ba*</th> <th>$bb*</th> <th>$bc*</th> <th>$bd*</th> <th>$be*</th> <th>$bf*</th> </tr>
+<tr> <th colspan="17" class="separator">Main boards</th> </tr>
+<tr> <th>CPU816</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>$ebff Control (default)</td></tr>
+</table>
+
 <h3><a name="ioc" id="ioc">I/O $EC**</a></h3>
 <table border="1" class="memmap">
 <caption>Table for $c** I/O addresses</caption>
@@ -201,6 +212,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>Main CPU</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Control reg, CPU addr</td> <td></td> <td>MMU</td> </tr>
 <tr> <th>Main BIOS</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Control, UART (opt)</td><td></td><td>Control, UART (default)</td> <td></td> </tr>
+<tr> <th>CPU816</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>$efff Control (opt)</td></tr>
 <tr> <th colspan="17" class="separator">I/O boards</th> </tr>
 <tr> <th>Video</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>CRTC, Control (opt since 1.4)</td><td>CRTC, Control (opt since 1.4)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr> <th>PETIO</th><td></td><td>PIA1 (opt)</td><td>PIA2 (opt)</td><td></td><td>VIA (opt)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
