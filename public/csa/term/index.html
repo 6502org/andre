@@ -5,10 +5,10 @@
 <meta name="author" content="" />
 
 <meta name="description" content="" />
-<meta name="keywords" content="CSA65 6502 PET IO" />
+<meta name="keywords" content="CSA65 6502 bus termination" />
 <link rev="made" href="mailto:" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>CS/A65 PETIO</title></head>
+<title>CS/A65 Bus terminators</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -42,13 +42,13 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
 </li>
-<li><div class="i_file">&nbsp;</div><a href="../term/index.html">Bus terminators</a>
+<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">Bus terminators</a>
+
 </li>
 <li class="separator">I/O boards</li>
 <li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
 </li>
-<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">CBM PET I/O</a>
-
+<li><div class="i_file">&nbsp;</div><a href="../petio/index.html">CBM PET I/O</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../etholi/index.html">Ethernet</a>
 </li>
@@ -123,7 +123,7 @@
 			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=1728"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
@@ -138,106 +138,62 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  CBM PET I/O</div>
-<h1>CS/A65 PETIO</h1>
+&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Bus terminators</div>
+<h1>CS/A65 Bus terminators</h1>
 
-<div class="overview">This board implements Commodore PET compatible
-		I/O interfaces. This includes the keyboard, IEEE488,
-		userport (mostly) and tape ports. It adds the functionality
-		that the IEEE488 bus can also be used as a device.
+<div class="overview"><p>
+		This board implements bus terminators for the CS/A bus. As has been discussed in the
+		<a href="http://forum.6502.org/viewtopic.php?t=1728">6502.org forum</a> newer technology
+		uses stronger drivers and faster transitions between signal levels, which increase the
+		level of jitter on the bus due to reflections.
+		Also I am using more and more boards, and unfortunately the board design and layout 
+		was not done with reflections and bus design in mind. So I decided to implement
+		this bus terminator board.
+		</p>
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1D</a> (untested)</li><li><a href="#board2">1.1C</a> (ok)</li><li><a href="#board3">1.1B</a> (prototype with bug)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.1D</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1A</a> (untested)</li><li><a href="#board2">1.0A</a> (working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.1A</a></h3>
 <p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
-		This board has an additional diode (e.g. 1N4148) to 
-		accomodate for the 
-		WDC65SC22's totem-pole /IRQ output, as opposed to the orginal's
-		open-collector output. Additionally it clears the board
-		area under the piezo beeper.
+			This is an untested prototype, I have only added a floppy-style power supply plug
+			and ground- and VCC-planes.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1d.sch">csa_petio_v1.1d.sch</a></td>
+<td><a href="csa_term-v1.1a.sch">csa_term-v1.1a.sch</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1d-sch.png">csa_petio_v1.1d-sch.png</a></td>
+<td><a href="csa_term-v1.1a-sch.png">csa_term-v1.1a-sch.png</a></td>
 </tr>
 <tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1d.brd">csa_petio_v1.1d.brd</a></td>
+<td><a href="csa_term-v1.1a.brd">csa_term-v1.1a.brd</a></td>
 </tr>
 <tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1d-brd.png">csa_petio_v1.1d-brd.png</a></td>
+<td><a href="csa_term-v1.1a-brd.png">csa_term-v1.1a-brd.png</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.1C</a></h3>
-<p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			This board has the keyboard connector bug from revision
-			1.1B fixed.
-		</td></tr>
-</table><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc"> </div></td>
-<td><a href="csa_petio_v1.1c-desc.txt">csa_petio_v1.1c-desc.txt</a></td>
-</tr>
-<tr class="R0"><td><div class="i_parts"> </div></td>
-<td><a href="csa_petio_v1.1c-parts.txt">csa_petio_v1.1c-parts.txt</a></td>
-</tr>
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1c.sch">csa_petio_v1.1c.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1c-sch.png">csa_petio_v1.1c-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1c.brd">csa_petio_v1.1c.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1c-lay.png">csa_petio_v1.1c-lay.png</a></td>
-</tr></table>
-<h3><a name="board3" id="board3">Version: 1.1B</a></h3>
-<p>Status: prototype with bug</p>
+<h3><a name="board2" id="board2">Version: 1.0A</a></h3>
+<p>Status: working</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
-			This board has been tested with a Commodore PET
-			ROM.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			The 25-pin D-Sub keyboard connector has the wrong
-			keyboard layout. Silly me, relying on the Commodore
-			documentation, in this case the 8296 addendum to
-			the 8032 manual - it has the wrong pinout listed.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			The use of the IEEE488 interface as device, not 
-			controller has not been tested yet.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			I did not really find a fitting piezo beeper
-			device in the Eagle(tm) libraries, so please
-			make sure you do not make short circuits. Best
-			is to isolate the beeper from the board.
+			I found that when I used all resistors, my power protection mechanism pulled reset due to 
+			low voltage condition... so currently I am running with a 330/560 Ohm resistor pair on
+			RN9/RN10 respectively. This removes the visible jitter on the screen (horizontally about one
+			pixel, when loading a file from a floppy with the PETIO IEEE488 interface).
 		</td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1b.sch">csa_petio_v1.1b.sch</a></td>
+<td><a href="csa_term-v1.0a.sch">csa_term-v1.0a.sch</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1b-sch.png">csa_petio_v1.1b-sch.png</a></td>
+<td><a href="csa_term-v1.0a-sch.png">csa_term-v1.0a-sch.png</a></td>
 </tr>
 <tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1b.brd">csa_petio_v1.1b.brd</a></td>
+<td><a href="csa_term-v1.0a.brd">csa_term-v1.0a.brd</a></td>
 </tr>
 <tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1b-lay.png">csa_petio_v1.1b-lay.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_photo"> </div></td>
-<td><a href="csa_petio_v1.1b.jpg">csa_petio_v1.1b.jpg</a></td>
+<td><a href="csa_term-v1.0a-brd.png">csa_term-v1.0a-brd.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2006-10-14.</p>
+</div></div><div id="contentfooter"><p>Last modified: 2011-01-09.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

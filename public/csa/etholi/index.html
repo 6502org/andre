@@ -42,6 +42,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="../term/index.html">Bus terminators</a>
+</li>
 <li class="separator">I/O boards</li>
 <li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
 </li>
@@ -170,6 +172,9 @@ more modern browser, like Internet Explorer 8 or later,
 		to increase a PET video memory location when executed, kind of a debug heartbeat.
 		</p><p>
 		The CS8900A is configured to be used at $E8C0. The board can be jumpered to $E8D0 as well.
+		</p><p>
+		In the uIP driver code provided here I have only implemented the "hello world" program as included in the 
+		uIP stack. That however should give you an indication how to implement your own programs. 
 		</p>
                 <table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
@@ -181,7 +186,13 @@ more modern browser, like Internet Explorer 8 or later,
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
-                        The board has currently only be tested with the two 74LVX4245 ICs as level translators.
+			There still seems to be some kind of initialization problem. The uIP driver from above only
+			works when system has been reset once after power up (no matter if the driver has been loaded
+			before the reset or not).
+                </td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This board has been successfully tested with both implementation options for the level translators.
                 </td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>

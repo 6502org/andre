@@ -68,6 +68,9 @@
 		to increase a PET video memory location when executed, kind of a debug heartbeat.
 		</p><p>
 		The CS8900A is configured to be used at $E8C0. The board can be jumpered to $E8D0 as well.
+		</p><p>
+		In the uIP driver code provided here I have only implemented the "hello world" program as included in the 
+		uIP stack. That however should give you an indication how to implement your own programs. 
 		</p>
                 </desc>
                 <file ltype="driver" ptype="tgz" note="Ported uIP stack for the PET">uip-1.0+pet.tar.gz</file>
@@ -78,7 +81,12 @@
                 <version>1.0A</version>
                 <status>prototype</status>
                 <note type="warn">
-                        The board has currently only be tested with the two 74LVX4245 ICs as level translators.
+			There still seems to be some kind of initialization problem. The uIP driver from above only
+			works when system has been reset once after power up (no matter if the driver has been loaded
+			before the reset or not).
+                </note>
+                <note type="msg">
+			This board has been successfully tested with both implementation options for the level translators.
                 </note>
                 <file ltype="schem" ptype="esch">csa_etholi-v1.0a.sch</file>
                 <file ltype="schem" ptype="png">csa_etholi-v1.0a-sch.png</file>

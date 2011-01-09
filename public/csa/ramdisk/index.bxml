@@ -2,7 +2,7 @@
 <board>
 	<name>CS/A65 RAMDisk</name>
 	<keywords>CSA65 6502 ramdisk SIMM</keywords>
-        <lastmodified>2010-12-28</lastmodified>
+        <lastmodified>2011-01-09</lastmodified>
 	<desc><p>
 		This board uses the (now outdated) 30-pin SIMM memory modules
 		to build a RAM disk with up to 16Mbyte. The memory
@@ -62,6 +62,26 @@
 			shared memory.
 		</desc>
 	</diagram-->
+	<rev>
+		<version>2.0F</version>
+		<status>prototype</status>
+		<note type="msg">
+			This improves on the 2.0E version by adding more bypass capacitors, esp. the one for IC2 that
+			was missing. Two of them are tantals and the CPLD supply voltage is routed over them in the layout.
+		</note>
+		<note type="msg">
+			The VHDL has some timing improvements. The 2.0E was still producing a heavy jitter on the power
+			signal, which is now gone.
+		</note>
+		<file ltype="schem" ptype="esch">csa_ramdisk-v2.0f.sch</file>
+		<file ltype="schem" ptype="png">csa_ramdisk-v2.0f-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_ramdisk-v2.0f.brd</file>
+		<file ltype="layout" ptype="png">csa_ramdisk-v2.0f-brd.png</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">dramctrl-v2.0f.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">dramctrl-v2.0f.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">dramctrl-v2.0f.jed</file>
+                <file ltype="driver" ptype="tgz" note="Test programs">ramdisk-tests.tar.gz</file>
+	</rev>
 	<rev>
 		<version>2.0E</version>
 		<status>prototype</status>

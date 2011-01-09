@@ -10,6 +10,7 @@ d petcpu 64k PET CPU
 d gecko Gecko
 p auxcpu Auxiliary CPU
 p pwr Power Supply
+p term Bus terminators
 s I/O boards
 p vdc Video board
 p petio CBM PET I/O

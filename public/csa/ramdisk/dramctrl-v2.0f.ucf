@@ -1,0 +1,60 @@
+
+TIMESPEC TS_B8phi2 = PERIOD "B8phi2" 62.5 ns LOW 50% INPUT_JITTER 500 ps;
+TIMESPEC TS_phi2 = PERIOD "phi2" 500 ns LOW 50% INPUT_JITTER 5000 ps;
+
+NET "NB8PHI2"			LOC = "P7" | TNM_NET = B8phi2;
+
+NET "NPHI2"				LOC = "P10" | BUFG = CLK | TNM_NET = phi2;
+NET "NRES"				LOC = "P6"	;
+
+NET "NSEL"				LOC = "P4"	;
+NET "RNW"				LOC = "P3"	;
+
+NET "MRNW"				LOC = "P70"	;
+NET "RNWDATA"			LOC = "P71"	;
+NET "NDATAEN"			LOC = "P45"	;
+
+NET "DATA<0>"			LOC = "P11"	;
+NET "DATA<1>"			LOC = "P13"	;
+NET "DATA<2>"			LOC = "P14"	;
+NET "DATA<3>"			LOC = "P15"	;
+NET "DATA<4>"			LOC = "P18"	;
+NET "DATA<5>"			LOC = "P20"	;
+NET "DATA<6>"			LOC = "P23"	;
+NET "DATA<7>"			LOC = "P24"	;
+
+NET "REGSEL<0>"		LOC = "P69"	;
+NET "REGSEL<1>"		LOC = "P68"	;
+NET "REGSEL<2>"		LOC = "P67"	;
+NET "REGSEL<3>"		LOC = "P63"	;
+
+NET "NCAS<0>"			LOC = "P83"	;
+NET "NCAS<1>"			LOC = "P84"	;
+NET "NCAS<2>"			LOC = "P81"	;
+NET "NCAS<3>"			LOC = "P82"	;
+
+NET "NRAS<0>"			LOC = "P79"	;
+NET "NRAS<1>"			LOC = "P80"	;
+NET "NRAS<2>"			LOC = "P75"	;
+NET "NRAS<3>"			LOC = "P72"	;
+
+NET "MADDR<0>"			LOC = "P66"	;
+NET "MADDR<1>"			LOC = "P65"	;
+NET "MADDR<2>"			LOC = "P62"	;
+NET "MADDR<3>"			LOC = "P61"	;
+NET "MADDR<4>"			LOC = "P58"	;
+NET "MADDR<5>"			LOC = "P57"	;
+NET "MADDR<6>"			LOC = "P56"	;
+NET "MADDR<7>"			LOC = "P55"	;
+NET "MADDR<8>"			LOC = "P54"	;
+NET "MADDR<9>"			LOC = "P53"	;
+NET "MADDR<10>"		LOC = "P52"	;
+
+NET "LED<0>" 			LOC = "P39"	;
+NET "LED<1>"			LOC = "P37" ;
+NET "LED<2>"			LOC = "P31"	;
+NET "LED<3>"			LOC = "P32"	;
+NET "LED<4>"			LOC = "P36" ;
+NET "LED<5>"			LOC = "P34"	;
+NET "LED<6>"			LOC = "P35"	;
+NET "LED<7>"			LOC = "P33"	;

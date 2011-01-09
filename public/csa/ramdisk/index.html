@@ -42,6 +42,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="../term/index.html">Bus terminators</a>
+</li>
 <li class="separator">I/O boards</li>
 <li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
 </li>
@@ -192,7 +194,44 @@ more modern browser, like Internet Explorer 8 or later,
                                               the '4245 option.
                 </div>
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0E</a> (prototype)</li><li><a href="#board2">2.0D</a> (prototype)</li><li><a href="#board3">1.0C</a> (buggy)</li><li><a href="#board4">1.0B</a> (buggy)</li><li><a href="#board5">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0E</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0F</a> (prototype)</li><li><a href="#board2">2.0E</a> (prototype)</li><li><a href="#board3">2.0D</a> (prototype)</li><li><a href="#board4">1.0C</a> (buggy)</li><li><a href="#board5">1.0B</a> (buggy)</li><li><a href="#board6">1.0A</a> (buggy)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0F</a></h3>
+<p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This improves on the 2.0E version by adding more bypass capacitors, esp. the one for IC2 that
+			was missing. Two of them are tantals and the CPLD supply voltage is routed over them in the layout.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			The VHDL has some timing improvements. The 2.0E was still producing a heavy jitter on the power
+			signal, which is now gone.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_ramdisk-v2.0f.sch">csa_ramdisk-v2.0f.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_ramdisk-v2.0f-sch.png">csa_ramdisk-v2.0f-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_ramdisk-v2.0f.brd">csa_ramdisk-v2.0f.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_ramdisk-v2.0f-brd.png">csa_ramdisk-v2.0f-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0f.vhd">dramctrl-v2.0f.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0f.ucf">dramctrl-v2.0f.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="dramctrl-v2.0f.jed">dramctrl-v2.0f.jed</a>(CPLD compiled source)</td>
+</tr>
+<tr class="R0"><td><div class="i_driver"> </div></td>
+<td><a href="ramdisk-tests.tar.gz">ramdisk-tests.tar.gz</a>(Test programs)</td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 2.0E</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -233,7 +272,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="ramdisk-tests.tar.gz">ramdisk-tests.tar.gz</a>(Test programs)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.0D</a></h3>
+<h3><a name="board3" id="board3">Version: 2.0D</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -294,7 +333,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="ramdisk-tests.tar.gz">ramdisk-tests.tar.gz</a>(Test programs)</td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 1.0C</a></h3>
+<h3><a name="board4" id="board4">Version: 1.0C</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -359,7 +398,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_ramdisk_v1.0c-sch.png">csa_ramdisk_v1.0c-sch.png</a></td>
 </tr></table>
-<h3><a name="board4" id="board4">Version: 1.0B</a></h3>
+<h3><a name="board5" id="board5">Version: 1.0B</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -386,7 +425,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_ramdisk_v1.0b-brd.png">csa_ramdisk_v1.0b-brd.png</a></td>
 </tr></table>
-<h3><a name="board5" id="board5">Version: 1.0A</a></h3>
+<h3><a name="board6" id="board6">Version: 1.0A</a></h3>
 <p>Status: buggy</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -433,7 +472,7 @@ $67, and sometimes $44, $48, $64 and $68 - which is fixed now.
 <tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="ramdisk_v1.0a-2.png">ramdisk_v1.0a-2.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2010-12-28.</p>
+</div></div><div id="contentfooter"><p>Last modified: 2011-01-09.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>

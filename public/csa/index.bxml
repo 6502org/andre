@@ -15,6 +15,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2011-01-09"">
+			Added a completely new <a href="term/index.html">Bus terminator board</a>!
+		</item>
 		<item date="2011-01-04" state="hot">
 			Added a completely new <a href="etholi/index.html">Ethernet board</a>!
 		</item>

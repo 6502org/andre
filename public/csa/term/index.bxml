@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 Bus terminators</name>
+	<keywords>CSA65 6502 bus termination</keywords>
+        <lastmodified>2011-01-09</lastmodified>
+        <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=1728</forum>
+	<desc><p>
+		This board implements bus terminators for the CS/A bus. As has been discussed in the
+		<a href="http://forum.6502.org/viewtopic.php?t=1728">6502.org forum</a> newer technology
+		uses stronger drivers and faster transitions between signal levels, which increase the
+		level of jitter on the bus due to reflections.
+		Also I am using more and more boards, and unfortunately the board design and layout 
+		was not done with reflections and bus design in mind. So I decided to implement
+		this bus terminator board.
+		</p>
+	</desc>
+	<!--diagram>
+		<file>keyemu.gif</file>
+		<desc>The block diagram shows the dual access to the 
+			shared memory.
+		</desc>
+	</diagram-->
+	<rev>
+		<version>1.1A</version>
+		<status>untested</status>
+		<note type="msg">
+			This is an untested prototype, I have only added a floppy-style power supply plug
+			and ground- and VCC-planes.
+		</note>
+		<file ltype="schem" ptype="esch">csa_term-v1.1a.sch</file>
+		<file ltype="schem" ptype="png">csa_term-v1.1a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_term-v1.1a.brd</file>
+		<file ltype="layout" ptype="png">csa_term-v1.1a-brd.png</file>
+	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>working</status>
+		<note type="msg">
+			I found that when I used all resistors, my power protection mechanism pulled reset due to 
+			low voltage condition... so currently I am running with a 330/560 Ohm resistor pair on
+			RN9/RN10 respectively. This removes the visible jitter on the screen (horizontally about one
+			pixel, when loading a file from a floppy with the PETIO IEEE488 interface).
+		</note>
+		<file ltype="schem" ptype="esch">csa_term-v1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa_term-v1.0a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_term-v1.0a.brd</file>
+		<file ltype="layout" ptype="png">csa_term-v1.0a-brd.png</file>
+	</rev>
+</board>
