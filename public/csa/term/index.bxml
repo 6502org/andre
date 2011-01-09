@@ -27,10 +27,10 @@
 			This is an untested prototype, I have only added a floppy-style power supply plug
 			and ground- and VCC-planes.
 		</note>
-		<file ltype="schem" ptype="esch">csa_term-v1.1a.sch</file>
-		<file ltype="schem" ptype="png">csa_term-v1.1a-sch.png</file>
-		<file ltype="layout" ptype="ebrd">csa_term-v1.1a.brd</file>
-		<file ltype="layout" ptype="png">csa_term-v1.1a-brd.png</file>
+		<file ltype="schem" ptype="esch">csa_term_v1.1a.sch</file>
+		<file ltype="schem" ptype="png">csa_term_v1.1a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_term_v1.1a.brd</file>
+		<file ltype="layout" ptype="png">csa_term_v1.1a-brd.png</file>
 	</rev>
 	<rev>
 		<version>1.0A</version>
@@ -41,9 +41,9 @@
 			RN9/RN10 respectively. This removes the visible jitter on the screen (horizontally about one
 			pixel, when loading a file from a floppy with the PETIO IEEE488 interface).
 		</note>
-		<file ltype="schem" ptype="esch">csa_term-v1.0a.sch</file>
-		<file ltype="schem" ptype="png">csa_term-v1.0a-sch.png</file>
-		<file ltype="layout" ptype="ebrd">csa_term-v1.0a.brd</file>
-		<file ltype="layout" ptype="png">csa_term-v1.0a-brd.png</file>
+		<file ltype="schem" ptype="esch">csa_term_v1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa_term_v1.0a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_term_v1.0a.brd</file>
+		<file ltype="layout" ptype="png">csa_term_v1.0a-brd.png</file>
 	</rev>
 </board>

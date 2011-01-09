@@ -68,6 +68,7 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 	<desc><p>
 	I have made a design for a board with the Olimex Ethernet controller board - basically similar to the Netusb board, but needing voltage converters as the Olimex parts is only available in 3.3V... Board and parts are here, but nothing done yet... 
 	</p>
+	<p>Done :-)</p>
 	</desc>
 	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
      </subsection>
