@@ -26,6 +26,9 @@
 	CS8900A driver from contiki v1 (which also uses uIP). 
   </p></overview>
   <news>
+    <item date="2011-01-11">
+	Published the V1.0B version with the /SBHE fix.
+    </item>
     <item date="2011-01-04">
 	Published this page
     </item>
@@ -77,6 +80,20 @@
                 <file ltype="driver" ptype="diff" note="Diff of the Ported uIP stack to uIP v1.0">uip-pet.diff.gz</file>
 		<extlink name="uIP stack" link="http://www.sics.se/~adam/uip/index.php/Main_Page"/>
         </driver>
+        <rev>
+                <version>1.0B</version>
+                <status>prototype</status>
+                <note type="msg">
+			Silly me, I forgot the pullup on /SBHE. That fixes the initialization problem. Driver stays the same.
+                </note>
+                <note type="msg">
+			This board has been successfully tested with both implementation options for the level translators.
+                </note>
+                <file ltype="schem" ptype="esch">csa_etholi-v1.0b.sch</file>
+                <file ltype="schem" ptype="png">csa_etholi-v1.0b-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_etholi-v1.0b.brd</file>
+                <file ltype="layout" ptype="png">csa_etholi-v1.0b-brd.png</file>
+        </rev>
         <rev>
                 <version>1.0A</version>
                 <status>prototype</status>

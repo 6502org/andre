@@ -156,9 +156,11 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	As a driver I ported the uIP v1.0 TCP/IP stack to the cc65 compiler, and integrated the
 	CS8900A driver from contiki v1 (which also uses uIP). 
-  </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-01-04</small>
+  </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-01-11</small>
+	Published the V1.0B version with the /SBHE fix.
+    </li><li><div> </div><small>2011-01-04</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">UIP PET driver</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">UIP PET driver</a></h3><p>
 		This is the uIP v1.0 TCP/IP stack ported to the PET, which runs on my CS/A computer using the
 		PET ROMs. </p>
                 <div class="rightimg">
@@ -182,7 +184,30 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="uip-pet.diff.gz">uip-pet.diff.gz</a>(Diff of the Ported uIP stack to uIP v1.0)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+<p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			Silly me, I forgot the pullup on /SBHE. That fixes the initialization problem. Driver stays the same.
+                </td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This board has been successfully tested with both implementation options for the level translators.
+                </td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_etholi-v1.0b.sch">csa_etholi-v1.0b.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_etholi-v1.0b-sch.png">csa_etholi-v1.0b-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_etholi-v1.0b.brd">csa_etholi-v1.0b.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_etholi-v1.0b-brd.png">csa_etholi-v1.0b-brd.png</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.0A</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
