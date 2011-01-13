@@ -1,0 +1,93 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Commodore PET on the 'Net">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2011</yearstart>
+    <yearend></yearend>
+  </author>
+  <keywords>Commodore PET CBM Ethernet Internet TCP/IP</keywords>
+  <metadesc>Commodore PET CBM on the ethernet descriptions</metadesc>
+  <overview><p>	</p>
+  </overview>
+  <news>
+    <item date="2011-01-13">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="main" name="Putting the Commodore PET on the 'Net">
+     <desc>
+	<p>With the combination of two of my other boards I was able to actually
+	connect a Commodore 8296 to an ethernet, running the TCP/IP protocol.
+	</p>
+	<div class="rightimg">
+                <a href="peteth.jpeg"><img src="peteth_small.jpeg"/></a><br/>A 8296 with Ethernet
+                </div>
+	<p>
+	The links on the side show the two boards I used. The PET CS/A board adapter
+	allows to use <a href="../../csa/index.html">CS/A65</a> boards on the Commodore
+	PET. The <a href="../../csa/etholi/index.html">CS/A ethernet board</a> then
+	implements the actual ethernet connectivity.
+	</p>
+	<p>
+	Note that you need to use the CS/A adapter that includes the 3.3V generation,
+	as the ethernet board needs that. In the picture on the right a 1.1A version was used
+	but the 3.3V generation was added separately.
+	</p>
+	<p>The driver basically is the same as the one shown on the ethernet board page.
+	But due to the adapter card the address range changes and the adapter card has to
+	be initiated separately before accessing the ethernet board.
+	</p>
+     </desc>
+
+     <!--subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection-->
+  </section>
+
+        <driver>
+                <name>PET CS/A uIP Stack</name>
+                <desc>
+		<p>This is the adapted uIP stack. See the <code>pet</code> subdirectory. The bindings.s file
+		shows the adapted addresses. The cs8900a.c file shows the added board initialization.
+		</p>
+                </desc>
+                <file ltype="driver" ptype="tgz" note="">uip-1.0+pet+.tar.gz</file>
+        </driver>
+        <!--rev>
+                <version>2.0B</version>
+                <status>prototype</status>
+                <note type="msg">
+                        Compared to the 2.0A board it fixes the timing bugs.
+                </note>
+                <note type="warn">
+                        The layout has not been tested, I fixed my 2.0A version up to 2.0B.
+                </note>
+                <file ltype="schem" ptype="esch">csa_cpu816-v2.0b.sch</file>
+                <file ltype="schem" ptype="png">csa_cpu816-v2.0b-sch.png</file>
+                <file ltype="layout" ptype="esch">csa_cpu816-v2.0b.brd</file>
+                <file ltype="layout" ptype="png">csa_cpu816-v2.0b-brd.png</file>
+                <file ltype="parts" ptype="txt">csa_cpu816-v2.0b.parts</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">csa_cpu816-v2.0b.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">csa_cpu816-v2.0b.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">csa_cpu816-v2.0b.jed</file>
+        </rev-->
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

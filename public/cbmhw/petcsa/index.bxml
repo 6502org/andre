@@ -21,10 +21,32 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	</p>
 	</desc>
 	<news>
+		<item date="2011-01-13">
+			Added the usage section
+		</item>
 		<item date="2006-12-20">
 			Published the board.
 		</item>
 	</news>
+	<section toc="use" name="Usage">
+	<desc>
+	<p>The board is installed "under" the 6502 CPU, i.e. the 6502 is taken of the
+	Commodore's board and put onto the board. Then the board is put in place of the
+	6502 CPU on the Commodore board.
+	</p><p>
+	To use it, you have to write to the control registers at $e808 and $e809 (both
+	are write-only)
+	The control port is $e809 and has 2 bits. If bit 0 is set, the board mapping is enabled.
+	Bit one determines whether the CS/A I/O or memory bus is used. I zero, then CS/A memory
+	(/MEMSEL) is used, if it is one then I/O (/IOSEL) is used.
+	</p><p>
+	The board maps 4k byte. So the CS/A I/O are at $e800-$efff is mapped twice, depending on
+	whether the used board decodes A11. If memory is used, then the adapter needs to set
+	the upper address bits A12-A19. This is done by writing these address bits to $e808.
+	</p>
+	</desc>
+	</section>
+
         <!--driver>
                 <name></name>
                 <desc>
@@ -36,6 +58,9 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 		<status>prototype</status>
 		<note type="warn">
 			This board has been tested with a 8296 only.
+			A later test with a 3032 (i.e. a board without CRTC) shows
+			that the CS/A board would reach out of the case, thus
+			the adapter does not work there.
 		</note>
 		<note type="warn">
 			It seems that the board requires a separate power 
