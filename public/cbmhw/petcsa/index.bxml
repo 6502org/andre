@@ -21,6 +21,9 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	</p>
 	</desc>
 	<news>
+		<item date="2011-01-15">
+			Added the 1.2A version.
+		</item>
 		<item date="2011-01-13">
 			Added the usage section
 		</item>
@@ -45,6 +48,16 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	the upper address bits A12-A19. This is done by writing these address bits to $e808.
 	</p>
 	</desc>
+	<subsection toc="other" name="Use in other systems">
+	<desc><p>You should even be able to use the board in other 6502-based systems.
+		The bus decodes addresses in 4k blocks, but of the control block only 
+		16 addresses are used ($80x), and of the map block only those areas
+		are used that are decoded by the CS/A board.
+		</p><p>
+		Thus if your system has the relevant address areas unmapped, you should be able to use
+		the board also!
+		</p>
+	</desc></subsection>
 	</section>
 
         <!--driver>
@@ -53,6 +66,24 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
                 </desc>
                 <file ltype="driver" ptype="tgz"></file>
         </driver-->
+	<rev>
+		<version>1.2a</version>
+		<status>untested</status>
+		<note type="warn">
+			This board has not been tested yet.
+			The schematics is basically the same as the 1.1A version.
+		</note>
+		<note type="msg">
+			This board version adds a power plug, 3.3V generation, a second CS/A bus adapter
+			(so you can use it in a 8296 and a 3032), and some more jumper options.
+			Layout such that it should fit into a 8296 and a 3032 (not tested yet though).
+		</note>
+		<file ltype="desc" ptype="txt">petcsadesc-v1.1.txt</file>
+		<file ltype="schem" ptype="esch">pet_csadapter-v1.2a.sch</file>
+		<file ltype="schem" ptype="png">pet_csadapter-v1.2a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">pet_csadapter-v1.2a.brd</file>
+		<file ltype="layout" ptype="png">pet_csadapter-v1.2a-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.1a</version>
 		<status>prototype</status>
@@ -83,6 +114,7 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 		<file ltype="photo" ptype="jpg" note="The original 8296 board">8296board.jpg</file>
 		<file ltype="photo" ptype="jpg" note="The board with adapter and DRVIO board">8296board+drvio.jpg</file>
 		<file ltype="photo" ptype="jpg" note="The board with adapter and BIOS board">8296board+bios.jpg</file>
+		<file ltype="photo" ptype="jpg" note="The board with adapter and Ethernet board (and extra 3.3V generation)">../petnet/peteth.jpeg</file>
 	</rev>
 	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
 </board>

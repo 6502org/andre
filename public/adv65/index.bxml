@@ -21,6 +21,12 @@
     <!--desc>
     </desc-->
     <items>
+      <subitem name="The 65k project" link="../65k/index.html"> - 
+	In the 65k project I defined an extended set of opcodes and features for a 6502
+	that uses up to 64 bit registers, while still being - at least software-wise -
+	upward-compatible with the original 6502. I plan to put it into VHDL and really use it,
+	but that has not started (yet).
+      </subitem>
       <subitem name="PET816" link="pet816/index.html"> - 
 	The <a href="pet816/index.html">PET816</a> board replaces the 6502 in a normal 6502 computer
 	with a 65816 board. The 65816 can be clocked up to 10&#160;MHz, using the additional RAM that
