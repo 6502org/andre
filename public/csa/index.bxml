@@ -326,7 +326,7 @@ Please check it out at its <a href="emu/index.html">site</a>.
 
           <subitem name="CS/A65 BIOS" link="bios/index.html">
 		This BIOS board contains RAM and ROM for the main CPU, as
-		well as simple 50Hz interrupt generation, as well as a
+		well as simple 50Hz interrupt generation, and a
 		serial (RS232) interface.
 	  </subitem>
 
@@ -335,7 +335,10 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		not only the CPU, but also RAM and ROM (and also a serial
 		interface). It can - as it does not have an MMU - make only
 		restricted use of the bus memory address space, but can
-		fully use the bus I/O area.
+		fully use the bus I/O area. You can use this board
+		instead of a main CPU and BIOS board to build a 
+		<a href="#fat40">Commodore 4032</a> or a 
+		<a href="#vc1581">Commodore VC1581</a> replica.
 	  </subitem>
 
           <subitem name="Gecko" link="gecko/index.html">
@@ -348,7 +351,9 @@ Please check it out at its <a href="emu/index.html">site</a>.
 	  </subitem>
 
           <subitem name="Auxiliary CPU" link="auxcpu/index.html">
-		This board is an optional extension to the CS/A65 CPU board.
+		This board is an optional extension to the CS/A65 CPU board
+		(only! - it requires the MMU features on the CPU board, which
+		are not available on the 65816, PETCPU, or Gecko boards).
 		It monitors the bus for error conditions, then takes over
 		from the main CPU to fix the error condition. Possible
 		error conditions are write protect error, "no execution" 
@@ -369,7 +374,7 @@ Please check it out at its <a href="emu/index.html">site</a>.
 Commodore PET compatible 	</desc>
 
           <subitem name="Video" link="vdc/index.html">
-		Thie VDC board implements a 6545 CRTC-based video interface.
+		The VDC board implements a 6545 CRTC-based video interface.
 		It includes 64k dynamic RAM that is used as video memory
 		(at least parts of). If the system bus runs with 1MHz it can
 		display 40 columns PAL video, on 2MHz it can display 80 columns
@@ -383,25 +388,37 @@ Commodore PET compatible 	</desc>
 		contains a small beeper to make noise :-)
 	  </subitem>
 
-          <subitem name="PC floppy" link="shug/index.html">
-		This board contains a PC-style floppy drive interface using
-		the WD1772 chip. It also contains a small printer interface.
+          <subitem name="Ethernet" link="etholi/index.html">
+		An ethernet interface for the CS/A! Using the CS8900A ethernet
+		chip on an Olimex adapter board. TCP/IP functionality provided
+		by the uIP TCP/IP stack.
+	  </subitem>
+
+          <subitem name="MMC/SD-Card" link="spi/index.html">
+		The MMC- and SD-cards can use a simple SPI-based interface. On this
+		board the CS/A can read MMC and SD-Cards!
+	  </subitem>
+
+          <subitem name="SCSI" link="scsi/index.html">
+		This board implements a parallel SCSI interface to attach SCSI devices
+		to the CS/A65 computer. It is currently only tested with
+		disk drives, though.
 	  </subitem>
 
           <subitem name="DRVIO floppy and IEC" link="drvio/index.html">
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip in a way that is compatible with the 
-		Commodore VC1581 disk drive.
+		Commodore VC1581 disk drive - so that it can be used to
+		build a <a href="#vc1581">Commodore VC1581</a> replica.
 	  </subitem>
 
           <subitem name="Double UART" link="duart/index.html">
 		Two UART 16550A implement two serial line RS232 interfacs.
 	  </subitem>
 
-          <subitem name="SCSI" link="scsi/index.html">
-		This board implements a SCSI interface to attach SCSI devices
-		to the CS/A65 computer. It is currently only tested with
-		disk drives, though.
+          <subitem name="PC floppy" link="shug/index.html">
+		This board contains a PC-style floppy drive interface using
+		the WD1772 chip. It also contains a small printer interface.
 	  </subitem>
 
 	</subsection>
@@ -410,6 +427,14 @@ Commodore PET compatible 	</desc>
 The larger address space and the MMU allows for mapping of other
 computers memory into the main memory map.
 	</desc>
+
+          <subitem name="SIMM RAMDisk" link="ramdisk/index.html">
+		This board implements a RAM Disk based on the (nowadays quite old)
+		SIMM memory modules. Using four of them you can build 
+		a RAM disk drive with up to 16MByte capacity (only tested to 4M though). 
+		Two versions are available, an older one with complete discrete
+		logic, and a new one using a CPLD programmable logic chip.
+	  </subitem>
 
           <subitem name="Coprocessor" link="copro/index.html">
 		This is a coprocessor board, that 

@@ -132,10 +132,10 @@
 		</note>
 		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
 		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
-		<file ltype="schem" ptype="png">csa_vdc_v1.4a-sch.png</file>
-		<file ltype="schem" ptype="esch">csa_vdc_v1.4a.sch</file>
-		<file ltype="layout" ptype="png">csa_vdc_v1.4a-brd.png</file>
-		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4a.brd</file>
+		<file ltype="schem" ptype="png">csa_vdc_v1.4b-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_vdc_v1.4b.sch</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4b-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4b.brd</file>
 	</rev>
 	<rev>
 		<version>1.4A</version>

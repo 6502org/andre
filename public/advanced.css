@@ -29,8 +29,10 @@ a:hover { color:#ff0000; text-decoration:none }
 
 /* top level style */
 DIV.top {
+/*
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
+*/
   	background-color: #ffffff; 
   	margin: 0;
   	margin-top: 0em;
@@ -43,12 +45,12 @@ DIV.tophead {
  	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
 	background-color: #ee8800;
-
+/*
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
-
+*/
 	color: #fff;
 	margin-left: -1em;
 	margin-top: -1em;
@@ -73,10 +75,12 @@ DIV#hot DIV.tophead {
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
 	background-color: #ee0000;
 
+/*
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
+*/
 }
 
 P.copyright {
@@ -567,10 +571,10 @@ div#toc dir {
 	background-color: #888888;
 	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
  	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
-
+/*
   	-moz-border-radius: 14px;
 	-webkit-border-radius:14px;
-
+*/
 	color:white;
 	text-decoration:none;
 	text-align:center;

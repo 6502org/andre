@@ -5,4 +5,5 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%scsi.html">SCSI</a></li>
 <li><div class="i_file">&nbsp;</div><a href="%up%i2c.html">I2C</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%spi.html">SPI (MMC, SD-Cards)</a></li>
 </ul>

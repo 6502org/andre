@@ -15,12 +15,14 @@ s I/O boards
 p vdc Video board
 p petio CBM PET I/O
 p etholi Ethernet
+p usb USB
 p shug PC floppy
 p drvio DRVIO floppy and IEC
 p duart Double UART (RS232)
 p scsi SCSI/I2C board
 p spi MMC/SD-Card
 s Special purpose
+p blitter Block transfer
 p ramdisk SIMM RAMDisk
 p copro Coprocessor board
 p cpuemu Emulate a 6502

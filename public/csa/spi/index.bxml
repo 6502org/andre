@@ -12,7 +12,12 @@
 		<file>bios.gif</file>
 		<desc>itecture</desc>
 	</diagram-->
-        <section toc="modes" name="SPI"><desc>
+  <news>
+      <item date="2011-03-6">
+           Moved the SPI description from here to the <a href="../../hwinfo/spi.html">SPI page</a>.
+      </item>
+  </news>
+        <!--section toc="modes" name="SPI"><desc>
                 <p>SPI means "Serial Peripheral Interface Bus" and is a very
 		simple four-wire protocol. Some of the advantages are:
 		<ul>
@@ -91,7 +96,7 @@
 			I found that MMCs and SD-Cards use mode 0.
 			</p></desc>
         	</subsection>
-        </section>
+        </section-->
         <section toc="sdc65" name="MMC and SD-Cards in a 6502 system"><desc>
 	<p>
 		In a 6502 system several issues have to be considered:
@@ -161,7 +166,7 @@
 			so there is no board layout for it.
 		</note>
 		<note type="msg">
-			You may not the input shift register. This is not 
+			You may not need the input shift register. This is not 
 			really necessary if you bit-bang the input as well.
 			It is convenient, however, and a remainder of an 
 			earlier approach using the VIA shift register

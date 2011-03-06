@@ -40,16 +40,46 @@
 
      <subsection toc="address" name="Address Generation">
 	<desc>
-	<p>The address generation components are:</p>
 <div class="rightimg"><a href="blitter v01.svg"><img src="blitter v01.png" alt="address generation architecture"/></a><p>Blitter address generation (click to enlarge)</p></div>
+	<p>The address generation components are:</p>
 	<ul>
 	<li>LDADDR/STADDR: address registers for load and store addresses</li>
 	<li>LDINC/STINC: registers for address increment</li>
 	<li>ALU: Adder to add the address and the increment</li>
-	<li>ZERO: zero increment (see below for the purpose</li>
-	<li>Address data buffer: connects the INBUS to the CPU data bus</li>
+	<li>ZERO: zero increment (see below for the purpose)</li>
+	<li>Address data buffer: connects the INBUS to the CPU data bus. Note that this
+		is actually three 8-bit buffers, where one byte at a time can be
+		accessed (denoted by the "8Bit" in the diagram)</li>
 	<li>Increment data buffer: connects the Increment bus to the CPU data bus</li>
 	<li>Address buffer: drives the address from OUTBUS to the system address bus</li>
+	</ul>
+	<p>These components are connected together by three busses:</p>
+	<ul>
+	<li>INBUS: The INBUS is called that as it feeds a new address value into the
+		load and store address registers. The value can come from the 
+		ALU output or from the CPU data bus.</li>
+	<li>OUTBUS: The outbus holds the output from the load and store address registers.
+		Its value is put on the actual address bus during a fetch or store operation.
+		The value from this bus is at the same time also fed into one side of the 
+		ALU adder.</li>
+	<li>Increment: This bus holds the output of the increment registers, resp. the zero increment
+		value. Its value is fed into the second ALU adder input, but can also be read
+		from the CPU data bus.</li>
+	</ul>
+	<p>Together these components allow to do the actual data transfer, as well as the address increment
+	of the address registers in a single cycle. The same, shared, ALU and bus components are used in 
+	both cases, when the data is fetched and when it is stored. This helps to keep the required board space
+	small enough.</p>
+	<p>The actual circuit also features a control register, that allows to set the adder's carry,
+	and the additional bits necessary to extend the increment value to a full address width.
+	This for example allows:</p>
+	<ul>
+	<li>incrementing 256 byte (page): set the carry and use an increment value of $ff</li>
+	<li>decrementing: set the carry, use inverse (EOR #$FF) of the value to subtract as 
+		increment and set the complement bit (upper increment bits). For example to
+		substract by one, set the carry, use $FE as increment value and setting 
+		the complement makes the increment to $FFFFE. You can also clear the carry and
+		use $FFFFF as increment of course.</li>
 	</ul>
      </desc>
    </subsection>
@@ -60,8 +90,9 @@
 	address generation.
 	</p>
 	<table border="1" width="100%">
-	<tr><th>Mode</th><th>diagram</th></tr>
-	<tr><td>CPU write address: </td>
+	<tr><th>Mode</th><th>diagram (click to enlarge)</th></tr>
+	<tr><td>CPU write address. The CPU data bus is directly fed into the load and
+		store address registers via the INBUS</td>
 		<td><a href="blitter WRADDR.svg"><img src="blitter WRADDR.png" alt="write address"/></a></td>
 	</tr>
 	<tr><td>CPU read address. Please note that the address is actually taken from the 
@@ -73,10 +104,13 @@
 		so that the address register value is passed through the ALU unchanged.</td>
 		<td><a href="blitter RDADDR.svg"><img src="blitter RDADDR.png" alt="read address"/></a></td>
 	</tr>
-	<tr><td>CPU write increment: </td>
+	<tr><td>CPU write increment. Similar to writing the addresses, the increment 
+		registers are directly fed from the CPU data bus.</td>
 		<td><a href="blitter WRINC.svg"><img src="blitter WRINC.png" alt="write increment"/></a></td>
 	</tr>
-	<tr><td>CPU read increment: </td>
+	<tr><td>CPU read increment. To read the increment, a separate read pass-buffer 
+		is used. As both increment registers output to the same bus, only a single
+		pass-buffer is used for both increment registers.</td>
 		<td><a href="blitter RDINC.svg"><img src="blitter RDINC.png" alt="read increment"/></a></td>
 	</tr>
 	<tr><td>Blitter read/write data. The output of the address register is passed 

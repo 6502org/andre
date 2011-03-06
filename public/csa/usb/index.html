@@ -2,13 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="" />
-<meta name="keywords" content="CSA65 6502 VIA 6522 SPI MMC SD-Card" />
-<link rev="made" href="mailto:" />
+<meta name="description" content="Commodore PET CBM USB board" />
+<meta name="keywords" content="Commodore PET CBM USB SL811HS" />
+<link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>CS/A65 SPI Interface</title></head>
+<title>USB (+Ethernet) board</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -51,7 +51,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../etholi/index.html">Ethernet</a>
 </li>
-<li><div class="i_file">&nbsp;</div><a href="../usb/index.html">USB</a>
+<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">USB</a>
+
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../shug/index.html">PC floppy</a>
 </li>
@@ -61,8 +62,7 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../scsi/index.html">SCSI/I2C board</a>
 </li>
-<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">MMC/SD-Card</a>
-
+<li><div class="i_file">&nbsp;</div><a href="../spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
 <li><div class="i_file">&nbsp;</div><a href="../blitter/index.html">Block transfer</a>
@@ -142,95 +142,43 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  MMC/SD-Card</div>
-<h1>CS/A65 SPI Interface</h1>
-
-<div class="overview"><p>This page is actually not about a complete board, but it 
-		documents the ways I use to connect SPI devices
-		to the 6502. The first part actually is the interface
-		to the SPI interface of MMC and SD-Cards.</p>
+&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  USB</div>
+<h1>USB (+Ethernet) board</h1><p class="copyright">(C)
+2011-2011 André  Fachat</p> 
+<div class="overview"><p>	
+	This board is an USB board for the CS/A computer. It implements both sides of the interface,
+	i.e. it can be used as host as well as a device. It uses the SL811HS IC for both sides of 
+	the interface - one for each side, the chip can only do one side at a time.
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-03-6</small>
-           Moved the SPI description from here to the <a href="../../hwinfo/spi.html">SPI page</a>.
-      </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#sdc65">MMC and SD-Cards in a 6502 system</a></li><li style="list-style-type:none;"><ul><li><a href="#65volt">Operating Voltage</a></li><li><a href="#65clk">SPI Mode</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 SPI driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sdc65" id="sdc65">MMC and SD-Cards in a 6502 system</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-	<p>
-		In a 6502 system several issues have to be considered:
-	</p>
-	<h3><a name="65volt" id="65volt">Operating Voltage</a></h3><p>
-			The MMC and SD-Cards can operate with different 
-			operation voltages, but not with voltages as high as
-			5 Volt. 
-		</p><p>Fortunately I had, with my new PWR board, a 3.3V
-			power supply I could use. Doing the signal voltage
-			conversion was more difficult. As shown on
-			<a href="http://www.cip.physik.uni-muenchen.de/~wwieser/elec/avr/usb/levelcv.html">USB-based Atmel/AVR Programmer: Level Converter</a>,
-			a 74VHC04 could be used to handle 5 Volt inputs even
-			when powered with 3.3V - and giving 3.3V to the output.
-			This IC, however, is SMD and hard to get, so I went for
-			the slower (in terms of operating frequency) solution
-			with open collector drivers as you can see in the 
-			schematics.
-		</p><p>
-			Fortunately the MMC boards are CMOS devices, and 
-			CMOS devices have a higher "high level" compared to
-			standard TTL (see for example <a href="http://www.interfacebus.com/voltage_threshold.html">Logic Voltage Thresholds for TTL, CMOS, ...</a>). 
-			Thus an output of a 3.3V-driven CMOS IC can still drive
-			3V, which for a 5V TTL chips easily is a high level.				Therefore a 74LS* IC should suffice. According to the
-			Level converter page above I successfully used a 
-			74HCT family IC.
-		</p><h3><a name="65clk" id="65clk">SPI Mode</a></h3><p>The MMC and SD-Cards operate with SPI mode 0.
-			First I thought I could use the VIA 6522 shift
-			register (SR) to handle the SPI port. As it turned out,
-			however, the VIA SR transfers data out at the 
-			first (falling) transition of its clock, so it can be
-			latched by the second (rising) edge by the receiver.
-			This would be SPI mode 3. You could reverse clock,
-			but you cannot make the VIA shift our earlier. So there
-			is no way to use the VIA SR. Instead I now use a 
-			bit-banging approach with CLK and MOSI.
-			</p><p>
-			For MISO, hoever, I decided to use an external shift
-			register. This approach seemed to make sense 
-			with the VIA SR, as transfers work in both directions
-			at the same time. Now it is just a convenience.
-		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 SPI driver</a></h3><p>
-			This is a test driver for the SPI schematics below.
-			It initializes the card, reads the operations conditions
-			register, the card id data, and can read and write
-			a block.
-			</p><p>Please note that it is clutterd with debug code.
-			</p>
-                <table class="files">
-<tr class="R1"><td><div class="i_driver"> </div></td>
-<td><a href="sdcard.tar.gz">sdcard.tar.gz</a></td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
+  </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-03-xx</small>
+	Published this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">USB Host Driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">USB Host Driver</a></h3><table class="files"></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
-			I have built this schematics on a prototyping board,
-			so there is no board layout for it.
-		</td></tr>
+			There still seems to be some kind of initialization problem. The uIP driver from above only
+			works when system has been reset once after power up (no matter if the driver has been loaded
+			before the reset or not).
+                </td></tr>
 <tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
-			You may not need the input shift register. This is not 
-			really necessary if you bit-bang the input as well.
-			It is convenient, however, and a remainder of an 
-			earlier approach using the VIA shift register
-			(which did not work unfortunately).
-		</td></tr>
-<tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			For hot-plugging another capacitor may be needed
-			in the power supply lines for the card.
-		</td></tr>
+			This board has been successfully tested with both implementation options for the level translators.
+                </td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_viaspi-v1.0a.sch">csa_viaspi-v1.0a.sch</a></td>
+<td><a href="csa_etholi-v1.0a.sch">csa_etholi-v1.0a.sch</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_viaspi_v1.0a-sch.png">csa_viaspi_v1.0a-sch.png</a></td>
+<td><a href="csa_etholi-v1.0a-sch.png">csa_etholi-v1.0a-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_etholi-v1.0a.brd">csa_etholi-v1.0a.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_etholi-v1.0a-brd.png">csa_etholi-v1.0a-brd.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2007-06-07.</p>
+</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
-</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html>
+  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 
+

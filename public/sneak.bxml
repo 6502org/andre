@@ -38,37 +38,10 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
     <desc> <p>My current CS/A projects...
     </p></desc>
 
-     <subsection toc="cpu816" name="65816 CPU board">
-	<desc><p>
-	After designing and testing the PET816 board (65816 CPU board for the CBM PETs or other 6502 computers) I decided to adapt the
-	CPLD code to be compatible with the PET816 board - more features and common drivers are easier to do.
-	</p>
-	<p>Done :-)</p>
-	</desc>
-	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
-     </subsection>
-
      <subsection toc="petcpu" name="PETCPU board">
 	<desc><p>
 	During my tests for the PET816 board in the PETCPU board, I found timing issues between the PETCPU and VDC boards. Need to fixup the PETCPU board. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
 	</p>
-	</desc>
-	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
-     </subsection>
-
-     <subsection toc="csacpu" name="CS/A CPU on 2MHz">
-	<desc><p>
-	During my tests for the PET816 board in a 2MHz CS/A computer, I found timing issues with the 2MHz mode - need to be figured out. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
-	</p>
-	<p>Done :-)</p>
-	</desc>
-     </subsection>
-
-     <subsection toc="etholi" name="Olimex Ethernet board">
-	<desc><p>
-	I have made a design for a board with the Olimex Ethernet controller board - basically similar to the Netusb board, but needing voltage converters as the Olimex parts is only available in 3.3V... Board and parts are here, but nothing done yet... 
-	</p>
-	<p>Done :-)</p>
 	</desc>
 	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
      </subsection>
@@ -96,12 +69,45 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 
   </section>
 
-  <section toc="fpga" name="The 65k Project">
+  <section toc="xs1541" name="XS1541">
+    <desc> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
+create a new firmware for the XS1541 to provide the lptieee functionality...
+</p>
+	</desc>
+  </section>
+
+  <section toc="done" name="Done stuff">
+     <subsection toc="cpu816" name="65816 CPU board">
+	<desc><p>
+	After designing and testing the PET816 board (65816 CPU board for the CBM PETs or other 6502 computers) I decided to adapt the
+	CPLD code to be compatible with the PET816 board - more features and common drivers are easier to do.
+	</p>
+	<p>Done :-)</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+     <subsection toc="csacpu" name="CS/A CPU on 2MHz">
+	<desc><p>
+	During my tests for the PET816 board in a 2MHz CS/A computer, I found timing issues with the 2MHz mode - need to be figured out. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
+	</p>
+	<p>Done :-)</p>
+	</desc>
+     </subsection>
+     <subsection toc="etholi" name="Olimex Ethernet board">
+	<desc><p>
+	I have made a design for a board with the Olimex Ethernet controller board - basically similar to the Netusb board, but needing voltage converters as the Olimex parts is only available in 3.3V... Board and parts are here, but nothing done yet... 
+	</p>
+	<p>Done :-)</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+  <subsection toc="fpga" name="The 65k Project">
     <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
 	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
 </p>
+	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
 	</desc>
-
+<!--
 	<subsection toc="65002" name="65002"><desc><p>Design goals for the 65002 CPU replacement are:</p>
 <ul>
 <li>Provide original 6502 (legal) opcodes; optionally some of the illegal ones (SAX, LAX) as they fit</li>
@@ -151,19 +157,15 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
     	</desc>
 	<extlink name="6502 history and future" link="http://homepage.mac.com/jorgechamorro/a2things/PDFs/65xxx.txt"/>
     </subsection>
-  </section>
-
-  <section toc="xs1541" name="XS1541">
-    <desc> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
-create a new firmware for the XS1541 to provide the lptieee functionality...
-</p>
-	</desc>
-  </section>
-
-  <section toc="web" name="Web design overhaul">
+-->
+  </subsection>
+  <subsection toc="web" name="Web design overhaul">
     <desc> <p>As you can see, this part is done as of June 5th 2010 :-)
 </p>
 	</desc>
+  </subsection>
+
+
   </section>
 	  <closing>
 @FOOTER@

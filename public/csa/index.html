@@ -51,6 +51,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="etholi/index.html">Ethernet</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="usb/index.html">USB</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="shug/index.html">PC floppy</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="drvio/index.html">DRVIO floppy and IEC</a>
@@ -62,6 +64,8 @@
 <li><div class="i_file">&nbsp;</div><a href="spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
+<li><div class="i_file">&nbsp;</div><a href="blitter/index.html">Block transfer</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="ramdisk/index.html">SIMM RAMDisk</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="copro/index.html">Coprocessor board</a>
@@ -391,14 +395,17 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		to boot.
 	  </li><li class="subitem"><a href="bios/index.html">CS/A65 BIOS</a> 
 		This BIOS board contains RAM and ROM for the main CPU, as
-		well as simple 50Hz interrupt generation, as well as a
+		well as simple 50Hz interrupt generation, and a
 		serial (RS232) interface.
 	  </li><li class="subitem"><a href="petcpu/index.html">64k PET CPU</a> 
 		This board implements a simple CPU board that includes
 		not only the CPU, but also RAM and ROM (and also a serial
 		interface). It can - as it does not have an MMU - make only
 		restricted use of the bus memory address space, but can
-		fully use the bus I/O area.
+		fully use the bus I/O area. You can use this board
+		instead of a main CPU and BIOS board to build a 
+		<a href="#fat40">Commodore 4032</a> or a 
+		<a href="#vc1581">Commodore VC1581</a> replica.
 	  </li><li class="subitem"><a href="gecko/index.html">Gecko</a> 
 		This board implements a single-board computer with a 
 		6502, RAM and ROM, that 
@@ -407,7 +414,9 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		bus, infrared LED driver to use as remote control
 		and a small keyboard interface.
 	  </li><li class="subitem"><a href="auxcpu/index.html">Auxiliary CPU</a> 
-		This board is an optional extension to the CS/A65 CPU board.
+		This board is an optional extension to the CS/A65 CPU board
+		(only! - it requires the MMU features on the CPU board, which
+		are not available on the 65816, PETCPU, or Gecko boards).
 		It monitors the bus for error conditions, then takes over
 		from the main CPU to fix the error condition. Possible
 		error conditions are write protect error, "no execution" 
@@ -420,7 +429,7 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		clock, RAM, and an I2C flash ROM.
 	  </li></ul><h3><a name="ioboards" id="ioboards">I/O boards</a></h3>Many of the I/O boards are designed to be at least to some extent
 Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html">Video</a> 
-		Thie VDC board implements a 6545 CRTC-based video interface.
+		The VDC board implements a 6545 CRTC-based video interface.
 		It includes 64k dynamic RAM that is used as video memory
 		(at least parts of). If the system bus runs with 1MHz it can
 		display 40 columns PAL video, on 2MHz it can display 80 columns
@@ -430,23 +439,37 @@ Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html">Video
 		except for the video. It thus features an IEEE488 interface,
 		as well as keyboard, userport and tape interfaces. It also
 		contains a small beeper to make noise :-)
-	  </li><li class="subitem"><a href="shug/index.html">PC floppy</a> 
-		This board contains a PC-style floppy drive interface using
-		the WD1772 chip. It also contains a small printer interface.
+	  </li><li class="subitem"><a href="etholi/index.html">Ethernet</a> 
+		An ethernet interface for the CS/A! Using the CS8900A ethernet
+		chip on an Olimex adapter board. TCP/IP functionality provided
+		by the uIP TCP/IP stack.
+	  </li><li class="subitem"><a href="spi/index.html">MMC/SD-Card</a> 
+		The MMC- and SD-cards can use a simple SPI-based interface. On this
+		board the CS/A can read MMC and SD-Cards!
+	  </li><li class="subitem"><a href="scsi/index.html">SCSI</a> 
+		This board implements a parallel SCSI interface to attach SCSI devices
+		to the CS/A65 computer. It is currently only tested with
+		disk drives, though.
 	  </li><li class="subitem"><a href="drvio/index.html">DRVIO floppy and IEC</a> 
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip in a way that is compatible with the 
-		Commodore VC1581 disk drive.
+		Commodore VC1581 disk drive - so that it can be used to
+		build a <a href="#vc1581">Commodore VC1581</a> replica.
 	  </li><li class="subitem"><a href="duart/index.html">Double UART</a> 
 		Two UART 16550A implement two serial line RS232 interfacs.
-	  </li><li class="subitem"><a href="scsi/index.html">SCSI</a> 
-		This board implements a SCSI interface to attach SCSI devices
-		to the CS/A65 computer. It is currently only tested with
-		disk drives, though.
+	  </li><li class="subitem"><a href="shug/index.html">PC floppy</a> 
+		This board contains a PC-style floppy drive interface using
+		the WD1772 chip. It also contains a small printer interface.
 	  </li></ul><h3><a name="specialboards" id="specialboards">Special purpose boards</a></h3>Special interest in this computer system is on the topic of emulation.
 The larger address space and the MMU allows for mapping of other
 computers memory into the main memory map.
-	<ul><li class="subitem"><a href="copro/index.html">Coprocessor</a> 
+	<ul><li class="subitem"><a href="ramdisk/index.html">SIMM RAMDisk</a> 
+		This board implements a RAM Disk based on the (nowadays quite old)
+		SIMM memory modules. Using four of them you can build 
+		a RAM disk drive with up to 16MByte capacity (only tested to 4M though). 
+		Two versions are available, an older one with complete discrete
+		logic, and a new one using a CPLD programmable logic chip.
+	  </li><li class="subitem"><a href="copro/index.html">Coprocessor</a> 
 		This is a coprocessor board, that 
 		runs in parallel to the main CPU and has its own 64k of memory
 		mapped into the 1M bus address space as shared memory.

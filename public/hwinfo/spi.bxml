@@ -1,0 +1,120 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="SPI Information">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <yearstart>2006</yearstart>
+    <yearend>2011</yearend>
+    <email>@EMAIL@</email>
+  </author>
+  <keywords>SPI</keywords>
+  <metadesc>SPI information</metadesc>
+  <overview>
+	In my <a href="../csa/index.html">CS/A65</a> computer I use the
+	SPI interface to connect and use MMC- and SD-Cards.
+  </overview>
+  <news>
+    <item date="2011-03-6">
+	Moved the content from the <a href="../csa/spi/index.html">CS/A MMC page</a> here.
+    </item>
+  </news>
+        <section toc="modes" name="SPI"><desc>
+                <p>SPI means "Serial Peripheral Interface Bus" and is a very
+		simple four-wire protocol. Some of the advantages are:
+		<ul>
+		<li>Each signal is single direction, there are no bi-directional signals</li>
+		<li>It is a synchronous bus and clock is controlled by a single source.</li>
+		<li>It is byte-oriented</li>
+		</ul>
+		One of its disadvantages is: it is not exactly well specified:
+		</p><p>
+		There are these four lines:
+		<table border="1"><tr><th>Signal</th><th>Direction</th><th>Description</th></tr>
+		<tr><td>/SEL</td><td>SPI Master -&gt; SPI Slave</td><td>If low, the selected device is selected. A master may have multiple of those outputs, but a slave has only one input</td></tr>
+		<tr><td>CLK</td><td>SPI Master -&gt; SPI Slave</td><td>Clock for data transfers</td></tr>
+		<tr><td>MOSI</td><td>SPI Master -&gt; SPI Slave</td><td>Data from master to slave</td></tr>
+		<tr><td>MISO</td><td>SPI Slave -&gt; SPI Master</td><td>Data from slave to master</td></tr>
+		</table>
+		Beyond that the CLK levels and at which CLK transition the data
+		is transferred is not defined!
+                </p></desc>
+	        <subsection toc="modes" name="SPI Modes"><desc>
+                	<p>
+			For this reason there are different possibilities:
+			<ul><li>CPOL=0/1: base value of the clock. I.e. the level of the CLK signal when no data transfer is going on.</li>
+			<li>CPHA=0/1: The transition of the clock (leading or trailing edge) on which the data is transferred</li>
+			</ul>
+			This results in the fact that there are four SPI modes,
+			<table border="1"><tr><th>Mode</th><th>CPOL</th><th>CPHA</th></tr>
+			<tr><td>0</td><td>0</td><td>0</td></tr>
+			<tr><td>1</td><td>0</td><td>1</td></tr>
+			<tr><td>2</td><td>1</td><td>0</td></tr>
+			<tr><td>3</td><td>1</td><td>1</td></tr>
+			</table>
+			Unfortunately some devices only understand a single 
+			mode, and different from other devices, so a master
+			should be able to handle all modes.
+                	</p></desc>
+        	</subsection>
+	        <subsection toc="spilinks" name="Links"><desc>
+			<ul><li><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> has some more detailled info</li>
+			</ul>
+			</desc>
+        	</subsection>
+        </section>
+        <section toc="mmcsdc" name="MMC and SD-Cards"><desc>
+                <p>
+		MMC-Card and SD-Cards are cheap means of getting large amounts
+		of storage memory nowadays. And they are getting larger and
+		cheaper every day. Those cards are based on flash memory
+		and can be found in digital cameras, navigation systems, 
+		and many more.
+		</p>
+		<p>Unfortunately the MMC- and SD-Card protocols are not free,
+		 however a certain amount of intelligence has been gathered
+		and is available on the web:
+		<ul><li><a href="http://en.wikipedia.org/wiki/MultiMediaCard">Wikipedia on MMCs</a></li>
+		<li><a href="http://en.wikipedia.org/wiki/Secure_Digital_card">Wikipedia on Secure Digital Cards</a></li>
+		<li><a href="http://elm-chan.org/docs/mmc/mmc_e.html">How to use MMC/SDC</a></li>
+		</ul>
+		as well as in datasheets for MMC or SD-Cards found on the 
+		producers homepages.
+                </p></desc>
+	        <subsection toc="spimodes" name="MMC/SD SPI mode"><desc><p>
+			Newer MMC and especially SD-Cards use a mode
+			where more than a single bit is transferred per
+			clock. In fact the cards have four data lines that
+			are used in native mode. This mode is however
+			more complicated. But, we are lucky, all cards
+			still support the SPI mode, that they can enter
+			upon startup when instructed to do so. And this is
+			what the driver does.
+			</p><p>
+			One problem I had in the beginning was that the
+			datasheets mentioned the data transfer on the 
+			rising edge of the clock, but not what 
+			clock level would be correct. By experimentation
+			I found that MMCs and SD-Cards use mode 0.
+			</p></desc>
+        	</subsection>
+        </section>
+  <!--itemlist name="SPI Links">
+    <desc>
+    </desc>
+    <items>
+     <subitem name="ELektronik-KOmpendium" link="http://www.elektronik-kompendium.de/public/borchers/i2c/main.htm">
+	This page contains a very good introduction to the I2C bus - although
+	in German. If you can read that, a recommended reading!
+     </subitem>
+     <subitem name="wikipedia" link="http://en.wikipedia.org/wiki/SPI">
+	The wikipedia article on SPI.
+     </subitem>
+    </items>
+  </itemlist-->
+  <disclaimer name="Disclaimer">
+All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
+  </disclaimer>
+  <closing>
+Contents last modified 2011-03-06.
+@FOOTER@
+  </closing>
+</webpage>

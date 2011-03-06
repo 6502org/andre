@@ -27,6 +27,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%etholi/index.html">Ethernet</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="%up%usb/index.html">USB</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%shug/index.html">PC floppy</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%drvio/index.html">DRVIO floppy and IEC</a>
@@ -38,6 +40,8 @@
 <li><div class="i_file">&nbsp;</div><a href="%up%spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
+<li><div class="i_file">&nbsp;</div><a href="%up%blitter/index.html">Block transfer</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%ramdisk/index.html">SIMM RAMDisk</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%copro/index.html">Coprocessor board</a>

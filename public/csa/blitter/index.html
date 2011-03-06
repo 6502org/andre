@@ -42,10 +42,16 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="../term/index.html">Bus terminators</a>
+</li>
 <li class="separator">I/O boards</li>
 <li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../petio/index.html">CBM PET I/O</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../etholi/index.html">Ethernet</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../usb/index.html">USB</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../shug/index.html">PC floppy</a>
 </li>
@@ -58,7 +64,7 @@
 <li><div class="i_file">&nbsp;</div><a href="../spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
-<li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">Block Transfer</a>
+<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">Block transfer</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="works.html">How it works</a></li>
 </ul>
@@ -127,6 +133,7 @@
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+<p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
 		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
@@ -137,7 +144,7 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Block Transfer</div>
+&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Block transfer</div>
 <h1>Blitter</h1><p class="copyright">(C)
 2007-2010 André  Fachat</p> 
 <div class="overview"><p>Transfering a block of bytes from one memory location to another
@@ -161,11 +168,67 @@ more modern browser, like Internet Explorer 8 or later,
 	space and that I was able to place and route with SMD technology.
 	</p><p>
 	In the <a href="works.html">How it works</a> page I have described how the
-	board works in detail.
+	board works in principle.
 	</p>
   </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-09-17</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#desc">Board description</a></li><li style="list-style-type:none;"><ul><li><a href="#dbus">Data Bus Separation</a></li><li><a href="#logic">Logic Implementation</a></li><li><a href="#layout">Layout description</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.1A</a> (prototype)</li><li><a href="#board2">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Board description</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>In the <a href="works.html">How it works</a> page the principles of operation
+	are described. Here I'll describe some of the implementation details (of the V2 board).
+     </p><h3><a name="dbus" id="dbus">Data Bus Separation</a></h3><p>
+	In the principles the CPU data bus is connected to the INBUS drivers, the increment
+	registers, the increment data buffer, and - not shown there - to the input as well as output
+	of the data transfer register (where the transferred data is kept). This would put a lot
+	of load on the actual CPU data bus. Therefore I added IC15, a data bus driver that separates
+	the actual CPU data bus from the board data bus.
+	</p><h3><a name="logic" id="logic">Logic Implementation</a></h3><p>
+	The system actually only as a few bits of "state" if you don't count the address and increment
+	registers. It must know if it is active, and when active it needs to know which operation it
+	is doing - fetch or store. This state is defined in the signals /ACTIVE and FETCH/-STORE.
+	In the 2.0 version these bits were determined by some RS-Flipflops, and all other logic
+	was derived from that and implemented in two PAL chips. But my PAL burner is not that 
+	reliable and I had a Xilinx 9536 CPLD around, so I decided to move everything into the CPLD
+	- which is shown in the 2.1 version. Unfortunately the CPLD is about a few lines short of
+	being able to include all the logic. So some small parts are still implemented as inverters
+	and AND gates.
+	</p><p>
+	Note that the 2.1 board contains some "PIN" pads, to be able to easily use the remaining logic
+	gates even though these chips are SMD...
+	</p><h3><a name="layout" id="layout">Layout description</a></h3><p>
+	If you look at the layout, it is dominated by an five-by-four array of SOW20 chips with some
+	smaller chips to the right. These implement the INBUS, OUTBUS and Increment busses as follows:
+	</p><p>
+	The first line of chips implements the Increment bus, with two '574 as increment value registers
+	for fetch and store. Then there is IC24 ('245) to read out the increment bus, and IC23 ('245)
+	to feed a zero increment into the adder.
+	</p><p>
+	To the right of that comes IC32 ('245) and IC25/IC28 (both '193) that implement the transfer counter.
+	</p><p>
+	The next three lines of ICs implement the address bits 0-7, 8-15 and 16-19 respectively, including
+	their part of the INBUS and OUTBUS busses. First comes the address drivers that are used to
+	drive the OUTBUS to the CPU address bus. Then there are the two '574 that hold the fetch and store
+	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
+	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
+	INBUS. The smaller chips to the right are '293 4-bit adders, implementing the actually "ALU" adder.
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1A</a></h3>
+<p>Status: prototype</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td>
+			This board is a prototype design that I still have to build and test!
+                </td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1a.sch">csa_blitter-v2.1a.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1a-sch.png">csa_blitter-v2.1a-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1a.brd">csa_blitter-v2.1a.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1a-brd.png">csa_blitter-v2.1a-brd.png</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <p>Status: not working</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>

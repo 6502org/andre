@@ -42,10 +42,16 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../pwr/index.html">Power Supply</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="../term/index.html">Bus terminators</a>
+</li>
 <li class="separator">I/O boards</li>
 <li><div class="i_file">&nbsp;</div><a href="../vdc/index.html">Video board</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../petio/index.html">CBM PET I/O</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../etholi/index.html">Ethernet</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../usb/index.html">USB</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../shug/index.html">PC floppy</a>
 </li>
@@ -58,7 +64,7 @@
 <li><div class="i_file">&nbsp;</div><a href="../spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
-<li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="../blitter/index.html">Block Transfer</a>
+<li><div class="i_file">&nbsp;</div><a href="../blitter/index.html">Block transfer</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="works.html" class="mcurrent">How it works</a></li>
 </ul>
@@ -127,6 +133,7 @@
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+<p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
 		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
@@ -137,7 +144,7 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  <a href="index.html">Block Transfer
+&gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  <a href="index.html">Block transfer
 </a>&gt;&gt;  How it works</div>
 <h1>Blitter - how it works</h1><p class="copyright">(C)
 2007-2010 André  Fachat</p> 
@@ -162,23 +169,54 @@ more modern browser, like Internet Explorer 8 or later,
 		registers and buffers</li>
 	</ul>
      <h3><a name="address" id="address">Address Generation</a></h3>
-	<p>The address generation components are:</p>
 <div class="rightimg"><a href="blitter v01.svg"><img src="blitter v01.png" alt="address generation architecture" /></a><p>Blitter address generation (click to enlarge)</p></div>
+	<p>The address generation components are:</p>
 	<ul>
 	<li>LDADDR/STADDR: address registers for load and store addresses</li>
 	<li>LDINC/STINC: registers for address increment</li>
 	<li>ALU: Adder to add the address and the increment</li>
-	<li>ZERO: zero increment (see below for the purpose</li>
-	<li>Address data buffer: connects the INBUS to the CPU data bus</li>
+	<li>ZERO: zero increment (see below for the purpose)</li>
+	<li>Address data buffer: connects the INBUS to the CPU data bus. Note that this
+		is actually three 8-bit buffers, where one byte at a time can be
+		accessed (denoted by the "8Bit" in the diagram)</li>
 	<li>Increment data buffer: connects the Increment bus to the CPU data bus</li>
 	<li>Address buffer: drives the address from OUTBUS to the system address bus</li>
+	</ul>
+	<p>These components are connected together by three busses:</p>
+	<ul>
+	<li>INBUS: The INBUS is called that as it feeds a new address value into the
+		load and store address registers. The value can come from the 
+		ALU output or from the CPU data bus.</li>
+	<li>OUTBUS: The outbus holds the output from the load and store address registers.
+		Its value is put on the actual address bus during a fetch or store operation.
+		The value from this bus is at the same time also fed into one side of the 
+		ALU adder.</li>
+	<li>Increment: This bus holds the output of the increment registers, resp. the zero increment
+		value. Its value is fed into the second ALU adder input, but can also be read
+		from the CPU data bus.</li>
+	</ul>
+	<p>Together these components allow to do the actual data transfer, as well as the address increment
+	of the address registers in a single cycle. The same, shared, ALU and bus components are used in 
+	both cases, when the data is fetched and when it is stored. This helps to keep the required board space
+	small enough.</p>
+	<p>The actual circuit also features a control register, that allows to set the adder's carry,
+	and the additional bits necessary to extend the increment value to a full address width.
+	This for example allows:</p>
+	<ul>
+	<li>incrementing 256 byte (page): set the carry and use an increment value of $ff</li>
+	<li>decrementing: set the carry, use inverse (EOR #$FF) of the value to subtract as 
+		increment and set the complement bit (upper increment bits). For example to
+		substract by one, set the carry, use $FE as increment value and setting 
+		the complement makes the increment to $FFFFE. You can also clear the carry and
+		use $FFFFF as increment of course.</li>
 	</ul>
      </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="main" id="main">Operating Modes</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section explains the operating modes of the 
 	address generation.
 	</p>
 	<table border="1" width="100%">
-	<tr><th>Mode</th><th>diagram</th></tr>
-	<tr><td>CPU write address: </td>
+	<tr><th>Mode</th><th>diagram (click to enlarge)</th></tr>
+	<tr><td>CPU write address. The CPU data bus is directly fed into the load and
+		store address registers via the INBUS</td>
 		<td><a href="blitter WRADDR.svg"><img src="blitter WRADDR.png" alt="write address" /></a></td>
 	</tr>
 	<tr><td>CPU read address. Please note that the address is actually taken from the 
@@ -190,10 +228,13 @@ more modern browser, like Internet Explorer 8 or later,
 		so that the address register value is passed through the ALU unchanged.</td>
 		<td><a href="blitter RDADDR.svg"><img src="blitter RDADDR.png" alt="read address" /></a></td>
 	</tr>
-	<tr><td>CPU write increment: </td>
+	<tr><td>CPU write increment. Similar to writing the addresses, the increment 
+		registers are directly fed from the CPU data bus.</td>
 		<td><a href="blitter WRINC.svg"><img src="blitter WRINC.png" alt="write increment" /></a></td>
 	</tr>
-	<tr><td>CPU read increment: </td>
+	<tr><td>CPU read increment. To read the increment, a separate read pass-buffer 
+		is used. As both increment registers output to the same bus, only a single
+		pass-buffer is used for both increment registers.</td>
 		<td><a href="blitter RDINC.svg"><img src="blitter RDINC.png" alt="read increment" /></a></td>
 	</tr>
 	<tr><td>Blitter read/write data. The output of the address register is passed 
