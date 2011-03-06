@@ -149,33 +149,31 @@ more modern browser, like Internet Explorer 8 or later,
 	This board is an USB board for the CS/A computer. It implements both sides of the interface,
 	i.e. it can be used as host as well as a device. It uses the SL811HS IC for both sides of 
 	the interface - one for each side, the chip can only do one side at a time.
-	
+   </p><p>
+	Note this board also contains an ethernet interface based on the 5V CS8900A chip, similar
+	to the <a href="../etholi/index.html">olimex adapter board</a>. For ethernet drivers 
+	please see there.
   </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-03-xx</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">USB Host Driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">USB Host Driver</a></h3><table class="files"></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">USB Host Driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0C</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">USB Host Driver</a></h3><p>
+		This is the USB Host driver. It currently supports keyboards, mouse devices, and
+		hubs.
+                </p><table class="files">
+<tr class="R1"><td><div class="i_driver"> </div></td>
+<td><a href="USB-0.3.tar.gz">USB-0.3.tar.gz</a>(6502 USB Host Driver)</td>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0C</a></h3>
 <p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
-			There still seems to be some kind of initialization problem. The uIP driver from above only
-			works when system has been reset once after power up (no matter if the driver has been loaded
-			before the reset or not).
-                </td></tr>
-<tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			This board has been successfully tested with both implementation options for the level translators.
+			This board has been successfully tested with Ethernet and USB host operations.
+			USB device operations is still missing the driver.
                 </td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_etholi-v1.0a.sch">csa_etholi-v1.0a.sch</a></td>
+<td><a href="csa_netusb-v1.0c.sch">csa_netusb-v1.0c.sch</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_etholi-v1.0a-sch.png">csa_etholi-v1.0a-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_etholi-v1.0a.brd">csa_etholi-v1.0a.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_etholi-v1.0a-brd.png">csa_etholi-v1.0a-brd.png</a></td>
+<td><a href="csa_netusb-v1.0c-sch.png">csa_netusb-v1.0c-sch.png</a></td>
 </tr></table>
 </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>

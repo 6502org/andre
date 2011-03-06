@@ -13,7 +13,10 @@
 	This board is an USB board for the CS/A computer. It implements both sides of the interface,
 	i.e. it can be used as host as well as a device. It uses the SL811HS IC for both sides of 
 	the interface - one for each side, the chip can only do one side at a time.
-	
+   </p><p>
+	Note this board also contains an ethernet interface based on the 5V CS8900A chip, similar
+	to the <a href="../etholi/index.html">olimex adapter board</a>. For ethernet drivers 
+	please see there.
   </p></overview>
   <news>
     <item date="2011-03-xx">
@@ -44,44 +47,21 @@
 
         <driver>
                 <name>USB Host Driver</name>
-                <!--desc><p>
-		This is the uIP v1.0 TCP/IP stack ported to the PET, which runs on my CS/A computer using the
-		PET ROMs. </p>
-                <div class="rightimg">
-                        <a href="board.png"><img width="300px" src="board-small.png"/></a><br/>The Ethernet board in
-			the '4245 option.
-                        </div>
-		<p>
-		The <code>pet</code> subdirectory is new and contains the Makefile to build the <code>uip</code> binary,
-		which is a CBM PET program that can be loaded with LOAD and started with RUN. In the main.c the 
-		ethernet driver is configured with the IP address. Also there are some diagnostic asm statements,
-		to increase a PET video memory location when executed, kind of a debug heartbeat.
-		</p><p>
-		The CS8900A is configured to be used at $E8C0. The board can be jumpered to $E8D0 as well.
-		</p><p>
-		In the uIP driver code provided here I have only implemented the "hello world" program as included in the 
-		uIP stack. That however should give you an indication how to implement your own programs. 
-		</p>
-                </desc>
-                <file ltype="driver" ptype="tgz" note="Ported uIP stack for the PET">uip-1.0+pet.tar.gz</file>
-                <file ltype="driver" ptype="diff" note="Diff of the Ported uIP stack to uIP v1.0">uip-pet.diff.gz</file>
-		<extlink name="uIP stack" link="http://www.sics.se/~adam/uip/index.php/Main_Page"/-->
+                <desc><p>
+		This is the USB Host driver. It currently supports keyboards, mouse devices, and
+		hubs.
+                </p></desc>
+                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USB-0.3.tar.gz</file>
         </driver>
         <rev>
-                <version>1.0A</version>
+                <version>1.0C</version>
                 <status>prototype</status>
-                <note type="warn">
-			There still seems to be some kind of initialization problem. The uIP driver from above only
-			works when system has been reset once after power up (no matter if the driver has been loaded
-			before the reset or not).
-                </note>
                 <note type="msg">
-			This board has been successfully tested with both implementation options for the level translators.
+			This board has been successfully tested with Ethernet and USB host operations.
+			USB device operations is still missing the driver.
                 </note>
-                <file ltype="schem" ptype="esch">csa_etholi-v1.0a.sch</file>
-                <file ltype="schem" ptype="png">csa_etholi-v1.0a-sch.png</file>
-                <file ltype="layout" ptype="ebrd">csa_etholi-v1.0a.brd</file>
-                <file ltype="layout" ptype="png">csa_etholi-v1.0a-brd.png</file>
+                <file ltype="schem" ptype="esch">csa_netusb-v1.0c.sch</file>
+                <file ltype="schem" ptype="png">csa_netusb-v1.0c-sch.png</file>
         </rev>
   <closing>
 @FOOTER@
