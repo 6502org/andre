@@ -21,6 +21,9 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	</p>
 	</desc>
 	<news>
+		<item date="2011-03-18">
+			Added the 1.2B version.
+		</item>
 		<item date="2011-01-15">
 			Added the 1.2A version.
 		</item>
@@ -66,6 +69,26 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
                 </desc>
                 <file ltype="driver" ptype="tgz"></file>
         </driver-->
+	<rev>
+		<version>1.2b</version>
+		<status>untested</status>
+		<note type="warn">
+			This board has not been tested yet.
+			The schematics is basically the same as the 1.1A version.
+		</note>
+		<note type="msg">
+			Compared to the 1.2a version it exchanges the polarity of the
+			power connector, so it is compatible with the other boards I did
+			(e.g. the <a href="../pet816/index.html">PET816</a> accelerator board),
+			namely GND in the middle now and VCC on the outer pins.
+		</note>
+		<file ltype="desc" ptype="txt">petcsadesc-v1.1.txt</file>
+		<file ltype="schem" ptype="esch">pet_csadapter-v1.2b.sch</file>
+		<file ltype="schem" ptype="png">pet_csadapter-v1.2b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">pet_csadapter-v1.2b.brd</file>
+		<file ltype="layout" ptype="png">pet_csadapter-v1.2b-brd.png</file>
+		<file ltype="layout" ptype="png">pet_csadapter-v1.2b-layout.png</file>
+	</rev>
 	<rev>
 		<version>1.2a</version>
 		<status>untested</status>
