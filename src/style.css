@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #aaa;
+ background-color: #555;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -29,8 +29,10 @@ a:hover { color:#ff0000; text-decoration:none }
 
 /* top level style */
 DIV.top {
+/*
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
+*/
   	background-color: #ffffff; 
   	margin: 0;
   	margin-top: 0em;
@@ -44,12 +46,12 @@ DIV.tophead {
  	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
 	background-color: #ee8800;
-
+/*
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
-
+*/
 	color: #fff;
 	margin: -0.7em;
 	margin-bottom: 0.3em;
@@ -71,11 +73,12 @@ DIV#hot DIV.tophead {
  	background: -moz-linear-gradient(top, #f55, #e00 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
 	background-color: #ee0000;
-
+/*
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
+*/
 }
 
 P.copyright {
