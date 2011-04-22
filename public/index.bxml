@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2011-04-22" state="hot">
+	Added a completely new <a href="csa/usb/index.html">USB board</a> to my <a href="csa/index.html">CS/A computer</a>. Device and Host operation possible with a 1MHz 6502!
+    </item>
     <item date="2011-01-15">
 	Added a section about bringing <a href="cbmhw/petnet/index.html">a PET on the 'Net</a>.
 	(and updated the
