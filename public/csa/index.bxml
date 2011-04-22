@@ -15,6 +15,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2011-04-22" state="hot">
+			Added a completely new <a href="usb/index.html">USB board</a>!
+		</item>
 		<item date="2011-01-09">
 			Added a completely new <a href="term/index.html">Bus terminator board</a>!
 		</item>
@@ -392,6 +395,13 @@ Commodore PET compatible 	</desc>
 		An ethernet interface for the CS/A! Using the CS8900A ethernet
 		chip on an Olimex adapter board. TCP/IP functionality provided
 		by the uIP TCP/IP stack.
+	  </subitem>
+
+          <subitem name="USB" link="usb/index.html">
+		A USB interface for the CS/A! Using one SL811HS ethernet
+		chip each for host and device operations, this board allows
+		to use a USB keyboard and mouse, but can also provide a USB keyboard
+		for a USB host!
 	  </subitem>
 
           <subitem name="MMC/SD-Card" link="spi/index.html">

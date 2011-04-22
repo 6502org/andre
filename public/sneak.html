@@ -81,7 +81,7 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 	Website design update done!
     </li><li><div> </div><small>2010-06-01</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#osa">GeckOS</a></li><li><a href="#csa">CS/A65</a></li><li style="list-style-type:none;"><ul><li><a href="#petcpu">PETCPU board</a></li><li><a href="#netusb">Netusb</a></li><li><a href="#blitter">Blitter</a></li></ul></li><li><a href="#xs1541">XS1541</a></li><li><a href="#done">Done stuff</a></li><li style="list-style-type:none;"><ul><li><a href="#cpu816">65816 CPU board</a></li><li><a href="#csacpu">CS/A CPU on 2MHz</a></li><li><a href="#etholi">Olimex Ethernet board</a></li><li><a href="#fpga">The 65k Project</a></li><li><a href="#web">Web design overhaul</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="osa" id="osa">GeckOS</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The operating system needs a definitive overhaul. These are the things to do:
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#osa">GeckOS</a></li><li><a href="#csa">CS/A65</a></li><li style="list-style-type:none;"><ul><li><a href="#petcpu">PETCPU board</a></li><li><a href="#blitter">Blitter</a></li></ul></li><li><a href="#xs1541">XS1541</a></li><li><a href="#inprog">Work in progress</a></li><li style="list-style-type:none;"><ul><li><a href="#fpga">The 65k Project</a></li></ul></li><li><a href="#done">Done stuff</a></li><li style="list-style-type:none;"><ul><li><a href="#netusb">Netusb</a></li><li><a href="#cpu816">65816 CPU board</a></li><li><a href="#csacpu">CS/A CPU on 2MHz</a></li><li><a href="#etholi">Olimex Ethernet board</a></li><li><a href="#web">Web design overhaul</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="osa" id="osa">GeckOS</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The operating system needs a definitive overhaul. These are the things to do:
 </p>
 <ul>
 <li>no-copy (where possible) block transfer replacement for the streams API</li>
@@ -92,8 +92,6 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="csa" id="csa">CS/A65</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>My current CS/A projects...
     </p><h3><a name="petcpu" id="petcpu">PETCPU board</a></h3><p>
 	During my tests for the PET816 board in the PETCPU board, I found timing issues between the PETCPU and VDC boards. Need to fixup the PETCPU board. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
-	</p>
-	<h3><a name="netusb" id="netusb">Netusb</a></h3><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
 	</p>
 	<h3><a name="blitter" id="blitter">Blitter</a></h3><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
 		had everything explicitely, like adder/incrementer separately for source and target address. 
@@ -107,7 +105,13 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 	<ul><li><a href="http://6502org.wikidot.com/blitter-theory-part-1" target="_blank" class="extlink">Blitter theory</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="xs1541" id="xs1541">XS1541</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
 create a new firmware for the XS1541 to provide the lptieee functionality...
 </p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="done" id="done">Done stuff</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="cpu816" id="cpu816">65816 CPU board</a></h3><p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="inprog" id="inprog">Work in progress</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="fpga" id="fpga">The 65k Project</a></h3> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
+	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+</p>
+	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="done" id="done">Done stuff</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="netusb" id="netusb">Netusb</a></h3><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
+	</p>
+	<h3><a name="cpu816" id="cpu816">65816 CPU board</a></h3><p>
 	After designing and testing the PET816 board (65816 CPU board for the CBM PETs or other 6502 computers) I decided to adapt the
 	CPLD code to be compatible with the PET816 board - more features and common drivers are easier to do.
 	</p>
@@ -120,10 +124,6 @@ create a new firmware for the XS1541 to provide the lptieee functionality...
 	I have made a design for a board with the Olimex Ethernet controller board - basically similar to the Netusb board, but needing voltage converters as the Olimex parts is only available in 3.3V... Board and parts are here, but nothing done yet... 
 	</p>
 	<p>Done :-)</p>
-	<h3><a name="fpga" id="fpga">The 65k Project</a></h3> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
-	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
-</p>
-	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
 	<h3><a name="web" id="web">Web design overhaul</a></h3> <p>As you can see, this part is done as of June 5th 2010 :-)
 </p>
 	</div></div><hr />

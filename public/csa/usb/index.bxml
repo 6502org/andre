@@ -19,7 +19,7 @@
 	please see there.
   </p></overview>
   <news>
-    <item date="2011-03-xx">
+    <item date="2011-04-22">
 	Published this page
     </item>
   </news>
@@ -50,16 +50,58 @@
                 <desc><p>
 		This is the USB Host driver. It currently supports keyboards, mouse devices, and
 		hubs.
+		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
+		type "make". It builds three files:</p>
+		<ul>
+		<li>CSAUSBDRV - background driver for the PET-compatible CS/A65. Runs in the background,
+			watches for hubs, keyboards and mice, and handles those. Translates keyboard and
+			mouse events to Commodore PET kernel key codes, so you can use an USB keyboard.</li>
+		<li>PETUSBDRV - same for the PET with PET/CSA adapter. The only difference is the initialization
+			of the PET/CSA adapter and different I/O addresses</li>
+		<li>PETUSB3 - this program does not run in the background, but displays a lot more debug
+			information while handling the attached devices</li>
+		</ul><p>
+		Please note that the PET version with PET/CSA adapter is not fully working yet, my current 
+		assumption is some supply voltage problems (with the one test I did).
+		</p><p>Warning: tested with a single Linux USB host only, no windows tests done.
+		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
+		actual hardware driver code is an integral part, and falls under GPL - so hardware 
+		drivers must be published, but the full driver can be used in non-GPL projects.
                 </p></desc>
-                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USB-0.3.tar.gz</file>
+                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USB-0.6.tar.gz</file>
+                <file ltype="txt" ptype="txt" note="README">USB-README.txt</file>
+                <file ltype="photo" ptype="png" note="First getting correct chars from a USB keyboard">host_success.png</file>
+        </driver>
+        <driver>
+                <name>USB Device Driver</name>
+                <desc><p>
+		This is the USB Device driver. It currently supports keyboards only.
+		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
+		type "make". It builds three files:</p>
+		<ul>
+		<li>CSAUSBKBD - Driver for the PET-compatible CS/A65. Takes the PET keyboard events
+			and sends the key codes to a USB host as keyboard events - so you can use the
+			PET-compatible as USB keyboard.</li>
+		<li>PETUSBKBD - same for the PET with PET/CSA adapter. The only difference is the initialization
+			of the PET/CSA adapter and different I/O addresses</li>
+		</ul><p>
+		Please note that the PET version with PET/CSA adapter is not fully working yet, my current 
+		assumption is some supply voltage problems (with the one test I did).
+		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
+		actual hardware driver code is an integral part, and falls under GPL - so hardware 
+		drivers must be published, but the full driver can be used in non-GPL projects.
+                </p></desc>
+                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USBdev-0.8.tar.gz</file>
+                <file ltype="txt" ptype="txt" note="README">USBdev-README.txt</file>
         </driver>
         <rev>
                 <version>1.0C</version>
                 <status>prototype</status>
                 <note type="msg">
-			This board has been successfully tested with Ethernet and USB host operations.
-			USB device operations is still missing the driver.
+			This board has been successfully tested with Ethernet as well as USB host 
+			and device operations.
                 </note>
+                <file ltype="photo" ptype="png">netusb.png</file>
                 <file ltype="schem" ptype="esch">csa_netusb-v1.0c.sch</file>
                 <file ltype="schem" ptype="png">csa_netusb-v1.0c-sch.png</file>
         </rev>
