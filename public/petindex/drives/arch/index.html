@@ -23,7 +23,8 @@
 <li><div class="i_file">&nbsp;</div><a href="../../boards.html">Boards and schematics</a></li>
 <li><div class="i_file">&nbsp;</div><a href="../../pinouts.html">Connectors</a></li>
 <li><div class="i_file">&nbsp;</div><a href="../../keyboards.html">Keyboards</a></li>
-<li><div class="i_file">&nbsp;</div><a href="../../extensions.html">Extensions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../extensions.html">Hardware Extensions</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../lang.html">Programming Languages</a></li>
 <li><div class="i_file">&nbsp;</div><a href="../../open.html">Open questions</a></li>
 <li class="separator">Specials</li>
 <li><div class="i_file">&nbsp;</div><a href="../../superpet.html">SuperPET MMF9000</a></li>
@@ -153,7 +154,7 @@ in GCR, 4 data bytes are computed into 5 GCR bytes. In fact,
 4 data bits are computed into 5 GCR bits.
 </P><P>
 Now when writing to the disk, the FDC CPU writes the data to the 6530.
-This data byte is split into to 4-bit nibbles, and each nibble is expanded
+This data byte is split into two 4-bit nibbles, and each nibble is expanded
 by one bit. The low nibble gets the "mode select" as 5th bit, the high
 nibble gets a zero bit. These ten bits are then used as address input to the
 ROM. the 8 data lines from the ROM are also expanded: the ROM input A2

@@ -20,7 +20,9 @@ and internet access.</p>
   </overview>
   <news>
     <item date="2011-04-23">
-        Added a page for the <a href="petindex/8032sk.html">8032-SK model</a> to the <a href="petindex/index.html">PET index</a>.
+        Added a page for the <a href="petindex/8032sk.html">8032-SK model</a>
+        and started a <a href="petindex/lang.html">programming languages</a> page
+	to the <a href="petindex/index.html">PET index</a>
     </item>
     <item date="2011-04-22" state="hot">
 	Added a completely new <a href="csa/usb/index.html">USB board</a> to my <a href="csa/index.html">CS/A computer</a>. Device and Host operation possible with a 1MHz 6502!

@@ -38,7 +38,8 @@ I hope you enjoy this document.<br/>
   </overview>
   <news>
     <item date="2011-04-23">
-	Added a page for the <a href="8032sk.html">8032-SK model</a>.
+	Added a page for the <a href="8032sk.html">8032-SK model</a>
+	and started a <a href="lang.html">programming languages</a> page.
     </item>
     <item date="2010-12-19">
 	Added a demo section and a first link to the &quot;No PETs allowed&quot; demo
@@ -72,6 +73,7 @@ and the 510-520 (also known as P500)</p>
 </subitem><subitem link="pinouts.html" name="Pinouts"> of various PET connectors
 </subitem><subitem link="keyboards.html" name="Keyboard"> layouts and Screen control codes <!--(<img src="../imgs/news.gif"/>)-->
 </subitem><subitem link="extensions.html" name="Extensions"> extensions of the PET <!--(<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010: RAM expansions, CPU speeders)-->
+</subitem><subitem link="lang.html" name="Programming Languages"> for the PET, i.e. including BASIC extensions
 </subitem><subitem link="progmod.html" name="Hardware Programming"> information <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="roms.html" name="ROM"> descriptions <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="crtc.html" name="CRTC 6545 operation"> as used in the different PET models
