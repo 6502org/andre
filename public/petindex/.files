@@ -1,7 +1,7 @@
 s General Info
 p gallery PET gallery
 f versions.html PET versions
-f boards.html Board versions
+f boards.html Boards and schematics
 f pinouts.html Connectors
 f keyboards.html Keyboards
 f extensions.html Extensions
@@ -9,6 +9,7 @@ f open.html Open questions
 s Specials
 f superpet.html SuperPET MMF9000
 f 8x96.html The 8096 and 8296 models
+f 8032sk.html The 8032-SK
 s Peripherals
 d drives Disk drives
 s Programming

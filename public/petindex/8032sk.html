@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="PET index - PET emulators" />
-<meta name="keywords" content="Commodore PET CBM ROM emulator" />
+<meta name="description" content="PET index - 8032-SK" />
+<meta name="keywords" content="Commodore PET CBM 8032-SK" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
-<title>PET index - PET emulators</title></head>
+<title>PET index - 8032-SK</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
@@ -28,7 +28,7 @@
 <li class="separator">Specials</li>
 <li><div class="i_file">&nbsp;</div><a href="superpet.html">SuperPET MMF9000</a></li>
 <li><div class="i_file">&nbsp;</div><a href="8x96.html">The 8096 and 8296 models</a></li>
-<li><div class="i_file">&nbsp;</div><a href="8032sk.html">The 8032-SK</a></li>
+<li><div class="i_file">&nbsp;</div><a href="8032sk.html" class="mcurrent">The 8032-SK</a></li>
 <li class="separator">Peripherals</li>
 <li class="dir" id="m_petindex_drives"><div class="i_dir">&nbsp;</div><a href="drives/index.html">Disk drives</a>
 </li>
@@ -43,7 +43,7 @@
 <li class="separator">Links</li>
 <li><div class="i_file">&nbsp;</div><a href="hw.html">Hardware projects</a></li>
 <li><div class="i_file">&nbsp;</div><a href="sw.html">Software projects</a></li>
-<li><div class="i_file">&nbsp;</div><a href="emus.html" class="mcurrent">PET emulators</a></li>
+<li><div class="i_file">&nbsp;</div><a href="emus.html">PET emulators</a></li>
 <li><div class="i_file">&nbsp;</div><a href="transfer.html">File transfers</a></li>
 <li><div class="i_file">&nbsp;</div><a href="links.html">Links</a></li>
 </ul>
@@ -103,41 +103,57 @@ more modern browser, like Internet Explorer 8 or later,
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  <a href="index.html">CBM PETindex
-</a>&gt;&gt;  PET emulators</div>
-<h1>PET index - PET emulators</h1><p class="copyright">(C)
-1998-2010 André  Fachat</p> 
-<div class="overview"><P>
-PET computers are increasingly hard to get. So there are emulators
-that allow to run PET prgrams on other hardware. This page describes
-the different emulators available.
-</P>
-<DL>
-<DT><A HREF="http://vice-emu.sourceforge.net/">VICE</A></DT>
-<DD>This is the VICE emulator, that not only emulates the
-PET, but also most other Commodore 8-bit machines (C64, VIC20, C128, CBM-II).
-In VICE almost all PET computers are emulated (SuperPET 6809 mode is not supported), together with the different IEEE488 disk drives.
-The VICE emulator runs on different platforms, notably the
-Windows and Linux/Unix platforms are supprted, but others as well.
-</DD>
-
-<DT><A HREF="http://mess.redump.net/">MESS</A></DT>
-<DD>MESS emulates a very large number of (even non-Commodore) computers,
-amongst them also the PET computers. It even says to emulate the SuperPET.
-I have not tried it yet though.</DD>
-
-<DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
-<DD>This is a different type of emulator - it runs on the C64, and
-emulates the hardware only as far as it is able to catch hardware accesses
-using BASIC POKE and PEEK commands.</DD>
-
-<DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
-<DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
-It provides a very highly compatible system. In fact it runs a patched
-3032 ROM just fine. Only a few IEEE488 lines have been moved around,
-and the CRTC still needs to be set to 80 columns and not 40 to display
-80 columns.</DD>
-</DL>
-  </div><hr />
+</a>&gt;&gt;  The 8032-SK</div>
+<h1>PET index - 8032-SK</h1><p class="copyright">(C)
+2011- André  Fachat</p> 
+<div class="overview"><p>
+	When Commodore decided to build a complete new PET, with new case and new, more compact
+	board (see the <a href="8x96.html">8296</a> for the result!) they managed to get the
+	case ready earlier than the board. Probably they only re-used the high-profile case from
+	the not-so-successful B-series (710, 720 models, aka CBM-II). At least the 8296 
+	(like the 8032 with 64k expansion, aka 8096) has 96kByte of usable RAM, so it would
+	be direct competition to the B-series. So they probably decided to build the 8296 only
+	after they found that the B-series wasn't a real blockbuster.
+	</p><p>
+	Anyway, as a result they decided to 
+	build the old board into the new case before they got the new, 8296 board.
+	The only problem was that the new board did
+	not really fit very well into the new case. So they had to improvise.
+	</p><p>
+	The result of this was the 8032-SK. It is in fact the old 8032 board in a new 
+	rounded case with swivel screen. But inside the case, the board is turned 90 degrees
+	from its usual position - with the result that the user port and IEEE488 ports of the
+	board are not at the back side of the computer. Thus Commodore used extra cables from
+	the card-edge board connectors to the back side of the computer. There they 
+	added standard IEEE488 connectors (like on the floppy drives) for both the user port
+	and the IEEE488 port.
+	Also the keyboard needed to be connected with a separate cable from the board to the
+	case connector (which is soldered onto the new board in the 8296)
+	</p><p>
+	As the board is quite large for the case, the transformer had to be mounted on the 
+	top part of the case (and not on the bottom as in the 8296).
+	</p><p>
+	As the wikipedia (Germany entry only it seems) shows, there have been 8096-SK 
+	machines as well.
+	</p><p>
+	One annoyance this new case has is that it opens on the back side. All other PET
+	cases open on the front, which was very convenient for maintenance. The old cases 
+	have a built-in rod to keep the case open so you could measure on the board and
+	see the screen at the same time. This was not possible with the new case.
+</p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#gallery">Gallery</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+<TABLE BORDER="1">
+<TR>
+<TR><TD>A 8032-SK:</TD><TD><a href="gallery/8032sk.png"><IMG width="50%" SRC="gallery/8032sk.png" ALT="A 8032-SK"></IMG></a></TD></TR>
+<TD><a href="gallery/8032sk.gif"><IMG width="50%" SRC="gallery/8032sk.gif" ALT="image of a 8032-SK"></IMG></a></TD><TD>The 8032-SK looked like a 8296 from the outside...</TD></TR>
+<TR><TD>... but the back side gives it away:</TD><TD><a href="gallery/8032sk-back.png"><IMG width="50%" SRC="gallery/8032sk-back.png" ALT="Back side of the 8032-SK with the connectors"></IMG></a></TD></TR>
+<TR><TD><a href="gallery/8032sk-open.png"><IMG width="50%" SRC="gallery/8032sk-open.png" ALT="Look into the open back side of the 8032-SK"></IMG></a></TD><TD>With the back side open you get a glimpse of the compromises necessary to get the old board into the new case</TD></TR>
+<TR><TD>Here a close-up of the IEEE488 and user port cables</TD><TD><a href="gallery/8032sk-cables.png"><IMG width="50%" SRC="gallery/8032sk-cables.png" ALT="8032-SK IEEE488 and user port cables"></IMG></a></TD></TR>
+<TR><TD><a href="gallery/8032sk-keybd-de.png"><IMG width="50%" SRC="gallery/8032sk-keybd-de.png" ALT="German business keyboard"></IMG></a></TD><TD>My 8032-SK has the German business keyboard.</TD></TR>
+</TABLE></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="refs" id="refs">References</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul>
+<li><a class="extlink" href="http://de.wikipedia.org/wiki/CBM-8000-Serie">German wikipedia on 8000 series</a> </li>
+</ul>
+     </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 
