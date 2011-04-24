@@ -5,4 +5,5 @@ p internals CRTC internals
 f composite.html Composite video generation
 p pet CBM PET test programs
 l ../../csa/vdc/index.html CS/A VDC board
+l ../../cbmhw/8032sk/index.html Creative use
 

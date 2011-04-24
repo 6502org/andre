@@ -14,6 +14,9 @@
 	chips.
   </overview>
   <news>
+    <item date="2011-04-25">
+	Added a link to the 8032-SK page.
+    </item>
     <item date="2010-12-20">
 	Reorganized the CRTC pages, added the systems integration page (separated from the 
 	CRTC operations page, and moved the composite video signal generation here to a
@@ -59,6 +62,10 @@
      <subitem name="CS/A VDC" link="../../csa/vdc/index.html">
 	An example of a CRTC-based video card. Also contains schematics
 	to create PAL composite video from the board's output.
+     </subitem>
+     <subitem name="Creative use in a 8032-SK" link="../../cbmhw/8032sk/index.html">
+	An example of a creative use of the CRTC, by connecting some otherwise unused video RAM
+	address lines with the character generation ROM.
      </subitem>
      <!--item name="">
       <subitem name="" link=""></subitem>

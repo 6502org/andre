@@ -177,7 +177,7 @@
 	        </div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br/>
-		            <a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br/> (In new window)
+		            <a class="extlink" target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br/> (In new window)
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
 			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
@@ -444,7 +444,7 @@
    <xsl:with-param name="a">oldnews</xsl:with-param>
  </xsl:call-template-->
  <ul class="news">
- <xsl:for-each select="item[@state!='off']">
+ <xsl:for-each select="item[@state!='off' or not(@state)]">
   <li><div>
   <xsl:attribute name="class">i_oldnews</xsl:attribute>&nbsp;</div>
   <small><xsl:value-of select="@date"/></small>

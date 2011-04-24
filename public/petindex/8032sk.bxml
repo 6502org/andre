@@ -1,4 +1,4 @@
-<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<!DOCTYPE webpage [ <!ENTITY szlig "&#223; "> <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
 <webpage name="PET index - 8032-SK">
   <author>
     <name>Andr&eacute; Fachat</name> 
