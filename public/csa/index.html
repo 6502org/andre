@@ -64,6 +64,8 @@
 <li><div class="i_file">&nbsp;</div><a href="spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
+<li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="blitter/index.html">Block transfer</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="ramdisk/index.html">SIMM RAMDisk</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="copro/index.html">Coprocessor board</a>
@@ -201,7 +203,9 @@ The boards can be used in different setups, but the <a href="#caspaer">Caspaer</
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2011-04-22</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2011-04-29</small>
+			Added a completely new <a href="blitter/index.html">Block Transfer engine</a> board!
+		</li><li><div class="i_hotnews"> </div><small>2011-04-22</small>
 			Added a completely new <a href="usb/index.html">USB board</a>!
 		</li><li><div class="i_hotnews"> </div><small>2011-01-04</small>
 			Added a completely new <a href="etholi/index.html">Ethernet board</a>!
@@ -468,7 +472,11 @@ Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html">Video
 	  </li></ul><h3><a name="specialboards" id="specialboards">Special purpose boards</a></h3>Special interest in this computer system is on the topic of emulation.
 The larger address space and the MMU allows for mapping of other
 computers memory into the main memory map.
-	<ul><li class="subitem"><a href="ramdisk/index.html">SIMM RAMDisk</a> 
+	<ul><li class="subitem"><a href="blitter/index.html">Block Transfer Engine</a> 
+		This block transfer engine allows to copy blocks of memory without
+		using the CPU - in a way that is much faster than even the 65816:
+		it uses only two cycles per transferred byte!
+	  </li><li class="subitem"><a href="ramdisk/index.html">SIMM RAMDisk</a> 
 		This board implements a RAM Disk based on the (nowadays quite old)
 		SIMM memory modules. Using four of them you can build 
 		a RAM disk drive with up to 16MByte capacity (only tested to 4M though). 

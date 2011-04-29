@@ -107,6 +107,7 @@ to set up to work reliably than drives are now.
       <extlink name="Schematics in the CBM archive" link="@CBMARC@/schematics/drives/old/9090/index.html"/>
       <extlink name="DOS images and source code on the CBM archive" link="@CBMARC@/firmware/drives/old/9090/index.html"/>
       <extlink name="Disk System User Reference Guide (pdf)" link="http://www.bombjack.org/commodore/commodore/Disk_System_User_Reference_Guide.pdf"/>
+      <extlink name="Unpublished page on wikipedia..." link="http://en.wikipedia.org/wiki/User:Suenarmy"/>
      </subsection>
      <subsection toc="st506" name="ST506 etc">
       <extlink name="Wikipedia on ST-506" link="http://en.wikipedia.org/wiki/ST506"/>

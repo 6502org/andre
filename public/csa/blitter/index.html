@@ -64,7 +64,7 @@
 <li><div class="i_file">&nbsp;</div><a href="../spi/index.html">MMC/SD-Card</a>
 </li>
 <li class="separator">Special purpose</li>
-<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">Block transfer</a>
+<li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">Block transfer</a>
 <ul class="menu2" >
 <li><div class="i_file">&nbsp;</div><a href="works.html">How it works</a></li>
 </ul>
@@ -128,7 +128,7 @@
 			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
 			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on<br /><a target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
+		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br /> (In new window)
 		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
@@ -146,7 +146,7 @@ more modern browser, like Internet Explorer 8 or later,
 <a href="../../index.html">Homepage</a>
 &gt;&gt; <a href="../index.html">CS/A65 Caspaer and Gecko computer</a>&gt;&gt;  Block transfer</div>
 <h1>Blitter</h1><p class="copyright">(C)
-2007-2010 André  Fachat</p> 
+2007-2011 André  Fachat</p> 
 <div class="overview"><p>Transfering a block of bytes from one memory location to another
 	using the CPU can take a lot of time. A simple transfer loop using absolute
 	addressing uses about 13 cycles per byte. Using zeropage indexed addressing 
@@ -155,10 +155,10 @@ more modern browser, like Internet Explorer 8 or later,
 	The 65816 chip even includes special opcodes to do block transfers, with a rate 
 	of seven cycles per byte.
 	</p><p>
-	I thought I should add a block tranfer engine to the CS/A system. 
+	So I thought I should add a block tranfer engine to the CS/A system. 
 	Back then in 2007 I did a first design - and utterly failed. It implemented
-	two address registers, with a separate adder/incrementer and buffers for each address,
-	so it took a whole lot of board space, so I wasn't able to actually place and 
+	two address registers, with a separate adder/incrementer and buffers for each address.
+	So this took a whole lot of board space, and I wasn't able to actually place and 
 	route it. You can see the design below as V1 as an example for how not to do it.
 	</p><p>
 	In 2010 I had a better look into CPU architectures, and I got the idea that
@@ -170,18 +170,108 @@ more modern browser, like Internet Explorer 8 or later,
 	In the <a href="works.html">How it works</a> page I have described how the
 	board works in principle.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-09-17</small>
-	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#desc">Board description</a></li><li style="list-style-type:none;"><ul><li><a href="#dbus">Data Bus Separation</a></li><li><a href="#logic">Logic Implementation</a></li><li><a href="#layout">Layout description</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.1A</a> (prototype)</li><li><a href="#board2">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Board description</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>In the <a href="works.html">How it works</a> page the principles of operation
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-04-29</small>
+	Published this page.
+    </li><li><div> </div><small>2010-09-17</small>
+	Started this page (not published)
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#prog">Programming Information</a></li><li style="list-style-type:none;"><ul><li><a href="#register">Register File</a></li><li><a href="#normal">Normal Usage</a></li><li><a href="#special">Special Features</a></li><li><a href="#caveat">Caveats</a></li></ul></li><li><a href="#board">Board description</a></li><li style="list-style-type:none;"><ul><li><a href="#dbus">Data Bus Separation</a></li><li><a href="#logic">Logic Implementation</a></li><li><a href="#layout">Layout description</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.1B</a> (ok)</li><li><a href="#board2">2.1A</a> (prototype)</li><li><a href="#board3">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programming Information</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes how the block transfer engine is programmed.</p><h3><a name="register" id="register">Register File</a></h3><p>The blitter uses a 16-byte address space in the I/O area. 
+			The two address options are $EF60 and $E860. Here is the register file:</p>
+		<table border="1">
+		<tr><th>Offset</th><th>Bits</th><th>Mode</th><th>Register Name</th><th>Part</th><th>Description</th><th>Comment</th></tr>
+		<tr><td>0</td><td>0-7</td><td>r/w</td><td rowspan="3">LDADDR</td><td>0-7</td><td rowspan="3">Load address</td>
+					<td rowspan="3">Address the data is read from, i.e. start address for the
+						transfer process</td></tr>
+		<tr><td>1</td><td>0-7</td><td>r/w</td><td>8-15</td></tr>
+		<tr><td rowspan="2">2</td><td>0-3</td><td>r/w</td><td>16-19</td></tr>
+		<tr><td>4-7</td><td>r/w</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>3</td><td>0-7</td><td>r/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>4</td><td>0-7</td><td>r/w</td><td rowspan="3">STADDR</td><td>0-7</td><td rowspan="3">Load address</td>
+					<td rowspan="3">Address the data is written to, i.e. start address for the
+						transfer process</td></tr>
+		<tr><td>5</td><td>0-7</td><td>r/w</td><td>8-15</td></tr>
+		<tr><td rowspan="2">6</td><td>0-3</td><td>r/w</td><td>16-19</td></tr>
+		<tr><td>4-7</td><td>r/w</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>7</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>8</td><td>0-7</td><td>r/w</td><td rowspan="1">LDINC</td><td>0-7</td><td rowspan="1">Load address increment</td>
+					<td rowspan="1">Value that is added to the load address after a transfer</td></tr>
+		<tr><td>9</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>10</td><td>0-7</td><td>r/w</td><td rowspan="1">STINC</td><td>0-7</td><td rowspan="1">Store address increment</td>
+					<td rowspan="1">Value that is added to the store address after a transfer</td></tr>
+		<tr><td>11</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>12</td><td>0-7</td><td>r/w</td><td rowspan="1">CNT</td><td>0-7</td><td rowspan="1">Byte transfer counter</td>
+					<td rowspan="1">Number of bytes to transfer minus 1</td></tr>
+		<tr><td>13</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>14</td><td>0-7</td><td>-</td><td>Reserved</td><td></td><td>-</td></tr>
+		<tr><td rowspan="7">15</td><td>0</td><td>w/o</td><td>LDCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the load increment to the load address</td></tr>
+		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
+		<tr><td>2</td><td>w/o</td><td>/LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at load</td></tr>
+		<tr><td>3</td><td>w/o</td><td>/STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at store</td></tr>
+		<tr><td>4</td><td>w/o</td><td>LDCOMPL</td><td>0</td><td>Load address complement flag</td><td>Value for the load increment bits 8-19.</td></tr>
+		<tr><td>5</td><td>w/o</td><td>STCOMPL</td><td>0</td><td>Store address complement flag</td><td>Value for the store increment bits 8-19.</td></tr>
+		<tr><td>6-7</td><td>-</td><td>Reserved</td><td>-</td><td>Must be zero</td></tr>
+		</table>
+		<p>Note that registers are <em>not</em> initialized on reset. The reserved registers
+			must be set (for future compatibility), but cannot be read.
+		</p> 
+		<h3><a name="normal" id="normal">Normal Usage</a></h3><p>
+		To transfer a block of continous data from one memory area to the next, do:</p>
+		<ol>
+		<li>Set the LDADDR to the first address of the source memory block</li>
+		<li>Set the STADDR to the first address of the target memory block</li>
+		<li>Set the LDINC and STINC to 1</li>
+		<li>Set the CNT to the number of bytes to transfer minus 1</li>
+		<li>Set the control bits in register 15 - writing to this register starts the 
+			process. For normal transfer set the register to $0c to use /MEMSEL,
+			and don't set the CARRY and Complement bits</li>
+		</ol><p>
+		The address values are incremented directly after the transfer. I.e. after the
+		transfer the address points to the address after the memory block.
+		</p><p>
+		The increment value is decremented after the transfer. The transfer stops when
+		an underflow occurs in this process. I.e. after the transfer the CNT register
+		holds $FF.
+		</p><p>
+		As the maximum number of bytes to transfer is 256 (by writing 255 into CNT), to transfer
+		more data, multiple transfers have to be used. The registers are updated such
+		that just writing to register 15 multiple times transfer multiple contiguous blocks.
+		</p><h3><a name="special" id="special">Special Features</a></h3><p>
+		Here are some special features:</p>
+		<ul>
+		<li><em>Reverse Transfer</em>: If you want to transfer data in reverse order, i.e.
+		from a high address to a low address, you can use the Complement bits in the control
+		register 15. For example to use an offset of minus one (-1), you need to set the
+		INC register with $FF, and also set the corresponding Complement bit COMPL in the
+		control register. This leads to an added offset of $FFFFF, which actually is like
+		substracting one. By using a positive offset in one address and a negative offset
+		in the other address, you can reverse the order of the data bytes in a memory block</li>
+		<li><em>256 byte INC offset</em>: The INC register can only hold values up to 255.
+		To implement a transfer that takes a byte off of each page - i.e. with an offset of
+		256 byte - the CARRY control register bits can be used. The carry is used in the
+		appropriate addition of the INC value to the address. Thus when the INC register
+		is set to 255, and the carry is set, an offset of 256 is used for the transfer.</li>
+		<li><em>I/O DMA</em>: The blitter can also be used to implement data transfer from
+		an I/O address to memory and vice versa. Using a /IOSEL with an INC value of zero
+		(and carry not set) in the load setup reads each byte from the same I/O address. </li>
+		</ul>
+		<h3><a name="caveat" id="caveat">Caveats</a></h3><p>
+		There are some caveats when using the blitter:</p>
+		<ul>
+		<li>The block transfer is not interruptible. I.e. you possibly introduce a latency
+		of about 512 cycles (256 bytes max transfer, one load and one store each).</li>
+		<li>The blitter stops the bus with the RDY signal. This means that this signal
+		is not available for a device to signal lower speed to the blitter.
+		I.e. memory or I/O devices that use RDY cannot be used with the blitter.</li>
+		</ul>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="board" id="board">Board description</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>In the <a href="works.html">How it works</a> page the principles of operation
 	are described. Here I'll describe some of the implementation details (of the V2 board).
      </p><h3><a name="dbus" id="dbus">Data Bus Separation</a></h3><p>
-	In the principles the CPU data bus is connected to the INBUS drivers, the increment
+	In the principle description the CPU data bus is connected to the INBUS drivers, the increment
 	registers, the increment data buffer, and - not shown there - to the input as well as output
 	of the data transfer register (where the transferred data is kept). This would put a lot
 	of load on the actual CPU data bus. Therefore I added IC15, a data bus driver that separates
 	the actual CPU data bus from the board data bus.
 	</p><h3><a name="logic" id="logic">Logic Implementation</a></h3><p>
-	The system actually only as a few bits of "state" if you don't count the address and increment
+	The system actually only uses a few bits of "state" if you don't count the address and increment
 	registers. It must know if it is active, and when active it needs to know which operation it
 	is doing - fetch or store. This state is defined in the signals /ACTIVE and FETCH/-STORE.
 	In the 2.0 version these bits were determined by some RS-Flipflops, and all other logic
@@ -194,24 +284,51 @@ more modern browser, like Internet Explorer 8 or later,
 	Note that the 2.1 board contains some "PIN" pads, to be able to easily use the remaining logic
 	gates even though these chips are SMD...
 	</p><h3><a name="layout" id="layout">Layout description</a></h3><p>
-	If you look at the layout, it is dominated by an five-by-four array of SOW20 chips with some
+	If you look at the layout, it is dominated by a five-by-four array of SOW20 chips with some
 	smaller chips to the right. These implement the INBUS, OUTBUS and Increment busses as follows:
 	</p><p>
-	The first line of chips implements the Increment bus, with two '574 as increment value registers
+	The first row of chips implements the Increment bus, with two '574 as increment value registers
 	for fetch and store. Then there is IC24 ('245) to read out the increment bus, and IC23 ('245)
 	to feed a zero increment into the adder.
 	</p><p>
 	To the right of that comes IC32 ('245) and IC25/IC28 (both '193) that implement the transfer counter.
 	</p><p>
-	The next three lines of ICs implement the address bits 0-7, 8-15 and 16-19 respectively, including
-	their part of the INBUS and OUTBUS busses. First comes the address drivers that are used to
+	The next three rows of ICs implement the address bits 0-7, 8-15 and 16-19 respectively, including
+	their part of the INBUS and OUTBUS busses. From left to right First comes the address drivers 
+	that are used to
 	drive the OUTBUS to the CPU address bus. Then there are the two '574 that hold the fetch and store
 	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
 	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
 	INBUS. The smaller chips to the right are '293 4-bit adders, implementing the actually "ALU" adder.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1A</a></h3>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1B</a></h3>
+<p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			Working!
+                </td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1b.sch">csa_blitter-v2.1b.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1b-sch.png">csa_blitter-v2.1b-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1b.brd">csa_blitter-v2.1b.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1b-brd.png">csa_blitter-v2.1b-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1b-layout.png">csa_blitter-v2.1b-layout.png</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 2.1A</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td>
+			I have tested this board and found some bugs - that are fixed with 2.1B above.
+                </td></tr>
+<tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This board is a prototype design that I still have to build and test!
                 </td></tr>
@@ -231,7 +348,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_blitter-v2.1a-layout.png">csa_blitter-v2.1a-layout.png</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.0B</a></h3>
+<h3><a name="board3" id="board3">Version: 1.0B</a></h3>
 <p>Status: not working</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>

@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2011-04-29" state="hot">
+	Added a new <a href="csa/blitter/index.html">Block Transfer Engine</a> to my <a href="csa/index.html">CS/A computer</a>.
+    </item>
     <item date="2011-04-24">
 	Added a page to describe the funny things I found in an <a href="cbmhw/8032sk/index.html">8032-SK</a> 
 	I got.

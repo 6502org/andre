@@ -22,6 +22,7 @@ p duart Double UART (RS232)
 p scsi SCSI/I2C board
 p spi MMC/SD-Card
 s Special purpose
+d blitter Block transfer
 p ramdisk SIMM RAMDisk
 p copro Coprocessor board
 p cpuemu Emulate a 6502

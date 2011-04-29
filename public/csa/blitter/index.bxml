@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>2007</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2011</yearend>
   </author>
   <keywords>6502 blitter block transfer engine</keywords>
   <metadesc>6502 block transfer engine</metadesc>
@@ -17,10 +17,10 @@
 	The 65816 chip even includes special opcodes to do block transfers, with a rate 
 	of seven cycles per byte.
 	</p><p>
-	I thought I should add a block tranfer engine to the CS/A system. 
+	So I thought I should add a block tranfer engine to the CS/A system. 
 	Back then in 2007 I did a first design - and utterly failed. It implemented
-	two address registers, with a separate adder/incrementer and buffers for each address,
-	so it took a whole lot of board space, so I wasn't able to actually place and 
+	two address registers, with a separate adder/incrementer and buffers for each address.
+	So this took a whole lot of board space, and I wasn't able to actually place and 
 	route it. You can see the design below as V1 as an example for how not to do it.
 	</p><p>
 	In 2010 I had a better look into CPU architectures, and I got the idea that
@@ -34,19 +34,126 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-04-29">
+	Published this page.
+    </item>
     <item date="2010-09-17">
-	Started this page
+	Started this page (not published)
     </item>
   </news>
   <toc/>
 
-  <section toc="desc" name="Board description">
+  <section toc="prog" name="Programming Information">
+	<desc><p>This section describes how the block transfer engine is programmed.</p></desc>
+	<subsection toc="register" name="Register File">
+		<desc><p>The blitter uses a 16-byte address space in the I/O area. 
+			The two address options are $EF60 and $E860. Here is the register file:</p>
+		<table border="1">
+		<tr><th>Offset</th><th>Bits</th><th>Mode</th><th>Register Name</th><th>Part</th><th>Description</th><th>Comment</th></tr>
+		<tr><td>0</td><td>0-7</td><td>r/w</td><td rowspan="3">LDADDR</td><td>0-7</td><td rowspan="3">Load address</td>
+					<td rowspan="3">Address the data is read from, i.e. start address for the
+						transfer process</td></tr>
+		<tr><td>1</td><td>0-7</td><td>r/w</td><td>8-15</td></tr>
+		<tr><td rowspan="2">2</td><td>0-3</td><td>r/w</td><td>16-19</td></tr>
+		<tr><td>4-7</td><td>r/w</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>3</td><td>0-7</td><td>r/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>4</td><td>0-7</td><td>r/w</td><td rowspan="3">STADDR</td><td>0-7</td><td rowspan="3">Load address</td>
+					<td rowspan="3">Address the data is written to, i.e. start address for the
+						transfer process</td></tr>
+		<tr><td>5</td><td>0-7</td><td>r/w</td><td>8-15</td></tr>
+		<tr><td rowspan="2">6</td><td>0-3</td><td>r/w</td><td>16-19</td></tr>
+		<tr><td>4-7</td><td>r/w</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>7</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>8</td><td>0-7</td><td>r/w</td><td rowspan="1">LDINC</td><td>0-7</td><td rowspan="1">Load address increment</td>
+					<td rowspan="1">Value that is added to the load address after a transfer</td></tr>
+		<tr><td>9</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>10</td><td>0-7</td><td>r/w</td><td rowspan="1">STINC</td><td>0-7</td><td rowspan="1">Store address increment</td>
+					<td rowspan="1">Value that is added to the store address after a transfer</td></tr>
+		<tr><td>11</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>12</td><td>0-7</td><td>r/w</td><td rowspan="1">CNT</td><td>0-7</td><td rowspan="1">Byte transfer counter</td>
+					<td rowspan="1">Number of bytes to transfer minus 1</td></tr>
+		<tr><td>13</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
+		<tr><td>14</td><td>0-7</td><td>-</td><td>Reserved</td><td></td><td>-</td></tr>
+		<tr><td rowspan="7">15</td><td>0</td><td>w/o</td><td>LDCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the load increment to the load address</td></tr>
+		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
+		<tr><td>2</td><td>w/o</td><td>/LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at load</td></tr>
+		<tr><td>3</td><td>w/o</td><td>/STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at store</td></tr>
+		<tr><td>4</td><td>w/o</td><td>LDCOMPL</td><td>0</td><td>Load address complement flag</td><td>Value for the load increment bits 8-19.</td></tr>
+		<tr><td>5</td><td>w/o</td><td>STCOMPL</td><td>0</td><td>Store address complement flag</td><td>Value for the store increment bits 8-19.</td></tr>
+		<tr><td>6-7</td><td>-</td><td>Reserved</td><td>-</td><td>Must be zero</td></tr>
+		</table>
+		<p>Note that registers are <em>not</em> initialized on reset. The reserved registers
+			must be set (for future compatibility), but cannot be read.
+		</p> 
+		</desc>
+	</subsection>
+	<subsection toc="normal" name="Normal Usage">
+		<desc><p>
+		To transfer a block of continous data from one memory area to the next, do:</p>
+		<ol>
+		<li>Set the LDADDR to the first address of the source memory block</li>
+		<li>Set the STADDR to the first address of the target memory block</li>
+		<li>Set the LDINC and STINC to 1</li>
+		<li>Set the CNT to the number of bytes to transfer minus 1</li>
+		<li>Set the control bits in register 15 - writing to this register starts the 
+			process. For normal transfer set the register to $0c to use /MEMSEL,
+			and don't set the CARRY and Complement bits</li>
+		</ol><p>
+		The address values are incremented directly after the transfer. I.e. after the
+		transfer the address points to the address after the memory block.
+		</p><p>
+		The increment value is decremented after the transfer. The transfer stops when
+		an underflow occurs in this process. I.e. after the transfer the CNT register
+		holds $FF.
+		</p><p>
+		As the maximum number of bytes to transfer is 256 (by writing 255 into CNT), to transfer
+		more data, multiple transfers have to be used. The registers are updated such
+		that just writing to register 15 multiple times transfer multiple contiguous blocks.
+		</p></desc>
+	</subsection>
+	<subsection toc="special" name="Special Features">
+		<desc><p>
+		Here are some special features:</p>
+		<ul>
+		<li><em>Reverse Transfer</em>: If you want to transfer data in reverse order, i.e.
+		from a high address to a low address, you can use the Complement bits in the control
+		register 15. For example to use an offset of minus one (-1), you need to set the
+		INC register with $FF, and also set the corresponding Complement bit COMPL in the
+		control register. This leads to an added offset of $FFFFF, which actually is like
+		substracting one. By using a positive offset in one address and a negative offset
+		in the other address, you can reverse the order of the data bytes in a memory block</li>
+		<li><em>256 byte INC offset</em>: The INC register can only hold values up to 255.
+		To implement a transfer that takes a byte off of each page - i.e. with an offset of
+		256 byte - the CARRY control register bits can be used. The carry is used in the
+		appropriate addition of the INC value to the address. Thus when the INC register
+		is set to 255, and the carry is set, an offset of 256 is used for the transfer.</li>
+		<li><em>I/O DMA</em>: The blitter can also be used to implement data transfer from
+		an I/O address to memory and vice versa. Using a /IOSEL with an INC value of zero
+		(and carry not set) in the load setup reads each byte from the same I/O address. </li>
+		</ul>
+		</desc>
+	</subsection>
+	<subsection toc="caveat" name="Caveats">
+		<desc><p>
+		There are some caveats when using the blitter:</p>
+		<ul>
+		<li>The block transfer is not interruptible. I.e. you possibly introduce a latency
+		of about 512 cycles (256 bytes max transfer, one load and one store each).</li>
+		<li>The blitter stops the bus with the RDY signal. This means that this signal
+		is not available for a device to signal lower speed to the blitter.
+		I.e. memory or I/O devices that use RDY cannot be used with the blitter.</li>
+		</ul>
+		</desc>
+	</subsection>
+  </section>
+
+  <section toc="board" name="Board description">
      <desc><p>In the <a href="works.html">How it works</a> page the principles of operation
 	are described. Here I'll describe some of the implementation details (of the V2 board).
      </p></desc>
      <subsection toc="dbus" name="Data Bus Separation">
 	<desc><p>
-	In the principles the CPU data bus is connected to the INBUS drivers, the increment
+	In the principle description the CPU data bus is connected to the INBUS drivers, the increment
 	registers, the increment data buffer, and - not shown there - to the input as well as output
 	of the data transfer register (where the transferred data is kept). This would put a lot
 	of load on the actual CPU data bus. Therefore I added IC15, a data bus driver that separates
@@ -55,7 +162,7 @@
      </subsection>
      <subsection toc="logic" name="Logic Implementation">
 	<desc><p>
-	The system actually only as a few bits of "state" if you don't count the address and increment
+	The system actually only uses a few bits of "state" if you don't count the address and increment
 	registers. It must know if it is active, and when active it needs to know which operation it
 	is doing - fetch or store. This state is defined in the signals /ACTIVE and FETCH/-STORE.
 	In the 2.0 version these bits were determined by some RS-Flipflops, and all other logic
@@ -71,17 +178,18 @@
      </subsection>
      <subsection toc="layout" name="Layout description">
 	<desc><p>
-	If you look at the layout, it is dominated by an five-by-four array of SOW20 chips with some
+	If you look at the layout, it is dominated by a five-by-four array of SOW20 chips with some
 	smaller chips to the right. These implement the INBUS, OUTBUS and Increment busses as follows:
 	</p><p>
-	The first line of chips implements the Increment bus, with two '574 as increment value registers
+	The first row of chips implements the Increment bus, with two '574 as increment value registers
 	for fetch and store. Then there is IC24 ('245) to read out the increment bus, and IC23 ('245)
 	to feed a zero increment into the adder.
 	</p><p>
 	To the right of that comes IC32 ('245) and IC25/IC28 (both '193) that implement the transfer counter.
 	</p><p>
-	The next three lines of ICs implement the address bits 0-7, 8-15 and 16-19 respectively, including
-	their part of the INBUS and OUTBUS busses. First comes the address drivers that are used to
+	The next three rows of ICs implement the address bits 0-7, 8-15 and 16-19 respectively, including
+	their part of the INBUS and OUTBUS busses. From left to right First comes the address drivers 
+	that are used to
 	drive the OUTBUS to the CPU address bus. Then there are the two '574 that hold the fetch and store
 	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
 	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
@@ -104,8 +212,23 @@
                 <file ltype="driver" ptype="a65" note="copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM ">test1.a65</file>
         </driver-->
         <rev>
+                <version>2.1B</version>
+                <status>ok</status>
+                <note type="msg">
+			Working!
+                </note>
+                <file ltype="schem" ptype="esch">csa_blitter-v2.1b.sch</file>
+                <file ltype="schem" ptype="png">csa_blitter-v2.1b-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_blitter-v2.1b.brd</file>
+                <file ltype="layout" ptype="png">csa_blitter-v2.1b-brd.png</file>
+                <file ltype="layout" ptype="png">csa_blitter-v2.1b-layout.png</file>
+        </rev>
+        <rev>
                 <version>2.1A</version>
                 <status>prototype</status>
+                <note type="stop">
+			I have tested this board and found some bugs - that are fixed with 2.1B above.
+                </note>
                 <note type="stop">
 			This board is a prototype design that I still have to build and test!
                 </note>
