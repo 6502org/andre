@@ -24,6 +24,7 @@
 <li><div class="i_file">&nbsp;</div><a href="features.html">Features</a></li>
 <li class="separator">Specification</li>
 <li><div class="i_file">&nbsp;</div><a href="specsprog.html">Programming Model</a></li>
+<li><div class="i_file">&nbsp;</div><a href="designnotes.html">Design Notes</a></li>
 <li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="arch.html">Architecture Overview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
@@ -84,9 +85,14 @@ more modern browser, like Internet Explorer 8 or later,
 <div class="overview">
 	<p>
 	The <em>65k project</em> is my project to expand the original 6502 processor with
-	new opcodes, new and/or larger registers and other advanced features.
+	new opcodes, new and/or larger registers and other advanced features. The goal of
+	this project is to enable the 6502 to be used in modern microcontroller and even
+	PC-like applications that require more than what the 6502 currently has.
+	</p><p>
 	I chose the <em>65k</em> name to 
         honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+	I believe this heritage is justified, as the processor is a direct extension, and to a very large
+	part compatible with the original 6502, and also uses a similar - but extended - internal architecture.
 	</p><p>
 	Before you ask why - I am doing this purely for personal education purposes.
 	I have no idea if this processor will ever be finished or even implemented, but at least
@@ -107,7 +113,7 @@ more modern browser, like Internet Explorer 8 or later,
 	implementation - I actually hope that someone will take this specs and create a brand new
 	6502ish CPU!
 	</p><p>
-	The following section below describes my own implementation of the 65k specs. It is thus
+	The implementation section below describes my own implementation of the 65k specs. It is thus
 	separate from the actual specification. The description documents are also under 
 	Creative Commons Attribution Share-Alike, but I have not yet decided on the VHDL code 
 	license, although I am tending to GPL or LGPL.
@@ -115,7 +121,10 @@ more modern browser, like Internet Explorer 8 or later,
         To my understanding the techniques described here have been used by various processors for decades already.
         Still there is no guarantee that a processor according to this spec would not be covered by some patents.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-01-02</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2011-05-01</small>
+	Some general updates and a larger update to the <a href="specsprog.html">programming specs</a>.
+	Added the <a href="designnotes.html">Design Notes</a> page.
+    </li><li><div> </div><small>2011-01-02</small>
 	Some updates to the <a href="specsprog.html">programming specs</a>.
     </li><li><div> </div><small>2010-10-23</small>
 	Published the first 65k draft
@@ -123,7 +132,16 @@ more modern browser, like Internet Explorer 8 or later,
 	Clarified licensing, overworked roadmap.
     </li><li><div> </div><small>2010-09-18</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#spec">65k Specification</a></li><li><a href="#impl">My 65k Implementation</a></li><li><a href="#roadmap">Draft 65k Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#65002">65002</a></li><li><a href="#65010">65010</a></li><li><a href="#65020">65020</a></li><li><a href="#65040">65040</a></li><li><a href="#65060">65060</a></li><li><a href="#io">652xx</a></li></ul></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="spec" id="spec">65k Specification</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#outline">65k Outline</a></li><li><a href="#spec">65k Specification</a></li><li><a href="#impl">My 65k Implementation</a></li><li><a href="#roadmap">Draft 65k Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#65002">65002</a></li><li><a href="#65010">65010</a></li><li><a href="#65020">65020</a></li><li><a href="#65040">65040</a></li><li><a href="#65060">65060</a></li><li><a href="#io">652xx</a></li></ul></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="outline" id="outline">65k Outline</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	Before a new processor is designed, it needs to be discussed what it should actually
+	be able to do, what features it should have and how these features should be implemented.
+	Making yourself clear about the outline is the first step.
+	</p>
+	<ul>
+	<li><a href="features.html">Feature discussion</a> - A (somewhat lengthy) discussion of what features
+		to include, and how to implement these features</li>
+	</ul>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="spec" id="spec">65k Specification</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	These documents describe and specify the 65k processors and as such at least the programming
 	model is to be seen as a real specification.
 	</p><p>
@@ -131,6 +149,7 @@ more modern browser, like Internet Explorer 8 or later,
      	</p>
 	<ul>
 	<li><a href="specsprog.html">Implementation specs I - programming model</a> - opcode definitions, register sets, functional definition - working draft</li>
+	<li><a href="designnotes.html">Design Notes</a> - Notes and comments about the actual design and how I got there.</li>
 	<li>Implementation specs II - hardware model - external interface options, signal definitions - to be done</li>
 	</ul>
      </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="impl" id="impl">My 65k Implementation</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>

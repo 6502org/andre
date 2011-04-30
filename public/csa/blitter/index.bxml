@@ -142,6 +142,10 @@
 		<li>The blitter stops the bus with the RDY signal. This means that this signal
 		is not available for a device to signal lower speed to the blitter.
 		I.e. memory or I/O devices that use RDY cannot be used with the blitter.</li>
+		<li>The blitter uses physical addresses on the CS/A bus. The CPU normally
+		sees address locations translated by the CPU's memory management unit.
+		This translation from virtual to physical addresses must be done explicitely
+		when programming the blitter.</li>
 		</ul>
 		</desc>
 	</subsection>
@@ -222,6 +226,10 @@
                 <file ltype="layout" ptype="ebrd">csa_blitter-v2.1b.brd</file>
                 <file ltype="layout" ptype="png">csa_blitter-v2.1b-brd.png</file>
                 <file ltype="layout" ptype="png">csa_blitter-v2.1b-layout.png</file>
+                <file ltype="photo" ptype="png" note="My v2.1a board patched up to v2.1b (with other traces on the back side)">blitter-v2.1a-patched.png</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">blitter-v2.1b.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">blitter-v2.1b.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">blitter-v2.1b.jed</file>
         </rev>
         <rev>
                 <version>2.1A</version>

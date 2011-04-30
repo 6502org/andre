@@ -1,0 +1,147 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="65k Design Notes">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2010</yearstart>
+    <yearend>2011</yearend>
+  </author>
+  <keywords>6502 16bit 32bit expansion</keywords>
+  <metadesc>6502 16bit 32bit expansion</metadesc>
+  <overview><p>This page describes some discussion that I went through while
+	doing the programming specification for the 65k. I started this process
+	in 2010, but explicitely decided to leave it there until my hardware
+	pipeline had run dry (i.e. after the USB and Blitter boards being done).</p>
+	<p>
+	During this time from time to time I thought about the 65k design. For example when
+	I had to program some 6502 code I though how I could benefit from the 65k writing this
+	piece of code. From this for example comes the "2s-complement" opcode, but also the
+	prefix bit determining when to expand the opcode (so you can do a 64bit addition
+	with a byte immediate operand). 
+	On the other I also thought about how to implement it, where I found the most
+	complexity in the decode area, that also has to work with different bus width options.
+	</p><p>
+	Some of the decisions made here may very well be premature optimizations. I will
+	revisit these and may change them in the further process.
+	</p>
+  </overview>
+  <news>
+    <item date="2011-05-01">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="placement" name="Placing opcodes in the opcode map">
+     <desc><p>
+	When thinking about the opcode decoding I learned that in the FPGA you can save
+	"chip space" when you can combine opcodes. I.e. if you have a large case switch
+	for opcodes, it pays out to say, select all "LDA" opcodes in a single case, and
+	not have a case switch for each addressing mode.
+	</p><p>
+	Therefore, for the decoding, I decided to implement a two-stage process:
+	first decode the opcode into something like "Operation" and "Addressing Mode" and "Options"
+	bits, then in the second step do a micro-sequence for the addressing mode and 
+	in the execution phase continue with the operation micro-sequence. This way
+	many logic parts can be shared - between same opcodes with different addressing modes
+	and between different opcodes with the same addressing mode.
+	</p><p>
+	The consequences of this decision are described below:
+     </p></desc>
+     <subsection toc="extpage" name="Placing opcodes on the Extension page">
+	<desc><p>
+	You might have noticed that the LEA and PEA opcodes are distributed over the extension page.
+	This is done with the above decision in mind. If you look closely you will see that the
+	LEA and PEA addressing modes mirror those of the LDA and STA opcodes in the standard
+	opcode page!
+	</p><p>
+	In the original opcode map, column $8 (Low opcode nibble) holds opcodes without
+	operand, i.e. one-byte opcodes like CLC. I have mirrored this in the extension page.
+	</p></desc>
+     </subsection>
+     <subsection toc="absy" name="Absolute y-indexed addressing">
+	<desc><p>
+	Some of the opcodes in the original 6502 show an asymmetry in that compared to 
+	similar opcodes even though they have an absolute x-indexed addressing mode, 
+	they don't have the absolute y-indexed addressing mode. Examples
+	are ASL, ROL, LSR, ROR but also DEC, INC or STZ. STX would also profit from 
+	an absolute y-indexed addressing mode. So I have put them into colum $f,
+	at their "logical" places in the opcode map. I.e. when <code>ASL abs,X</code> is opcode $1E,
+	then <code>ASL abs,Y</code> is opcode $1F.
+	</p></desc>
+     </subsection>
+  </section>
+
+
+  <section toc="redundancy" name="Elimination of Redundancy">
+     <desc><p>
+	Another point when designing the opcode set is to not introduce redundancy,
+	i.e. two opcodes that basically do the same. Thinking about such redundancy 
+	reduction may even lead to new features...
+     </p></desc>
+     <subsection toc="ade" name="(Quick) Add/Substract to E/B">
+	<desc><p>
+	While revisiting the opcode set I found that I had two opcodes that basically do the same,
+	INE (quick increment by 1-8) and ADE immediate, plus similar combinations for substract/decrement
+	and the B register.
+	</p><p>
+	Some comments on E register suggest that it is always used full-size. I.e. an immediate
+	add of an 8-bit value would overflow up to the full size if necessary. So instead of a
+	quick INE #8 an equivalent ADE #8 could be used (although the latter has 3 instead of 2 bytes
+	total length).
+	</p><p>
+	So the first thing to do is to remove the INE/INB/DEE/DEB quick opcodes. 
+	</p><p>
+	But wouldn't it be nice if I could add an 8-bit value (like from an immediate addressing mode
+	or when read from an 8-bit variable) to a 32-bit AC without having to do clever tricks?
+	With only the RS prefix bits the "register size" also determines the width of the data in memory,
+	so it is not possible to have an 8-bit variable and use it in a wider operation.
+	</p><p>
+	Here another prefix bit would probably be useful to implement the "early" extension.
+	</p></desc>
+     </subsection>
+     <!--subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection-->
+  </section>
+
+  <section toc="convenience" name="Convenience Opcodes">
+     <desc><p>This section describes some convenient opcodes that I found missing during my
+	recent 6502 programming.
+     </p></desc>
+     <subsection toc="inv" name="2s complement">
+	<desc><p>
+		When I programmed my USB stack for the 6502 I found that I had to substract two
+		values, but that the one to substract was in the AC, not the one to substract from.
+		So I could not just use SEC/SBC to do the substraction. Instead I found I had
+		to invert - in the sense of doing the 2s-complement - AC, then add to the second
+		value, to substract the first from the second value.
+		</p><p>
+		To make this process easier, I added the INV opcode.
+	</p></desc>
+     </subsection> 
+     <subsection toc="shiftxy" name="Shift X and Y">
+	<desc><p>
+		When I programmed access to the data structure in the USB driver, I was wondering
+		how to access tabular structure data using the index registers. I had to actually compute
+		an index by multiplying with the structure size. 
+		</p><p>
+		To make this process easier, I added the shift left/right x/y register quick opcodes 
+		(SLX/SRX/SLY/SRY). These allow to quickly compute at least power-of-2 offsets
+		for aligned data structures.
+	</p></desc>
+     </subsection> 
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

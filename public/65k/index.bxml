@@ -13,9 +13,14 @@
   <overview>
 	<p>
 	The <em>65k project</em> is my project to expand the original 6502 processor with
-	new opcodes, new and/or larger registers and other advanced features.
+	new opcodes, new and/or larger registers and other advanced features. The goal of
+	this project is to enable the 6502 to be used in modern microcontroller and even
+	PC-like applications that require more than what the 6502 currently has.
+	</p><p>
 	I chose the <em>65k</em> name to 
         honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+	I believe this heritage is justified, as the processor is a direct extension, and to a very large
+	part compatible with the original 6502, and also uses a similar - but extended - internal architecture.
 	</p><p>
 	Before you ask why - I am doing this purely for personal education purposes.
 	I have no idea if this processor will ever be finished or even implemented, but at least
@@ -36,7 +41,7 @@
 	implementation - I actually hope that someone will take this specs and create a brand new
 	6502ish CPU!
 	</p><p>
-	The following section below describes my own implementation of the 65k specs. It is thus
+	The implementation section below describes my own implementation of the 65k specs. It is thus
 	separate from the actual specification. The description documents are also under 
 	Creative Commons Attribution Share-Alike, but I have not yet decided on the VHDL code 
 	license, although I am tending to GPL or LGPL.
@@ -46,6 +51,10 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-05-01" state="hot">
+	Some general updates and a larger update to the <a href="specsprog.html">programming specs</a>.
+	Added the <a href="designnotes.html">Design Notes</a> page.
+    </item>
     <item date="2011-01-02">
 	Some updates to the <a href="specsprog.html">programming specs</a>.
     </item>
@@ -61,6 +70,19 @@
   </news>
   <toc/>
 
+  <section toc="outline" name="65k Outline">
+     <desc><p>
+	Before a new processor is designed, it needs to be discussed what it should actually
+	be able to do, what features it should have and how these features should be implemented.
+	Making yourself clear about the outline is the first step.
+	</p>
+	<ul>
+	<li><a href="features.html">Feature discussion</a> - A (somewhat lengthy) discussion of what features
+		to include, and how to implement these features</li>
+	</ul>
+     </desc>
+  </section>
+
   <section toc="spec" name="65k Specification">
      <desc><p>
 	These documents describe and specify the 65k processors and as such at least the programming
@@ -70,6 +92,7 @@
      	</p>
 	<ul>
 	<li><a href="specsprog.html">Implementation specs I - programming model</a> - opcode definitions, register sets, functional definition - working draft</li>
+	<li><a href="designnotes.html">Design Notes</a> - Notes and comments about the actual design and how I got there.</li>
 	<li>Implementation specs II - hardware model - external interface options, signal definitions - to be done</li>
 	</ul>
      </desc>

@@ -27,6 +27,9 @@
 	documentation from the same source that generates the VHDL control tables.
   </p></overview>
   <news>
+    <item date="2011-05-01">
+	Major update of the programming specs. Add the "EE" prefix bit as an example. See changes section for more details.
+    </item>
     <item date="2011-01-02">
 	Moved some opcodes to achieve a more regular mapping of opcodes and addressing modes
     </item>
@@ -84,6 +87,20 @@
         <tr><td>2010-12-28</td><td>Andr&eacute; Fachat</td><td>Moved some LSB $f opcodes to the extension page
 		to add STX abs,Y and STY abs,X</td></tr>
 	<tr><td>2011-01-02</td><td>Andr&eacute; Fachat</td><td>Moved some opcodes to achieve a more regular mapping of opcodes and addressing modes</td></tr>
+	<tr><td>2011-05-01</td><td>Andr&eacute; Fachat</td><td><ul>
+		<li>WAI becomes privileged</li>
+		<li>Moved no-operand opcodes in EXT page from column $f to $8, to be more aligned with standard opcode page</li>
+		<li>Added the INV opcode for the 2s-complement</li>
+		<li>Moved SWP to the EXT page, reordered the prefix codes</li>
+		<li>reordered the EXT column $8 and $a codes</li>
+		<li>Removed the INE/INB/DEE/DEB quick opcodes, added SLX/SRX/SLY/SRY quick opcodes instead</li>
+		<li>Reordered opcode column $f, so all non-prefix opcodes have addressing mode abs,X</li>
+		<li>removed NOP zp/abs, moved STX abs,Y to previous NOP abs location</li>
+		<li>Cleaned up duplicate opcodes for AM=1, clarified table description</li>
+		<li>Changed the BSR prefix usage definition to one similar to JSR, which removes the need
+			for one of the BSR duplicate opcodes</li>
+		<li>Added the EE "early extension" prefix flag</li>
+		</ul></td></tr>
       </table>
     </desc>
   </subsection>
@@ -320,21 +337,21 @@
 	<desc>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>		<th>2</th>			<th>3</th>			<th>4</th>			<th>5</th>		<th>6</th>		<th>7</th>				<th>8</th>		<th>9</th>			<th>A</th>			<th>B</th>			<th>C</th>			<th>D</th>		<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td>BRK</td>			<td>ORA (zp,X)</td>	<td class="c65k">LDA zp,Y</td><td class="prefix">prefix1</td>	<td class="cmos">TSB zp</td>	<td>ORA zp</td>		<td>ASL zp</td>		<td class="prefix">prefix1</td>		<td>PHP</td>		<td>ORA imm</td>		<td>ASL A</td>			<td class="prefix">prefix2</td>	<td class="cmos">TSB abs</td>	<td>ORA abs</td>	<td>ASL abs</td>		<td class="c65k">FP prefix</td></tr>
+<tr><th>0</th>		<td>BRK</td>			<td>ORA (zp,X)</td>	<td class="c65k">LDA zp,Y</td><td class="prefix">prefix1</td>	<td class="cmos">TSB zp</td>	<td>ORA zp</td>		<td>ASL zp</td>		<td class="prefix">prefix1</td>		<td>PHP</td>		<td>ORA imm</td>		<td>ASL A</td>			<td class="prefix">prefix2</td>	<td class="cmos">TSB abs</td>	<td>ORA abs</td>	<td>ASL abs</td>		<td class="prefix">EXT prefix</td></tr>
 <tr><th>1</th>		<td>BPL rel</td>		<td>ORA (zp),Y</td>	<td class="cmos">ORA (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">TRB zp</td>	<td>ORA zp,X</td>	<td>ASL zp,X</td>	<td class="prefix">prefix1</td>		<td>CLC</td>		<td>ORA abs,y</td>		<td class="cmos">INC A</td>	<td class="prefix">prefix2</td>	<td class="cmos">TRB abs</td>	<td>ORA abs,X</td>	<td>ASL abs,X</td>		<td class="c65k">ASL abs,Y</td></tr>	
-<tr><th>2</th>		<td>JSR abs</td>		<td>AND (zp,X)</td>	<td class="c65k">STA zp,Y</td><td class="prefix">prefix1</td>	<td>BIT zp</td>			<td>AND zp</td>		<td>ROL zp</td>		<td class="prefix">prefix1</td>		<td>PLP</td>		<td>AND imm</td>		<td>ROL A</td>			<td class="prefix">prefix2</td>	<td>BIT abs</td>		<td>AND abs</td>	<td>ROL abs</td>		<td class="c65k">SYS prefix</td></tr>
+<tr><th>2</th>		<td>JSR abs</td>		<td>AND (zp,X)</td>	<td class="c65k">STA zp,Y</td><td class="prefix">prefix1</td>	<td>BIT zp</td>			<td>AND zp</td>		<td>ROL zp</td>		<td class="prefix">prefix1</td>		<td>PLP</td>		<td>AND imm</td>		<td>ROL A</td>			<td class="prefix">prefix2</td>	<td>BIT abs</td>		<td>AND abs</td>	<td>ROL abs</td>		<td class="prefix">SYS prefix</td></tr>
 <tr><th>3</th>		<td>BMI rel</td>		<td>AND (zp),Y</td>	<td class="cmos">AND (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">BIT zp,X</td>	<td>AND zp,X</td>	<td>ROL zp,X</td>	<td class="prefix">prefix1</td>		<td>SEC</td>		<td>AND abs,Y</td>		<td class="cmos">DEC A</td>	<td class="prefix">prefix2</td>	<td class="cmos">BIT abs,X</td>	<td>AND abs,X</td>	<td>ROL abs,X</td>		<td class="c65k">ROL abs,Y</td></tr>
-<tr><th>4</th>		<td>RTI</td>			<td>EOR (zp,X)</td>	<td class="c65k">LDA (abs),Y</td><td class="prefix">prefix1</td><td class="c65k">BSR32 rel</td> <td>EOR zp</td>		<td>LSR zp</td>		<td class="prefix">prefix1</td>		<td>PHA</td>		<td>EOR imm</td>		<td>LSR imm</td>		<td class="prefix">prefix2</td>	<td>JMP abs</td>		<td>EOR abs</td>	<td>LSR abs</td>		<td class="c65k">Blitter prefix</td></tr>
-<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (zp),Y</td>	<td class="cmos">EOR (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">BRS64 rel</td> <td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix1</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix2</td>	<td class="c65k">NOP abs</td>	<td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="c65k">LSR abs,Y</td></tr>
-<tr><th>6</th>		<td>RTS</td>			<td>ADC (zp,X)</td>	<td class="c65k">LDA (abs,X)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp</td>	<td>ADC zp</td>		<td>ROR zp</td>		<td class="prefix">prefix1</td>		<td>PLA</td>		<td>ADC imm</td>		<td>ROR A</td>			<td class="prefix">prefix2</td>	<td>JMP (abs)</td>		<td>ADC abs</td>	<td>ROR abs</td>		<td class="unused"></td></tr>
+<tr><th>4</th>		<td>RTI</td>			<td>EOR (zp,X)</td>	<td class="c65k">LDA (abs),Y</td><td class="prefix">prefix1</td><td class="c65k">BSR relwide</td><td>EOR zp</td>	<td>LSR zp</td>		<td class="prefix">prefix1</td>		<td>PHA</td>		<td>EOR imm</td>		<td>LSR imm</td>		<td class="prefix">prefix2</td>	<td>JMP abs</td>		<td>EOR abs</td>	<td>LSR abs</td>		<td class="prefix">QUICK prefix</td></tr>
+<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (zp),Y</td>	<td class="cmos">EOR (zp)</td>	<td class="prefix">prefix1</td>	<td class="unused"></td> 	<td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix1</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix2</td>	<td class="c65k">STX abs,Y</td>	<td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="c65k">LSR abs,Y</td></tr>
+<tr><th>6</th>		<td>RTS</td>			<td>ADC (zp,X)</td>	<td class="c65k">LDA (abs,X)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp</td>	<td>ADC zp</td>		<td>ROR zp</td>		<td class="prefix">prefix1</td>		<td>PLA</td>		<td>ADC imm</td>		<td>ROR A</td>			<td class="prefix">prefix2</td>	<td>JMP (abs)</td>		<td>ADC abs</td>	<td>ROR abs</td>		<td class="prefix">reserved prefix</td></tr>
 <tr><th>7</th>		<td>BVS rel</td>		<td>ADC (zp),Y</td>	<td class="cmos">ADC (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">STZ zp,X</td>	<td>ADC zp,X</td>	<td>ROR zp,X</td>	<td class="prefix">prefix1</td>		<td>SEI</td>		<td>ADC abs,Y</td>		<td class="cmos">PLY</td>	<td class="prefix">prefix2</td>	<td class="cmos">JMP (abs,X)</td><td>ADC abs,X</td>	<td>ROR abs,X</td>		<td class="c65k">ROR abs,Y</td></tr>
-<tr><th>8</th>		<td class="cmos">BRA rel</td>	<td>STA (zp,X)</td>	<td class="c65k">BSR rel</td>	<td class="prefix">prefix1</td>	<td>STY zp</td>			<td>STA zp</td>		<td>STX zp</td>		<td class="prefix">prefix1</td>		<td>DEY</td>		<td class="cmos">BIT imm</td>	<td>TXA</td>			<td class="prefix">prefix2</td>	<td>STY abs</td>		<td>STA abs</td>	<td>STX abs</td>		<td class="unused"></td></tr>
-<tr><th>9</th>		<td>BCC rel</td>		<td>STA (zp),Y</td>	<td class="cmos">STA (zp)</td>	<td class="prefix">prefix1</td>	<td>STY zp,X</td>		<td>STA zp,X</td>	<td>STX zp,Y</td>	<td class="prefix">prefix1</td>		<td>TYA</td>		<td>STA abs,Y</td>		<td>TXS</td>			<td class="prefix">prefix2</td>	<td class="cmos">STZ abs</td>	<td>STA abs,X</td>	<td class="cmos">STZ abs,X</td>	<td class="c65k">STX abs,Y</td></tr>
-<tr><th>A</th>		<td>LDY imm</td>		<td>LDA (zp,X)</td>	<td>LDX imm</td>		<td class="prefix">prefix1</td>	<td>LDY zp</td>			<td>LDA zp</td>		<td>LDX zp</td>		<td class="prefix">prefix1</td>		<td>TAY</td>		<td>LDA imm</td>		<td>TAX</td>			<td class="prefix">prefix2</td>	<td>LDY abs</td>		<td>LDA abs</td>	<td>LDX abs</td>		<td class="c65k">SWP</td></tr>
-<tr><th>B</th>		<td>BCS rel</td>		<td>LDA (zp),Y</td>	<td class="cmos">LDA (zp)</td>	<td class="prefix">prefix1</td>	<td>LDY zp,X</td>		<td>LDA zp,X</td>	<td>LDX zp,Y</td>	<td class="prefix">prefix1</td>		<td>CLV</td>		<td>LDA abs,Y</td>		<td>TSX</td>			<td class="prefix">prefix2</td>	<td>LDY abs,X</td>		<td>LDA abs,X</td>	<td>LDX abs,Y</td>		<td class="c65k">STY abs,X</td></tr>
-<tr><th>C</th>		<td>CPY imm</td>		<td>CMP (zp,X)</td>	<td class="c65k">STA (abs),Y</td><td class="prefix">prefix1</td><td>CPY zp</td>			<td>CMP zp</td>		<td>DEC zp</td>		<td class="prefix">prefix1</td>		<td>INY</td>		<td>CMP imm</td>		<td>DEX</td>			<td class="prefix">prefix2</td>	<td>CPY abs</td>		<td>CMP abs</td>	<td>DEC abs</td>		<td class="c65k">QUICK prefix</td></tr>
-<tr><th>D</th>		<td>BNE rel</td>		<td>CMP (zp),Y</td>	<td class="cmos">CMP (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">NOP zp</td>	<td>CMP zp,X</td>	<td>DEC zp,X</td>	<td class="prefix">prefix1</td>		<td>CLD</td>		<td>CMP abs,Y</td>		<td class="cmos">PHX</td>	<td class="prefix">prefix2</td>	<td class="c65k">JSR (abs)</td>	<td>CMP abs,X</td>	<td>DEC abs,X</td>		<td class="c65k">DEC abs,Y</td></tr>
-<tr><th>E</th>		<td>CPX imm</td>		<td>SBC (zp,X)</td>	<td class="c65k">STA (abs,X)</td><td class="prefix">prefix1</td><td>CPX zp</td>			<td>SBC zp</td>		<td>INC zp</td>		<td class="prefix">prefix1</td>		<td>INX</td>		<td>SBC imm</td>		<td>NOP</td>			<td class="prefix">prefix2</td>	<td>CPX abs</td>		<td>SBC abs</td>	<td>INX abs</td>		<td class="c65k">EXT prefix</td></tr>
+<tr><th>8</th>		<td class="cmos">BRA rel</td>	<td>STA (zp,X)</td>	<td class="c65k">BSR rel</td>	<td class="prefix">prefix1</td>	<td>STY zp</td>			<td>STA zp</td>		<td>STX zp</td>		<td class="prefix">prefix1</td>		<td>DEY</td>		<td class="cmos">BIT imm</td>	<td>TXA</td>			<td class="prefix">prefix2</td>	<td>STY abs</td>		<td>STA abs</td>	<td>STX abs</td>		<td class="prefix">reserved prefix</td></tr>
+<tr><th>9</th>		<td>BCC rel</td>		<td>STA (zp),Y</td>	<td class="cmos">STA (zp)</td>	<td class="prefix">prefix1</td>	<td>STY zp,X</td>		<td>STA zp,X</td>	<td>STX zp,Y</td>	<td class="prefix">prefix1</td>		<td>TYA</td>		<td>STA abs,Y</td>		<td>TXS</td>			<td class="prefix">prefix2</td>	<td class="cmos">STZ abs</td>	<td>STA abs,X</td>	<td class="cmos">STZ abs,X</td>	<td class="c65k">STZ abs,Y</td></tr>
+<tr><th>A</th>		<td>LDY imm</td>		<td>LDA (zp,X)</td>	<td>LDX imm</td>		<td class="prefix">prefix1</td>	<td>LDY zp</td>			<td>LDA zp</td>		<td>LDX zp</td>		<td class="prefix">prefix1</td>		<td>TAY</td>		<td>LDA imm</td>		<td>TAX</td>			<td class="prefix">prefix2</td>	<td>LDY abs</td>		<td>LDA abs</td>	<td>LDX abs</td>		<td class="prefix">reserved prefix</td></tr>
+<tr><th>B</th>		<td>BCS rel</td>		<td>LDA (zp),Y</td>	<td class="cmos">LDA (zp)</td>	<td class="prefix">prefix1</td>	<td>LDY zp,X</td>		<td>LDA zp,X</td>	<td>LDX zp,Y</td>	<td class="prefix">prefix1</td>		<td>CLV</td>		<td>LDA abs,Y</td>		<td>TSX</td>			<td class="prefix">prefix2</td>	<td>LDY abs,X</td>		<td>LDA abs,X</td>	<td>LDX abs,Y</td>		<td class="c65k">STX abs,Y</td></tr>
+<tr><th>C</th>		<td>CPY imm</td>		<td>CMP (zp,X)</td>	<td class="c65k">STA (abs),Y</td><td class="prefix">prefix1</td><td>CPY zp</td>			<td>CMP zp</td>		<td>DEC zp</td>		<td class="prefix">prefix1</td>		<td>INY</td>		<td>CMP imm</td>		<td>DEX</td>			<td class="prefix">prefix2</td>	<td>CPY abs</td>		<td>CMP abs</td>	<td>DEC abs</td>		<td class="prefix">reserved prefix</td></tr>
+<tr><th>D</th>		<td>BNE rel</td>		<td>CMP (zp),Y</td>	<td class="cmos">CMP (zp)</td>	<td class="prefix">prefix1</td>	<td class="unused"></td>	<td>CMP zp,X</td>	<td>DEC zp,X</td>	<td class="prefix">prefix1</td>		<td>CLD</td>		<td>CMP abs,Y</td>		<td class="cmos">PHX</td>	<td class="prefix">prefix2</td>	<td class="c65k">JSR (abs)</td>	<td>CMP abs,X</td>	<td>DEC abs,X</td>		<td class="c65k">DEC abs,Y</td></tr>
+<tr><th>E</th>		<td>CPX imm</td>		<td>SBC (zp,X)</td>	<td class="c65k">STA (abs,X)</td><td class="prefix">prefix1</td><td>CPX zp</td>			<td>SBC zp</td>		<td>INC zp</td>		<td class="prefix">prefix1</td>		<td>INX</td>		<td>SBC imm</td>		<td>NOP</td>			<td class="prefix">prefix2</td>	<td>CPX abs</td>		<td>SBC abs</td>	<td>INX abs</td>		<td class="prefix">reserved prefix</td></tr>
 <tr><th>F</th>		<td>BEQ rel</td>		<td>SBC (zp),Y</td>	<td class="cmos">SBC (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">TRAP</td>	<td>SBC zp,X</td>	<td>INC zp,X</td>	<td class="prefix">prefix1</td>		<td>SED</td>		<td>SBC abs,Y</td>		<td class="cmos">PLX</td>	<td class="prefix">prefix2</td>	<td class="c65k">JSR (abs,X)</td><td>SBC abs,X</td>	<td>INC abs,X</td>		<td class="c65k">INC abs,Y</td></tr>
 </table><p>Legend:</p>
 <table class="optable">
@@ -344,17 +361,18 @@
 	Some of the opcodes are named prefix1 and prefix2, for those see below. 
 	Others are named like "QUICK prefix" or "EXT prefix".
 	These opcodes provide a way to extend the opcode list by having a second opcode byte follow the prefix. Thus there 
-	could be 256 additional "QUICK" opcodes, and 256 additional "MMU opcodes" and so on. These opcode planes are
+	could be 256 additional "QUICK" opcodes, and 256 additional "EXT opcodes" and so on. These opcode planes are
 	described below.
+	</p><p>
+	Note that there is still "plenty" of room for extensions. There are five reserved prefix bytes - 4 of them could be used to
+	implement further modification bits (like going 128 bits ...yuck!) or they could be used as further opcode planes.
+	The one prefix at $6F should be reserved for extensions like floating point or vector processors or other extensions
+	that do not "just" modify existing opcodes.
 	</p><p>
 	Here is a short description of the new opcodes:
 	</p>
 	<ul>
 	<li>BSR - branch subroutine</li>
-	<li>SWP - swap upper and lower part nibble / byte / word / long word of a byte / word / long / longlong operand
-		in Accumulator</li>
-	<li>NOP zp - two-byte NOP (resp. 5 byte with AM prefix set)</li>
-	<li>NOP abs - three-byte NOP (resp. 9 byte with AM prefix set)</li>
 	</ul><p>Notes:</p>
 	<ol>
 	<li>When the value to be written to the register is larger than the maximum value as determined by an RS prefix
@@ -384,9 +402,9 @@
 <tr><td>long</td>	<td>Long 32&nbsp;bit</td>				<td>32&nbsp;bit address</td></tr>
 <tr><td>long,X</td>	<td>Long 32&nbsp;bit indexed with X</td>		<td>32&nbsp;bit address, plus content of XR</td></tr>
 <tr><td>long,Y</td>	<td>Long 32&nbsp;bit indexed with Y</td>		<td>32&nbsp;bit address, plus content of YR</td></tr>
-<tr><td>longlong</td>	<td>Longlong 64&nbsp;bit</td>				<td>64&nbsp;bit address</td></tr>
-<tr><td>longlong,X</td>	<td>Longlong 64&nbsp;bit indexed with X</td>		<td>64&nbsp;bit address, plus content of XR</td></tr>
-<tr><td>longlong,Y</td>	<td>Longlong 64&nbsp;bit indexed with Y</td>		<td>64&nbsp;bit address, plus content of YR</td></tr>
+<tr><td>quad</td>	<td>Quad (Longlong) 64&nbsp;bit</td>			<td>64&nbsp;bit address</td></tr>
+<tr><td>quad,X</td>	<td>Quad (Longlong) 64&nbsp;bit indexed with X</td>	<td>64&nbsp;bit address, plus content of XR</td></tr>
+<tr><td>quad,Y</td>	<td>Quad (Longlong) 64&nbsp;bit indexed with Y</td>	<td>64&nbsp;bit address, plus content of YR</td></tr>
 <tr><td>(zp)</td>	<td>Zeropage indirect 16&nbsp;bit</td>			<td>Load effective 16&nbsp;bit address from zeropage location given</td></tr>
 <tr><td>(zp),Y</td>	<td>Zeropage indirect indexed with Y 16&nbsp;bit</td>	<td>Load effective 16&nbsp;bit address from zeropage location given, then add content of YR</td></tr>
 <tr><td>(zp,X)</td>	<td>Zeropage indexed with X indirect 16&nbsp;bit</td>	<td>Load effective 16&nbsp;bit address from zeropage location given plus content of XR</td></tr>
@@ -408,7 +426,7 @@
 <tr><td>rel</td>	<td>Relative address -128 to 127</td>			<td></td></tr>
 <tr><td>relwide</td>	<td>Relative address -32768 to 32767</td>		<td></td></tr>
 <tr><td>rellong</td>	<td>Relative address -2^32 to 2^32-1</td>		<td></td></tr>
-<tr><td>rellonglong</td><td>Relative address -2^64 to 2^64-1</td>		<td></td></tr>
+<tr><td>relquad</td>	<td>Relative address -2^64 to 2^64-1</td>		<td></td></tr>
 <tr><td>(E)</td>	<td>Indirect-E</td>					<td>Take the effective operand address from the E register</td></tr>
 </table><p>
 	You will note that not all of these addressing modes are shown in the above table. Here the prefix codes come into play.
@@ -431,9 +449,9 @@
 <tr><th colspan="8">prefix2</th></tr>
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>UM</td><td>reserved</td><td>NF</td><td>ZE</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>UM</td><td>EE</td><td>NF</td><td>ZE</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
 </table><p>
-	For prefix2 the low four bit are fixed, bit 5 is the ZE bit, the other bits are reserved.
+	For prefix2 the low four bit are fixed, the other bits are used as prefix.
 </p><p>
 	The following table explains the prefix bits.
 </p>
@@ -449,6 +467,9 @@
 <tr><td>0/1</td><td>16 bit register</td></tr>
 <tr><td>1/0</td><td>32 bit register</td></tr>
 <tr><td>1/1</td><td>64 bit register</td></tr>
+<tr><th>EE</th><th>Early Extension flag</th></tr>
+<tr><td>0</td><td>Data is read in a size as given with RS, operation is done in RS size, then extended using ZE before written to a register; flags (e.g. zero, sign, ...) are set from RS sized part</td></tr>
+<tr><td>1</td><td>Data is read in a size as given with RS, then extended to register size using ZE, then operation is done in register size, then stored in the register; flags are set from full register.</td></tr>
 <tr><th>OF1/OF0</th><th>Offset Register</th></tr>
 <tr><td>0/0</td><td>No offset added to address</td></tr>
 <tr><td>0/1</td><td>Add Program Counter (PC) to address</td></tr>
@@ -478,27 +499,34 @@
 	This would not be the case if prefix2 was before prefix1, because then it would not be distinguishable
 	of the byte following prefix2 is a prefix1 or a reused opcode.
 	</p><p>
+	The EE flag only applies to opcodes that read an operand, but not to read-modify-write opcodes.
+	It would not necessarily apply to pure load opcodes, but the difference in the flags generation
+	(zero flag, sign, ...) may justify this flag for load opcodes as well.
+	</p><p>
+	The NF flag does not apply to compare opcodes - their only purpose is to set the flags...
+	</p><p>
 	The following table describes which prefix bit is applicable to which opcode:
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>					<th>2</th>					<th>3</th>						<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>						<th>8</th>					<th>9</th>					<th>A</th>			<th>B</th>		<th>C</th>					<th>D</th>					<th>E</th>					<th>F</th></tr>
-<tr><th>0</th>		<td class="unused"></td>	<td>ORA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA zp,Y<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">ORA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>TSB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ASL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP (abs)<br/>AM,OF</td>		<td class="unused"></td>			<td>ORA imm<br/>RS,ZE,NF</td>			<td>ASL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ASL abs<br/>AM,OF,RS,UM,NF</td>		<td>FP prefix</td></tr>
-<tr><th>1</th>		<td>BPL rel<br/>RS</td>		<td>ORA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ORA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">ORA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>TRB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ASL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ORA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JSR (abs)<br/>AM,OF,RS</td>	<td>ORA abs,y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>INC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TRB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ASL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ASL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>	
-<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STA zp,Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">AND (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>BIT zp<br/>AM,OF,RS,UM,NF</td>	<td>AND zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP (abs),X<br/>AM,OF,UM</td>		<td class="unused"></td>			<td>AND imm<br/>RS,ZE,NF</td>			<td>ROL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>AND abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ROL abs<br/>AM,OF,RS,UM,NF</td>		<td>SYS prefix</td></tr>
-<tr><th>3</th>		<td>BMI rel<br/>RS</td>		<td>AND (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>AND (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">AND (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>BIT zp,X<br/>AM,OF,RS,UM,NF</td>	<td>AND zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">AND (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JSR (abs,X)<br/>AM,OF,RS</td>	<td>AND abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>DEC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>AND abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>4</th>		<td class="unused"></td>	<td>EOR (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA (abs),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">EOR (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">BSR(32) rel<br/>RS</td>	<td>EOR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LSR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA (abs),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>PHA<br/>RS,UM</td>				<td>EOR imm<br/>RS,ZE,NF</td>			<td>LSR imm<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP abs<br/>AM,OF</td>			<td>EOR abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>LSR abs<br/>AM,OF,RS,UM,NF</td>		<td>Blitter prefix</td></tr>
-<tr><th>5</th>		<td>BVC rel<br/>RS</td>		<td>EOR (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>EOR (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">EOR (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">BSR(64) rel<br/>RS</td>	<td>EOR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LSR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">EOR (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="unused"></td>			<td>EOR abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>PHY<br/>RS,UM</td>		<td class="x"></td>	<td>NOP abs<br/>AM</td>				<td>EOR abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LSR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>LSR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>6</th>		<td>RTS<br/>AM,RS</td>		<td>ADC (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA (abs,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ADC (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STZ zp<br/>AM,OF,RS,UM</td>		<td>ADC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA (abs,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>PLA<br/>RS,ZE,UM,NF</td>			<td>ADC imm<br/>RS,ZE,NF</td>			<td>ROR A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP (abs)<br/>AM,OF</td>			<td>ADC abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ROR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused"></td></tr>
-<tr><th>7</th>		<td>BVS rel<br/>RS</td>		<td>ADC (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ADC (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">ADC (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STZ zp,X<br/>AM,OF,RS,UM</td>	<td>ADC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ADC (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="unused"></td>			<td>ADC abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>PLY<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JMP (abs,X)<br/>AM,OF</td>			<td>ADC abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>ROR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>8</th>		<td>BRA rel<br/>RS</td>		<td>STA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>BSR rel<br/>RS</td>				<td class="dup">STA (zp,X)<br/>AM,OF,RS,ZE,UM</td>	<td>STY zp<br/>AM,OF,RS,UM</td>		<td>STA zp<br/>AM,OF,RS,ZE,UM</td>	<td>STX zp<br/>AM,OF,RS,UM</td>		<td class="dup"></td>					<td>DEY<br/>RS,ZE,NF</td>			<td>BIT imm<br/>RS,ZE,NF</td>			<td>TXA<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>STY abs<br/>AM,OF,RS,UM</td>		<td>STA abs<br/>AM,OF,RS,UM</td>		<td>STX abs<br/>AM,OF,RS,UM</td>		<td class="unused"></td></tr>
-<tr><th>9</th>		<td>BCC rel<br/>RS</td>		<td>STA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STA (zp)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">STA (zp),Y<br/>AM,OF,RS,ZE,UM</td>	<td>STY zp,X<br/>AM,OF,RS,UM</td>	<td>STA zp,X<br/>AM,OF,RS,ZE,UM</td>	<td>STX zp,Y<br/>AM,OF,RS,UM</td>	<td class="dup">STA (zp)<br/>AM,OF,RS,ZE,UM</td>	<td>TYA<br/>RS,ZE,NF</td>			<td>STA abs,Y<br/>AM,OF,RS,UM</td>		<td>TXS<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>STZ abs<br/>AM,OF,RS,UM</td>		<td>STA abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,X<br/>AM,OF,RS,UM</td>		<td>STX abs,Y<br/>AM,OF,RS,UM</td></tr>
-<tr><th>A</th>		<td>LDY imm<br/>RS,ZE,NF</td>	<td>LDA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDX imm<br/>RS,NF</td>			<td class="dup">LDA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDY zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDX zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup"></td>					<td>TAY<br/>RS,ZE,NF</td>			<td>LDA imm<br/>RS,ZE,NF</td>			<td>TAX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>LDY abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>LDA abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>LDX abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>SWP<br/>RS,ZE</td></tr>
-<tr><th>B</th>		<td>BCS rel<br/>RS</td>		<td>LDA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">LDA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDY zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDX zp,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="unused"></td>			<td>LDA abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>TSX<br/>UM,NF</td>		<td class="x"></td>	<td>LDY abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDA abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>LDX abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STY abs,X<br/>AM,OF,RS,UM</td></tr>
-<tr><th>C</th>		<td>CPY imm<br/>RS,NF</td>	<td>CMP (zp,X)<br/>AM,OF,RS,UM,NF</td>		<td>STA (abs),Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">CMP (zp,X)<br/>AM,OF,RS,UM,NF</td>	<td>CPY zp<br/>AM,OF,RS,UM,NF</td>	<td>CMP zp<br/>AM,OF,RS,UM,NF</td>	<td>DEC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup"></td>					<td>INY<br/>RS,ZE,NF</td>			<td>CMP imm<br/>RS,NF</td>			<td>DEX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>CPY abs<br/>AM,OF,RS,UM,NF</td>		<td>CMP abs<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs<br/>AM,OF,RS,UM,NF</td>		<td>QUICk prefix</td></tr>
-<tr><th>D</th>		<td>BNE rel<br/>RS</td>		<td>CMP (zp),Y<br/>AM,OF,RS,UM,NF</td>		<td>CMP (zp)<br/>AM,OF,RS,UM,NF</td>		<td class="dup">CMP (zp),Y<br/>AM,OF,RS,UM,NF</td>	<td>NOP zp<br/>AM</td>			<td>CMP zp,X<br/>AM,OF,RS,UM,NF</td>	<td>DEC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">CMP (zp)<br/>AM,OF,RS,UM,NF</td>	<td class="unused"></td>			<td>CMP abs,Y<br/>AM,OF,RS,UM,NF</td>		<td>PHX<br/>RS,UM</td>		<td class="x"></td>	<td>JSR (abs)<br/>AM,OF,RS,UM</td>		<td>CMP abs,X<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>E</th>		<td>CPX imm<br/>RS,NF</td>	<td>SBC (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STA (abs,X)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">SBC (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>CPX zp<br/>AM,OF,RS,UM,NF</td>	<td>SBC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td>INC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup"></td>					<td>INX<br/>RS,ZE,NF</td>			<td>SBC imm<br/>RS,ZE,NF</td>			<td class="unused"></td>	<td class="x"></td>	<td>CPX abs<br/>AM,OF,RS,UM,NF</td>		<td>SBC abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>INC abs<br/>AM,OF,RS,UM,NF</td>		<td>EXT prefix</td></tr>
-<tr><th>F</th>		<td>BEQ rel<br/>RS</td>		<td>SBC (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>SBC (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">SBC (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="unused">TRAP<br/>RS</td>	<td>SBC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>INC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">SBC (zp)<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="unused"></td>			<td>SBC abs,Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>PLX<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JSR (abs,X)<br/>AM,OF,RS,UM</td>		<td>SBC abs,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td>INC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>INC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>					<th>2</th>					<th>3</th>							<th>4</th>				<th>5</th>					<th>6</th>				<th>7</th>							<th>8</th>			<th>9</th>					<th>A</th>			<th>B</th>		<th>C</th>					<th>D</th>					<th>E</th>					<th>F</th></tr>
+<tr><th>0</th>		<td class="unused">BRK</td>	<td>ORA (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA zp,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ORA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>TSB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP [[abs]]<br/>AM=1,OF</td>			<td class="unused">PHP</td>	<td>ORA imm<br/>RS,ZE,NF,EE</td>		<td>ASL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">EXT prefix</td></tr>
+<tr><th>1</th>		<td>BPL rel<br/>RS</td>		<td>ORA (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ORA (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ORA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>TRB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ORA [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLC</td>	<td>ORA abs,y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TRB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ASL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>	
+<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STA zp,Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">AND [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BIT zp<br/>AM,OF,RS,UM,NF,EE</td>	<td>AND zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP [[abs]],X<br/>AM=1,OF,UM</td>		<td class="unused">PLP</td>	<td>AND imm<br/>RS,ZE,NF,EE</td>		<td>ROL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">SYS prefix</td></tr>
+<tr><th>3</th>		<td>BMI rel<br/>RS</td>		<td>AND (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">AND [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BIT zp,X<br/>AM,OF,RS,UM,NF,EE</td>	<td>AND zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">AND [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SEC</td>	<td>AND abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>DEC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>4</th>		<td class="unused">RTI</td>	<td>EOR (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (abs),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">EOR [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BSR relwide<br/>RS,AM</td>		<td>EOR zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA [[abs]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>PHA<br/>RS,UM</td>		<td>EOR imm<br/>RS,ZE,NF,EE</td>		<td>LSR A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP abs<br/>AM,OF</td>			<td>EOR abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">QUICK prefix</td></tr>
+<tr><th>5</th>		<td>BVC rel<br/>RS</td>		<td>EOR (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>EOR (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">EOR [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused"></td>		<td>EOR zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">EOR [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLI</td>	<td>EOR abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PHY<br/>RS,UM</td>		<td class="x"></td>	<td>STX abs,Y<br/>AM</td>			<td>EOR abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>LSR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>6</th>		<td>RTS<br/>AM,RS</td>		<td>ADC (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (abs,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ADC [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>STZ zp<br/>AM,OF,RS,UM</td>		<td>ADC zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA [[abs,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>PLA<br/>RS,ZE,UM,NF</td>	<td>ADC imm<br/>RS,ZE,NF,EE</td>		<td>ROR A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP (abs)<br/>AM,OF</td>			<td>ADC abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>7</th>		<td>BVS rel<br/>RS</td>		<td>ADC (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ADC (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ADC [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>STZ zp,X<br/>AM,OF,RS,UM</td>	<td>ADC zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ADC [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SEI</td>	<td>ADC abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PLY<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JMP (abs,X)<br/>AM,OF</td>			<td>ADC abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>8</th>		<td>BRA rel<br/>RS</td>		<td>STA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>BSR rel<br/>RS,AM</td>			<td class="dup">STA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>STY zp<br/>AM,OF,RS,UM</td>		<td>STA zp<br/>AM,OF,RS,ZE,UM</td>		<td>STX zp<br/>AM,OF,RS,UM</td>		<td class="dup">JSR [[abs]]<br/>AM=1,OF,RS</td>			<td>DEY<br/>RS,ZE,NF</td>	<td>BIT imm<br/>RS,ZE,NF,EE</td>		<td>TXA<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>STY abs<br/>AM,OF,RS,UM</td>		<td>STA abs<br/>AM,OF,RS,UM</td>		<td>STX abs<br/>AM,OF,RS,UM</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>9</th>		<td>BCC rel<br/>RS</td>		<td>STA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STA (zp)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">STA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM</td>		<td>STY zp,X<br/>AM,OF,RS,UM</td>	<td>STA zp,X<br/>AM,OF,RS,ZE,UM</td>		<td>STX zp,Y<br/>AM,OF,RS,UM</td>	<td class="dup">STA [[zp]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>TYA<br/>RS,ZE,NF</td>	<td>STA abs,Y<br/>AM,OF,RS,UM</td>		<td>TXS<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>STZ abs<br/>AM,OF,RS,UM</td>		<td>STA abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,Y<br/>AM,OF,RS,UM</td></tr>
+<tr><th>A</th>		<td>LDY imm<br/>RS,ZE,NF,EE</td><td>LDA (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX imm<br/>RS,NF,EE</td>			<td class="dup">LDA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>LDY zp<br/>AM,OF,RS,ZE,UM,NF,EE</td><td>LDA zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX zp<br/>AM,OF,RS,ZE,UM,NF,EE</td><td class="dup">JSR [[abs,X]]<br/>AM=1,OF,RS</td>		<td>TAY<br/>RS,ZE,NF</td>	<td>LDA imm<br/>RS,ZE,NF,EE</td>		<td>TAX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>LDY abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">reserved prefix</td></tr>
+<tr><th>B</th>		<td>BCS rel<br/>RS</td>		<td>LDA (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">LDA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>LDY zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td><td>LDA zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX zp,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td><td class="dup">LDA [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLV</td>	<td>LDA abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>TSX<br/>UM,NF</td>		<td class="x"></td>	<td>LDY abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STX abs,Y<br/>AM,OF,RS,UM</td></tr>
+<tr><th>C</th>		<td>CPY imm<br/>RS,EE</td>	<td>CMP (zp,X)<br/>AM,OF,RS,UM,EE</td>		<td>STA (abs),Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">CMP [[zp,X]]<br/>AM=1,OF,RS,UM,EE</td>		<td>CPY zp<br/>AM,OF,RS,UM,EE</td>	<td>CMP zp<br/>AM,OF,RS,UM,EE</td>		<td>DEC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">STA [[abs]],Y<br/>AM=1,OF,RS,ZE,UM</td>		<td>INY<br/>RS,ZE,NF</td>	<td>CMP imm<br/>RS,EE</td>			<td>DEX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>CPY abs<br/>AM,OF,RS,UM,EE</td>		<td>CMP abs<br/>AM,OF,RS,UM,EE</td>		<td>DEC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>D</th>		<td>BNE rel<br/>RS</td>		<td>CMP (zp),Y<br/>AM,OF,RS,UM,EE</td>		<td>CMP (zp)<br/>AM,OF,RS,UM,EE</td>		<td class="dup">CMP [[zp]],Y<br/>AM=1,OF,RS,UM,EE</td>		<td class="unused"></td>		<td>CMP zp,X<br/>AM,OF,RS,UM,EE</td>		<td>DEC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">CMP [[zp]]<br/>AM=1,OF,RS,UM,EE</td>		<td class="unused">CLD</td>	<td>CMP abs,Y<br/>AM,OF,RS,UM,EE</td>		<td>PHX<br/>RS,UM</td>		<td class="x"></td>	<td>JSR (abs)<br/>AM,OF,RS,UM</td>		<td>CMP abs,X<br/>AM,OF,RS,UM,EE</td>		<td>DEC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>E</th>		<td>CPX imm<br/>RS,EE</td>	<td>SBC (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STA (abs,X)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">SBC [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>CPX zp<br/>AM,OF,RS,UM,EE</td>	<td>SBC zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">STA [[abs,X]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>INX<br/>RS,ZE,NF</td>	<td>SBC imm<br/>RS,ZE,NF,EE</td>		<td class="unused">NOP</td>	<td class="x"></td>	<td>CPX abs<br/>AM,OF,RS,UM,EE</td>		<td>SBC abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>F</th>		<td>BEQ rel<br/>RS</td>		<td>SBC (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>SBC (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">SBC [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">TRAP<br/>RS</td>	<td>SBC zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">SBC [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SED</td>	<td>SBC abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PLX<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JSR (abs,X)<br/>AM,OF,RS,UM</td>		<td>SBC abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>INC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
 </table>	<p>
+	The grey fields note opcodes that do not use any prefix bits.
 	</p><p>
 	Note that the Register size option for the RTS and JSR opcodes determine the size of the 
 	return address as put on the stack (with the 8&nbsp;bit register size option also mapping to the
@@ -506,8 +534,17 @@
 	</p><p>
 	The Register size option for the branch opcodes determines the size of the relative address
 	offset. For the BSR opcode this is in conflict with the size options for the address on 
-	the stack. Therefore there are two duplicate opcodes for BSR, which all have a different
-	size of the return address on the stack.
+	the stack. Therefore BSR is handled similar to JSR, in that RS determines the size of the
+	return address on the stack, and AM modifies the relative offset from "rel" to "rellong"
+	resp. from "relwide" to "relquad".
+	</p><p>
+	Note that the TRAP opcode is marked as using no prefix bits, but still written down in that
+	table. This is for future extensions, when RS may be used to allow more than 256 trap codes.
+	</p><p>
+	The green cells are duplicate opcodes. These take the place of prefix1 resp. some opcodes that
+	do not use prefix flags (like CLC) and require at least one prefix bit set (AM in the current cases).
+	These duplicate opcodes allow to extend an indirect opcode, more specifically to have more options
+	for the size of the address stored at the indirect location. For a description see below.
 	</p><p>
 	The following sections describe the different options in mode detail:
 	</p>
@@ -529,25 +566,26 @@
 <tr><td>(abs)</td><td>[abs]</td><td>from the given absolute location, read a long address instead of an absolute address</td></tr>
 <tr><td>(abs),Y</td><td>[abs],Y</td><td>from the given absolute location, read a long address instead of an absolute address, then add YR</td></tr>
 <tr><td>(abs,X)</td><td>[abs,X]</td><td>from the given absolute location (plus XR as given by the addressing mode), read a long address instead of an absolute address</td></tr>
-<tr><td class="dup">(zp)</td><td>[[zp]]</td><td>from the given zeropage location, read a long address instead of an absolute address</td></tr>
-<tr><td class="dup">(zp),Y</td><td>[[zp]],Y</td><td>from the given zeropage location, read a longlong address instead of an absolute address, then add YR</td></tr>
-<tr><td class="dup">(zp,X)</td><td>[[zp,X]]</td><td>from the given zeropage location (plus XR as given by the addressing mode), read a longlong address instead of an absolute address</td></tr>
-<tr><td class="dup">(abs)</td><td>[[abs]]</td><td>from the given absolute location, read a longlong address instead of an absolute address</td></tr>
-<tr><td class="dup">(abs),Y</td><td>[[abs]],Y</td><td>from the given absolute location, read a longlong address instead of an absolute address, then add YR</td></tr>
-<tr><td class="dup">(abs,X)</td><td>[[abs,X]]</td><td>from the given absolute location (plus XR as given by the addressing mode), read a longlong address instead of an absolute address</td></tr>
+<tr><td class="dup">(zp)</td><td>[[zp]]</td><td>from the given zeropage location, read a quad (longlong)  address instead of an absolute address</td></tr>
+<tr><td class="dup">(zp),Y</td><td>[[zp]],Y</td><td>from the given zeropage location, read a quad (longlong) address instead of an absolute address, then add YR</td></tr>
+<tr><td class="dup">(zp,X)</td><td>[[zp,X]]</td><td>from the given zeropage location (plus XR as given by the addressing mode), read a quad (longlong) address instead of an absolute address</td></tr>
+<tr><td class="dup">(abs)</td><td>[[abs]]</td><td>from the given absolute location, read a quad (longlong) address instead of an absolute address</td></tr>
+<tr><td class="dup">(abs),Y</td><td>[[abs]],Y</td><td>from the given absolute location, read a quad (longlong) address instead of an absolute address, then add YR</td></tr>
+<tr><td class="dup">(abs,X)</td><td>[[abs,X]]</td><td>from the given absolute location (plus XR as given by the addressing mode), read a quad (longlong) address instead of an absolute address</td></tr>
 <tr><td>imm</td><td>imm</td><td>unchanged</td></tr>
 <tr><td>implied</td><td>implied</td><td>unchanged</td></tr>
-<tr><td>rel</td><td>rel</td><td>unchanged</td></tr>
+<tr><td>rel</td><td>rellong</td><td>extend the relative offset from an 8 bit to a 32 bit value</td></tr>
+<tr><td>relwide</td><td>relquad</td><td>extend the relative offset from a 16 bit to a 64 bit value</td></tr>
 </table><p>
 	Normally not all addressing modes would be supported with direct addressing mode replacements. 
-	The longlong indirect addressing modes
-	are not reached. Thus the indirect opcodes are mirrored, and extended from long to longlong indirect 
+	The quad (longlong) indirect addressing modes
+	are not reached. Thus the indirect opcodes are mirrored, and extended from long to quad (longlong) indirect 
 	addressing modes.
 	Row LSB 1 is mirrored thus to row LSB 3, as well as row LSB 2 is mirrored to LSB 7.
 	These values are marked with a green background in the table. The LSB 3 and 7 rows then change from
-	indirect addressing modes to longlong indirect addressing modes.
+	indirect addressing modes to quad (longlong) indirect addressing modes.
 	</p><p>
-	Also note that there a are no indirect addressing modes that take a long or longlong value as indirect address.
+	Also note that there a are no indirect addressing modes that take a long or quad (longlong) value as indirect address.
 	</p><p>
 	TODO: JMP and JSR opcodes?
 	</p>
@@ -643,22 +681,22 @@
 	The following table describes the opcodes:</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>	<th>1</th>		<th>2</th>		<th>3</th>		<th>4</th>		<th>5</th>		<th>6</th>		<th>7</th>		<th>8</th>		<th>9</th>		<th>A</th>		<th>B</th>		<th>C</th>	<th>D</th>	<th>E</th>	<th>F</th></tr>
-<tr><th>0</th>		<td>INY #1</td>		<td>INX #1</td>		<td>INC A #1</td>	<td>ROL A #1</td>	<td>ASL A #1</td>	<td>INC #1, zp</td>	<td>ROL #1, zp</td>	<td>ASL #1, zp</td>	<td>INC #1, (E)</td>	<td>ROL #1, (E)</td>	<td>ASL #1, (E)</td>	<td>INE #1</td>		<td>INB #1</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>1</th>		<td>INY #2</td>		<td>INX #2</td>		<td>INC A #2</td>	<td>ROL A #2</td>	<td>ASL A #2</td>	<td>INC #2, zp</td>	<td>ROL #2, zp</td>	<td>ASL #2, zp</td>	<td>INC #2, (E)</td>	<td>ROL #2, (E)</td>	<td>ASL #2, (E)</td>	<td>INE #2</td>		<td>INB #2</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>2</th>		<td>INY #3</td>		<td>INX #3</td>		<td>INC A #3</td>	<td>ROL A #3</td>	<td>ASL A #3</td>	<td>INC #3, zp</td>	<td>ROL #3, zp</td>	<td>ASL #3, zp</td>	<td>INC #3, (E)</td>	<td>ROL #3, (E)</td>	<td>ASL #3, (E)</td>	<td>INE #3</td>		<td>INB #3</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>3</th>		<td>INY #4</td>		<td>INX #4</td>		<td>INC A #4</td>	<td>ROL A #4</td>	<td>ASL A #4</td>	<td>INC #4, zp</td>	<td>ROL #4, zp</td>	<td>ASL #4, zp</td>	<td>INC #4, (E)</td>	<td>ROL #4, (E)</td>	<td>ASL #4, (E)</td>	<td>INE #4</td>		<td>INB #4</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>4</th>		<td>INY #5</td>		<td>INX #5</td>		<td>INC A #5</td>	<td>ROL A #5</td>	<td>ASL A #5</td>	<td>INC #5, zp</td>	<td>ROL #5, zp</td>	<td>ASL #5, zp</td>	<td>INC #5, (E)</td>	<td>ROL #5, (E)</td>	<td>ASL #5, (E)</td>	<td>INE #5</td>		<td>INB #5</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>5</th>		<td>INY #6</td>		<td>INX #6</td>		<td>INC A #6</td>	<td>ROL A #6</td>	<td>ASL A #6</td>	<td>INC #6, zp</td>	<td>ROL #6, zp</td>	<td>ASL #6, zp</td>	<td>INC #6, (E)</td>	<td>ROL #6, (E)</td>	<td>ASL #6, (E)</td>	<td>INE #6</td>		<td>INB #6</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>6</th>		<td>INY #7</td>		<td>INX #7</td>		<td>INC A #7</td>	<td>ROL A #7</td>	<td>ASL A #7</td>	<td>INC #7, zp</td>	<td>ROL #7, zp</td>	<td>ASL #7, zp</td>	<td>INC #7, (E)</td>	<td>ROL #7, (E)</td>	<td>ASL #7, (E)</td>	<td>INE #7</td>		<td>INB #7</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>7</th>		<td>INY #8</td>		<td>INX #8</td>		<td>INC A #8</td>	<td>ROL A #8</td>	<td>ASL A #8</td>	<td>INC #8, zp</td>	<td>ROL #8, zp</td>	<td>ASL #8, zp</td>	<td>INC #8, (E)</td>	<td>ROL #8, (E)</td>	<td>ASL #8, (E)</td>	<td>INE #8</td>		<td>INB #8</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>8</th>		<td>DEY #1</td>		<td>DEX #1</td>		<td>DEC A #1</td>	<td>ROR A #1</td>	<td>LSR A #1</td>	<td>DEC #1, zp</td>	<td>ROR #1, zp</td>	<td>LSR #1, zp</td>	<td>DEC #1, (E)</td>	<td>ROR #1, (E)</td>	<td>LSR #1, (E)</td>	<td>DEE #1</td>		<td>DEB #1</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>9</th>		<td>DEY #2</td>		<td>DEX #2</td>		<td>DEC A #2</td>	<td>ROR A #2</td>	<td>LSR A #2</td>	<td>DEC #2, zp</td>	<td>ROR #2, zp</td>	<td>LSR #2, zp</td>	<td>DEC #2, (E)</td>	<td>ROR #2, (E)</td>	<td>LSR #2, (E)</td>	<td>DEE #2</td>		<td>DEB #2</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>A</th>		<td>DEY #3</td>		<td>DEX #3</td>		<td>DEC A #3</td>	<td>ROR A #3</td>	<td>LSR A #3</td>	<td>DEC #3, zp</td>	<td>ROR #3, zp</td>	<td>LSR #3, zp</td>	<td>DEC #3, (E)</td>	<td>ROR #3, (E)</td>	<td>LSR #3, (E)</td>	<td>DEE #3</td>		<td>DEB #3</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>B</th>		<td>DEY #4</td>		<td>DEX #4</td>		<td>DEC A #4</td>	<td>ROR A #4</td>	<td>LSR A #4</td>	<td>DEC #4, zp</td>	<td>ROR #4, zp</td>	<td>LSR #4, zp</td>	<td>DEC #4, (E)</td>	<td>ROR #4, (E)</td>	<td>LSR #4, (E)</td>	<td>DEE #4</td>		<td>DEB #4</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>C</th>		<td>DEY #5</td>		<td>DEX #5</td>		<td>DEC A #5</td>	<td>ROR A #5</td>	<td>LSR A #5</td>	<td>DEC #5, zp</td>	<td>ROR #5, zp</td>	<td>LSR #5, zp</td>	<td>DEC #5, (E)</td>	<td>ROR #5, (E)</td>	<td>LSR #5, (E)</td>	<td>DEE #5</td>		<td>DEB #5</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>D</th>		<td>DEY #6</td>		<td>DEX #6</td>		<td>DEC A #6</td>	<td>ROR A #6</td>	<td>LSR A #6</td>	<td>DEC #6, zp</td>	<td>ROR #6, zp</td>	<td>LSR #6, zp</td>	<td>DEC #6, (E)</td>	<td>ROR #6, (E)</td>	<td>LSR #6, (E)</td>	<td>DEE #6</td>		<td>DEB #6</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>E</th>		<td>DEY #7</td>		<td>DEX #7</td>		<td>DEC A #7</td>	<td>ROR A #7</td>	<td>LSR A #7</td>	<td>DEC #7, zp</td>	<td>ROR #7, zp</td>	<td>LSR #7, zp</td>	<td>DEC #7, (E)</td>	<td>ROR #7, (E)</td>	<td>LSR #7, (E)</td>	<td>DEE #7</td>		<td>DEB #7</td>	<td></td>	<td></td>	<td></td></tr>
-<tr><th>F</th>		<td>DEY #8</td>		<td>DEX #8</td>		<td>DEC A #8</td>	<td>ROR A #8</td>	<td>LSR A #8</td>	<td>DEC #8, zp</td>	<td>ROR #8, zp</td>	<td>LSR #8, zp</td>	<td>DEC #8, (E)</td>	<td>ROR #8, (E)</td>	<td>LSR #8, (E)</td>	<td>DEE #8</td>		<td>DEB #8</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>0</th>		<td>INY #1</td>		<td>INX #1</td>		<td>INC A #1</td>	<td>ROL A #1</td>	<td>ASL A #1</td>	<td>INC #1, zp</td>	<td>ROL #1, zp</td>	<td>ASL #1, zp</td>	<td>INC #1, (E)</td>	<td>ROL #1, (E)</td>	<td>ASL #1, (E)</td>	<td>SLX #1</td>		<td>SLY #1</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>1</th>		<td>INY #2</td>		<td>INX #2</td>		<td>INC A #2</td>	<td>ROL A #2</td>	<td>ASL A #2</td>	<td>INC #2, zp</td>	<td>ROL #2, zp</td>	<td>ASL #2, zp</td>	<td>INC #2, (E)</td>	<td>ROL #2, (E)</td>	<td>ASL #2, (E)</td>	<td>SLX #2</td>		<td>SLY #2</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>2</th>		<td>INY #3</td>		<td>INX #3</td>		<td>INC A #3</td>	<td>ROL A #3</td>	<td>ASL A #3</td>	<td>INC #3, zp</td>	<td>ROL #3, zp</td>	<td>ASL #3, zp</td>	<td>INC #3, (E)</td>	<td>ROL #3, (E)</td>	<td>ASL #3, (E)</td>	<td>SLX #3</td>		<td>SLY #3</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>3</th>		<td>INY #4</td>		<td>INX #4</td>		<td>INC A #4</td>	<td>ROL A #4</td>	<td>ASL A #4</td>	<td>INC #4, zp</td>	<td>ROL #4, zp</td>	<td>ASL #4, zp</td>	<td>INC #4, (E)</td>	<td>ROL #4, (E)</td>	<td>ASL #4, (E)</td>	<td>SLX #4</td>		<td>SLY #4</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>4</th>		<td>INY #5</td>		<td>INX #5</td>		<td>INC A #5</td>	<td>ROL A #5</td>	<td>ASL A #5</td>	<td>INC #5, zp</td>	<td>ROL #5, zp</td>	<td>ASL #5, zp</td>	<td>INC #5, (E)</td>	<td>ROL #5, (E)</td>	<td>ASL #5, (E)</td>	<td>SLX #5</td>		<td>SLY #5</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>5</th>		<td>INY #6</td>		<td>INX #6</td>		<td>INC A #6</td>	<td>ROL A #6</td>	<td>ASL A #6</td>	<td>INC #6, zp</td>	<td>ROL #6, zp</td>	<td>ASL #6, zp</td>	<td>INC #6, (E)</td>	<td>ROL #6, (E)</td>	<td>ASL #6, (E)</td>	<td>SLX #6</td>		<td>SLY #6</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td>INY #7</td>		<td>INX #7</td>		<td>INC A #7</td>	<td>ROL A #7</td>	<td>ASL A #7</td>	<td>INC #7, zp</td>	<td>ROL #7, zp</td>	<td>ASL #7, zp</td>	<td>INC #7, (E)</td>	<td>ROL #7, (E)</td>	<td>ASL #7, (E)</td>	<td>SLX #7</td>		<td>SLY #7</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>7</th>		<td>INY #8</td>		<td>INX #8</td>		<td>INC A #8</td>	<td>ROL A #8</td>	<td>ASL A #8</td>	<td>INC #8, zp</td>	<td>ROL #8, zp</td>	<td>ASL #8, zp</td>	<td>INC #8, (E)</td>	<td>ROL #8, (E)</td>	<td>ASL #8, (E)</td>	<td>SLX #8</td>		<td>SLY #8</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>8</th>		<td>DEY #1</td>		<td>DEX #1</td>		<td>DEC A #1</td>	<td>ROR A #1</td>	<td>LSR A #1</td>	<td>DEC #1, zp</td>	<td>ROR #1, zp</td>	<td>LSR #1, zp</td>	<td>DEC #1, (E)</td>	<td>ROR #1, (E)</td>	<td>LSR #1, (E)</td>	<td>SRX #1</td>		<td>SRY #1</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>9</th>		<td>DEY #2</td>		<td>DEX #2</td>		<td>DEC A #2</td>	<td>ROR A #2</td>	<td>LSR A #2</td>	<td>DEC #2, zp</td>	<td>ROR #2, zp</td>	<td>LSR #2, zp</td>	<td>DEC #2, (E)</td>	<td>ROR #2, (E)</td>	<td>LSR #2, (E)</td>	<td>SRX #2</td>		<td>SRY #2</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>A</th>		<td>DEY #3</td>		<td>DEX #3</td>		<td>DEC A #3</td>	<td>ROR A #3</td>	<td>LSR A #3</td>	<td>DEC #3, zp</td>	<td>ROR #3, zp</td>	<td>LSR #3, zp</td>	<td>DEC #3, (E)</td>	<td>ROR #3, (E)</td>	<td>LSR #3, (E)</td>	<td>SRX #3</td>		<td>SRY #3</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>B</th>		<td>DEY #4</td>		<td>DEX #4</td>		<td>DEC A #4</td>	<td>ROR A #4</td>	<td>LSR A #4</td>	<td>DEC #4, zp</td>	<td>ROR #4, zp</td>	<td>LSR #4, zp</td>	<td>DEC #4, (E)</td>	<td>ROR #4, (E)</td>	<td>LSR #4, (E)</td>	<td>SRX #4</td>		<td>SRY #4</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>C</th>		<td>DEY #5</td>		<td>DEX #5</td>		<td>DEC A #5</td>	<td>ROR A #5</td>	<td>LSR A #5</td>	<td>DEC #5, zp</td>	<td>ROR #5, zp</td>	<td>LSR #5, zp</td>	<td>DEC #5, (E)</td>	<td>ROR #5, (E)</td>	<td>LSR #5, (E)</td>	<td>SRX #5</td>		<td>SRY #5</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td>DEY #6</td>		<td>DEX #6</td>		<td>DEC A #6</td>	<td>ROR A #6</td>	<td>LSR A #6</td>	<td>DEC #6, zp</td>	<td>ROR #6, zp</td>	<td>LSR #6, zp</td>	<td>DEC #6, (E)</td>	<td>ROR #6, (E)</td>	<td>LSR #6, (E)</td>	<td>SRX #6</td>		<td>SRY #6</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>E</th>		<td>DEY #7</td>		<td>DEX #7</td>		<td>DEC A #7</td>	<td>ROR A #7</td>	<td>LSR A #7</td>	<td>DEC #7, zp</td>	<td>ROR #7, zp</td>	<td>LSR #7, zp</td>	<td>DEC #7, (E)</td>	<td>ROR #7, (E)</td>	<td>LSR #7, (E)</td>	<td>SRX #7</td>		<td>SRY #7</td>	<td></td>	<td></td>	<td></td></tr>
+<tr><th>F</th>		<td>DEY #8</td>		<td>DEX #8</td>		<td>DEC A #8</td>	<td>ROR A #8</td>	<td>LSR A #8</td>	<td>DEC #8, zp</td>	<td>ROR #8, zp</td>	<td>LSR #8, zp</td>	<td>DEC #8, (E)</td>	<td>ROR #8, (E)</td>	<td>LSR #8, (E)</td>	<td>SRX #8</td>		<td>SRY #8</td>	<td></td>	<td></td>	<td></td></tr>
 </table>
 	<p>Here is the description of the new opcodes:</p>
 	<ul>
@@ -671,7 +709,14 @@
 	can be modified by the RS and ZE prefix. The new INE, DEE, INB, DEB opcodes always work on the full size.
 	All opcodes can be modified by the NF prefix.
 	</p>
-    	</desc>
+  	<p>These have been deprecated as they are redundant to ADE/SBE/ADB/SBB:</p>
+	<ul>
+	<li>INE - increment E register by values 1 to 8</li>
+	<li>DEE - decrement E register by values 1 to 8</li>
+	<li>INB - increment B register by values 1 to 8</li>
+	<li>DEB - increment B register by values 1 to 8</li>
+	</ul>
+  	</desc>
        </subsection>
 
        <subsection toc="ovfp" name="EXT opcodes">
@@ -679,23 +724,23 @@
 	opcodes.
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>			<th>1</th>				<th>2</th>				<th>3</th>	<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>	<th>8</th>	<th>9</th>				<th>A</th>		<th>B</th>	<th>C</th>				<th>D</th>				<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br/>AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>BCN<br/>RS,NF</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td>BCN (E)<br/>RS,UM,NF</td>	<td>PLE<br/>RS,ZE,UM,NF</td></tr>
-<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>	<td></td>				<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td></td>			<td>PHE<br/>RS,UM</td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br/>RS</td>			<td></td>				<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br/>RS,ZE,NF</td>		<td></td>	<td></td>	<td>AND (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>SAE<br/>RS,ZE,NF</td></tr>
-<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>	<td>LDE imm<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>CLE<br/>RS,NF</td></tr>
-<tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br/>AM,OF,UM,NF</td>	<td></td> 	<td></td>				<td></td>				<td>ADS imm<br/>RS,ZE,UM,NF</td>	<td></td>	<td></td>	<td>EOR (E)<br/>RS,ZE,UM,NF</td>	<td>TBA<br/>NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td>PLB<br/>RS,ZE,UM,NF</td></tr>
-<tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>	<td></td>				<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>PHB<br/>RS,UM</td></tr>
-<tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td></td>				<td>ADB imm<br/>RS,ZE,NF</td>		<td></td>	<td></td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TAB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td>SAB<br/>RS,ZE,NF</td></tr>
-<tr><th>7</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>	<td></td>				<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>CLB<br/>RS,NF</td></tr>
-<tr><th>8</th>		<td>LEA rel<br/>RS,UM,NF</td>		<td>PEA (zp,X)<br/>AM,OF,UM</td>	<td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>		<td>PEA zp<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td></td>	<td>BIT (E)<br/>RS,ZE,UM,NF</td>	<td>TEA,NF</td>		<td></td>	<td></td>				<td>PEA abs<br/>AM,OF,UM</td>		<td></td>			<td>SAX<br/>RS,ZE,NF</td></tr>
-<tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br/>AM,OF,UM</td>	<td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td>WMB<br/>UM</td>			<td>PEA zp,X<br/>AM,OF,UM</td>		<td>WMB (E)<br/>UM</td>			<td></td>	<td></td>	<td>PEA abs,Y<br/>AM,OF,UM</td>		<td>TYS<br/>UM,NF</td>	<td></td>	<td>STZ (E)<br/>RS,UM</td>		<td>PEA abs,X<br/>AM,OF,UM</td>		<td></td>			<td>SAY<br/>RS,ZE,NF</td></tr>
-<tr><th>A</th>		<td>LDY (E)<br/>RS,ZE,UM,NF</td>	<td>LEA (zp,X)<br/>AM,OF,UM,NF</td>	<td>LDX (E)<br/>RS,ZE,UM,NF</td>	<td></td>	<td>LLA (E)<br/>RS,ZE,UM,NF</td>	<td>LEA zp<br/>AM,OF,UM,NF</td>		<td>SBE imm<br/>RS,ZE,NF</td>		<td></td>	<td></td>	<td>LDA (E)<br/>RS,ZE,UM,NF</td>	<td>TAE,NF</td>		<td></td>	<td></td>				<td>LEA abs<br/>AM,OF,UM,NF</td>	<td></td>			<td>SXY<br/>RS,ZE,NF</td></tr>
-<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td>RMB<br/>UM</td>			<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>RMB (E)<br/>UM</td>			<td></td>	<td></td>	<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>TSY<br/>UM,NF</td>	<td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td>PRB<br/>RS,ZE,UM,NF</td></tr>
-<tr><th>C</th>		<td>CPY (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br/>AM,OF,UM</td>	<td></td>	<td></td>				<td></td>				<td>SBS imm<br/>RS,ZE,UM,NF</td>	<td></td>	<td></td>	<td>CMP (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>CLX<br/>RS,NF</td></tr>
-<tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>	<td></td>				<td>PHE<br/>UM</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td>CLY<br/>RS,NF</td></tr>
-<tr><th>E</th>		<td>CPX (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td></td>				<td></td>				<td>SBB imm<br/>RS,ZE,NF</td>		<td></td>	<td></td>	<td>SBC (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td>CLA<br/>RS,NF</td></tr>
-<tr><th>F</th>		<td></td>				<td>WAI</td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>	<td></td>				<td>PLE<br/>UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td>TPA<br/>RS,ZE,NF</td></tr>
+<tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>			<th>1</th>				<th>2</th>				<th>3</th>	<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>	<th>8</th>			<th>9</th>				<th>A</th>		<th>B</th>	<th>C</th>				<th>D</th>				<th>E</th>			<th>F</th></tr>
+<tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br/>AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td>PLE<br/>RS,ZE,UM,NF</td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TPA<br/>NF</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td>BCN (E)<br/>RS,UM,NF</td>	<td></td></tr>
+<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td>PHE<br/>RS,UM</td>		<td></td>				<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td></td>			<td></td></tr>	
+<tr><th>2</th>		<td>JSR (E)<br/>RS</td>			<td></td>				<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br/>RS,ZE,NF</td>		<td></td>	<td></td>			<td>AND (E)<br/>RS,ZE,UM,NF</td>	<td>TBA<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td>CLE<br/>RS,NF</td>		<td>LDE imm<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br/>AM,OF,UM,NF</td>	<td></td> 	<td></td>				<td></td>				<td>ADS imm<br/>RS,ZE,UM,NF</td>	<td></td>	<td>PLB<br/>RS,ZE,UM,NF</td>	<td>EOR (E)<br/>RS,ZE,UM,NF</td>	<td>TEA<br/>NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td></td></tr>
+<tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td>PHB<br/>RS,UM</td>		<td></td>				<td>SEB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td></td>				<td>ADB imm<br/>RS,ZE,NF</td>		<td></td>	<td>PRB<br/>RS,ZE,UM,NF</td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TAE<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>7</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td>CLB<br/>RS,NF</td>		<td></td>				<td>SAE<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>8</th>		<td>LEA rel<br/>RS,UM,NF</td>		<td>PEA (zp,X)<br/>AM,OF,UM</td>	<td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>		<td>PEA zp<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>INV<br/>RS,ZE,NF</td>	<td>BIT (E)<br/>RS,ZE,UM,NF</td>	<td>TYS<br/>UM,NF</td>	<td></td>	<td></td>				<td>PEA abs<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
+<tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br/>AM,OF,UM</td>	<td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td>WMB<br/>UM</td>			<td>PEA zp,X<br/>AM,OF,UM</td>		<td>WMB (E)<br/>UM</td>			<td></td>	<td>BCN<br/>RS,NF</td>		<td>PEA abs,Y<br/>AM,OF,UM</td>		<td>SXY<br/>RS,ZE,NF</td><td></td>	<td>STZ (E)<br/>RS,UM</td>		<td>PEA abs,X<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
+<tr><th>A</th>		<td>LDY (E)<br/>RS,ZE,UM,NF</td>	<td>LEA (zp,X)<br/>AM,OF,UM,NF</td>	<td>LDX (E)<br/>RS,ZE,UM,NF</td>	<td></td>	<td>LLA (E)<br/>RS,ZE,UM,NF</td>	<td>LEA zp<br/>AM,OF,UM,NF</td>		<td>SBE imm<br/>RS,ZE,NF</td>		<td></td>	<td>SWP<br/>RS,ZE,NF</td>	<td>LDA (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td>LEA abs<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
+<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td>RMB<br/>UM</td>			<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>RMB (E)<br/>UM</td>			<td></td>	<td></td>			<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>SAX<br/>RS,ZE,NF</td><td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
+<tr><th>C</th>		<td>CPY (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br/>AM,OF,UM</td>	<td></td>	<td></td>				<td></td>				<td>SBS imm<br/>RS,ZE,UM,NF</td>	<td></td>	<td>CLX<br/>RS,NF</td>		<td>CMP (E)<br/>RS,ZE,UM,NF</td>	<td>TSY<br/>UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td>CLY<br/>RS,NF</td>		<td></td>				<td>SAY<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>E</th>		<td>CPX (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td></td>				<td></td>				<td>SBB imm<br/>RS,ZE,NF</td>		<td></td>	<td>CLA<br/>RS,NF</td>		<td>SBC (E)<br/>RS,ZE,UM,NF</td>	<td>TAB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>F</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td>SAB<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 </table>    
 	<p>Note that including the prefix bytes an opcode may be three bytes long (prefix1, EXT prefix, and opcode). 
 	Prefix2 is (currently) not used with EXT opcodes.
@@ -718,8 +763,8 @@
 	<li>LDE - Load value into E (effective address) register</li>
 	<li>TAE - Transfer Accumulator to E register</li>
 	<li>TEA - Transfer E register to Accumulator</li>
-	<li>TBE - Transfer Accumulator to B register</li>
-	<li>TEB - Transfer B register to Accumulator</li>
+	<li>TBE - Transfer B regisger to E register</li>
+	<li>TEB - Transfer E register to B register</li>
 	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1][2]</li>
 	<li>PHE - Push E register</li>
 	<li>PLE - Pull E register</li>
@@ -737,8 +782,10 @@
 	<li>SCA - Store Conditional AC, succeeds only if address has not been externally modified. Sets overflow V bit on error</li>
 	<li>RMB - Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
 	<li>WMB - Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
-	<li>WAI - Wait for interrupt - stops execution of current core until next interrupt</li>
 	<li>FIL - Fill memory area with a byte value</li>
+	<li>INV - invert AC, i.e. set AC to the 2s-complement of AC.</li>
+	<li>SWP - swap upper and lower part nibble / byte / word / long word of a byte / word / long / quad (longlong) operand
+		in Accumulator</li>
 	</ul><p>Notes:</p>
 	<ol>
 	<li>The RS prefix determines the computation width of the effective address. 
@@ -771,7 +818,7 @@
 <tr><th>A</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>B</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVPFU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>C</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>D</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>D</th>		<td></td>	<td>WAI</td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>E</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>F</th>		<td></td>	<td>STP</td>	<td></td>	<td></td>	<td>MVPTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 </table><p>Here is a short explanation of the new opcodes</p>
@@ -795,6 +842,7 @@
 	<li>MVPFU - MVP but source is in user space</li>
 	<li>FILU - Fill user space area (i.e. use user mode match code)</li>
 	<li>STP - Stop current core until reset (core 0) resp. enabling via core control register.</li>
+	<li>WAI - Wait for interrupt - stops execution of current core until next interrupt</li>
 	</ul><p>
 	Note: these have been deprecated:</p>
 	<ul>

@@ -261,6 +261,10 @@ more modern browser, like Internet Explorer 8 or later,
 		<li>The blitter stops the bus with the RDY signal. This means that this signal
 		is not available for a device to signal lower speed to the blitter.
 		I.e. memory or I/O devices that use RDY cannot be used with the blitter.</li>
+		<li>The blitter uses physical addresses on the CS/A bus. The CPU normally
+		sees address locations translated by the CPU's memory management unit.
+		This translation from virtual to physical addresses must be done explicitely
+		when programming the blitter.</li>
 		</ul>
 		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="board" id="board">Board description</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>In the <a href="works.html">How it works</a> page the principles of operation
 	are described. Here I'll describe some of the implementation details (of the V2 board).
@@ -321,6 +325,18 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_blitter-v2.1b-layout.png">csa_blitter-v2.1b-layout.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_photo"> </div></td>
+<td><a href="blitter-v2.1a-patched.png">blitter-v2.1a-patched.png</a>(My v2.1a board patched up to v2.1b (with other traces on the back side))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.vhd">blitter-v2.1b.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.ucf">blitter-v2.1b.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
 <h3><a name="board2" id="board2">Version: 2.1A</a></h3>
 <p>Status: prototype</p>

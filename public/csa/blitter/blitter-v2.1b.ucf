@@ -1,0 +1,45 @@
+
+net "Nactive"			loc="P14";
+net "fetchNstore"		loc="P18";
+net "Nwctrl"			loc="P13";
+
+net "A<0>"				loc="P2";
+net "A<1>"				loc="P3";
+net "A<2>"				loc="P4";
+net "A<3>"				loc="P8";
+
+net "Nres"				loc="P39";
+
+net "cntend"			loc="P5";
+net "Nphi2"				loc="P6";
+net "Nboard"			loc="P7";
+net "wNr"				loc="P40";
+net "datadir"			loc="P42";
+
+net "Ndbus<0>"			loc="P12";
+net "Ndbus<1>"			loc="P11";
+net "Ndbus<2>"			loc="P9";
+
+net "Nrcnt"				loc="P19";
+net "Nwcnt"				loc="P20";
+net "Ndtr"				loc="P22";
+net "Ndtw"				loc="P24";
+
+net "Nwlda<0>"			loc="P1";
+net "Nwlda<1>"			loc="P44";
+net "Nwlda<2>"			loc="P43";
+net "Nrlda"				loc="P38";
+
+net "Nwsta<0>"			loc="P37";
+net "Nwsta<1>"			loc="P36";
+net "Nwsta<2>"			loc="P35";
+net "Nrsta"				loc="P34";
+
+net "Nwldi"				loc="P33";
+net "Nrldi"				loc="P29";
+net "Nwsti"				loc="P28";
+net "Nrsti"				loc="P26";
+
+net "Nrdinc"			loc="P27";
+net "Nnullinc"			loc="P25";
+

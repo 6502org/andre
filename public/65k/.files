@@ -1,6 +1,7 @@
 f features.html Features
 s Specification
 f specsprog.html Programming Model
+f designnotes.html Design Notes
 s Implementation
 f arch.html Architecture Overview
 f tests.html Test setup
