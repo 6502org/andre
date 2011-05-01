@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name="Blitter">
+<webpage name="Block Transfer Engine">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -34,7 +34,7 @@
 	</p>
   </overview>
   <news>
-    <item date="2011-04-29">
+    <item date="2011-05-01">
 	Published this page.
     </item>
     <item date="2010-09-17">
@@ -76,8 +76,8 @@
 		<tr><td>14</td><td>0-7</td><td>-</td><td>Reserved</td><td></td><td>-</td></tr>
 		<tr><td rowspan="7">15</td><td>0</td><td>w/o</td><td>LDCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the load increment to the load address</td></tr>
 		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Store Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
-		<tr><td>2</td><td>w/o</td><td>/LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at load</td></tr>
-		<tr><td>3</td><td>w/o</td><td>/STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at store</td></tr>
+		<tr><td>2</td><td>w/o</td><td>LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When set, use IO area, when clear use memory address on the CS/A bus at load</td></tr>
+		<tr><td>3</td><td>w/o</td><td>STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When set, use IO area, when clear use memory address on the CS/A bus at store</td></tr>
 		<tr><td>4</td><td>w/o</td><td>LDCOMPL</td><td>0</td><td>Load address complement flag</td><td>Value for the load increment bits 8-19.</td></tr>
 		<tr><td>5</td><td>w/o</td><td>STCOMPL</td><td>0</td><td>Store address complement flag</td><td>Value for the store increment bits 8-19.</td></tr>
 		<tr><td>6-7</td><td>-</td><td>Reserved</td><td>-</td><td>Must be zero</td></tr>
@@ -210,6 +210,10 @@
                         	<a href="blitter-reversemem.png"><img width="200px" src="blitter-reversemem.png"/></a><br/>
 				If you look close enough you can see that the memory from $f000 is copied to
 				$2000 - but in the reverse order :-)
+				<br/>
+                        	<a href="blitter-timer.png"><img width="200px" src="blitter-timer.png"/></a><br/>
+				Result of blitter4 test - you can see the timer counts 2 cycles from one access
+				to the next :-)
 			</div>
 			<ul>
 			<li>blitter1.a65: sets up the blitter for a one-byte transfer, and allows to 
@@ -224,11 +228,6 @@
 			<li>blitter5.a65: copies 4k from $f000 to $2000, but with intermediate storage
 				in the video memory board at $10000</li>
 			</ul>
-	                <div class="rightimg">
-                        	<a href="blitter-timer.png"><img width="200px" src="blitter-timer.png"/></a><br/>
-				Result of blitter4 test - you can see the timer counts 2 cycles from one access
-				to the next :-)
-			</div>
                 </desc>
                 <file ltype="driver" ptype="tgz" note="blitter tests">Blitter.tar.gz</file>
         </driver>
@@ -250,7 +249,7 @@
         </rev>
         <rev>
                 <version>2.1B</version>
-                <status>ok</status>
+                <status>working, but API with bugs</status>
                 <note type="stop">
 			Working - except for some sign issues... which are fixed in 2.1C: The selection
 			between the Fetch and Store bits in the control register was the wrong way around,
