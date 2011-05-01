@@ -75,7 +75,7 @@
 		<tr><td>13</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
 		<tr><td>14</td><td>0-7</td><td>-</td><td>Reserved</td><td></td><td>-</td></tr>
 		<tr><td rowspan="7">15</td><td>0</td><td>w/o</td><td>LDCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the load increment to the load address</td></tr>
-		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
+		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Store Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
 		<tr><td>2</td><td>w/o</td><td>/LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at load</td></tr>
 		<tr><td>3</td><td>w/o</td><td>/STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at store</td></tr>
 		<tr><td>4</td><td>w/o</td><td>LDCOMPL</td><td>0</td><td>Load address complement flag</td><td>Value for the load increment bits 8-19.</td></tr>
@@ -202,24 +202,59 @@
      </subsection>
   </section>
 
-        <!--driver>
+        <driver>
                 <name>Simple test suite</name>
-                <desc>These tests test the basic functionality of the board, and also do some timing
-                        measurement to actually see if the access is fast or not.
-                        Note that these tests are small as I had to enter them with the hex editor.
-                        Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
-                        switch to allow 65816 code.
-                <div class="rightimg">
-                        <a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"/></a><br/><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
-                        </div>
+                <desc><p>
+			These tests implement some basic test cases:</p>
+	                <div class="rightimg">
+                        	<a href="blitter-reversemem.png"><img width="200px" src="blitter-reversemem.png"/></a><br/>
+				If you look close enough you can see that the memory from $f000 is copied to
+				$2000 - but in the reverse order :-)
+			</div>
+			<ul>
+			<li>blitter1.a65: sets up the blitter for a one-byte transfer, and allows to 
+				run that in a loop (after a small patch), so that you can easily scope the
+				signals</li>
+			<li>blitter2.a65: copies 4k of memory from $f000 to $2000. Has a simple mini-driver
+				with API in it.</li>
+			<li>blitter3.a65: copies the 4k from $f000 to $2000, but reversing the order
+				using the 2s-complement add. Uses the same mini-driver</li>
+			<li>blitter4.a65: sets up a VIA timer, and copies timer values from the timer
+				to memory at $2000 (512 byte only)</li>
+			<li>blitter5.a65: copies 4k from $f000 to $2000, but with intermediate storage
+				in the video memory board at $10000</li>
+			</ul>
+	                <div class="rightimg">
+                        	<a href="blitter-timer.png"><img width="200px" src="blitter-timer.png"/></a><br/>
+				Result of blitter4 test - you can see the timer counts 2 cycles from one access
+				to the next :-)
+			</div>
                 </desc>
-                <file ltype="driver" ptype="a65" note="copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM ">test1.a65</file>
-        </driver-->
+                <file ltype="driver" ptype="tgz" note="blitter tests">Blitter.tar.gz</file>
+        </driver>
         <rev>
-                <version>2.1B</version>
+                <version>2.1C</version>
                 <status>ok</status>
                 <note type="msg">
 			Working!
+                </note>
+                <file ltype="schem" ptype="esch">csa_blitter-v2.1c.sch</file>
+                <file ltype="schem" ptype="png">csa_blitter-v2.1c-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_blitter-v2.1c.brd</file>
+                <file ltype="layout" ptype="png">csa_blitter-v2.1c-brd.png</file>
+                <file ltype="layout" ptype="png">csa_blitter-v2.1c-layout.png</file>
+                <file ltype="photo" ptype="png" note="My v2.1a board patched up to v2.1c (with other traces on the back side)">blitter-v2.1a-patched2.png</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">blitter-v2.1b.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">blitter-v2.1b.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">blitter-v2.1b.jed</file>
+        </rev>
+        <rev>
+                <version>2.1B</version>
+                <status>ok</status>
+                <note type="stop">
+			Working - except for some sign issues... which are fixed in 2.1C: The selection
+			between the Fetch and Store bits in the control register was the wrong way around,
+			and the LDIOSEL control bit was resulting in the wrong level...
                 </note>
                 <file ltype="schem" ptype="esch">csa_blitter-v2.1b.sch</file>
                 <file ltype="schem" ptype="png">csa_blitter-v2.1b-sch.png</file>

@@ -174,7 +174,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Published this page.
     </li><li><div> </div><small>2010-09-17</small>
 	Started this page (not published)
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#prog">Programming Information</a></li><li style="list-style-type:none;"><ul><li><a href="#register">Register File</a></li><li><a href="#normal">Normal Usage</a></li><li><a href="#special">Special Features</a></li><li><a href="#caveat">Caveats</a></li></ul></li><li><a href="#board">Board description</a></li><li style="list-style-type:none;"><ul><li><a href="#dbus">Data Bus Separation</a></li><li><a href="#logic">Logic Implementation</a></li><li><a href="#layout">Layout description</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.1B</a> (ok)</li><li><a href="#board2">2.1A</a> (prototype)</li><li><a href="#board3">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programming Information</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes how the block transfer engine is programmed.</p><h3><a name="register" id="register">Register File</a></h3><p>The blitter uses a 16-byte address space in the I/O area. 
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#prog">Programming Information</a></li><li style="list-style-type:none;"><ul><li><a href="#register">Register File</a></li><li><a href="#normal">Normal Usage</a></li><li><a href="#special">Special Features</a></li><li><a href="#caveat">Caveats</a></li></ul></li><li><a href="#board">Board description</a></li><li style="list-style-type:none;"><ul><li><a href="#dbus">Data Bus Separation</a></li><li><a href="#logic">Logic Implementation</a></li><li><a href="#layout">Layout description</a></li></ul></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Simple test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.1C</a> (ok)</li><li><a href="#board2">2.1B</a> (ok)</li><li><a href="#board3">2.1A</a> (prototype)</li><li><a href="#board4">1.0B</a> (not working)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programming Information</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes how the block transfer engine is programmed.</p><h3><a name="register" id="register">Register File</a></h3><p>The blitter uses a 16-byte address space in the I/O area. 
 			The two address options are $EF60 and $E860. Here is the register file:</p>
 		<table border="1">
 		<tr><th>Offset</th><th>Bits</th><th>Mode</th><th>Register Name</th><th>Part</th><th>Description</th><th>Comment</th></tr>
@@ -203,7 +203,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<tr><td>13</td><td>0-7</td><td>w/o</td><td>Reserved</td><td></td><td>Must be zero</td></tr>
 		<tr><td>14</td><td>0-7</td><td>-</td><td>Reserved</td><td></td><td>-</td></tr>
 		<tr><td rowspan="7">15</td><td>0</td><td>w/o</td><td>LDCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the load increment to the load address</td></tr>
-		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Load Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
+		<tr><td>1</td><td>w/o</td><td>STCARRY</td><td>0</td><td>Store Carry</td><td>Carry to use when adding the store increment to the store address</td></tr>
 		<tr><td>2</td><td>w/o</td><td>/LDIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at load</td></tr>
 		<tr><td>3</td><td>w/o</td><td>/STIOSEL</td><td>0</td><td>Use CS/A /IOSEL or /MEMSEL</td><td>When clear, use IO area, when set use memory address on the CS/A bus at store</td></tr>
 		<tr><td>4</td><td>w/o</td><td>LDCOMPL</td><td>0</td><td>Load address complement flag</td><td>Value for the load increment bits 8-19.</td></tr>
@@ -304,11 +304,75 @@ more modern browser, like Internet Explorer 8 or later,
 	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
 	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
 	INBUS. The smaller chips to the right are '293 4-bit adders, implementing the actually "ALU" adder.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1B</a></h3>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">Simple test suite</a></h3><p>
+			These tests implement some basic test cases:</p>
+	                <div class="rightimg">
+                        	<a href="blitter-reversemem.png"><img width="200px" src="blitter-reversemem.png" /></a><br />
+				If you look close enough you can see that the memory from $f000 is copied to
+				$2000 - but in the reverse order :-)
+			</div>
+			<ul>
+			<li>blitter1.a65: sets up the blitter for a one-byte transfer, and allows to 
+				run that in a loop (after a small patch), so that you can easily scope the
+				signals</li>
+			<li>blitter2.a65: copies 4k of memory from $f000 to $2000. Has a simple mini-driver
+				with API in it.</li>
+			<li>blitter3.a65: copies the 4k from $f000 to $2000, but reversing the order
+				using the 2s-complement add. Uses the same mini-driver</li>
+			<li>blitter4.a65: sets up a VIA timer, and copies timer values from the timer
+				to memory at $2000 (512 byte only)</li>
+			<li>blitter5.a65: copies 4k from $f000 to $2000, but with intermediate storage
+				in the video memory board at $10000</li>
+			</ul>
+	                <div class="rightimg">
+                        	<a href="blitter-timer.png"><img width="200px" src="blitter-timer.png" /></a><br />
+				Result of blitter4 test - you can see the timer counts 2 cycles from one access
+				to the next :-)
+			</div>
+                <table class="files">
+<tr class="R1"><td><div class="i_driver"> </div></td>
+<td><a href="Blitter.tar.gz">Blitter.tar.gz</a>(blitter tests)</td>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1C</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Working!
+                </td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1c.sch">csa_blitter-v2.1c.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_blitter-v2.1c-sch.png">csa_blitter-v2.1c-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1c.brd">csa_blitter-v2.1c.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1c-brd.png">csa_blitter-v2.1c-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_blitter-v2.1c-layout.png">csa_blitter-v2.1c-layout.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_photo"> </div></td>
+<td><a href="blitter-v2.1a-patched2.png">blitter-v2.1a-patched2.png</a>(My v2.1a board patched up to v2.1c (with other traces on the back side))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.vhd">blitter-v2.1b.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R0"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.ucf">blitter-v2.1b.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R1"><td><div class="i_logic"> </div></td>
+<td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 2.1B</a></h3>
+<p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td>
+			Working - except for some sign issues... which are fixed in 2.1C: The selection
+			between the Fetch and Store bits in the control register was the wrong way around,
+			and the LDIOSEL control bit was resulting in the wrong level...
                 </td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
@@ -338,7 +402,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_logic"> </div></td>
 <td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.1A</a></h3>
+<h3><a name="board3" id="board3">Version: 2.1A</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
@@ -364,7 +428,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_blitter-v2.1a-layout.png">csa_blitter-v2.1a-layout.png</a></td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 1.0B</a></h3>
+<h3><a name="board4" id="board4">Version: 1.0B</a></h3>
 <p>Status: not working</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>

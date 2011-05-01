@@ -12,8 +12,15 @@
 	were commercially available for the PET. The ones documented here
 	 are mostly graphics and sound boards. If you know of any more, 
 	let me know!</p>
+	<p>
+	Please also look at the <a href="hw.html">Hardware Projects</a>
+	and the <a href="sw.html">Software Projects</a> page for more
+	extensions!
+	</p>
   </overview>
   <news>
+  </news>
+  <oldnews>
     <item date="2010-05-11">
 	Added the PET RAM expansion, the PET EPROM adapter, as well as the 
 	CPU speeders section.
@@ -25,7 +32,7 @@
     <item date="2010-01-04">
 	Started this page
     </item>
-  </news>
+  </oldnews>
   <toc/>
   <section toc="graphics" name="Graphics Adapters">
     <desc>
@@ -237,6 +244,11 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	</desc>
      </subsection>
      <subsection toc="mtuk1002" name="MTU K1002 DAC sound adapter">
+	<desc>From Mike's web site (see link): The K-1002-2 is an 8-bit audio Digital-to-Analog Converter for the Commodore PET. It connects to the user port and second cassette port.
+	</desc>
+	<extlink name="MTU K1002 sound adapter" link="http://mikenaberezny.com/hardware/peripherals/mtu-k-1002-2-dac/"/>
+     </subsection>
+     <subsection toc="petsid" name="PET SID adapter">
 	<desc>From Mike's web site (see link): The K-1002-2 is an 8-bit audio Digital-to-Analog Converter for the Commodore PET. It connects to the user port and second cassette port.
 	</desc>
 	<extlink name="MTU K1002 sound adapter" link="http://mikenaberezny.com/hardware/peripherals/mtu-k-1002-2-dac/"/>

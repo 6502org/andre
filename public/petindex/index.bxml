@@ -37,6 +37,10 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2011-05-01">
+	Added some extensions to the <a href="petindex/hw.html">PETindex hardware projects</a> page,
+	especially one that can dynamically replace the character ROM!
+    </item>
     <item date="2011-04-23">
 	Added a page for the <a href="8032sk.html">8032-SK model</a>
 	and started a <a href="lang.html">programming languages</a> page.

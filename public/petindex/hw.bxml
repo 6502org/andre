@@ -13,11 +13,11 @@
 This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2011-05-01">
+        Added Nils Eilers' custom charractor ROM extension and the PET-SID extension.
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="disc" name="Dislaimer">
@@ -53,6 +53,30 @@ I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.ht
 </DL>
      </desc>
   </section>
+
+  <section toc="chargen" name="Character Generator">
+    <desc><p>This section describes extensions for the character generator ROM</p></desc>
+    <subsection toc="charram" name="Character generator RAM">
+        <desc><p>Nils Eilers has managed to replace the - normally fixed - character ROM of the PET with a
+                dual-port RAM card! It is written by mapping the character generator into a PET extension ROM
+                area (switchable). With this you can dynamically change the character set displayed on the screen!
+                Great work!
+        </p></desc>
+        <extlink name="Nils Eilers' Character generator RAM" link="http://home.germany.net/nils.eilers/chargen/index.htm"/>
+     </subsection>
+  </section>
+
+
+  <section toc="sound" name="Sound extensions">
+    <desc><p>This section describes extensions projects for a better sound on the PET:</p></desc>
+    <subsection toc="petsid" name="PET-SID">
+        <desc><p>
+	This extension allows to use the SID chip known from the C64 in the PET.
+        </p></desc>
+        <extlink name="PET-SID" link="http://www.cbmhardware.de/cbmpet/petsid.php"/>
+     </subsection>
+  </section>
+
 
   <section toc="system" name="System Projects">
      <desc><P>This section contains projects that relate more to the PET itself</P>
