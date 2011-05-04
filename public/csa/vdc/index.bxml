@@ -9,8 +9,18 @@
 		video at Phi2 low. Due to this interlock the board can
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
+			<div class="rightimg">
+				<a href="vdcold.png"><img width="300px" src="vdcold.png"/></a><br/>
+					The old and the new version front ...<br/>
+				<a href="vdcoldback.png"><img width="300px" src="vdcoldback.png"/></a><br/>
+					... and back side. What a difference!
+			</div>
 	</desc>
         <news>
+                <item date="2011-05-04">
+                	It's amazing how quickly you can find problems with a good scope. 
+                	Updated to version 1.4C.
+                </item>
                 <item date="2010-12-20">
                 	Separated the composite video generation circuits
                 	into their <a href="../../hwinfo/crtc/composite.html">own page</a>.
@@ -106,6 +116,36 @@
 		<file ltype="layout" ptype="ebrd">comp_pucoe-v1.0c.brd</file>
 		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
 	</rev -->
+	<rev>
+		<version>1.4C</version>
+		<status>ok</status>
+		<note type="msg">
+			When testing my 1.4B version, I found a missing trace (bummer!), and I
+			found that in different slot positions the display would be stable in others
+			not. I found that the '74 latch was latching a signal (//Phi2) with the same
+			signal transition as the latch trigger (8Phi2) - so I exchanged the 8Phi2 and /8Phi2
+			inputs on the IC14 clock inputs, and also used 8Phi2 instead of /8Phi2 on the
+			pixel shift register clock. Now produces stable results in all slots.
+		</note>
+		<note type="warn">
+			This layout is mostly tested (as a patched 1.4B)
+		</note>
+		<note type="msg">
+			In my current setup I have reused my 20 year old original video board
+			(which wasn't working anymore). So all timing relevant ICs are 'LS technology
+			('LS04, 'LS00, 'LS74, 'LS257, 'LS32, 'LS138, 'LS86, 'LS175, 'LS166). The
+			only exceptions are a 'HCT688 and a 'F245 (which contrasts with the
+			'LS statement on 1.4B...).
+			Maybe I've finally defeated the dRAM timing hell here....
+		</note>
+		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
+		<file ltype="schem" ptype="png">csa_vdc_v1.4c-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_vdc_v1.4c.sch</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4c-brd.png</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4c-layout.png</file>
+		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4c.brd</file>
+	</rev>
 	<rev>
 		<version>1.4B</version>
 		<status>untested</status>

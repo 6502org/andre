@@ -730,9 +730,9 @@
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>			<th>1</th>				<th>2</th>				<th>3</th>	<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>	<th>8</th>			<th>9</th>				<th>A</th>		<th>B</th>	<th>C</th>				<th>D</th>				<th>E</th>			<th>F</th></tr>
 <tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br/>AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td>PHE<br/>RS,UM</td>		<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TPA<br/>NF</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td>BCN (E)<br/>RS,UM,NF</td>	<td></td></tr>
-<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td>PKX</td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td></td>			<td></td></tr>	
+<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td></td>			<td></td></tr>	
 <tr><th>2</th>		<td>JSR (E)<br/>RS</td>			<td></td>				<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>PLE<br/>RS,ZE,UM,NF</td>	<td>AND (E)<br/>RS,ZE,UM,NF</td>	<td>TBA<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>ADE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLE<br/>RS,NF</td>		<td>LDE imm<br/>RS,ZE,UM,NF</td>	<td>PKY</td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>ADE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLE<br/>RS,NF</td>		<td>LDE imm<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 <tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br/>AM,OF,UM,NF</td>	<td></td> 	<td>WMB<br/>UM</td>			<td></td>				<td>ADS imm<br/>RS,ZE,UM,NF,EE</td>	<td></td>	<td>PHB<br/>RS,UM</td>		<td>EOR (E)<br/>RS,ZE,UM,NF</td>	<td>TEA<br/>NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td></td></tr>
 <tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>EXT<br/>RS,ZE,NF</td>		<td></td>				<td>ADS A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>PRB<br/>RS,ZE,UM,NF</td>	<td></td>				<td>SEB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 <tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br/>AM,OF,UM,NF</td>	<td></td>	<td>RMB<br/>UM</td>			<td></td>				<td>ADB imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>PLB<br/>RS,ZE,UM,NF</td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TAE<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
@@ -740,7 +740,7 @@
 <tr><th>8</th>		<td>LEA rel<br/>RS,UM,NF</td>		<td>PEA (zp,X)<br/>AM,OF,UM</td>	<td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>		<td>PEA zp<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>INV<br/>RS,ZE,NF</td>	<td>BIT (E)<br/>RS,ZE,UM,NF</td>	<td>TYS<br/>UM,NF</td>	<td></td>	<td></td>				<td>PEA abs<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
 <tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br/>AM,OF,UM</td>	<td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td></td>				<td>PEA zp,X<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>BCN<br/>RS,NF</td>		<td>PEA abs,Y<br/>AM,OF,UM</td>		<td>SXY<br/>RS,ZE,NF</td><td></td>	<td>STZ (E)<br/>RS,UM</td>		<td>PEA abs,X<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
 <tr><th>A</th>		<td>LDY (E)<br/>RS,ZE,UM,NF</td>	<td>LEA (zp,X)<br/>AM,OF,UM,NF</td>	<td>LDX (E)<br/>RS,ZE,UM,NF</td>	<td></td>	<td>LLA (E)<br/>RS,ZE,UM,NF</td>	<td>LEA zp<br/>AM,OF,UM,NF</td>		<td>SBE imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>SWP<br/>RS,ZE,NF</td>	<td>LDA (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td>LEA abs<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
-<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>SBE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>PKA<br/>RS,ZE,UM,NF</td>	<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>SAX<br/>RS,ZE,NF</td><td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
+<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>SBE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td></td>			<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>SAX<br/>RS,ZE,NF</td><td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
 <tr><th>C</th>		<td>CPY (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br/>AM,OF,UM</td>	<td></td>	<td>WMB (E)<br/>UM</td>			<td></td>				<td>SBS imm<br/>RS,ZE,UM,NF,EE</td>	<td></td>	<td>CLX<br/>RS,NF</td>		<td>CMP (E)<br/>RS,ZE,UM,NF</td>	<td>TSY<br/>UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 <tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBS A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLY<br/>RS,NF</td>		<td></td>				<td>SAY<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 <tr><th>E</th>		<td>CPX (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td>RMB (E)<br/>UM</td>			<td></td>				<td>SBB imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>CLA<br/>RS,NF</td>		<td>SBC (E)<br/>RS,ZE,UM,NF</td>	<td>TAB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
@@ -757,9 +757,6 @@
 	<li>SAB - Swap Accumulator and Base register [1][2]</li>
 	<li>PRB - Push and Replace Base register: Push base offset register to the stack, then transfer accumulator to
 		the base register</li>
-	<li>PKA - peek stack: read value from stack into AC without modifying the stack pointer</li>
-	<li>PKX - peek stack: read value from stack into X without modifying the stack pointer</li>
-	<li>PKY - peek stack: read value from stack into Y without modifying the stack pointer</li>
 	<li>EXT - extend a register from the size given by RS to full size (using ZE bits)</li>
 	<li>CUT - cut the register from full size to RS, extending the upper bits using ZE (from the RS sized bits)</li>
 	<li>SAX - Swap Accumulator and X register [1][2]</li>
@@ -804,6 +801,12 @@
 	<li>The UM prefix selects the user mode stack pointer, so the effective address is pushed
 		from hypervisor mode onto the user mode stack</li>
 	</ol>
+	<p>Note that these have already been deprecated:</p>
+	<ul>
+	<li>PKA - peek stack: read value from stack into AC without modifying the stack pointer - replaced with the standard LDA S,$01</li>
+	<li>PKX - peek stack: read value from stack into X without modifying the stack pointer - replaced with the standard LDX S,$01</li>
+	<li>PKY - peek stack: read value from stack into Y without modifying the stack pointer - replaced with the standard LDY S,$01</li>
+	</ul>
 	<p>TODO: Mult/Div opcodes</p>
 	</desc>
        </subsection>

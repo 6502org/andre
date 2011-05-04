@@ -151,8 +151,17 @@ more modern browser, like Internet Explorer 8 or later,
 		video at Phi2 low. Due to this interlock the board can
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
+			<div class="rightimg">
+				<a href="vdcold.png"><img width="300px" src="vdcold.png" /></a><br />
+					The old and the new version front ...<br />
+				<a href="vdcoldback.png"><img width="300px" src="vdcoldback.png" /></a><br />
+					... and back side. What a difference!
+			</div>
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-12-20</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-05-04</small>
+                	It's amazing how quickly you can find problems with a good scope. 
+                	Updated to version 1.4C.
+                </li><li><div> </div><small>2010-12-20</small>
                 	Separated the composite video generation circuits
                 	into their <a href="../../hwinfo/crtc/composite.html">own page</a>.
                 </li><li><div class="i_oldnews"> </div><small>2007-06-29</small>
@@ -160,7 +169,7 @@ more modern browser, like Internet Explorer 8 or later,
 			to composite video.
                 </li><li><div class="i_oldnews"> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4B</a> (untested)</li><li><a href="#board2">1.4A</a> (untested)</li><li><a href="#board3">1.3E</a> (prototype)</li><li><a href="#board4">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4C</a> (ok)</li><li><a href="#board2">1.4B</a> (untested)</li><li><a href="#board3">1.4A</a> (untested)</li><li><a href="#board4">1.3E</a> (prototype)</li><li><a href="#board5">1.3C</a> (prototype with bugs)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3>This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -177,7 +186,53 @@ more modern browser, like Internet Explorer 8 or later,
 		<table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(VDC driver excerpt)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.4B</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.4C</a></h3>
+<p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			When testing my 1.4B version, I found a missing trace (bummer!), and I
+			found that in different slot positions the display would be stable in others
+			not. I found that the '74 latch was latching a signal (//Phi2) with the same
+			signal transition as the latch trigger (8Phi2) - so I exchanged the 8Phi2 and /8Phi2
+			inputs on the IC14 clock inputs, and also used 8Phi2 instead of /8Phi2 on the
+			pixel shift register clock. Now produces stable results in all slots.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			This layout is mostly tested (as a patched 1.4B)
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			In my current setup I have reused my 20 year old original video board
+			(which wasn't working anymore). So all timing relevant ICs are 'LS technology
+			('LS04, 'LS00, 'LS74, 'LS257, 'LS32, 'LS138, 'LS86, 'LS175, 'LS166). The
+			only exceptions are a 'HCT688 and a 'F245 (which contrasts with the
+			'LS statement on 1.4B...).
+			Maybe I've finally defeated the dRAM timing hell here....
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_desc"> </div></td>
+<td><a href="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</a></td>
+</tr>
+<tr class="R0"><td><div class="i_parts"> </div></td>
+<td><a href="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</a></td>
+</tr>
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_vdc_v1.4c-sch.png">csa_vdc_v1.4c-sch.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_vdc_v1.4c.sch">csa_vdc_v1.4c.sch</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4c-brd.png">csa_vdc_v1.4c-brd.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4c-layout.png">csa_vdc_v1.4c-layout.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4c.brd">csa_vdc_v1.4c.brd</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.4B</a></h3>
 <p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -222,7 +277,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4b.brd">csa_vdc_v1.4b.brd</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.4A</a></h3>
+<h3><a name="board3" id="board3">Version: 1.4A</a></h3>
 <p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -268,7 +323,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</a></td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 1.3E</a></h3>
+<h3><a name="board4" id="board4">Version: 1.3E</a></h3>
 <p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This board version is a redo of the
@@ -298,7 +353,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</a></td>
 </tr></table>
-<h3><a name="board4" id="board4">Version: 1.3C</a></h3>
+<h3><a name="board5" id="board5">Version: 1.3C</a></h3>
 <p>Status: prototype with bugs</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This is the original video board. 

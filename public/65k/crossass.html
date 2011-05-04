@@ -8,7 +8,7 @@
 <meta name="keywords" content="6502 16bit 32bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
-<title>The 65k Project - Testing</title></head>
+<title>The 65k Project - Cross-Assembler</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
@@ -26,11 +26,11 @@
 <li><div class="i_file">&nbsp;</div><a href="specsprog.html">Programming Model</a></li>
 <li><div class="i_file">&nbsp;</div><a href="designnotes.html">Design Notes</a></li>
 <li class="separator">Tools</li>
-<li><div class="i_file">&nbsp;</div><a href="crossass.html">Cross-Assembler</a></li>
+<li><div class="i_file">&nbsp;</div><a href="crossass.html" class="mcurrent">Cross-Assembler</a></li>
 <li><div class="i_file">&nbsp;</div><a href="nativetools.html">Native Tools</a></li>
 <li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="arch.html">Architecture Overview</a></li>
-<li><div class="i_file">&nbsp;</div><a href="tests.html" class="mcurrent">Test setup</a></li>
+<li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
 </li>
 <li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
@@ -83,55 +83,26 @@ more modern browser, like Internet Explorer 8 or later,
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  <a href="index.html">The 65k Project
-</a>&gt;&gt;  Test setup</div>
-<h1>The 65k Project - Testing</h1><p class="copyright">(C)
-2010-2011 André  Fachat</p> 
+</a>&gt;&gt;  Cross-Assembler</div>
+<h1>The 65k Project - Cross-Assembler</h1><p class="copyright">(C)
+2011-2011 André  Fachat</p> 
 <div class="overview">
 	<p>
-	Before knowing whether a system works as expected, you need to test it. This page describes the
-	test setup (as is currently planned).
+	This page describes the cross-assembler for the 65k line of processors.
 	</p><p>
-	As the processor is implemented as VHDL, there are two test options - one is to implement it in a
-	programmable logic device, but also simulating the VHDL directly on a PC. Both type of tests
-	are (will be) described here.
+	Note that the cross assembler still has to be completely specified, designed, and implemented!
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-14</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-05-04</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#sim">Simulation Tests</a></li><li><a href="#hw">Hardware Tests</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
-        This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
-    </p><p>
-        Note this "content" includes this web page, but does not include the 6502.org header
-        and the left and right web page columns.  Click on the "Maximize" link to see
-        the contents covered by this license.
-    </p><ul><li><a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode" target="_blank" class="extlink">CC-BY-SA legal code</a> </li><li><a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" class="extlink">CC-BY-SA license deed (short form)</a> </li></ul><h3><a name="disc" id="disc">Disclaimer</a></h3><p>
-        The content comes with no warranty at all!
-        There is no guarantee and no promise that this specification is correct, consistent, will actually work,
-        or will ever be implemented at all.
-    </p><p>
-        To my understanding the techniques described here have been used by various processors for decades already.
-        Still there is no guarantee that a processor according to this spec would not be covered by some patents.
-    </p><p>
-        Subject to change without notice!
-    </p><h3><a name="cont" id="cont">Contributors</a></h3><ul>
-        <li>André  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
-    </ul><h3><a name="chg" id="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
-      <table border="1">
-        <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
-        <!--tr><td>2010-10-03</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr-->
-      </table>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sim" id="sim">Simulation Tests</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The VHDL implementation will be written compatible to the GHDL compiler of the GNU compiler collection.
-	The GHDL compiler allows to simulate VHDL code. It also allows to link C-code to the VHDL code during
-	the link process. Therefore the VHDL test cases will be controlled using code written in C, that allows
-	to load test data input from files and use it for example as ROM content, 
-	and compare VHDL simulation output with other test data also read
-	from a file. This way test cases can easily be written, with test data as 65k executable code
-	being provided as a file, and output comparable with pre-computed data.
-	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hw" id="hw">Hardware Tests</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	
-	</p>
-     </div></div><hr />
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#reqs">Requirements</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="reqs" id="reqs">Requirements</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the requirements for the cross-assembler.</p>
+	<ul>
+	<li>Easily usable as compiler-backend, possibly for cc65 or even LLVM</li>
+	<li>support for the <a href="../o65/index.html">o65</a> file format, most likely in a "next generation"
+		version with support for more segments and up to at least 64bit addresses</li>
+	<li>supporting the full 65k opcode set, with switches to support NMOS and CMOS 6502 variants as well</li>
+	<li>compatibility modes for the most common 6502 assemblers, but at least for the xa65 assembler</li>
+	</ul>
+	</div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script></body></html> 

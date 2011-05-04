@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2011-05-04">
+	Updated the <a href="csa/vdc/index.html">CS/A Video board</a> with a bug-fixed version.
+    </item>
     <item date="2011-05-01" state="hot">
         <a href="65k/index.html">The 65k project</a>: Some general updates and a larger update to the <a href="65k/specsprog.html">programming specs</a>.
         Added the <a href="65k/designnotes.html">Design Notes</a> page to explain some of the design decisions.

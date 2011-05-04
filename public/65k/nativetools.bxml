@@ -1,0 +1,42 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="The 65k Project - Cross-Assembler">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2011</yearstart>
+    <yearend>2011</yearend>
+  </author>
+  <keywords>6502 16bit 32bit expansion</keywords>
+  <metadesc>6502 16bit 32bit expansion</metadesc>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?p=12180</forum>
+  <overview>
+	<p>
+	This page describes the native tools for the 65k line of processors.
+	</p><p>
+	Note that the tools still has to be completely specified, designed, and implemented!
+	</p>
+  </overview>
+  <news>
+    <item date="2011-05-04">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="reqs" name="Requirements">
+	<desc><p>This section describes the requirements for the tools:</p>
+	</desc>
+	<subsection toc="reqmon" name="Monitor requirements">
+		<desc><p>A 65k machine language monitor should support the following features:</p>
+		<ul>
+		<li>...</li>
+		</ul>
+		</desc>
+	</subsection>
+  </section>
+
+	    <closing>
+@FOOTER@
+  </closing>
+</webpage>

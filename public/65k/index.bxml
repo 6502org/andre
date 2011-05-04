@@ -51,6 +51,13 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-05-04">
+	Minor update to the <a href="specsprog.html">programming specs</a>: deprecate the PKA, PKX, PKY opcodes.
+    </item>
+    <item date="2011-05-04">
+	Added an (so far empty) page for the 65k <a href="crossass.html">Cross assembler</a>
+	and one (also empty) page for the <a href="nativetools.html">Native Tools</a>.
+    </item>
     <item date="2011-05-01" state="hot">
 	Some general updates and a larger update to the <a href="specsprog.html">programming specs</a>.
 	Added the <a href="designnotes.html">Design Notes</a> page.
