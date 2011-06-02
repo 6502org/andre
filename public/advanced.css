@@ -33,11 +33,15 @@ DIV.top {
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
 */
+	-moz-box-shadow:5px 5px 10px #000000;
+	-webkit-box-shadow:5px 5px 10px #000000;
+	box-shadow:5px 5px 10px #000000;
+
   	background-color: #ffffff; 
   	margin: 0;
   	margin-top: 0em;
-  	margin-bottom: 0.6em;
-  	padding: 1em;
+  	margin-bottom: 1em;
+  	padding: 0em 1em 1em 1em;
 }
 
 /* left/right cols have headers in the top level style */
@@ -51,10 +55,15 @@ DIV.tophead {
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
 */
+	/*text-shadow: 1px 1px 0px #e80, -1px -1px 0px #fc6;*/
+	text-shadow: -1px -1px 1px #fc6;
+
 	color: #fff;
 	margin-left: -1em;
-	margin-top: -1em;
 	margin-right: -1em;
+/*
+	margin-top: -1em;
+*/
 	margin-bottom: 0.3em;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
@@ -116,7 +125,7 @@ div.toplink {
  */
 
 DIV#mainbox {
-   padding-top: 1em;
+   /*padding-top: 1em;*/
    font-size: medium;
 
  /* W3C Spec *
@@ -140,6 +149,36 @@ DIV#mainbox {
  * parts of mainbox 
  */
 
+div#header {
+ 	background: -moz-linear-gradient(top, #ccc, #222 100%); 
+ 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(1, #222));	
+	background-color: #222;
+	margin-top: -0.6em;
+	margin-left: -0.6em;
+	margin-right: -0.6em;
+	color: #fff;
+	/*text-shadow: -1px -1px 1px #000;*/
+	padding: 0.2em;
+	padding-bottom: 0em;
+}
+
+div#header div.tab {
+	padding: 0.2em;
+	padding-left: 1em;
+	/*background-color: #ccc;*/
+	display: inline;
+}
+
+div#header a:link { color:#fff; text-decoration:none }
+div#header a:visited { color:#fff; text-decoration:none }
+
+div#header form {
+	float: right;
+}
+
+
+/****************************************/
+
 DIV#midcol {
   margin: 0;
   margin-left: 16%;
@@ -153,6 +192,7 @@ DIV#midcol {
 
 DIV#leftcol {
   float: left; 
+  clear: left;
 /*  width: 20em;*/
   width: 15%;
   margin: 0; 
@@ -160,7 +200,8 @@ DIV#leftcol {
 }
 
 DIV#rightcol {
-  float: right; 
+  float: right;
+  clear: right; 
 /*  width: 19em;*/
   width: 15%;
   margin: 0; 
@@ -186,6 +227,7 @@ DIV#oldnewscontent  {
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	/*width: 10.0em;*/
 	margin-right: -1em;
+	margin-bottom: -1em;
 }
 
 DIV#browser {
@@ -204,8 +246,12 @@ DIV#content {
   text-align: left;
 }
 
-DIV#footer {
+DIV#contentfooter {
   border-top: 2px solid;
+}
+
+DIV#footer {
+  clear: both;
 }
 
 
@@ -215,16 +261,20 @@ DIV#footer {
 
 table#expcol {
 	float:left;
+	width: auto;
 }
 
 table#filterbox {
 	float: left;
+	width: auto;
 }
 
+/*
 DIV#menu {
   padding-left: 1em;
   padding-right: 1em; 
 }
+*/
 
 div#filter {
   margin-bottom: 1em;
@@ -250,18 +300,9 @@ DIV#mtree ul {
 /* only the first one has 0em padding-left, the others do indent */
 DIV#mtree ul ul {
 
-/*  padding-left: 1.2em;*/
   margin-left: 1.2em;
   margin-top: 0em;
-
-/*  background-color: #eee; */
 }
-
-/*
-DIV#mtree ul ul ul {
-  background-color: #ddd;
-}
-*/
 
 DIV#mtree li {
   margin-bottom: 0em;
@@ -287,8 +328,9 @@ div#mtree a:hover {
 }
 
 div#mtree A#m_homepage {
-  clear: both;
   font-size: small;
+  clear: both;
+
 }
 
 /* new style */
@@ -308,14 +350,6 @@ div#mtree div.i_file {
 div#mtree div.i_link {
   background-position: -160px -64px;
 }
-
-/* IE handles display of float (image) in an LI differently
- * so that the anchor must be inline-block instead of block *
-* html div#mtree a {
-  display: inline-block;
-  margin-left: 0.1em;
-}
-*/
 
 /* IE handles display of float (image) in an LI differently
  * so that the anchor must be inline-block instead of block */
@@ -364,6 +398,14 @@ div#filter div.i_cancel {
 	padding: 5px;
 }
 
+.leftimg {
+	float:left;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
 .sidenote {
 	float:right;
 	margin: 10px 0 10px 10px;
@@ -395,20 +437,40 @@ TD.noteicon {
 }
 
 /* new design */
-table.notes div.i_note {
+table.notes div {
   background: url(imgs/sprite.png) no-repeat;
-  background-position: -32px -32px;
   width: 32px;
   height: 32px;
 }
 
-
-div.i_desc {
+table.files div {
   background: url(imgs/sprite.png) no-repeat;
-  background-position: 0px 0px;
   width: 32px;
   height: 32px;
 }
+
+table.notes div.i_msg { background-position: -32px -32px; }
+table.notes div.i_warn { background-position: -96px -32px; }
+table.notes div.i_stop { background-position: -64px -32px; }
+table.notes div.i_deprecated { background-position: 0px -32px; }
+
+table.files div.i_desc { background-position: 0px 0px; }
+table.files div.i_layout { background-position: -64px 0px; }
+table.files div.i_logic { background-position: -96px 0px; }
+table.files div.i_memmap { background-position: -128px 0px; }
+table.files div.i_parts { background-position: -160px 0px; }
+table.files div.i_photo { background-position: -192px 0px; }
+table.files div.i_schem { background-position: -224px 0px; }
+table.files div.i_driver { background-position: -256px 0px; }
+table.files div.i_timing { background-position: -288px 0px; }
+
+div.i_src { 
+  background: url(imgs/sprite.png) no-repeat;
+  width: 32px;
+  height: 32px;
+  background-position: -32px 0px; 
+}
+
 
 /****************************************
  * main entry page (quickfinder)
@@ -563,6 +625,15 @@ div#toc dir {
 }
 
 /****************************************
+ *  * text formatting
+ *   */
+
+div#content p.conclusion {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+/****************************************
  * advanced style
  */
 .advbutton {
@@ -584,4 +655,24 @@ div#toc dir {
 
 }
 
+/****************************************
+ *  * twisties
+ *   */
+.h2t {
+	display: none;		/* only if enabled with javascript */
+	float: left;
+	margin-top: 0.4em;
+	background:url(imgs/sprite.png) no-repeat;
+	width:2em;
+	background-position: -288px -32px;
+}
+
+/****************************************
+ *  * min/max link
+ *   */
+
+#minmax {
+	display: none;
+	float: right;
+}
 
