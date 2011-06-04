@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-06-04">
+	Added link to MTU graphics card and the Softbox computer
+    </item>
   </news>
   <oldnews>
     <item date="2010-05-11">
@@ -196,6 +199,10 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	<desc>This is another high resolution graphics board</desc>
      	<extlink name="Mike's page on the HRT board" link="http://mikenaberezny.com/hardware/projects/high-res-technologies-graphics-board/"/>
      </subsection>
+     <subsection toc="mtugraph" name="MTU Graphics Board for KIM/PET/CBM">
+	<desc><p>Steve J. Gray has scanned documents about an MTU graphics board, including even schematics. </p></desc>
+	<extlink name="MTU graphics board" link="http://www.6502.org/users/sjgray/computer/mtu/index.html"/>
+     </subsection>
    </section>
 
   <section toc="composite" name="Composite Video">
@@ -297,6 +304,12 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	</desc>
 	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
 	<extlink name="Ruud Baltissen has one too" link="http://www.baltissen.org/images/z80card.jpg"/>
+     </subsection>
+     <subsection toc="softbox" name="SSE Softbox Z80 computer">
+	<desc><p>In another solution SSE implemented a Z80 computer that connected to the PET
+	(and only to the PET) only via IEEE488 interface. It used the PET as input/output terminal
+	</p></desc>
+	<extlink name="SSE Softbox Z80 computer" link="http://mikenaberezny.com/hardware/pet-cbm/sse-softbox-z80-computer/"/>
      </subsection>
    </section>
 

@@ -33,6 +33,7 @@ computer page or in the PET schematics on the
 <A HREF="links.html">links page</A> of the PET index.
 </P>
 <P>For a general description please refer to the <a href="../hwinfo/crtc/index.html">CRTC pages</a>.</P>
+<p>There also is a page how to create <a href="../hwinfo/crtc/composite.html">composite video signals from a PET's video output</a>.</p> 
   </overview>
   <news>
     <item date="2006-11-21">Added descriptions of 8032 and 8296 use of the CRTC.

@@ -275,6 +275,8 @@ Bottom - 225,(Top-24)
 	<tr><td><a href="keymap/JapaneseCG.PDF">Japanese screen character ROM (PDF)</a></td></tr>
 	</table>
 	</desc>
+	<extlink name="A description of a japanese PET" link="http://web.mac.com/lord_philip/Commodore/Commodore_PET_2001j.html"/>
+	<extlink name="Japanese character sets" link="http://web.mac.com/lord_philip/Commodore/Japanese_PET_character_set.html#0"/>
      </subsection>
      <subsection toc="japan" name="Germany">
 	<desc><p>This CBM 8296 has the German umlauts.

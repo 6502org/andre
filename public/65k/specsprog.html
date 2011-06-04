@@ -357,6 +357,256 @@ more modern browser, like Internet Explorer 8 or later,
 	This section describes in an overview the opcodes and addressing modes of the 65k.
 	</p>
      <h3><a name="ovops" id="ovops">Opcodes Overview</a></h3>
+
+<table class="optable"><tr><th>LSB-&gt;<br />
+MSB</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+<tr><th>0</th><td>BRK<br />
+</td><td>ORA<br />
+(zp,X)</td><td class="c65k">LDA<br />
+zp,Y</td><td class="c65k">ORA<br />
+[[zp,X]]</td><td class="cmos">TSB<br />
+zp</td><td>ORA<br />
+zp</td><td>ASL<br />
+zp</td><td class="c65k">JMP<br />
+[[abs]]</td><td>PHP<br />
+</td><td>ORA<br />
+#byte</td><td>ASL<br />
+</td><td class="unused"></td><td class="cmos">TSB<br />
+abs</td><td>ORA<br />
+abs</td><td>ASL<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>1</th><td>BPL<br />
+rel</td><td>ORA<br />
+(zp),Y</td><td class="cmos">ORA<br />
+(zp)</td><td class="c65k">ORA<br />
+[[zp]],Y</td><td class="cmos">TRB<br />
+zp</td><td>ORA<br />
+zp,X</td><td>ASL<br />
+zp,X</td><td class="c65k">ORA<br />
+[[zp]]</td><td>CLC<br />
+</td><td>ORA<br />
+abs,Y</td><td class="cmos">INC<br />
+</td><td class="unused"></td><td class="cmos">TRB<br />
+abs</td><td>ORA<br />
+abs,X</td><td>ASL<br />
+abs,X</td><td>ASL<br />
+abs,Y</td></tr>
+<tr><th>2</th><td>JSR<br />
+abs</td><td>AND<br />
+(zp,X)</td><td class="c65k">STA<br />
+zp,Y</td><td class="c65k">AND<br />
+[[zp,X]]</td><td>BIT<br />
+zp</td><td>AND<br />
+zp</td><td>ROL<br />
+zp</td><td class="c65k">JMP<br />
+[[abs,X]]</td><td>PLP<br />
+</td><td>AND<br />
+#byte</td><td>ROL<br />
+</td><td class="unused"></td><td>BIT<br />
+abs</td><td>AND<br />
+abs</td><td>ROL<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>3</th><td>BMI<br />
+rel</td><td>AND<br />
+(zp),Y</td><td class="cmos">AND<br />
+(zp)</td><td class="c65k">AND<br />
+[[zp]],Y</td><td class="cmos">BIT<br />
+zp,X</td><td>AND<br />
+zp,X</td><td>ROL<br />
+zp,X</td><td class="c65k">AND<br />
+[[zp]]</td><td>SEC<br />
+</td><td>AND<br />
+abs,Y</td><td class="cmos">DEC<br />
+</td><td class="unused"></td><td class="cmos">BIT<br />
+abs,X</td><td>AND<br />
+abs,X</td><td>ROL<br />
+abs,X</td><td>ROL<br />
+abs,Y</td></tr>
+<tr><th>4</th><td>RTI<br />
+</td><td>EOR<br />
+(zp,X)</td><td class="c65k">LDA<br />
+(abs),Y</td><td class="c65k">EOR<br />
+[[zp,X]]</td><td class="c65k">BSR<br />
+relwide</td><td>EOR<br />
+zp</td><td>LSR<br />
+zp</td><td class="c65k">LDA<br />
+[[abs]],Y</td><td>PHA<br />
+</td><td>EOR<br />
+#byte</td><td>LSR<br />
+</td><td class="unused"></td><td>JMP<br />
+abs</td><td>EOR<br />
+abs</td><td>LSR<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>5</th><td>BVC<br />
+rel</td><td>EOR<br />
+(zp),Y</td><td class="cmos">EOR<br />
+(zp)</td><td class="c65k">EOR<br />
+[[zp]],Y</td><td class="unused"></td><td>EOR<br />
+zp,X</td><td>LSR<br />
+zp,X</td><td class="c65k">EOR<br />
+[[zp]]</td><td>CLI<br />
+</td><td>EOR<br />
+abs,Y</td><td>PHY<br />
+</td><td class="unused"></td><td class="unused"></td><td>EOR<br />
+abs,X</td><td>LSR<br />
+abs,X</td><td>LSR<br />
+abs,Y</td></tr>
+<tr><th>6</th><td>RTS<br />
+</td><td>ADC<br />
+(zp,X)</td><td class="c65k">LDA<br />
+(abs,X)</td><td class="c65k">ADC<br />
+[[zp,X]]</td><td class="cmos">STZ<br />
+zp</td><td>ADC<br />
+zp</td><td>ROR<br />
+zp</td><td class="c65k">LDA<br />
+[[abs,X]]</td><td>PLA<br />
+</td><td>ADC<br />
+#byte</td><td>ROR<br />
+</td><td class="unused"></td><td>JMP<br />
+(abs)</td><td>ADC<br />
+abs</td><td>ROR<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>7</th><td>BVS<br />
+rel</td><td>ADC<br />
+(zp),Y</td><td class="cmos">ADC<br />
+(zp)</td><td class="c65k">ADC<br />
+[[zp]],Y</td><td class="cmos">STZ<br />
+zp,X</td><td>ADC<br />
+zp,X</td><td>ROR<br />
+zp,X</td><td class="c65k">ADC<br />
+[[zp]]</td><td>SEI<br />
+</td><td>ADC<br />
+abs,Y</td><td>PLY<br />
+</td><td class="unused"></td><td class="cmos">JMP<br />
+(abs,X)</td><td>ADC<br />
+abs,X</td><td>ROR<br />
+abs,X</td><td>ROR<br />
+abs,Y</td></tr>
+<tr><th>8</th><td class="cmos">BRA<br />
+rel</td><td>STA<br />
+(zp,X)</td><td class="c65k">BSR<br />
+rel</td><td class="c65k">STA<br />
+[[zp,X]]</td><td>STY<br />
+zp</td><td>STA<br />
+zp</td><td>STX<br />
+zp</td><td class="c65k">JSR<br />
+[[abs]]</td><td>DEY<br />
+</td><td class="cmos">BIT<br />
+#byte</td><td>TXA<br />
+</td><td class="unused"></td><td>STY<br />
+abs</td><td>STA<br />
+abs</td><td>STX<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>9</th><td>BCC<br />
+rel</td><td>STA<br />
+(zp),Y</td><td class="cmos">STA<br />
+(zp)</td><td class="c65k">STA<br />
+[[zp]],Y</td><td>STY<br />
+zp,X</td><td>STA<br />
+zp,X</td><td>STX<br />
+zp,Y</td><td class="c65k">STA<br />
+[[zp]]</td><td>TYA<br />
+</td><td>STA<br />
+abs,Y</td><td>TXS<br />
+</td><td class="unused"></td><td class="cmos">STZ<br />
+abs</td><td>STA<br />
+abs,X</td><td class="cmos">STZ<br />
+abs,X</td><td class="c65k">STZ<br />
+abs,Y</td></tr>
+<tr><th>A</th><td>LDY<br />
+#byte</td><td>LDA<br />
+(zp,X)</td><td>LDX<br />
+#byte</td><td class="c65k">LDA<br />
+[[zp,X]]</td><td>LDY<br />
+zp</td><td>LDA<br />
+zp</td><td>LDX<br />
+zp</td><td class="c65k">JSR<br />
+[[abs,X]]</td><td>TAY<br />
+</td><td>LDA<br />
+#byte</td><td>TAX<br />
+</td><td class="unused"></td><td>LDY<br />
+abs</td><td>LDA<br />
+abs</td><td>LDX<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>B</th><td>BCS<br />
+rel</td><td>LDA<br />
+(zp),Y</td><td class="cmos">LDA<br />
+(zp)</td><td class="c65k">LDA<br />
+[[zp]],Y</td><td>LDY<br />
+zp,X</td><td>LDA<br />
+zp,X</td><td>LDX<br />
+zp,Y</td><td class="c65k">LDA<br />
+[[zp]]</td><td>CLV<br />
+</td><td>LDA<br />
+abs,Y</td><td>TSX<br />
+</td><td class="unused"></td><td>LDY<br />
+abs,X</td><td>LDA<br />
+abs,X</td><td>LDX<br />
+abs,Y</td><td>STX<br />
+abs,Y</td></tr>
+<tr><th>C</th><td>CPY<br />
+#byte</td><td>CMP<br />
+(zp,X)</td><td class="c65k">STA<br />
+(abs),Y</td><td class="c65k">CMP<br />
+[[zp,X]]</td><td>CPY<br />
+zp</td><td>CMP<br />
+zp</td><td>DEC<br />
+zp</td><td class="c65k">STA<br />
+[[abs]],Y</td><td>INY<br />
+</td><td>CMP<br />
+#byte</td><td class="unused"></td><td class="unused"></td><td>CPY<br />
+abs</td><td>CMP<br />
+abs</td><td>DEC<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>D</th><td>BNE<br />
+rel</td><td>CMP<br />
+(zp),Y</td><td class="cmos">CMP<br />
+(zp)</td><td class="c65k">CMP<br />
+[[zp]],Y</td><td class="unused"></td><td>CMP<br />
+zp,X</td><td>DEC<br />
+zp,X</td><td class="cmos">CMP<br />
+(zp)</td><td>CLD<br />
+</td><td>CMP<br />
+abs,Y</td><td>PHX<br />
+</td><td class="unused"></td><td class="cmos">JSR<br />
+(abs)</td><td>CMP<br />
+abs,X</td><td>DEC<br />
+abs,X</td><td>DEC<br />
+abs,Y</td></tr>
+<tr><th>E</th><td>CPX<br />
+#byte</td><td>SBC<br />
+(zp,X)</td><td class="c65k">STA<br />
+(abs,X)</td><td class="c65k">SBC<br />
+[[zp,X]]</td><td>CPX<br />
+zp</td><td>SBC<br />
+zp</td><td>INC<br />
+zp</td><td class="c65k">STA<br />
+[[abs,X]]</td><td>INX<br />
+</td><td>SBC<br />
+#byte</td><td>NOP<br />
+</td><td class="unused"></td><td>CPX<br />
+abs</td><td>SBC<br />
+abs</td><td>INC<br />
+abs</td><td class="unused"></td></tr>
+<tr><th>F</th><td>BEQ<br />
+rel</td><td>SBC<br />
+(zp),Y</td><td class="cmos">SBC<br />
+(zp)</td><td class="c65k">SBC<br />
+[[zp]],Y</td><td class="c65k">TRP<br />
+#byte</td><td>SBC<br />
+zp,X</td><td>INC<br />
+zp,X</td><td class="c65k">SBC<br />
+[[zp]]</td><td>SED<br />
+</td><td>SBC<br />
+abs,Y</td><td>PLX<br />
+</td><td class="unused"></td><td class="cmos">JSR<br />
+(abs,X)</td><td>SBC<br />
+abs,X</td><td>INC<br />
+abs,X</td><td>INC<br />
+abs,Y</td></tr>
+</table>
+
+
 <table class="optable">
 <tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>		<th>2</th>			<th>3</th>			<th>4</th>			<th>5</th>		<th>6</th>		<th>7</th>				<th>8</th>		<th>9</th>			<th>A</th>			<th>B</th>			<th>C</th>			<th>D</th>		<th>E</th>			<th>F</th></tr>
 <tr><th>0</th>		<td>BRK</td>			<td>ORA (zp,X)</td>	<td class="c65k">LDA zp,Y</td><td class="prefix">prefix1</td>	<td class="cmos">TSB zp</td>	<td>ORA zp</td>		<td>ASL zp</td>		<td class="prefix">prefix1</td>		<td>PHP</td>		<td>ORA imm</td>		<td>ASL A</td>			<td class="prefix">prefix2</td>	<td class="cmos">TSB abs</td>	<td>ORA abs</td>	<td>ASL abs</td>		<td class="prefix">EXT prefix</td></tr>
@@ -406,6 +656,51 @@ more modern browser, like Internet Explorer 8 or later,
 	effective address of an operand (no matter what size the operand is). The addressing modes are 
 	described in detail below.
 	</p>
+
+<table class="optable"><tr><th>Name</th><th>Alternative Name</th><th>Syntax</th><th>Operand Length</th><th>Origin</th><th>Description</th></tr>
+<tr><td>Implied</td><td></td><td></td><td>0</td><td></td><td>Implied by the operation</td></tr>
+<tr><td>Accumulator</td><td></td><td></td><td>0</td><td></td><td>Accumulator operation</td></tr>
+<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>1</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
+<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>2</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
+<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>4</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
+<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>8</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
+<tr><td>E indirect</td><td></td><td>"(E)"</td><td>0</td><td>65k</td><td>E-register indirect: the effective address is taken from the E register.</td></tr>
+<tr><td>Zeropage</td><td></td><td>&lt;address&gt;</td><td>1</td><td></td><td>Zeropage addressing mode: opcode parameter is a zeropage address (i.e. 8bit)</td></tr>
+<tr><td>Zeropage indexed with X</td><td>Zeropage X-indexed</td><td>&lt;address&gt;,X</td><td>1</td><td></td><td>Zeropage X-indexed addressing mode: effective address is the opcode parameter (zeropage address), plus the value of the X register</td></tr>
+<tr><td>Zeropage indexed with Y</td><td>Zeropage Y-indexed</td><td>&lt;address&gt;,Y</td><td>1</td><td></td><td>Zeropage Y-indexed addressing mode: effective address is the opcode parameter (zeropage address), plus the value of the Y register</td></tr>
+<tr><td>Absolute</td><td></td><td>&lt;address&gt;</td><td>2</td><td></td><td>Absolute addressing mode: opcode parameter is a word address (i.e. 16 bit)</td></tr>
+<tr><td>Absolute 16bit indexed with X</td><td>Absolute X-indexed</td><td>&lt;address&gt;,X</td><td>2</td><td></td><td>Absolute X-indexed addressing mode: effective address is the opcode parameter (word address), plus the value of the X register</td></tr>
+<tr><td>Absolute 16bit indexed with Y</td><td>Absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>2</td><td></td><td>Absolute Y-indexed addressing mode: effective address is the opcode parameter (word address), plus the value of the Y register</td></tr>
+<tr><td>Absolute 32bit</td><td>Long absolute</td><td>&lt;address&gt;</td><td>4</td><td>65k</td><td>Long absolute addressing mode: opcode parameter is a long address (i.e. 32 bit)</td></tr>
+<tr><td>Absolute 32bit indexed with X</td><td>Long absolute X-indexed</td><td>&lt;address&gt;,X</td><td>4</td><td>65k</td><td>Long absolute X-indexed addressing mode: effective address is the opcode parameter (long address), plus the value of the X register</td></tr>
+<tr><td>Absolute 32bit indexed with Y</td><td>Long absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>4</td><td>65k</td><td>Long absolute Y-indexed addressing mode: effective address is the opcode parameter (long address), plus the value of the Y register</td></tr>
+<tr><td>Absolute 64bit</td><td>Quad absolute</td><td>&lt;address&gt;</td><td>8</td><td>65k</td><td>Quad absolute addressing mode: opcode parameter is a quad address (i.e. 64 bit)</td></tr>
+<tr><td>Absolute 64bit indexed with X</td><td>Quad absolute X-indexed</td><td>&lt;address&gt;,X</td><td>8</td><td>65k</td><td>Quad absolute X-indexed addressing mode: effective address is the opcode parameter (quad address), plus the value of the X register</td></tr>
+<tr><td>Absolute 64bit indexed with Y</td><td>Quad absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>8</td><td>65k</td><td>Quad absolute Y-indexed addressing mode: effective address is the opcode parameter (quad address), plus the value of the Y register</td></tr>
+<tr><td>Zeropage indirect 16bit</td><td>Zeropage indirect</td><td>(&lt;address&gt;)</td><td>1</td><td>cmos</td><td>zeropage indirect addressing mode. Effective word address is read from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 16bit indexed with Y</td><td>Zeropage indirect Y-indexed</td><td>(&lt;address&gt;),Y</td><td>1</td><td></td><td>zeropage indirect Y-indexed addressing mode. The effective address is computed as the word address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Zeropage indexed with X indirect 16bit</td><td>Zeropage X-indexed indirect</td><td>(&lt;address&gt;,X)</td><td>1</td><td></td><td>zeropage X-indexed indirect addressing mode. Effective word address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 16bit</td><td>Absolute indirect</td><td>(&lt;address&gt;)</td><td>2</td><td></td><td>absolute indirect addressing mode. Effective word address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 16bit indexed with Y</td><td>Absolute indirect Y-indexed</td><td>(&lt;address&gt;),Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed addressing mode. The effective address is computed as the word address read from the word location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Absolute indexed with X indirect 16bit</td><td>Absolute X-indexed indirect</td><td>(&lt;address&gt;,X)</td><td>2</td><td>cmos</td><td>absolute X-indexed indirect addressing mode. Effective word address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Zeropage indirect 32bit</td><td>Long Zeropage indirect</td><td>[&lt;address&gt;]</td><td>1</td><td>65k</td><td>zeropage indirect long addressing mode. Effective long address is read from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 32bit indexed with Y</td><td>Zeropage long indirect Y-indexed</td><td>[&lt;address&gt;],Y</td><td>1</td><td>65k</td><td>zeropage indirect Y-indexed long addressing mode. The effective address is computed as the long address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Zeropage indexed with X indirect 32bit</td><td>Zeropage X-indexed long indirect</td><td>(&lt;address&gt;,X)</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect long addressing mode. Effective long address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 32bit</td><td>Absolute long indirect</td><td>[&lt;address&gt;]</td><td>2</td><td>65k</td><td>absolute indirect long addressing mode. Effective long address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 32bit indexed with Y</td><td>Absolute long indirect Y-indexed</td><td>[&lt;address&gt;],Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed long addressing mode. The effective address is computed as the long address read from the word location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Absolute indexed with X indirect 32bit</td><td>Absolute X-indexed long indirect</td><td>(&lt;address&gt;,X)</td><td>2</td><td>65k</td><td>absolute X-indexed indirect long addressing mode. Effective long address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Zeropage indirect 64bit</td><td>Zeropage quad indirect</td><td>[[&lt;address&gt;]]</td><td>1</td><td>65k</td><td>zeropage indirect quad addressing mode. Effective quad address is read from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 64bit indexed with Y</td><td>Zeropage quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>1</td><td>65k</td><td>zeropage indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Zeropage indexed with X indirect 64bit</td><td>Zeropage X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;EE&gt;&lt;NF&gt;&lt;ZE&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 64bit</td><td>Absolute quad indirect</td><td>[[&lt;address&gt;]]</td><td>2</td><td>65k</td><td>absolute indirect quad addressing mode. Effective quad address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 64bit indexed with Y</td><td>Absolute quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the word location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Absolute indexed with X indirect 64bit</td><td>Absolute X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;EE&gt;&lt;NF&gt;&lt;ZE&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>2</td><td>65k</td><td>absolute X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Relative</td><td></td><td>&lt;address&gt;</td><td>1</td><td></td><td>relative addressing modes, used in branches; from -128 to +127</td></tr>
+<tr><td>Relative 16bit</td><td>Wide relative</td><td>&lt;address&gt;</td><td>2</td><td>65k</td><td>relative addressing modes, used in branches; from -32768 to +32767</td></tr>
+<tr><td>Relative 32bit</td><td>Long relative</td><td>&lt;address&gt;</td><td>4</td><td>65k</td><td>relative addressing modes, used in branches; from -2^32 to +2^32-1</td></tr>
+<tr><td>Relative 64bit</td><td>Quad relative</td><td>&lt;address&gt;</td><td>8</td><td>65k</td><td>relative addressing modes, used in branches; from -2^64 to +2^64-1</td></tr>
+</table>
+
 <table class="optable">
 <tr><th>Addressing Mode</th><th>Name</th>					<th>Comment</th></tr>
 <tr><td>-</td>		<td>Implied</td>					<td>Implied by the operation</td></tr>

@@ -13,6 +13,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-06-04">
+	Added links section and to create your own MS Basic, and BASIC as scripting language
+    </item>
     <item date="2010-08-28">
 	Added links to history of MS BASIC and Bill Gates' programming tricks.
     </item>
@@ -152,6 +155,20 @@ you can switch to a completely different character set in the charrom.
 I assume this is used in nationalized machines with different charsets.
 </p></desc>
   </section>
+
+  <section toc="hardware" name="ROM ICs">
+	<desc><p>The ROMs of the early boards came with 6540 ICs from Commodore as ROMs
+	Those are completely deprecated. Matthew D'Asaro has written an article on them
+	and how to replace them with modern chips</p></desc>
+	<extlink name="6540 ROM adapter" link="http://home.comcast.net/~medasaro/6540rom.com/6540romadapter.html"/>
+  </section>
+
+  <section toc="links" name="Links">
+  	<desc>This section contains links concerning Commodore (MS) BASIC and kernal ROMs</desc>
+	<extlink name="Create your own version of MS BASIC" link="http://www.pagetable.com/?p=46"/>
+	<extlink name="Commodore BASIC as Unix/Windows scripting language" link="http://www.pagetable.com/?p=48"/>
+  </section>
+
   <closing>
 @FOOTER@
   </closing>

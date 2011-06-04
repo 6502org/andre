@@ -17,6 +17,7 @@
 	Created this page.
     </item>
   </news>
+  <toc/>
   <itemlist name="Quickfinder">
     <!--desc>
     </desc-->
@@ -123,6 +124,29 @@
 		<desc><p>Ruud Baltissen started work on a TTL6502</p></desc>
 		<extlink name="TTL6502" link="http://www.baltissen.org/newhtm/ttl6502.htm"/>
 	</subsection>
+
+	<subsection toc="crate" name="AppleCrate">
+		<desc><p>The AppleCrate I and II are multi-processing machines built from Apple II boards.
+			</p></desc>
+		<extlink name="AppleCrate I" link="http://home.comcast.net/~mjmahon/Applecrate.html"> with 8 processors</extlink>
+		<extlink name="AppleCrate II" link="http://home.comcast.net/~mjmahon/AppleCrateII.html"> with 17 processors</extlink>
+	</subsection>	
+  </section>
+
+  <section toc="emul" name="65xx Emulation">
+	<desc><p>This new section gives links and information about hardware- and software-based 6502 emulation projects.
+		Most of these (so far) concern original 6502 compatible cores</p></desc>
+	
+	<subsection toc="avr" name="AVR-based emulation">
+		<desc><p>It has been shown that the 6502 can actually be emulated within an AVR microcontroller.
+			1MHz emulated speed has been achieved with 16MHz AVRs (in a simple emulated hardware setup).
+		</p></desc>
+		<extlink name="Mikrocontroller.net on 6502 emulation in AVRs (German)" link="http://www.mikrocontroller.net/articles/AVR_6502_Emulator"/>
+		<extlink name="Thread on Mikrocontroller.net (in German)" link="http://www.mikrocontroller.net/topic/193632">last post seems to contain code</extlink>
+		<extlink name="NES 6502 emulation in an ATMega" link="http://instruct1.cit.cornell.edu/courses/ee476/FinalProjects/s2009/bhp7_teg25/bhp7_teg25/index.html"/>
+	</subsection>
+
+	<exlink name="6502.org emulation links" link="http://www.6502.org/tools/emu/"/>
   </section>
 
   <section toc="info" name="65xx Information">
@@ -132,6 +156,7 @@
     <extlink name="Schematics of the original 6502 (reverse engineered)" link="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/"/>
     <extlink name="How the illegal instructions really work" link="http://www.pagetable.com/?p=39."/>
     <extlink name="A reengineered and visually simulated original 6502!" link="http://visual6502.org/"/>
+    <extlink name="Reverse Engineering the 6502" link="http://dangerousprototypes.com/2011/01/01/27c3-reverse-engineering-the-mos-6502/"> A presentation of visual6502 from the 27C3 conference in december 2010</extlink>
     <extlink name="The ROR bug in early 6502 revisions!" link="http://www.pagetable.com/?p=45"/>
     <extlink name="6502.org forum: A taken branch delays interrupt handling by one instruction..." link="http://forum.6502.org/viewtopic.php?t=1634"/>
     <extlink name="6502.org forum: Improving the 6502, some ideas..." link="http://forum.6502.org/viewtopic.php?t=1419"/>

@@ -13,10 +13,18 @@
 		</p>
 	</desc>
         <news>
+                <item date="2011-06-04">
+                	Added a link to Matthew D'Asaro's composite video adapter
+                </item>
                 <item date="2010-12-20">
                 	Separated from the <a href="../../csa/vdc/index.html">CS/A 65 VDC page</a>
                 </item>
         </news>
+        <section toc="others" name="Other composite video adapters">
+        	<desc><p>Here are links to other composite video adapters</p></desc>
+        	<extlink name="Matthew D'Asaro's composite video adapter" link="http://home.comcast.net/~medasaro/6540rom.com/petvideo.html"> based on the solution from the PET UK users group</extlink>
+        </section>
+
 	<!--driver>
 		<name>OS/A65 VDC hardware driver</name>
 		<desc>This is the video-specific hardware part of the 

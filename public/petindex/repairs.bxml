@@ -280,6 +280,19 @@ version of the video board for the original PET that went bad frequently.</p>
       <subitem name="Description of a PET repair" link="http://www.cosam.org/computers/cbm/pet/index.html">
 	<desc>Interesting description to solve several problems with a non-working PET</desc>
       </subitem>
+      <subitem name="Reparing a Japanese PET with a strange video problem" link="http://web.me.com/lord_philip/other_computers/20012.html#grid">
+	<desc><p>The PET described here had (among other problems) a nasty video problem. 
+	Each screen character line increased the screen address only by
+	36 even though 40 characters were shown. This was finally lead back to the character clock being weak, and when the raster line
+	started, it became even weaker so that the single actual pulse there was missed. This caused the counter to not overflow
+	to 40 on the last character, and as the lowest two address bits were reset, the next line started at 36 (instead of 39 as you
+	would expect by a missed clock pulse). The cause for the weak clock pulse finally was that the reset for the JK-flipflop
+	that produced the pulse was too early. And the cause of this was the the NAND that produced the reset signal only used 
+	one input and did not obey the clock input. So the video pulse actually reset itself, thus becoming very short and weak.
+	</p></desc>
+      </subitem>
+      <subitem name="Vintage Computer Forum on that machine" link="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">
+      </subitem>
     </items>
     <disclaimer name="Disclaimer">
 @DISCLAIMER@

@@ -325,6 +325,17 @@ version of the video board for the original PET that went bad frequently.</p>
       </li><li class="subitem"><a href="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:commodore_troubleshooting">Larry's portcommodore 8-bit troubleshooting list</a> 
       </li><li class="subitem"><a href="http://www.cosam.org/computers/cbm/pet/index.html">Description of a PET repair</a> 
 	<desc>Interesting description to solve several problems with a non-working PET</desc>
+      </li><li class="subitem"><a href="http://web.me.com/lord_philip/other_computers/20012.html#grid">Reparing a Japanese PET with a strange video problem</a> 
+	<desc><p>The PET described here had (among other problems) a nasty video problem. 
+	Each screen character line increased the screen address only by
+	36 even though 40 characters were shown. This was finally lead back to the character clock being weak, and when the raster line
+	started, it became even weaker so that the single actual pulse there was missed. This caused the counter to not overflow
+	to 40 on the last character, and as the lowest two address bits were reset, the next line started at 36 (instead of 39 as you
+	would expect by a missed clock pulse). The cause for the weak clock pulse finally was that the reset for the JK-flipflop
+	that produced the pulse was too early. And the cause of this was the the NAND that produced the reset signal only used 
+	one input and did not obey the clock input. So the video pulse actually reset itself, thus becoming very short and weak.
+	</p></desc>
+      </li><li class="subitem"><a href="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">Vintage Computer Forum on that machine</a> 
       </li></ul><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the

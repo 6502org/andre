@@ -1,0 +1,63 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY uuml "&#220; "> <!ENTITY nbsp "&#160; "> ]>
+<webpage name="6502 Networking">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+  </author>
+  <keywords>8-bit,6502 networking</keywords>
+  <metadesc>8-bit 6502 hardware networking</metadesc>
+  <overview>
+	This page links projects about 6502-based networking systems.
+	I don't intend to do a full Ethernet list, but I am more interested
+	in specific networking solutions like the NadaNet.
+  </overview>
+  <news>
+    <item date="2011-06-04">
+	Created this page.
+    </item>
+  </news>
+  <!--toc/-->
+
+  <section toc="native" name="Native 6502-based networks">
+	<desc><p>This section contains links to various projects of other people that implemented networks based on the 6502</p>
+	</desc>
+
+	<subsection toc="nada" name="NadaNet">
+		<desc><p>
+			NadaNet is a network originally used to link Apple II computers. Physically it is a single-wire network
+			with a custom packet protocol on top of it. The author claims that "It can sustain a data transfer rate of over 10K bytes per second using 256-byte packets, with all synchronization and protocol overhead included", which is impressive. 
+		</p></desc>
+		<extlink name="NadaNet" link="http://home.comcast.net/~mjmahon/NadaNet.html"/>
+		<extlink name="AppleCrate I" link="http://home.comcast.net/~mjmahon/Applecrate.html">The AppleCrate I is an 8-processor
+			compute cluster made of Apple II boards, using NadaNet for communication</extlink>
+		<extlink name="AppleCrate II" link="http://home.comcast.net/~mjmahon/AppleCrateII.html">The AppleCrate II is the
+			successor to AppleCrate I and has 17 processors, using NadaNet</extlink>
+	</subsection>
+
+  </section>
+
+  <section toc="tcpip" name="TCP/IP networks">
+	<desc><p>There have been a number of ethernet interfaces been implemented, including TCP/IP support.
+	In the beginning there have been some SLIP (Serial Line Internet Protocol) implementations, but later
+	solutions using specific Ethernet ICs appeared. Most used the CS8900A chip for the ethernet communication, but
+	some used the RTL8019 and now SPI-based solutions using the ENC28J60 are appearing.
+	</p><p>
+	TODO: needs to be expanded
+	</p></desc>
+
+	<extlink name="GeckOS with SLIP" link="http://www.6502.org/users/andre/osa/index.html"/>
+	<extlink name="ip65 TCP/IP stack" link="http://ip65.sourceforge.net/">One of the standard TCP/IP solutions for 6502</extlink>
+	<extlink name="uIP TCP/IP stack" link="http://www.sics.se/contiki/">A TCP/IP implementation written in Small C, so it can
+		be compiled by cc65 and has been used on the C64 and other 6502-based machines</extlink>
+	<extlink name="Daryl Rictor's Ethernet interface" link="http://sbc.rictor.org/io/eth.html"> using an ENC28J60 with the uIP stack</extlink>
+	
+  </section>
+
+    <disclaimer name="Disclaimer">
+@DISCLAIMER@
+    </disclaimer>
+  <closing>
+<BR/>Last updated 2011-06-10".
+  </closing>
+</webpage>

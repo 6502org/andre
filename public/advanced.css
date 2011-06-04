@@ -49,6 +49,7 @@ DIV.tophead {
  	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
 	background-color: #ee8800;
+	color: #fff;
 /*
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
@@ -58,7 +59,6 @@ DIV.tophead {
 	/*text-shadow: 1px 1px 0px #e80, -1px -1px 0px #fc6;*/
 	text-shadow: -1px -1px 1px #fc6;
 
-	color: #fff;
 	margin-left: -1em;
 	margin-right: -1em;
 /*
@@ -160,6 +160,7 @@ div#header {
 	/*text-shadow: -1px -1px 1px #000;*/
 	padding: 0.2em;
 	padding-bottom: 0em;
+	font-size: small;
 }
 
 div#header div.tab {

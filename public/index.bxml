@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2011-06-04">
+	Added a <a href="adv65/65net.html">6502 networking page</a>
+    </item>
     <item date="2011-05-04">
 	Updated the <a href="csa/vdc/index.html">CS/A Video board</a> with a bug-fixed version.
     </item>
