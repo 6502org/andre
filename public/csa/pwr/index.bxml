@@ -25,12 +25,49 @@
 		2010-01-06: Since version 1.2 the board also contains an I2C master
 		with the related <code>RDY</code> generation as the P8584 I2C master
 		is not running faster than 1MHz.
+		</p><p>
+		2011-06-04: The new 1.3 version has the I2C stuff removed and instead
+		added the terminator resistor networks so you can use it as a combined
+		terminator/power board, saving one bus slot.
+		</p><p>
+		Note, depending on your requirements, any of the 1.1, 1.2 and 1.3 versions
+		can be the right one for you, they are all working.
 		</p>
 	</desc>
 	<!--diagram>
 		<file>bios.gif</file>
 		<desc>itecture</desc>
 	</diagram-->
+	<rev>
+		<version>1.3B</version>
+		<status>ok</status>
+		<note type="msg">
+			This board is another version that completely removes the I2C
+			stuff, but adds the resistor networks for bus termination.
+			So you can save one bus slot by using this board on one end
+			of the bus (and not having to use the separate terminator board).
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr-v1.3b.sch</file>
+		<file ltype="schem" ptype="png">csa-pwr-v1.3b-1.sch.png</file>
+		<file ltype="schem" ptype="png">csa-pwr-v1.3b-2.sch.png</file>
+		<file ltype="schem" ptype="png">csa-pwr-v1.3b-3.sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr-v1.3b.brd</file>
+		<file ltype="layout" ptype="png">csa-pwr-v1.3b.brd.png</file>
+	</rev>
+	<rev>
+		<version>1.2C</version>
+		<status>prototype</status>
+		<note type="msg">
+			This board fixes the '555 timer bug mentioned on the 1.1B revision.
+		</note>
+		<note type="warn">
+			The layout is untested (I have built it on a 1.2A version)
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr-v1.2c.sch</file>
+		<file ltype="schem" ptype="png">csa_pwr-v1.2c-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr-v1.2c.brd</file>
+		<file ltype="layout" ptype="png">csa_pwr-v1.2c-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.2B</version>
 		<status>prototype</status>
@@ -53,6 +90,22 @@
 		<file ltype="layout" ptype="png">csa_pwr-v1.2b-brd.png</file>
 	</rev>
 	<rev>
+		<version>1.1C</version>
+		<status>prototype</status>
+		<note type="msg">
+			This is a modification of the 1.1B in that the '555 timer
+			bug I fixed on the original prototype is now in the schematics
+			(pin 4 was connected to GND instead of VCC).
+		</note>
+		<note type="warn">
+			The layout is untested.
+		</note>
+		<file ltype="schem" ptype="esch">csa_pwr-v1.1c.sch</file>
+		<file ltype="schem" ptype="png">csa_pwr_v1.1c-sch.png</file>
+		<file ltype="layout" ptype="esch">csa_pwr-v1.1c.brd</file>
+		<file ltype="layout" ptype="png">csa_pwr_v1.1c-brd.png</file>
+	</rev>
+	<rev>
 		<version>1.1B</version>
 		<status>prototype</status>
 		<note type="msg">
@@ -61,6 +114,11 @@
 			3.3V generation, and decoupling capacitors for the
 			I2C ICs. Also it has the addresses of the I2C chips
 			fixed (in V1.1A they have the same I2C address...)
+		</note>
+		<note type="warn">
+			I found that in the prototype I had fixed a problem with the
+			50Hz generation - the '555 /RES input was tied low instead
+			of high. This is fixed in 1.1C.
 		</note>
 		<note type="warn">
 			The layout is untested.

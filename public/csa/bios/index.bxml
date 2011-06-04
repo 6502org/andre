@@ -19,6 +19,23 @@ use a 16550 UART (with FIFO).
 		<desc>This diagram shows an overview on the board architecture</desc>
 	</diagram>
 	<rev>
+		<version>3.0F</version>
+		<status>ok</status>
+		<note type="msg">
+			This board is a complete re-layout of the 3.0D board. It has no functional
+			changes compared to 3.0D. It has a better layout and two more bypass capacitors
+			to handle 28-pin RAM and ROM ICs.
+		</note>
+		<note type="warn">
+			I have not fully tested this board yet, esp. the power and RS232 problems mentioned below.
+		</note>
+		<file ltype="desc" ptype="esch">csa_bios_v3.0b-desc.txt</file>
+		<file ltype="schem" ptype="esch">csa_bios_v3.0f.sch</file>
+		<file ltype="schem" ptype="png">csa-bios-v3.0f-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_bios_v3.0f.brd</file>
+		<file ltype="layout" ptype="png">csa-bios-v3.0f-brd.png</file>
+	</rev>
+	<rev>
 		<version>3.0D</version>
 		<status>ok</status>
 		<note type="warn">
