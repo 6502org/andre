@@ -102,9 +102,52 @@ more modern browser, like Internet Explorer 8 or later,
 	Some of the decisions made here may very well be premature optimizations. I will
 	revisit these and may change them in the further process.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-05-01</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-12-23</small>
+	Addded some discussion about the ZE/EE and LE prefixes
+    </li><li><div> </div><small>2011-05-01</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#placement">Placing opcodes in the opcode map</a></li><li style="list-style-type:none;"><ul><li><a href="#extpage">Placing opcodes on the Extension page</a></li><li><a href="#absy">Absolute y-indexed addressing</a></li></ul></li><li><a href="#redundancy">Elimination of Redundancy</a></li><li style="list-style-type:none;"><ul><li><a href="#ade">(Quick) Add/Substract to E/B</a></li></ul></li><li><a href="#convenience">Convenience Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#inv">2s complement</a></li><li><a href="#shiftxy">Shift X and Y</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="placement" id="placement">Placing opcodes in the opcode map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#irq">Interrupt Compatibility</a></li><li><a href="#extends">Extension Prefixes</a></li><li style="list-style-type:none;"><ul><li><a href="#ZE">The ZE prefix</a></li><li><a href="#EE">The EE prefix</a></li><li><a href="#LE">The LE prefix</a></li></ul></li><li><a href="#placement">Placing opcodes in the opcode map</a></li><li style="list-style-type:none;"><ul><li><a href="#extpage">Placing opcodes on the Extension page</a></li><li><a href="#absy">Absolute y-indexed addressing</a></li></ul></li><li><a href="#redundancy">Elimination of Redundancy</a></li><li style="list-style-type:none;"><ul><li><a href="#ade">(Quick) Add/Substract to E/B</a></li></ul></li><li><a href="#convenience">Convenience Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#inv">2s complement</a></li><li><a href="#shiftxy">Shift X and Y</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="irq" id="irq">Interrupt Compatibility</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	TODO
+     </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="extends" id="extends">Extension Prefixes</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	When providing wider registers than before, of course there must be a way to 
+	access those registers in a wide way. This is given with the RS prefix. 
+	However, what is the best way to manage transfers between different register widths?
+	</p><p>
+	There should be a way to load for example a byte and extend it to a wider size.
+	Or the result of an operation should be automatically extended. 
+	And how can a value be truncated?
+	What about loading X and Y with short values when they are always used full width in the
+	addressing modes?
+     </p><h3><a name="ZE" id="ZE">The ZE prefix</a></h3><p>
+	  The first attempt was the ZE prefix. Without the prefix all stores to a register
+	  would be zero-extended. I.e. when, after a load or another operation, the value was
+	  written to a register, the value was zero-extended to full width.
+	  This accommodated for the X/Y loads fine, and provided some automation for AC. As
+	  each operation was sized by RS anyway, zero-extending them was not a problem.
+	  However, to add an 8-bit value to AC with a full width operation, the ADC would
+	  still need to load the full width value, even though the value was only 8 bit.
+	</p><h3><a name="EE" id="EE">The EE prefix</a></h3><p>
+	  Therefore the EE prefix - Early Extension means that the value is loaded on RS width,
+	  and the zero-extension is done "early": before the operation, that then happens on full width.
+	  This solves the problem of loading a narrow value for a wide operation.
+	  However ...
+	</p><h3><a name="LE" id="LE">The LE prefix</a></h3><p>
+	  ... there is only the ability to extend with zeros. And can a register not be extended after having been
+	  set with a separate opcode?
+	  So now there is an LE prefix, that extends a value when loaded from memory (or another register).
+	  I.e. instead of extending a value when it is written like in the original approach, 
+	  it is now extended when loaded. With the EXT opcode it can then be truncated to the relevant number
+	  of bits - or the value could just be stored to memory with a narrow STA instead of a full-width one.
+	</p><p>	
+	  The default operation on a load of X and Y would be to zero-extend the registers, as they are always used full-width
+	  in the addressing modes. Flags would be set from the original size. 
+	  This implements the "least surprise" strategy. Not-extending could be done
+	  with an explicit LE prefix saying so. 
+	</p><p>	
+	  For the AC it is less important, as every operation on AC is explicitely sized
+	  (using RS) or 8-bit only - so upper bits do not matter on such operations and can be left by default.
+	  Therefore AC is not extended by default.
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="placement" id="placement">Placing opcodes in the opcode map</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	When thinking about the opcode decoding I learned that in the FPGA you can save
 	"chip space" when you can combine opcodes. I.e. if you have a large case switch
 	for opcodes, it pays out to say, select all "LDA" opcodes in a single case, and

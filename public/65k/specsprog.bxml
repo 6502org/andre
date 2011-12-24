@@ -28,6 +28,9 @@
   </p></overview>
   <news>
     <item date="2011-05-01">
+	An update on the extension functionality. See also the <a href="designnotes.html">Design Notes</a> for more info.
+    </item>
+    <item date="2011-05-01">
 	Major update of the programming specs. Add the "EE" prefix bit as an example. See changes section for more details.
     </item>
     <item date="2011-01-02">
@@ -104,6 +107,17 @@
 		<li>Added the stack peek opcodes PKA, PKX, PKY</li>
 		<li>Added the EXT and CUT opcodes</li>
 		<li>Added the Accumulator addressing modes for ADE/ADB/ADS/SBE/SBB/SBS</li>
+		</ul></td></tr>
+	<tr><td>2011-12-23</td><td>Andr&eacute; Fachat</td><td><ul>
+		<li>Remove the EE prefix bit, and replace it with a second bit for the ZE extension - to allow
+			to extend with ones and with the sign. Semantics of ZE changed as well, thus renamed to LE,
+			load extend. Old ZE functionality is covered by EXT opcode</li>
+		<li>Fix the description of the SLX/SLY/SRX/SRY opcodes</li>
+		<li>Deprecated CLX/CLY opcodes, changed CLA to full width only</li>
+		<li>Added "BIT A" variant</li>
+		<li>Removed CUT, as it is the same as EXT</li>
+		<li>Some small changes here and there, esp. clarifications around the interrupt handling</li>
+		<li>Added the Software Compatibility section</li>
 		</ul></td></tr>
       </table>
     </desc>
@@ -677,10 +691,10 @@ abs,Y</td></tr>
 <tr><td>Absolute indexed with X indirect 32bit</td><td>Absolute X-indexed long indirect</td><td>(&lt;address&gt;,X)</td><td>2</td><td>65k</td><td>absolute X-indexed indirect long addressing mode. Effective long address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
 <tr><td>Zeropage indirect 64bit</td><td>Zeropage quad indirect</td><td>[[&lt;address&gt;]]</td><td>1</td><td>65k</td><td>zeropage indirect quad addressing mode. Effective quad address is read from zeropage location given as parameter.</td></tr>
 <tr><td>Zeropage indirect 64bit indexed with Y</td><td>Zeropage quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>1</td><td>65k</td><td>zeropage indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Zeropage indexed with X indirect 64bit</td><td>Zeropage X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;EE&gt;&lt;NF&gt;&lt;ZE&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Zeropage indexed with X indirect 64bit</td><td>Zeropage X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;LE&gt;&lt;NF&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
 <tr><td>Absolute indirect 64bit</td><td>Absolute quad indirect</td><td>[[&lt;address&gt;]]</td><td>2</td><td>65k</td><td>absolute indirect quad addressing mode. Effective quad address is read from word location given as parameter.</td></tr>
 <tr><td>Absolute indirect 64bit indexed with Y</td><td>Absolute quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the word location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Absolute indexed with X indirect 64bit</td><td>Absolute X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;EE&gt;&lt;NF&gt;&lt;ZE&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>2</td><td>65k</td><td>absolute X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indexed with X indirect 64bit</td><td>Absolute X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;LE&gt;&lt;NF&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>2</td><td>65k</td><td>absolute X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
 <tr><td>Relative</td><td></td><td>&lt;address&gt;</td><td>1</td><td></td><td>relative addressing modes, used in branches; from -128 to +127</td></tr>
 <tr><td>Relative 16bit</td><td>Wide relative</td><td>&lt;address&gt;</td><td>2</td><td>65k</td><td>relative addressing modes, used in branches; from -32768 to +32767</td></tr>
 <tr><td>Relative 32bit</td><td>Long relative</td><td>&lt;address&gt;</td><td>4</td><td>65k</td><td>relative addressing modes, used in branches; from -2^32 to +2^32-1</td></tr>
@@ -748,7 +762,7 @@ abs,Y</td></tr>
 <tr><th colspan="8">prefix2</th></tr>
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>UM</td><td>EE</td><td>NF</td><td>ZE</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>UM</td><td>LE1</td><td>LE0</td><td>NF</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
 </table><p>
 	For prefix2 the low four bit are fixed, the other bits are used as prefix.
 </p><p>
@@ -758,17 +772,16 @@ abs,Y</td></tr>
 <tr><th>AM</th><th>Adressing Modes</th></tr>
 <tr><td>0</td><td>normal addressing modes (8 / 16 bit)</td></tr>
 <tr><td>1</td><td>extended addressing modes (32 / 64 bit)</td></tr>
-<tr><th>ZE</th><th>Zero extension</th></tr>
-<tr><td>0</td><td>Zero-extend values to full register width when writing to a register</td></tr>
-<tr><td>1</td><td>Do not extend values to full register width when writing to a register</td></tr>
+<tr><th>LE</th><th>Load extension</th></tr>
+<tr><td>0/0</td><td>Do not extend values to full register width when loading a value with RS width; operations use RS width - default for all AC-related operations.</td></tr>
+<tr><td>0/1</td><td>Sign-extend values to full register width when loading a value with RS width; operations use full width</td></tr>
+<tr><td>1/0</td><td>Zero-extend values to full register width when loading a value with RS width; operations use full width - default for XR/YR-related operations.</td></tr>
+<tr><td>1/1</td><td>One-extend values to full register width when loading a value with RS width; operations use full width</td></tr>
 <tr><th>RS1/RS0</th><th>Register Size</th></tr>
 <tr><td>0/0</td><td>8 bit register</td></tr>
 <tr><td>0/1</td><td>16 bit register</td></tr>
 <tr><td>1/0</td><td>32 bit register</td></tr>
 <tr><td>1/1</td><td>64 bit register</td></tr>
-<tr><th>EE</th><th>Early Extension flag</th></tr>
-<tr><td>0</td><td>Data is read in a size as given with RS, operation is done in RS size, then extended using ZE before written to a register; flags (e.g. zero, sign, ...) are set from RS sized part</td></tr>
-<tr><td>1</td><td>Data is read in a size as given with RS, then extended to register size using ZE, then operation is done in register size, then stored in the register; flags are set from full register.</td></tr>
 <tr><th>OF1/OF0</th><th>Offset Register</th></tr>
 <tr><td>0/0</td><td>No offset added to address</td></tr>
 <tr><td>0/1</td><td>Add Program Counter (PC) to address</td></tr>
@@ -798,9 +811,10 @@ abs,Y</td></tr>
 	This would not be the case if prefix2 was before prefix1, because then it would not be distinguishable
 	of the byte following prefix2 is a prefix1 or a reused opcode.
 	</p><p>
-	The EE flag only applies to opcodes that read an operand, but not to read-modify-write opcodes.
-	It would not necessarily apply to pure load opcodes, but the difference in the flags generation
-	(zero flag, sign, ...) may justify this flag for load opcodes as well.
+	The LE flags only apply to opcodes that read an operand from memory, but not to read-modify-write opcodes.
+	(It does not apply to store operations (which could have been done switching memory and register sides), but
+	as the processor is available in different full-size register width, the software would expect to have a specific
+	width, binding the software to a specific width)
 	</p><p>
 	The NF flag does not apply to compare opcodes - their only purpose is to set the flags...
 	</p><p>
@@ -808,22 +822,22 @@ abs,Y</td></tr>
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>		<th>1</th>					<th>2</th>					<th>3</th>							<th>4</th>				<th>5</th>					<th>6</th>				<th>7</th>							<th>8</th>			<th>9</th>					<th>A</th>			<th>B</th>		<th>C</th>					<th>D</th>					<th>E</th>					<th>F</th></tr>
-<tr><th>0</th>		<td class="unused">BRK</td>	<td>ORA (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA zp,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ORA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>TSB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP [[abs]]<br/>AM=1,OF</td>			<td class="unused">PHP</td>	<td>ORA imm<br/>RS,ZE,NF,EE</td>		<td>ASL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">EXT prefix</td></tr>
-<tr><th>1</th>		<td>BPL rel<br/>RS</td>		<td>ORA (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ORA (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ORA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>TRB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ORA [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLC</td>	<td>ORA abs,y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>TRB abs<br/>AM,OF,RS,ZE,UM,NF</td>		<td>ORA abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ASL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ASL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>	
-<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STA zp,Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">AND [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BIT zp<br/>AM,OF,RS,UM,NF,EE</td>	<td>AND zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">JMP [[abs]],X<br/>AM=1,OF,UM</td>		<td class="unused">PLP</td>	<td>AND imm<br/>RS,ZE,NF,EE</td>		<td>ROL A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">SYS prefix</td></tr>
-<tr><th>3</th>		<td>BMI rel<br/>RS</td>		<td>AND (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">AND [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BIT zp,X<br/>AM,OF,RS,UM,NF,EE</td>	<td>AND zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">AND [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SEC</td>	<td>AND abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>DEC A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>BIT abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>AND abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>4</th>		<td class="unused">RTI</td>	<td>EOR (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (abs),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">EOR [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>BSR relwide<br/>RS,AM</td>		<td>EOR zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA [[abs]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>PHA<br/>RS,UM</td>		<td>EOR imm<br/>RS,ZE,NF,EE</td>		<td>LSR A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP abs<br/>AM,OF</td>			<td>EOR abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">QUICK prefix</td></tr>
-<tr><th>5</th>		<td>BVC rel<br/>RS</td>		<td>EOR (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>EOR (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">EOR [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused"></td>		<td>EOR zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">EOR [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLI</td>	<td>EOR abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PHY<br/>RS,UM</td>		<td class="x"></td>	<td>STX abs,Y<br/>AM</td>			<td>EOR abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LSR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>LSR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>6</th>		<td>RTS<br/>AM,RS</td>		<td>ADC (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (abs,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ADC [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>STZ zp<br/>AM,OF,RS,UM</td>		<td>ADC zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">LDA [[abs,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>PLA<br/>RS,ZE,UM,NF</td>	<td>ADC imm<br/>RS,ZE,NF,EE</td>		<td>ROR A<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>JMP (abs)<br/>AM,OF</td>			<td>ADC abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>7</th>		<td>BVS rel<br/>RS</td>		<td>ADC (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ADC (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">ADC [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>STZ zp,X<br/>AM,OF,RS,UM</td>	<td>ADC zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">ADC [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SEI</td>	<td>ADC abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PLY<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JMP (abs,X)<br/>AM,OF</td>			<td>ADC abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>ROR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>8</th>		<td>BRA rel<br/>RS</td>		<td>STA (zp,X)<br/>AM,OF,RS,ZE,UM,NF</td>	<td>BSR rel<br/>RS,AM</td>			<td class="dup">STA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>STY zp<br/>AM,OF,RS,UM</td>		<td>STA zp<br/>AM,OF,RS,ZE,UM</td>		<td>STX zp<br/>AM,OF,RS,UM</td>		<td class="dup">JSR [[abs]]<br/>AM=1,OF,RS</td>			<td>DEY<br/>RS,ZE,NF</td>	<td>BIT imm<br/>RS,ZE,NF,EE</td>		<td>TXA<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>STY abs<br/>AM,OF,RS,UM</td>		<td>STA abs<br/>AM,OF,RS,UM</td>		<td>STX abs<br/>AM,OF,RS,UM</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>9</th>		<td>BCC rel<br/>RS</td>		<td>STA (zp),Y<br/>AM,OF,RS,ZE,UM,NF</td>	<td>STA (zp)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">STA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM</td>		<td>STY zp,X<br/>AM,OF,RS,UM</td>	<td>STA zp,X<br/>AM,OF,RS,ZE,UM</td>		<td>STX zp,Y<br/>AM,OF,RS,UM</td>	<td class="dup">STA [[zp]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>TYA<br/>RS,ZE,NF</td>	<td>STA abs,Y<br/>AM,OF,RS,UM</td>		<td>TXS<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>STZ abs<br/>AM,OF,RS,UM</td>		<td>STA abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,Y<br/>AM,OF,RS,UM</td></tr>
-<tr><th>A</th>		<td>LDY imm<br/>RS,ZE,NF,EE</td><td>LDA (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX imm<br/>RS,NF,EE</td>			<td class="dup">LDA [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>LDY zp<br/>AM,OF,RS,ZE,UM,NF,EE</td><td>LDA zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX zp<br/>AM,OF,RS,ZE,UM,NF,EE</td><td class="dup">JSR [[abs,X]]<br/>AM=1,OF,RS</td>		<td>TAY<br/>RS,ZE,NF</td>	<td>LDA imm<br/>RS,ZE,NF,EE</td>		<td>TAX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>LDY abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">reserved prefix</td></tr>
-<tr><th>B</th>		<td>BCS rel<br/>RS</td>		<td>LDA (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA (zp)<br/>AM,OF,RS,ZE,UM,NF</td>		<td class="dup">LDA [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>LDY zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td><td>LDA zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX zp,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td><td class="dup">LDA [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">CLV</td>	<td>LDA abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>TSX<br/>UM,NF</td>		<td class="x"></td>	<td>LDY abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDA abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>LDX abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STX abs,Y<br/>AM,OF,RS,UM</td></tr>
-<tr><th>C</th>		<td>CPY imm<br/>RS,EE</td>	<td>CMP (zp,X)<br/>AM,OF,RS,UM,EE</td>		<td>STA (abs),Y<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">CMP [[zp,X]]<br/>AM=1,OF,RS,UM,EE</td>		<td>CPY zp<br/>AM,OF,RS,UM,EE</td>	<td>CMP zp<br/>AM,OF,RS,UM,EE</td>		<td>DEC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">STA [[abs]],Y<br/>AM=1,OF,RS,ZE,UM</td>		<td>INY<br/>RS,ZE,NF</td>	<td>CMP imm<br/>RS,EE</td>			<td>DEX<br/>RS,ZE,NF</td>	<td class="x"></td>	<td>CPY abs<br/>AM,OF,RS,UM,EE</td>		<td>CMP abs<br/>AM,OF,RS,UM,EE</td>		<td>DEC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>D</th>		<td>BNE rel<br/>RS</td>		<td>CMP (zp),Y<br/>AM,OF,RS,UM,EE</td>		<td>CMP (zp)<br/>AM,OF,RS,UM,EE</td>		<td class="dup">CMP [[zp]],Y<br/>AM=1,OF,RS,UM,EE</td>		<td class="unused"></td>		<td>CMP zp,X<br/>AM,OF,RS,UM,EE</td>		<td>DEC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">CMP [[zp]]<br/>AM=1,OF,RS,UM,EE</td>		<td class="unused">CLD</td>	<td>CMP abs,Y<br/>AM,OF,RS,UM,EE</td>		<td>PHX<br/>RS,UM</td>		<td class="x"></td>	<td>JSR (abs)<br/>AM,OF,RS,UM</td>		<td>CMP abs,X<br/>AM,OF,RS,UM,EE</td>		<td>DEC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
-<tr><th>E</th>		<td>CPX imm<br/>RS,EE</td>	<td>SBC (zp,X)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>STA (abs,X)<br/>AM,OF,RS,ZE,UM</td>		<td class="dup">SBC [[zp,X]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td>CPX zp<br/>AM,OF,RS,UM,EE</td>	<td>SBC zp<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC zp<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">STA [[abs,X]]<br/>AM=1,OF,RS,ZE,UM</td>		<td>INX<br/>RS,ZE,NF</td>	<td>SBC imm<br/>RS,ZE,NF,EE</td>		<td class="unused">NOP</td>	<td class="x"></td>	<td>CPX abs<br/>AM,OF,RS,UM,EE</td>		<td>SBC abs<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>F</th>		<td>BEQ rel<br/>RS</td>		<td>SBC (zp),Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>SBC (zp)<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td class="dup">SBC [[zp]],Y<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">TRAP<br/>RS</td>	<td>SBC zp,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC zp,X<br/>AM,OF,RS,ZE,UM,NF</td>	<td class="dup">SBC [[zp]]<br/>AM=1,OF,RS,ZE,UM,NF,EE</td>	<td class="unused">SED</td>	<td>SBC abs,Y<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>PLX<br/>RS,ZE,UM,NF</td>	<td class="x"></td>	<td>JSR (abs,X)<br/>AM,OF,RS,UM</td>		<td>SBC abs,X<br/>AM,OF,RS,ZE,UM,NF,EE</td>	<td>INC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>INC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>0</th>		<td class="unused">BRK</td>	<td>ORA (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA zp,Y<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">ORA [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>TSB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>ASL zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">JMP [[abs]]<br/>AM=1,OF</td>			<td class="unused">PHP</td>	<td>ORA imm<br/>RS,LE,NF</td>			<td>ASL A<br/>RS,NF</td>	<td class="x"></td>	<td>TSB abs<br/>AM,OF,RS,UM,NF</td>		<td>ORA abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>ASL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">EXT prefix</td></tr>
+<tr><th>1</th>		<td>BPL rel<br/>RS</td>		<td>ORA (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>ORA (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">ORA [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>TRB zp<br/>AM,OF,RS,UM,NF</td>	<td>ORA zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>ASL zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">ORA [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLC</td>	<td>ORA abs,y<br/>AM,OF,RS,LE,UM,NF</td>	<td>INC A<br/>RS,NF</td>	<td class="x"></td>	<td>TRB abs<br/>AM,OF,RS,UM,NF</td>		<td>ORA abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>ASL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ASL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>	
+<tr><th>2</th>		<td>JSR abs<br/>AM,OF,RS</td>	<td>AND (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>STA zp,Y<br/>AM,OF,RS,LE,UM</td>		<td class="dup">AND [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>BIT zp<br/>AM,OF,RS,LE,UM,NF</td>	<td>AND zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROL zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">JMP [[abs]],X<br/>AM=1,OF,UM</td>		<td class="unused">PLP</td>	<td>AND imm<br/>RS,LE,NF</td>			<td>ROL A<br/>RS,NF</td>	<td class="x"></td>	<td>BIT abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>AND abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROL abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">SYS prefix</td></tr>
+<tr><th>3</th>		<td>BMI rel<br/>RS</td>		<td>AND (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>AND (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">AND [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>BIT zp,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>AND zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROL zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">AND [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SEC</td>	<td>AND abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>DEC A<br/>RS,NF</td>	<td class="x"></td>	<td>BIT abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>AND abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>ROL abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROL abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>4</th>		<td class="unused">RTI</td>	<td>EOR (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA (abs),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td class="dup">EOR [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>BSR relwide<br/>RS,AM</td>		<td>EOR zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>LSR zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">LDA [[abs]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>PHA<br/>RS,UM</td>		<td>EOR imm<br/>RS,LE,NF</td>			<td>LSR A<br/>RS,NF</td>	<td class="x"></td>	<td>JMP abs<br/>AM,OF</td>			<td>EOR abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>LSR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">QUICK prefix</td></tr>
+<tr><th>5</th>		<td>BVC rel<br/>RS</td>		<td>EOR (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>EOR (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">EOR [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td class="unused"></td>		<td>EOR zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>LSR zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">EOR [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLI</td>	<td>EOR abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>PHY<br/>RS,LE,UM</td>	<td class="x"></td>	<td>STX abs,Y<br/>AM</td>			<td>EOR abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>LSR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>LSR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>6</th>		<td>RTS<br/>AM,RS</td>		<td>ADC (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA (abs,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td class="dup">ADC [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>STZ zp<br/>AM,OF,RS,UM</td>		<td>ADC zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROR zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">LDA [[abs,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>PLA<br/>RS,LE,UM,NF</td>	<td>ADC imm<br/>RS,LE,NF</td>			<td>ROR A<br/>RS,NF</td>	<td class="x"></td>	<td>JMP (abs)<br/>AM,OF</td>			<td>ADC abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROR abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>7</th>		<td>BVS rel<br/>RS</td>		<td>ADC (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>ADC (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">ADC [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>STZ zp,X<br/>AM,OF,RS,UM</td>	<td>ADC zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>ROR zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">ADC [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SEI</td>	<td>ADC abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>PLY<br/>RS,LE,UM,NF</td>	<td class="x"></td>	<td>JMP (abs,X)<br/>AM,OF</td>			<td>ADC abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>ROR abs,X<br/>AM,OF,RS,UM,NF</td>		<td>ROR abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>8</th>		<td>BRA rel<br/>RS</td>		<td>STA (zp,X)<br/>AM,OF,RS,UM,NF</td>		<td>BSR rel<br/>RS,AM</td>			<td class="dup">STA [[zp,X]]<br/>AM=1,OF,RS,UM</td>		<td>STY zp<br/>AM,OF,RS,UM</td>		<td>STA zp<br/>AM,OF,RS,UM</td>			<td>STX zp<br/>AM,OF,RS,UM</td>		<td class="dup">JSR [[abs]]<br/>AM=1,OF,RS</td>			<td>DEY<br/>RS,NF</td>		<td>BIT imm<br/>RS,LE,NF</td>			<td>TXA<br/>RS,LE,NF</td>	<td class="x"></td>	<td>STY abs<br/>AM,OF,RS,UM</td>		<td>STA abs<br/>AM,OF,RS,UM</td>		<td>STX abs<br/>AM,OF,RS,UM</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>9</th>		<td>BCC rel<br/>RS</td>		<td>STA (zp),Y<br/>AM,OF,RS,UM,NF</td>		<td>STA (zp)<br/>AM,OF,RS,LE,UM</td>		<td class="dup">STA [[zp]],Y<br/>AM=1,OF,RS,UM</td>		<td>STY zp,X<br/>AM,OF,RS,UM</td>	<td>STA zp,X<br/>AM,OF,RS,UM</td>		<td>STX zp,Y<br/>AM,OF,RS,UM</td>	<td class="dup">STA [[zp]]<br/>AM=1,OF,RS,UM</td>		<td>TYA<br/>RS,LE,NF</td>	<td>STA abs,Y<br/>AM,OF,RS,UM</td>		<td>TXS<br/>RS,LE,UM,NF</td>	<td class="x"></td>	<td>STZ abs<br/>AM,OF,RS,UM</td>		<td>STA abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,X<br/>AM,OF,RS,UM</td>		<td>STZ abs,Y<br/>AM,OF,RS,UM</td></tr>
+<tr><th>A</th>		<td>LDY imm<br/>RS,LE,NF</td>	<td>LDA (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDX imm<br/>RS,NF,LE</td>			<td class="dup">LDA [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>LDY zp<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>LDX zp<br/>AM,OF,RS,LE,UM,NF</td>	<td class="dup">JSR [[abs,X]]<br/>AM=1,OF,RS</td>		<td>TAY<br/>RS,LE,NF</td>	<td>LDA imm<br/>RS,LE,NF</td>			<td>TAX<br/>RS,LE,NF</td>	<td class="x"></td>	<td>LDY abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>LDA abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>LDX abs<br/>AM,OF,RS,LE,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>B</th>		<td>BCS rel<br/>RS</td>		<td>LDA (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">LDA [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>LDY zp,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>LDX zp,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td class="dup">LDA [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLV</td>	<td>LDA abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>TSX<br/>UM,NF</td>		<td class="x"></td>	<td>LDY abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDA abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>LDX abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>STX abs,Y<br/>AM,OF,RS,UM</td></tr>
+<tr><th>C</th>		<td>CPY imm<br/>RS,LE</td>	<td>CMP (zp,X)<br/>AM,OF,RS,LE,UM</td>		<td>STA (abs),Y<br/>AM,OF,RS,UM</td>		<td class="dup">CMP [[zp,X]]<br/>AM=1,OF,RS,LE,UM</td>		<td>CPY zp<br/>AM,OF,RS,LE,UM</td>	<td>CMP zp<br/>AM,OF,RS,LE,UM</td>		<td>DEC zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">STA [[abs]],Y<br/>AM=1,OF,RS,UM</td>		<td>INY<br/>RS,NF</td>		<td>CMP imm<br/>RS,LE</td>			<td>DEX<br/>RS,NF</td>		<td class="x"></td>	<td>CPY abs<br/>AM,OF,RS,LE,UM</td>		<td>CMP abs<br/>AM,OF,RS,LE,UM</td>		<td>DEC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>D</th>		<td>BNE rel<br/>RS</td>		<td>CMP (zp),Y<br/>AM,OF,RS,LE,UM</td>		<td>CMP (zp)<br/>AM,OF,RS,LE,UM</td>		<td class="dup">CMP [[zp]],Y<br/>AM=1,OF,RS,LE,UM</td>		<td class="unused"></td>		<td>CMP zp,X<br/>AM,OF,RS,LE,UM</td>		<td>DEC zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">CMP [[zp]]<br/>AM=1,OF,RS,LE,UM</td>		<td class="unused">CLD</td>	<td>CMP abs,Y<br/>AM,OF,RS,LE,UM</td>		<td>PHX<br/>RS,LE,UM</td>	<td class="x"></td>	<td>JSR (abs)<br/>AM,OF,RS,UM</td>		<td>CMP abs,X<br/>AM,OF,RS,LE,UM</td>		<td>DEC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>DEC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
+<tr><th>E</th>		<td>CPX imm<br/>RS,LE</td>	<td>SBC (zp,X)<br/>AM,OF,RS,LE,UM,NF</td>	<td>STA (abs,X)<br/>AM,OF,RS,UM</td>		<td class="dup">SBC [[zp,X]]<br/>AM=1,OF,RS,LE,UM,NF</td>	<td>CPX zp<br/>AM,OF,RS,LE,UM</td>	<td>SBC zp<br/>AM,OF,RS,LE,UM,NF</td>		<td>INC zp<br/>AM,OF,RS,UM,NF</td>	<td class="dup">STA [[abs,X]]<br/>AM=1,OF,RS,UM</td>		<td>INX<br/>RS,NF</td>		<td>SBC imm<br/>RS,LE,NF</td>			<td class="unused">NOP</td>	<td class="x"></td>	<td>CPX abs<br/>AM,OF,RS,LE,UM</td>		<td>SBC abs<br/>AM,OF,RS,LE,UM,NF</td>		<td>INC abs<br/>AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
+<tr><th>F</th>		<td>BEQ rel<br/>RS</td>		<td>SBC (zp),Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>SBC (zp)<br/>AM,OF,RS,LE,UM,NF</td>		<td class="dup">SBC [[zp]],Y<br/>AM=1,OF,RS,LE,UM,NF</td>	<td class="unused">TRAP<br/>RS</td>	<td>SBC zp,X<br/>AM,OF,RS,LE,UM,NF</td>		<td>INC zp,X<br/>AM,OF,RS,UM,NF</td>	<td class="dup">SBC [[zp]]<br/>AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SED</td>	<td>SBC abs,Y<br/>AM,OF,RS,LE,UM,NF</td>	<td>PLX<br/>RS,LE,UM,NF</td>	<td class="x"></td>	<td>JSR (abs,X)<br/>AM,OF,RS,UM</td>		<td>SBC abs,X<br/>AM,OF,RS,LE,UM,NF</td>	<td>INC abs,X<br/>AM,OF,RS,UM,NF</td>		<td>INC abs,Y<br/>AM,OF,RS,UM,NF</td></tr>
 </table>	<p>
 	The grey fields note opcodes that do not use any prefix bits.
 	</p><p>
@@ -933,21 +947,49 @@ abs,Y</td></tr>
 	</p><p>
 	TODO: rename to "OS" = "Operation size" or "OW" = "Operation width"?
 	</p>
-	<h3>Zero Extension</h3>
+	<h3>Load Extension</h3>
 	<p>
 	The registers have a defined width - depending on processor option - of 16, 32 or 64&nbsp;bit. Operations can be
-	from 8 to 64&nbsp;bit. When the result of an operation is written to a memory location, the data is written
-	in the same width as the operation. If the result of the operation is written to a register, the register
-	is extended with zeros to full length.
+	from 8 to 64&nbsp;bit. 
+	There are some use cases where some adaption of a value to the register size is practical. For example if 
+	an 8-bit value is used on a 32-bit operation - like adding <code>#8</code> to an address register.
 	</p><p>
-	For some operations the operation should only replace the lower part of the register, and keep the upper part
-	of the register unmodified. This can be achieved with the ZE bit.
+	For this purpose the LE bits define how a value loaded from memory (or from another register in the case of the 
+	Txy opcodes) is extended to full register size. Four options are available:</p>
+	<table class="optable">
+	<tr><th>LE1/0</th><th>Extension type</th><th>Postfix</th><th>Example</th><th>Description</th></tr>
+	<tr><td rowspan="2">00</td><td rowspan="2">no extension</td><td></td><td>LDA #$92</td><td>Loads $92 into AC, leaves upper bits untouched.</td></tr>
+	<tr><td>.E</td><td>LDY.E #$92</td><td>Loads $92 into YR, leaves upper bits untouched.</td></tr>
+	<tr><td>01</td><td>sign-extension</td><td>.S</td><td>LDA.S #$92</td><td>Because the sign of $92 is 1, this 
+		loads $ffffffffffffff92 into a 64 bit AC, truncated to actual AC width.</td></tr>
+	<tr><td rowspan="2">10</td><td rowspan="2">zero-extension</td><td>.0</td><td>LDA.0 #$92</td><td>Extends with zeros and
+		loads $0000000000000092 into a 64 bit AC, truncated to actual AC width.</td></tr>
+	<tr><td></td><td>LDY #$92</td><td>Extends with zeros and
+		loads $0000000000000092 into a 64 bit YR, truncated to actual YR width.</td></tr>
+	<tr><td>11</td><td>ones-extension</td><td>.1</td><td>LDA.1 #$92</td><td>Extends with zeros and
+		loads $ffffffffffffff92 into a 64 bit AC, truncated to actual AC width.</td></tr>
+	</table>
+	<p>
+	When the result of an operation is written to a memory location or register, the data is written
+	in the same width as the operation.
 	</p><p>
-	The ZE bit is denoted with a ".Z" bit - "no Zero extension" - to the opcode. Thus
-	</p><pre>
-	LDA.W #$1234
-	LDA.Z #$56
-	</pre><p>results in the value $1256 in the Accumulator.
+	Using this extension - i.e. having a value of not 00 - modifies the meaning of the RS prefix. RS then actually 
+	defines the width of the memory location to be read. The actual operation happens after loading the value,
+	and it happens at full width. Also flags are set appropriately from the full width result value.
+	</p><p>
+	Note that for all AC-related operations the default is "00" - do not extend. For the XR and YR registers this
+	is different. As they are always used full width in the address computations, not extending them could lead to
+	inconsistent behaviour due to leftover higher bits (e.g. from the caller of a subroutine). 
+	So when loading the YR and XR registers, the upper bits are filled with zero by default - but flags are set
+	from the original width (as defined by RS). To load XR and YR with the lower bits only, explicitely
+	set the prefix with LE0=LE1=0 (using the postfix .E). This would normally denote the original 6502 
+	behaviour and could thus be left out, but not in this case as the default is not the 6502 behaviour.
+	</p><p>
+	There is one awkwardness with the loading of X and Y. In the default handling flags are set from the 
+	original width, not the full width. This behaviour will be overwritten with the LE prefix in any form!
+	Thus, once a NF or UM prefix is required, the semantics of the LDX/LDY opcodes change. NF can be ignored,
+	as the problem is about setting the flags, which NF ignores. So only if UM is required in an LDY/LDX
+	opcode, there could be a problem. The assembler should warn about this behaviour.
     	</p>
 	<h3>User Mode selector</h3>
 	<p>
@@ -999,13 +1041,13 @@ abs,Y</td></tr>
 </table>
 	<p>Here is the description of the new opcodes:</p>
 	<ul>
-	<li>INE - increment E register by values 1 to 8</li>
-	<li>DEE - decrement E register by values 1 to 8</li>
-	<li>INB - increment B register by values 1 to 8</li>
-	<li>DEB - increment B register by values 1 to 8</li>
+	<li>SLX - shift left X by 1 to 8 bit, similar to ASL</li>
+	<li>SRX - right left X by 1 to 8 bit, similar to ASL</li>
+	<li>SLY - shift left Y by 1 to 8 bit, similar to LSR</li>
+	<li>SRY - right left Y by 1 to 8 bit, similar to LSR</li>
 	</ul>
-	<p>Note that the zp, and (E) addressing modes can be modified by the UM prefix bit, all Y,X and AC related opcodes
-	can be modified by the RS and ZE prefix. The new INE, DEE, INB, DEB opcodes always work on the full size.
+	<p>Note that the zp, and (E) addressing modes can be modified by the UM prefix bit, Y,X and AC related opcodes
+	can be modified by the RS prefix. LE is not applicable as these opcodes are read-modify-write operations.
 	All opcodes can be modified by the NF prefix.
 	</p>
   	<p>These have been deprecated as they are redundant to ADE/SBE/ADB/SBB:</p>
@@ -1024,42 +1066,40 @@ abs,Y</td></tr>
 	</p>
 <table class="optable">
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th>			<th>1</th>				<th>2</th>				<th>3</th>	<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>	<th>8</th>			<th>9</th>				<th>A</th>		<th>B</th>	<th>C</th>				<th>D</th>				<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br/>AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td>PHE<br/>RS,UM</td>		<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TPA<br/>NF</td>	<td></td>	<td>TSB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td>BCN (E)<br/>RS,UM,NF</td>	<td></td></tr>
-<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td></td>		<td></td>	<td>TRB (E)<br/>RS,ZE,UM,NF</td>	<td></td>				<td></td>			<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br/>RS</td>			<td></td>				<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>PLE<br/>RS,ZE,UM,NF</td>	<td>AND (E)<br/>RS,ZE,UM,NF</td>	<td>TBA<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>ADE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLE<br/>RS,NF</td>		<td>LDE imm<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br/>AM,OF,UM,NF</td>	<td></td> 	<td>WMB<br/>UM</td>			<td></td>				<td>ADS imm<br/>RS,ZE,UM,NF,EE</td>	<td></td>	<td>PHB<br/>RS,UM</td>		<td>EOR (E)<br/>RS,ZE,UM,NF</td>	<td>TEA<br/>NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td></td></tr>
-<tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>EXT<br/>RS,ZE,NF</td>		<td></td>				<td>ADS A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>PRB<br/>RS,ZE,UM,NF</td>	<td></td>				<td>SEB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br/>AM,OF,UM,NF</td>	<td></td>	<td>RMB<br/>UM</td>			<td></td>				<td>ADB imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>PLB<br/>RS,ZE,UM,NF</td>	<td>ORA (E)<br/>RS,ZE,UM,NF</td>	<td>TAE<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>7</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>CUT<br/>RS,ZE,NF</td>		<td></td>				<td>ADB A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLB<br/>RS,NF</td>		<td></td>				<td>SAE<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>8</th>		<td>LEA rel<br/>RS,UM,NF</td>		<td>PEA (zp,X)<br/>AM,OF,UM</td>	<td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>		<td>PEA zp<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>INV<br/>RS,ZE,NF</td>	<td>BIT (E)<br/>RS,ZE,UM,NF</td>	<td>TYS<br/>UM,NF</td>	<td></td>	<td></td>				<td>PEA abs<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
-<tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br/>AM,OF,UM</td>	<td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td></td>				<td>PEA zp,X<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>BCN<br/>RS,NF</td>		<td>PEA abs,Y<br/>AM,OF,UM</td>		<td>SXY<br/>RS,ZE,NF</td><td></td>	<td>STZ (E)<br/>RS,UM</td>		<td>PEA abs,X<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
-<tr><th>A</th>		<td>LDY (E)<br/>RS,ZE,UM,NF</td>	<td>LEA (zp,X)<br/>AM,OF,UM,NF</td>	<td>LDX (E)<br/>RS,ZE,UM,NF</td>	<td></td>	<td>LLA (E)<br/>RS,ZE,UM,NF</td>	<td>LEA zp<br/>AM,OF,UM,NF</td>		<td>SBE imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>SWP<br/>RS,ZE,NF</td>	<td>LDA (E)<br/>RS,ZE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td>LEA abs<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
-<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>SBE A<br/>RS,ZE,NF,EE</td>		<td></td>	<td></td>			<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>SAX<br/>RS,ZE,NF</td><td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
-<tr><th>C</th>		<td>CPY (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br/>AM,OF,UM</td>	<td></td>	<td>WMB (E)<br/>UM</td>			<td></td>				<td>SBS imm<br/>RS,ZE,UM,NF,EE</td>	<td></td>	<td>CLX<br/>RS,NF</td>		<td>CMP (E)<br/>RS,ZE,UM,NF</td>	<td>TSY<br/>UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBS A<br/>RS,ZE,NF,EE</td>		<td></td>	<td>CLY<br/>RS,NF</td>		<td></td>				<td>SAY<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>E</th>		<td>CPX (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td>RMB (E)<br/>UM</td>			<td></td>				<td>SBB imm<br/>RS,ZE,NF,EE</td>	<td></td>	<td>CLA<br/>RS,NF</td>		<td>SBC (E)<br/>RS,ZE,UM,NF</td>	<td>TAB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>F</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBB A<br/>RS,ZE,NF,EE</td>		<td></td>	<td></td>			<td></td>				<td>SAB<br/>RS,ZE,NF</td><td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br/>AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td>PHE<br/>RS,UM</td>		<td>ORA (E)<br/>RS,LE,UM,NF</td>	<td>TPA<br/>NF</td>	<td></td>	<td>TSB (E)<br/>RS,UM,NF</td>		<td></td>				<td>BCN (E)<br/>RS,UM,NF</td>	<td></td></tr>
+<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td></td>		<td></td>	<td>TRB (E)<br/>RS,UM,NF</td>		<td></td>				<td></td>			<td></td></tr>	
+<tr><th>2</th>		<td>JSR (E)<br/>RS</td>			<td></td>				<td>PEA zp,Y<br/>AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br/>RS,LE,NF</td>		<td></td>	<td>PLE<br/>RS,LE,UM,NF</td>	<td>AND (E)<br/>RS,LE,UM,NF</td>	<td>TBA<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>BIT A<br/>RS</td>			<td></td>				<td>ADE A<br/>RS,LE,NF</td>		<td></td>	<td>CLE<br/>RS,NF</td>		<td>LDE imm<br/>RS,LE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br/>AM,OF,UM,NF</td>	<td></td> 	<td>WMB<br/>UM</td>			<td></td>				<td>ADS imm<br/>RS,LE,UM,NF</td>	<td></td>	<td>PHB<br/>RS,UM</td>		<td>EOR (E)<br/>RS,LE,UM,NF</td>	<td>TEA<br/>NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td></td></tr>
+<tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>EXT<br/>RS,LE,NF</td>		<td></td>				<td>ADS A<br/>RS,LE,NF</td>		<td></td>	<td>PRB<br/>RS,LE,UM,NF</td>	<td></td>				<td>SEB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br/>AM,OF,UM,NF</td>	<td></td>	<td>RMB<br/>UM</td>			<td></td>				<td>ADB imm<br/>RS,LE,NF</td>		<td></td>	<td>PLB<br/>RS,LE,UM,NF</td>	<td>ORA (E)<br/>RS,LE,UM,NF</td>	<td>TAE<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>7</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>ADB A<br/>RS,LE,NF</td>		<td></td>	<td>CLB<br/>RS,NF</td>		<td></td>				<td>SAE<br/>RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>8</th>		<td>LEA rel<br/>RS,UM,NF</td>		<td>PEA (zp,X)<br/>AM,OF,UM</td>	<td>PEA rel<br/>RS,UM</td>		<td></td>	<td>SCA (E)<br/>RS,UM</td>		<td>PEA zp<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>INV<br/>RS,LE,NF</td>	<td>BIT (E)<br/>RS,LE,UM,NF</td>	<td>TYS<br/>UM,NF</td>	<td></td>	<td></td>				<td>PEA abs<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
+<tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br/>AM,OF,UM</td>	<td>PEA (zp)<br/>AM,OF,UM</td>		<td></td>	<td></td>				<td>PEA zp,X<br/>AM,OF,UM</td>		<td></td>				<td></td>	<td>BCN<br/>RS,NF</td>		<td>PEA abs,Y<br/>AM,OF,UM</td>		<td>SXY<br/>RS,NF</td>	<td></td>	<td>STZ (E)<br/>RS,UM</td>		<td>PEA abs,X<br/>AM,OF,UM</td>		<td></td>			<td></td></tr>
+<tr><th>A</th>		<td>LDY (E)<br/>RS,LE,UM,NF</td>	<td>LEA (zp,X)<br/>AM,OF,UM,NF</td>	<td>LDX (E)<br/>RS,LE,UM,NF</td>	<td></td>	<td>LLA (E)<br/>RS,LE,UM,NF</td>	<td>LEA zp<br/>AM,OF,UM,NF</td>		<td>SBE imm<br/>RS,LE,NF</td>		<td></td>	<td>SWP<br/>RS,NF</td>		<td>LDA (E)<br/>RS,LE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td>LEA abs<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
+<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br/>AM,OF,UM,NF</td>	<td>LEA (zp)<br/>AM,OF,UM,NF</td>	<td></td>	<td></td>				<td>LEA zp,X<br/>AM,OF,UM,NF</td>	<td>SBE A<br/>RS,LE,NF</td>		<td></td>	<td></td>			<td>LEA abs,Y<br/>AM,OF,UM,NF</td>	<td>SAX<br/>RS,NF</td>	<td></td>	<td></td>				<td>LEA abs,X<br/>AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
+<tr><th>C</th>		<td>CPY (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br/>AM,OF,UM</td>	<td></td>	<td>WMB (E)<br/>UM</td>			<td></td>				<td>SBS imm<br/>RS,LE,UM,NF</td>	<td></td>	<td></td>			<td>CMP (E)<br/>RS,LE,UM,NF</td>	<td>TSY<br/>UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBS A<br/>RS,LE,NF</td>		<td></td>	<td></td>			<td></td>				<td>SAY<br/>RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>E</th>		<td>CPX (E)<br/>RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br/>AM,OF,UM</td>	<td></td>	<td>RMB (E)<br/>UM</td>			<td></td>				<td>SBB imm<br/>RS,LE,NF</td>		<td></td>	<td>CLA<br/>NF</td>		<td>SBC (E)<br/>RS,LE,UM,NF</td>	<td>TAB<br/>NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
+<tr><th>F</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBB A<br/>RS,LE,NF</td>		<td></td>	<td></td>			<td></td>				<td>SAB<br/>RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
 </table>    
 	<p>Note that including the prefix bytes an opcode may be three bytes long (prefix1, EXT prefix, and opcode). 
 	Prefix2 is (currently) not used with EXT opcodes.
 	</p><p>
 	Here are short explanations of the new opcodes:</p>
 	<ul>
+	<li>BIT A - apply BIT not to a memory location, but to AC - to set the flags from AC</li>
 	<li>TPA - Transfer Program counter to Accumulator [1]</li>
 	<li>PLB - PulL Base register: pull the base offset register from the stack</li>
 	<li>PHB - PusH Base register: push the base offset register to the stack</li>
-	<li>SAB - Swap Accumulator and Base register [1][2]</li>
+	<li>SAB - Swap Accumulator and Base register [1]</li>
 	<li>PRB - Push and Replace Base register: Push base offset register to the stack, then transfer accumulator to
 		the base register</li>
-	<li>EXT - extend a register from the size given by RS to full size (using ZE bits)</li>
-	<li>CUT - cut the register from full size to RS, extending the upper bits using ZE (from the RS sized bits)</li>
-	<li>SAX - Swap Accumulator and X register [1][2]</li>
-	<li>SAY - Swap Accumulator and Y register [1][2]</li>
-	<li>SXY - Swap X register and Y register [1][2]</li>
-	<li>CLX - clear X register</li>
-	<li>CLY - clear Y register</li>
-	<li>CLA - clear accumulator</li>
+	<li>EXT - extend a register from the size given by RS to full size (using LE bits)</li>
+	<li>SAX - Swap Accumulator and X register [1]</li>
+	<li>SAY - Swap Accumulator and Y register [1]</li>
+	<li>SXY - Swap X register and Y register [1]</li>
+	<li>CLA - clear accumulator (full width only)</li>
 	<li>LEA - Load Effective Address: compute the effective address and store it in the E (effective Address) register (always full width)</li>
 	<li>LDE - Load value into E (effective address) register</li>
 	<li>TAE - Transfer Accumulator to E register</li>
@@ -1069,7 +1109,7 @@ abs,Y</td></tr>
 	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1][2]</li>
 	<li>PHE - Push E register</li>
 	<li>PLE - Pull E register</li>
-	<li>SAE - Swap AC with E register (does not update flags)</li>
+	<li>SAE - Swap AC with E register [1]</li>
 	<li>ADE - ADd to E register (either immediate value or AC)</li>
 	<li>ADB - ADd to B register (either immediate value or AC)</li>
 	<li>ADS - ADd to Stack pointer (either immediate value or AC)</li>
@@ -1084,13 +1124,14 @@ abs,Y</td></tr>
 	<li>RMB - Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
 	<li>WMB - Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
 	<li>FIL - Fill memory area with a byte value</li>
-	<li>INV - invert AC, i.e. set AC to the 2s-complement of AC.</li>
+	<li>INV - invert AC, i.e. set AC to the 2s-complement of AC (use EOR #$FF for 1s-complement).</li>
 	<li>SWP - swap upper and lower part nibble / byte / word / long word of a byte / word / long / quad (longlong) operand
 		in Accumulator</li>
 	</ul><p>Notes:</p>
 	<ol>
 	<li>The RS prefix determines the computation width of the effective address. 
-		The value is always sign-extended, ZE prefix is not supported.
+		The value is always sign-extended, LE prefix is not supported.
+		Flags are not changed after this operation.
 		The Overflow bit V is set 
 		when the effective address is larger than what is possible with the given RS prefix</li>
 	<li>The UM prefix selects the user mode stack pointer, so the effective address is pushed
@@ -1101,6 +1142,8 @@ abs,Y</td></tr>
 	<li>PKA - peek stack: read value from stack into AC without modifying the stack pointer - replaced with the standard LDA S,$01</li>
 	<li>PKX - peek stack: read value from stack into X without modifying the stack pointer - replaced with the standard LDX S,$01</li>
 	<li>PKY - peek stack: read value from stack into Y without modifying the stack pointer - replaced with the standard LDY S,$01</li>
+	<li>CLX, CLY - clear X, Y: replaced with standard LDX #$00, with same byte count now that X/Y loads are zero-extended</li>
+	<li>CUT - cut the register from full size to RS, extending the upper bits (from the RS sized bits) using LE - same as EXT!</li>
 	</ul>
 	<p>TODO: Mult/Div opcodes</p>
 	</desc>
@@ -1114,8 +1157,8 @@ abs,Y</td></tr>
 <tr><th>LSB-&gt;<br/>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
 <tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>	
-<tr><th>2</th>		<td></td>	<td>SCR imm</td><td></td>	<td></td>	<td>BIT SR,imm<br/>RS</td>	<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>BIT ISR,imm</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>2</th>		<td></td>	<td>SCR imm</td><td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
+<tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>4</th>		<td></td>	<td>BCR imm</td><td></td>	<td></td> 	<td>SMMU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td>CLEIM</td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br/>OF,AM</td><td></td>	<td></td>	<td></td></tr>
@@ -1209,7 +1252,7 @@ abs,Y</td></tr>
        <subsection toc="ovmmu" name="Blitter opcodes">
 	<desc><p>
 	Note: this section still needs to be worked out. It is not clear if the blitter opcodes
-	could not be implemented column in the SYS opcodes table. Blitter opcodes would be 
+	could be a not implemented column in the SYS opcodes table. Blitter opcodes would be 
 	privileged.
     	</p></desc>
        </subsection>
@@ -1308,16 +1351,18 @@ abs,Y</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF4/5</td><td>Abort PRIVRTI</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF2/3</td><td>Abort PRIVOP</td></tr>
 	<tr><td>$FFFFFFFFFFFFFFF0/1</td><td>Abort MAXTRAP</td></tr>
+	<tr><td>$FFFFFFFFFFFFFFEE/F</td><td>Abort PRIMEM</td></tr>
 	</table>
 	<p>The following table describes the abort conditions:</p>
     <table border="1">
 <tr><th>Name</th><th>Explanation</th></tr>
-<tr><td>NOMEM</td><td>No memory mapping available for address (also user mode access on memory available only on hypervisor mode)</td></tr>
+<tr><td>NOMEM</td><td>No memory mapping available for address</td></tr>
 <tr><td>WPROT</td><td>Write attempt into read-only memory</td></tr>
 <tr><td>NOEXEC</td><td>Opcode fetch on a no-execute memory area</td></tr>
 <tr><td>PRIVRTI</td><td>Attempt to set the hypervisor bit from stack via RTI for example</td></tr>
 <tr><td>PRIVOP</td><td>Attempt to execute a privileged operation</td></tr>
 <tr><td>MAXTRAP</td><td>Attempt to execute a TRAP opcode with a trap number above the allowed maximum value</td></tr>
+<tr><td>PRIVMEM</td><td>User mode access on memory available only on hypervisor mode</td></tr>
     </table>
       </desc>
     </subsection>
@@ -1357,7 +1402,7 @@ abs,Y</td></tr>
 	What happens when an interrupt or a trap occurs? The interrupt procedure is very similar to the
 	original 6502 interrupt.
       </p><p>
-	Then the program counter is written to the stack. 
+	First the program counter is written to the stack. 
 	As the program counter can be wider than the original 6502's program counter, the value
 	written on the stack can be variable width. I.e. if the address is a "canonical address" - 
 	the uppermost 33 resp. 49 bits are all ones, or all zeros (i.e. sign-extended 
@@ -1370,8 +1415,10 @@ abs,Y</td></tr>
       </p><p>
 	In case of an interrupt then the low status byte (that mirrors the original 6502 status register)
 	is written to the stack. This is not done on TRAP, as the return from TRAP should not overwrite
-	returned status values. Bit5 of the status byte, however, is set to 0. When pulling this
-	from the stack this indicates the extended stack frame.
+	returned status values - TRAP always uses the extended stack frame. 
+	Bit5 of the status byte, however, is set to 0. When pulling this
+	from the stack this indicates the extended stack frame. 
+	Note that this is a slight incompatibility with original 6502 code - although in an obscure edge case!
       </p><p>
 	After that the processor goes into hypervisor mode (concerning matchcode and stack pointer).
 	Then the respective address vector is fetched and jumped to.
@@ -1379,8 +1426,8 @@ abs,Y</td></tr>
 	This results in the situation that the TRAP exception stack frame as well as the
 	interrupt exception stack frame are stored on the user mode stack (if execution happens
 	during user mode).
-	The previous hypervisor status bit is stored in the extended status register (so RTI knows
-	from where to pull the exception stack frame, resp. stacked interrupts work!) 
+	The previous hypervisor status bit is stored in the CPU extended status register (so RTI knows
+	from where to pull the exception stack frame. This also makes stacked interrupts work! 
       </p><p>
 	This procedure means that similar to the 6502 no other registers are stored on the stack, 
 	this must be done by the interrupt routine.
@@ -1392,19 +1439,23 @@ abs,Y</td></tr>
 	For the return from a TRAP, there is the RTU opcode, Return to User space. It determines the
 	previous hypervisor state bit (from the current extended status byte) and determines from that
 	from which enviroment (user mode or hypervisor mode stack pointer / match code) to pull the exception stack frame.
-	It then pulls the extended status byte from this stack. It determines the stack frame size from there,
-	pulls the return address and jumps there.
+	This is also the target environment after the opcode execution.
+	It then pulls the extended status byte from this stack. If the target environment is hypervisor, then the 
+	previous hypervisor mode bit in the CPU is set from the value on the stack. If not, this bit is cleared.
+	It determines the stack frame size from the extended status byte, pulls the return address and jumps there.
       </p><p>
 	Note that to not have a possible security leak the "previous" hypervisor mode bit must not be modifiable
 	from user space! It is set when entering a TRAP or interrupt vector, which are the only ways of
 	entering the hypervisor mode, so hypervisor always has a valid value. When restoring the previous 
-	hypervisor mode bit from an RTU or RTI opcode, it is always set.
+	hypervisor mode bit from the stack frame with an RTU or RTI opcode, it is only set when the stack frame is
+	read from hypervisor mode.
       </p><p>
 	For the return from an interrupt, there is the RTI opcode. It first determines the environment
 	to pull the execption stack frame from as in the RTU opcode.
 	It then pulls the status byte from this stack and restores it. If bit 5 is zero, it pulls the extended stack frame
 	similar to the the TRAP opcode. It bit 5 is one, it goes into 6502 compatibility mode - pulls a two
-	byte return address from the stack. 
+	byte return address from the stack. In this case the hypervisor flags are not modified. 
+	The address that has been read is then sign-extended to full address width.
 	It then jumps to the return address.
       </p><p>
 	If an RTI opcode is executed from user space, the previous hypervisor bit is cleared no matter what is
@@ -1497,7 +1548,8 @@ abs,Y</td></tr>
 				occurs</td></tr>
 	<tr><td>1</td><td>HYPERVISOR</td><td>If set, the address mapping is only available in hypevisor
 				mode. If hypervisor mode is off, this mapping never matches</td></tr>
-	<tr><td>2</td><td>READONLY</td><td>If set, the memory area mapped here is read-only, writes are ignored if TRAPWRITE is not set</td></tr>
+	<tr><td>2</td><td>READONLY</td><td>If set, the memory area mapped here is read-only, writes are ignored if TRAPWRITE 
+				is not set</td></tr>
 	<tr><td>3</td><td>TRAPWRITE</td><td>If set, and READONLY is set, then a bus error condition occurs on writes</td></tr>
 	<tr><td>4</td><td>NOEXECUTE</td><td>If set, a bus error condition occurs when the processor
 				tries to read an opcode from this mapping</td></tr>
@@ -1551,9 +1603,70 @@ abs,Y</td></tr>
       <desc><p>
 	The 65k will support multiprocessing. With the LLA and SCA it supports load-linked and store-conditional
 	multiprocessor-safe synchronization primitives. 
-	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB) are in general 
-	not multiprocessor-safe. They may be multicore-safe (two cores on one processor).
+	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB, SLY, SRY, SLX, SRX) 
+	are in general not multiprocessor-safe. They may be multicore-safe (two cores on one processor).
       </p></desc>
+  </section>
+
+  <section toc="compat" name="6502 Software Compatibility Notes">
+      <desc><p>
+	Here are some notes on compatibility with the 6502.
+      </p></desc>
+      <subsection toc="compatstack" name="Stack Frame">
+	<desc><p>
+	  The 65k has, on purpose, an extended interrupt functionality. Thus it needs an extended stack frame
+	  to store the additional information, as described above. Yet there is 6502 compatibility included:
+	</p>
+	<table border="1">
+	<tr><th colspan="3">Stack Frames</th></tr>
+	<tr><th>Address</th><th>6502</th><th>65k</th></tr>
+	<tr><th>S+10</th><td rowspan="3"></td><td>ADDR byte 7</td></tr>
+	<tr><th>S+5..9</th>                <td>ADDR byte 2..6</td></tr>
+	<tr><th>S+4</th>                <td>ADDR byte 1</td></tr>
+	<tr><th>S+3</th><td>ADDR byte 1</td><td>ADDR byte 0</td></tr>
+	<tr><th>S+2</th><td>ADDR byte 0</td><td>Extended Status Byte</td></tr>
+	<tr><th>S+1</th><td>Status register (bit5=1)</td><td>Status Register (bit5=0)</td></tr>
+	</table>
+	<p>
+	  As you can see it is the status register bit 5 that determines whether an extended 
+	  stack frame is used or not. In a 6502 it is always 1. 
+	  As a result, if some 6502 software creates an artificial stack frame with bit5 cleared,
+	  it will trigger the use of an extended stack frame and crash.
+	</p>
+      	</desc>
+      </subsection>
+
+      <subsection toc="compatpointer" name="Interrupt Pointer">
+	<desc><p>
+	  As the 65k has an extended interrupt functionality, the number - and size - of the 6502 interrupt
+	  pointer does not suffice anymore for an efficient operation.
+	</p>
+	<p>
+	  For compatibility reasons the CPU starts with a restricted set of 6502-compatible interrupt vectors
+	  as described above. Only when the Interrupt Base Register is set, the extended, per interrupt
+	  jump vectors are used.
+	</p><p>
+	  In addition, as long as the Interrupt Base Register is not set, the interrupt routine is using the
+	  6502-compatible stack frame as interrupt stack frame. I.e. Status register bit5 is kept as one, and
+	  only two bytes of the address are stored (which are sign-extended on RTI though). Also the 
+	  hypervisor bits are not set on interrupt in this case.
+	</p>
+      	</desc>
+      </subsection>
+
+      <subsection toc="compattiming" name="Timing">
+	<desc><p>
+	  The 65k will NOT be timing compatible with the 6502.
+	</p><p>
+	  Although one might think of using an 8-bit accumulator and the typical 6502 pipelining to extend
+	  the original 6502, this is not the goal of this design.
+	  The goal is to venture into wider address and data bus sizes, and also use wider accumulators,
+	  to effectively use the available features of today's programmable logic.
+	  So this makes it very unlikely, if not impossible, that a timing-compatible 65k will ever exist.
+	</p>
+      	</desc>
+      </subsection>
+
   </section>
    
   <closing>

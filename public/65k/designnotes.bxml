@@ -27,11 +27,72 @@
 	</p>
   </overview>
   <news>
+    <item date="2011-12-23">
+	Addded some discussion about the ZE/EE and LE prefixes
+    </item>
     <item date="2011-05-01">
 	Started this page
     </item>
   </news>
   <toc/>
+
+  <section toc="irq" name="Interrupt Compatibility">
+     <desc><p>
+	TODO
+     </p></desc>
+  </section>
+
+  <section toc="extends" name="Extension Prefixes">
+     <desc><p>
+	When providing wider registers than before, of course there must be a way to 
+	access those registers in a wide way. This is given with the RS prefix. 
+	However, what is the best way to manage transfers between different register widths?
+	</p><p>
+	There should be a way to load for example a byte and extend it to a wider size.
+	Or the result of an operation should be automatically extended. 
+	And how can a value be truncated?
+	What about loading X and Y with short values when they are always used full width in the
+	addressing modes?
+     </p></desc>
+     <subsection toc="ZE" name="The ZE prefix">
+	<desc><p>
+	  The first attempt was the ZE prefix. Without the prefix all stores to a register
+	  would be zero-extended. I.e. when, after a load or another operation, the value was
+	  written to a register, the value was zero-extended to full width.
+	  This accommodated for the X/Y loads fine, and provided some automation for AC. As
+	  each operation was sized by RS anyway, zero-extending them was not a problem.
+	  However, to add an 8-bit value to AC with a full width operation, the ADC would
+	  still need to load the full width value, even though the value was only 8 bit.
+	</p></desc>
+     </subsection>
+     <subsection toc="EE" name="The EE prefix">
+	<desc><p>
+	  Therefore the EE prefix - Early Extension means that the value is loaded on RS width,
+	  and the zero-extension is done "early": before the operation, that then happens on full width.
+	  This solves the problem of loading a narrow value for a wide operation.
+	  However ...
+	</p></desc>
+     </subsection>
+     <subsection toc="LE" name="The LE prefix">
+	<desc><p>
+	  ... there is only the ability to extend with zeros. And can a register not be extended after having been
+	  set with a separate opcode?
+	  So now there is an LE prefix, that extends a value when loaded from memory (or another register).
+	  I.e. instead of extending a value when it is written like in the original approach, 
+	  it is now extended when loaded. With the EXT opcode it can then be truncated to the relevant number
+	  of bits - or the value could just be stored to memory with a narrow STA instead of a full-width one.
+	</p><p>	
+	  The default operation on a load of X and Y would be to zero-extend the registers, as they are always used full-width
+	  in the addressing modes. Flags would be set from the original size. 
+	  This implements the "least surprise" strategy. Not-extending could be done
+	  with an explicit LE prefix saying so. 
+	</p><p>	
+	  For the AC it is less important, as every operation on AC is explicitely sized
+	  (using RS) or 8-bit only - so upper bits do not matter on such operations and can be left by default.
+	  Therefore AC is not extended by default.
+	</p></desc>
+     </subsection>
+  </section>
 
   <section toc="placement" name="Placing opcodes in the opcode map">
      <desc><p>
