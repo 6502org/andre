@@ -967,16 +967,20 @@ abs,Y</td></tr>
 	Txy opcodes) is extended to full register size. Four options are available:</p>
 	<table class="optable">
 	<tr><th>LE1/0</th><th>Extension type</th><th>Postfix</th><th>Example</th><th>Description</th></tr>
-	<tr><td rowspan="2">00</td><td rowspan="2">no extension</td><td></td><td>LDA #$92</td><td>Loads $92 into AC, leaves upper bits untouched.</td></tr>
+	<tr><td rowspan="2">00</td><td rowspan="2">no extension</td><td></td><td>ADC #$92</td>
+		<td>Adds $92 to AC in 8 bit operation, leaves upper bits untouched.
+		Default for non-load/transfer operations.</td></tr>
 	<tr><td>.E</td><td>LDY.E #$92</td><td>Loads $92 into YR, leaves upper bits untouched.</td></tr>
-	<tr><td>01</td><td>sign-extension</td><td>.S</td><td>LDA.S #$92</td><td>Because the sign of $92 is 1, this 
-		loads $ffffffffffffff92 into a 64 bit AC, truncated to actual AC width.</td></tr>
-	<tr><td rowspan="2">10</td><td rowspan="2">zero-extension</td><td>.0</td><td>LDA.0 #$92</td><td>Extends with zeros and
-		loads $0000000000000092 into a 64 bit AC, truncated to actual AC width.</td></tr>
+	<tr><td>01</td><td>sign-extension</td><td>.S</td><td>ADC.S #$92</td><td>Because the sign of $92 is 1, this 
+		adds $ffffffffffffff92 to AC with a 64 bit operation, truncated to actual processor width.</td></tr>
+	<tr><td rowspan="2">10</td><td rowspan="2">zero-extension</td><td>.0</td><td>ADC.0 #$92</td><td>Extends with zeros and
+		adds $0000000000000092 to AC in a 64 bit operation, truncated to actual AC width. 	
+		</td></tr>
 	<tr><td></td><td>LDY #$92</td><td>Extends with zeros and
-		loads $0000000000000092 into a 64 bit YR, truncated to actual YR width.</td></tr>
-	<tr><td>11</td><td>ones-extension</td><td>.1</td><td>LDA.1 #$92</td><td>Extends with zeros and
-		loads $ffffffffffffff92 into a 64 bit AC, truncated to actual AC width.</td></tr>
+		loads $0000000000000092 into a 64 bit YR, truncated to actual processor width.
+		Default for loads and transfer operations</td></tr>
+	<tr><td>11</td><td>ones-extension</td><td>.1</td><td>ADC.1 #$92</td><td>Extends with ones and
+		adds $ffffffffffffff92 to AC in a 64 bit operation, truncated to actual processor width.</td></tr>
 	</table>
 	<p>
 	When the result of an operation is written to a memory location or register, the data is written
@@ -984,21 +988,28 @@ abs,Y</td></tr>
 	</p><p>
 	Using this extension - i.e. having a value of not 00 - modifies the meaning of the RS prefix. RS then actually 
 	defines the width of the memory location to be read. The actual operation happens after loading the value,
-	and it happens at full width. Also flags are set appropriately from the full width result value.
+	and it happens at full width. 
+	For operations other than loads, the flags are set appropriately from the 
+	full width operation result value. For loads (LDA, LDX, LDY) and transfers (TAX, ...), however, 
+	the flags are set from the RS-width value that is read from memory (note: if you need flags from
+	the full width value, use BIT A, but in general you should know the outcome of the extension of a load opcode).
 	</p><p>
-	Note that for all AC-related operations the default is "00" - do not extend. For the XR and YR registers this
-	is different. As they are always used full width in the address computations, not extending them could lead to
-	inconsistent behaviour due to leftover higher bits (e.g. from the caller of a subroutine). 
-	So when loading the YR and XR registers, the upper bits are filled with zero by default - but flags are set
-	from the original width (as defined by RS). To load XR and YR with the lower bits only, explicitely
+	There is another difference between loads/transfers and other operations. Loads and transfers do a zero-extension
+	by default, while other opcodes do not extend. To change the load/transfer default behaviour, use an explicit LE prefix
+	of 00. The assembler should take care to create the correct prefix when using another prefix bit in prefix2.
+	For example doing a LDA.U should automatically be set to LDA.U0.
+	</p><p>
+	This somewhat inconsistent behaviour between loads/stores and others implements a "least surprise" strategy 
+	for loads. X and Y are always used full-width in address calculation. Doing an LDY #0 would not clear all bits
+	and depending what previously executed code left in those bits this leads to unexpected behaviour. 
+	Even with the extension, however, the flags need to be set from the width that has been read - in general 8 bits,
+	to be compatible with 6502 code.
+	</p><p>
+	So when loading a register, the upper bits are filled with zero by default - but flags are set
+	from the original width (as defined by RS). To load AC with the lower bits only, explicitely
 	set the prefix with LE0=LE1=0 (using the postfix .E). This would normally denote the original 6502 
-	behaviour and could thus be left out, but not in this case as the default is not the 6502 behaviour.
-	</p><p>
-	There is one awkwardness with the loading of X and Y. In the default handling flags are set from the 
-	original width, not the full width. This behaviour will be overwritten with the LE prefix in any form!
-	Thus, once a NF or UM prefix is required, the semantics of the LDX/LDY opcodes change. NF can be ignored,
-	as the problem is about setting the flags, which NF ignores. So only if UM is required in an LDY/LDX
-	opcode, there could be a problem. The assembler should warn about this behaviour.
+	behaviour and could thus be left out, but not in this case as the default - for loads/transfers - is not the 
+	6502 behaviour, yet compatible.
     	</p>
 	<h3>User Mode selector</h3>
 	<p>

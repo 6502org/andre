@@ -139,7 +139,22 @@ more modern browser, like Internet Explorer 8 or later,
 	  it is now extended when loaded. With the EXT opcode it can then be truncated to the relevant number
 	  of bits - or the value could just be stored to memory with a narrow STA instead of a full-width one.
 	</p><p>	
-	  The default operation on a load of X and Y would be to zero-extend the registers, as they are always used full-width
+	  There are two ways of behaviour with the LE prefix.
+	</p><ul>
+	<li>Load/Transfer operations: Here the value is zero-extended by default, flags are set from the original width given
+		by RS. This allows to simply clear an index register with LDY #$00, no matter the processor width and 
+		no matter what was left over in Y from previous code. As flags are set from the RS-width value, this
+		is also compatible with the 6502. Also it provides more information, as for example the sign of the value
+		would be masked by a zero-extension would the flags be taken from the full width value.</li>
+	<li>Other operations: In other operations the extension takes place before the operation. I.e. RS determines the 
+		load width, but the operation is done on full width.
+		The flags are taken from the result of the operation - which is 
+		full width in case of an extension. So flags represent the true result of the operation.
+		However, to avoid accidently extending to a full operation - which is most certainly not wanted in
+		e.g. ADC - the default here is to not extend.</li>
+	</ul>
+	<p>	
+	  The default operation on a load of X and Y thus is to zero-extend the registers, as they are always used full-width
 	  in the addressing modes. Flags would be set from the original size. 
 	  This implements the "least surprise" strategy. Not-extending could be done
 	  with an explicit LE prefix saying so. 
