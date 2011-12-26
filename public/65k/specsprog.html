@@ -170,6 +170,11 @@ more modern browser, like Internet Explorer 8 or later,
 		<li>Some small changes here and there, esp. clarifications around the interrupt handling</li>
 		<li>Added the Software Compatibility section</li>
 		</ul></td></tr>
+	<tr><td>2011-12-27</td><td>André  Fachat</td><td><ul>
+		<li>Replace manually maintained tables (std/EXT pages and addressing modes) with 
+			ones generated from an XML file which will be the basis for an assembler
+			and some VHDL code generation.</li>
+		</ul></td></tr>
       </table>
     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the different versions of the 65k processor
 	</p>
@@ -371,274 +376,27 @@ more modern browser, like Internet Explorer 8 or later,
 	</p>
      <h3><a name="ovops" id="ovops">Opcodes Overview</a></h3>
 
-<table class="optable"><tr><th>LSB-&gt;<br />
-MSB</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
-<tr><th>0</th><td>BRK<br />
-</td><td>ORA<br />
-(zp,X)</td><td class="c65k">LDA<br />
-zp,Y</td><td class="c65k">ORA<br />
-[[zp,X]]</td><td class="cmos">TSB<br />
-zp</td><td>ORA<br />
-zp</td><td>ASL<br />
-zp</td><td class="c65k">JMP<br />
-[[abs]]</td><td>PHP<br />
-</td><td>ORA<br />
-#byte</td><td>ASL<br />
-</td><td class="unused"></td><td class="cmos">TSB<br />
-abs</td><td>ORA<br />
-abs</td><td>ASL<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>1</th><td>BPL<br />
-rel</td><td>ORA<br />
-(zp),Y</td><td class="cmos">ORA<br />
-(zp)</td><td class="c65k">ORA<br />
-[[zp]],Y</td><td class="cmos">TRB<br />
-zp</td><td>ORA<br />
-zp,X</td><td>ASL<br />
-zp,X</td><td class="c65k">ORA<br />
-[[zp]]</td><td>CLC<br />
-</td><td>ORA<br />
-abs,Y</td><td class="cmos">INC<br />
-</td><td class="unused"></td><td class="cmos">TRB<br />
-abs</td><td>ORA<br />
-abs,X</td><td>ASL<br />
-abs,X</td><td>ASL<br />
-abs,Y</td></tr>
-<tr><th>2</th><td>JSR<br />
-abs</td><td>AND<br />
-(zp,X)</td><td class="c65k">STA<br />
-zp,Y</td><td class="c65k">AND<br />
-[[zp,X]]</td><td>BIT<br />
-zp</td><td>AND<br />
-zp</td><td>ROL<br />
-zp</td><td class="c65k">JMP<br />
-[[abs,X]]</td><td>PLP<br />
-</td><td>AND<br />
-#byte</td><td>ROL<br />
-</td><td class="unused"></td><td>BIT<br />
-abs</td><td>AND<br />
-abs</td><td>ROL<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>3</th><td>BMI<br />
-rel</td><td>AND<br />
-(zp),Y</td><td class="cmos">AND<br />
-(zp)</td><td class="c65k">AND<br />
-[[zp]],Y</td><td class="cmos">BIT<br />
-zp,X</td><td>AND<br />
-zp,X</td><td>ROL<br />
-zp,X</td><td class="c65k">AND<br />
-[[zp]]</td><td>SEC<br />
-</td><td>AND<br />
-abs,Y</td><td class="cmos">DEC<br />
-</td><td class="unused"></td><td class="cmos">BIT<br />
-abs,X</td><td>AND<br />
-abs,X</td><td>ROL<br />
-abs,X</td><td>ROL<br />
-abs,Y</td></tr>
-<tr><th>4</th><td>RTI<br />
-</td><td>EOR<br />
-(zp,X)</td><td class="c65k">LDA<br />
-(abs),Y</td><td class="c65k">EOR<br />
-[[zp,X]]</td><td class="c65k">BSR<br />
-relwide</td><td>EOR<br />
-zp</td><td>LSR<br />
-zp</td><td class="c65k">LDA<br />
-[[abs]],Y</td><td>PHA<br />
-</td><td>EOR<br />
-#byte</td><td>LSR<br />
-</td><td class="unused"></td><td>JMP<br />
-abs</td><td>EOR<br />
-abs</td><td>LSR<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>5</th><td>BVC<br />
-rel</td><td>EOR<br />
-(zp),Y</td><td class="cmos">EOR<br />
-(zp)</td><td class="c65k">EOR<br />
-[[zp]],Y</td><td class="unused"></td><td>EOR<br />
-zp,X</td><td>LSR<br />
-zp,X</td><td class="c65k">EOR<br />
-[[zp]]</td><td>CLI<br />
-</td><td>EOR<br />
-abs,Y</td><td>PHY<br />
-</td><td class="unused"></td><td class="unused"></td><td>EOR<br />
-abs,X</td><td>LSR<br />
-abs,X</td><td>LSR<br />
-abs,Y</td></tr>
-<tr><th>6</th><td>RTS<br />
-</td><td>ADC<br />
-(zp,X)</td><td class="c65k">LDA<br />
-(abs,X)</td><td class="c65k">ADC<br />
-[[zp,X]]</td><td class="cmos">STZ<br />
-zp</td><td>ADC<br />
-zp</td><td>ROR<br />
-zp</td><td class="c65k">LDA<br />
-[[abs,X]]</td><td>PLA<br />
-</td><td>ADC<br />
-#byte</td><td>ROR<br />
-</td><td class="unused"></td><td>JMP<br />
-(abs)</td><td>ADC<br />
-abs</td><td>ROR<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>7</th><td>BVS<br />
-rel</td><td>ADC<br />
-(zp),Y</td><td class="cmos">ADC<br />
-(zp)</td><td class="c65k">ADC<br />
-[[zp]],Y</td><td class="cmos">STZ<br />
-zp,X</td><td>ADC<br />
-zp,X</td><td>ROR<br />
-zp,X</td><td class="c65k">ADC<br />
-[[zp]]</td><td>SEI<br />
-</td><td>ADC<br />
-abs,Y</td><td>PLY<br />
-</td><td class="unused"></td><td class="cmos">JMP<br />
-(abs,X)</td><td>ADC<br />
-abs,X</td><td>ROR<br />
-abs,X</td><td>ROR<br />
-abs,Y</td></tr>
-<tr><th>8</th><td class="cmos">BRA<br />
-rel</td><td>STA<br />
-(zp,X)</td><td class="c65k">BSR<br />
-rel</td><td class="c65k">STA<br />
-[[zp,X]]</td><td>STY<br />
-zp</td><td>STA<br />
-zp</td><td>STX<br />
-zp</td><td class="c65k">JSR<br />
-[[abs]]</td><td>DEY<br />
-</td><td class="cmos">BIT<br />
-#byte</td><td>TXA<br />
-</td><td class="unused"></td><td>STY<br />
-abs</td><td>STA<br />
-abs</td><td>STX<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>9</th><td>BCC<br />
-rel</td><td>STA<br />
-(zp),Y</td><td class="cmos">STA<br />
-(zp)</td><td class="c65k">STA<br />
-[[zp]],Y</td><td>STY<br />
-zp,X</td><td>STA<br />
-zp,X</td><td>STX<br />
-zp,Y</td><td class="c65k">STA<br />
-[[zp]]</td><td>TYA<br />
-</td><td>STA<br />
-abs,Y</td><td>TXS<br />
-</td><td class="unused"></td><td class="cmos">STZ<br />
-abs</td><td>STA<br />
-abs,X</td><td class="cmos">STZ<br />
-abs,X</td><td class="c65k">STZ<br />
-abs,Y</td></tr>
-<tr><th>A</th><td>LDY<br />
-#byte</td><td>LDA<br />
-(zp,X)</td><td>LDX<br />
-#byte</td><td class="c65k">LDA<br />
-[[zp,X]]</td><td>LDY<br />
-zp</td><td>LDA<br />
-zp</td><td>LDX<br />
-zp</td><td class="c65k">JSR<br />
-[[abs,X]]</td><td>TAY<br />
-</td><td>LDA<br />
-#byte</td><td>TAX<br />
-</td><td class="unused"></td><td>LDY<br />
-abs</td><td>LDA<br />
-abs</td><td>LDX<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>B</th><td>BCS<br />
-rel</td><td>LDA<br />
-(zp),Y</td><td class="cmos">LDA<br />
-(zp)</td><td class="c65k">LDA<br />
-[[zp]],Y</td><td>LDY<br />
-zp,X</td><td>LDA<br />
-zp,X</td><td>LDX<br />
-zp,Y</td><td class="c65k">LDA<br />
-[[zp]]</td><td>CLV<br />
-</td><td>LDA<br />
-abs,Y</td><td>TSX<br />
-</td><td class="unused"></td><td>LDY<br />
-abs,X</td><td>LDA<br />
-abs,X</td><td>LDX<br />
-abs,Y</td><td>STX<br />
-abs,Y</td></tr>
-<tr><th>C</th><td>CPY<br />
-#byte</td><td>CMP<br />
-(zp,X)</td><td class="c65k">STA<br />
-(abs),Y</td><td class="c65k">CMP<br />
-[[zp,X]]</td><td>CPY<br />
-zp</td><td>CMP<br />
-zp</td><td>DEC<br />
-zp</td><td class="c65k">STA<br />
-[[abs]],Y</td><td>INY<br />
-</td><td>CMP<br />
-#byte</td><td class="unused"></td><td class="unused"></td><td>CPY<br />
-abs</td><td>CMP<br />
-abs</td><td>DEC<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>D</th><td>BNE<br />
-rel</td><td>CMP<br />
-(zp),Y</td><td class="cmos">CMP<br />
-(zp)</td><td class="c65k">CMP<br />
-[[zp]],Y</td><td class="unused"></td><td>CMP<br />
-zp,X</td><td>DEC<br />
-zp,X</td><td class="cmos">CMP<br />
-(zp)</td><td>CLD<br />
-</td><td>CMP<br />
-abs,Y</td><td>PHX<br />
-</td><td class="unused"></td><td class="cmos">JSR<br />
-(abs)</td><td>CMP<br />
-abs,X</td><td>DEC<br />
-abs,X</td><td>DEC<br />
-abs,Y</td></tr>
-<tr><th>E</th><td>CPX<br />
-#byte</td><td>SBC<br />
-(zp,X)</td><td class="c65k">STA<br />
-(abs,X)</td><td class="c65k">SBC<br />
-[[zp,X]]</td><td>CPX<br />
-zp</td><td>SBC<br />
-zp</td><td>INC<br />
-zp</td><td class="c65k">STA<br />
-[[abs,X]]</td><td>INX<br />
-</td><td>SBC<br />
-#byte</td><td>NOP<br />
-</td><td class="unused"></td><td>CPX<br />
-abs</td><td>SBC<br />
-abs</td><td>INC<br />
-abs</td><td class="unused"></td></tr>
-<tr><th>F</th><td>BEQ<br />
-rel</td><td>SBC<br />
-(zp),Y</td><td class="cmos">SBC<br />
-(zp)</td><td class="c65k">SBC<br />
-[[zp]],Y</td><td class="c65k">TRP<br />
-#byte</td><td>SBC<br />
-zp,X</td><td>INC<br />
-zp,X</td><td class="c65k">SBC<br />
-[[zp]]</td><td>SED<br />
-</td><td>SBC<br />
-abs,Y</td><td>PLX<br />
-</td><td class="unused"></td><td class="cmos">JSR<br />
-(abs,X)</td><td>SBC<br />
-abs,X</td><td>INC<br />
-abs,X</td><td>INC<br />
-abs,Y</td></tr>
+<table class="optable"><tr><th>LSB-&gt;<br />MSB</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+<tr><th>0</th><td>BRK </td><td>ORA (zp,X)</td><td class="c65k">LDA zp,Y</td><td class="prefix">prefix1</td><td class="cmos">TSB zp</td><td>ORA zp</td><td>ASL zp</td><td class="prefix">prefix1</td><td>PHP </td><td>ORA #byte</td><td>ASL </td><td class="prefix">prefix2</td><td class="cmos">TSB abs</td><td>ORA abs</td><td>ASL abs</td><td class="prefix">EXT</td></tr>
+<tr><th>1</th><td>BPL rel</td><td>ORA (zp),Y</td><td class="cmos">ORA (zp)</td><td class="prefix">prefix1</td><td class="cmos">TRB zp</td><td>ORA zp,X</td><td>ASL zp,X</td><td class="prefix">prefix1</td><td>CLC </td><td>ORA abs,Y</td><td class="cmos">INC </td><td class="prefix">prefix2</td><td class="cmos">TRB abs</td><td>ORA abs,X</td><td>ASL abs,X</td><td class="c65k">ASL abs,Y</td></tr>
+<tr><th>2</th><td>JSR abs</td><td>AND (zp,X)</td><td class="c65k">STA zp,Y</td><td class="prefix">prefix1</td><td>BIT zp</td><td>AND zp</td><td>ROL zp</td><td class="prefix">prefix1</td><td>PLP </td><td>AND #byte</td><td>ROL </td><td class="prefix">prefix2</td><td>BIT abs</td><td>AND abs</td><td>ROL abs</td><td class="prefix">SYS</td></tr>
+<tr><th>3</th><td>BMI rel</td><td>AND (zp),Y</td><td class="cmos">AND (zp)</td><td class="prefix">prefix1</td><td class="cmos">BIT zp,X</td><td>AND zp,X</td><td>ROL zp,X</td><td class="prefix">prefix1</td><td>SEC </td><td>AND abs,Y</td><td class="cmos">DEC </td><td class="prefix">prefix2</td><td class="cmos">BIT abs,X</td><td>AND abs,X</td><td>ROL abs,X</td><td class="c65k">ROL abs,Y</td></tr>
+<tr><th>4</th><td>RTI </td><td>EOR (zp,X)</td><td class="c65k">LDA (abs),Y</td><td class="prefix">prefix1</td><td class="c65k">BSR relwide</td><td>EOR zp</td><td>LSR zp</td><td class="prefix">prefix1</td><td>PHA </td><td>EOR #byte</td><td>LSR </td><td class="prefix">prefix2</td><td>JMP abs</td><td>EOR abs</td><td>LSR abs</td><td class="prefix">QUICK</td></tr>
+<tr><th>5</th><td>BVC rel</td><td>EOR (zp),Y</td><td class="cmos">EOR (zp)</td><td class="prefix">prefix1</td><td class="unused"></td><td>EOR zp,X</td><td>LSR zp,X</td><td class="prefix">prefix1</td><td>CLI </td><td>EOR abs,Y</td><td class="cmos">PHY </td><td class="prefix">prefix2</td><td class="unused"></td><td>EOR abs,X</td><td>LSR abs,X</td><td class="c65k">LSR abs,Y</td></tr>
+<tr><th>6</th><td>RTS </td><td>ADC (zp,X)</td><td class="c65k">LDA (abs,X)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp</td><td>ADC zp</td><td>ROR zp</td><td class="prefix">prefix1</td><td>PLA </td><td>ADC #byte</td><td>ROR </td><td class="prefix">prefix2</td><td>JMP (abs)</td><td>ADC abs</td><td>ROR abs</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>7</th><td>BVS rel</td><td>ADC (zp),Y</td><td class="cmos">ADC (zp)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp,X</td><td>ADC zp,X</td><td>ROR zp,X</td><td class="prefix">prefix1</td><td>SEI </td><td>ADC abs,Y</td><td class="cmos">PLY </td><td class="prefix">prefix2</td><td class="cmos">JMP (abs,X)</td><td>ADC abs,X</td><td>ROR abs,X</td><td class="c65k">ROR abs,Y</td></tr>
+<tr><th>8</th><td class="cmos">BRA rel</td><td>STA (zp,X)</td><td class="c65k">BSR rel</td><td class="prefix">prefix1</td><td>STY zp</td><td>STA zp</td><td>STX zp</td><td class="prefix">prefix1</td><td>DEY </td><td class="cmos">BIT #byte</td><td>TXA </td><td class="prefix">prefix2</td><td>STY abs</td><td>STA abs</td><td>STX abs</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>9</th><td>BCC rel</td><td>STA (zp),Y</td><td class="cmos">STA (zp)</td><td class="prefix">prefix1</td><td>STY zp,X</td><td>STA zp,X</td><td>STX zp,Y</td><td class="prefix">prefix1</td><td>TYA </td><td>STA abs,Y</td><td>TXS </td><td class="prefix">prefix2</td><td class="cmos">STZ abs</td><td>STA abs,X</td><td class="cmos">STZ abs,X</td><td class="c65k">STZ abs,Y</td></tr>
+<tr><th>A</th><td>LDY #byte</td><td>LDA (zp,X)</td><td>LDX #byte</td><td class="prefix">prefix1</td><td>LDY zp</td><td>LDA zp</td><td>LDX zp</td><td class="prefix">prefix1</td><td>TAY </td><td>LDA #byte</td><td>TAX </td><td class="prefix">prefix2</td><td>LDY abs</td><td>LDA abs</td><td>LDX abs</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>B</th><td>BCS rel</td><td>LDA (zp),Y</td><td class="cmos">LDA (zp)</td><td class="prefix">prefix1</td><td>LDY zp,X</td><td>LDA zp,X</td><td>LDX zp,Y</td><td class="prefix">prefix1</td><td>CLV </td><td>LDA abs,Y</td><td>TSX </td><td class="prefix">prefix2</td><td>LDY abs,X</td><td>LDA abs,X</td><td>LDX abs,Y</td><td class="c65k">STX abs,Y</td></tr>
+<tr><th>C</th><td>CPY #byte</td><td>CMP (zp,X)</td><td class="c65k">STA (abs),Y</td><td class="prefix">prefix1</td><td>CPY zp</td><td>CMP zp</td><td>DEC zp</td><td class="prefix">prefix1</td><td>INY </td><td>CMP #byte</td><td>DEX </td><td class="prefix">prefix2</td><td>CPY abs</td><td>CMP abs</td><td>DEC abs</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>D</th><td>BNE rel</td><td>CMP (zp),Y</td><td class="cmos">CMP (zp)</td><td class="prefix">prefix1</td><td class="unused"></td><td>CMP zp,X</td><td>DEC zp,X</td><td class="prefix">prefix1</td><td>CLD </td><td>CMP abs,Y</td><td class="cmos">PHX </td><td class="prefix">prefix2</td><td class="c65k">JSR (abs)</td><td>CMP abs,X</td><td>DEC abs,X</td><td class="c65k">DEC abs,Y</td></tr>
+<tr><th>E</th><td>CPX #byte</td><td>SBC (zp,X)</td><td class="c65k">STA (abs,X)</td><td class="prefix">prefix1</td><td>CPX zp</td><td>SBC zp</td><td>INC zp</td><td class="prefix">prefix1</td><td>INX </td><td>SBC #byte</td><td>NOP </td><td class="prefix">prefix2</td><td>CPX abs</td><td>SBC abs</td><td>INC abs</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>F</th><td>BEQ rel</td><td>SBC (zp),Y</td><td class="cmos">SBC (zp)</td><td class="prefix">prefix1</td><td class="c65k">TRP #byte</td><td>SBC zp,X</td><td>INC zp,X</td><td class="prefix">prefix1</td><td>SED </td><td>SBC abs,Y</td><td class="cmos">PLX </td><td class="prefix">prefix2</td><td class="c65k">JSR (abs,X)</td><td>SBC abs,X</td><td>INC abs,X</td><td class="c65k">INC abs,Y</td></tr>
 </table>
 
 
-<table class="optable">
-<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>		<th>2</th>			<th>3</th>			<th>4</th>			<th>5</th>		<th>6</th>		<th>7</th>				<th>8</th>		<th>9</th>			<th>A</th>			<th>B</th>			<th>C</th>			<th>D</th>		<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td>BRK</td>			<td>ORA (zp,X)</td>	<td class="c65k">LDA zp,Y</td><td class="prefix">prefix1</td>	<td class="cmos">TSB zp</td>	<td>ORA zp</td>		<td>ASL zp</td>		<td class="prefix">prefix1</td>		<td>PHP</td>		<td>ORA imm</td>		<td>ASL A</td>			<td class="prefix">prefix2</td>	<td class="cmos">TSB abs</td>	<td>ORA abs</td>	<td>ASL abs</td>		<td class="prefix">EXT prefix</td></tr>
-<tr><th>1</th>		<td>BPL rel</td>		<td>ORA (zp),Y</td>	<td class="cmos">ORA (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">TRB zp</td>	<td>ORA zp,X</td>	<td>ASL zp,X</td>	<td class="prefix">prefix1</td>		<td>CLC</td>		<td>ORA abs,y</td>		<td class="cmos">INC A</td>	<td class="prefix">prefix2</td>	<td class="cmos">TRB abs</td>	<td>ORA abs,X</td>	<td>ASL abs,X</td>		<td class="c65k">ASL abs,Y</td></tr>	
-<tr><th>2</th>		<td>JSR abs</td>		<td>AND (zp,X)</td>	<td class="c65k">STA zp,Y</td><td class="prefix">prefix1</td>	<td>BIT zp</td>			<td>AND zp</td>		<td>ROL zp</td>		<td class="prefix">prefix1</td>		<td>PLP</td>		<td>AND imm</td>		<td>ROL A</td>			<td class="prefix">prefix2</td>	<td>BIT abs</td>		<td>AND abs</td>	<td>ROL abs</td>		<td class="prefix">SYS prefix</td></tr>
-<tr><th>3</th>		<td>BMI rel</td>		<td>AND (zp),Y</td>	<td class="cmos">AND (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">BIT zp,X</td>	<td>AND zp,X</td>	<td>ROL zp,X</td>	<td class="prefix">prefix1</td>		<td>SEC</td>		<td>AND abs,Y</td>		<td class="cmos">DEC A</td>	<td class="prefix">prefix2</td>	<td class="cmos">BIT abs,X</td>	<td>AND abs,X</td>	<td>ROL abs,X</td>		<td class="c65k">ROL abs,Y</td></tr>
-<tr><th>4</th>		<td>RTI</td>			<td>EOR (zp,X)</td>	<td class="c65k">LDA (abs),Y</td><td class="prefix">prefix1</td><td class="c65k">BSR relwide</td><td>EOR zp</td>	<td>LSR zp</td>		<td class="prefix">prefix1</td>		<td>PHA</td>		<td>EOR imm</td>		<td>LSR imm</td>		<td class="prefix">prefix2</td>	<td>JMP abs</td>		<td>EOR abs</td>	<td>LSR abs</td>		<td class="prefix">QUICK prefix</td></tr>
-<tr><th>5</th>		<td>BVC rel</td>		<td>EOR (zp),Y</td>	<td class="cmos">EOR (zp)</td>	<td class="prefix">prefix1</td>	<td class="unused"></td> 	<td>EOR zp,X</td>	<td>LSR zp,X</td>	<td class="prefix">prefix1</td>		<td>CLI</td>		<td>EOR abs,Y</td>		<td class="cmos">PHY</td>	<td class="prefix">prefix2</td>	<td class="c65k">STX abs,Y</td>	<td>EOR abs,X</td>	<td>LSR abs,X</td>		<td class="c65k">LSR abs,Y</td></tr>
-<tr><th>6</th>		<td>RTS</td>			<td>ADC (zp,X)</td>	<td class="c65k">LDA (abs,X)</td><td class="prefix">prefix1</td><td class="cmos">STZ zp</td>	<td>ADC zp</td>		<td>ROR zp</td>		<td class="prefix">prefix1</td>		<td>PLA</td>		<td>ADC imm</td>		<td>ROR A</td>			<td class="prefix">prefix2</td>	<td>JMP (abs)</td>		<td>ADC abs</td>	<td>ROR abs</td>		<td class="prefix">reserved prefix</td></tr>
-<tr><th>7</th>		<td>BVS rel</td>		<td>ADC (zp),Y</td>	<td class="cmos">ADC (zp)</td>	<td class="prefix">prefix1</td>	<td class="cmos">STZ zp,X</td>	<td>ADC zp,X</td>	<td>ROR zp,X</td>	<td class="prefix">prefix1</td>		<td>SEI</td>		<td>ADC abs,Y</td>		<td class="cmos">PLY</td>	<td class="prefix">prefix2</td>	<td class="cmos">JMP (abs,X)</td><td>ADC abs,X</td>	<td>ROR abs,X</td>		<td class="c65k">ROR abs,Y</td></tr>
-<tr><th>8</th>		<td class="cmos">BRA rel</td>	<td>STA (zp,X)</td>	<td class="c65k">BSR rel</td>	<td class="prefix">prefix1</td>	<td>STY zp</td>			<td>STA zp</td>		<td>STX zp</td>		<td class="prefix">prefix1</td>		<td>DEY</td>		<td class="cmos">BIT imm</td>	<td>TXA</td>			<td class="prefix">prefix2</td>	<td>STY abs</td>		<td>STA abs</td>	<td>STX abs</td>		<td class="prefix">reserved prefix</td></tr>
-<tr><th>9</th>		<td>BCC rel</td>		<td>STA (zp),Y</td>	<td class="cmos">STA (zp)</td>	<td class="prefix">prefix1</td>	<td>STY zp,X</td>		<td>STA zp,X</td>	<td>STX zp,Y</td>	<td class="prefix">prefix1</td>		<td>TYA</td>		<td>STA abs,Y</td>		<td>TXS</td>			<td class="prefix">prefix2</td>	<td class="cmos">STZ abs</td>	<td>STA abs,X</td>	<td class="cmos">STZ abs,X</td>	<td class="c65k">STZ abs,Y</td></tr>
-<tr><th>A</th>		<td>LDY imm</td>		<td>LDA (zp,X)</td>	<td>LDX imm</td>		<td class="prefix">prefix1</td>	<td>LDY zp</td>			<td>LDA zp</td>		<td>LDX zp</td>		<td class="prefix">prefix1</td>		<td>TAY</td>		<td>LDA imm</td>		<td>TAX</td>			<td class="prefix">prefix2</td>	<td>LDY abs</td>		<td>LDA abs</td>	<td>LDX abs</td>		<td class="prefix">reserved prefix</td></tr>
-<tr><th>B</th>		<td>BCS rel</td>		<td>LDA (zp),Y</td>	<td class="cmos">LDA (zp)</td>	<td class="prefix">prefix1</td>	<td>LDY zp,X</td>		<td>LDA zp,X</td>	<td>LDX zp,Y</td>	<td class="prefix">prefix1</td>		<td>CLV</td>		<td>LDA abs,Y</td>		<td>TSX</td>			<td class="prefix">prefix2</td>	<td>LDY abs,X</td>		<td>LDA abs,X</td>	<td>LDX abs,Y</td>		<td class="c65k">STX abs,Y</td></tr>
-<tr><th>C</th>		<td>CPY imm</td>		<td>CMP (zp,X)</td>	<td class="c65k">STA (abs),Y</td><td class="prefix">prefix1</td><td>CPY zp</td>			<td>CMP zp</td>		<td>DEC zp</td>		<td class="prefix">prefix1</td>		<td>INY</td>		<td>CMP imm</td>		<td>DEX</td>			<td class="prefix">prefix2</td>	<td>CPY abs</td>		<td>CMP abs</td>	<td>DEC abs</td>		<td class="prefix">reserved prefix</td></tr>
-<tr><th>D</th>		<td>BNE rel</td>		<td>CMP (zp),Y</td>	<td class="cmos">CMP (zp)</td>	<td class="prefix">prefix1</td>	<td class="unused"></td>	<td>CMP zp,X</td>	<td>DEC zp,X</td>	<td class="prefix">prefix1</td>		<td>CLD</td>		<td>CMP abs,Y</td>		<td class="cmos">PHX</td>	<td class="prefix">prefix2</td>	<td class="c65k">JSR (abs)</td>	<td>CMP abs,X</td>	<td>DEC abs,X</td>		<td class="c65k">DEC abs,Y</td></tr>
-<tr><th>E</th>		<td>CPX imm</td>		<td>SBC (zp,X)</td>	<td class="c65k">STA (abs,X)</td><td class="prefix">prefix1</td><td>CPX zp</td>			<td>SBC zp</td>		<td>INC zp</td>		<td class="prefix">prefix1</td>		<td>INX</td>		<td>SBC imm</td>		<td>NOP</td>			<td class="prefix">prefix2</td>	<td>CPX abs</td>		<td>SBC abs</td>	<td>INX abs</td>		<td class="prefix">reserved prefix</td></tr>
-<tr><th>F</th>		<td>BEQ rel</td>		<td>SBC (zp),Y</td>	<td class="cmos">SBC (zp)</td>	<td class="prefix">prefix1</td>	<td class="c65k">TRAP</td>	<td>SBC zp,X</td>	<td>INC zp,X</td>	<td class="prefix">prefix1</td>		<td>SED</td>		<td>SBC abs,Y</td>		<td class="cmos">PLX</td>	<td class="prefix">prefix2</td>	<td class="c65k">JSR (abs,X)</td><td>SBC abs,X</td>	<td>INC abs,X</td>		<td class="c65k">INC abs,Y</td></tr>
-</table><p>Legend:</p>
+<p>Legend:</p>
 <table class="optable">
 <tr><td>NMOS Opcodes</td><td class="cmos">CMOS Opcodes</td><td class="c65k">New 65k opcodes</td><td class="prefix">65k Prefix codes</td><td class="unused">Unused/Reserved</td></tr>
 </table>
@@ -670,91 +428,74 @@ abs,Y</td></tr>
 	described in detail below.
 	</p>
 
-<table class="optable"><tr><th>Name</th><th>Alternative Name</th><th>Syntax</th><th>Operand Length</th><th>Origin</th><th>Description</th></tr>
-<tr><td>Implied</td><td></td><td></td><td>0</td><td></td><td>Implied by the operation</td></tr>
-<tr><td>Accumulator</td><td></td><td></td><td>0</td><td></td><td>Accumulator operation</td></tr>
-<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>1</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
-<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>2</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
-<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>4</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
-<tr><td>Immediate</td><td></td><td>#&lt;operand&gt;</td><td>8</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup</td></tr>
-<tr><td>E indirect</td><td></td><td>"(E)"</td><td>0</td><td>65k</td><td>E-register indirect: the effective address is taken from the E register.</td></tr>
-<tr><td>Zeropage</td><td></td><td>&lt;address&gt;</td><td>1</td><td></td><td>Zeropage addressing mode: opcode parameter is a zeropage address (i.e. 8bit)</td></tr>
-<tr><td>Zeropage indexed with X</td><td>Zeropage X-indexed</td><td>&lt;address&gt;,X</td><td>1</td><td></td><td>Zeropage X-indexed addressing mode: effective address is the opcode parameter (zeropage address), plus the value of the X register</td></tr>
-<tr><td>Zeropage indexed with Y</td><td>Zeropage Y-indexed</td><td>&lt;address&gt;,Y</td><td>1</td><td></td><td>Zeropage Y-indexed addressing mode: effective address is the opcode parameter (zeropage address), plus the value of the Y register</td></tr>
-<tr><td>Absolute</td><td></td><td>&lt;address&gt;</td><td>2</td><td></td><td>Absolute addressing mode: opcode parameter is a word address (i.e. 16 bit)</td></tr>
-<tr><td>Absolute 16bit indexed with X</td><td>Absolute X-indexed</td><td>&lt;address&gt;,X</td><td>2</td><td></td><td>Absolute X-indexed addressing mode: effective address is the opcode parameter (word address), plus the value of the X register</td></tr>
-<tr><td>Absolute 16bit indexed with Y</td><td>Absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>2</td><td></td><td>Absolute Y-indexed addressing mode: effective address is the opcode parameter (word address), plus the value of the Y register</td></tr>
-<tr><td>Absolute 32bit</td><td>Long absolute</td><td>&lt;address&gt;</td><td>4</td><td>65k</td><td>Long absolute addressing mode: opcode parameter is a long address (i.e. 32 bit)</td></tr>
-<tr><td>Absolute 32bit indexed with X</td><td>Long absolute X-indexed</td><td>&lt;address&gt;,X</td><td>4</td><td>65k</td><td>Long absolute X-indexed addressing mode: effective address is the opcode parameter (long address), plus the value of the X register</td></tr>
-<tr><td>Absolute 32bit indexed with Y</td><td>Long absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>4</td><td>65k</td><td>Long absolute Y-indexed addressing mode: effective address is the opcode parameter (long address), plus the value of the Y register</td></tr>
-<tr><td>Absolute 64bit</td><td>Quad absolute</td><td>&lt;address&gt;</td><td>8</td><td>65k</td><td>Quad absolute addressing mode: opcode parameter is a quad address (i.e. 64 bit)</td></tr>
-<tr><td>Absolute 64bit indexed with X</td><td>Quad absolute X-indexed</td><td>&lt;address&gt;,X</td><td>8</td><td>65k</td><td>Quad absolute X-indexed addressing mode: effective address is the opcode parameter (quad address), plus the value of the X register</td></tr>
-<tr><td>Absolute 64bit indexed with Y</td><td>Quad absolute Y-indexed</td><td>&lt;address&gt;,Y</td><td>8</td><td>65k</td><td>Quad absolute Y-indexed addressing mode: effective address is the opcode parameter (quad address), plus the value of the Y register</td></tr>
-<tr><td>Zeropage indirect 16bit</td><td>Zeropage indirect</td><td>(&lt;address&gt;)</td><td>1</td><td>cmos</td><td>zeropage indirect addressing mode. Effective word address is read from zeropage location given as parameter.</td></tr>
-<tr><td>Zeropage indirect 16bit indexed with Y</td><td>Zeropage indirect Y-indexed</td><td>(&lt;address&gt;),Y</td><td>1</td><td></td><td>zeropage indirect Y-indexed addressing mode. The effective address is computed as the word address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Zeropage indexed with X indirect 16bit</td><td>Zeropage X-indexed indirect</td><td>(&lt;address&gt;,X)</td><td>1</td><td></td><td>zeropage X-indexed indirect addressing mode. Effective word address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
-<tr><td>Absolute indirect 16bit</td><td>Absolute indirect</td><td>(&lt;address&gt;)</td><td>2</td><td></td><td>absolute indirect addressing mode. Effective word address is read from word location given as parameter.</td></tr>
-<tr><td>Absolute indirect 16bit indexed with Y</td><td>Absolute indirect Y-indexed</td><td>(&lt;address&gt;),Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed addressing mode. The effective address is computed as the word address read from the word location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Absolute indexed with X indirect 16bit</td><td>Absolute X-indexed indirect</td><td>(&lt;address&gt;,X)</td><td>2</td><td>cmos</td><td>absolute X-indexed indirect addressing mode. Effective word address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
-<tr><td>Zeropage indirect 32bit</td><td>Long Zeropage indirect</td><td>[&lt;address&gt;]</td><td>1</td><td>65k</td><td>zeropage indirect long addressing mode. Effective long address is read from zeropage location given as parameter.</td></tr>
-<tr><td>Zeropage indirect 32bit indexed with Y</td><td>Zeropage long indirect Y-indexed</td><td>[&lt;address&gt;],Y</td><td>1</td><td>65k</td><td>zeropage indirect Y-indexed long addressing mode. The effective address is computed as the long address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Zeropage indexed with X indirect 32bit</td><td>Zeropage X-indexed long indirect</td><td>(&lt;address&gt;,X)</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect long addressing mode. Effective long address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
-<tr><td>Absolute indirect 32bit</td><td>Absolute long indirect</td><td>[&lt;address&gt;]</td><td>2</td><td>65k</td><td>absolute indirect long addressing mode. Effective long address is read from word location given as parameter.</td></tr>
-<tr><td>Absolute indirect 32bit indexed with Y</td><td>Absolute long indirect Y-indexed</td><td>[&lt;address&gt;],Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed long addressing mode. The effective address is computed as the long address read from the word location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Absolute indexed with X indirect 32bit</td><td>Absolute X-indexed long indirect</td><td>(&lt;address&gt;,X)</td><td>2</td><td>65k</td><td>absolute X-indexed indirect long addressing mode. Effective long address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
-<tr><td>Zeropage indirect 64bit</td><td>Zeropage quad indirect</td><td>[[&lt;address&gt;]]</td><td>1</td><td>65k</td><td>zeropage indirect quad addressing mode. Effective quad address is read from zeropage location given as parameter.</td></tr>
-<tr><td>Zeropage indirect 64bit indexed with Y</td><td>Zeropage quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>1</td><td>65k</td><td>zeropage indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Zeropage indexed with X indirect 64bit</td><td>Zeropage X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;LE&gt;&lt;NF&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>1</td><td>65k</td><td>zeropage X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
-<tr><td>Absolute indirect 64bit</td><td>Absolute quad indirect</td><td>[[&lt;address&gt;]]</td><td>2</td><td>65k</td><td>absolute indirect quad addressing mode. Effective quad address is read from word location given as parameter.</td></tr>
-<tr><td>Absolute indirect 64bit indexed with Y</td><td>Absolute quad indirect Y-indexed</td><td>[[&lt;address&gt;]],Y</td><td>2</td><td>65k</td><td>absolute indirect Y-indexed quad addressing mode. The effective address is computed as the quad address read from the word location given as parameter plus the value of the Y register</td></tr>
-<tr><td>Absolute indexed with X indirect 64bit</td><td>Absolute X-indexed quad indirect</td><td>Opcode["." &lt;UM&gt;&lt;LE&gt;&lt;NF&gt;&lt;RS&gt;] "(" [&lt;OF&gt; ","] &lt;address&gt; ",X)"</td><td>2</td><td>65k</td><td>absolute X-indexed indirect quad addressing mode. Effective quad address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
-<tr><td>Relative</td><td></td><td>&lt;address&gt;</td><td>1</td><td></td><td>relative addressing modes, used in branches; from -128 to +127</td></tr>
-<tr><td>Relative 16bit</td><td>Wide relative</td><td>&lt;address&gt;</td><td>2</td><td>65k</td><td>relative addressing modes, used in branches; from -32768 to +32767</td></tr>
-<tr><td>Relative 32bit</td><td>Long relative</td><td>&lt;address&gt;</td><td>4</td><td>65k</td><td>relative addressing modes, used in branches; from -2^32 to +2^32-1</td></tr>
-<tr><td>Relative 64bit</td><td>Quad relative</td><td>&lt;address&gt;</td><td>8</td><td>65k</td><td>relative addressing modes, used in branches; from -2^64 to +2^64-1</td></tr>
+<table class="optable"><tr><th>Name</th><th>Alternative Name</th><th>Prefix</th><th>Operand Length</th><th>Syntax</th><th>Origin</th><th>Description</th></tr>
+<tr><td>Implied</td><td></td><td></td><td>0</td><td></td><td></td><td>Implied by the operation</td></tr>
+<tr><td>Accumulator</td><td></td><td></td><td>0</td><td></td><td></td><td>Accumulator operation</td></tr>
+<tr><td>Immediate</td><td></td><td></td><td>1</td><td>#byte</td><td></td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup. Here it is a byte parameter</td></tr>
+<tr><td>Immediate 16bit</td><td>Wide immediate</td><td>RS=01</td><td>2</td><td>#word</td><td>65k</td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup. Here it is a word (16bit) parameter</td></tr>
+<tr><td>Immediate 32bit</td><td>Long immediate</td><td>RS=10</td><td>4</td><td>#long</td><td>65k</td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup. Here it is a long (32bit) parameter</td></tr>
+<tr><td>Immediate 64bit</td><td></td><td>RS=11</td><td>8</td><td>#quad</td><td>65k</td><td>The immediate addressing mode uses the opcode parameter directly, without further lookup. Here it is a quad (64bit) parameter</td></tr>
+<tr><td>E indirect</td><td></td><td></td><td>0</td><td>(E)</td><td>65k</td><td>E-register indirect: the effective address is taken from the E register.</td></tr>
+<tr><td>Zeropage</td><td></td><td></td><td>1</td><td>zp</td><td></td><td>Zeropage address; The effective address of the operand is a zeropage address (i.e. 8bit)</td></tr>
+<tr><td>Zeropage indexed with X</td><td>Zeropage X-indexed</td><td></td><td>1</td><td>zp,X</td><td></td><td>Zeropage address, plus content of XR; The effective address of the operand is the opcode parameter (zeropage address), plus the value of the X register</td></tr>
+<tr><td>Zeropage indexed with Y</td><td>Zeropage Y-indexed</td><td></td><td>1</td><td>zp,Y</td><td></td><td>Zeropage address, plus content of YR; The effective address of the operand is the opcode parameter (zeropage address), plus the value of the Y register</td></tr>
+<tr><td>Absolute 16bit</td><td>Absolute</td><td></td><td>2</td><td>abs</td><td></td><td>16 bit address; The effective address of the operand is the word address (i.e. 16 bit) given as opcode parameter</td></tr>
+<tr><td>Absolute 16bit indexed with X</td><td>Absolute X-indexed</td><td></td><td>2</td><td>abs,X</td><td></td><td>16 bit address, plus content of XR; The effective address is the opcode parameter (word address), plus the value of the X register</td></tr>
+<tr><td>Absolute 16bit indexed with Y</td><td>Absolute Y-indexed</td><td></td><td>2</td><td>abs,Y</td><td></td><td>16 bit address, plus content of YR; The effective address is the opcode parameter (word address), plus the value of the Y register</td></tr>
+<tr><td>Absolute 32bit</td><td>Long absolute</td><td>AM=1</td><td>4</td><td>long</td><td>65k</td><td>32 bit address; The effective address is the opcode parameter, which is a long address (i.e. 32 bit)</td></tr>
+<tr><td>Absolute 32bit indexed with X</td><td>Long absolute X-indexed</td><td>AM=1</td><td>4</td><td>long,X</td><td>65k</td><td>32 bit address, plus content of XR; The effective address is the opcode parameter (long address), plus the value of the X register</td></tr>
+<tr><td>Absolute 32bit indexed with Y</td><td>Long absolute Y-indexed</td><td>AM=1</td><td>4</td><td>long,Y</td><td>65k</td><td>32 bit address, plus content of YR; The effective address is the opcode parameter (long address), plus the value of the Y register</td></tr>
+<tr><td>Absolute 64bit</td><td>Quad absolute</td><td>AM=1</td><td>8</td><td>quad</td><td>65k</td><td>64 bit address; The effective address is the opcode parameter, which is a quad address (i.e. 64 bit)</td></tr>
+<tr><td>Absolute 64bit indexed with X</td><td>Quad absolute X-indexed</td><td>AM=1</td><td>8</td><td>quad,X</td><td>65k</td><td>64 bit address, plus content of XR; The effective address is the opcode parameter (quad address), plus the value of the X register</td></tr>
+<tr><td>Absolute 64bit indexed with Y</td><td>Quad absolute Y-indexed</td><td>AM=1</td><td>8</td><td>quad,Y</td><td>65k</td><td>64 bit address, plus content of YR; The effective address is the opcode parameter (quad address), plus the value of the Y register</td></tr>
+<tr><td>Zeropage indirect 16bit</td><td>Zeropage indirect</td><td></td><td>1</td><td>(zp)</td><td>cmos</td><td>Load effective 16 bit address from zeropage location given; Load effective word (16bit) address from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 16bit indexed with Y</td><td>Zeropage indirect Y-indexed</td><td></td><td>1</td><td>(zp),Y</td><td></td><td>Load effective 16 bit address from zeropage location given, then add content of YR; 
+        	The effective address is computed as the word (16bit) address read from the zeropage location given as parameter plus the value of the Y register. The resulting address may be larger than 16bit due to overflow when Y is added.</td></tr>
+<tr><td>Zeropage indexed with X indirect 16bit</td><td>Zeropage X-indexed indirect</td><td></td><td>1</td><td>(zp,X)</td><td></td><td>Load effective 16 bit address from zeropage location given plus content of XR; 
+        	The effective word (16bit) address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 16bit</td><td>Absolute indirect</td><td></td><td>2</td><td>(abs)</td><td></td><td>Load effective 16 bit address from absolute location given; 
+        	The effective word (16bit) address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 16bit indexed with Y</td><td>Absolute indirect Y-indexed</td><td></td><td>2</td><td>(abs),Y</td><td>65k</td><td>Load effective 16 bit address from absolute location given, then add content of YR; 
+        	The effective address is computed as the word (16bit) address read from the word location given as parameter plus the value of the Y register. The resulting address may be larger than 16bit due to overflow when Y is added.</td></tr>
+<tr><td>Absolute indexed with X indirect 16bit</td><td>Absolute X-indexed indirect</td><td></td><td>2</td><td>(abs,X)</td><td>cmos</td><td>Load effective 16 bit address from absolute location given plus content of XR;
+        	The effective word address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Zeropage indirect 32bit</td><td>Long Zeropage indirect</td><td>AM=1</td><td>1</td><td>[zp]</td><td>65k</td><td>Load effective 32 bit address from zeropage location given; 
+        	The effective long (32bit) address is read from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 32bit indexed with Y</td><td>Zeropage long indirect Y-indexed</td><td>AM=1</td><td>1</td><td>[zp],Y</td><td>65k</td><td>Load effective 32 bit address from zeropage location given, then add content of YR;
+        	The effective address is computed as the long (32bit) address read from the zeropage location given as parameter plus the value of the Y register.  The resulting address may be larger than 32bit due to overflow when Y is added.</td></tr>
+<tr><td>Zeropage indexed with X indirect 32bit</td><td>Zeropage X-indexed long indirect</td><td>AM=1</td><td>1</td><td>[zp,X]</td><td>65k</td><td>Load effective 32 bit address from zeropage location given plus content of XR;
+        	The effective long (32bit) address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 32bit</td><td>Absolute long indirect</td><td>AM=1</td><td>2</td><td>[abs]</td><td>65k</td><td>Load effective 32 bit address from absolute location given;
+        	The effective long (32bit) address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 32bit indexed with Y</td><td>Absolute long indirect Y-indexed</td><td>AM=1</td><td>2</td><td>[abs],Y</td><td>65k</td><td>Load effective 32 bit address from absolute location given, then add content of YR;
+        	The effective address is computed as the long address read from the word location given as parameter plus the value of the Y register.  The resulting address may be larger than 32bit due to overflow when Y is added.</td></tr>
+<tr><td>Absolute indexed with X indirect 32bit</td><td>Absolute X-indexed long indirect</td><td>AM=1</td><td>2</td><td>[abs,X]</td><td>65k</td><td>Load effective 32 bit address from absolute location given plus content of XR;
+        	The effective long (32bit) address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Zeropage indirect 64bit</td><td>Zeropage quad indirect</td><td>AM=1</td><td>1</td><td>[[zp]]</td><td>65k</td><td>Load effective 64 bit address from zeropage location given;
+        	The effective quad (64bit) address is read from zeropage location given as parameter.</td></tr>
+<tr><td>Zeropage indirect 64bit indexed with Y</td><td>Zeropage quad indirect Y-indexed</td><td>AM=1</td><td>1</td><td>[[zp]],Y</td><td>65k</td><td>Load effective 64 bit address from zeropage location given, then add content of YR;
+        	The effective address is computed as the quad (64bit) address read from the zeropage location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Zeropage indexed with X indirect 64bit</td><td>Zeropage X-indexed quad indirect</td><td>AM=1</td><td>1</td><td>[[zp,X]]</td><td>65k</td><td>Load effective 64 bit address from zeropage location given plus content of XR;
+        	The effective quad (64bit) address is read from the location that is computed as the zeropage location given as parameter plus the value of the X register</td></tr>
+<tr><td>Absolute indirect 64bit</td><td>Absolute quad indirect</td><td>AM=1</td><td>2</td><td>[[abs]]</td><td>65k</td><td>Load effective 64 bit address from absolute location given;
+        	The effective quad (64bit) address is read from word location given as parameter.</td></tr>
+<tr><td>Absolute indirect 64bit indexed with Y</td><td>Absolute quad indirect Y-indexed</td><td>AM=1</td><td>2</td><td>[[abs]],Y</td><td>65k</td><td>Load effective 64 bit address from absolute location given, then add content of YR;
+        	The effective address is computed as the quad address read from the word location given as parameter plus the value of the Y register</td></tr>
+<tr><td>Absolute indexed with X indirect 64bit</td><td>Absolute X-indexed quad indirect</td><td>AM=1</td><td>2</td><td>[[abs,X]]</td><td>65k</td><td>Load effective 64 bit address from absolute location given plus content of XR;
+        	The effective quad (64bit) address is read from the location that is computed as the word location given as parameter plus the value of the X register</td></tr>
+<tr><td>Relative</td><td></td><td></td><td>1</td><td>rel</td><td></td><td>relative addressing modes, used in branches; from -128 to +127</td></tr>
+<tr><td>Relative 16bit</td><td>Wide relative</td><td>RS=01</td><td>2</td><td>relwide</td><td>65k</td><td>relative addressing modes, used in branches; from -32768 to +32767</td></tr>
+<tr><td>Relative 32bit</td><td>Long relative</td><td>RS=10</td><td>4</td><td>rellong</td><td>65k</td><td>relative addressing modes, used in branches; from -2^32 to +2^32-1</td></tr>
+<tr><td>Relative 64bit</td><td>Quad relative</td><td>RS=11</td><td>8</td><td>relquad</td><td>65k</td><td>relative addressing modes, used in branches; from -2^64 to +2^64-1</td></tr>
+<tr><td>Relative (BSR)</td><td></td><td></td><td>1</td><td>rel</td><td></td><td>relative addressing modes, used in BSR; from -128 to +127</td></tr>
+<tr><td>Relative 16bit (BSR)</td><td>Wide relative</td><td></td><td>2</td><td>relwide</td><td>65k</td><td>relative addressing modes, used in BSR; from -32768 to +32767</td></tr>
+<tr><td>Relative 32bit (BSR)</td><td>Long relative</td><td>AM=1</td><td>4</td><td>rellong</td><td>65k</td><td>relative addressing modes, used in BSR; from -2^32 to +2^32-1</td></tr>
+<tr><td>Relative 64bit (BSR)</td><td>Quad relative</td><td>AM=1</td><td>8</td><td>relquad</td><td>65k</td><td>relative addressing modes, used in BSR; from -2^64 to +2^64-1</td></tr>
 </table>
 
-<table class="optable">
-<tr><th>Addressing Mode</th><th>Name</th>					<th>Comment</th></tr>
-<tr><td>-</td>		<td>Implied</td>					<td>Implied by the operation</td></tr>
-<tr><td>A</td>		<td>Accumulator</td>					<td>Accumulator</td></tr>
-<tr><td>imm</td>	<td>Immediate</td>					<td>Immediate</td></tr>
-<tr><td>zp</td>		<td>Zeropage</td>					<td>Zeropage address</td></tr>
-<tr><td>zp,X</td>	<td>Zeropage indexed with X</td>			<td>Zeropage address, plus content of XR</td></tr>
-<tr><td>zp,Y</td>	<td>Zeropage indexed with Y</td>			<td>Zeropage address, plus content of YR</td></tr>
-<tr><td>abs</td>	<td>Absolute 16 bit</td>				<td>16 bit address</td></tr>
-<tr><td>abs,X</td>	<td>Absolute 16 bit indexed with X</td>		<td>16 bit address, plus content of XR</td></tr>
-<tr><td>abs,Y</td>	<td>Absolute 16 bit indexed with Y</td>		<td>16 bit address, plus content of YR</td></tr>
-<tr><td>long</td>	<td>Long 32 bit</td>				<td>32 bit address</td></tr>
-<tr><td>long,X</td>	<td>Long 32 bit indexed with X</td>		<td>32 bit address, plus content of XR</td></tr>
-<tr><td>long,Y</td>	<td>Long 32 bit indexed with Y</td>		<td>32 bit address, plus content of YR</td></tr>
-<tr><td>quad</td>	<td>Quad (Longlong) 64 bit</td>			<td>64 bit address</td></tr>
-<tr><td>quad,X</td>	<td>Quad (Longlong) 64 bit indexed with X</td>	<td>64 bit address, plus content of XR</td></tr>
-<tr><td>quad,Y</td>	<td>Quad (Longlong) 64 bit indexed with Y</td>	<td>64 bit address, plus content of YR</td></tr>
-<tr><td>(zp)</td>	<td>Zeropage indirect 16 bit</td>			<td>Load effective 16 bit address from zeropage location given</td></tr>
-<tr><td>(zp),Y</td>	<td>Zeropage indirect indexed with Y 16 bit</td>	<td>Load effective 16 bit address from zeropage location given, then add content of YR</td></tr>
-<tr><td>(zp,X)</td>	<td>Zeropage indexed with X indirect 16 bit</td>	<td>Load effective 16 bit address from zeropage location given plus content of XR</td></tr>
-<tr><td>(abs)</td>	<td>Absolute indirect 16 bit</td>			<td>Load effective 16 bit address from absolute location given</td></tr>
-<tr><td>(abs),Y</td>	<td>Absolute indirect indexed with Y 16 bit</td>	<td>Load effective 16 bit address from absolute location given, then add content of YR</td></tr>
-<tr><td>(abs,X)</td>	<td>Absolute indexed with X indirect 16 bit</td>	<td>Load effective 16 bit address from absolute location given plus content of XR</td></tr>
-<tr><td>[zp]</td>	<td>Zeropage indirect 32 bit</td>			<td>Load effective 32 bit address from zeropage location given</td></tr>
-<tr><td>[zp],Y</td>	<td>Zeropage indirect indexed with Y 32 bit</td>	<td>Load effective 32 bit address from zeropage location given, then add content of YR</td></tr>
-<tr><td>[zp,X]</td>	<td>Zeropage indexed with X indirect 32 bit</td>	<td>Load effective 32 bit address from zeropage location given plus content of XR</td></tr>
-<tr><td>[abs]</td>	<td>Absolute indirect 32 bit</td>			<td>Load effective 32 bit address from absolute location given</td></tr>
-<tr><td>[abs],Y</td>	<td>Absolute indirect indexed with Y 32 bit</td>	<td>Load effective 32 bit address from absolute location given, then add content of YR</td></tr>
-<tr><td>[abs,X]</td>	<td>Absolute indexed with X indirect 32 bit</td>	<td>Load effective 32 bit address from absolute location given plus content of XR</td></tr>
-<tr><td>[[zp]]</td>	<td>Zeropage indirect 64 bit</td>			<td>Load effective 64 bit address from zeropage location given</td></tr>
-<tr><td>[[zp]],Y</td>	<td>Zeropage indirect indexed with Y 64 bit</td>	<td>Load effective 64 bit address from zeropage location given, then add content of YR</td></tr>
-<tr><td>[[zp,X]]</td>	<td>Zeropage indexed with X indirect 64 bit</td>	<td>Load effective 64 bit address from zeropage location given plus content of XR</td></tr>
-<tr><td>[[abs]]</td>	<td>Absolute indirect 64 bit</td>			<td>Load effective 64 bit address from absolute location given</td></tr>
-<tr><td>[[abs]],Y</td>	<td>Absolute indirect indexed with Y 64 bit</td>	<td>Load effective 64 bit address from absolute location given, then add content of YR</td></tr>
-<tr><td>[[abs,X]]</td>	<td>Absolute indexed with X indirect 64 bit</td>	<td>Load effective 64 bit address from absolute location given plus content of XR</td></tr>
-<tr><td>rel</td>	<td>Relative address -128 to 127</td>			<td></td></tr>
-<tr><td>relwide</td>	<td>Relative address -32768 to 32767</td>		<td></td></tr>
-<tr><td>rellong</td>	<td>Relative address -2^32 to 2^32-1</td>		<td></td></tr>
-<tr><td>relquad</td>	<td>Relative address -2^64 to 2^64-1</td>		<td></td></tr>
-<tr><td>(E)</td>	<td>Indirect-E</td>					<td>Take the effective operand address from the E register</td></tr>
-</table><p>
+
+
+<p>
 	You will note that not all of these addressing modes are shown in the above table. Here the prefix codes come into play.
     	</p><h3><a name="ovpref" id="ovpref">Prefix Overview</a></h3><p>
 	In the opcode map there are 32 codes designated as "prefix1" and 16 codes designated as "prefix2". These opcodes are no operations in themselves, but
@@ -829,25 +570,28 @@ abs,Y</td></tr>
 	</p><p>
 	The following table describes which prefix bit is applicable to which opcode:
 	</p>
-<table class="optable">
-<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>		<th>1</th>					<th>2</th>					<th>3</th>							<th>4</th>				<th>5</th>					<th>6</th>				<th>7</th>							<th>8</th>			<th>9</th>					<th>A</th>			<th>B</th>		<th>C</th>					<th>D</th>					<th>E</th>					<th>F</th></tr>
-<tr><th>0</th>		<td class="unused">BRK</td>	<td>ORA (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA zp,Y<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">ORA [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>TSB zp<br />AM,OF,RS,UM,NF</td>	<td>ORA zp<br />AM,OF,RS,LE,UM,NF</td>		<td>ASL zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">JMP [[abs]]<br />AM=1,OF</td>			<td class="unused">PHP</td>	<td>ORA imm<br />RS,LE,NF</td>			<td>ASL A<br />RS,NF</td>	<td class="x"></td>	<td>TSB abs<br />AM,OF,RS,UM,NF</td>		<td>ORA abs<br />AM,OF,RS,LE,UM,NF</td>		<td>ASL abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">EXT prefix</td></tr>
-<tr><th>1</th>		<td>BPL rel<br />RS</td>		<td>ORA (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>ORA (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">ORA [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td>TRB zp<br />AM,OF,RS,UM,NF</td>	<td>ORA zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>ASL zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">ORA [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLC</td>	<td>ORA abs,y<br />AM,OF,RS,LE,UM,NF</td>	<td>INC A<br />RS,NF</td>	<td class="x"></td>	<td>TRB abs<br />AM,OF,RS,UM,NF</td>		<td>ORA abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>ASL abs,X<br />AM,OF,RS,UM,NF</td>		<td>ASL abs,Y<br />AM,OF,RS,UM,NF</td></tr>	
-<tr><th>2</th>		<td>JSR abs<br />AM,OF,RS</td>	<td>AND (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>STA zp,Y<br />AM,OF,RS,LE,UM</td>		<td class="dup">AND [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>BIT zp<br />AM,OF,RS,LE,UM,NF</td>	<td>AND zp<br />AM,OF,RS,LE,UM,NF</td>		<td>ROL zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">JMP [[abs]],X<br />AM=1,OF,UM</td>		<td class="unused">PLP</td>	<td>AND imm<br />RS,LE,NF</td>			<td>ROL A<br />RS,NF</td>	<td class="x"></td>	<td>BIT abs<br />AM,OF,RS,LE,UM,NF</td>		<td>AND abs<br />AM,OF,RS,LE,UM,NF</td>		<td>ROL abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">SYS prefix</td></tr>
-<tr><th>3</th>		<td>BMI rel<br />RS</td>		<td>AND (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>AND (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">AND [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td>BIT zp,X<br />AM,OF,RS,LE,UM,NF</td>	<td>AND zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>ROL zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">AND [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SEC</td>	<td>AND abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>DEC A<br />RS,NF</td>	<td class="x"></td>	<td>BIT abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>AND abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>ROL abs,X<br />AM,OF,RS,UM,NF</td>		<td>ROL abs,Y<br />AM,OF,RS,UM,NF</td></tr>
-<tr><th>4</th>		<td class="unused">RTI</td>	<td>EOR (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA (abs),Y<br />AM,OF,RS,LE,UM,NF</td>	<td class="dup">EOR [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>BSR relwide<br />RS,AM</td>		<td>EOR zp<br />AM,OF,RS,LE,UM,NF</td>		<td>LSR zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">LDA [[abs]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td>PHA<br />RS,UM</td>		<td>EOR imm<br />RS,LE,NF</td>			<td>LSR A<br />RS,NF</td>	<td class="x"></td>	<td>JMP abs<br />AM,OF</td>			<td>EOR abs<br />AM,OF,RS,LE,UM,NF</td>		<td>LSR abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">QUICK prefix</td></tr>
-<tr><th>5</th>		<td>BVC rel<br />RS</td>		<td>EOR (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>EOR (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">EOR [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td class="unused"></td>		<td>EOR zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>LSR zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">EOR [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLI</td>	<td>EOR abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>PHY<br />RS,LE,UM</td>	<td class="x"></td>	<td>STX abs,Y<br />AM</td>			<td>EOR abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>LSR abs,X<br />AM,OF,RS,UM,NF</td>		<td>LSR abs,Y<br />AM,OF,RS,UM,NF</td></tr>
-<tr><th>6</th>		<td>RTS<br />AM,RS</td>		<td>ADC (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA (abs,X)<br />AM,OF,RS,LE,UM,NF</td>	<td class="dup">ADC [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>STZ zp<br />AM,OF,RS,UM</td>		<td>ADC zp<br />AM,OF,RS,LE,UM,NF</td>		<td>ROR zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">LDA [[abs,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>PLA<br />RS,LE,UM,NF</td>	<td>ADC imm<br />RS,LE,NF</td>			<td>ROR A<br />RS,NF</td>	<td class="x"></td>	<td>JMP (abs)<br />AM,OF</td>			<td>ADC abs<br />AM,OF,RS,LE,UM,NF</td>		<td>ROR abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>7</th>		<td>BVS rel<br />RS</td>		<td>ADC (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>ADC (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">ADC [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td>STZ zp,X<br />AM,OF,RS,UM</td>	<td>ADC zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>ROR zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">ADC [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SEI</td>	<td>ADC abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>PLY<br />RS,LE,UM,NF</td>	<td class="x"></td>	<td>JMP (abs,X)<br />AM,OF</td>			<td>ADC abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>ROR abs,X<br />AM,OF,RS,UM,NF</td>		<td>ROR abs,Y<br />AM,OF,RS,UM,NF</td></tr>
-<tr><th>8</th>		<td>BRA rel<br />RS</td>		<td>STA (zp,X)<br />AM,OF,RS,UM,NF</td>		<td>BSR rel<br />RS,AM</td>			<td class="dup">STA [[zp,X]]<br />AM=1,OF,RS,UM</td>		<td>STY zp<br />AM,OF,RS,UM</td>		<td>STA zp<br />AM,OF,RS,UM</td>			<td>STX zp<br />AM,OF,RS,UM</td>		<td class="dup">JSR [[abs]]<br />AM=1,OF,RS</td>			<td>DEY<br />RS,NF</td>		<td>BIT imm<br />RS,LE,NF</td>			<td>TXA<br />RS,LE,NF</td>	<td class="x"></td>	<td>STY abs<br />AM,OF,RS,UM</td>		<td>STA abs<br />AM,OF,RS,UM</td>		<td>STX abs<br />AM,OF,RS,UM</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>9</th>		<td>BCC rel<br />RS</td>		<td>STA (zp),Y<br />AM,OF,RS,UM,NF</td>		<td>STA (zp)<br />AM,OF,RS,LE,UM</td>		<td class="dup">STA [[zp]],Y<br />AM=1,OF,RS,UM</td>		<td>STY zp,X<br />AM,OF,RS,UM</td>	<td>STA zp,X<br />AM,OF,RS,UM</td>		<td>STX zp,Y<br />AM,OF,RS,UM</td>	<td class="dup">STA [[zp]]<br />AM=1,OF,RS,UM</td>		<td>TYA<br />RS,LE,NF</td>	<td>STA abs,Y<br />AM,OF,RS,UM</td>		<td>TXS<br />RS,LE,UM,NF</td>	<td class="x"></td>	<td>STZ abs<br />AM,OF,RS,UM</td>		<td>STA abs,X<br />AM,OF,RS,UM</td>		<td>STZ abs,X<br />AM,OF,RS,UM</td>		<td>STZ abs,Y<br />AM,OF,RS,UM</td></tr>
-<tr><th>A</th>		<td>LDY imm<br />RS,LE,NF</td>	<td>LDA (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>LDX imm<br />RS,NF,LE</td>			<td class="dup">LDA [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>LDY zp<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA zp<br />AM,OF,RS,LE,UM,NF</td>		<td>LDX zp<br />AM,OF,RS,LE,UM,NF</td>	<td class="dup">JSR [[abs,X]]<br />AM=1,OF,RS</td>		<td>TAY<br />RS,LE,NF</td>	<td>LDA imm<br />RS,LE,NF</td>			<td>TAX<br />RS,LE,NF</td>	<td class="x"></td>	<td>LDY abs<br />AM,OF,RS,LE,UM,NF</td>		<td>LDA abs<br />AM,OF,RS,LE,UM,NF</td>		<td>LDX abs<br />AM,OF,RS,LE,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>B</th>		<td>BCS rel<br />RS</td>		<td>LDA (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">LDA [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td>LDY zp,X<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>LDX zp,Y<br />AM,OF,RS,LE,UM,NF</td>	<td class="dup">LDA [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">CLV</td>	<td>LDA abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>TSX<br />UM,NF</td>		<td class="x"></td>	<td>LDY abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>LDA abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>LDX abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>STX abs,Y<br />AM,OF,RS,UM</td></tr>
-<tr><th>C</th>		<td>CPY imm<br />RS,LE</td>	<td>CMP (zp,X)<br />AM,OF,RS,LE,UM</td>		<td>STA (abs),Y<br />AM,OF,RS,UM</td>		<td class="dup">CMP [[zp,X]]<br />AM=1,OF,RS,LE,UM</td>		<td>CPY zp<br />AM,OF,RS,LE,UM</td>	<td>CMP zp<br />AM,OF,RS,LE,UM</td>		<td>DEC zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">STA [[abs]],Y<br />AM=1,OF,RS,UM</td>		<td>INY<br />RS,NF</td>		<td>CMP imm<br />RS,LE</td>			<td>DEX<br />RS,NF</td>		<td class="x"></td>	<td>CPY abs<br />AM,OF,RS,LE,UM</td>		<td>CMP abs<br />AM,OF,RS,LE,UM</td>		<td>DEC abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>D</th>		<td>BNE rel<br />RS</td>		<td>CMP (zp),Y<br />AM,OF,RS,LE,UM</td>		<td>CMP (zp)<br />AM,OF,RS,LE,UM</td>		<td class="dup">CMP [[zp]],Y<br />AM=1,OF,RS,LE,UM</td>		<td class="unused"></td>		<td>CMP zp,X<br />AM,OF,RS,LE,UM</td>		<td>DEC zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">CMP [[zp]]<br />AM=1,OF,RS,LE,UM</td>		<td class="unused">CLD</td>	<td>CMP abs,Y<br />AM,OF,RS,LE,UM</td>		<td>PHX<br />RS,LE,UM</td>	<td class="x"></td>	<td>JSR (abs)<br />AM,OF,RS,UM</td>		<td>CMP abs,X<br />AM,OF,RS,LE,UM</td>		<td>DEC abs,X<br />AM,OF,RS,UM,NF</td>		<td>DEC abs,Y<br />AM,OF,RS,UM,NF</td></tr>
-<tr><th>E</th>		<td>CPX imm<br />RS,LE</td>	<td>SBC (zp,X)<br />AM,OF,RS,LE,UM,NF</td>	<td>STA (abs,X)<br />AM,OF,RS,UM</td>		<td class="dup">SBC [[zp,X]]<br />AM=1,OF,RS,LE,UM,NF</td>	<td>CPX zp<br />AM,OF,RS,LE,UM</td>	<td>SBC zp<br />AM,OF,RS,LE,UM,NF</td>		<td>INC zp<br />AM,OF,RS,UM,NF</td>	<td class="dup">STA [[abs,X]]<br />AM=1,OF,RS,UM</td>		<td>INX<br />RS,NF</td>		<td>SBC imm<br />RS,LE,NF</td>			<td class="unused">NOP</td>	<td class="x"></td>	<td>CPX abs<br />AM,OF,RS,LE,UM</td>		<td>SBC abs<br />AM,OF,RS,LE,UM,NF</td>		<td>INC abs<br />AM,OF,RS,UM,NF</td>		<td class="unused">reserved prefix</td></tr>
-<tr><th>F</th>		<td>BEQ rel<br />RS</td>		<td>SBC (zp),Y<br />AM,OF,RS,LE,UM,NF</td>	<td>SBC (zp)<br />AM,OF,RS,LE,UM,NF</td>		<td class="dup">SBC [[zp]],Y<br />AM=1,OF,RS,LE,UM,NF</td>	<td class="unused">TRAP<br />RS</td>	<td>SBC zp,X<br />AM,OF,RS,LE,UM,NF</td>		<td>INC zp,X<br />AM,OF,RS,UM,NF</td>	<td class="dup">SBC [[zp]]<br />AM=1,OF,RS,LE,UM,NF</td>		<td class="unused">SED</td>	<td>SBC abs,Y<br />AM,OF,RS,LE,UM,NF</td>	<td>PLX<br />RS,LE,UM,NF</td>	<td class="x"></td>	<td>JSR (abs,X)<br />AM,OF,RS,UM</td>		<td>SBC abs,X<br />AM,OF,RS,LE,UM,NF</td>	<td>INC abs,X<br />AM,OF,RS,UM,NF</td>		<td>INC abs,Y<br />AM,OF,RS,UM,NF</td></tr>
-</table>	<p>
+
+<table class="optable"><tr><th>LSB-&gt;<br />MSB</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+<tr><th>0</th><td>BRK </td><td>ORA (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">LDA zp,Y<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">ORA [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td class="cmos">TSB zp<br />NF,RS,UM,OF,AM</td><td>ORA zp<br />NF,RS,UM,OF,LE,AM</td><td>ASL zp<br />NF,RS,UM,OF,AM</td><td class="prefix">JMP [[abs]]<br />UM,OF,AM=1</td><td>PHP </td><td>ORA #byte<br />NF,RS,LE</td><td>ASL <br />NF,RS</td><td class="prefix">prefix2</td><td class="cmos">TSB abs<br />NF,RS,UM,OF,AM</td><td>ORA abs<br />NF,RS,UM,OF,LE,AM</td><td>ASL abs<br />NF,RS,UM,OF,AM</td><td class="prefix">EXT</td></tr>
+<tr><th>1</th><td>BPL rel<br />RS</td><td>ORA (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">ORA (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">ORA [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td class="cmos">TRB zp<br />NF,RS,UM,OF,AM</td><td>ORA zp,X<br />NF,RS,UM,OF,LE,AM</td><td>ASL zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">ORA [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>CLC </td><td>ORA abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">INC <br />NF,RS</td><td class="prefix">prefix2</td><td class="cmos">TRB abs<br />NF,RS,UM,OF,AM</td><td>ORA abs,X<br />NF,RS,UM,OF,LE,AM</td><td>ASL abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">ASL abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+<tr><th>2</th><td>JSR abs<br />RS,UM,OF,AM</td><td>AND (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">STA zp,Y<br />RS,UM,OF,AM</td><td class="prefix">AND [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td>BIT zp<br />NF,RS,UM,OF,LE,AM</td><td>AND zp<br />NF,RS,UM,OF,LE,AM</td><td>ROL zp<br />NF,RS,UM,OF,AM</td><td class="prefix">JMP [[abs,X]]<br />UM,OF,AM=1</td><td>PLP </td><td>AND #byte<br />NF,RS,LE</td><td>ROL <br />NF,RS</td><td class="prefix">prefix2</td><td>BIT abs<br />NF,RS,UM,OF,LE,AM</td><td>AND abs<br />NF,RS,UM,OF,LE,AM</td><td>ROL abs<br />NF,RS,UM,OF,AM</td><td class="prefix">SYS</td></tr>
+<tr><th>3</th><td>BMI rel<br />RS</td><td>AND (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">AND (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">AND [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td class="cmos">BIT zp,X<br />NF,RS,UM,OF,LE,AM</td><td>AND zp,X<br />NF,RS,UM,OF,LE,AM</td><td>ROL zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">AND [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>SEC </td><td>AND abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">DEC <br />NF,RS</td><td class="prefix">prefix2</td><td class="cmos">BIT abs,X<br />NF,RS,UM,OF,LE,AM</td><td>AND abs,X<br />NF,RS,UM,OF,LE,AM</td><td>ROL abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">ROL abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+<tr><th>4</th><td>RTI </td><td>EOR (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">LDA (abs),Y<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">EOR [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td class="c65k">BSR relwide<br />RS,AM</td><td>EOR zp<br />NF,RS,UM,OF,LE,AM</td><td>LSR zp<br />NF,RS,UM,OF,AM</td><td class="prefix">LDA [[abs]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td>PHA <br />RS,UM</td><td>EOR #byte<br />NF,RS,LE</td><td>LSR <br />NF,RS</td><td class="prefix">prefix2</td><td>JMP abs<br />UM,OF,AM</td><td>EOR abs<br />NF,RS,UM,OF,LE,AM</td><td>LSR abs<br />NF,RS,UM,OF,AM</td><td class="prefix">QUICK</td></tr>
+<tr><th>5</th><td>BVC rel<br />RS</td><td>EOR (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">EOR (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">EOR [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td class="unused"></td><td>EOR zp,X<br />NF,RS,UM,OF,LE,AM</td><td>LSR zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">EOR [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>CLI </td><td>EOR abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">PHY <br />RS,UM</td><td class="prefix">prefix2</td><td class="unused"></td><td>EOR abs,X<br />NF,RS,UM,OF,LE,AM</td><td>LSR abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">LSR abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+<tr><th>6</th><td>RTS <br />RS</td><td>ADC (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">LDA (abs,X)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">ADC [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td class="cmos">STZ zp<br />RS,UM,OF,AM</td><td>ADC zp<br />NF,RS,UM,OF,LE,AM</td><td>ROR zp<br />NF,RS,UM,OF,AM</td><td class="prefix">LDA [[abs,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td>PLA <br />NF,RS,UM,LE</td><td>ADC #byte<br />NF,RS,LE</td><td>ROR <br />NF,RS</td><td class="prefix">prefix2</td><td>JMP (abs)<br />UM,OF,AM</td><td>ADC abs<br />NF,RS,UM,OF,LE,AM</td><td>ROR abs<br />NF,RS,UM,OF,AM</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>7</th><td>BVS rel<br />RS</td><td>ADC (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">ADC (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">ADC [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td class="cmos">STZ zp,X<br />RS,UM,OF,AM</td><td>ADC zp,X<br />NF,RS,UM,OF,LE,AM</td><td>ROR zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">ADC [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>SEI </td><td>ADC abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">PLY <br />NF,RS,UM,LE</td><td class="prefix">prefix2</td><td class="cmos">JMP (abs,X)<br />UM,OF,AM</td><td>ADC abs,X<br />NF,RS,UM,OF,LE,AM</td><td>ROR abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">ROR abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+<tr><th>8</th><td class="cmos">BRA rel<br />RS</td><td>STA (zp,X)<br />RS,UM,OF,AM</td><td class="c65k">BSR rel<br />RS,AM</td><td class="prefix">STA [[zp,X]]<br />RS,UM,OF,AM=1</td><td>STY zp<br />RS,UM,OF,AM</td><td>STA zp<br />RS,UM,OF,AM</td><td>STX zp<br />RS,UM,OF,AM</td><td class="prefix">JSR [[abs]]<br />RS,UM,OF,AM=1</td><td>DEY <br />NF,RS</td><td class="cmos">BIT #byte<br />NF,RS,LE</td><td>TXA <br />NF,RS,LE</td><td class="prefix">prefix2</td><td>STY abs<br />RS,UM,OF,AM</td><td>STA abs<br />RS,UM,OF,AM</td><td>STX abs<br />RS,UM,OF,AM</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>9</th><td>BCC rel<br />RS</td><td>STA (zp),Y<br />RS,UM,OF,AM</td><td class="cmos">STA (zp)<br />RS,UM,OF,AM</td><td class="prefix">STA [[zp]],Y<br />RS,UM,OF,AM=1</td><td>STY zp,X<br />RS,UM,OF,AM</td><td>STA zp,X<br />RS,UM,OF,AM</td><td>STX zp,Y<br />RS,UM,OF,AM</td><td class="prefix">STA [[zp]]<br />RS,UM,OF,AM=1</td><td>TYA <br />NF,RS,LE</td><td>STA abs,Y<br />RS,UM,OF,AM</td><td>TXS <br />RS,UM,LE</td><td class="prefix">prefix2</td><td class="cmos">STZ abs<br />RS,UM,OF,AM</td><td>STA abs,X<br />RS,UM,OF,AM</td><td class="cmos">STZ abs,X<br />RS,UM,OF,AM</td><td class="c65k">STZ abs,Y<br />RS,UM,OF,AM</td></tr>
+<tr><th>A</th><td>LDY #byte<br />NF,RS,LE</td><td>LDA (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td>LDX #byte<br />NF,RS,LE</td><td class="prefix">LDA [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td>LDY zp<br />NF,RS,UM,OF,LE,AM</td><td>LDA zp<br />NF,RS,UM,OF,LE,AM</td><td>LDX zp<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">JSR [[abs,X]]<br />RS,UM,OF,AM=1</td><td>TAY <br />NF,RS,LE</td><td>LDA #byte<br />NF,RS,LE</td><td>TAX <br />NF,RS,LE</td><td class="prefix">prefix2</td><td>LDY abs<br />NF,RS,UM,OF,LE,AM</td><td>LDA abs<br />NF,RS,UM,OF,LE,AM</td><td>LDX abs<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>B</th><td>BCS rel<br />RS</td><td>LDA (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">LDA (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">LDA [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td>LDY zp,X<br />NF,RS,UM,OF,LE,AM</td><td>LDA zp,X<br />NF,RS,UM,OF,LE,AM</td><td>LDX zp,Y<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">LDA [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>CLV </td><td>LDA abs,Y<br />NF,RS,UM,OF,LE,AM</td><td>TSX <br />NF,UM</td><td class="prefix">prefix2</td><td>LDY abs,X<br />NF,RS,UM,OF,LE,AM</td><td>LDA abs,X<br />NF,RS,UM,OF,LE,AM</td><td>LDX abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">STX abs,Y<br />RS,UM,OF,AM</td></tr>
+<tr><th>C</th><td>CPY #byte<br />RS,LE</td><td>CMP (zp,X)<br />RS,UM,OF,LE,AM</td><td class="c65k">STA (abs),Y<br />RS,UM,OF,AM</td><td class="prefix">CMP [[zp,X]]<br />RS,UM,OF,LE,AM=1</td><td>CPY zp<br />RS,UM,OF,LE,AM</td><td>CMP zp<br />RS,UM,OF,LE,AM</td><td>DEC zp<br />NF,RS,UM,OF,AM</td><td class="prefix">STA [[abs]],Y<br />RS,UM,OF,AM=1</td><td>INY <br />NF,RS</td><td>CMP #byte<br />RS,LE</td><td>DEX <br />NF,RS</td><td class="prefix">prefix2</td><td>CPY abs<br />RS,UM,OF,LE,AM</td><td>CMP abs<br />RS,UM,OF,LE,AM</td><td>DEC abs<br />NF,RS,UM,OF,AM</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>D</th><td>BNE rel<br />RS</td><td>CMP (zp),Y<br />RS,UM,OF,LE,AM</td><td class="cmos">CMP (zp)<br />RS,UM,OF,LE,AM</td><td class="prefix">CMP [[zp]],Y<br />RS,UM,OF,LE,AM=1</td><td class="unused"></td><td>CMP zp,X<br />RS,UM,OF,LE,AM</td><td>DEC zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">CMP [[zp]]<br />RS,UM,OF,LE,AM=1</td><td>CLD </td><td>CMP abs,Y<br />RS,UM,OF,LE,AM</td><td class="cmos">PHX <br />RS,UM</td><td class="prefix">prefix2</td><td class="c65k">JSR (abs)<br />RS,UM,OF,AM</td><td>CMP abs,X<br />RS,UM,OF,LE,AM</td><td>DEC abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">DEC abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+<tr><th>E</th><td>CPX #byte<br />RS,LE</td><td>SBC (zp,X)<br />NF,RS,UM,OF,LE,AM</td><td class="c65k">STA (abs,X)<br />RS,UM,OF,AM</td><td class="prefix">SBC [[zp,X]]<br />NF,RS,UM,OF,LE,AM=1</td><td>CPX zp<br />RS,UM,OF,LE,AM</td><td>SBC zp<br />NF,RS,UM,OF,LE,AM</td><td>INC zp<br />NF,RS,UM,OF,AM</td><td class="prefix">STA [[abs,X]]<br />RS,UM,OF,AM=1</td><td>INX <br />NF,RS</td><td>SBC #byte<br />NF,RS,LE</td><td>NOP </td><td class="prefix">prefix2</td><td>CPX abs<br />RS,UM,OF,LE,AM</td><td>SBC abs<br />NF,RS,UM,OF,LE,AM</td><td>INC abs<br />NF,RS,UM,OF,AM</td><td class="prefix">reserved prefix</td></tr>
+<tr><th>F</th><td>BEQ rel<br />RS</td><td>SBC (zp),Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">SBC (zp)<br />NF,RS,UM,OF,LE,AM</td><td class="prefix">SBC [[zp]],Y<br />NF,RS,UM,OF,LE,AM=1</td><td class="c65k">TRP #byte</td><td>SBC zp,X<br />NF,RS,UM,OF,LE,AM</td><td>INC zp,X<br />NF,RS,UM,OF,AM</td><td class="prefix">SBC [[zp]]<br />NF,RS,UM,OF,LE,AM=1</td><td>SED </td><td>SBC abs,Y<br />NF,RS,UM,OF,LE,AM</td><td class="cmos">PLX <br />NF,RS,UM,LE</td><td class="prefix">prefix2</td><td class="c65k">JSR (abs,X)<br />RS,UM,OF,AM</td><td>SBC abs,X<br />NF,RS,UM,OF,LE,AM</td><td>INC abs,X<br />NF,RS,UM,OF,AM</td><td class="c65k">INC abs,Y<br />NF,RS,UM,OF,AM</td></tr>
+</table>
+
+
+	<p>
 	The grey fields note opcodes that do not use any prefix bits.
 	</p><p>
 	Note that the Register size option for the RTS and JSR opcodes determine the size of the 
@@ -1076,27 +820,28 @@ abs,Y</td></tr>
   	<h3><a name="ovfp" id="ovfp">EXT opcodes</a></h3><p>These opcodes extend the opcode space with rarely used, but still useful general purpose
 	opcodes.
 	</p>
-<table class="optable">
-<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>			<th>1</th>				<th>2</th>				<th>3</th>	<th>4</th>				<th>5</th>				<th>6</th>				<th>7</th>	<th>8</th>			<th>9</th>				<th>A</th>		<th>B</th>	<th>C</th>				<th>D</th>				<th>E</th>			<th>F</th></tr>
-<tr><th>0</th>		<td></td>				<td></td>				<td>LEA zp,Y<br />AM,OF,UM,NF</td>	<td></td>	<td>MVN</td>				<td></td>				<td></td>				<td></td>	<td>PHE<br />RS,UM</td>		<td>ORA (E)<br />RS,LE,UM,NF</td>	<td>TPA<br />NF</td>	<td></td>	<td>TSB (E)<br />RS,UM,NF</td>		<td></td>				<td>BCN (E)<br />RS,UM,NF</td>	<td></td></tr>
-<tr><th>1</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>MVP</td>				<td></td>				<td></td>				<td></td>	<td></td>			<td></td>				<td></td>		<td></td>	<td>TRB (E)<br />RS,UM,NF</td>		<td></td>				<td></td>			<td></td></tr>	
-<tr><th>2</th>		<td>JSR (E)<br />RS</td>			<td></td>				<td>PEA zp,Y<br />AM,OF,UM</td>		<td></td>	<td>FIL</td>				<td></td>				<td>ADE imm<br />RS,LE,NF</td>		<td></td>	<td>PLE<br />RS,LE,UM,NF</td>	<td>AND (E)<br />RS,LE,UM,NF</td>	<td>TBA<br />NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>3</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>BIT A<br />RS</td>			<td></td>				<td>ADE A<br />RS,LE,NF</td>		<td></td>	<td>CLE<br />RS,NF</td>		<td>LDE imm<br />RS,LE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>4</th>		<td></td>				<td></td>				<td>LEA (abs),Y<br />AM,OF,UM,NF</td>	<td></td> 	<td>WMB<br />UM</td>			<td></td>				<td>ADS imm<br />RS,LE,UM,NF</td>	<td></td>	<td>PHB<br />RS,UM</td>		<td>EOR (E)<br />RS,LE,UM,NF</td>	<td>TEA<br />NF</td>	<td></td>	<td>JMP (E)</td>			<td></td>				<td></td>			<td></td></tr>
-<tr><th>5</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td>EXT<br />RS,LE,NF</td>		<td></td>				<td>ADS A<br />RS,LE,NF</td>		<td></td>	<td>PRB<br />RS,LE,UM,NF</td>	<td></td>				<td>SEB<br />NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>6</th>		<td></td>				<td></td>				<td>LEA (abs,X)<br />AM,OF,UM,NF</td>	<td></td>	<td>RMB<br />UM</td>			<td></td>				<td>ADB imm<br />RS,LE,NF</td>		<td></td>	<td>PLB<br />RS,LE,UM,NF</td>	<td>ORA (E)<br />RS,LE,UM,NF</td>	<td>TAE<br />NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>7</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>ADB A<br />RS,LE,NF</td>		<td></td>	<td>CLB<br />RS,NF</td>		<td></td>				<td>SAE<br />RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>8</th>		<td>LEA rel<br />RS,UM,NF</td>		<td>PEA (zp,X)<br />AM,OF,UM</td>	<td>PEA rel<br />RS,UM</td>		<td></td>	<td>SCA (E)<br />RS,UM</td>		<td>PEA zp<br />AM,OF,UM</td>		<td></td>				<td></td>	<td>INV<br />RS,LE,NF</td>	<td>BIT (E)<br />RS,LE,UM,NF</td>	<td>TYS<br />UM,NF</td>	<td></td>	<td></td>				<td>PEA abs<br />AM,OF,UM</td>		<td></td>			<td></td></tr>
-<tr><th>9</th>		<td></td>				<td>PEA (zp),Y<br />AM,OF,UM</td>	<td>PEA (zp)<br />AM,OF,UM</td>		<td></td>	<td></td>				<td>PEA zp,X<br />AM,OF,UM</td>		<td></td>				<td></td>	<td>BCN<br />RS,NF</td>		<td>PEA abs,Y<br />AM,OF,UM</td>		<td>SXY<br />RS,NF</td>	<td></td>	<td>STZ (E)<br />RS,UM</td>		<td>PEA abs,X<br />AM,OF,UM</td>		<td></td>			<td></td></tr>
-<tr><th>A</th>		<td>LDY (E)<br />RS,LE,UM,NF</td>	<td>LEA (zp,X)<br />AM,OF,UM,NF</td>	<td>LDX (E)<br />RS,LE,UM,NF</td>	<td></td>	<td>LLA (E)<br />RS,LE,UM,NF</td>	<td>LEA zp<br />AM,OF,UM,NF</td>		<td>SBE imm<br />RS,LE,NF</td>		<td></td>	<td>SWP<br />RS,NF</td>		<td>LDA (E)<br />RS,LE,UM,NF</td>	<td></td>		<td></td>	<td></td>				<td>LEA abs<br />AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
-<tr><th>B</th>		<td></td>				<td>LEA (zp),Y<br />AM,OF,UM,NF</td>	<td>LEA (zp)<br />AM,OF,UM,NF</td>	<td></td>	<td></td>				<td>LEA zp,X<br />AM,OF,UM,NF</td>	<td>SBE A<br />RS,LE,NF</td>		<td></td>	<td></td>			<td>LEA abs,Y<br />AM,OF,UM,NF</td>	<td>SAX<br />RS,NF</td>	<td></td>	<td></td>				<td>LEA abs,X<br />AM,OF,UM,NF</td>	<td></td>			<td></td></tr>
-<tr><th>C</th>		<td>CPY (E)<br />RS,UM,NF</td>		<td></td>				<td>PEA (abs),Y<br />AM,OF,UM</td>	<td></td>	<td>WMB (E)<br />UM</td>			<td></td>				<td>SBS imm<br />RS,LE,UM,NF</td>	<td></td>	<td></td>			<td>CMP (E)<br />RS,LE,UM,NF</td>	<td>TSY<br />UM,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>D</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBS A<br />RS,LE,NF</td>		<td></td>	<td></td>			<td></td>				<td>SAY<br />RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>E</th>		<td>CPX (E)<br />RS,UM,NF</td>		<td></td>				<td>PEA (abs,X)<br />AM,OF,UM</td>	<td></td>	<td>RMB (E)<br />UM</td>			<td></td>				<td>SBB imm<br />RS,LE,NF</td>		<td></td>	<td>CLA<br />NF</td>		<td>SBC (E)<br />RS,LE,UM,NF</td>	<td>TAB<br />NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-<tr><th>F</th>		<td></td>				<td></td>				<td></td>				<td></td>	<td></td>				<td></td>				<td>SBB A<br />RS,LE,NF</td>		<td></td>	<td></td>			<td></td>				<td>SAB<br />RS,NF</td>	<td></td>	<td></td>				<td></td>				<td></td>			<td></td></tr>
-</table>    
-	<p>Note that including the prefix bytes an opcode may be three bytes long (prefix1, EXT prefix, and opcode). 
-	Prefix2 is (currently) not used with EXT opcodes.
+
+<table class="optable"><tr><th>LSB-&gt;<br />MSB</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+<tr><th>0</th><td class="unused"></td><td class="unused"></td><td>LEA zp,Y<br />NF,UM,OF,AM</td><td class="unused"></td><td>MVN </td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>PHE <br />UM</td><td>ORA (E)<br />NF,RS,UM,LE</td><td>TPA <br />NF</td><td class="unused"></td><td>TSB (E)<br />NF,RS,UM</td><td class="unused"></td><td>ASL (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>1</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>MVP </td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>TRB (E)<br />NF,RS,UM</td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>2</th><td>JSR (E)<br />RS,UM</td><td class="unused"></td><td>PEA zp,Y<br />UM,OF,AM</td><td class="unused"></td><td>FIL <br />RS</td><td class="unused"></td><td>ADE #byte<br />NF,RS,LE</td><td class="unused"></td><td>PLE <br />NF,UM</td><td>AND (E)<br />NF,RS,UM,LE</td><td>TBA <br />NF</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>ROL (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>3</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>ADE <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td>LDE #byte<br />NF,RS,LE</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>4</th><td class="unused"></td><td class="unused"></td><td>LEA (abs),Y<br />NF,UM,OF,AM</td><td class="unused"></td><td>WMB <br />UM</td><td class="unused"></td><td>ADS #byte<br />NF,RS,LE</td><td class="unused"></td><td>PHB <br />UM</td><td>EOR (E)<br />NF,RS,UM,LE</td><td>TEA <br />NF</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>LSR (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>5</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>EXT <br />NF,RS,LE</td><td class="unused"></td><td>ADS <br />NF,RS</td><td class="unused"></td><td>PRB <br />NF,UM</td><td>LDB #byte<br />NF,RS,LE</td><td>SEB <br />NF</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>6</th><td class="unused"></td><td class="unused"></td><td>LEA (abs,X)<br />NF,UM,OF,AM</td><td class="unused"></td><td>RMB <br />UM</td><td class="unused"></td><td>ADB #byte<br />NF,RS,LE</td><td class="unused"></td><td>PLB <br />NF,UM</td><td>ADC (E)<br />NF,RS,UM,LE</td><td>TAE <br />NF</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>ROR (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>7</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>ADB <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>SAE <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>8</th><td>LEA rel<br />NF,UM,OF,AM</td><td>PEA (zp,X)<br />UM,OF,AM</td><td>PEA rel<br />UM,OF,AM</td><td class="unused"></td><td>SCA (E)<br />RS,UM</td><td>PEA zp<br />UM,OF,AM</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>BIT (E)<br />NF,RS,UM,LE</td><td>TYS <br />NF,RS,UM,LE</td><td class="unused"></td><td>STY (E)<br />RS,UM</td><td>STA (E)<br />RS,UM</td><td>STX (E)<br />RS,UM</td><td class="unused"></td></tr>
+<tr><th>9</th><td class="unused"></td><td>PEA (zp),Y<br />UM,OF,AM</td><td>PEA (zp)<br />UM,OF,AM</td><td class="unused"></td><td>INV <br />NF,RS,LE</td><td>PEA zp,X<br />UM,OF,AM</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>PEA abs,Y<br />UM,OF,AM</td><td>SXY <br />NF,RS</td><td class="unused"></td><td>STZ (E)<br />RS,UM</td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>A</th><td>LDY (E)<br />NF,RS,UM,LE</td><td>LEA (zp,X)<br />NF,UM,OF,AM</td><td>LDX (E)<br />NF,RS,UM,LE</td><td class="unused"></td><td>LLA (E)<br />NF,RS,UM,LE</td><td>LEA zp<br />NF,UM,OF,AM</td><td>SBE #byte<br />NF,RS,LE</td><td class="unused"></td><td class="unused"></td><td>LDA (E)<br />NF,RS,UM,LE</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>LEA abs<br />NF,UM,OF,AM</td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>B</th><td class="unused"></td><td>LEA (zp),Y<br />NF,UM,OF,AM</td><td>LEA (zp)<br />NF,UM,OF,AM</td><td class="unused"></td><td>BCN <br />NF,RS</td><td>LEA zp,X<br />NF,UM,OF,AM</td><td>SBE <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td>LEA abs,Y<br />NF,UM,OF,AM</td><td>SAX <br />NF,RS</td><td class="unused"></td><td>BCN (E)<br />NF,RS</td><td>LEA abs,X<br />NF,UM,OF,AM</td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>C</th><td>CPY (E)<br />RS,UM,LE</td><td class="unused"></td><td>PEA (abs),Y<br />UM,OF,AM</td><td class="unused"></td><td>WMB (E)<br />UM</td><td class="unused"></td><td>SBS #byte<br />NF,RS,LE</td><td class="unused"></td><td class="unused"></td><td>CMP (E)<br />RS,UM,LE</td><td>TSY <br />NF,UM</td><td class="unused"></td><td class="unused"></td><td>PEA abs<br />UM,OF,AM</td><td>DEC (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>D</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>SWP <br />NF,RS</td><td class="unused"></td><td>SBS <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>SAY <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td>PEA abs,X<br />UM,OF,AM</td><td class="unused"></td><td class="unused"></td></tr>
+<tr><th>E</th><td>CPX (E)<br />RS,UM,LE</td><td class="unused"></td><td>PEA (abs,X)<br />UM,OF,AM</td><td class="unused"></td><td>RMB (E)<br />UM</td><td class="unused"></td><td>SBB #byte<br />NF,RS,LE</td><td class="unused"></td><td class="unused"></td><td>SBC (E)<br />NF,RS,UM,LE</td><td>TAB <br />NF</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>INC (E)<br />NF,RS,UM</td><td class="unused"></td></tr>
+<tr><th>F</th><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td>SBB <br />NF,RS</td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td><td class="unused"></td></tr>
+</table>
+
+    
+	<p>Note that including the prefix bytes an opcode may be four bytes long (prefix1, prefix2, EXT prefix, and opcode). 
 	</p><p>
 	Here are short explanations of the new opcodes:</p>
 	<ul>
@@ -1111,7 +856,6 @@ abs,Y</td></tr>
 	<li>SAX - Swap Accumulator and X register [1]</li>
 	<li>SAY - Swap Accumulator and Y register [1]</li>
 	<li>SXY - Swap X register and Y register [1]</li>
-	<li>CLA - clear accumulator (full width only)</li>
 	<li>LEA - Load Effective Address: compute the effective address and store it in the E (effective Address) register (always full width)</li>
 	<li>LDE - Load value into E (effective address) register</li>
 	<li>TAE - Transfer Accumulator to E register</li>
@@ -1156,6 +900,7 @@ abs,Y</td></tr>
 	<li>PKY - peek stack: read value from stack into Y without modifying the stack pointer - replaced with the standard LDY S,$01</li>
 	<li>CLX, CLY - clear X, Y: replaced with standard LDX #$00, with same byte count now that X/Y loads are zero-extended</li>
 	<li>CUT - cut the register from full size to RS, extending the upper bits (from the RS sized bits) using LE - same as EXT!</li>
+	<li>CLA - clear accumulator (full width only) - replace with LDA #0, see CLX/CLY</li>
 	</ul>
 	<p>TODO: Mult/Div opcodes</p>
 	<h3><a name="ovsys" id="ovsys">SYS opcodes</a></h3><p>This section gives an overview over the system opcodes that handle system
