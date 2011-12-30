@@ -94,6 +94,9 @@ an ACIA interface in a socket under the SID 6581 (sound chip).
 I had already heard of the 'FIFO-serial interface' for PCs, and even
 replaced some 8250 with 16550A myself. So I decided to replace the
 ACIA in my C64 with the UART 16550A.
+</p><p>
+Note: this article has been published in the (now disappeared) "The Computer Journal",
+Issue #80 Fall 1997, under the title "High Speed Serial for 65xx - How to add a 16550 Uart to a 65xx system".
 </p>
   </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#bus">Bus Differences</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#c64">Here's how it works in the C64</a></li><li><a href="#otherex">Another Example</a></li><li><a href="#sw">The Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#ref">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="bus" id="bus">Bus Differences</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 The UART chips was designed for a different bus as the 6502, so there

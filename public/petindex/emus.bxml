@@ -14,6 +14,15 @@ PET computers are increasingly hard to get. So there are emulators
 that allow to run PET prgrams on other hardware. This page describes
 the different emulators available.
 </P>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <!--toc/-->
+  <section toc="sw" name="Software Emulators">
+  <desc><p>This section describes emulators implemented in software</p>
 <DL>
 <DT><A HREF="http://vice-emu.sourceforge.net/">VICE</A></DT>
 <DD>This is the VICE emulator, that not only emulates the
@@ -33,6 +42,18 @@ I have not tried it yet though.</DD>
 emulates the hardware only as far as it is able to catch hardware accesses
 using BASIC POKE and PEEK commands.</DD>
 
+</DL>
+
+  </desc>
+  </section>
+  <section toc="hw" name="Hardware Emulators">
+  <desc><p>This section describes emulators implemented in hardware</p>
+<DL>
+<DT><A HREF="http://www.stepinfusion.com/projects/pet2001fpga/">A Commodore PET in an FPGA</A></DT>
+<DD>This is an amazing emulation - it emulates the complete PET in an FPGA! 
+The emulation is based on a Diligent Nexys3 FPGA evaluation board, implemented in verilog with Xilinx' ISE 13.2. 
+Source code is available! The CPU is not cycle-exact, but it runs Space Invaders and other games just fine.
+</DD>
 <DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
 <DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
 It provides a very highly compatible system. In fact it runs a patched
@@ -40,14 +61,8 @@ It provides a very highly compatible system. In fact it runs a patched
 and the CRTC still needs to be set to 80 columns and not 40 to display
 80 columns.</DD>
 </DL>
-  </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
-    </item>
-  </news-->
-  <!--toc/-->
-
+  </desc>
+  </section>
   <closing>
 @FOOTER@
   </closing>
