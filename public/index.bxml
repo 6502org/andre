@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2011</yearend>
+    <yearend>2012</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+     <item date="2012-01-01">
+	Added my own <a href="hwinfo/spi65b/index.html">SPI65/B solution</a> for the SPI bus.
+     </item>
      <item date="2011-12-23">
         Some small updates to the <a href="specsprog.html">programming specs</a>; see change log there.
      </item>
