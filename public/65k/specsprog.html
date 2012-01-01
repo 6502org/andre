@@ -267,9 +267,8 @@ more modern browser, like Internet Explorer 8 or later,
 	</td><td>01</td></tr>
 	<p>
 	Note that the value read from the stack on RTI and RTU opcodes is fully evaluated only when read from the
-	supervisor stack. When read from the previous 
-	hypervisor mode bit P is ignored. 
-	If the hypervisor mode bit H is set, a privilege violation abort (PRIVRTI) is executed.
+	supervisor stack. When read from user stack the previous hypervisor mode bit P is ignored. 
+	If the hypervisor mode bit H is set when reading from user stack, a privilege violation abort (PRIVRTI) is executed.
 	If H is not set, the stack frame size bits SF are evaluated and the return address is read from the stack
 	with a size according to SF.
 	</p>
@@ -395,7 +394,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr><td>NMOS Opcodes</td><td class="cmos">CMOS Opcodes</td><td class="c65k">New 65k opcodes</td><td class="prefix">65k Prefix codes</td><td class="unused">Unused/Reserved</td></tr>
 </table>
 	<p>
-	Some of the opcodes are named prefix1 and prefix2, for those see below. 
+	Some of the opcodes are named prefix1 and prefix2, these are used as modifiers to other opcodes. For details see below. 
 	Others are named like "QUICK prefix" or "EXT prefix".
 	These opcodes provide a way to extend the opcode list by having a second opcode byte follow the prefix. Thus there 
 	could be 256 additional "QUICK" opcodes, and 256 additional "EXT opcodes" and so on. These opcode planes are
@@ -553,14 +552,6 @@ TYA: Transfer the contents of the Y register into the accumulator</li>
 
 
 
-	<ul>
-	<li>BSR - branch subroutine</li>
-	</ul><p>Notes:</p>
-	<ol>
-	<li>When the value to be written to the register is larger than the maximum value as determined by an RS prefix
-		(if applicable), the overflow bit V is set</li>
-	<li>Does not update flags</li>
-	</ol>
     	<h3><a name="ovadmd" id="ovadmd">Addressing Modes Overview</a></h3><p>
 	This section describes an overview on the addressing modes of the 65k processor. An addressing mode determines
 	effective address of an operand (no matter what size the operand is). The addressing modes are 
@@ -749,8 +740,8 @@ TYA: Transfer the contents of the Y register into the accumulator</li>
 	Note that the TRAP opcode is marked as using no prefix bits, but still written down in that
 	table. This is for future extensions, when RS may be used to allow more than 256 trap codes.
 	</p><p>
-	The green cells are duplicate opcodes. These take the place of prefix1 resp. some opcodes that
-	do not use prefix flags (like CLC) and require at least one prefix bit set (AM in the current cases).
+	The green cells are duplicate opcodes. These take the place of prefix1 <!--resp. some opcodes that
+	do not use prefix flags (like CLC)--> and require at least one prefix bit set (AM in the current cases).
 	These duplicate opcodes allow to extend an indirect opcode, more specifically to have more options
 	for the size of the address stored at the indirect location. For a description see below.
 	</p><p>
@@ -943,6 +934,9 @@ TYA: Transfer the contents of the Y register into the accumulator</li>
 </table>
 	<p>Here is the description of the new opcodes:</p>
 	<ul>
+	<li>ASR	- Arithmetic Shift Right - shift right and shift in the sign of the original value from the highest bit</li>
+	<li>RDR - Rotate Direct Right - shift right, but without using the carry flag (only setting it)</li>
+	<li>RDL - Rotate Direct Left - shift left, but without using the carry flag (only setting it)</li>
 	<li>SLX - shift left X by 1 to 8 bit, similar to ASL</li>
 	<li>SRX - right left X by 1 to 8 bit, similar to ASL</li>
 	<li>SLY - shift left Y by 1 to 8 bit, similar to LSR</li>
@@ -1085,56 +1079,7 @@ TYS: Transfer Y to stack pointer</li>
 WMB: Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
 </ul>
 
-	<ul>
-	<li>BIT A - apply BIT not to a memory location, but to AC - to set the flags from AC</li>
-	<li>TPA - Transfer Program counter to Accumulator [1]</li>
-	<li>PLB - PulL Base register: pull the base offset register from the stack</li>
-	<li>PHB - PusH Base register: push the base offset register to the stack</li>
-	<li>SAB - Swap Accumulator and Base register [1]</li>
-	<li>PRB - Push and Replace Base register: Push base offset register to the stack, then transfer accumulator to
-		the base register</li>
-	<li>EXT - extend a register from the size given by RS to full size (using LE bits)</li>
-	<li>SAX - Swap Accumulator and X register [1]</li>
-	<li>SAY - Swap Accumulator and Y register [1]</li>
-	<li>SXY - Swap X register and Y register [1]</li>
-	<li>LEA - Load Effective Address: compute the effective address and store it in the E (effective Address) register (always full width)</li>
-	<li>LDE - Load value into E (effective address) register</li>
-	<li>TAE - Transfer Accumulator to E register</li>
-	<li>TAB - Transfer Accumulator to B register</li>
-	<li>TEA - Transfer E register to Accumulator</li>
-	<li>TBE - Transfer B regisger to E register</li>
-	<li>TEB - Transfer E register to B register</li>
-	<li>PEA - Push Effective Address: compute the effective address and push it on the stack [1][2]</li>
-	<li>PHE - Push E register</li>
-	<li>PLE - Pull E register</li>
-	<li>SAE - Swap AC with E register [1]</li>
-	<li>ADE - ADd to E register (either immediate value or AC)</li>
-	<li>ADB - ADd to B register (either immediate value or AC)</li>
-	<li>ADS - ADd to Stack pointer (either immediate value or AC)</li>
-	<li>SBE - SuBstract from E register (either immediate value or AC)</li>
-	<li>SBB - SuBstract from B register (either immediate value or AC)</li>
-	<li>SBS - SuBstract from Stack pointer (either immediate value or AC)</li>
-	<li>BCN - Bit Count: counts 1-bits in AC or in given location, stores number of 1-bits back in AC</li>
-	<li>MVN - Move block of data of size AC from XR to YR, count addresses down. All registers full size, interruptable</li>
-	<li>MVP - Move block of data of size AC from XR to YR, count addresses up. All registers full size, interruptable</li>
-	<li>LLA - Load Linked AC, i.e. monitor given address for changes</li>
-	<li>SCA - Store Conditional AC, succeeds only if address has not been externally modified. Sets overflow V bit on error</li>
-	<li>RMB - Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
-	<li>WMB - Write memory barrier: flushes dirty caches (globally, or for a specific, given location)</li>
-	<li>FIL - Fill memory area with a byte value</li>
-	<li>INV - invert AC, i.e. set AC to the 2s-complement of AC (use EOR #$FF for 1s-complement).</li>
-	<li>SWP - swap upper and lower part nibble / byte / word / long word of a byte / word / long / quad (longlong) operand
-		in Accumulator</li>
-	</ul><p>Notes:</p>
-	<ol>
-	<li>The RS prefix determines the computation width of the effective address. 
-		The value is always sign-extended, LE prefix is not supported.
-		Flags are not changed after this operation.
-		The Overflow bit V is set 
-		when the effective address is larger than what is possible with the given RS prefix</li>
-	<li>The UM prefix selects the user mode stack pointer, so the effective address is pushed
-		from hypervisor mode onto the user mode stack</li>
-	</ol>
+
 	<p>Note that these have already been deprecated:</p>
 	<ul>
 	<li>PKA - peek stack: read value from stack into AC without modifying the stack pointer - replaced with the standard LDA S,$01</li>
@@ -1535,7 +1480,7 @@ WMB: Write memory barrier: flushes dirty caches (globally, or for a specific, gi
       </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="smp" id="smp">Multiprocessing</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	The 65k will support multiprocessing. With the LLA and SCA it supports load-linked and store-conditional
 	multiprocessor-safe synchronization primitives. 
-	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, INC, DEC, TSB, TRB, SLY, SRY, SLX, SRX) 
+	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, ASR, RDR, RDL, INC, DEC, TSB, TRB, SLY, SRY, SLX, SRX) 
 	are in general not multiprocessor-safe. They may be multicore-safe (two cores on one processor).
       </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="compat" id="compat">6502 Software Compatibility Notes</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	Here are some notes on compatibility with the 6502.

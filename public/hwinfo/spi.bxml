@@ -13,6 +13,9 @@
 	SPI interface to connect and use MMC- and SD-Cards.
   </overview>
   <news>
+    <item date="2012-01-01">
+	Added link to Daryl's SPI65 and my own SPI65B solution.
+    </item>
     <item date="2011-03-6">
 	Moved the content from the <a href="../csa/spi/index.html">CS/A MMC page</a> here.
     </item>
@@ -97,19 +100,23 @@
 			</p></desc>
         	</subsection>
         </section>
-  <!--itemlist name="SPI Links">
+  <itemlist name="SPI Links">
     <desc>
     </desc>
     <items>
-     <subitem name="ELektronik-KOmpendium" link="http://www.elektronik-kompendium.de/public/borchers/i2c/main.htm">
-	This page contains a very good introduction to the I2C bus - although
-	in German. If you can read that, a recommended reading!
-     </subitem>
-     <subitem name="wikipedia" link="http://en.wikipedia.org/wiki/SPI">
+     <subitem name="Wikipedia" link="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">
 	The wikipedia article on SPI.
      </subitem>
+     <subitem name="Daryl Rictor's SPI65" link="http://sbc.rictor.org/">
+	If you click on "65SPI" on the left navigation on that page, you find Daryl Rictor's 
+	65SPI solution, a Xilinx 9572 CPLD-based SPI solution.
+     </subitem>
+     <subitem name="SPI65/B" link="spi65b/index.html">
+	Based on the specifications of Dary's solution, I have re-implemented it in VHDL with some
+	modifications. See the descriptions after the link.
+     </subitem>
     </items>
-  </itemlist-->
+  </itemlist>
   <disclaimer name="Disclaimer">
 All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
   </disclaimer>

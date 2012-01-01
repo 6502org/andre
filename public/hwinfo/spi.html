@@ -34,6 +34,8 @@
 <li><div class="i_file">&nbsp;</div><a href="scsi.html">SCSI</a></li>
 <li><div class="i_file">&nbsp;</div><a href="i2c.html">I2C</a></li>
 <li><div class="i_file">&nbsp;</div><a href="spi.html" class="mcurrent">SPI (MMC, SD-Cards)</a></li>
+<li><div class="i_file">&nbsp;</div><a href="spi65b/index.html">SPI65/B</a>
+</li>
 </ul>
 </li>
 <li class="dir" id="m_mischw"><div class="i_dir">&nbsp;</div><a href="../mischw/index.html">Other hardware (e.g. tools)</a>
@@ -86,7 +88,9 @@ more modern browser, like Internet Explorer 8 or later,
 <div class="overview">
 	In my <a href="../csa/index.html">CS/A65</a> computer I use the
 	SPI interface to connect and use MMC- and SD-Cards.
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-03-6</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2012-01-01</small>
+	Added link to Daryl's SPI65 and my own SPI65B solution.
+    </li><li><div> </div><small>2011-03-6</small>
 	Moved the content from the <a href="../csa/spi/index.html">CS/A MMC page</a> here.
     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="modes" id="modes">SPI</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
                 <p>SPI means "Serial Peripheral Interface Bus" and is a very
@@ -158,7 +162,16 @@ more modern browser, like Internet Explorer 8 or later,
 			rising edge of the clock, but not what 
 			clock level would be correct. By experimentation
 			I found that MMCs and SD-Cards use mode 0.
-			</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+			</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>SPI Links</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+    <ul><li class="subitem"><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> 
+	The wikipedia article on SPI.
+     </li><li class="subitem"><a href="http://sbc.rictor.org/">Daryl Rictor's SPI65</a> 
+	If you click on "65SPI" on the left navigation on that page, you find Daryl Rictor's 
+	65SPI solution, a Xilinx 9572 CPLD-based SPI solution.
+     </li><li class="subitem"><a href="spi65b/index.html">SPI65/B</a> 
+	Based on the specifications of Dary's solution, I have re-implemented it in VHDL with some
+	modifications. See the descriptions after the link.
+     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
   </div></div><hr />
 Contents last modified 2011-03-06.

@@ -213,10 +213,11 @@
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
       <xsl:apply-templates select="subsection"/>
-      <xsl:if test="subitem|extlink">
+      <xsl:if test="subitem|extlink|file">
         <ul>
           <xsl:apply-templates select="subitem"/>
           <xsl:apply-templates select="extlink"/>
+	  <xsl:apply-templates select="file"/>
         </ul>
       </xsl:if>
     </div><!-- h2c -->

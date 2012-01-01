@@ -1,0 +1,118 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="SPI65/B">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2011</yearstart>
+    <yearend>2012</yearend>
+  </author>
+  <keywords>6502 SPI</keywords>
+  <metadesc>SPI interface chip for 6502 computers</metadesc>
+  <overview><p>
+	I started to use SPI in my designs with the SD-card interface and the 
+	netusb2 card for my <a href="../csa/index.html">CS/A</a> computer.
+	I found that a single chip solution would be great to reduce development effort
+	and improve performance of such a solution.
+  </p><p>
+	I found Daryl Rictor's 65SPI, but it had the following disadvantages to me:
+  </p>
+  <ul>
+	<li>It only had a single MISO - so decoupling between slaves was not possible.
+		This is normally not necessary, but I wanted to separate the SD-Card
+		interface from the others. This also requires no open collector 
+		level translators in case you have 3.3V devices on a 5V SPI65/B</li>
+	<li>It had no interrupt controller for slave-based interrupts, so that separate
+		interrupt logic would be necessary to forward slave interrupts to the 6502.</li>
+	<li>Some minor quirks: select lines resetted to zero (selected), instead of one (deselected),
+		and you had to explicitely read the data register to clear the interrupt 
+		(even if you wanted to directly write another byte).</li>
+	</ul>
+  <p>
+ 	The quirks in the last point have been fixed by Daryl in his solution after we had 
+	discussed these things. However, in the meantime, I had developed my own solution:
+  </p><p>
+	The SPI65/B is a reimplemented version of Daryl's 65SPI, but with these modifications:
+  </p><ul>
+	<li>The divisor is shortened to 4 bit, so you can divide the clock by between 2 and 16.</li>
+	<li>The chip handles four instead of eight devices</li>
+	<li>The MISO is separate for each device (in case that separation is not necessary you can
+		put the same signal on all pins)</li>
+	<li>There are four high-active interrupt inputs (one for each device), with interrupt enable
+		bits each, to forward the interrupts to the host (6502). Those interrupts are
+		independent from the SPI interrupt.</li>
+	<li>The status of the interrupt bits can also be read from a register</li>
+	<li>Select lines initialize to one (deselected), and writes also clear the SPI interrupt</li>
+	<li>If only the lowest four bits of the divider are used, and only the low four devices, 
+		it is software-compatible with Daryl's 65SPI</li>
+	</ul>
+  </overview>
+  <news>
+    <item date="2012-01-01">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="hw" name="Hardware">
+     <desc><p>
+	The hardware of the SPI65/B is a Xilinx 9572 CPLD. This device is 5V, so for 3.3V devices level translation
+	is required.
+	</p>
+	<img src="Pinout.png"/>
+	<p>Here is the pin description:</p>
+	<ul>
+	<li>PHI2	Microprocessor system clock (input)</li>
+	<li>A0-A1 	Microprocessor address bus (input)</li>
+	<li>CS1		Chip select, active high (input)</li>
+	<li>/CS2	Chip select, active low (input)</li>
+	<li>R/-W	Microprocessor data read/write line (input)  </li>
+	<li>D0-D7	Microprocessor data bus (bidirectional)</li>
+	<li>/IRQ	Microprocessor interrupt line, active low (output)</li>
+	<li>/RES	Microprocessor reset line, active low (input)</li>
+	<li>EXTCLK	External shift clock (optional input)</li>
+	<li>MISO0-3	SPI Master In, Slave Out line (4 inputs, one for each device)</li>
+	<li>MOSI	SPI Master Out, Slave In line (output)</li>
+	<li>SCLK	SPI Shift Clock output</li>
+	<li>/SEL0-3	Slave Select lines (4 outputs, one for each device)</li>
+	<li>INT0-3	Interrupt input (4 inputs, one for each device)</li>
+	<li>GND		System ground</li>
+	<li>VCC		System +5vdc </li>
+	<li>n/c		No connection</li>
+	</ul>
+	<p>Please note that the CPLD is basically "full". If you need to reassign signals to other pin positions,
+		your mileage may vary. I already had problems placing the signals in a way fitting my netusb2 board.</p>
+     </desc>
+  </section>
+
+  <section toc="sw" name="Register Map">
+     <desc><p>This section gives an overview on the registers</p>
+	<table border="1">
+	<tr><th>CS1</th><th>/CS2</th><th>PHI2</th><th>A0</th><th>A1</th><th>Read (R/-W=1)</th><th>Write (R/-W=0)</th></tr>
+	<tr><td>0  </td><td>x</td>   <td>x</td>   <td>x</td> <td>x</td> <td>Hi-Z</td>         <td>Hi-Z</td></tr>
+	<tr><td>x</td>  <td>1</td>   <td>x</td>   <td>x</td> <td>x</td> <td>Hi-Z</td>         <td>Hi-Z</td></tr>
+	<tr><td>x</td>  <td>x</td>   <td>0</td>   <td>x</td> <td>x</td> <td>Hi-Z</td>         <td>Hi-Z</td></tr>
+	<tr><td>1</td>  <td>0</td>   <td>1</td>   <td>0</td> <td>0</td> <td>SPI Data In</td>  <td>SPI Data Out</td></tr>
+	<tr><td>1</td>  <td>0</td>   <td>1</td>   <td>0</td> <td>1</td> <td>SPI Status Register</td>  <td>SPI Control Register</td></tr>
+	<tr><td>1</td>  <td>0</td>   <td>1</td>   <td>1</td> <td>0</td> <td>Bit 0-3: SCLK Divisor<br/>Bit 4-7: INT0-3 status</td>  
+									<td>Bit 0-3: SCLK Divisor<br/>Bit 4-7: n/a</td></tr>
+	<tr><td>1</td>  <td>0</td>   <td>1</td>   <td>1</td> <td>1</td> <td>Bit 0-3: Slave Select 0-3<br/>Bit 4-7: IEN0-3 interrupt enable</td>  
+								<td>Bit 0-3: Slave Select 0-3<br/>Bit 4-7: IEN0-3 interrupt enable</td></tr>
+	</table>
+	<p>For a detailed description see the documentation linked below</p>
+     </desc>
+  </section>
+
+  <section toc="dl" name="Downloads">
+	<desc>Here is the documentation and the VHDL (source &amp; binary) files to program the CPLD</desc>
+	<items>
+                <file ltype="doc" ptype="pdf">65SPI-B Datasheet.pdf</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">SPI6502B.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">SPI6502B.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">SPI6502B.jed</file>
+	</items>
+  </section>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
