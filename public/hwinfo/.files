@@ -4,3 +4,4 @@ f scsi.html SCSI
 f i2c.html I2C
 f spi.html SPI (MMC, SD-Cards)
 p spi65b SPI65/B
+p ethernet Ethernet
