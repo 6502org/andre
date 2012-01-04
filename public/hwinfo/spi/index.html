@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Description of CRTC6545/6845 operation" />
-<meta name="keywords" content="CRTC 6545 6845" />
+<meta name="description" content="SPI information" />
+<meta name="keywords" content="SPI" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>CRTC 6545/6845 information</title></head>
+<title>SPI Information</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -27,25 +27,17 @@
 </li>
 <li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../../hwinfo/index.html">ICs and Standards Info</a>
 <ul class="menu1" >
-<li class="dir" id="m_hwinfo_crtc"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">CRTC 6545/6845</a>
-<ul class="menu2" >
-<li><div class="i_file">&nbsp;</div><a href="crtc.html">CRTC operation</a></li>
-<li><div class="i_file">&nbsp;</div><a href="diffs.html">Differences between models</a></li>
-<li><div class="i_file">&nbsp;</div><a href="uses.html">CRTC system integration</a></li>
-<li><div class="i_file">&nbsp;</div><a href="internals/index.html">CRTC internals</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="composite.html">Composite video generation</a></li>
-<li><div class="i_file">&nbsp;</div><a href="pet/index.html">CBM PET test programs</a>
-</li>
-<li><div class="i_link">&nbsp;</div><a href="../../csa/vdc/index.html">CS/A VDC board</a></li>
-<li><div class="i_link">&nbsp;</div><a href="../../cbmhw/8032sk/index.html">Creative use</a></li>
-</ul>
+<li class="dir" id="m_hwinfo_crtc"><div class="i_dir">&nbsp;</div><a href="../crtc/index.html">CRTC 6545/6845</a>
 </li>
 <li class="dir" id="m_hwinfo_ls610"><div class="i_dir">&nbsp;</div><a href="../ls610/index.html">74LS610 MMU</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../scsi.html">SCSI</a></li>
 <li><div class="i_file">&nbsp;</div><a href="../i2c.html">I2C</a></li>
-<li class="dir" id="m_hwinfo_spi"><div class="i_dir">&nbsp;</div><a href="../spi/index.html">SPI (MMC, SD-Cards)</a>
+<li class="dir" id="m_hwinfo_spi"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">SPI (MMC, SD-Cards)</a>
+<ul class="menu2" >
+<li><div class="i_file">&nbsp;</div><a href="spi65b/index.html">SPI65/B</a>
+</li>
+</ul>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../ethernet/index.html">Ethernet and TCP/IP</a>
 </li>
@@ -96,57 +88,100 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">ICs and Standards Info</a>&gt;&gt;  CRTC 6545/6845</div>
-<h1>CRTC 6545/6845 information</h1><p class="copyright">(C)
-1999-2010 André  Fachat</p> 
+&gt;&gt; <a href="../index.html">ICs and Standards Info</a>&gt;&gt;  SPI (MMC, SD-Cards)</div>
+<h1>SPI Information</h1><p class="copyright">(C)
+2006-2011 André  Fachat</p> 
 <div class="overview">
-	The pages linked here describe the operation of the CRTC 6545/6845
-	chips.
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-04-25</small>
-	Added a link to the 8032-SK page.
-    </li><li><div> </div><small>2010-12-20</small>
-	Reorganized the CRTC pages, added the systems integration page (separated from the 
-	CRTC operations page, and moved the composite video signal generation here to a
-	separate page.
-    </li><li><div class="i_oldnews"> </div><small>2007-02-02</small>
-	Added information on the CRTC status register.
-    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Quickfinder</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-    <ul><li class="subitem"><a href="crtc.html">General operation</a> 
-	This document describes the general CRTC operation, as well
-	as the register file.
-     </li><li class="subitem"><a href="diffs.html">CRTC differences</a> 
-	This document describes the differences between a number of
-	CRTC implementations from Rockwell, MOS, and others.
-     </li><li class="subitem"><a href="uses.html">CRTC system integration</a> 
-	This page describes how the CRTC is integrated into the
-	system, how memory is connected, video output is shifted out
-	and so on.
-     </li><li class="subitem"><a href="internals/index.html">CRTC internals</a> 
-	This document describes the internal structure of the
-	CRTC. I.e. it tries to show the internal CRTC counters,
-	compares, etc. It explains in greater depth how the CRTC
-	works.
-     </li><li class="subitem"><a href="composite.html">Composite video signal generation</a> 
-	Generate composite video signals from the CRTC output, to use as input
-	for a normal TV set.
-     </li><li class="subitem"><a href="pet/index.html">Test programs</a> 
-	This page shows a number of test programs and the results
-	that they produce on a Commodore PET. The test programs
-	create "raster-effects" by using the CRTC interrupt in the
-	PET to dynamically change the register values. 
-     </li><li class="subitem"><a href="../../csa/vdc/index.html">CS/A VDC</a> 
-	An example of a CRTC-based video card. Also contains schematics
-	to create PAL composite video from the board's output.
-     </li><li class="subitem"><a href="../../cbmhw/8032sk/index.html">Creative use in a 8032-SK</a> 
-	An example of a creative use of the CRTC, by connecting some otherwise unused video RAM
-	address lines with the character generation ROM.
-     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>CRTC-related projects</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>Here are links to CRTC-related projects.</p>
-    <ul><li><a href="http://pouet.net/prod.php?which=56410" target="_blank" class="extlink">NO PETs Allowed demo!</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-All Copyrights are acknowledged.
-The information here is provided under the terms of the
-GNU Public License version 2 unless noted otherwise.
+	In my <a href="../../csa/index.html">CS/A65</a> computer I use the
+	SPI interface to connect and use MMC- and SD-Cards.
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2012-01-01</small>
+	Added link to Daryl's SPI65 and my own SPI65B solution.
+    </li><li><div> </div><small>2011-03-6</small>
+	Moved the content from the <a href="../csa/spi/index.html">CS/A MMC page</a> here.
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="modes" id="modes">SPI</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+                <p>SPI means "Serial Peripheral Interface Bus" and is a very
+		simple four-wire protocol. Some of the advantages are:
+		<ul>
+		<li>Each signal is single direction, there are no bi-directional signals</li>
+		<li>It is a synchronous bus and clock is controlled by a single source.</li>
+		<li>It is byte-oriented</li>
+		</ul>
+		One of its disadvantages is: it is not exactly well specified:
+		</p><p>
+		There are these four lines:
+		<table border="1"><tr><th>Signal</th><th>Direction</th><th>Description</th></tr>
+		<tr><td>/SEL</td><td>SPI Master -&gt; SPI Slave</td><td>If low, the selected device is selected. A master may have multiple of those outputs, but a slave has only one input</td></tr>
+		<tr><td>CLK</td><td>SPI Master -&gt; SPI Slave</td><td>Clock for data transfers</td></tr>
+		<tr><td>MOSI</td><td>SPI Master -&gt; SPI Slave</td><td>Data from master to slave</td></tr>
+		<tr><td>MISO</td><td>SPI Slave -&gt; SPI Master</td><td>Data from slave to master</td></tr>
+		</table>
+		Beyond that the CLK levels and at which CLK transition the data
+		is transferred is not defined!
+                </p><h3><a name="modes" id="modes">SPI Modes</a></h3>
+                	<p>
+			For this reason there are different possibilities:
+			<ul><li>CPOL=0/1: base value of the clock. I.e. the level of the CLK signal when no data transfer is going on.</li>
+			<li>CPHA=0/1: The transition of the clock (leading or trailing edge) on which the data is transferred</li>
+			</ul>
+			This results in the fact that there are four SPI modes,
+			<table border="1"><tr><th>Mode</th><th>CPOL</th><th>CPHA</th></tr>
+			<tr><td>0</td><td>0</td><td>0</td></tr>
+			<tr><td>1</td><td>0</td><td>1</td></tr>
+			<tr><td>2</td><td>1</td><td>0</td></tr>
+			<tr><td>3</td><td>1</td><td>1</td></tr>
+			</table>
+			Unfortunately some devices only understand a single 
+			mode, and different from other devices, so a master
+			should be able to handle all modes.
+                	</p><h3><a name="spilinks" id="spilinks">Links</a></h3>
+			<ul><li><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> has some more detailled info</li>
+			</ul>
+			</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mmcsdc" id="mmcsdc">MMC and SD-Cards</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+                <p>
+		MMC-Card and SD-Cards are cheap means of getting large amounts
+		of storage memory nowadays. And they are getting larger and
+		cheaper every day. Those cards are based on flash memory
+		and can be found in digital cameras, navigation systems, 
+		and many more.
+		</p>
+		<p>Unfortunately the MMC- and SD-Card protocols are not free,
+		 however a certain amount of intelligence has been gathered
+		and is available on the web:
+		<ul><li><a href="http://en.wikipedia.org/wiki/MultiMediaCard">Wikipedia on MMCs</a></li>
+		<li><a href="http://en.wikipedia.org/wiki/Secure_Digital_card">Wikipedia on Secure Digital Cards</a></li>
+		<li><a href="http://elm-chan.org/docs/mmc/mmc_e.html">How to use MMC/SDC</a></li>
+		</ul>
+		as well as in datasheets for MMC or SD-Cards found on the 
+		producers homepages.
+                </p><h3><a name="spimodes" id="spimodes">MMC/SD SPI mode</a></h3><p>
+			Newer MMC and especially SD-Cards use a mode
+			where more than a single bit is transferred per
+			clock. In fact the cards have four data lines that
+			are used in native mode. This mode is however
+			more complicated. But, we are lucky, all cards
+			still support the SPI mode, that they can enter
+			upon startup when instructed to do so. And this is
+			what the driver does.
+			</p><p>
+			One problem I had in the beginning was that the
+			datasheets mentioned the data transfer on the 
+			rising edge of the clock, but not what 
+			clock level would be correct. By experimentation
+			I found that MMCs and SD-Cards use mode 0.
+			</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>SPI Links</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+    <ul><li class="subitem"><a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Wikipedia</a> 
+	The wikipedia article on SPI.
+     </li><li class="subitem"><a href="http://sbc.rictor.org/">Daryl Rictor's SPI65</a> 
+	If you click on "65SPI" on the left navigation on that page, you find Daryl Rictor's 
+	65SPI solution, a Xilinx 9572 CPLD-based SPI solution.
+     </li><li class="subitem"><a href="spi65b/index.html">SPI65/B</a> 
+	Based on the specifications of Dary's solution, I have re-implemented it in VHDL with some
+	modifications. See the descriptions after the link.
+     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
   </div></div><hr />
+Contents last modified 2012-01-04.
 <p>Return to <a href="../../index.html">Homepage</a></p>
-	
+
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script></body></html> 
 

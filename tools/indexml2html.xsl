@@ -233,6 +233,11 @@
 <xsl:apply-templates select="extlink"/>
 </ul>
 </xsl:if>
+<xsl:if test="file">
+<table>
+<xsl:apply-templates select="file"/>
+</table>
+</xsl:if>
 </xsl:template>
 
 <xsl:template name="allrev">

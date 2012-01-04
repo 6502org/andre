@@ -3,4 +3,5 @@ d ls610 74LS610 MMU
 f scsi.html SCSI
 f i2c.html I2C
 d spi SPI (MMC, SD-Cards)
-d ethernet Ethernet
+p ethernet Ethernet and TCP/IP
+p usb USB

@@ -5,7 +5,10 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%scsi.html">SCSI</a></li>
 <li><div class="i_file">&nbsp;</div><a href="%up%i2c.html">I2C</a></li>
-<li><div class="i_file">&nbsp;</div><a href="%up%spi.html">SPI (MMC, SD-Cards)</a></li>
-<li><div class="i_file">&nbsp;</div><a href="%up%spi65b/index.html">SPI65/B</a>
+<li class="dir" id="m_hwinfo_spi"><div class="i_dir">&nbsp;</div><a href="%up%spi/index.html">SPI (MMC, SD-Cards)</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="%up%ethernet/index.html">Ethernet and TCP/IP</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="%up%usb/index.html">USB</a>
 </li>
 </ul>
