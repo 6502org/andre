@@ -36,7 +36,7 @@
 		Information on the I2C standard I use 
 		in my computers.
       </subitem>
-      <subitem name="SPI" link="spi.html">
+      <subitem name="SPI" link="spi/index.html">
 		Information on the SPI standard I use 
 		in my computers.
       </subitem>

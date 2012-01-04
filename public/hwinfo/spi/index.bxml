@@ -9,7 +9,7 @@
   <keywords>SPI</keywords>
   <metadesc>SPI information</metadesc>
   <overview>
-	In my <a href="../csa/index.html">CS/A65</a> computer I use the
+	In my <a href="../../csa/index.html">CS/A65</a> computer I use the
 	SPI interface to connect and use MMC- and SD-Cards.
   </overview>
   <news>
@@ -121,7 +121,7 @@
 All Copyrights are acknowledged. There is no warranty attached to the information on these pages.
   </disclaimer>
   <closing>
-Contents last modified 2011-03-06.
+Contents last modified 2012-01-04.
 @FOOTER@
   </closing>
 </webpage>
