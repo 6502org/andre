@@ -32,6 +32,10 @@
 		</p><p>
 		Note, depending on your requirements, any of the 1.1, 1.2 and 1.3 versions
 		can be the right one for you, they are all working.
+		</p><p>
+		Note, if your parts tolerances are such that you only below 3.3V, you can
+		replace R17 with a pair of 820 Ohm resistors in parallel. Those together
+		in parallel give 410 Ohm and result in about 3.4V - depending on tolerances.
 		</p>
 	</desc>
 	<!--diagram>

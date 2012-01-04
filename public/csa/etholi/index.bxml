@@ -84,6 +84,10 @@
                 <version>1.0B</version>
                 <status>prototype</status>
                 <note type="msg">
+			(2012-01-02) If you have power supply problems, you can place a 47u tantal capacitor underneath
+			the Olimex module.
+                </note>
+                <note type="msg">
 			Silly me, I forgot the pullup on /SBHE. That fixes the initialization problem. Driver stays the same.
                 </note>
                 <note type="msg">
