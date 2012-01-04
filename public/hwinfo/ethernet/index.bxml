@@ -1,0 +1,85 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="6502 Ethernet solutions">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2012</yearstart>
+    <yearend>2012</yearend>
+  </author>
+  <keywords>Commodore PET CBM Ethernet 6502</keywords>
+  <metadesc>Commodore PET and other 6502 ethernet solutions</metadesc>
+  <overview><p>	
+	On this page I collect and link to 6502-based ethernet (and TCP/IP in general) solutions. 
+  </p>
+  </overview>
+  <news>
+    <item date="2012-01-04">
+	Started this page. It is far from complete! Any hints welcome!
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="tcpip" name="TCP/IP stacks">
+     <desc>
+	Here is a list of TCP/IP stacks for the 6502:
+     </desc>
+     <subsection toc="uip" name="uIP">
+	<desc><p>
+	The uIP stack is a general TCP/IP (v4) stack written in C, that compiles with the cc65 C-compiler.
+	It has been used to with the CS8900A and the ENC26J80 chips (as shown below). 
+	</p><p>
+	Unfortunately all links to the original uIP page now go to contiki-os, which does not seem to render correctly
+	in all browsers (I only tested on Linux though) and is a bit difficult to find things. For downloads, you need
+	to click the "sidebar" header. The contiki download seems to contain a new version of the uIP stack (IPv4+IPv6 now),
+	but I have not seen it ported to a 6502 yet.
+	</p><p>
+	Therefore I have linked my Commodore PET version of uIP with support for the CS8900A chip here as well.
+	Note that the "-t pet" option to the cc65 compiler makes the log statements on the screen use the correct screen character
+	set, but mangles the web responses (e.g. in hello-world).
+	</p>
+	</desc>
+	<extlink name="Contiki-OS" link="http://www.contiki-os.org/view/sidebar"/>
+	<file ltype="code" type="targz" note="uIP with PET binding">uip-1.0+pet.tar.gz</file>
+	<file ltype="code" type="targz" note="diff of uIP with PET binding to original uIP 1.0">uip-pet.diff</file>
+     </subsection>
+     <subsection toc="geckos" name="GeckOS/A65">
+	<desc><p>
+	The GeckOS/A65 operating system contains a TCP/IP stack completely written in 6502 assembler.
+	It only talks SLIP - serial line internet protocol - though. It is also much less tested than uIP.
+	</p>
+	</desc>
+	<extlink name="GeckOS/A65" link="../../osa/index.html"/>
+     </subsection>
+  </section>
+
+  <section toc="hw" name="6502 Ethernet solutions">
+     <desc>
+	Here are some hardware solutions to connect to an Ethernet network with the 6502
+     </desc>
+     <subsection toc="daryl" name="Daryl's Futurlec solution">
+	<desc>
+	Dary Rictor has built an ethernet solution with a pre-made, ENC28J60-based module by Futurlec.
+	</desc>
+	<extlink name="Daryl Rictor's SBC homepage" link="http://sbc.rictor.org/"/>
+     </subsection>
+     <subsection toc="csa" name="CS/A65 Ethernet solutions">
+	<desc><p>
+		The CS/A65 home-built computer has a few Ethernet solutions with 5V and 3.3V based
+		CS8900A and ENC28J60 chips. Some are custom-made, some are based on Olimex CS8900A based
+		pre-built modules.
+	</p>
+	</desc>
+	<extlink name="CS/A65" link="../../csa/index.html"/>
+     </subsection>
+     <subsection toc="tfe" name="The Final Ethernet">
+	<desc><p>This is a hardware solution for the Commodore 64 by Adam Dunkels and others</p>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="http://dunkels.com/adam/tfe/"/>
+     </subsection>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

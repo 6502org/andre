@@ -1,0 +1,85 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="6502 USB solutions">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2012</yearstart>
+    <yearend>2012</yearend>
+  </author>
+  <keywords>Commodore PET CBM USB</keywords>
+  <metadesc>Commodore PET and 6502-based USB solutions</metadesc>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?t=228</forum>
+  <overview><p>	
+	This page lists the known USB solutions for the 6502.
+  </p>
+  </overview>
+  <news>
+    <item date="2012-01-04">
+	Started this page. It is definitely not complete - please let me know any additions!
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="sw" name="USB stacks">
+     <desc>Here is my currently known list of 6502-based USB stacks
+     </desc>
+     <subsection toc="microusb" name="MicroUSB project">
+	<desc>
+	The MicroUSB project has originally provided a 6502-based USB stack for Atari computers to connect
+	joysticks, keyboards etc. The stack is very simple, so it does not need much code, but it does not
+	handly hubs for example. There are a number of device handlers available though. It only works as host.
+	The stack uses the SL811HS chip.
+	</desc>
+	<extlink name="MicroUSB web site" link="http://www.microusb.org/"/>
+     </subsection>
+     <subsection toc="CS/A65" name="PET based USB host and device stack">
+	<desc><p>
+	There exists a Commodore PET (clone) based USB host and device stack, also for the SL811HS chip
+	(which can run in both host and device modes). This stack is more sophisticated and also handles
+	USB hubs. Look for the USB link in the left hand menu.
+	</p></desc>
+	<extlink name="CS/A65 host/device USB stack" link="../../csa/usb/index.html"/>
+     </subsection>
+  </section>
+
+  <section toc="hw" name="USB hardware solutions">
+     <desc>This section lists a number of USB hardware solutions. Here the "full" solutions are listed, that implement the
+	complete stack in a 6502.
+     </desc>
+     <subsection toc="CS/A65" name="PET based USB host and device interface">
+	<desc>
+	This is the hardware for above's USB stack link. It is based on the SL811HS chip.
+	</desc>
+	<extlink name="CS/A65 host/device USB interface" link="../../csa/usb/index.html"/>
+     </subsection>
+     <subsection toc="atari" name="Atari USB cartridge">
+	<desc>This is actually a full cartridge for the Atari 810 (and maybe other?) computers.
+		It is based on the SL811HS chip and is the basis for the MicroUSB project above.
+	</desc>
+	<extlink name="Atari USB cartridge" link="http://wiki.strotmann.de/wiki/Wiki.jsp?page=USB%20Cartridge"/>
+     </subsection>
+  </section>
+
+  <section toc="usb2x" name="USB-to-X">
+     <desc><p>This section lists some of the (many) USB-to-Serial solutions. In this solution a
+	commercially available USB-to-Serial converter is connected to a 6502. Or an
+	AVR microcontroller that implements the USB stack is used to connect (e.g. parallel or control lines)
+	to a 6502.
+	</p>
+	<p>After looking at the discussion in the <a href="http://forum.6502.org/viewtopic.php?t=228">6502.org forum</a>
+	and searching the net I did not really find actually implemented solutions for the 6502.
+	Maybe they are just not "spectacular" enough. Anyway, let me know when you know about one.
+	</p>
+     </desc>
+     <!--subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection-->
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

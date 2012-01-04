@@ -1,0 +1,1037 @@
+diff -urN uip-1.0/apps/hello-world/hello-world.c uip-1.0+pet/apps/hello-world/hello-world.c
+--- uip-1.0/apps/hello-world/hello-world.c	2006-06-12 10:22:48.000000000 +0200
++++ uip-1.0+pet/apps/hello-world/hello-world.c	2011-01-03 22:41:13.412018012 +0100
+@@ -91,6 +91,7 @@
+   PSOCK_SEND_STR(&s->p, "Hello. What is your name?\n");
+   PSOCK_READTO(&s->p, '\n');
+   strncpy(s->name, s->inputbuffer, sizeof(s->name));
++  s->name[INPUT_LEN - 1] = 0;
+   PSOCK_SEND_STR(&s->p, "Hello ");
+   PSOCK_SEND_STR(&s->p, s->name);
+   PSOCK_CLOSE(&s->p);
+diff -urN uip-1.0/apps/hello-world/hello-world.h uip-1.0+pet/apps/hello-world/hello-world.h
+--- uip-1.0/apps/hello-world/hello-world.h	2006-06-12 10:22:48.000000000 +0200
++++ uip-1.0+pet/apps/hello-world/hello-world.h	2011-01-03 22:41:31.788023167 +0100
+@@ -33,10 +33,12 @@
+    of our application, and the memory required for this state is
+    allocated together with each TCP connection. One application state
+    for each TCP connection. */
++#define NAME_LEN	40
++#define INPUT_LEN	10
+ typedef struct hello_world_state {
+   struct psock p;
+-  char inputbuffer[10];
+-  char name[40];
++  char inputbuffer[INPUT_LEN];
++  char name[NAME_LEN];
+ } uip_tcp_appstate_t;
+ 
+ /* Finally we define the application function to be called by uIP. */
+diff -urN uip-1.0/pet/binding.s uip-1.0+pet/pet/binding.s
+--- uip-1.0/pet/binding.s	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/binding.s	2011-01-03 19:28:34.312012007 +0100
+@@ -0,0 +1,23 @@
++;---------------------------------------------------------------------       
++	.export		_cs8900a_rxtxreg
++	.export		_cs8900a_txcmd
++	.export		_cs8900a_txlen
++	.export		_cs8900a_packetpp
++	.export		_cs8900a_ppdata
++	
++
++;---------------------------------------------------------------------
++
++;	_cs8900a_rxtxreg	= $de00
++;	_cs8900a_txcmd		= $de04
++;	_cs8900a_txlen		= $de06
++;	_cs8900a_packetpp	= $de0a
++;	_cs8900a_ppdata		= $de0c
++
++	_cs8900a_rxtxreg	= $e8c0
++	_cs8900a_txcmd		= $e8c4
++	_cs8900a_txlen		= $e8c6
++	_cs8900a_packetpp	= $e8ca
++	_cs8900a_ppdata		= $e8cc
++
++
+diff -urN uip-1.0/pet/clock-arch.c uip-1.0+pet/pet/clock-arch.c
+--- uip-1.0/pet/clock-arch.c	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/clock-arch.c	2011-01-02 23:10:05.132015138 +0100
+@@ -0,0 +1,57 @@
++/*
++ * Copyright (c) 2006, Swedish Institute of Computer Science.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of the Institute nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ * This file is part of the uIP TCP/IP stack
++ *
++ * $Id: clock-arch.c,v 1.2 2006/06/12 08:00:31 adam Exp $
++ */
++
++/**
++ * \file
++ *         Implementation of architecture-specific clock functionality
++ * \author
++ *         Adam Dunkels <adam@sics.se>
++ */
++
++#include "clock-arch.h"
++#include <time.h>
++
++/*---------------------------------------------------------------------------*/
++clock_time_t
++clock_time(void)
++{
++  //struct timeval tv;
++  struct tm tm;
++  struct _timezone tz;
++
++  //gettimeofday(&tv, &tz);
++
++  //return tv.tv_sec * 1000 + tv.tv_usec / 1000;
++  return tm.tm_sec * 1000;
++}
++/*---------------------------------------------------------------------------*/
+diff -urN uip-1.0/pet/clock-arch.h uip-1.0+pet/pet/clock-arch.h
+--- uip-1.0/pet/clock-arch.h	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/clock-arch.h	2011-01-02 19:57:19.336015154 +0100
+@@ -0,0 +1,40 @@
++/*
++ * Copyright (c) 2006, Swedish Institute of Computer Science.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of the Institute nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ * This file is part of the uIP TCP/IP stack
++ *
++ * $Id: clock-arch.h,v 1.2 2006/06/12 08:00:31 adam Exp $
++ */
++
++#ifndef __CLOCK_ARCH_H__
++#define __CLOCK_ARCH_H__
++
++typedef short clock_time_t;
++#define CLOCK_CONF_SECOND 50
++
++#endif /* __CLOCK_ARCH_H__ */
+diff -urN uip-1.0/pet/cs8900a.c uip-1.0+pet/pet/cs8900a.c
+--- uip-1.0/pet/cs8900a.c	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/cs8900a.c	2011-01-03 19:23:15.400022370 +0100
+@@ -0,0 +1,299 @@
++/*
++ *  * Copyright (c) 2001, Adam Dunkels.
++ *   * All rights reserved. 
++ *    *
++ *     * Redistribution and use in source and binary forms, with or without 
++ *      * modification, are permitted provided that the following conditions 
++ *       * are met: 
++ *        * 1. Redistributions of source code must retain the above copyright 
++ *         *    notice, this list of conditions and the following disclaimer. 
++ *          * 2. Redistributions in binary form must reproduce the above copyright 
++ *           *    notice, this list of conditions and the following disclaimer in the 
++ *            *    documentation and/or other materials provided with the distribution. 
++ *             * 3. The name of the author may not be used to endorse or promote
++ *              *    products derived from this software without specific prior
++ *               *    written permission.  
++ *                *
++ *                 * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
++ *                  * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
++ *                   * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ *                    * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
++ *                     * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *                      * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *                       * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *                        * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ *                         * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
++ *                          * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
++ *                           * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
++ *                            *
++ *                             * This file is part of the C64 RealAudio server demo project.
++ *                              *
++ *                               * $Id: cs8900a.c,v 1.13 2005/03/16 22:39:21 oliverschmidt Exp $
++ *                                *
++ *                                 */
++
++/* cs8900a.c: device driver for the CS8900a chip in 8-bit mode. Mostly
++ *    written in 6502 assembler for speed. */
++
++#include "cs8900a.h"
++#include "uip.h"
++#include "uip_arp.h"
++
++extern u8_t *cs8900a_rxtxreg,
++            *cs8900a_txcmd,
++            *cs8900a_txlen,
++            *cs8900a_packetpp,
++            *cs8900a_ppdata;
++
++static u16_t len;
++static u16_t cnt;
++
++
++/*-----------------------------------------------------------------------------------*/
++#pragma optimize(push, off)
++void
++cs8900a_init(void)
++{
++  /* Turn on transmission and reception of frames. */
++  /* PACKETPP = 0x0112;
++ *      PPDATA   = 0x00c0; */
++  asm("lda #$12");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda #$c0");
++  asm("sta %v", cs8900a_ppdata);
++  asm("lda #$00");
++  asm("sta %v+1", cs8900a_ppdata);
++
++  /* Accept valid unicast+broadcast frames. */
++  /* PACKETPP = 0x0104;
++ *      PPDATA   = 0x0d05; */
++  asm("lda #$04");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda #$05");
++  asm("sta %v", cs8900a_ppdata);
++  asm("lda #$0d");
++  asm("sta %v+1", cs8900a_ppdata);
++
++  /* Set MAC address. */
++  /* PACKETPP = 0x0158;
++ *      PPDATA   = (ETHADDR1 << 8) | (ETHADDR0); */
++  asm("lda #$58");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v", uip_ethaddr);
++  asm("sta %v", cs8900a_ppdata);
++  asm("lda %v+1", uip_ethaddr);
++  asm("sta %v+1", cs8900a_ppdata);
++
++  /* PACKETPP = 0x015a;
++ *      PPDATA   = (ETHADDR3 << 8) | (ETHADDR2); */
++  asm("lda #$5a");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v+2", uip_ethaddr);
++  asm("sta %v", cs8900a_ppdata);
++  asm("lda %v+3", uip_ethaddr);
++  asm("sta %v+1", cs8900a_ppdata);
++
++  /* PACKETPP = 0x015c;
++ *      PPDATA   = (ETHADDR5 << 8) | (ETHADDR4); */
++  asm("lda #$5c");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v+4", uip_ethaddr);
++  asm("sta %v", cs8900a_ppdata);
++  asm("lda %v+5", uip_ethaddr);
++  asm("sta %v+1", cs8900a_ppdata);
++}
++#pragma optimize(pop)
++/*-----------------------------------------------------------------------------------*/
++#pragma optimize(push, off)
++void
++cs8900a_send(void)
++{
++  /* Transmit command. */
++  asm("lda #$c0");
++  asm("sta %v", cs8900a_txcmd);
++  asm("lda #$00");
++  asm("sta %v+1", cs8900a_txcmd);
++  asm("lda %v", uip_len);
++  asm("sta %v", cs8900a_txlen);
++  asm("lda %v+1", uip_len);
++  asm("sta %v+1", cs8900a_txlen);
++
++  asm("ldy #8");
++tryagain:
++  /* Check for avaliable buffer space. */
++  asm("lda #$38");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v+1", cs8900a_ppdata);
++  asm("and #1");
++  asm("bne %g", send);
++
++  /* No space avaliable, skip a received frame and try again. */
++  asm("lda #$02");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v", cs8900a_ppdata);
++  asm("ora #$40");
++  asm("sta %v", cs8900a_ppdata);
++
++  asm("dey");
++  asm("bne %g", tryagain);
++  return;
++
++  /* Send the frame. */
++send:
++
++  /* First, send 14+40=54 bytes of header. */
++  asm("ldy #0");
++sendloop1:
++  asm("lda %v,y", uip_buf);
++  asm("sta %v", cs8900a_rxtxreg);
++  asm("iny");
++  asm("lda %v,y", uip_buf);
++  asm("sta %v+1", cs8900a_rxtxreg);
++  asm("iny");
++  asm("cpy #%b", UIP_LLH_LEN + UIP_TCPIP_HLEN);
++  asm("bne %g", sendloop1);
++
++  if(uip_len <= UIP_LLH_LEN + UIP_TCPIP_HLEN) {
++    return;
++  }
++
++  /* Next, send rest of the packet. */
++  cnt = uip_len - (UIP_LLH_LEN + UIP_TCPIP_HLEN);
++
++  asm("lda %v", cnt);
++  asm("lsr");
++  asm("bcc %g", noinc);
++  asm("inc %v", cnt);
++  asm("bne %g", noinc);
++  asm("inc %v+1", cnt);
++noinc:
++
++  asm("lda %v", uip_appdata);
++  asm("sta ptr1");
++  asm("lda %v+1", uip_appdata);
++  asm("sta ptr1+1");  
++
++  asm("ldy #0");
++sendloop2:
++  asm("lda (ptr1),y");
++  asm("sta %v", cs8900a_rxtxreg);
++  asm("iny");
++  asm("lda (ptr1),y");
++  asm("sta %v+1", cs8900a_rxtxreg);
++  asm("iny");
++  asm("bne %g", check);
++  asm("inc ptr1+1");
++check:
++  asm("cpy %v", cnt);
++  asm("bne %g", sendloop2);
++  asm("dec %v+1", cnt);
++  asm("bpl %g", sendloop2);
++}
++#pragma optimize(pop)
++/*-----------------------------------------------------------------------------------*/
++#pragma optimize(push, off)
++static void
++skip_frame(void)
++{
++  /* PACKETPP = 0x0102;
++ *      PPDATA   = PPDATA | 0x0040; */
++  asm("lda #$02");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v", cs8900a_ppdata);
++  asm("ora #$40");
++  asm("sta %v", cs8900a_ppdata);
++}
++#pragma optimize(pop)
++/*-----------------------------------------------------------------------------------*/
++#pragma optimize(push, off)
++u16_t
++cs8900a_poll(void)
++{
++  /* Check receiver event register to see if there are any valid
++ *      unicast frames avaliable.  */
++  /* PACKETPP = 0x0124;
++ *      if(PPDATA & 0x000d == 0x0000) {
++ *             return 0;
++ *                  }
++ *                    */
++  asm("lda #$24");
++  asm("sta %v", cs8900a_packetpp);
++  asm("lda #$01");
++  asm("sta %v+1", cs8900a_packetpp);
++  asm("lda %v+1", cs8900a_ppdata);
++  asm("and #$0d");
++  asm("cmp #$00");
++  asm("bne %g", noreturn);
++  /* No frame ready. */
++  return 0;
++  
++noreturn:
++  /* Process the incoming frame. */
++  
++  /* Read receiver event and discard it. */
++  /* RXTXREG; */
++  asm("lda %v+1", cs8900a_rxtxreg);
++  asm("lda %v", cs8900a_rxtxreg);
++  
++  /* Read frame length. */
++  /* cnt = len = RXTXREG; */
++  asm("lda %v+1", cs8900a_rxtxreg);
++  asm("sta %v+1", len);
++  asm("sta %v+1", cnt);
++  asm("lda %v", cs8900a_rxtxreg);
++  asm("sta %v", len);
++  asm("sta %v", cnt);
++
++  asm("lsr");
++  asm("bcc %g", noinc);
++  asm("inc %v", cnt);
++  asm("bne %g", noinc);
++  asm("inc %v+1", cnt);
++noinc:
++
++  if(cnt > UIP_BUFSIZE) {
++    skip_frame();
++    return 0;
++  }
++
++  /* Read bytes into uip_buf. */
++  asm("lda #<%v", uip_buf);
++  asm("sta ptr1");
++  asm("lda #>%v", uip_buf);
++  asm("sta ptr1+1");  
++  
++  asm("ldy #0");
++readloop:
++  asm("lda %v", cs8900a_rxtxreg);
++  asm("sta (ptr1),y");
++  asm("iny");
++  asm("lda %v+1", cs8900a_rxtxreg);
++  asm("sta (ptr1),y");
++  asm("iny");
++  asm("bne %g", check);
++  asm("inc ptr1+1");
++check:
++  asm("cpy %v", cnt);
++  asm("bne %g", readloop);
++  asm("dec %v+1", cnt);
++  asm("bpl %g", readloop);
++  return len;
++}
++#pragma optimize(pop)
++
+diff -urN uip-1.0/pet/cs8900a.h uip-1.0+pet/pet/cs8900a.h
+--- uip-1.0/pet/cs8900a.h	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/cs8900a.h	2011-01-03 19:23:43.480016075 +0100
+@@ -0,0 +1,45 @@
++/*
++ *  * Copyright (c) 2004, Adam Dunkels.
++ *   * All rights reserved. 
++ *    *
++ *     * Redistribution and use in source and binary forms, with or without 
++ *      * modification, are permitted provided that the following conditions 
++ *       * are met: 
++ *        * 1. Redistributions of source code must retain the above copyright 
++ *         *    notice, this list of conditions and the following disclaimer. 
++ *          * 2. Redistributions in binary form must reproduce the above copyright 
++ *           *    notice, this list of conditions and the following disclaimer in the 
++ *            *    documentation and/or other materials provided with the distribution. 
++ *             * 3. Neither the name of the Institute nor the names of its contributors 
++ *              *    may be used to endorse or promote products derived from this software 
++ *               *    without specific prior written permission. 
++ *                *
++ *                 * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND 
++ *                  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
++ *                   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
++ *                    * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE 
++ *                     * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
++ *                      * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS 
++ *                       * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
++ *                        * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
++ *                         * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY 
++ *                          * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
++ *                           * SUCH DAMAGE. 
++ *                            *
++ *                             * This file is part of the Contiki operating system.
++ *                              * 
++ *                               * Author: Adam Dunkels <adam@sics.se>
++ *                                *
++ *                                 * $Id: cs8900a.h,v 1.3 2005/05/07 14:22:00 oliverschmidt Exp $
++ *                                  */
++#ifndef __CS8900A_H__
++#define __CS8900A_H__
++
++#include "uip_arch.h"
++
++void cs8900a_init(void);
++void cs8900a_send(void);
++u16_t cs8900a_poll(void);
++
++#endif /* __CS8900A_H__ */
++
+diff -urN uip-1.0/pet/main.c uip-1.0+pet/pet/main.c
+--- uip-1.0/pet/main.c	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/main.c	2011-01-03 19:54:38.488022130 +0100
+@@ -0,0 +1,239 @@
++/*
++ * Copyright (c) 2001, Adam Dunkels.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. All advertising materials mentioning features or use of this software
++ *    must display the following acknowledgement:
++ *      This product includes software developed by Adam Dunkels.
++ * 4. The name of the author may not be used to endorse or promote
++ *    products derived from this software without specific prior
++ *    written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
++ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
++ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
++ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
++ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
++ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * This file is part of the uIP TCP/IP stack.
++ *
++ * $Id: main.c,v 1.16 2006/06/11 21:55:03 adam Exp $
++ *
++ */
++
++
++#include <stdio.h>
++
++#include "uip.h"
++#include "uip_arp.h"
++#include "cs8900a.h"
++
++#include "timer.h"
++
++#define BUF ((struct uip_eth_hdr *)&uip_buf[0])
++
++#ifndef NULL
++#define NULL (void *)0
++#endif /* NULL */
++
++/*---------------------------------------------------------------------------*/
++int
++main(void)
++{
++  int i;
++  uip_ipaddr_t ipaddr;
++  struct timer periodic_timer, arp_timer;
++
++  timer_set(&periodic_timer, CLOCK_SECOND / 2);
++  timer_set(&arp_timer, CLOCK_SECOND * 10);
++  
++  //tapdev_init();
++  uip_init();
++
++  // driver init
++  cs8900a_init();
++
++  uip_ipaddr(ipaddr, 192,168,10,200);
++  uip_sethostaddr(ipaddr);
++  uip_ipaddr(ipaddr, 192,168,10,1);
++  uip_setdraddr(ipaddr);
++  uip_ipaddr(ipaddr, 255,255,255,0);
++  uip_setnetmask(ipaddr);
++
++  //httpd_init();
++  
++  /*  telnetd_init();*/
++  
++  hello_world_init();
++
++  /*  {
++      u8_t mac[6] = {1,2,3,4,5,6};
++      dhcpc_init(&mac, 6);
++      }*/
++  
++  /*uip_ipaddr(ipaddr, 127,0,0,1);
++  smtp_configure("localhost", ipaddr);
++  SMTP_SEND("adam@sics.se", NULL, "uip-testing@example.com",
++	    "Testing SMTP from uIP",
++	    "Test message sent by uIP\r\n");*/
++
++  /*
++    webclient_init();
++    resolv_init();
++    uip_ipaddr(ipaddr, 195,54,122,204);
++    resolv_conf(ipaddr);
++    resolv_query("www.sics.se");*/
++
++
++  
++  while(1) {
++    
++    asm("inc $8000");
++
++    // Poll ethernet device to see if there is a frame available
++    uip_len = cs8900a_poll(); //tapdev_read();
++    if(uip_len > 0) {
++      if(BUF->type == htons(UIP_ETHTYPE_IP)) {
++    
++        asm("inc $8001");
++
++	uip_arp_ipin();
++	uip_input();
++	/* If the above function invocation resulted in data that
++	   should be sent out on the network, the global variable
++	   uip_len is set to a value > 0. */
++	if(uip_len > 0) {
++	  uip_arp_out();
++	  cs8900a_send(); //tapdev_send();
++	}
++      } else if(BUF->type == htons(UIP_ETHTYPE_ARP)) {
++
++        asm("inc $8002");
++
++	uip_arp_arpin();
++	/* If the above function invocation resulted in data that
++	   should be sent out on the network, the global variable
++	   uip_len is set to a value > 0. */
++	if(uip_len > 0) {
++	  cs8900a_send(); //tapdev_send();
++	}
++      }
++
++    } else if(timer_expired(&periodic_timer)) {
++
++      asm("inc $8003");
++
++      timer_reset(&periodic_timer);
++      for(i = 0; i < UIP_CONNS; i++) {
++	uip_periodic(i);
++	/* If the above function invocation resulted in data that
++	   should be sent out on the network, the global variable
++	   uip_len is set to a value > 0. */
++	if(uip_len > 0) {
++	  uip_arp_out();
++	  cs8900a_send(); //tapdev_send();
++	}
++      }
++
++#if UIP_UDP
++      for(i = 0; i < UIP_UDP_CONNS; i++) {
++	uip_udp_periodic(i);
++	/* If the above function invocation resulted in data that
++	   should be sent out on the network, the global variable
++	   uip_len is set to a value > 0. */
++	if(uip_len > 0) {
++	  uip_arp_out();
++	  cs8900a_send(); //tapdev_send();
++	}
++      }
++#endif /* UIP_UDP */
++      
++      /* Call the ARP timer function every 10 seconds. */
++      if(timer_expired(&arp_timer)) {
++
++        asm("inc $8004");
++
++	timer_reset(&arp_timer);
++	uip_arp_timer();
++      }
++    }
++  }
++  return 0;
++}
++/*---------------------------------------------------------------------------*/
++void
++uip_log(char *m)
++{
++  printf("uIP log message: %s\n", m);
++}
++void
++resolv_found(char *name, u16_t *ipaddr)
++{
++  u16_t *ipaddr2;
++  
++  if(ipaddr == NULL) {
++    printf("Host '%s' not found.\n", name);
++  } else {
++    printf("Found name '%s' = %d.%d.%d.%d\n", name,
++	   htons(ipaddr[0]) >> 8,
++	   htons(ipaddr[0]) & 0xff,
++	   htons(ipaddr[1]) >> 8,
++	   htons(ipaddr[1]) & 0xff);
++    /*    webclient_get("www.sics.se", 80, "/~adam/uip");*/
++  }
++}
++#ifdef __DHCPC_H__
++void
++dhcpc_configured(const struct dhcpc_state *s)
++{
++  uip_sethostaddr(s->ipaddr);
++  uip_setnetmask(s->netmask);
++  uip_setdraddr(s->default_router);
++  resolv_conf(s->dnsaddr);
++}
++#endif /* __DHCPC_H__ */
++void
++smtp_done(unsigned char code)
++{
++  printf("SMTP done with code %d\n", code);
++}
++void
++webclient_closed(void)
++{
++  printf("Webclient: connection closed\n");
++}
++void
++webclient_aborted(void)
++{
++  printf("Webclient: connection aborted\n");
++}
++void
++webclient_timedout(void)
++{
++  printf("Webclient: connection timed out\n");
++}
++void
++webclient_connected(void)
++{
++  printf("Webclient: connected, waiting for data...\n");
++}
++void
++webclient_datahandler(char *data, u16_t len)
++{
++  printf("Webclient: got %d bytes of data.\n", len);
++}
++/*---------------------------------------------------------------------------*/
+diff -urN uip-1.0/pet/Makefile uip-1.0+pet/pet/Makefile
+--- uip-1.0/pet/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/Makefile	2011-01-03 19:30:41.708015225 +0100
+@@ -0,0 +1,53 @@
++# Copyright (c) 2001, Adam Dunkels.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# 1. Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++# 2. Redistributions in binary form must reproduce the above copyright
++#    notice, this list of conditions and the following disclaimer in the
++#    documentation and/or other materials provided with the distribution.
++# 3. The name of the author may not be used to endorse or promote
++#    products derived from this software without specific prior
++#    written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
++# OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
++# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
++# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++# GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
++# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
++# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++#
++# This file is part of the uIP TCP/IP stack.
++#
++# $Id: Makefile,v 1.13 2006/06/11 21:55:03 adam Exp $
++#
++
++TARGET=pet
++
++all: uip
++
++CCDEP  = gcc
++CC     = cc65
++AR     = ar65
++AS     = ca65
++APPS   = hello-world
++CCDEPCFLAGS = -Wall -g -I../uip -I. -fpack-struct -Os
++CFLAGS = -g -I../uip -I. 
++FILES=$(addprefix $(OBJECTDIR)/,main.o clock-arch.o cs8900a.o binding.o )
++
++-include ../uip/Makefile.include
++#-include ../6502/Makefile.6502
++
++uip: $(FILES) apps.a uip.a /usr/lib/cc65/lib/pet.lib
++	ld65 -t pet $(FILES) apps.a uip.a /usr/lib/cc65/lib/pet.lib -o $@
++
++clean:
++	rm -fr *.o *~ *core uip $(OBJECTDIR) *.a
+diff -urN uip-1.0/pet/uip-conf.h uip-1.0+pet/pet/uip-conf.h
+--- uip-1.0/pet/uip-conf.h	1970-01-01 01:00:00.000000000 +0100
++++ uip-1.0+pet/pet/uip-conf.h	2011-01-02 19:54:01.184016217 +0100
+@@ -0,0 +1,157 @@
++/**
++ * \addtogroup uipopt
++ * @{
++ */
++
++/**
++ * \name Project-specific configuration options
++ * @{
++ *
++ * uIP has a number of configuration options that can be overridden
++ * for each project. These are kept in a project-specific uip-conf.h
++ * file and all configuration names have the prefix UIP_CONF.
++ */
++
++/*
++ * Copyright (c) 2006, Swedish Institute of Computer Science.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of the Institute nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ * This file is part of the uIP TCP/IP stack
++ *
++ * $Id: uip-conf.h,v 1.6 2006/06/12 08:00:31 adam Exp $
++ */
++
++/**
++ * \file
++ *         An example uIP configuration file
++ * \author
++ *         Adam Dunkels <adam@sics.se>
++ */
++
++#ifndef __UIP_CONF_H__
++#define __UIP_CONF_H__
++
++#include <inttypes.h>
++
++/**
++ * 8 bit datatype
++ *
++ * This typedef defines the 8-bit type used throughout uIP.
++ *
++ * \hideinitializer
++ */
++typedef uint8_t u8_t;
++
++/**
++ * 16 bit datatype
++ *
++ * This typedef defines the 16-bit type used throughout uIP.
++ *
++ * \hideinitializer
++ */
++typedef uint16_t u16_t;
++
++/**
++ * Statistics datatype
++ *
++ * This typedef defines the dataype used for keeping statistics in
++ * uIP.
++ *
++ * \hideinitializer
++ */
++typedef unsigned short uip_stats_t;
++
++/**
++ * Maximum number of TCP connections.
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_MAX_CONNECTIONS 2
++
++/**
++ * Maximum number of listening TCP ports.
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_MAX_LISTENPORTS 2
++
++/**
++ * uIP buffer size.
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_BUFFER_SIZE     420
++
++/**
++ * CPU byte order.
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_BYTE_ORDER      LITTLE_ENDIAN
++
++/**
++ * Logging on or off
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_LOGGING         1
++
++/**
++ * UDP support on or off
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_UDP             0
++
++/**
++ * UDP checksums on or off
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_UDP_CHECKSUMS   1
++
++/**
++ * uIP statistics on or off
++ *
++ * \hideinitializer
++ */
++#define UIP_CONF_STATISTICS      1
++
++/* Here we include the header file for the application(s) we use in
++   our project. */
++/*#include "smtp.h"*/
++#include "hello-world.h"
++/*#include "telnetd.h"*/
++/*#include "webserver.h"*/
++/*#include "dhcpc.h"*/
++/*#include "resolv.h"*/
++/*#include "webclient.h"*/
++
++#endif /* __UIP_CONF_H__ */
++
++/** @} */
++/** @} */
+diff -urN uip-1.0/uip/Makefile.include uip-1.0+pet/uip/Makefile.include
+--- uip-1.0/uip/Makefile.include	2006-06-12 10:22:48.000000000 +0200
++++ uip-1.0+pet/uip/Makefile.include	2011-01-02 22:34:40.336019050 +0100
+@@ -1,17 +1,18 @@
+ 
++ifndef CCDEPCFLAGS
++  CCDEPCFLAGS = $(CFLAGS)
++endif
+ 
+ ifdef APPS
+   APPDIRS = $(foreach APP, $(APPS), ../apps/$(APP))
+   -include $(foreach APP, $(APPS), ../apps/$(APP)/Makefile.$(APP))
+   CFLAGS += $(addprefix -I../apps/,$(APPS))
++  CCDEPCFLAGS += $(addprefix -I../apps/,$(APPS))
+ endif
+ 
+ ifndef CCDEP
+   CCDEP = $(CC)
+ endif
+-ifndef CCDEPCFLAGS
+-  CCDEPCFLAGS = $(CFLAGS)
+-endif
+ ifndef OBJECTDIR
+   OBJECTDIR = obj
+ endif
+@@ -23,8 +24,12 @@
+ 
+ vpath %.c . ../uip ../lib $(APPDIRS)
+ 
+-$(OBJECTDIR)/%.o: %.c
+-	$(CC) $(CFLAGS) -c $< -o $@
++$(OBJECTDIR)/%.s: %.c
++	#$(CC) $(CFLAGS) -c $< -o $@
++	$(CC) $(CFLAGS) $< -o $@
++
++$(OBJECTDIR)/%.o: %.s
++	$(AS) $(CFLAGS) $< -o $@
+ 
+ $(OBJECTDIR)/%.d: %.c
+ 	@set -e; rm -f $@; \
+@@ -41,7 +46,9 @@
+ endif
+ 
+ uip.a: ${addprefix $(OBJECTDIR)/, $(UIP_SOURCES:.c=.o)}
+-	$(AR) rcf $@ $^
++	#$(AR) rcf $@ $^
++	$(AR) a $@ $^
+ 
+ apps.a: ${addprefix $(OBJECTDIR)/, $(APP_SOURCES:.c=.o)}
+-	$(AR) rcf $@ $^
++	#$(AR) rcf $@ $^
++	$(AR) a $@ $^
+diff -urN uip-1.0/uip/uip-neighbor.c uip-1.0+pet/uip/uip-neighbor.c
+--- uip-1.0/uip/uip-neighbor.c	2006-06-12 10:22:48.000000000 +0200
++++ uip-1.0+pet/uip/uip-neighbor.c	2011-01-02 22:03:55.544021807 +0100
+@@ -42,6 +42,7 @@
+ #include "uip-neighbor.h"
+ 
+ #include <string.h>
++#include <stdio.h>
+ 
+ #define MAX_TIME 128
+ 
