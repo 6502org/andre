@@ -163,7 +163,7 @@
 		<div class="top" id="browser">
 			<div class="tophead">browser</div>
 			<div>
-			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
 			</div>
 		</div>
 	</div> <!-- leftcol -->

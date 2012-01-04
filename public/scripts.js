@@ -377,6 +377,7 @@ function minmax() {
 function doInit() {
 	// filter is only usable with javascript, so hidden by default
 	$("div#filter").show();
+	$("div#share").show();
 	// initialize minmax
 	setupMinmax();
 	// initialize twisties

@@ -237,6 +237,10 @@ div#filter {
   display:none;
 }
 
+div#share {
+  display:none;
+}
+
 DIV#filter img {
   width: 24px;
   padding: 0.1em;

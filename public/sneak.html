@@ -51,7 +51,7 @@
 
 </div>
 		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
-			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not fully supported anymore!
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
 			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br /> (In new window)
@@ -77,11 +77,13 @@ more modern browser, like Internet Explorer 8 or later,
 I have decided to go a bit more public with my currently planned projects. So this is my 
 "sneak preview" page with what I have in mind.
 for my 8-bit projects... Don't actually expect me to get anything of this finished soon...</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-06-05</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2012-01-05</small>
+	Another update...
+    </li><li><div> </div><small>2010-06-05</small>
 	Website design update done!
     </li><li><div> </div><small>2010-06-01</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#osa">GeckOS</a></li><li><a href="#csa">CS/A65</a></li><li style="list-style-type:none;"><ul><li><a href="#petcpu">PETCPU board</a></li><li><a href="#blitter">Blitter</a></li></ul></li><li><a href="#xs1541">XS1541</a></li><li><a href="#inprog">Work in progress</a></li><li style="list-style-type:none;"><ul><li><a href="#fpga">The 65k Project</a></li></ul></li><li><a href="#done">Done stuff</a></li><li style="list-style-type:none;"><ul><li><a href="#netusb">Netusb</a></li><li><a href="#cpu816">65816 CPU board</a></li><li><a href="#csacpu">CS/A CPU on 2MHz</a></li><li><a href="#etholi">Olimex Ethernet board</a></li><li><a href="#web">Web design overhaul</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="osa" id="osa">GeckOS</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The operating system needs a definitive overhaul. These are the things to do:
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#osa">GeckOS</a></li><li><a href="#csa">CS/A65</a></li><li style="list-style-type:none;"><ul><li><a href="#petcpu">PETCPU board</a></li></ul></li><li><a href="#xs1541">XS1541</a></li><li><a href="#inprog">Work in progress</a></li><li style="list-style-type:none;"><ul><li><a href="#fpga">The 65k Project</a></li><li><a href="#netusb">Netusb2</a></li></ul></li><li><a href="#done">Done stuff</a></li><li style="list-style-type:none;"><ul><li><a href="#blitter">Blitter</a></li><li><a href="#netusb">Netusb</a></li><li><a href="#cpu816">65816 CPU board</a></li><li><a href="#csacpu">CS/A CPU on 2MHz</a></li><li><a href="#etholi">Olimex Ethernet board</a></li><li><a href="#web">Web design overhaul</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="osa" id="osa">GeckOS</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>The operating system needs a definitive overhaul. These are the things to do:
 </p>
 <ul>
 <li>no-copy (where possible) block transfer replacement for the streams API</li>
@@ -93,7 +95,20 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
     </p><h3><a name="petcpu" id="petcpu">PETCPU board</a></h3><p>
 	During my tests for the PET816 board in the PETCPU board, I found timing issues between the PETCPU and VDC boards. Need to fixup the PETCPU board. Somewhat embarassing that this appears only now, but my newer designs hopefully are of better quality...
 	</p>
-	<h3><a name="blitter" id="blitter">Blitter</a></h3><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="xs1541" id="xs1541">XS1541</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
+create a new firmware for the XS1541 to provide the lptieee functionality...
+</p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="inprog" id="inprog">Work in progress</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="fpga" id="fpga">The 65k Project</a></h3> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
+	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+</p>
+	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
+	<h3><a name="netusb" id="netusb">Netusb2</a></h3><p>
+	As successor to my netusb board I have designed a netusb2 board. It's using 3.3V components communicating via an SPI interface.
+	I have created the board, and the SPI65/B solution from this board is already on this web site. 
+	It has an SD-card slot, an ENC28J60-based Ethernet interface, and an SPI-based USB host and device interface.
+	SD-card already works, Ethernet is being tested right now, USB is untested so far...
+	</p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="done" id="done">Done stuff</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="blitter" id="blitter">Blitter</a></h3><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
 		had everything explicitely, like adder/incrementer separately for source and target address. 
 		The whole first layout draft took full two pages of a eurocard (160x100mm) - SMD!
 		</p><p>
@@ -102,14 +117,7 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 		fits well on a single side of a eurocard, although still all SMD (except two GALs used as 
 		"microcode"...). The control logic still has to be designed, but I think it'll fit one eurocard side.
 	</p>
-	<ul><li><a href="http://6502org.wikidot.com/blitter-theory-part-1" target="_blank" class="extlink">Blitter theory</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="xs1541" id="xs1541">XS1541</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
-create a new firmware for the XS1541 to provide the lptieee functionality...
-</p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="inprog" id="inprog">Work in progress</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="fpga" id="fpga">The 65k Project</a></h3> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
-	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
-</p>
-	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="done" id="done">Done stuff</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="netusb" id="netusb">Netusb</a></h3><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
+	<ul><li><a href="http://6502org.wikidot.com/blitter-theory-part-1" target="_blank" class="extlink">Blitter theory</a> </li></ul><h3><a name="netusb" id="netusb">Netusb</a></h3><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
 	</p>
 	<h3><a name="cpu816" id="cpu816">65816 CPU board</a></h3><p>
 	After designing and testing the PET816 board (65816 CPU board for the CBM PETs or other 6502 computers) I decided to adapt the

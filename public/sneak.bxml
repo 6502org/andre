@@ -13,6 +13,9 @@ I have decided to go a bit more public with my currently planned projects. So th
 for my 8-bit projects... Don't actually expect me to get anything of this finished soon...</p>
   </overview>
   <news>
+    <item date="2012-01-05">
+	Another update...
+    </item>
     <item date="2010-06-05">
 	Website design update done!
     </item>
@@ -44,20 +47,6 @@ for my 8-bit projects... Don't actually expect me to get anything of this finish
 	</p>
 	</desc>
 	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
-     </subsection>
-
-     <subsection toc="blitter" name="Blitter">
-	<desc><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
-		had everything explicitely, like adder/incrementer separately for source and target address. 
-		The whole first layout draft took full two pages of a eurocard (160x100mm) - SMD!
-		</p><p>
-		I have redesigned the blitter using a design approach similar to a CPU - with registers and a single ALU
-		to add the address increment for both, source and target addresses. The first layout draft 
-		fits well on a single side of a eurocard, although still all SMD (except two GALs used as 
-		"microcode"...). The control logic still has to be designed, but I think it'll fit one eurocard side.
-	</p>
-	</desc>
-	<extlink name="Blitter theory" link="http://6502org.wikidot.com/blitter-theory-part-1"/>
      </subsection>
 
   </section>
@@ -128,9 +117,34 @@ create a new firmware for the XS1541 to provide the lptieee functionality...
     </subsection>
 -->
   </subsection>
+     <subsection toc="netusb" name="Netusb2">
+	<desc><p>
+	As successor to my netusb board I have designed a netusb2 board. It's using 3.3V components communicating via an SPI interface.
+	I have created the board, and the SPI65/B solution from this board is already on this web site. 
+	It has an SD-card slot, an ENC28J60-based Ethernet interface, and an SPI-based USB host and device interface.
+	SD-card already works, Ethernet is being tested right now, USB is untested so far...
+	</p>
+	</desc>
+	<!--extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/-->
+     </subsection>
+
   </section>
 
   <section toc="done" name="Done stuff">
+     <subsection toc="blitter" name="Blitter">
+	<desc><p>I have created a first design for a block-transfer-engine (usually called a 'blitter'). The problem is that the design
+		had everything explicitely, like adder/incrementer separately for source and target address. 
+		The whole first layout draft took full two pages of a eurocard (160x100mm) - SMD!
+		</p><p>
+		I have redesigned the blitter using a design approach similar to a CPU - with registers and a single ALU
+		to add the address increment for both, source and target addresses. The first layout draft 
+		fits well on a single side of a eurocard, although still all SMD (except two GALs used as 
+		"microcode"...). The control logic still has to be designed, but I think it'll fit one eurocard side.
+	</p>
+	</desc>
+	<extlink name="Blitter theory" link="http://6502org.wikidot.com/blitter-theory-part-1"/>
+     </subsection>
+
      <subsection toc="netusb" name="Netusb">
 	<desc><p>I have made a design for a board with a CS8900A ethernet controller, as well as two USB controllers - one as host, one as device. Currently struggeling to solder the 100 pin TQFP ethernet controller...
 	</p>
