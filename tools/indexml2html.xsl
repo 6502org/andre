@@ -175,9 +175,12 @@
 	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
 	                </form>
 	        </div></div>
+	        <div class="top" id="share"><div class="tophead">share</div><div>
+	                <div id="socialshareprivacy"> </div>
+	        </div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br/>
-		            <a class="extlink" target="_blank" href="http://search.twitter.com/search?q=&amp;ands=&amp;phrase=&amp;ors=&amp;nots=&amp;tag=8bit&amp;lang=all&amp;from=afachat&amp;to=&amp;ref=&amp;near=&amp;within=15&amp;units=mi&amp;since=&amp;until=&amp;rpp=15">Twitter</a><br/> (In new window)
+		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br/> (In new window)
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
 			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
@@ -545,6 +548,14 @@ more modern browser, like Internet Explorer 8 or later,
 <xsl:template name="bottom">
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts-all.js"></script>
+  <script type="text/javascript" src="%up%jquery.socialshareprivacy.js"></script>
+  <script type="text/javascript">
+          jQuery(document).ready(function($){
+                  if($('#socialshareprivacy').length != 0){
+                            $('#socialshareprivacy').socialSharePrivacy();
+                  }
+          });
+  </script>
 </xsl:template>
 
 </xsl:stylesheet>

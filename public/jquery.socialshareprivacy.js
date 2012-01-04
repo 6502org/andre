@@ -85,7 +85,7 @@
             'services' : {
                 'facebook' : {
                     'status'            : 'on',
-                    'dummy_img'         : 'socialshareprivacy/images/dummy_facebook_en.png',
+                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_facebook_en.png',
                     'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Facebook senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more info.',
                     'txt_fb_off'        : 'nicht mit Facebook verbunden',
@@ -98,7 +98,7 @@
                 }, 
                 'twitter' : {
                     'status'            : 'on', 
-                    'dummy_img'         : 'socialshareprivacy/images/dummy_twitter.png',
+                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_twitter.png',
                     'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Twitter senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more info.',
                     'txt_twitter_off'   : 'nicht mit Twitter verbunden',
@@ -111,7 +111,7 @@
                 },
                 'gplus' : {
                     'status'            : 'on',
-                    'dummy_img'         : 'socialshareprivacy/images/dummy_gplus.png',
+                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_gplus.png',
                     'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Google+ senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more info.',
                     'txt_gplus_off'     : 'nicht mit Google+ verbunden',
@@ -130,7 +130,7 @@
             'cookie_path'       : '/',
             'cookie_domain'     : document.location.host,
             'cookie_expires'    : '365',
-            'css_path'          : 'socialshareprivacy/socialshareprivacy.css',
+            'css_path'          : '/users/andre/socialshareprivacy/socialshareprivacy.css',
             'uri'               : getURI
         };
 
