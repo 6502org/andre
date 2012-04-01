@@ -156,7 +156,7 @@ The I/O mapping can be changed from the BIOS port as well.
 The older version 1 used a 6551 ACIA for the RS232 interface, but now I
 use a 16550 UART (with FIFO).
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0F</a> (ok)</li><li><a href="#board2">3.0D</a> (ok)</li><li><a href="#board3">3.0C</a> (ok (for 32k RAM))</li><li><a href="#board4">3.0B</a> (ok (for 32k RAM))</li><li><a href="#board5">2.0B</a> (ok)</li><li><a href="#board6">1.x</a> (ok)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 3.0F</a></h3>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0F</a> (ok)</li><li><a href="#board2">3.0D</a> (ok)</li><li><a href="#board3">3.0C</a> (ok (for 32k RAM))</li><li><a href="#board4">3.0B</a> (ok (for 32k RAM))</li><li><a href="#board5">2.0B</a> (ok)</li><li><a href="#board6">2.0</a> (ok)</li><li><a href="#board7">1.x</a> (deprecated)</li><li><a href="#board8">(TST) 1.1A</a> (deprecated)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 3.0F</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -310,17 +310,49 @@ use a 16550 UART (with FIFO).
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csabios2.jpg">csabios2.jpg</a>(The ROM is currently missing)</td>
 </tr></table>
-<h3><a name="board6" id="board6">Version: 1.x</a></h3>
+<h3><a name="board6" id="board6">Version: 2.0</a></h3>
 <p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td> 
+			The first version with the UART.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csabios-2.0-schem.png">csabios-2.0-schem.png</a></td>
+</tr></table>
+<h3><a name="board7" id="board7">Version: 1.x</a></h3>
+<p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td> 
 			This is the very first version, using an ACIA
 			for the serial interface. It is (here) only
-			documented as a photo.
+			documented as a photo and a scanned schematics.
 		</td></tr>
 </table><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csabios.jpg">csabios.jpg</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csabios-1.2A-schem.png">csabios-1.2A-schem.png</a></td>
+</tr></table>
+<h3><a name="board8" id="board8">Version: (TST) 1.1A</a></h3>
+<p>Status: deprecated</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
+<td> 
+			This is the very first version, using an ACIA
+			for the serial interface. It is (here) only
+			documented as a photo and a scanned schematics.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This early version was named "TST" instead of "BIOS" :-)
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_photo"> </div></td>
+<td><a href="csabios.jpg">csabios.jpg</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csatst-1.1A-schem.png">csatst-1.1A-schem.png</a></td>
 </tr></table>
 </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="bios.gif" alt="block diagram" /><div class="diagcaption">This diagram shows an overview on the board architecture</div></div></div><div id="contentfooter"><p>Last modified: 2006-10-13.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>

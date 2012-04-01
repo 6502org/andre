@@ -51,6 +51,13 @@
 	</desc>
 	<extlink name="GeckOS/A65" link="../../osa/index.html"/>
      </subsection>
+     <subsection toc="ehbasic" name="A TCP/IP driver in BASIC!">
+	<desc><p>On the linked page there is small TCP/IP stack written in interpreted ehBASIC!
+	It is using recycled PC ISA Ethernet cards as interface.</p>
+	<p> I haven't had a further look, but it looks quite a feat!</p>
+	</desc>
+	<extlink name="ehBASIC TCP/IP" link="http://mycorner.no-ip.org/6502/suprchips/network/index.html"/>
+	</subsection>
   </section>
 
   <section toc="hw" name="6502 Ethernet solutions">

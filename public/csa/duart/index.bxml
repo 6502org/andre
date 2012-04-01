@@ -56,4 +56,12 @@
 		<file ltype="schem" ptype="fig">csaduart.fig</file>
 		<file ltype="photo" ptype="jpg" note="One of the UARTs is missing">csaduart.jpg</file>
 	</rev>
+	<rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<note type="msg">
+			This is the initial version (scanned schematics).
+		</note>
+		<file ltype="schem" ptype="png">csaduart-1.0A-schem.png</file>
+	</rev>
 </board>

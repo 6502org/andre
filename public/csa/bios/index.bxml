@@ -115,13 +115,36 @@ use a 16550 UART (with FIFO).
 		<file ltype="photo" ptype="jpg" note="The ROM is currently missing">csabios2.jpg</file>
 	</rev>
 	<rev>
-		<version>1.x</version>
+		<version>2.0</version>
 		<status>ok</status>
+		<note type="stop"> 
+			The first version with the UART.
+		</note>
+		<file ltype="schem" ptype="png">csabios-2.0-schem.png</file>
+	</rev>
+	<rev>
+		<version>1.x</version>
+		<status>deprecated</status>
 		<note type="stop"> 
 			This is the very first version, using an ACIA
 			for the serial interface. It is (here) only
-			documented as a photo.
+			documented as a photo and a scanned schematics.
 		</note>
 		<file ltype="photo" ptype="jpg">csabios.jpg</file>
+		<file ltype="schem" ptype="png">csabios-1.2A-schem.png</file>
+	</rev>
+	<rev>
+		<version>(TST) 1.1A</version>
+		<status>deprecated</status>
+		<note type="stop"> 
+			This is the very first version, using an ACIA
+			for the serial interface. It is (here) only
+			documented as a photo and a scanned schematics.
+		</note>
+		<note type="msg">
+			This early version was named "TST" instead of "BIOS" :-)
+		</note>
+		<file ltype="photo" ptype="jpg">csabios.jpg</file>
+		<file ltype="schem" ptype="png">csatst-1.1A-schem.png</file>
 	</rev>
 </board>

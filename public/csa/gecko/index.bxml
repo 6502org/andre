@@ -180,6 +180,7 @@ I/O space</LI>
 		<file ltype="schem" ptype="fig">gecko2.fig</file>
 		<file ltype="schem" ptype="psgz">gecko2.ps.gz</file>
 		<file ltype="schem" ptype="png">gecko2.png</file>
+		<file ltype="schem" ptype="png">csa_gecko-2.1A-schem.png</file>
 		<file ltype="parts" ptype="txt">geckoparts.txt</file>
 		<file ltype="desc" ptype="txt">geckodesc.txt</file>
 	</rev>
@@ -192,5 +193,13 @@ I/O space</LI>
 		<file ltype="schem" ptype="fig">gecko.fig</file>
 		<file ltype="schem" ptype="psgz">gecko.ps.gz</file>
 		<file ltype="schem" ptype="png">gecko.png</file>
+	</rev>
+	<rev>
+		<version>1.1A</version>
+		<status>unfinished draft</status>
+		<note type="msg">
+			This is the original Gecko 1.x version - draft only!
+		</note>
+		<file ltype="schem" ptype="png">csa_gecko-1.1A-schem.png</file>
 	</rev>
 </board>

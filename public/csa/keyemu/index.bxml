@@ -29,4 +29,12 @@
 		<file ltype="schem" ptype="psgz">csakeyemu.ps.gz</file>
 		<file ltype="photo" ptype="jpg">csakeyemu.jpg</file>
 	</rev>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+			The original version (scanned schematics)
+		</note>
+		<file ltype="schem" ptype="png">csakeyemu-1.0B.png</file>
+	</rev>
 </board>

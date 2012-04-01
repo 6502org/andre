@@ -42,6 +42,18 @@
                 <file ltype="driver" ptype="a65" note="ACIA driver">oa1ds.a65</file>
         </driver>
 	<rev>
+		<version>1.3A</version>
+		<status>ok</status>
+		<note type="deprecated">
+			This board is deprecated. Please use the PETIO board instead.
+		</note>
+		<note type="msg">
+			This board additionally implements an I2C controller with a parallel 
+			I2C I/O chip and test-LEDs.
+		</note>
+		<file ltype="schem" ptype="png">csakey-1.3A-schem.png</file>
+	</rev>
+	<rev>
 		<version>1.0B</version>
 		<status>ok</status>
 		<note type="deprecated">
@@ -53,5 +65,16 @@
 		<file ltype="schem" ptype="png">csakey.png</file>
 		<file ltype="schem" ptype="psgz">csakey.ps.gz</file>
 		<file ltype="photo" ptype="jpg" note="ACIA missing, but (so far undocumented) I2C testbed added">csakey.jpg</file>
+	</rev>
+	<rev>
+		<version>(PIO) 1.0A</version>
+		<status>deprecated</status>
+		<note type="deprecated">
+			This board is deprecated. Please use the PETIO board instead.
+		</note>
+		<note type="msg">
+			In the beginning this board went under the name of "PIO"...
+		</note>
+		<file ltype="schem" ptype="png">csapio-1.0A-schem.png</file>
 	</rev>
 </board>

@@ -154,7 +154,7 @@ more modern browser, like Internet Explorer 8 or later,
                         Board is deprecated. Use PETIO board instead.
                 </li><li><div> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 Keyboard driver</a></li><li><a href="#driver2">OS/A65 ACIA RS232 driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 Keyboard driver</a></h3>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 Keyboard driver</a></li><li><a href="#driver2">OS/A65 ACIA RS232 driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.3A</a> (ok)</li><li><a href="#board2">1.0B</a> (ok)</li><li><a href="#board3">(PIO) 1.0A</a> (deprecated)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 Keyboard driver</a></h3>
                         This driver handles the keyboard included
                         in this board.
                         It provides these methods
@@ -179,7 +179,22 @@ more modern browser, like Internet Explorer 8 or later,
                 <table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="oa1ds.a65">oa1ds.a65</a>(ACIA driver)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.3A</a></h3>
+<p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_deprecated"> </div></td>
+<td>
+			This board is deprecated. Please use the PETIO board instead.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This board additionally implements an I2C controller with a parallel 
+			I2C I/O chip and test-LEDs.
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csakey-1.3A-schem.png">csakey-1.3A-schem.png</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_deprecated"> </div></td>
 <td>
@@ -203,6 +218,20 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="csakey.jpg">csakey.jpg</a>(ACIA missing, but (so far undocumented) I2C testbed added)</td>
+</tr></table>
+<h3><a name="board3" id="board3">Version: (PIO) 1.0A</a></h3>
+<p>Status: deprecated</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_deprecated"> </div></td>
+<td>
+			This board is deprecated. Please use the PETIO board instead.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			In the beginning this board went under the name of "PIO"...
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csapio-1.0A-schem.png">csapio-1.0A-schem.png</a></td>
 </tr></table>
 </div></div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>

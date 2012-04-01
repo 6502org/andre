@@ -150,7 +150,7 @@ more modern browser, like Internet Explorer 8 or later,
 	
 </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li><li><a href="#driver2">OS/A65 shugart bus floppy driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><p>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li><li><a href="#driver2">OS/A65 shugart bus floppy driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2A</a> (ok)</li><li><a href="#board2">1.0B</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><p>
 			This file includes a small test program that
 			does a "readaddress" command on the WDC and either
 			prints the sector header (in reverse) or the 
@@ -181,7 +181,33 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="wd1770.i65">wd1770.i65</a>(wd1770 register definitions)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.2A</a></h3>
+<p>Status: ok</p>
+<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 5.25" and 3.5" PC disk drives.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			I can't reconstruct what mandated the move to a 1.2 revision.
+			The only difference I can currently see is the jumper to select
+			if DD/HD is soft-switchable or not. What can also be seen is that
+			the hand- and computer-drawn schematics were not always fully
+			in sync (see the revision marks and the respective dates...)
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			Using this board with HD-drives (i.e. 1.44M 3.5"
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</td></tr>
+</table><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csashug-1.2A-schem.png">csashug-1.2A-schem.png</a></td>
+</tr></table>
+<h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>

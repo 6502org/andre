@@ -145,4 +145,17 @@
 		<file ltype="layout" ptype="png">csa_pwr_v1.1a-brd.png</file>
 		<file ltype="photo" ptype="png" note="Without the battery, though">csa_pwr_v1.1a.png</file>
 	</rev>
+	<rev>
+		<version>0.X</version>
+		<status>broken!</status>
+		<note type="stop">
+			This was the original power supply I used. Note it has rechargeable batteries
+			for buffered Vcc in it - but NO appropriate charger!
+			NEVER BUILD THIS!
+		</note>
+		<note type="msg">
+			What might be interesting is the way to generate the 50Hz from the 9VAC
+		</note>
+		<file ltype="schem" ptype="png">csa-pwr-0.X-schem.png</file>
+	</rev>
 </board>

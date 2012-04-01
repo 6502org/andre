@@ -45,6 +45,28 @@
                 <file ltype="driver" ptype="a65" note="wd1770 register definitions">wd1770.i65</file>
         </driver>
 	<rev>
+		<version>1.2A</version>
+		<status>ok</status>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 5.25&quot; and 3.5&quot; PC disk drives.
+		</note>
+		<note type="msg">
+			I can't reconstruct what mandated the move to a 1.2 revision.
+			The only difference I can currently see is the jumper to select
+			if DD/HD is soft-switchable or not. What can also be seen is that
+			the hand- and computer-drawn schematics were not always fully
+			in sync (see the revision marks and the respective dates...)
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<file ltype="schem" ptype="png">csashug-1.2A-schem.png</file>
+	</rev>
+	<rev>
 		<version>1.0B</version>
 		<status>ok</status>
 		<note type="msg">
@@ -63,10 +85,5 @@
 		<file ltype="parts" ptype="txt">csashugparts.txt</file>
 		<file ltype="desc" ptype="txt">csashugdesc.txt</file>
 		<file ltype="photo" ptype="jpg">csashug.jpg</file>
-        <news>
-                <item date="2006-11-01">
-                        Added driver code.
-                </item>
-        </news>
 	</rev>
 </board>
