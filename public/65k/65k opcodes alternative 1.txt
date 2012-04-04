@@ -1,5 +1,16 @@
 
 
+Note: this doc has been prepared as a study to see if/how many 
+additional registers and new functionality can be included in 
+the "free opcode space" of the 6502. The result of this study
+was that single-byte opcodes would not suffice for what I had
+in mind, thus the decision to use the prefix-approach and
+not the one investigated here
+
+André (4 Apr 2012)
+
+--------------------------------------------------------------
+
 NMOS6502 free opcodes
 =====================
 

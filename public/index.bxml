@@ -27,6 +27,8 @@ and internet access.</p>
      <item date="2011-12-23">
         Some small updates to the <a href="65k/specsprog.html">programming specs</a>; see change log there.
      </item>
+ </news>
+  <oldnews>
      <item date="2011-06-04">
 	Added a <a href="adv65/65net.html">6502 networking page</a>
         Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
@@ -63,8 +65,6 @@ and internet access.</p>
     <item date="2011-01-04">
 	Added a completely new <a href="csa/etholi/index.html">Ethernet board</a> to my <a href="csa/index.html">CS/A computer</a>.
     </item>
- </news>
-  <oldnews>
     <item date="2011-01-02">
 	Some small updates to the <a href="65k/index.html">65k</a> programming specs. Moved some opcodes around
 	to achieve a more regular mapping
