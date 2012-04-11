@@ -19,6 +19,9 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2012-04-12" state="hot">
+        First release! Documented the first R0 version of the af65002 in its own <a href="65k/af65002/index.html">af65002 page</a>.
+    </item>
      <item date="2012-01-01">
 	Added my own <a href="hwinfo/spi/spi65b/index.html">SPI65/B solution</a> for the SPI bus.
 	Added a separate page for 6502-based <a href="hwinfo/ethernet/index.html">Ethernet and TCP/IP</a>.

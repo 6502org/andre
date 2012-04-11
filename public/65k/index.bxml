@@ -43,14 +43,16 @@
 	</p><p>
 	The implementation section below describes my own implementation of the 65k specs. It is thus
 	separate from the actual specification. The description documents are also under 
-	Creative Commons Attribution Share-Alike, but I have not yet decided on the VHDL code 
-	license, although I am tending to GPL or LGPL.
+	Creative Commons Attribution Share-Alike. For the VHDL code I have decided to use the LGPL.
     </p><p>
         To my understanding the techniques described here have been used by various processors for decades already.
         Still there is no guarantee that a processor according to this spec would not be covered by some patents.
 	</p>
   </overview>
   <news>
+    <item date="2012-04-12" state="hot">
+	First release! Documented the first R0 version of the af65002 in its own <a href="af65002/index.html">af65002 page</a>.
+    </item>
     <item date="2011-12-23">
 	Some small updates to the <a href="specsprog.html">programming specs</a>; see change log there.
     </item>
@@ -65,6 +67,8 @@
 	Some general updates and a larger update to the <a href="specsprog.html">programming specs</a>.
 	Added the <a href="designnotes.html">Design Notes</a> page.
     </item>
+  </news>
+  <oldnews>
     <item date="2011-01-02">
 	Some updates to the <a href="specsprog.html">programming specs</a>.
     </item>
@@ -77,7 +81,7 @@
     <item date="2010-09-18">
 	Started this page
     </item>
-  </news>
+  </oldnews>
   <toc/>
 
   <section toc="outline" name="65k Outline">

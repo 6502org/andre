@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 16bit 32bit expansion" />
-<meta name="keywords" content="6502 16bit 32bit expansion" />
+<meta name="description" content="6502 16bit 32bit 64bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit 64bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
 <title>The 65k Project</title></head>
@@ -29,7 +29,9 @@
 <li><div class="i_file">&nbsp;</div><a href="crossass.html">Cross-Assembler</a></li>
 <li><div class="i_file">&nbsp;</div><a href="nativetools.html">Native Tools</a></li>
 <li class="separator">Implementation</li>
-<li><div class="i_file">&nbsp;</div><a href="arch.html">Architecture Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="arch.html">General architecture</a></li>
+<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="af65002/index.html">af65002 </a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
 </li>
@@ -73,7 +75,15 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
+		</div></div><div class="top" id="oldnews"><div class="tophead">History</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews"> </div><small>2011-01-02</small>
+	Some updates to the <a href="specsprog.html">programming specs</a>.
+    </li><li><div class="i_oldnews"> </div><small>2010-10-23</small>
+	Published the first 65k draft
+    </li><li><div class="i_oldnews"> </div><small>2010-10-16</small>
+	Clarified licensing, overworked roadmap.
+    </li><li><div class="i_oldnews"> </div><small>2010-09-18</small>
+	Started this page
+    </li></ul></div></div></div><div id="midcol"><div class="top" id="ie6warn">
 You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
 more modern browser, like Internet Explorer 8 or later, 
 <a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
@@ -118,13 +128,14 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	The implementation section below describes my own implementation of the 65k specs. It is thus
 	separate from the actual specification. The description documents are also under 
-	Creative Commons Attribution Share-Alike, but I have not yet decided on the VHDL code 
-	license, although I am tending to GPL or LGPL.
+	Creative Commons Attribution Share-Alike. For the VHDL code I have decided to use the LGPL.
     </p><p>
         To my understanding the techniques described here have been used by various processors for decades already.
         Still there is no guarantee that a processor according to this spec would not be covered by some patents.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-12-23</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2012-04-12</small>
+	First release! Documented the first R0 version of the af65002 in its own <a href="af65002/index.html">af65002 page</a>.
+    </li><li><div> </div><small>2011-12-23</small>
 	Some small updates to the <a href="specsprog.html">programming specs</a>; see change log there.
     </li><li><div> </div><small>2011-05-04</small>
 	Minor update to the <a href="specsprog.html">programming specs</a>: deprecate the PKA, PKX, PKY opcodes.
@@ -134,14 +145,6 @@ more modern browser, like Internet Explorer 8 or later,
     </li><li><div> </div><small>2011-05-01</small>
 	Some general updates and a larger update to the <a href="specsprog.html">programming specs</a>.
 	Added the <a href="designnotes.html">Design Notes</a> page.
-    </li><li><div> </div><small>2011-01-02</small>
-	Some updates to the <a href="specsprog.html">programming specs</a>.
-    </li><li><div> </div><small>2010-10-23</small>
-	Published the first 65k draft
-    </li><li><div> </div><small>2010-10-16</small>
-	Clarified licensing, overworked roadmap.
-    </li><li><div> </div><small>2010-09-18</small>
-	Started this page
     </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#outline">65k Outline</a></li><li><a href="#spec">65k Specification</a></li><li><a href="#impl">My 65k Implementation</a></li><li><a href="#roadmap">Draft 65k Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#65002">65002</a></li><li><a href="#65010">65010</a></li><li><a href="#65020">65020</a></li><li><a href="#65040">65040</a></li><li><a href="#65060">65060</a></li><li><a href="#io">652xx</a></li></ul></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="outline" id="outline">65k Outline</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	Before a new processor is designed, it needs to be discussed what it should actually
 	be able to do, what features it should have and how these features should be implemented.

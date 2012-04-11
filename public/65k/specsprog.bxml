@@ -25,6 +25,8 @@
 	</p><p>
 	Note that these tables are currently preliminary. Final goal is to generate this part of the
 	documentation from the same source that generates the VHDL control tables.
+	</p><p>
+	NOTE: NEEDS UPDATE ACCORDING TO AF65002 IMPLEMENTATION! (esp. interrupt handling)
   </p></overview>
   <!--news>
     <item date="2011-05-01">

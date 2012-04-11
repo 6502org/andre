@@ -5,4 +5,7 @@ f designnotes.html Design Notes
 s Tools
 f crossass.html Cross-Assembler
 f nativetools.html Native Tools
-d af65002 af65002 Implementation
+s Implementation
+f arch.html General architecture
+d af65002 af65002 
+f tests.html Test setup

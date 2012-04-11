@@ -29,7 +29,9 @@
 <li><div class="i_file">&nbsp;</div><a href="crossass.html">Cross-Assembler</a></li>
 <li><div class="i_file">&nbsp;</div><a href="nativetools.html">Native Tools</a></li>
 <li class="separator">Implementation</li>
-<li><div class="i_file">&nbsp;</div><a href="arch.html">Architecture Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="arch.html">General architecture</a></li>
+<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="af65002/index.html">af65002 </a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
 </li>
@@ -100,6 +102,8 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	Note that these tables are currently preliminary. Final goal is to generate this part of the
 	documentation from the same source that generates the VHDL control tables.
+	</p><p>
+	NOTE: NEEDS UPDATE ACCORDING TO AF65002 IMPLEMENTATION! (esp. interrupt handling)
   </p></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optssuper">Hypervisor Mode Option</a></li><li><a href="#optsmmu">MMU Option</a></li></ul></li><li><a href="#regs">Register Set</a></li><li style="list-style-type:none;"><ul><li><a href="#regcore">Core register</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></li><li><a href="#overview">65k Opcode and Addressing Mode Overview</a></li><li style="list-style-type:none;"><ul><li><a href="#ovops">Opcodes Overview</a></li><li><a href="#ovadmd">Addressing Modes Overview</a></li><li><a href="#ovpref">Prefix Overview</a></li><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovfp">EXT opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li></ul></li><li><a href="#sys">System Environment</a></li><li style="list-style-type:none;"><ul><li><a href="#reset">Reset</a></li><li><a href="#int">Interrupts</a></li><li><a href="#trap">Trap handling</a></li><li><a href="#intproc">Interrupt and Trap Procedure</a></li><li><a href="#intret">Interrupt and Trap Return</a></li><li><a href="#jpu">Jump to User Mode</a></li><li><a href="#irqfw">Forward an interrupt to user mode</a></li></ul></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li><li><a href="#cont">Container</a></li><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></li><li><a href="#smp">Multiprocessing</a></li><li><a href="#compat">6502 Software Compatibility Notes</a></li><li style="list-style-type:none;"><ul><li><a href="#compatstack">Stack Frame</a></li><li><a href="#compatpointer">Interrupt Pointer</a></li><li><a href="#compattiming">Timing</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>

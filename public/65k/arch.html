@@ -29,7 +29,9 @@
 <li><div class="i_file">&nbsp;</div><a href="crossass.html">Cross-Assembler</a></li>
 <li><div class="i_file">&nbsp;</div><a href="nativetools.html">Native Tools</a></li>
 <li class="separator">Implementation</li>
-<li><div class="i_file">&nbsp;</div><a href="arch.html" class="mcurrent">Architecture Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="arch.html" class="mcurrent">General architecture</a></li>
+<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="af65002/index.html">af65002 </a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="tests.html">Test setup</a></li>
 </ul>
 </li>
@@ -83,7 +85,7 @@ more modern browser, like Internet Explorer 8 or later,
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
 &gt;&gt;  <a href="index.html">The 65k Project
-</a>&gt;&gt;  Architecture Overview</div>
+</a>&gt;&gt;  General architecture</div>
 <h1>The 65k Project - Architecture Overview</h1><p class="copyright">(C)
 2010-2011 André  Fachat</p> 
 <div class="overview">
@@ -95,7 +97,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Published this page
     </li><li><div> </div><small>2010-10-14</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#top">Top Level Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#topcore">Core</a></li><li><a href="#toprwseq">Read / Write Data Sequencer, Read Arbiter</a></li><li><a href="#topmmu">Memory Management Unit</a></li><li><a href="#topbusif">Bus Interface</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li><li><a href="#opanalysis">Opcode Data Path Analysis</a></li></ul></li><li><a href="#core">Core Architecture</a></li><li style="list-style-type:none;"><ul><li><a href="#regfile">Register File</a></li><li><a href="#pc">PC</a></li><li><a href="#alu">ALU</a></li><li><a href="#ctrl">Control (Interrupt, clock counter, opcode fetch)</a></li></ul></li><li><a href="#mmu">MMU</a></li><li><a href="#busif">Bus Interface</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li><li><a href="#opanalysis">Opcode Data Path Analysis</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
@@ -202,95 +204,7 @@ more modern browser, like Internet Explorer 8 or later,
 	</p><p>
 	The 65k architecture will in the current version implement pipelining similar to the 6502.
 	  </p>
-       	<ul><li><a href="http://en.wikipedia.org/wiki/Instruction_pipeline" target="_blank" class="extlink">Instruction Pipeline</a> </li><li><a href="http://en.wikipedia.org/wiki/Little-endian" target="_blank" class="extlink">Endianness</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634&amp;sid=5dae06f4d153431ee0c86b4cc2b01fa6" target="_blank" class="extlink">6502.org forum: A branch taken delays interrupt ...</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="top" id="top">Top Level Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the top level architecture, i.e. the top level
-	building blocks of the processor and their relations. Compared to the 6502
-	there are more such building blocks, the processor is more complex. The 6502
-	basically compares to the core - which is described in more detail below.</p>
-	<div class="rightimg"><a href="archtop.svg"><img width="300" src="archtop.png" /></a>The top level
-	architecture</div>
-	<p>
-	The following sections describe the components.
-	</p>
-     <h3><a name="topcore" id="topcore">Core</a></h3>
-	<p>
-	The core is the actual processor. It contains registers, ALU, and so on. With the 
-	rest of the system it communicates using three bus interfaces:
-	</p>
-	<ol>
-	<li>Instruction fetch bus - read the next instruction</li>
-	<li>Data read bus - read some data word</li>
-	<li>Data write bus - write some data word </li>
-	</ol>
-	<p>
-	</p>
-       	<h3><a name="toprwseq" id="toprwseq">Read / Write Data Sequencer, Read Arbiter</a></h3>
-	  <p>
-	  The read and write sequencers break down misaligned memory accesses
-	  into accesses that can be executed on the external bus.
-	  </p><p>
-	  The separate read data and instruction fetch sequencers may look like overkill.
-	  But this approach has the advantage that the instruction fetch sequencer can
-	  cache data it has already been read but has not yet been used by the CPU - without
-	  it being flushed by a data read.
-	  </p><p>
-	  The place between the read sequencers and the read arbiter can be a good place
-	  for a L1 cache - separate for data and instructions - in later versions.
-	  On the other hand the place between read arbiter and MMU can be used for a L1
-	  cache. Both places must be connected to the write bus, to invalidate modified 
-	  cache lines - to allow for self-modifying code.
-	  </p><p>
-	  Note that the sequencers must be before the MMU, as each of the broken
-	  down accesses may result in a different mapping.
-	  </p>
-	<h3>Write Data Sequencer</h3>
-	  <p>
-	  The write data sequencer takes a write request from the core, then checks 
-	  if the access is aligned or not. If it is not aligned, the access is broken
-	  into two separate accesses and forwarded to the MMU.
-	  </p>
-	<h3>Read Data Sequencer</h3>
-	  <p>
-	  The read data sequencer takes a read request from the core, then checks 
-	  if the access is aligned or not. If it is not aligned, the access is broken
-	  into two separate accesses and forwarded to the read arbiter.
-	  The result is consolidated and sent to the CPU when the whole data has been read.
-	  </p>
-	<h3>Instruction Fetch Sequencer</h3>
-	  <p>
-	  The instruction fetch sequencer takes a fetch request from the CPU,
-	  then tries to fulfill as much of it as possible. As the CPU does not know
-	  how many bytes an instruction takes, the CPU requests as many bytes as possible,
-	  but accepts less bytes than requested. The CPU then decides if it needs more
-	  instruction data. 
-	  </p>
-	<h3>Read Arbiter</h3>
-	  <p>
-	  The read arbiter takes requests from the read data sequencer and the instruction fetch
-	  sequencer, then decides which one to forward to the MMU. 
-	  </p>
-       	<h3><a name="topmmu" id="topmmu">Memory Management Unit</a></h3>
-	  <p>
-	The memory management unit is an optional feature. It translates the
-	read and write requests from the CPU (actually from the read arbiter and from the
-	write sequencer) from effective to physical addresses.
-	  </p><p>
-	More details are described below.
-	  </p>
-       	<h3><a name="topbusif" id="topbusif">Bus Interface</a></h3>
-	  <p>
-	The bus interface takes the read and write requests from the MMU and executes
-	them on the physical - external - bus interface. 
-	  </p><p>
-	For a misaligned bus write access (e.g. a byte write to a word wide bus) the bus
-	interface also implements read-modify-write cycles. I.e. the wide bus memory data
-	is read, the narrower data from the CPU is set into this memory word, and the 
-	data is written back.
-	  </p><p>
-	Also the bus interface does a bus snoop in case the external bus allows this. The
-	bus snooping is used to invalidate cache lines. It also detects accesses that
-	invalidates Load-linked/Store-conditional sequences.
-	  </p>
-       	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="coreanalysis" id="coreanalysis">Core Analysis</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+       	<ul><li><a href="http://en.wikipedia.org/wiki/Instruction_pipeline" target="_blank" class="extlink">Instruction Pipeline</a> </li><li><a href="http://en.wikipedia.org/wiki/Little-endian" target="_blank" class="extlink">Endianness</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634&amp;sid=5dae06f4d153431ee0c86b4cc2b01fa6" target="_blank" class="extlink">6502.org forum: A branch taken delays interrupt ...</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="coreanalysis" id="coreanalysis">Core Analysis</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	This section analyses the requirements for the core architecture.
 	</p>
      <h3><a name="adanalysis" id="adanalysis">Addressing Mode Analysis</a></h3>
@@ -513,46 +427,7 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>If the ALU does not provide a pass-through mode, then a pass gate from the temp register output to 
 	the register input bus is required</li>
 	</ol>
-       	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="core" id="core">Core Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	This section describes the architecture of the processor core. A block diagram is on the right side, 
-	click it to enlarge.
-	</p><p>NOTE: THE DIAGRAM IS VERY PRELIMINARY AND NOT NECESSARILY CONSISTENT WITH THE DESCRIPTIONS ABOVE
-	</p>
-	<div class="rightimg"><a href="archcore.svg"><img width="300" src="archcore.png" /></a>The core 
-	architecture</div>
-	<p>
-	The general principle of the core is that every action takes one cycle, from falling phi2 to falling phi2.
-	That is with the exception of simple transfer operations.
-	This has advantages and disadvantages. The advantage is that the clock can be made faster than if some
-	action has to be confined into half a clock cycle. The disadvantage is that computing (adding up)
-	an address value at the beginning of the cycle and putting it on the address bus in the same cycle is
-	not possible, thus takes an additional cycle. This results in the fact that the processor always 
-	behaves as if the original 6502 had used an additiona cycle due to page crossing.
-	</p>
-     <h3><a name="regfile" id="regfile">Register File</a></h3><p>
-	Each of the registers is implemented twice - for example "E" and shadow register "E'". These registers are required
-	for abort handling. During an abort, the register value from before the opcode must be restored.
-	Therefore the shadow register keeps the register value at the beginning of the opcode execution.
-	</p>
-	
-     <h3><a name="pc" id="pc">PC</a></h3><p>
-	The Program Counter is a special register in that it is used to fetch opcodes and also that it
-	is incremented automatically. For this there is the PC increment adder that can add constant values
-	selected by the control logic to the PC.
-	</p><p>
-	The Pass1 and Pass2 drivers separate the PC input and output from the other register's input and
-	output busses.
-     </p><h3><a name="alu" id="alu">ALU</a></h3><p>
-	
-     </p><h3><a name="ctrl" id="ctrl">Control (Interrupt, clock counter, opcode fetch)</a></h3><p>
-	
-     </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mmu" id="mmu">MMU</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	
-	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="busif" id="busif">Bus Interface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	
-	</p>
-     </div></div><hr />
+       	</div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
