@@ -137,58 +137,48 @@
 	may be even more difficult to find.
 	</p>
      </desc>
-       <subsection toc="65002" name="65002"><desc><p>Design goals for the 65002 CPU replacement are:</p>
+       <subsection toc="65002" name="65002">
+	<desc><p>
+	  Now that the 65002 is materializing, I have updated the roadmap.</p>
+	  <p>Design goals for the 65002 CPU replacement are:</p>
 <ul>
-<li>Provide original 6502 (legal) opcodes, plus the 65k opcodes up to 16&nbsp;bit</li>
-<li>16bit ALU - make it a 6502 as it could have been ...</li>
-<li>eliminate bogus memory cycles</li>
-<li>keep 8&nbsp;bit external data bus for now</li>
-<li>keep 16&nbsp;bit address space for now</li>
-<li>No mode bits - as opposed to the 65816 an opcode should have exactly one meaning (except for the original BCD bit)</li>
-<li>Extend the original registers to 16 bit (i.e. make it the 65002W - W for Word = 16&nbsp;bit)</li>
-<li>No further expansion, i.e. no MMU, no hypervisor mode</li>
+<li>Provide original 6502 (legal) opcodes, plus the 65k opcodes up to 64&nbsp;bit</li>
+<li>Compile-time configurable for 16, 32, or 64 bit ...</li>
+<li>Compile-time configurable for 8 or 16 bit maximum memory width (16 bit mmw can still use 8 bit memory)</li>
+<li>User- and hypervisor mode</li>
+<li>ABORT functionality</li>
+<li>No further expansion, i.e. no MMU</li>
+<li>No QUICK opcodes, no MV operations, no multicore-related opcodes</li>
 </ul>
     </desc>
     </subsection>
-        <subsection toc="65010" name="65010"><desc><p>Design goals for the 65010 CPU replacement are:</p>
-<p>This has been cancelled. The original roadmap stated vector operations, but currently I think MMU and virtualization is more important</p>
-<!--ul>
+    <subsection toc="65010" name="65010">
+	<desc><p>Design goals for the 65010 CPU include what is still missing from the 65002:</p>
+<ul>
 <li>Extension of the 65002 CPU from above</li>
+<li>Improve performance in terms of maximum clock frequency</li>
+<li>Add optional segment-based memory management (segment mapping as described in the specs)</li>
+<li>Add QUICK opcodes, as well as MV opcodes</li>
+<li>Add multi-core functionality - coordinating/synchronizing multiple cores in a single FPGA</li>
+<li>Add integer multiplication/division</li>
+</ul>
+    	</desc>
+    </subsection>
+    <subsection toc="650x0" name="650x0"><desc><p>Design goals for the further 650x0 CPUs are:</p>
+<ul>
+<li>Extension of the 65010 CPU from above</li>
+<li>Improve performance in terms of MIPS</li>
+<li>Make the new additions more like options to the original core</li>
+<li>MMU option (to replace the segment-based mapping)</li>
 <li>Add vector operations to the CPU core, like vector add. Allow different address offsets for source and target (from 0 up to 256)</li>
 <li>Include for example blitter functions</li>
-<li>possibly requires extra registers, depending on whether new 16bit registers are added or existing registers extended</li>
-</ul-->
-    </desc>
-    </subsection>
-        <subsection toc="65020" name="65020"><desc><p>Design goals for the 65020 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65002 CPU from above</li>
-<li>abort-ability - i.e. ability to abort an opcode in mid-process and roll it back</li>
-<li>Add MMU functionality according to 65k programming specs</li>
-<li>Basic "ring 0" functionality - separation of hypervisor and user mode</li>
-<li>Optionally 16bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16bit</li>
-<li>Register size 32&nbsp;bit (65020L)</li>
+<li>Add floating point ops</li>
+<li>Optionally 32bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16 or more bit</li>
+<li>Optional caching for high clock frequency versions</li>
 </ul>
     </desc>
     </subsection>
-        <subsection toc="65040" name="65040"><desc><p>Design goals for the 65040 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65020 CPU from above</li>
-<li>Optionally 32bit memory interface, possibly with write-back cache/write combining, to allow for very-fast-RAM usage that is only available with 16bit</li>
-<li>Register size 64&nbsp;bit (65020LL)</li>
-</ul>
-    </desc>
-    </subsection>
-        <subsection toc="65060" name="65060"><desc><p>This one is really sketchy for now...Design goals for the 65060 CPU replacement are:</p>
-<ul>
-<li>Extension of the 65040 CPU from above</li>
-<li>Add multi-core functionality - coordinating/synchronizing multiple cores in a single FPGA</li>
-<li>Possibly/optionally include L1 read caches in addition to the 16bit memory interface. Not sure if L1 is shared between cores or not</li>
-<li>Possibly/optionally include cache coherency protocol between multiple FPGAs</li>
-</ul>
-    </desc>
-    </subsection>
-        <subsection toc="io" name="652xx"><desc><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
+    <subsection toc="io" name="652xx"><desc><p>In addition to a new CPU, I'd probably try to make a bug-fixed 6522, or a 6526 replacement...</p>
     </desc>
     </subsection>
   </section>
