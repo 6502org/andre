@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="" />
+
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
+<title>65002 User- and Hypervisor mode</title></head>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<div id="mtree">
+<a id="m_homepage" href="../../index.html">Homepage</a>
+<ul class="menu0" >
+<li class="separator">Commodore</li>
+<li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="../../petindex/index.html">CBM PETindex</a>
+</li>
+<li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../../cbmhw/index.html">CBM hardware and mods</a>
+</li>
+<li class="separator">Hardware</li>
+<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../../65k/index.html">The 65k Project</a>
+<ul class="menu1" >
+<li><div class="i_file">&nbsp;</div><a href="../features.html">Features</a></li>
+<li class="separator">Specification</li>
+<li><div class="i_file">&nbsp;</div><a href="../specsprog.html">Programming Model</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../designnotes.html">Design Notes</a></li>
+<li class="separator">Tools</li>
+<li><div class="i_file">&nbsp;</div><a href="../crossass.html">Cross-Assembler</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../nativetools.html">Native Tools</a></li>
+<li class="separator">Implementation</li>
+<li><div class="i_file">&nbsp;</div><a href="../arch.html">General architecture</a></li>
+<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="../af65002/index.html">af65002 </a>
+<ul class="menu2" >
+<li class="separator">Specification</li>
+<li><div class="i_file">&nbsp;</div><a href="af65002front.html">Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002regs.html">Register Set</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002opstruct.html">Opcode Structure</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002admodes.html">Addressing Modes</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002prefixes.html">Prefixes</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002opcodes.html">Opcodes Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002opdesc.html">Opcode Description</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002int.html">Reset, Traps and Interrupts</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002hyper.html" class="mcurrent">User- and Hypervisor Mode</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002mem.html">Memory Management</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002config.html">Configuration Registers</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002compat.html">Compatibility</a></li>
+<li class="separator">Implementation</li>
+<li><div class="i_file">&nbsp;</div><a href="af65002arch.html">Architecture Overview</a></li>
+</ul>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../tests.html">Test setup</a></li>
+</ul>
+</li>
+<li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
+</li>
+<li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../../adv65/index.html">Advanced 6502</a>
+</li>
+<li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../../hwinfo/index.html">ICs and Standards Info</a>
+</li>
+<li class="dir" id="m_mischw"><div class="i_dir">&nbsp;</div><a href="../../mischw/index.html">Other hardware (e.g. tools)</a>
+</li>
+<li class="separator">Software</li>
+<li><div class="i_file">&nbsp;</div><a href="../../osa/index.html">GeckOS operating system</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../../lib6502/index.html">Lib6502 standard</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../../o65/index.html">O65 file format</a>
+</li>
+<li><div class="i_file">&nbsp;</div><a href="../../misc/index.html">Misc software</a>
+</li>
+<li class="separator">Knowledge Bits</li>
+<li class="dir" id="m_icapos"><div class="i_dir">&nbsp;</div><a href="../../icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li class="dir" id="m_icaphw"><div class="i_dir">&nbsp;</div><a href="../../icaphw/index.html">6502 Hardware Bits</a>
+</li>
+<li class="separator">Misc</li>
+<li><div class="i_file">&nbsp;</div><a href="../../contact.html">Contact</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../sneak.html">Sneak preview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="../../design.html">Web design</a></li>
+</ul>
+
+</div>
+		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
+			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br /> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+<p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+<p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
+
+		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
+You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
+more modern browser, like Internet Explorer 8 or later, 
+<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
+<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
+<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
+</div><div class="top" id="content"><div id="minmax"></div>
+<div id="breadcrumbs">
+<a href="../../index.html">Homepage</a>
+&gt;&gt; <a href="../index.html">The 65k Project</a>&gt;&gt;  <a href="index.html">af65002
+</a>&gt;&gt;  User- and Hypervisor Mode</div>
+<h1>65002 User- and Hypervisor mode</h1><div class="overview">
+	<p>
+	The 65k processors have two modes of operation, the user mode and the hypervisor mode.
+	In the hypervisor mode the processor has all privileges and access to all registers.
+	The purpose of the hypervisor mode is to run operating system level code.
+	The user mode is restricted and is intended to run application programs.
+	Critical instructions that modify or leak system state can only be executed in hypervisor mode.
+	</p><p>
+	All such instructions are trapped into an ABORT so that the user mode can actually run
+	a hypervisor mode program, as long as all such ABORTS are trapped and replaced with 
+	emulation code.
+	</p>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Overview</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+    <p>When the 65k boots it boots into hypervisor mode. The hypervisor mode is 
+	stored in the extended status byte.</p>
+  <h3><a name="jpu" id="jpu">Jump to User Mode</a></h3><p>
+        To go to a user space program - as set up by the user mode matchcode and user mode
+        stack pointer - the JPU opcode is used. It reads the operand address (from hypervisor mode),
+        then clears the hypervisor bit. After that it either jumps to the operand address in
+        user mode (absolute jump), or it reads the effective address from user mode (indirect jump)
+        and jumps there.
+      </p><p>
+        To emulate the behaviour of the original 6502, you would do a</p>
+        <pre>
+        JPU ($FFFC)
+        </pre>
+      <h3><a name="irq" id="irq">Interrupts and ABORTs</a></h3>
+    	<p>When an interrupt occurs the processor jumps into hypervisor mode.
+	I.e. the stack pointer to store the return address and the status values
+	is the hypervisor stack pointer, and hypervisor memory is used.
+	In this native mode the extended stack frame is used that includes the
+	hypervisor mode bit in the extended status byte (it is stored in hypervisor
+	memory, so it is not leaked).
+	</p><p>
+	The RTI instruction returns from the interrupt. It reads the extended stack frame
+	and restores the hypervisor mode bit as it was before.
+	</p><p>
+	The same happens on ABORTs.
+	</p><p>
+	For more information see the <a href="af65002int.html">Interrupts page</a>.
+	</p>
+     <h3><a name="trap" id="trap">TRAP</a></h3>
+    	<p>When an TRP is executed the processor jumps into hypervisor mode.
+	I.e. the stack pointer to store the return address and the extended status values
+	is the hypervisor stack pointer, and hypervisor memory is used.
+	In this native mode the extended stack frame without the standard status byte is used.
+	That frame includes the
+	hypervisor mode bit in the extended status byte (it is stored in hypervisor
+	memory, so it is not leaked).
+	</p><p>
+	The RTU instruction returns from the TRP handler. It reads the extended stack frame
+	and restores the hypervisor mode bit as it was before.
+	</p><p>
+	For more information see the <a href="af65002int.html">Interrupts page</a>.
+	</p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	Each of the two modes has its own memory management setting.
+	The memory management is controlled by a so-called matchcode. Each mode
+	has its own matchcode as set in the processor configuration registers.
+	From the matchcode then the memory configuration is derived.
+	For more details on this see the <a href="af65002mem.html">Memory Management page</a>.
+	</p>
+  <h3><a name="uprefix" id="uprefix">User Mode Prefix</a></h3><p>	
+	To access the user mode memory from hypervisor mode (e.g. for stack parameters of a TRP
+	execution), a prefix bit is implemented.
+	This user mode prefix bit is used to access user mode memory from hypervisor mode code.
+	When it is set, then the operand address is seen as user mode memory.
+	For more details please see the <a href="af65002prefixes.html#prefum">Prefixes page</a>.
+	</p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="critins" id="critins">Critical Instructions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	This section lists the critical instructions that are allowed in hypervisor mode only
+	</p>
+  <h3><a name="critst" id="critst">Status Register</a></h3>
+    	<p>The Extended Status Register byte contains the hypervisor mode.
+	This extended status byte is not accessible through such an operation like
+	PHP. Thus a program can actually not determine whether it is running
+	in user mode or hypervisor mode.
+	</p>
+     <h3><a name="jpu" id="jpu">Jump to user space and Return to user space</a></h3><p>	
+	The JPU operation is protected. I.e. when a user mode program tries to JPU somewhere,
+	the processor goes into an ABORT.</p>
+	<p>Similarly the RTU opcode is protected, as it also allows returning from hypervisor mode
+	to user mode.
+	</p><p>
+	Note: would they not be protected, the processor could not trap them in a virtualized
+	hypervisor mode (i.e. running in user space) and emulate their behaviour appropriately.
+	</p>
+     <h3><a name="rti" id="rti">Return From Interrupt</a></h3><p>	
+	The RTI opcode allows extended stack frames that include the hypervisor mode bit to be restored.
+	In general, when the RTI opcode is executed in user mode it is not protected. Only when the
+	RTI instruction tries to restore a set hypervisor bit (to jump into hypervisor mode), this
+	instruction ABORTs.
+	</p>
+     <h3><a name="uprefix" id="uprefix">User Mode Prefix</a></h3><p>	
+	The user mode prefix bit is used to access user mode memory from hypervisor mode code.
+	Any instruction that has this bit set and is executed from user mode traps into 
+	an ABORT.
+	</p>
+     <h3><a name="pcr" id="pcr">Processor Configuration Register</a></h3><p>	
+	The opcodes accessing (reading and writing) the processor configuration registers are 
+	protected and trap into an ABORT when executed in user mode.
+	</p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+All Copyrights are acknowledged.
+The information here is provided under the terms as described
+in <a href="af65002front.html#lic">the license section</a>.
+    </div></div><hr />
+Last updated 2012-04-23.
+  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">
+          jQuery(document).ready(function($){
+                  if($('#socialshareprivacy').length != 0){
+                            $('#socialshareprivacy').socialSharePrivacy();
+                  }
+          });
+  </script></body></html> 
+

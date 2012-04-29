@@ -1,0 +1,167 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160; "> ]>
+<webpage name="65002 Documentation">
+  <!--author>
+    <name>Andr&eacute; Fachat</name>
+    <email>afachat@gmx.de</email>
+    <homepage></homepage>
+    <yearstart>2011</yearstart>
+    <yearend>2012</yearend>
+  </author-->
+  <keywords>8-bit,6502,65002</keywords>
+  <metadesc>65002 documentation</metadesc>
+  <overview>
+	<p>
+	This is the reference documentation for the af65002 processor.
+	</p><p>
+	On the left hand menu you find the links to the various pages of the documentation.
+	</p><p>
+	The af65002 is an extension of the venerable 65C02 8&nbsp;bit processor. It extends the 
+	6502 with extra registers, wider registers, as well as a user and hypervisor mdoe, featuring
+	many new opcodes to use the new features.
+	</p><p>
+	The 65002 is binary compatible with the 65C02 - except for minor quirks required for the
+	extension (see the compatibility issues page).
+	</p>
+  </overview>
+  <toc/>
+  <!--news>
+    <item date="2012-04-12" state="hot">
+        First release! Documented the first R0 version of the af65002 in its own <a href="65k/af65002/index.html">af65002 page</a>.
+    </item>
+     <item date="2012-01-01">
+        Added a separate page for 6502-based <a href="hwinfo/usb/index.html">USB</a> solutions.
+     </item>
+  </news-->
+
+  <section toc="preface" name="Preface">
+  <subsection toc="lic" name="License">
+    <desc><p>
+        This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
+    </p><p>
+        Note this "content" includes this web page, but does not include the 6502.org header
+        and the left and right web page columns.  Click on the "Maximize" link to see
+        the contents covered by this license.
+    </p></desc>
+    <extlink name="CC-BY-SA legal code" link="http://creativecommons.org/licenses/by-sa/3.0/legalcode"/>
+    <extlink name="CC-BY-SA license deed (short form)" link="http://creativecommons.org/licenses/by-sa/3.0/"/>
+  </subsection>
+  <subsection toc="disc" name="Disclaimer">
+    <desc><p>
+        The content comes with no warranty at all!
+        There is no guarantee and no promise that this specification is correct, consistent, will actually work,
+        or will ever be implemented at all.
+    </p><p>
+        To my understanding the techniques described here have been used by various processors for decades already.
+        Still there is no guarantee that a processor according to this spec would not be covered by some patents.
+    </p><p>
+        Subject to change without notice!
+    </p></desc>
+  </subsection>
+  <subsection toc="cont" name="Contributors">
+    <desc><ul>
+        <li>Andr&eacute; Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
+    </ul></desc>
+  </subsection>
+  </section>
+
+  <section toc="todo" name="TODO">
+    <desc><p>
+	Here is a list of items still to do:
+    </p>
+    <ul>
+	<li>Clarify how the memory mapping should work of multiple matches occur</li>
+	<li>Add the LCR/SCR/BCR opcodes. Add the SYS page and related opcodes</li>
+    </ul>
+    </desc>
+  </section>
+
+  <section toc="chg" name="Changes">
+    <desc><p>This section describes the changes to the documentation:</p>
+      <table border="1">
+        <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
+        <tr><td>2010-10-23</td><td>Andr&eacute; Fachat</td><td>First working draft</td></tr>
+        <tr><td>2010-11-04</td><td>Andr&eacute; Fachat</td><td>Defined the interrupt status/mask/effective
+                mask register; Constrained the interrupt/trap/abort vectors to two-byte vectors;
+                integrated the various extra registers into the configuration register file (for less
+                opcodes necessary); add WAI, STP and FIL/FILU</td></tr>
+        <tr><td>2010-12-22</td><td>Andr&eacute; Fachat</td><td>Added the "NF" prefix bit</td></tr>
+        <tr><td>2010-12-28</td><td>Andr&eacute; Fachat</td><td>Moved some LSB $f opcodes to the extension page
+                to add STX abs,Y and STY abs,X</td></tr>
+        <tr><td>2011-01-02</td><td>Andr&eacute; Fachat</td><td>Moved some opcodes to achieve a more regular mapping of opcodes and addressing modes</td></tr>
+        <tr><td>2011-05-01</td><td>Andr&eacute; Fachat</td><td><ul>
+                <li>WAI becomes privileged</li>
+                <li>Moved no-operand opcodes in EXT page from column $f to $8, to be more aligned with standard opcode page</li>
+                <li>Added the INV opcode for the 2s-complement</li>
+                <li>Moved SWP to the EXT page, reordered the prefix codes</li>
+                <li>reordered the EXT column $8 and $a codes</li>
+                <li>Removed the INE/INB/DEE/DEB quick opcodes, added SLX/SRX/SLY/SRY quick opcodes instead</li>
+                <li>Reordered opcode column $f, so all non-prefix opcodes have addressing mode abs,X</li>
+                <li>removed NOP zp/abs, moved STX abs,Y to previous NOP abs location</li>
+                <li>Cleaned up duplicate opcodes for AM=1, clarified table description</li>
+                <li>Changed the BSR prefix usage definition to one similar to JSR, which removes the need
+                        for one of the BSR duplicate opcodes</li>
+                <li>Added the EE "early extension" prefix flag</li>
+                <li>reordered some EXT codes</li>
+                <li>Added the stack peek opcodes PKA, PKX, PKY</li>
+                <li>Added the EXT and CUT opcodes</li>
+                <li>Added the Accumulator addressing modes for ADE/ADB/ADS/SBE/SBB/SBS</li>
+                </ul></td></tr>
+        <tr><td>2011-12-23</td><td>Andr&eacute; Fachat</td><td><ul>
+                <li>Remove the EE prefix bit, and replace it with a second bit for the ZE extension - to allow
+                        to extend with ones and with the sign. Semantics of ZE changed as well, thus renamed to LE,
+                        load extend. Old ZE functionality is covered by EXT opcode</li>
+                <li>Fix the description of the SLX/SLY/SRX/SRY opcodes</li>
+                <li>Deprecated CLX/CLY opcodes, changed CLA to full width only</li>
+                <li>Added "BIT A" variant</li>
+                <li>Removed CUT, as it is the same as EXT</li>
+                <li>Some small changes here and there, esp. clarifications around the interrupt handling</li>
+                <li>Added the Software Compatibility section</li>
+                </ul></td></tr>
+        <tr><td>2011-12-31</td><td>Andr&eacute; Fachat</td><td><ul>
+                <li>Replace manually maintained tables (std/EXT pages and addressing modes) with
+                        ones generated from an XML file which will be the basis for an assembler
+                        and some VHDL code generation.</li>
+                <li>Added LEA/PEA with relwide addressing modes</li>
+                <li>Cleared up some flag settings</li>
+                <li>Add the RDR/RDL/ASR opcodes, moved a number of opcodes around in the EXT page,
+                        also rearranged the QUICK page to accomodate for the new opcodes.</li>
+                </ul></td></tr>
+        <tr><td>2012-04-23</td><td>Andr&eacute; Fachat</td><td><ul>
+		<li>Separated the one-pager into multiple pages and integrated into the af65002 doc build process</li>
+		<li>Moved some new "abs,Y" opcodes from column F to the EXT page, to free some space for more 
+			possible future expansions (prefix3 could now be $8F-$FF).</li>
+                </ul></td></tr>
+        <tr><td>2012-04-29</td><td>Andr&eacute; Fachat</td><td><ul>
+		<li>Reorganized the EXT page. It's less oriented on the standard page, but much more
+			regular now. </li>
+		<li>Added LEA and PEA addressing modes for zp/abs indirect quad, plus
+			zp/abs indirect/indexed quad modes that were all missing. </li>
+		<li>Added the ADD and SUB opcodes with immediate and
+			E-indirect addressing modes.</li>
+		<li>Added all missing tables, plus a TODO section on this page</li>
+                </ul></td></tr>
+      </table>
+    </desc>
+  </section>
+
+<!--section toc="af65002" name="af65002">
+  <desc>
+    <p>Intro to the af65002</p>
+  </desc>
+  <subsection toc="x" name="x">
+     <desc>
+    	<p>Intro to the af65002</p>
+     </desc>
+  </subsection>
+</section-->
+
+    <disclaimer name="Disclaimer">
+All Copyrights are acknowledged.
+The information here is provided under the terms as described
+in <a href="af65002front.html#lic">the license section</a>.
+    </disclaimer>
+  <closing>
+Last updated 2012-04-23.
+  </closing>
+</webpage>
+

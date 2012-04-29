@@ -2,13 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Andr&#xE9;  Fachat" />
+<meta name="author" content="" />
 
-<meta name="description" content="6502 16bit 32bit 64bit expansion" />
-<meta name="keywords" content="6502 16bit 32bit 64bit expansion" />
-<link rev="made" href="mailto:afachat@gmx.de" />
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css" />
-<title>The 65k Project</title></head>
+<title>65002 Documentation</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../../index.html">Homepage</a>
@@ -30,10 +30,10 @@
 <li><div class="i_file">&nbsp;</div><a href="../nativetools.html">Native Tools</a></li>
 <li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="../arch.html">General architecture</a></li>
-<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="index.html" class="mcurrent">af65002 </a>
+<li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="../af65002/index.html">af65002 </a>
 <ul class="menu2" >
 <li class="separator">Specification</li>
-<li><div class="i_file">&nbsp;</div><a href="af65002front.html">Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="af65002front.html" class="mcurrent">Overview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="af65002regs.html">Register Set</a></li>
 <li><div class="i_file">&nbsp;</div><a href="af65002opstruct.html">Opcode Structure</a></li>
 <li><div class="i_file">&nbsp;</div><a href="af65002admodes.html">Addressing Modes</a></li>
@@ -86,7 +86,7 @@
 			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
 	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br /> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?p=12180"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
@@ -101,27 +101,22 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../../index.html">Homepage</a>
-&gt;&gt; <a href="../index.html">The 65k Project</a>&gt;&gt;  af65002</div>
-<h1>The 65k Project</h1><p class="copyright">(C)
-2011-2012 André  Fachat</p> 
-<div class="overview">
+&gt;&gt; <a href="../index.html">The 65k Project</a>&gt;&gt;  <a href="index.html">af65002
+</a>&gt;&gt;  Overview</div>
+<h1>65002 Documentation</h1><div class="overview">
 	<p>
-	This page describes the my <em>af65002</em> implementation variant of the 
-	<a href="http://www.6502.org/users/andre/65k">65k</a> processor architecture.
-	</p>
-	<p>
-	Note that the specification of the instruction set architecture (on 
-	<a href="http://www.6502.org/users/andre/65k">65k</a>) is separate from the implementation
-	as specified here. Also the specification and the implementation are covered under different
-	licenses. While the documentation is under a creative commons license, the implementation
-	here is under the LGPL (lesser general public license).
+	This is the reference documentation for the af65002 processor.
 	</p><p>
-	The implementation section below describes my own implementation of the 65k specs. 
-    	</p><p>
-        To my understanding the techniques described here have been used by various processors for decades already.
-        Still there is no guarantee that a processor according to this spec would not be covered by some patents.
+	On the left hand menu you find the links to the various pages of the documentation.
+	</p><p>
+	The af65002 is an extension of the venerable 65C02 8  bit processor. It extends the 
+	6502 with extra registers, wider registers, as well as a user and hypervisor mdoe, featuring
+	many new opcodes to use the new features.
+	</p><p>
+	The 65002 is binary compatible with the 65C02 - except for minor quirks required for the
+	extension (see the compatibility issues page).
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#outline">65002 Outline</a></li><li><a href="#specs">Specification</a></li><li><a href="#arch">Architecture</a></li><li><a href="#code">Code</a></li><li><a href="#roadmap">Roadmap</a></li><li style="list-style-type:none;"><ul><li><a href="#naming">Naming conventions</a></li><li><a href="#R0">Revision zero</a></li><li><a href="#R1">Revision one</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li></ul></li><li><a href="#todo">TODO</a></li><li><a href="#chg">Changes</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
@@ -138,90 +133,84 @@ more modern browser, like Internet Explorer 8 or later,
         Subject to change without notice!
     </p><h3><a name="cont" id="cont">Contributors</a></h3><ul>
         <li>André  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
-    </ul><h3><a name="chg" id="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
+    </ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="todo" id="todo">TODO</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	Here is a list of items still to do:
+    </p>
+    <ul>
+	<li>Clarify how the memory mapping should work of multiple matches occur</li>
+	<li>Add the LCR/SCR/BCR opcodes. Add the SYS page and related opcodes</li>
+    </ul>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="chg" id="chg">Changes</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section describes the changes to the documentation:</p>
       <table border="1">
         <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
-        <tr><td>2012-04-11</td><td>André  Fachat</td><td>Initial version</td></tr>
+        <tr><td>2010-10-23</td><td>André  Fachat</td><td>First working draft</td></tr>
+        <tr><td>2010-11-04</td><td>André  Fachat</td><td>Defined the interrupt status/mask/effective
+                mask register; Constrained the interrupt/trap/abort vectors to two-byte vectors;
+                integrated the various extra registers into the configuration register file (for less
+                opcodes necessary); add WAI, STP and FIL/FILU</td></tr>
+        <tr><td>2010-12-22</td><td>André  Fachat</td><td>Added the "NF" prefix bit</td></tr>
+        <tr><td>2010-12-28</td><td>André  Fachat</td><td>Moved some LSB $f opcodes to the extension page
+                to add STX abs,Y and STY abs,X</td></tr>
+        <tr><td>2011-01-02</td><td>André  Fachat</td><td>Moved some opcodes to achieve a more regular mapping of opcodes and addressing modes</td></tr>
+        <tr><td>2011-05-01</td><td>André  Fachat</td><td><ul>
+                <li>WAI becomes privileged</li>
+                <li>Moved no-operand opcodes in EXT page from column $f to $8, to be more aligned with standard opcode page</li>
+                <li>Added the INV opcode for the 2s-complement</li>
+                <li>Moved SWP to the EXT page, reordered the prefix codes</li>
+                <li>reordered the EXT column $8 and $a codes</li>
+                <li>Removed the INE/INB/DEE/DEB quick opcodes, added SLX/SRX/SLY/SRY quick opcodes instead</li>
+                <li>Reordered opcode column $f, so all non-prefix opcodes have addressing mode abs,X</li>
+                <li>removed NOP zp/abs, moved STX abs,Y to previous NOP abs location</li>
+                <li>Cleaned up duplicate opcodes for AM=1, clarified table description</li>
+                <li>Changed the BSR prefix usage definition to one similar to JSR, which removes the need
+                        for one of the BSR duplicate opcodes</li>
+                <li>Added the EE "early extension" prefix flag</li>
+                <li>reordered some EXT codes</li>
+                <li>Added the stack peek opcodes PKA, PKX, PKY</li>
+                <li>Added the EXT and CUT opcodes</li>
+                <li>Added the Accumulator addressing modes for ADE/ADB/ADS/SBE/SBB/SBS</li>
+                </ul></td></tr>
+        <tr><td>2011-12-23</td><td>André  Fachat</td><td><ul>
+                <li>Remove the EE prefix bit, and replace it with a second bit for the ZE extension - to allow
+                        to extend with ones and with the sign. Semantics of ZE changed as well, thus renamed to LE,
+                        load extend. Old ZE functionality is covered by EXT opcode</li>
+                <li>Fix the description of the SLX/SLY/SRX/SRY opcodes</li>
+                <li>Deprecated CLX/CLY opcodes, changed CLA to full width only</li>
+                <li>Added "BIT A" variant</li>
+                <li>Removed CUT, as it is the same as EXT</li>
+                <li>Some small changes here and there, esp. clarifications around the interrupt handling</li>
+                <li>Added the Software Compatibility section</li>
+                </ul></td></tr>
+        <tr><td>2011-12-31</td><td>André  Fachat</td><td><ul>
+                <li>Replace manually maintained tables (std/EXT pages and addressing modes) with
+                        ones generated from an XML file which will be the basis for an assembler
+                        and some VHDL code generation.</li>
+                <li>Added LEA/PEA with relwide addressing modes</li>
+                <li>Cleared up some flag settings</li>
+                <li>Add the RDR/RDL/ASR opcodes, moved a number of opcodes around in the EXT page,
+                        also rearranged the QUICK page to accomodate for the new opcodes.</li>
+                </ul></td></tr>
+        <tr><td>2012-04-23</td><td>André  Fachat</td><td><ul>
+		<li>Separated the one-pager into multiple pages and integrated into the af65002 doc build process</li>
+		<li>Moved some new "abs,Y" opcodes from column F to the EXT page, to free some space for more 
+			possible future expansions (prefix3 could now be $8F-$FF).</li>
+                </ul></td></tr>
+        <tr><td>2012-04-29</td><td>André  Fachat</td><td><ul>
+		<li>Reorganized the EXT page. It's less oriented on the standard page, but much more
+			regular now. </li>
+		<li>Added LEA and PEA addressing modes for zp/abs indirect quad, plus
+			zp/abs indirect/indexed quad modes that were all missing. </li>
+		<li>Added the ADD and SUB opcodes with immediate and
+			E-indirect addressing modes.</li>
+		<li>Added all missing tables, plus a TODO section on this page</li>
+                </ul></td></tr>
       </table>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="outline" id="outline">65002 Outline</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The 65002 is the first implementation of my af65k line of processors.
-	As such it implements the basic features for af65k instruction set:
-	</p>
-	<ul>
-	<li>Wide registers and address sizes</li>
-	<li>Wide memory interface</li>
-	<li>Additional B and E registers</li>
-	<li>Prefix bytes to enable use of wide and more registers</li>
-	<li>User and Hypervisor mode</li>
-	<li>EXT opcode page, some SYS opcodes</li>
-	</ul>
-	<p>
-	Additionally the processor is compile-time configurable for 16, 32 or 64 bit 
-	wide registers, and currently 8 or 16 bit memory interface.
-	</p>
-	<p>
-	Here is what is notably missing:
-	</p>
-	<ul>
-	<li>Memory management / address translation</li>
-	<li>QUICK opcode page</li>
-	<li>Most of the SYS opcode page</li>
-	<li>No processor configuration registers (so far?)</li>
-	</ul>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="specs" id="specs">Specification</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The af65002 specification includes all the opcodes from the standard 65k opcode page,
-	as well as the prefix1 and prefix2 prefixes. It also includes the EXT and SYS prefixes.
-	</p>
-	<p>
-	The exact specs are (will be) described in TODO (page is generated from the
-	actual processor code generator).
-     </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="arch" id="arch">Architecture</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The 65002 architecture is described in a separate page:</p>
-	<ul>
-	<li><a href="arch.html">af65002 architecture</a></li>
-	</ul>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="code" id="code">Code</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The code is published on the <a href="http://github.com/fachat/af65k">Github</a> site.
-	You can either browse the code there or use git to download the code to a local
-	repository, to be able to compile it yourself.
-	</p>
-	<p>
-	The code is written in VHDL.
-     </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="roadmap" id="roadmap">Roadmap</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
-	The af65002 will share many parts of the code with other variants, as the 
-	system is very modular. As the af65k is developed further, the af65002
-	will inherit further features, like (if at all) more addressing modes or opcodes.
-     </p><p>
-	Another option is the multi-core functionality.
-     </p><h3><a name="naming" id="naming">Naming conventions</a></h3><p>
-	  The naming convention for the af65002 is:
-	  </p><pre>
-    af65002Rx/yz
-</pre><p>
-	  where <code>x</code> is the revision number, <code>y</code> is the number of cores,
-	  and <code>z</code> is the width notation. So for example:</p><pre>
-    af65002R0/1W
-</pre>or<pre>
-    af65002R0W
-</pre><p>
-	  is the notation of revision 0 (zero), single core, and word width (16 bit) registers.
-	  </p><p>
-	  The notation and number of cores is numeric, the width is "W", "L", or "Q" for 16, 32 or 64 bit
-	  widths.
-	  </p>
-	<h3><a name="R0" id="R0">Revision zero</a></h3><p>
-	  The revision zero is the ongoing revision as long as I am still working on it.
-	</p><h3><a name="R1" id="R1">Revision one</a></h3><p>
-	  This revision will be the first "complete" revision, with all the EXT and SYS opcodes
-	  as currently defined, including the processor configuration registers.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-        No warranty! 
-	Subject to change without notice!
-	There is no guarantee that this specification will actually work,
-        or will ever be implemented
-  </div></div><hr />
-<p>Return to <a href="../../index.html">Homepage</a></p>
-
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+All Copyrights are acknowledged.
+The information here is provided under the terms as described
+in <a href="af65002front.html#lic">the license section</a>.
+    </div></div><hr />
+Last updated 2012-04-23.
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){

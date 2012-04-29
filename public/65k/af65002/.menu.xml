@@ -1,3 +1,17 @@
 <ul class="menu2" >
-<li><div class="i_file">&nbsp;</div><a href="%up%arch.html">Architecture Overview</a></li>
+<li class="separator">Specification</li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002front.html">Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002regs.html">Register Set</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002opstruct.html">Opcode Structure</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002admodes.html">Addressing Modes</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002prefixes.html">Prefixes</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002opcodes.html">Opcodes Overview</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002opdesc.html">Opcode Description</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002int.html">Reset, Traps and Interrupts</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002hyper.html">User- and Hypervisor Mode</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002mem.html">Memory Management</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002config.html">Configuration Registers</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002compat.html">Compatibility</a></li>
+<li class="separator">Implementation</li>
+<li><div class="i_file">&nbsp;</div><a href="%up%af65002arch.html">Architecture Overview</a></li>
 </ul>
