@@ -2,6 +2,8 @@
 <li><div class="i_file">&nbsp;</div><a href="%up%features.html">Features</a></li>
 <li class="separator">Specification</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%specsprog.html">Programming Model</a></li>
+<li><div class="i_file">&nbsp;</div><a href="%up%future.html">Future Extensions</a></li>
+<li><div class="i_link">&nbsp;</div><a href="%up%af65002">65002</a></li>
 <li><div class="i_file">&nbsp;</div><a href="%up%designnotes.html">Design Notes</a></li>
 <li class="separator">Tools</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%crossass.html">Cross-Assembler</a></li>
@@ -9,6 +11,7 @@
 <li class="separator">Implementation</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%arch.html">General architecture</a></li>
 <li class="dir" id="m_65k_af65002"><div class="i_dir">&nbsp;</div><a href="%up%af65002/index.html">af65002 </a>
+
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%tests.html">Test setup</a></li>
 </ul>

@@ -552,23 +552,34 @@ table.memmap th {
 div#content table {
 	font-size: 100%;
 	width:auto;
+	border-collapse: collapse;
+	border-width: 1px;
 }
 
 
 div#content th {
 	background-color: #dddddd;
+	border-width: 1px;
+}
+
+div#content td {
+	border-width: 1px;
 }
 
 table.content {
 	text-align:center;
 	empty-cells:show;
 	margin:5px;
+	border-style: solid;
+	border-collapse: collapse;
 }
 table.content td {
 	padding:3px;
+	border-style: solid;
 }
 table.content th {
 	padding:5px;
+	border-style: solid;
 }
 
 /****************************************

@@ -15,6 +15,7 @@
 <li><div class="i_file">&nbsp;</div><a href="%up%8032sk.html">The 8032-SK</a></li>
 <li class="separator">Peripherals</li>
 <li class="dir" id="m_petindex_drives"><div class="i_dir">&nbsp;</div><a href="%up%drives/index.html">Disk drives</a>
+
 </li>
 <li class="separator">Programming</li>
 <li><div class="i_file">&nbsp;</div><a href="%up%progmod.html">Hardware programming</a></li>
@@ -22,6 +23,7 @@
 <li><div class="i_file">&nbsp;</div><a href="%up%crtc.html">CRTC operation</a></li>
 <li class="separator">Quirks</li>
 <li class="dir" id="m_petindex_poke"><div class="i_dir">&nbsp;</div><a href="%up%poke/index.html">Killer poke</a>
+
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%repairs.html">Repairing the PET</a></li>
 <li class="separator">Links</li>

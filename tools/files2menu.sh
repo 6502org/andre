@@ -59,7 +59,7 @@ if [ -f $root/.files ]; then
 		/^f / { print "<li><div class=\"i_file\">&nbsp;</div><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^l / { print "<li><div class=\"i_link\">&nbsp;</div><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; }\
 		/^d / { print "<li class=\"dir\" id=\"%id%_"$2"\"><div class=\"i_dir\">&nbsp;</div><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
-			print "@" $2 "@</li>"; }\
+			print "@" $2 "@"; print "</li>"; }\
 		/^p / { print "<li><div class=\"i_file\">&nbsp;</div><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
 			print "</li>"; }\
 		END { print "</ul>"; } \
@@ -82,9 +82,9 @@ fi;
 if [ -f $root/../.files.xml2 ]; then
 	cat $root/../.files.xml2 \
 		| awk -v m="$parent" '
-			BEGIN { pp=1; } 
+			BEGIN { pp=1; m2="@"m"@"; } 
 			{ if ( pp>0 ) print $0; } 
-			{ if (index($0, m) > 0) { pp=0; } } 
+			{ pos=index($0, m2); if (pos > 0) { pp=0; } } 
 		'\
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
 		| sed -e "s@%up%@../%up%@g" \
@@ -94,9 +94,9 @@ if [ -f $root/../.files.xml2 ]; then
 		>> $root/.files.xml2
 	cat $root/../.files.xml2 \
 		| awk -v m="$parent" '
-			BEGIN { pp=0; } 
+			BEGIN { pp=0; m2="@"m"@"; } 
 			{ if ( pp>0 ) print $0; } 
-			{ if (index($0, m) > 0) { pp=1; } } 
+			{ if (index($0, m2) > 0) { pp=1; } } 
 		'\
 		| sed -e "s/@[a-zA-Z0-9]*@//g" \
 		| sed -e "s@%up%@../%up%@g" \

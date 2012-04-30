@@ -11,8 +11,10 @@
 <li><div class="i_file">&nbsp;</div><a href="%up%cpu816v2/index.html">65816 CPU V2</a>
 </li>
 <li class="dir" id="m_csa_petcpu"><div class="i_dir">&nbsp;</div><a href="%up%petcpu/index.html">64k PET CPU</a>
+
 </li>
 <li class="dir" id="m_csa_gecko"><div class="i_dir">&nbsp;</div><a href="%up%gecko/index.html">Gecko</a>
+
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%auxcpu/index.html">Auxiliary CPU</a>
 </li>
@@ -41,6 +43,7 @@
 </li>
 <li class="separator">Special purpose</li>
 <li class="dir" id="m_csa_blitter"><div class="i_dir">&nbsp;</div><a href="%up%blitter/index.html">Block transfer</a>
+
 </li>
 <li><div class="i_file">&nbsp;</div><a href="%up%ramdisk/index.html">SIMM RAMDisk</a>
 </li>
