@@ -29,31 +29,19 @@ a:hover { color:#ff0000; text-decoration:none }
 
 /* top level style */
 DIV.top {
-/*
-  	-moz-border-radius: 10px;
-  	-webkit-border-radius: 10px;
-*/
   	background-color: #ffffff; 
   	margin: 0;
-  	margin-top: 0em;
-  	margin-bottom: 0.6em;
-  	padding: 0.7em;
+  	margin-bottom: 1.6em;
+  	padding: 15px;
 	
 }
 
 /* left/right cols have headers in the top level style */
 DIV.tophead {
- 	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
-	background-color: #ee8800;
-/*
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-*/
+	background-color: #888888;
+	font-size: large;
 	color: #fff;
-	margin: -0.7em;
+	margin: -15px;
 	margin-bottom: 0.3em;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
@@ -70,15 +58,7 @@ div#ie6warn { display: none; }
 }
 
 DIV#hot DIV.tophead {
- 	background: -moz-linear-gradient(top, #f55, #e00 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
 	background-color: #ee0000;
-/*
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-*/
 }
 
 P.copyright {
@@ -116,22 +96,6 @@ div.toplink {
 DIV#mainbox {
    padding-top: 1em;
    font-size: medium;
-
- /* W3C Spec *
- background: linear-gradient(top, #ddd 0, #fff 100%); */
- /* browser * requires IE code in addition! 
-  * ende der Seite unten nicht klar definiert (left/righcol gehen raus!?)
-  *
-  * #888 -> #fff	Graukeil
-  * #fc6 -> #e80	Orangekeil
-  * #369 -> 7ad		Blaukeil (6502.org)
-  *
- background: -moz-linear-gradient(top, #888 0, #fff 100%); /* mozilla *
- background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888), color-stop(1, #fff));	/* webkit *
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 *
- -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 *
- */
-
 }
 
 /****************************************
@@ -151,7 +115,6 @@ DIV#midcol {
 
 DIV#leftcol {
   float: left; 
-/*  width: 20em;*/
   width: 15%;
   margin: 0; 
   padding: 0;
@@ -159,12 +122,10 @@ DIV#leftcol {
 
 DIV#rightcol {
   float: right; 
-/*  width: 19em;*/
   width: 15%;
   margin: 0; 
   padding: 0;
   font-size:x-small;
-  /*display: block;*/
 }
 
 /****************************************

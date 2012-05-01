@@ -316,17 +316,18 @@ function setupTwisties() {
 	$("div.h2t").each( function(i, e) {
 		//$(e).show();
 		$(e).css({'display': 'block'});
-		$(e).click( twisty );
+		$(e).parent().click( twisty ); // click on h2h(eader)
 	});
 }
 
 function twisty() {
-	var content = $(this).parent().parent().children(".h2c");
+	var content = $(this).parent().children(".h2c");
+	var twisty = $(this).children(".h2t");
 	if ( $(content).is(':visible') ) {
-		$(this).css({'background-position': '-256px -32px'});
+		$(twisty).css({'background-position': '-256px -32px'});
 		$(content).hide();
 	} else {
-		$(this).css({'background-position': '-288px -32px'});
+		$(twisty).css({'background-position': '-288px -32px'});
 		$(content).css({'display': 'block'});
 	}
 }
@@ -363,6 +364,27 @@ function minmax() {
 }
 
 // ----------------------------------------------------------------------------------------------------------
+// navigation pointer
+
+function setupPointer() {
+	var p = $("#pointr");
+	// basic setup
+	$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
+	$(p).css({'width': '32px'});
+	$(p).css({'height': '32px'});
+	$(p).css({'background-position': '-256px -32px'});
+	$(p).css({'display': 'block'});
+	$(p).css({'position': 'absolute'});
+	var position = $(p).prev().position();
+	var width = $(p).prev().outerWidth();
+	alert("position=" + position.top +"/"+ position.left +", width="+width);
+	$(p).css({'top': position.top + "px"});
+	$(p).css({'left': (position.left + width) + "px" });
+
+	$(p).show();
+}
+
+// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
@@ -379,6 +401,8 @@ function doInit() {
 	setupAjax();
 	bindMenu($("div#menu"));
 	setupFilter();
+	// setup pointer
+	setupPointer();
 }
 
 // done to check advanced stylesheet
