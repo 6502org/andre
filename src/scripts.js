@@ -123,7 +123,7 @@ function showMenu( ) {
 function bindPlus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirp");
-	var img = $(el).children("div");
+	var img = $(el).children("div.i_dir");
 	$(img).css({'background-position': '-32px -64px'});
 	$(img).unbind();
 	$(img).click( showMenu );
@@ -133,7 +133,7 @@ function bindPlus( el ) {
 function bindMinus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirm");
-	var img = $(el).children("div");
+	var img = $(el).children("div.i_dir");
 	$(img).css({'background-position': '-64px -64px'});
 	$(img).unbind();
 	$(img).click( hideMenu );
@@ -369,17 +369,18 @@ function minmax() {
 function setupPointer() {
 	var p = $("#pointr");
 	// basic setup
-	$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
+	//$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
+	//$(p).css({'background-color': '#eee'});
 	$(p).css({'width': '32px'});
-	$(p).css({'height': '32px'});
-	$(p).css({'background-position': '-256px -32px'});
+	$(p).css({'height': '64px'});
+	$(p).css({'background-position': '0px -5px'});
 	$(p).css({'display': 'block'});
 	$(p).css({'position': 'absolute'});
 	var position = $(p).prev().position();
 	var width = $(p).prev().outerWidth();
-	alert("position=" + position.top +"/"+ position.left +", width="+width);
-	$(p).css({'top': position.top + "px"});
-	$(p).css({'left': (position.left + width) + "px" });
+	//alert("position=" + position.top +"/"+ position.left +", width="+(position.left+width));
+	$(p).css({'top': (position.top - 10) + "px"});
+	$(p).css({'left': (position.left + width - 10) + "px" });
 
 	$(p).show();
 }

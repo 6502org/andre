@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #555;
+ background-color: #888;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -38,7 +38,7 @@ DIV.top {
 
 /* left/right cols have headers in the top level style */
 DIV.tophead {
-	background-color: #888888;
+	background-color: #555;
 	font-size: large;
 	color: #fff;
 	margin: -15px;
@@ -87,6 +87,13 @@ H2 {
 div.toplink {
 	float:right;
 	margin-top: -3em;
+}
+
+/****************************************
+ */
+
+div#mtree div#pointr {
+  background:url("imgs/pointr.png") no-repeat;
 }
 
 /****************************************
