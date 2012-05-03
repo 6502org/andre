@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #888;
+ background-color: #ddd;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -33,7 +33,7 @@ DIV.top {
   	margin: 0;
   	margin-bottom: 1.6em;
   	padding: 15px;
-	
+	box-shadow: 6px 6px 6px #777;
 }
 
 /* left/right cols have headers in the top level style */
@@ -192,13 +192,6 @@ table#filterbox {
 	width: auto;
 }
 
-/*
-DIV#menu {
-  padding-left: 1em;
-  padding-right: 1em; 
-}
-*/
-
 div#filter {
   margin-bottom: 1em;
   font-size:x-small;
@@ -238,6 +231,8 @@ DIV#mtree li {
   padding-top: 0.2em;
   padding-bottom: 0em;
   font-size:small;
+
+  position: relative;
 }
 
 div#mtree a { 
@@ -252,7 +247,7 @@ div#mtree A.mcurrent {
 }
 
 div#mtree a:hover { 
-  background-color:#ff0; 
+  background-color:#ddd; 
 }
 
 div#mtree A#m_homepage {
@@ -269,10 +264,12 @@ div#mtree div {
 }
 
 div#mtree div.i_dir {
-  background-position: 0 -64px;
+  background-position: -288px -32px;
+  //background-position: 0 -64px;
 }
 div#mtree div.i_file {
-  background-position: -128px -64px;
+  //background-position: -128px -64px;
+  background-position: -224px -32px;
 }
 div#mtree div.i_link {
   background-position: -160px -64px;
@@ -287,8 +284,9 @@ div#mtree div.i_link {
 
 div#mtree LI.separator {
   margin-top: 0.1em;
-  font-size:x-small;
+  font-size:small;
   font-weight:bold;
+  padding-left: 16px;
 }
 
 /* new style */
@@ -554,7 +552,7 @@ table.content th {
  * table of content
  */
 
-div#toc dir {
+div#toc .dir {
 	margin-top: 0.3em;
 	margin-bottom: 0.3em;
 	padding-left: 3em;

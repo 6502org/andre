@@ -132,7 +132,7 @@ function bindPlus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirp");
 	var img = $(el).children("div.i_dir");
-	$(img).css({'background-position': '-32px -64px'});
+	$(img).css({'background-position': '-256px -32px'});
 	$(img).unbind();
 	$(img).click( showMenu );
 }
@@ -142,7 +142,7 @@ function bindMinus( el ) {
    	$(el).removeClass();
    	$(el).addClass("dirm");
 	var img = $(el).children("div.i_dir");
-	$(img).css({'background-position': '-64px -64px'});
+	$(img).css({'background-position': '-288px -32px'});
 	$(img).unbind();
 	$(img).click( hideMenu );
 }
@@ -374,24 +374,34 @@ function minmax() {
 // ----------------------------------------------------------------------------------------------------------
 // navigation pointer
 
-function setupPointer() {
-	var p = $("#pointr");
-	// basic setup
-	//$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
-	//$(p).css({'background-color': '#eee'});
-	$(p).css({'width': '32px'});
-	$(p).css({'height': '64px'});
-	$(p).css({'background-position': '0px -5px'});
-	$(p).css({'display': 'block'});
-	$(p).css({'position': 'absolute'});
-	var position = $(p).prev().position();
-	var width = $(p).prev().outerWidth();
-	//alert("position=" + position.top +"/"+ position.left +", width="+(position.left+width));
-	$(p).css({'top': (position.top - 10) + "px"});
-	$(p).css({'left': (position.left + width - 10) + "px" });
+//function setupPointer() {
+//	var p = $("#pointr");
+//	// basic setup
+//	//$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
+//	//$(p).css({'background-color': '#eee'});
+//	$(p).css({'width': '40px'});
+//	$(p).css({'height': '80px'});
+//	$(p).css({'background-position': '0px 0px'});
+//	//$(p).css({'display': 'block'});
+//	$(p).css({'position': 'absolute'});
+//	$(p).css({'top': '-10px'});
+//
+//	$(p).prev().resize( function() {
+//	   pointr(this.next());
+//	});
+//
+//	pointr(p);
+//
+//	$(p).show();
+//}
 
-	$(p).show();
-}
+//function pointr( p ) {
+//	var position = $(p).prev().position();
+//	var width = $(p).prev().outerWidth();
+//	//alert("position=" + position.top +"/"+ position.left +", width="+(position.left+width));
+////	$(p).css({'top': (position.top - 31) + "px"});
+////	$(p).css({'left': (position.left + width - 12) + "px" });
+//}
 
 // ----------------------------------------------------------------------------------------------------------
 // initialization
@@ -411,7 +421,7 @@ function doInit() {
 	bindMenu($("div#menu"));
 	setupFilter();
 	// setup pointer
-	setupPointer();
+//	setupPointer();
 }
 
 // done to check advanced stylesheet

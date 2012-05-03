@@ -5,6 +5,13 @@
 
 root=`dirname $0`/..
 
+mvmodified () {
+        from="$1"
+        to="$2"
+	cpmodified "$from" "$to"
+	rm $from
+}
+
 cpmodified () {
         from="$1"
         to="$2"
@@ -16,7 +23,6 @@ cpmodified () {
 			cp $from $to;
 		fi	
 	fi;
-	rm $from
 }
 
 #################################################################################
@@ -28,8 +34,8 @@ cat $root/src/style.css > ${csstarget}.css.in
 
 yui-compressor --type css ${csstarget}.css.in > ${csstarget}-min.css.in
 
-cpmodified ${csstarget}.css.in ${csstarget}.css
-cpmodified ${csstarget}-min.css.in ${csstarget}-min.css
+mvmodified ${csstarget}.css.in ${csstarget}.css
+mvmodified ${csstarget}-min.css.in ${csstarget}-min.css
 
 #################################################################################
 # Javascript jquery lib(s)
@@ -39,7 +45,7 @@ libtarget=$root/public/jquery
 
 cat $root/src/jquery-1.4.2.min.js > ${libtarget}-min.js.in
 
-cpmodified ${libtarget}-min.js.in ${libtarget}-min.js
+mvmodified ${libtarget}-min.js.in ${libtarget}-min.js
 
 #################################################################################
 # own javascript (base for advanced)
@@ -50,7 +56,7 @@ cat $root/src/scripts-copyright.txt > ${jstarget}.js.in
 
 cat $root/src/scripts.js >> ${jstarget}.js.in
 
-cpmodified ${jstarget}.js.in ${jstarget}.js
+mvmodified ${jstarget}.js.in ${jstarget}.js
 
 #################################################################################
 # optimized, combined javascript
@@ -61,6 +67,11 @@ cat ${libtarget}-min.js >> ${jstarget}-all.js.in
 
 yui-compressor --type js ${jstarget}.js >> ${jstarget}-all.js.in
 
-cpmodified ${jstarget}-all.js.in ${jstarget}-all.js
+mvmodified ${jstarget}-all.js.in ${jstarget}-all.js
 
+
+#################################################################################
+#
+
+cpmodified $root/imgsrc/pointr.png $root/public/imgs/pointr.png
 
