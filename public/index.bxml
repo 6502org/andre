@@ -19,6 +19,12 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+    <item date="2012-05-06" state="hot">
+	Published more extended docs for the <a href="65k/af65002/index.html">af65002</a> processor!
+    </item>
+    <item date="2012-05-06">
+	Another web design update - hope you like it!
+    </item>
     <item date="2012-04-12" state="hot">
         First release! Documented the first R0 version of the af65002 in its own <a href="65k/af65002/index.html">af65002 page</a>.
     </item>

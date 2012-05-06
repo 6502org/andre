@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name="The 65k Project">
+<webpage name="The af65002 Processor">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -109,16 +109,31 @@
 	as well as the prefix1 and prefix2 prefixes. It also includes the EXT and SYS prefixes.
 	</p>
 	<p>
-	The exact specs are (will be) described in TODO (page is generated from the
-	actual processor code generator).
-     </p></desc>
+	The exact specs are described in these pages generated from the
+	actual processor code generator:
+	</p>
+<ul>
+<li><a href="af65002front.html">Overview</a></li>
+<li><a href="af65002regs.html">Register Set</a></li>
+<li><a href="af65002opstruct.html">Opcodes Structure </a></li>
+<li><a href="af65002admodes.html">Addressing Modes </a></li>
+<li><a href="af65002prefixes.html">Prefixes</a></li>
+<li><a href="af65002opcodes.html">Opcode Overview</a></li>
+<li><a href="af65002opdesc.html">Opcode Docs</a></li>
+<li><a href="af65002int.html">Reset, Traps and Interrupts</a></li>
+<li><a href="af65002hyper.html">User/Hypervisor Mode</a></li>
+<li><a href="af65002mem.html">Memory Management</a></li>
+<li><a href="af65002config.html">Configuration Registers</a></li>
+<li><a href="af65002compat.html">Compatibility</a></li>
+</ul>
+     </desc>
   </section>
 
   <section toc="arch" name="Architecture">
      <desc><p>
 	The 65002 architecture is described in a separate page:</p>
 	<ul>
-	<li><a href="arch.html">af65002 architecture</a></li>
+	<li><a href="af65002arch.html">af65002 architecture</a></li>
 	</ul>
      </desc>
   </section>
