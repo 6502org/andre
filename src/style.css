@@ -459,12 +459,15 @@ ul.quickfinder li {
 	padding-top: 0em;
 	padding-left: 60px;
 	list-style-type:none;
+	font-weight: normal;
+	font-size: large;
 }
 
 ul.quickfinder li li.subitem {
 	list-style-type:circle;
         margin-left:-40px;
 	padding-left: 0;
+	font-size: small;
 }
 
 /* new style */
