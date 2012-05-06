@@ -316,7 +316,7 @@ more modern browser, like Internet Explorer 8 or later,
 	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
 	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
 	INBUS. The smaller chips to the right are '293 4-bit adders, implementing the actually "ALU" adder.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">Simple test suite</a></h3><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">Simple test suite</a></h3><table class="driver"><tr><td class="driverdesc"><p>
 			These tests implement some basic test cases:</p>
 	                <div class="rightimg">
                         	<a href="blitter-reversemem.png"><img width="200px" src="blitter-reversemem.png" /></a><br />
@@ -340,16 +340,16 @@ more modern browser, like Internet Explorer 8 or later,
 			<li>blitter5.a65: copies 4k from $f000 to $2000, but with intermediate storage
 				in the video memory board at $10000</li>
 			</ul>
-                <table class="files">
+                </td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="Blitter.tar.gz">Blitter.tar.gz</a>(blitter tests)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.1C</a></h3>
-<p>Status: ok</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 2.1C</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Working!
                 </td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_blitter-v2.1c.sch">csa_blitter-v2.1c.sch</a></td>
 </tr>
@@ -377,15 +377,15 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_logic"> </div></td>
 <td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.1B</a></h3>
-<p>Status: working, but API with bugs</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 2.1B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: working, but API with bugs</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			Working - except for some sign issues... which are fixed in 2.1C: The selection
 			between the Fetch and Store bits in the control register was the wrong way around,
 			and the LDIOSEL control bit was resulting in the wrong level...
                 </td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_blitter-v2.1b.sch">csa_blitter-v2.1b.sch</a></td>
 </tr>
@@ -413,8 +413,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_logic"> </div></td>
 <td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 2.1A</a></h3>
-<p>Status: prototype</p>
+</td></tr></table></div><div class="rev"><h3><a name="board3" id="board3">Version: 2.1A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			I have tested this board and found some bugs - that are fixed with 2.1B above.
@@ -423,7 +423,7 @@ more modern browser, like Internet Explorer 8 or later,
 <td>
 			This board is a prototype design that I still have to build and test!
                 </td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_blitter-v2.1a.sch">csa_blitter-v2.1a.sch</a></td>
 </tr>
@@ -439,8 +439,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_blitter-v2.1a-layout.png">csa_blitter-v2.1a-layout.png</a></td>
 </tr></table>
-<h3><a name="board4" id="board4">Version: 1.0B</a></h3>
-<p>Status: not working</p>
+</td></tr></table></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.0B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: not working</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This is an example of how not to do it. The schematics sport an own 
@@ -458,7 +458,7 @@ more modern browser, like Internet Explorer 8 or later,
 			line as well) I decided to skip this feature. This also removed the need to
 			read the counter register.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_blitter-v1.0b.sch">csa_blitter-v1.0b.sch</a></td>
 </tr>
@@ -468,7 +468,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_blitter-v1.0b-brd.png">csa_blitter-v1.0b-brd.png</a></td>
 </tr></table>
-</div></div><hr />
+</td></tr></table></div></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">

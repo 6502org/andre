@@ -165,7 +165,7 @@ more modern browser, like Internet Explorer 8 or later,
 			Board is deprecated. Use PETIO board instead.
     		</li><li><div> </div><small>2006-11-01</small>
 			Added driver code.
-    		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 V2 IEEE488 driver</a></li><li><a href="#driver2">OS/A65 Beeper driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1B</a> (ok)</li><li><a href="#board2">1.1A</a> (deprecated)</li><li><a href="#board3">0.X</a> (deprecated)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">OS/A65 V2 IEEE488 driver</a></h3>
+    		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 V2 IEEE488 driver</a></li><li><a href="#driver2">OS/A65 Beeper driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1B</a> (ok)</li><li><a href="#board2">1.1A</a> (deprecated)</li><li><a href="#board3">0.X</a> (deprecated)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 V2 IEEE488 driver</a></h3><table class="driver"><tr><td class="driverdesc">
 		This is the parallel IEEE488 and serial IEC driver code for the <code>fsiec</code>
 		OS/A65 filesystem process. It implements the hardware access with the following methods:
 		<ul><li><code>IECINIT</code> - Initialize the hardware</li>
@@ -199,7 +199,7 @@ more modern browser, like Internet Explorer 8 or later,
 		<li><code>freif</code> - release interface using VSEM() and/or CTRLNMI()</li>
 		</ul>
 		Unfortunately, due to its age, the code is a mess, but works in GeckOS/A65.
-                <table class="files">
+                </td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="piec_csa_master.a65">piec_csa_master.a65</a>(parallel IEEE488 Driver code, excerpt to use as bus master)</td>
 </tr>
@@ -208,7 +208,7 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="siec_csa.a65">siec_csa.a65</a>(serial IEC Driver code (bus master only))</td>
-</tr></table><h3><a name="driver2" id="driver2">OS/A65 Beeper driver</a></h3>
+</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver2" id="driver2">OS/A65 Beeper driver</a></h3><table class="driver"><tr><td class="driverdesc">
 			This driver handles the piezo beeper included
 			in this board.
 			It provides the three methods
@@ -219,14 +219,14 @@ more modern browser, like Internet Explorer 8 or later,
 				finished. Should be called with 50Hz or the
 				count values must be modified.</li>
 			</ul>
-                <table class="files">
+                </td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(excerpt from console driver)</td>
 </tr>
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="via6522.i65">via6522.i65</a>(VIA register definitions)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.1B</a></h3>
-<p>Status: ok</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.1B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board is only partially compatible with the
@@ -237,7 +237,7 @@ more modern browser, like Internet Explorer 8 or later,
 		</td></tr>
 <tr><td class="noteicon"><div class="i_deprecated"> </div></td>
 <td>This board is deprecated. Please use the PETIO board instead.</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csaiecdesc.txt">csaiecdesc.txt</a></td>
 </tr>
@@ -253,34 +253,34 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaiec.ps.gz">csaiec.ps.gz</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.1A</a></h3>
-<p>Status: deprecated</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.1A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			scanned schematics only
 		</td></tr>
 <tr><td class="noteicon"><div class="i_deprecated"> </div></td>
 <td>This board is deprecated. Please use the PETIO board instead.</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaiec-1.1A-schem.png">csaiec-1.1A-schem.png</a></td>
 </tr>
 <tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="csaiec.jpg">csaiec.jpg</a></td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 0.X</a></h3>
-<p>Status: deprecated</p>
+</td></tr></table></div><div class="rev"><h3><a name="board3" id="board3">Version: 0.X</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			scanned schematics only
 		</td></tr>
 <tr><td class="noteicon"><div class="i_deprecated"> </div></td>
 <td>This board is deprecated. Please use the PETIO board instead.</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaiec-0.x-schem.png">csaiec-0.x-schem.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2006-10-13.</p>
+</td></tr></table></div></div></div><div id="contentfooter"><p>Last modified: 2006-10-13.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">

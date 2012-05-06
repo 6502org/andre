@@ -176,7 +176,7 @@ more modern browser, like Internet Explorer 8 or later,
 	Published the V1.0B version with the /SBHE fix.
     </li><li><div> </div><small>2011-01-04</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">UIP PET driver</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">UIP PET driver</a></h3><table class="driver"><tr><td class="driverdesc"><p>
 		This is the uIP v1.0 TCP/IP stack ported to the PET, which runs on my CS/A computer using the
 		PET ROMs. </p>
                 <div class="rightimg">
@@ -194,14 +194,14 @@ more modern browser, like Internet Explorer 8 or later,
 		In the uIP driver code provided here I have only implemented the "hello world" program as included in the 
 		uIP stack. That however should give you an indication how to implement your own programs. 
 		</p>
-                <table class="files">
+                </td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="uip-1.0+pet.tar.gz">uip-1.0+pet.tar.gz</a>(Ported uIP stack for the PET)</td>
 </tr>
 <tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="uip-pet.diff.gz">uip-pet.diff.gz</a>(Diff of the Ported uIP stack to uIP v1.0)</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
-<p>Status: prototype</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			(2012-01-02) If you have power supply problems, you can place a 47u tantal capacitor underneath
@@ -215,7 +215,7 @@ more modern browser, like Internet Explorer 8 or later,
 <td>
 			This board has been successfully tested with both implementation options for the level translators.
                 </td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0b.sch">csa_etholi-v1.0b.sch</a></td>
 </tr>
@@ -228,8 +228,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0b-brd.png">csa_etholi-v1.0b-brd.png</a></td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.0A</a></h3>
-<p>Status: prototype</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			There still seems to be some kind of initialization problem. The uIP driver from above only
@@ -240,7 +240,7 @@ more modern browser, like Internet Explorer 8 or later,
 <td>
 			This board has been successfully tested with both implementation options for the level translators.
                 </td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0a.sch">csa_etholi-v1.0a.sch</a></td>
 </tr>
@@ -253,7 +253,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0a-brd.png">csa_etholi-v1.0a-brd.png</a></td>
 </tr></table>
-</div></div><hr />
+</td></tr></table></div></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">

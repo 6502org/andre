@@ -175,7 +175,7 @@ more modern browser, like Internet Explorer 8 or later,
 	
 </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div> </div><small>2006-11-26</small>
                         Published the board
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype with bugs)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><p>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype with bugs)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><table class="driver"><tr><td class="driverdesc"><p>
 			This file includes a small test program that
 			does a "readaddress" command on the WDC and either
 			prints the sector header (in reverse) or the 
@@ -184,11 +184,11 @@ more modern browser, like Internet Explorer 8 or later,
 			PET ROMs (just 'dL"test1"' :-) and expects the 
 			card I/O at $E8A0 (WD177x) and $E8B0 (CIA).
 			</p>
-                <table class="files">
+                </td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test2.tar.gz">test2.tar.gz</a></td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
-<p>Status: prototype</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The layout has not been tested, only the schematics
@@ -259,7 +259,7 @@ more modern browser, like Internet Explorer 8 or later,
 
 			</table>
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_drvio_v1.0b.sch">csa_drvio_v1.0b.sch</a></td>
 </tr>
@@ -281,8 +281,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="vc1581drv.jpg">vc1581drv.jpg</a>(Picture of setup as VC1581 together with PETCPU board.)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 1.0A</a></h3>
-<p>Status: prototype with bugs</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype with bugs</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This board is superseded by the 1.0B version and will
@@ -323,7 +323,7 @@ more modern browser, like Internet Explorer 8 or later,
 			The board lacks a feature to drive the ATN line - 
 			so it cannot be used as a IEC bus master. This feature will be added if possible.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_drvio_v1.0a.sch">csa_drvio_v1.0a.sch</a></td>
 </tr>
@@ -336,7 +336,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_drvio_v1.0a-brd.png">csa_drvio_v1.0a-brd.png</a></td>
 </tr></table>
-</div></div><div id="contentfooter"><p>Last modified: 2006-11-26.</p>
+</td></tr></table></div></div></div><div id="contentfooter"><p>Last modified: 2006-11-26.</p>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.js"></script><script type="text/javascript">

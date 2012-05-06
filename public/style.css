@@ -33,7 +33,11 @@ DIV.top {
   	margin: 0;
   	margin-bottom: 1.6em;
   	padding: 15px;
-	box-shadow: 6px 6px 6px #777;
+	box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;
+}
+
+body>table {
+	box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;
 }
 
 /* left/right cols have headers in the top level style */
@@ -320,18 +324,46 @@ div.driver {
   /*background-color: #eee;*/
 }
 
-div.driverdesc {
-  width: 49%;
-  float: left;
+table.driver {
+  min-width: 100%;
 }
 
-div.driverfiles {
-  width: 49%;
-  float: right;
+td.driverdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
 }
 
-div.driverend {
-  clear: both;
+td.driverfiles {
+  vertical-align: top;
+  padding: 1em;
+}
+
+/****************************************/
+
+div.rev {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+table.rev {
+  min-width: 100%;
+}
+
+td.revdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
+}
+
+td.revfiles {
+  vertical-align: top;
+  padding: 1em;
 }
 
 /****************************************

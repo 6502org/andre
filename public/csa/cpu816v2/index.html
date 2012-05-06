@@ -307,7 +307,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		5) The control port was planned to be read-write, but I only managed to make it write only.
 		This could be fixed.
 		</p>
-		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="driver1" id="driver1">Simple test suite</a></h3>These tests test the basic functionality of the board, and also do some timing
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">Simple test suite</a></h3><table class="driver"><tr><td class="driverdesc">These tests test the basic functionality of the board, and also do some timing
 			measurement to actually see if the access is fast or not.
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
@@ -315,11 +315,11 @@ Now that the version 1 board was working, I decided to use this as a starting po
                 <div class="rightimg">
 			<a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png" /></a><br /><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
 	                </div>
-		<table class="files">
+		</td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test1.a65">test1.a65</a>(copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM )</td>
-</tr></table></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><h3><a name="board1" id="board1">Version: 2.0E</a></h3>
-<p>Status: prototype</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 2.0E</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This version adds a jumper to define the control port address.
@@ -329,7 +329,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0E.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v2.0e.sch">csa_cpu816-v2.0e.sch</a></td>
 </tr>
@@ -354,8 +354,8 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csacpu816-v2.0e.jed">csacpu816-v2.0e.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board2" id="board2">Version: 2.0C</a></h3>
-<p>Status: deprecated</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 2.0C</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 2.0B board it adds a protection resistor for the RDY signal. 
@@ -370,7 +370,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v2.0c.sch">csa_cpu816-v2.0c.sch</a></td>
 </tr>
@@ -395,8 +395,8 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board3" id="board3">Version: 2.0B</a></h3>
-<p>Status: deprecated</p>
+</td></tr></table></div><div class="rev"><h3><a name="board3" id="board3">Version: 2.0B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 2.0A board it fixes the timing bugs.
@@ -405,7 +405,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_cpu816-v2.0b.sch">csa_cpu816-v2.0b.sch</a></td>
 </tr>
@@ -430,14 +430,14 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic"> </div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-<h3><a name="board4" id="board4">Version: 2.0A</a></h3>
-<p>Status: deprecated</p>
+</td></tr></table></div><div class="rev"><h3><a name="board4" id="board4">Version: 2.0A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			There are a few timing issues, and the main bug is that the counter counts the wrong way - so
 			the phase between phi2 and 8phi2 is wrong.
 		</td></tr>
-</table><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href=""></a>(Picture of the assembled board)</td>
 </tr>
@@ -453,7 +453,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_cpu816-v2.0a-brd.png">csa_cpu816-v2.0a-brd.png</a></td>
 </tr></table>
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="diagram.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. 
+</td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="diagram.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the cpu board. 
 		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
 		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
 		control logic - which is the most complex part here and integrated into the CPLD. RDY is used to slow down the CPU during CS/A bus access, which 

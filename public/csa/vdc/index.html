@@ -181,7 +181,7 @@ more modern browser, like Internet Explorer 8 or later,
 			to composite video.
                 </li><li><div class="i_oldnews"> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4C</a> (ok)</li><li><a href="#board2">1.4B</a> (untested)</li><li><a href="#board3">1.4A</a> (untested)</li><li><a href="#board4">1.3E</a> (prototype)</li><li><a href="#board5">1.3C</a> (prototype with bugs)</li><li><a href="#board6">1.3A</a> (prototype)</li><li><a href="#board7">1.2A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3><div class="driverdesc">This is the video-specific hardware part of the 
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4C</a> (ok)</li><li><a href="#board2">1.4B</a> (untested)</li><li><a href="#board3">1.4A</a> (untested)</li><li><a href="#board4">1.3E</a> (prototype)</li><li><a href="#board5">1.3C</a> (prototype with bugs)</li><li><a href="#board6">1.3A</a> (prototype)</li><li><a href="#board7">1.2A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3><table class="driver"><tr><td class="driverdesc">This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -195,11 +195,11 @@ more modern browser, like Internet Explorer 8 or later,
 			The console can actually work in 40 columns (1MHz CPU clock) and
 			80 columns mode (2MHz CPU clock). This is detected by 
 			checking bit 7 of the <code>freq</code> variable.
-		</div><div class="driverfiles"><table class="files">
+		</td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(VDC driver excerpt)</td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.4C</a></h3>
-<div class="revnotes"><p>Status: ok</p>
+</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.4C</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			When testing my 1.4B version, I found a missing trace (bummer!), and I
@@ -222,7 +222,7 @@ more modern browser, like Internet Explorer 8 or later,
 			'LS statement on 1.4B...).
 			Maybe I've finally defeated the dRAM timing hell here....
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</a></td>
 </tr>
@@ -244,8 +244,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4c.brd">csa_vdc_v1.4c.brd</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.4B</a></h3>
-<div class="revnotes"><p>Status: untested</p>
+</td></tr></table></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.4B</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			The board has an improved layout on the 1.4A board, in that it 
@@ -270,7 +270,7 @@ more modern browser, like Internet Explorer 8 or later,
 			IC9 may probably be an 'ALS04 as well, but never
 			change a running system... IC15 is a 74LS04.
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</a></td>
 </tr>
@@ -289,8 +289,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4b.brd">csa_vdc_v1.4b.brd</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.4A</a></h3>
-<div class="revnotes"><p>Status: untested</p>
+</td></tr></table></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.4A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: untested</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			In addition to the timing bugs this board implements
@@ -316,7 +316,7 @@ more modern browser, like Internet Explorer 8 or later,
 			IC9 may probably be an 'ALS04 as well, but never
 			change a running system...
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</a></td>
 </tr>
@@ -335,8 +335,8 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.3E</a></h3>
-<div class="revnotes"><p>Status: prototype</p>
+</td></tr></table></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.3E</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This board version is a redo of the
 			original board, with the known bugs fixed.
@@ -349,7 +349,7 @@ more modern browser, like Internet Explorer 8 or later,
 			I patched the board. The results can be found in
 			version 1.4.
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_vdc_v1.3e-sch.png">csa_vdc_v1.3e-sch.png</a></td>
 </tr>
@@ -365,15 +365,15 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board5" id="board5">Version: 1.3C</a></h3>
-<div class="revnotes"><p>Status: prototype with bugs</p>
+</td></tr></table></div><div class="rev"><h3><a name="board5" id="board5">Version: 1.3C</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype with bugs</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>This schematics has a bug in the
 			circuit to generate the shift register load 
 			signal. It went unnoticed as my prototype board
 			was manually soldered.
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csavdcdesc.txt">csavdcdesc.txt</a></td>
 </tr>
@@ -389,18 +389,18 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csavdc.ps.gz">csavdc.ps.gz</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board6" id="board6">Version: 1.3A</a></h3>
-<div class="revnotes"><p>Status: prototype</p>
+</td></tr></table></div><div class="rev"><h3><a name="board6" id="board6">Version: 1.3A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			Scanned schematics only. Same bug as 1.3C.
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csavdc-1.3A-schem.png">csavdc-1.3A-schem.png</a></td>
 </tr></table>
-</div></div><div class="rev"><h3><a name="board7" id="board7">Version: 1.2A</a></h3>
-<div class="revnotes"><p>Status: prototype</p>
+</td></tr></table></div><div class="rev"><h3><a name="board7" id="board7">Version: 1.2A</a></h3>
+<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
 <h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This is the original video board. 
 		</td></tr>
@@ -408,7 +408,7 @@ more modern browser, like Internet Explorer 8 or later,
 <td>
 			Scanned schematics only. Same bug as 1.3C.
 		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+</table></td><td class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csavdc-1.2B-schem.png">csavdc-1.2B-schem.png</a></td>
 </tr>
@@ -418,7 +418,7 @@ more modern browser, like Internet Explorer 8 or later,
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csavdcflip.jpg">csavdcflip.jpg</a>(The flipside - just for the fun of it... :-))</td>
 </tr></table>
-</div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="vdc.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the vdc board. Only some relevant info
+</td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="blkdiag" id="blkdiag">Block diagram</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><img src="vdc.gif" alt="block diagram" /><div class="diagcaption">Block diagram of the vdc board. Only some relevant info
 			is shown. It is actually a pretty simple design, if
 			it were not for the timing...
 			The CPU accesses the memory during Phi2 high, so 
