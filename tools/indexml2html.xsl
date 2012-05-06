@@ -258,8 +258,10 @@
 </xsl:template>
 
 <xsl:template match="rev">
+<div class="rev">
 <h3><a name="board{position()}">Version: <xsl:value-of select="version"/></a></h3><xsl:text>
 </xsl:text>
+<div class="revnotes">
 <p>Status: <xsl:value-of select="status"/></p><xsl:text>
 </xsl:text>
 <xsl:if test="note">
@@ -272,12 +274,16 @@
 </xsl:for-each><!-- note -->
 </table>
 </xsl:if>
+</div><!-- class=revnotes -->
+<div class="revfiles">
 <xsl:if test="file">
 <h4>Files</h4>
 <table class="files">
 <xsl:apply-templates select="file"/>
 </table></xsl:if><xsl:text>
 </xsl:text>
+</div><!-- class=revfiles -->
+</div><!-- class=rev -->
 </xsl:template>
 
 <xsl:template name="alldriver">
@@ -295,9 +301,16 @@
 </xsl:template>
 
 <xsl:template match="driver">
+<div class="driver">
 <h3><a name="driver{position()}"><xsl:value-of select="name"/></a></h3>
+<div class="driverdesc">
 <xsl:apply-templates select="desc"/>
+</div><!-- class=driverdesc -->
+<div class="driverfiles">
 <table class="files"><xsl:apply-templates select="file"/></table>
+</div><!-- class=driverfiles -->
+<div class="driverend"> </div>
+</div><!-- class=driver -->
 </xsl:template>
 
 <xsl:template match="file">

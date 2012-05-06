@@ -310,6 +310,30 @@ div#filter div.i_cancel {
 }
 
 
+/****************************************/
+
+div.driver {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+div.driverdesc {
+  width: 49%;
+  float: left;
+}
+
+div.driverfiles {
+  width: 49%;
+  float: right;
+}
+
+div.driverend {
+  clear: both;
+}
+
 /****************************************
  * right side floating elements
  */
