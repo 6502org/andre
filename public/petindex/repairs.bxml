@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2013-01-04">
+	Updated links
+    </item>
     <item date="2010-04-12">
 	Added the vertical lines screen problem with link to the solution.
     </item>
@@ -206,7 +209,7 @@ So far I don't have the schematics for the CPU connector, nor the ROMs and test 
 	</div>
 	A more specific case is that of constant vertical lines all over the screen, 
 	in the same position for each character row. An example can be seen 
-	on <a class="extlink" href="http://www.fcet.staffs.ac.uk/atm2/pet/">this page</a>.
+	on <a target="_new" class="extlink" href="http://www.fcet.staffs.ac.uk/atm2/pet/">this page</a>.
 	The specific problem could have been the character ROM or the shift register
 	receiving the data from the character ROM. In this case it was the character ROM.
 	Note that the vertical lines only show where characters should be, not the borders
@@ -271,16 +274,16 @@ version of the video board for the original PET that went bad frequently.</p>
       </subitem>
       <subitem name="PET memory test program" link="http://www.commodore.ca/manuals/PET_RAM_test.htm">commodore.ca has memory test program for an 8k PET, which could probably be adapted for larger memory sizes.
       </subitem>
-      <subitem name="PET restoration"> of an original PET 2001-8 by Dave Gostelow - 20100103 obviously gone, if you know its new home, let me know
+      <subitem name="PET restoration"> of an original PET 2001-8 by Dave Gostelow - 20100103 obviously gone. Only found in the web archive: <a target="_new" class="extlink" href="http://web.archive.org/web/20091027142923/http://geocities.com/davegostelow/PETrestore/PETrestore.html">http://web.archive.org/web/20091027142923/http://geocities.com/davegostelow/PETrestore/PETrestore.html</a>.
       </subitem>
-      <subitem name="Larry's portcommodore 8-bit troubleshooting list" link="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:commodore_troubleshooting">
+      <subitem name="Larry's portcommodore 8-bit troubleshooting list" link="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:comp:commodore:pet:pet_faq-operation_troubleshooting">
       </subitem>
       <!-- 404 on 25apr2010 subitem name="Analysis of a PET video problem" link="http://www.xs4all.nl/~lagendr/Diverse/PET2001.htm">
       </subitem-->
       <subitem name="Description of a PET repair" link="http://www.cosam.org/computers/cbm/pet/index.html">
 	<desc>Interesting description to solve several problems with a non-working PET</desc>
       </subitem>
-      <subitem name="Reparing a Japanese PET with a strange video problem" link="http://web.me.com/lord_philip/other_computers/20012.html#grid">
+      <subitem name="Reparing a Japanese PET with a strange video problem">
 	<desc><p>The PET described here had (among other problems) a nasty video problem. 
 	Each screen character line increased the screen address only by
 	36 even though 40 characters were shown. This was finally lead back to the character clock being weak, and when the raster line
@@ -289,10 +292,17 @@ version of the video board for the original PET that went bad frequently.</p>
 	would expect by a missed clock pulse). The cause for the weak clock pulse finally was that the reset for the JK-flipflop
 	that produced the pulse was too early. And the cause of this was the the NAND that produced the reset signal only used 
 	one input and did not obey the clock input. So the video pulse actually reset itself, thus becoming very short and weak.
-	</p></desc>
+	</p>
+	<p>The original web site seems gone, but there is <a class="extlink" target="_new" href="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">the Vintage Computer Forum on that machine</a>.
+	</p>
+	</desc>
       </subitem>
-      <subitem name="Vintage Computer Forum on that machine" link="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">
+
+      <subitem name="6540 ROM sockets" link="http://home.comcast.net/~medasaro/6540rom.com/6540romadapter.html">
+	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
+	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
       </subitem>
+
     </items>
     <disclaimer name="Disclaimer">
 @DISCLAIMER@

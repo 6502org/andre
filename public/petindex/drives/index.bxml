@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2013</yearend>
   </author>
   <keywords>Commodore PET CBM ROM disk drives</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
@@ -88,8 +88,10 @@ If the LED's come on and stay on, the microprocessor UN1 is probably at fault. <
 
   <section toc="misc" name="Other disk drive information">
      <desc><P>The file <A HREF="local/drive_info.txt">drive_info.txt</A> contains a wealth of drive information.</P>
-<P><A HREF="@CBMARC@/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
+<P><A class="extlink" target="_new" HREF="@CBMARC@/schematics/drives/old/8050/index.html">8050/8250 Service Manual</A> on the CBM archive, or in HTML on a <A HREF="http://www.devili.iki.fi/Computers/Commodore/8050/Service_Manual/">Finnish server</A>.
 </P>
+	<p>Some tools for the <a class="extlink" target="_new" href="http://members.optusnet.com.au/spacetaxi64/MAIN/SFD1001.htm">Commodore PET Drives</a>, esp. the 1001/8250</p>
+	<p>Further information on drives on <a class="extlink" target="_new" href="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:comp:commodore:pet:pet_faq-peripherals_interfacing">portcommodore</a>.</p>
      </desc>
   </section>
 

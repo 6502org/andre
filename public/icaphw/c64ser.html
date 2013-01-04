@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Andr&#xE9;  Fachat" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Andr&eacute;  Fachat">
 
-<meta name="description" content="Adding an UART to a 6502" />
-<meta name="keywords" content="6502 UART 16550 16450 C64" />
-<link rev="made" href="mailto:afachat@gmx.de" />
-<link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
+<meta name="description" content="Adding an UART to a 6502">
+<meta name="keywords" content="6502 UART 16550 16450 C64">
+<link rev="made" href="mailto:afachat@gmx.de">
+<link rel="stylesheet" title="Default" type="text/css" href="../style-min.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
 <title>Adding an UART to a 6502</title></head>
-<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text"></td><td><div id="cancel" class="i_cancel">&nbsp;</div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand">&nbsp;</div></td><td><div id="collapse" class="i_collapse">&nbsp;</div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -70,9 +69,9 @@
 </div>
 		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
 			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
-			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
-	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br /> (In new window)
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre"></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
 		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
@@ -91,7 +90,7 @@ more modern browser, like Internet Explorer 8 or later,
 &gt;&gt;  <a href="index.html">6502 Hardware Bits
 </a>&gt;&gt;  UART serial interface</div>
 <h1>Adding an UART to a 6502</h1><p class="copyright">(C)
-1997-2010 André  Fachat</p> 
+1997-2010 Andr&eacute;  Fachat</p> 
 <div class="overview"><p>	I have now stumbled across quite some 6502 computers that use the
 6551 ACIA for a serial interface. When I used this chip, I found
 it rather slow then. Especially as I was doing a Multitasking
@@ -107,7 +106,7 @@ ACIA in my C64 with the UART 16550A.
 Note: this article has been published in the (now disappeared) "The Computer Journal",
 Issue #80 Fall 1997, under the title "High Speed Serial for 65xx - How to add a 16550 Uart to a 65xx system".
 </p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#bus">Bus Differences</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#c64">Here's how it works in the C64</a></li><li><a href="#otherex">Another Example</a></li><li><a href="#sw">The Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#ref">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="bus" id="bus">Bus Differences</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#bus">Bus Differences</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#c64">Here's how it works in the C64</a></li><li><a href="#otherex">Another Example</a></li><li><a href="#sw">The Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#ref">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="bus">Bus Differences</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 The UART chips was designed for a different bus as the 6502, so there
 are differences in how to handle the chip. When I had a first look
 at the interface I really wondered why they built the chip this way...
@@ -136,7 +135,7 @@ thing terrible to program. See the Serial FAQ at
 ftp://ftp.phil.uni-sb.de/pub/people/chris/The_Serial_Port for more
 information.  But then the UART has the already mentioned advantage of
 the FIFO, which makes it attractive.
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="schematics" id="schematics">Schematics</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schematics">Schematics</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 When I was rebuilding my ACIA interface to a UART interface, I had to reuse
 some sockets and chips, because I didn't really want to build everything
 from scratch (where I didn't have all the parts at home at that time anyway...)
@@ -154,7 +153,7 @@ to do the whole thing. It even really made the ACIA disappear from the
 memory map, when it was disabled.  This didn't work with the UART, because
 I needed more circuitry from the decoder to manage the RD/WR handling.
 Well, one could surely think of something cleaner, but I wanted it quick...
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="c64" id="c64">Here's how it works in the C64</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="c64">Here's how it works in the C64</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 All pins from the SID are connected from the C64 SID socket to the SID
 socket on the daughterboard, except -CS (pin 8). This line is or'ed with
 the additional A9, to remove the SID from the upper half of its memory
@@ -175,7 +174,7 @@ beginning of Phi2, and doesn't work with the C64 that way. It needs the
 starting transition of Phi2 to be delayed).  The ORing with the inverted
 Phi2 then stops the access by invalidating the RD/WR lines when Phi2
 becomes inactive. This also is a reason for Phi2 being used as CS line.
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="otherex" id="otherex">Another Example</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="otherex">Another Example</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 I have also built a Dual UART card with two 16550A for my selfbuilt 6502
 computer, and there I used a similar approach.  I took a 74LS138, a
 3-to-8 decoder. The select line for the I/O area goes to the decoder as
@@ -189,7 +188,7 @@ chips.
 -Q2 -&gt; UART2 -WR,
 -Q3 -&gt; UART2 -RD
 </pre>
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">The Software</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sw">The Software</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 Now that you have the UART in your computer, you have to have some software
 to use it. I have also rewritten the C64 OS to use the UART as serial
 interface (which I had also done to use the ACIA before).
@@ -224,13 +223,13 @@ selfwritten OS, that uses an UART. On my 1 MHz C64 with builtin UART it
 replies to Internet PING messages without packet loss at 9600 baud. Using
 the same program with an ACIA, even at 2400 baud, is completely useless
 due to lost characters.
-</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="conclusion" id="conclusion">Conclusion</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="conclusion">Conclusion</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 The 16550A might not be the chip of choice for simple applications, where
 a high data rate is not necessary. But if you don't want to use the serial
 line as a terminal line only, but want to do some serious data transfer,
 better take an UART. Here you see a way to use the UART in 6502 based
 systems and how to program it.
-</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ref" id="ref">References</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ref">References</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
 Here are the schematics and source code for the interface</p>
 <ul>
 <li><a href="c64ser/c64ser2.gif">c64ser2.gif</a> is the C64 interface on top of the SID chip (Source: <a href="c64ser/c64ser2.fig">c64ser2.fig</a></li>
@@ -239,14 +238,13 @@ Here are the schematics and source code for the interface</p>
 <li><a href="c64ser/c64ser2.a65">c64ser2.a65</a> is the UART driver from GeckOS/A65.</li>
 <li><a href="../csa/duart/index.html">DUART</a> board for the CS/A65 computer.</li>
 </ul>
-</div></div><hr />
+</div></div><hr>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
-  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
+  </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){
                             $('#socialshareprivacy').socialSharePrivacy();
                   }
           });
   </script></body></html> 
-

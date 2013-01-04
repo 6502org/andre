@@ -499,16 +499,17 @@
 </xsl:template>
 
 <!-- deprecated use extlink instead -->
-<xsl:template match="subitem[@link]">
+<xsl:template match="subitem">
+  <xsl:choose>
+    <xsl:when test="@link">
 	<li class="subitem">
-	      <a href="{@link}">
+	      <a href="{@link}" target="_new" class="extlink">
 	      <xsl:value-of select="@name"/>
 	      </a><xsl:text> </xsl:text>
   	      <xsl:copy-of select="*|text()"/>
 	</li>
-</xsl:template>
-
-<xsl:template match="subitem">
+    </xsl:when>
+    <xsl:otherwise>
 	<li class="subitem">
 	<xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
 	      <strong>
@@ -516,6 +517,8 @@
 	      </strong>: <!--<br/>-->
   	      <xsl:copy-of select="*|text()"/>
 	</li>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="*|@*|text()|comment()">

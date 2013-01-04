@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Andr&#xE9;  Fachat" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Andr&eacute;  Fachat">
 
-<meta name="description" content="6502 multiprocessing operating system design" />
-<meta name="keywords" content="6502 operating system multitasking multithreading multiprocessing" />
-<link rev="made" href="mailto:afachat@gmx.de" />
-<link rel="stylesheet" title="Default" type="text/css" href="../style-min.css" /><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css" />
+<meta name="description" content="6502 multiprocessing operating system design">
+<meta name="keywords" content="6502 operating system multitasking multithreading multiprocessing">
+<link rev="made" href="mailto:afachat@gmx.de">
+<link rel="stylesheet" title="Default" type="text/css" href="../style-min.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
 <title>Context-Switching and Thread-Synchronization with a 6502</title></head>
-<body><div id="mainbox"><a name="top" id="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text" /></td><td><div id="cancel" class="i_cancel"> </div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand"> </div></td><td><div id="collapse" class="i_collapse"> </div></td></tr></table></form></div>
+<body><div id="mainbox"><a name="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text"></td><td><div id="cancel" class="i_cancel">&nbsp;</div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand">&nbsp;</div></td><td><div id="collapse" class="i_collapse">&nbsp;</div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
 <ul class="menu0" >
@@ -66,9 +65,9 @@
 </div>
 		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
 			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
-			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" /><input class="advbutton" type="submit" value="Search my site" /><br />(Google, in new window)
-	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre" /></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on<br /><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br /> (In new window)
+			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
+	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre"></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
 		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
@@ -87,7 +86,7 @@ more modern browser, like Internet Explorer 8 or later,
 &gt;&gt;  <a href="index.html">Computer/OS Architecture
 </a>&gt;&gt;  6502 Multitasking</div>
 <h1>Context-Switching and Thread-Synchronization with a 6502</h1><p class="copyright">(C)
-2007-2007 André  Fachat</p> 
+2007-2007 Andr&eacute;  Fachat</p> 
 <div class="overview"><p>
 	In this article I want to show how modern computer system design
 	can be implemented with the simple 6502 CPU that was never designed
@@ -104,7 +103,7 @@ more modern browser, like Internet Explorer 8 or later,
 	I show a hardware solution implementing up-to-date techniques
 	with the 6502.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#intro">Introduction</a></li><li><a href="#cswitch">Context switching</a></li><li style="list-style-type:none;"><ul><li><a href="#cswperf">Context Switching Performance</a></li><li><a href="#cswswap">Page Metadata</a></li><li><a href="#cswondem">On-Demand Mapping - Swapping</a></li><li><a href="#cswreqs">System Requirements</a></li></ul></li><li><a href="#cswitch65">Context Switching with the 6502</a></li><li style="list-style-type:none;"><ul><li><a href="#cswitch816">65816</a></li><li><a href="#auxcpu">CS/A Auxiliary CPU</a></li></ul></li><li><a href="#sync">Task and Thread Synchronization</a></li><li style="list-style-type:none;"><ul><li><a href="#memsync">Shared Memory Synchronization</a></li><li><a href="#sem">Semaphores</a></li><li><a href="#irq">Disabling Interrupts</a></li><li><a href="#rmw">Atomic Read-Modify-Write</a></li><li><a href="#opt">Optimistic Locking</a></li></ul></li><li><a href="#sync65">Thread Synchronization with the 6502</a></li><li style="list-style-type:none;"><ul><li><a href="#sync816">65816</a></li><li><a href="#copro">CS/A Coprocessor</a></li></ul></li><li><a href="#summary">Summary</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="intro" id="intro">Introduction</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#intro">Introduction</a></li><li><a href="#cswitch">Context switching</a></li><li style="list-style-type:none;"><ul><li><a href="#cswperf">Context Switching Performance</a></li><li><a href="#cswswap">Page Metadata</a></li><li><a href="#cswondem">On-Demand Mapping - Swapping</a></li><li><a href="#cswreqs">System Requirements</a></li></ul></li><li><a href="#cswitch65">Context Switching with the 6502</a></li><li style="list-style-type:none;"><ul><li><a href="#cswitch816">65816</a></li><li><a href="#auxcpu">CS/A Auxiliary CPU</a></li></ul></li><li><a href="#sync">Task and Thread Synchronization</a></li><li style="list-style-type:none;"><ul><li><a href="#memsync">Shared Memory Synchronization</a></li><li><a href="#sem">Semaphores</a></li><li><a href="#irq">Disabling Interrupts</a></li><li><a href="#rmw">Atomic Read-Modify-Write</a></li><li><a href="#opt">Optimistic Locking</a></li></ul></li><li><a href="#sync65">Thread Synchronization with the 6502</a></li><li style="list-style-type:none;"><ul><li><a href="#sync816">65816</a></li><li><a href="#copro">CS/A Coprocessor</a></li></ul></li><li><a href="#summary">Summary</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="intro">Introduction</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 <p>In the beginning of computing computers had a single CPU,
 and could run a single program. Those computers, however, were quite
 expensive and the CPU often had to wait for I/O. Thus the systems
@@ -146,10 +145,10 @@ run a thread from a different task.
 If only a single tasks has some work to do, however, multiple processors
 could run multiple threads from the same tasks.
 </p><p>
-<img src="mp/threads.gif" alt="CPUs run thread contexts which are contained in task (process) contexts" /><br />
+<img src="mp/threads.gif" alt="CPUs run thread contexts which are contained in task (process) contexts"><br>
 The diagram shows the relationship between processors, threads, and tasks.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="cswitch" id="cswitch">Context switching</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="cswitch">Context switching</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 <div class="rightimg">Example for switching from userspace thread to kernel and back:
 <ol>
 <li>Save the interrupted address on stack</li>
@@ -168,7 +167,7 @@ CPU changes into the operating system kernel, a special environment with
 (in general) elevated privileges. In the kernel the next thread is selected
 and the CPU switches back to the new thread. 
 </p>
-<h3><a name="cswperf" id="cswperf">Context Switching Performance</a></h3>
+<h3><a name="cswperf">Context Switching Performance</a></h3>
 A memory mapping on a modern processor can be rather large. A 32bit 
 processor with a mapping in pages of 4k has about one million mapping entries,
 to map 2^20 pages of 4k (2^12) from virtual to physical memory. 
@@ -179,7 +178,7 @@ on every context switch. Modern processors hold the translation table
 in memory, and a single register holds the address of the current translation
 table. They also use a translation lookaside buffer as cache to speed up 
 lookup of physical addresses.
-<h3><a name="cswswap" id="cswswap">Page Metadata</a></h3><p>
+<h3><a name="cswswap">Page Metadata</a></h3><p>
 The page tables can hold more information than the simple physical address.
 An entry in this table can hold information whether the page is dirty for
 example, i.e. whether it has been written to since an earlier point in time.
@@ -188,7 +187,7 @@ memory. When a processor accesses such a "non-existent" page, it in general
 faults to a segmentation fault, aborting the thread or task. 
 </p><p>
 Newer processors also hold a state bit that defines whether a memory page contains executable code or not. This feature has been implemented to protect the stack area from executable code being maliciously injected by buffer overflows.
-</p><h3><a name="cswondem" id="cswondem">On-Demand Mapping - Swapping</a></h3><p>
+</p><h3><a name="cswondem">On-Demand Mapping - Swapping</a></h3><p>
 The metadata can be used dynamically handle the memory mapping. For example
 if all tasks together require more virtual memory than is physically available,
 the operating system can use disk memory to save infrequently used pages
@@ -203,7 +202,7 @@ disk if it still is on disk and has not been modified in memory.
 If an executable is loaded from disk, the operating system may even resolve
 to "lazy-loading" a binary. I.e. only loading those pages from disk where
 the CPU faulted on an unmapped page when the fault occurs.
-</p><h3><a name="cswreqs" id="cswreqs">System Requirements</a></h3><p>
+</p><h3><a name="cswreqs">System Requirements</a></h3><p>
 To enable on-demand mapping, two major requirements have to be fulfilled 
 by the system:</p>
 <ul>
@@ -220,18 +219,18 @@ fault, and re-execute the opcode again - this time without error.
 An older workstation used a 68000 CPU that did not have that feature, but
 used a second CPU to handle the exception.</li>
 </ul>
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="cswitch65" id="cswitch65">Context Switching with the 6502</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="cswitch65">Context Switching with the 6502</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 The (NMOS) 6502 is a very old CPU. It has not been designed with multitasking
 in mind. It thus lacks the second essential requirement: it can not stop or 
 rollback the execution of an opcode, handle an exception (interrupt) and 
 continue with the opcode. Two workaround exists:
-<h3><a name="cswitch816" id="cswitch816">65816</a></h3>
+<h3><a name="cswitch816">65816</a></h3>
 The 65816 [12], a expanded and compatible successor to the 6502 has an "ABORTB" 
 input, that allows it to handle a memory fault: When the ABORTB input is
 used, the current opcode is finished, but without modifying the internal 
 registers. After the opcode an interrupt is executed, and when the
 interrupt is handled, returns to the interrupted opcode.
-<h3><a name="auxcpu" id="auxcpu">CS/A Auxiliary CPU</a></h3>
+<h3><a name="auxcpu">CS/A Auxiliary CPU</a></h3>
 The <a href="../csa/index.html">CS/A65</a> computer system implements
 the two essential requirements itself outside the CPU:
 <ul>
@@ -246,7 +245,7 @@ returns control to the main CPU, that continues the opcode exactly at the
 position that has originally faulted.
 </li>
 </ul>
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sync" id="sync">Task and Thread Synchronization</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sync">Task and Thread Synchronization</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 Running multiple threads and tasks in a system is only half fun if
 they can not communicate with each other. This communication is necessary
 for example when one task needs to wait for the result of another task's
@@ -264,7 +263,7 @@ as memory today is as fast as the CPU so a cache is not needed. Using
 a cache introduces another plethora of possible problems and issues with
 interprocess communication, so it is a good thing we do not need it.
 </p>
-<h3><a name="memsync" id="memsync">Shared Memory Synchronization</a></h3><p>
+<h3><a name="memsync">Shared Memory Synchronization</a></h3><p>
 When two threads communicate via a shared memory location, the problems
 only occur when both threads have write access to the location. 
 If only a single thread writes, and the other thread only reads this
@@ -282,7 +281,7 @@ CPU for example does a read-modify-write operation, it can be interrupted
 between the read and write operation by another thread, that can modify
 the memory location.
 </p>
-<h3><a name="sem" id="sem">Semaphores</a></h3>
+<h3><a name="sem">Semaphores</a></h3>
 <div class="rightimg">
 Pseudocode implementation of a semaphore:
 <pre>
@@ -319,12 +318,12 @@ read the value before the second thread.
 Now that we drilled down to more elementary operations, how can this be 
 implemented?
 </p>
-<h3><a name="irq" id="irq">Disabling Interrupts</a></h3>
+<h3><a name="irq">Disabling Interrupts</a></h3>
 The P() operation can disable the interrupts for a
 period as short as possible to avoid that another thread gets scheduled.
 This is a viable solution in a single-processor system. In a multiprocessor
 system, however, still another CPU could run into the P() operation.
-<h3><a name="rmw" id="rmw">Atomic Read-Modify-Write</a></h3>
+<h3><a name="rmw">Atomic Read-Modify-Write</a></h3>
 In a multiprocessor system an atomic read-modify-write operation can be used
 [10].
 Often a "test-and-set" or a "compare-and-swap" operation is supported. 
@@ -336,7 +335,7 @@ processor. This is done by "locking" the memory bus. I.e. during an atomic
 operation no other CPU may use the memory bus and thus ensures the atomicity.
 The locking, however, due to its global operation reduces performance and 
 increases hardware complexity.
-<h3><a name="opt" id="opt">Optimistic Locking</a></h3><p>
+<h3><a name="opt">Optimistic Locking</a></h3><p>
 The pattern I describe here is know as "optimistic locking" in version control
 systems, or as load-link/store-conditional opcode pair [11]. The first operation
 load-link (LL) reads a memory location and reserves it. The store-conditional
@@ -346,18 +345,18 @@ no update has occured on the memory location.
 This is implemented in a way that the CPU monitors the memory bus to see
 if another CPU modifies the same location.
 </p>
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sync65" id="sync65">Thread Synchronization with the 6502</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sync65">Thread Synchronization with the 6502</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 Again the (NMOS) 6502 not been designed with multitasking
 in mind. Although it does have read-modify-write operations (the rotate
 or increment
 operations when used on memory locations for example), it does not lock
 out other CPUs, it can not even signal this Read-Modify-Write operation
 to external circuitry that could emulate the lock.
-<h3><a name="sync816" id="sync816">65816</a></h3>
+<h3><a name="sync816">65816</a></h3>
 The 65816 has a "ML" output line. This line is active during a
 read-modify-write operation, and can thus be used by an external 
 circuitry to enforce an atomic operation.
-<h3><a name="copro" id="copro">CS/A Coprocessor</a></h3><p>
+<h3><a name="copro">CS/A Coprocessor</a></h3><p>
 The <a href="../csa/index.html">CS/A65</a> computer system implements
 a <a href="../csa/copro/index.html">coprocessor board</a> with 64k memory that are shared between the 
 main CPU and the coprocessor.
@@ -370,24 +369,23 @@ in the meantime, and vice versa.
 This way proper synchronization is achieved - with additional hardware 
 effort though.
 </p>
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="summary" id="summary">Summary</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="summary">Summary</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 In this article I have given a brief summary on context switching and
 task synchronization and what type of hardware support is required to
 support this functionality. With the CS/A65 boards I have shown that it
 is possible even with the original 6502 to implement the basic functionality
 required.
-</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="links" id="links">Links</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li class="subitem"><a href="http://en.wikipedia.org/wiki/Computer_multitasking">[1] Wikipedia on multitasking</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29">[2] Wikipedia on threads</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Multiprocessing">[3] Wikipedia on multiprocessing</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Concurrent_computing">[4] Wikipedia on concurrent computing</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Paging">[5] Wikipedia on paging</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Page_table">[6] Wikipedia on page tables</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Race_condition">[7] Wikipedia on race conditions</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29">[8] Wikipedia on semaphores</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Mutex">[9] Wikipedia on mutexes</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Atomic_operations">[10] Wikipedia on atomic operations</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Load-Link/Store-Conditional">[11] Wikipedia on lock-free read/modify/write</a> </li><li class="subitem"><a href="http://www.65xx.com/wdc/w65c816s.cfm">[12] The 65816</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
+</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="links">Links</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li class="subitem"><a href="http://en.wikipedia.org/wiki/Computer_multitasking" target="_new" class="extlink">[1] Wikipedia on multitasking</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29" target="_new" class="extlink">[2] Wikipedia on threads</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Multiprocessing" target="_new" class="extlink">[3] Wikipedia on multiprocessing</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Concurrent_computing" target="_new" class="extlink">[4] Wikipedia on concurrent computing</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Paging" target="_new" class="extlink">[5] Wikipedia on paging</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Page_table" target="_new" class="extlink">[6] Wikipedia on page tables</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Race_condition" target="_new" class="extlink">[7] Wikipedia on race conditions</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29" target="_new" class="extlink">[8] Wikipedia on semaphores</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Mutex" target="_new" class="extlink">[9] Wikipedia on mutexes</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Atomic_operations" target="_new" class="extlink">[10] Wikipedia on atomic operations</a> </li><li class="subitem"><a href="http://en.wikipedia.org/wiki/Load-Link/Store-Conditional" target="_new" class="extlink">[11] Wikipedia on lock-free read/modify/write</a> </li><li class="subitem"><a href="http://www.65xx.com/wdc/w65c816s.cfm" target="_new" class="extlink">[12] The 65816</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </div></div><hr />
+  </div></div><hr>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
-  </div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
+  </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){
                             $('#socialshareprivacy').socialSharePrivacy();
                   }
           });
   </script></body></html> 
-

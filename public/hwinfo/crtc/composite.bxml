@@ -13,6 +13,9 @@
 		</p>
 	</desc>
         <news>
+                <item date="2013-01-04">
+                	Added a link to the "official" one...
+                </item>
                 <item date="2011-06-04">
                 	Added a link to Matthew D'Asaro's composite video adapter
                 </item>
@@ -22,6 +25,7 @@
         </news>
         <section toc="others" name="Other composite video adapters">
         	<desc><p>Here are links to other composite video adapters</p></desc>
+        	<extlink name="The Commodore 700 composite generation" link="@CBMARC@/schematics/computers/b/8256043-13of14.gif"> You could see that as the "official" composite generator. It was built into the B-Series or Commodore 700 to create the composite signal from the CRTC video output.</extlink>
         	<extlink name="Matthew D'Asaro's composite video adapter" link="http://home.comcast.net/~medasaro/6540rom.com/petvideo.html"> based on the solution from the PET UK users group</extlink>
         </section>
 

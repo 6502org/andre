@@ -11,6 +11,11 @@
   <metadesc>PET index - Killer Poke</metadesc>
   <overview><p>The so-called <EM>Fast Print</EM> or <EM>Killer Poke</EM> has much
 been talked about.
+<a class="extlink" href="http://en.wikipedia.org/wiki/Killer_poke">Wikipedia</a> states it nicely:
+</p><p>
+&quot;The PET-specific killer poke is connected to the architecture of that machine's video rasterizer circuits. In early model PETs, writing a certain value to the memory address of a certain I/O register ( POKE 59458,62 ) made the machine able to display text on the screen much faster. When the PET range was revamped with updated hardware, it was quickly discovered that performing the old trick on the new hardware led to disastrous behavior by the new video chip, causing it to destroy the PET's integrated CRT monitor.&quot;
+</p><p>
+So what it is?
 It is a Commodore BASIC Poke command that is supposed to be able to destroy
 a PET computer. There have been claims that it is not possible to
 destroy a PET by this poke.
