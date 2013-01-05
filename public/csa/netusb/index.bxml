@@ -1,0 +1,115 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="Ethernet, USB host+device, and SD-card interface">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2013</yearstart>
+    <yearend>2013</yearend>
+  </author>
+  <keywords>Commodore PET CBM USB max3420 max3421</keywords>
+  <metadesc>Commodore PET CBM Ethernet and USB board with SD card</metadesc>
+  <overview><p>	
+	This board is a small board that nevertheless packs an SD Card, an Ethernet as well
+	as a USB host <em>and</em> USB device interface on it!
+	</p><p>
+	All parts are connected via the <a href="../../hwinfo/spi/spi65b/index.html">SPI65b</a>
+	SPI interface. SD-Cards do SPI anyway, Ethernet is implemented via an ENC28J60 chip.
+	USB is done with a MAX3420 (device) and MAX3421 (host) chip.
+  </p></overview>
+  <news>
+    <item date="2013-01-04">
+	Published this page
+    </item>
+  </news>
+  <toc/>
+
+  <!--section toc="main" name="Differences in Software">
+     <desc>
+     </desc>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+  </section-->
+
+        <!--driver>
+                <name>USB Host Driver</name>
+                <desc><p>
+		This is the USB Host driver. It currently supports keyboards, mouse devices, and
+		hubs.
+		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
+		type "make". It builds three files:</p>
+		<ul>
+		<li>CSAUSBDRV - background driver for the PET-compatible CS/A65. Runs in the background,
+			watches for hubs, keyboards and mice, and handles those. Translates keyboard and
+			mouse events to Commodore PET kernel key codes, so you can use an USB keyboard.</li>
+		<li>PETUSBDRV - same for the PET with PET/CSA adapter. The only difference is the initialization
+			of the PET/CSA adapter and different I/O addresses</li>
+		<li>PETUSB3 - this program does not run in the background, but displays a lot more debug
+			information while handling the attached devices</li>
+		</ul><p>
+		Please note that the PET version with PET/CSA adapter is not fully working yet, my current 
+		assumption is some supply voltage problems (with the one test I did).
+		</p><p>Warning: tested with a single Linux USB host only, no windows tests done.
+		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
+		actual hardware driver code is an integral part, and falls under GPL - so hardware 
+		drivers must be published, but the full driver can be used in non-GPL projects.
+                </p></desc>
+                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USB-0.6.tar.gz</file>
+                <file ltype="txt" ptype="txt" note="README">USB-README.txt</file>
+                <file ltype="photo" ptype="png" note="First getting correct chars from a USB keyboard">host_success.png</file>
+        </driver>
+        <driver>
+                <name>USB Device Driver</name>
+                <desc><p>
+		This is the USB Device driver. It currently supports keyboards only.
+		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
+		type "make". It builds three files:</p>
+		<ul>
+		<li>CSAUSBKBD - Driver for the PET-compatible CS/A65. Takes the PET keyboard events
+			and sends the key codes to a USB host as keyboard events - so you can use the
+			PET-compatible as USB keyboard.</li>
+		<li>PETUSBKBD - same for the PET with PET/CSA adapter. The only difference is the initialization
+			of the PET/CSA adapter and different I/O addresses</li>
+		</ul><p>
+		Please note that the PET version with PET/CSA adapter is not fully working yet, my current 
+		assumption is some supply voltage problems (with the one test I did).
+		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
+		actual hardware driver code is an integral part, and falls under GPL - so hardware 
+		drivers must be published, but the full driver can be used in non-GPL projects.
+                </p></desc>
+                <file ltype="driver" ptype="tgz" note="6502 USB Host Driver">USBdev-0.8.tar.gz</file>
+                <file ltype="txt" ptype="txt" note="README">USBdev-README.txt</file>
+        </driver-->
+        <rev>
+                <version>2.0B</version>
+                <status>prototype</status>
+                <note type="msg">
+			This board has been successfully tested with SD-Card, Ethernet as well as USB host 
+			and device operations.
+                </note>
+                <file ltype="photo" ptype="png">netusb2.png</file>
+                <file ltype="schem" ptype="esch">csa_netusb-v2.0b.sch</file>
+                <file ltype="schem" ptype="png">csa_netusb-v2.0b-sch-1.png</file>
+                <file ltype="schem" ptype="png">csa_netusb-v2.0b-sch-2.png</file>
+                <file ltype="schem" ptype="png">csa_netusb-v2.0b-sch-3.png</file>
+                <file ltype="layout" ptype="ebrd">csa_netusb-v2.0b.brd</file>
+                <file ltype="layout" ptype="png">csa_netusb-v2.0b-brd.png</file>
+                <file ltype="layout" ptype="png">csa_netusb-v2.0b-layout.png</file>
+        </rev>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
