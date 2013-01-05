@@ -54,6 +54,8 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="petio/index.html">CBM PET I/O</a>
 </li>
+<li><div class="i_file">&nbsp;</div><a href="netusb/index.html">Net/USB/SD</a>
+</li>
 <li><div class="i_file">&nbsp;</div><a href="etholi/index.html">Ethernet</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="usb/index.html">USB</a>
@@ -143,7 +145,14 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div><div class="top" id="oldnews"><div class="tophead">History</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews">&nbsp;</div><small>2010-12-22</small>
+		</div></div><div class="top" id="oldnews"><div class="tophead">History</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews">&nbsp;</div><small>2011-01-09</small>
+			Added a completely new <a href="term/index.html">Bus terminator board</a>!
+		</li><li><div class="i_oldnews">&nbsp;</div><small>2011-01-04</small>
+			Added a completely new <a href="etholi/index.html">Ethernet board</a>!
+		</li><li><div class="i_oldnews">&nbsp;</div><small>2011-01-02</small>
+			Updated the <a href="ramdisk/index.html">Ramdisk board</a>.
+			Now a CPLD-based version is available in addition to the older TTL-based version.
+		</li><li><div class="i_oldnews">&nbsp;</div><small>2010-12-22</small>
 			Updated the <a href="cpu816v2/index.html">CPU816 board (v2)</a> 
 			to fix the ROM programming, and make it compatible with the <a href="../adv65/pet816/index.html">PET816</a> board.
 		</li><li><div class="i_oldnews">&nbsp;</div><small>2010-08-22</small>
@@ -208,28 +217,24 @@ more modern browser, like Internet Explorer 8 or later,
 <a href="../index.html">Homepage</a>
 &gt;&gt;  CS/A65 Caspaer and Gecko computer</div>
 <h1>CS/A65 computer - Caspaer and Gecko</h1>
-<h3>(C) 1989 - 2011 Andr&eacute;  Fachat</h3>
+<h3>(C) 1989 - 2013 Andr&eacute;  Fachat</h3>
 <div class="overview"><p>20th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p><p>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard. 
 The boards can be used in different setups, but the <a href="#caspaer">Caspaer</a> is the standard (extensible) base setup.
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	
-</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews">&nbsp;</div><small>2011-05-04</small>
+</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews">&nbsp;</div><small>2013-01-04</small>
+			Added the new <a href="netusb/index.html">NetUSB board</a> with SD-Card,
+			Ethernet and USB host + device!
+		</li><li><div class="i_hotnews">&nbsp;</div><small>2011-05-04</small>
 			Updated the <a href="vdc/index.html">video board</a>, hopefully fixing the last bug
 		</li><li><div class="i_hotnews">&nbsp;</div><small>2011-04-29</small>
 			Added a completely new <a href="blitter/index.html">Block Transfer engine</a> board!
 		</li><li><div class="i_hotnews">&nbsp;</div><small>2011-04-22</small>
 			Added a completely new <a href="usb/index.html">USB board</a>!
-		</li><li><div class="i_hotnews">&nbsp;</div><small>2011-01-04</small>
-			Added a completely new <a href="etholi/index.html">Ethernet board</a>!
 		</li><li><div>&nbsp;</div><small>2011-06-04</small>
 			Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
 			Updated and added a new version of the <a href="pwr/index.html">Power supply board</a>.
-		</li><li><div>&nbsp;</div><small>2011-01-09</small>
-			Added a completely new <a href="term/index.html">Bus terminator board</a>!
-		</li><li><div>&nbsp;</div><small>2011-01-02</small>
-			Updated the <a href="ramdisk/index.html">Ramdisk board</a>.
-			Now a CPLD-based version is available in addition to the older TTL-based version.
 		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#overview">Introduction</a></li><li><a href="#general">General considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#othercpu">Other CPUs</a></li><li><a href="#bus">Bus</a></li><li><a href="#tech">Technology</a></li><li><a href="#schem">Schematics</a></li><li><a href="#age">Age</a></li></ul></li><li><a href="#setups">Setups</a></li><li style="list-style-type:none;"><ul><li><a href="#caspaer">Caspaer</a></li><li><a href="#legacy">CS/A65 legacy</a></li><li><a href="#gecko">Gecko</a></li><li><a href="#fat40">Fat40</a></li><li><a href="#vc1581">VC1581</a></li></ul></li><li><a href="#sw">Software</a></li><li><a href="#boards">Boards</a></li><li style="list-style-type:none;"><ul><li><a href="#mainboards">Main Boards</a></li><li><a href="#ioboards">I/O boards</a></li><li><a href="#specialboards">Special purpose boards</a></li><li><a href="#deprecatedboards">Deprecated boards</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li><a href="#numbering">Board numbering scheme</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="disclaimer">Disclaimer</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
 	<P class="disclaimer">Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
@@ -459,6 +464,10 @@ Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html" targe
 		except for the video. It thus features an IEEE488 interface,
 		as well as keyboard, userport and tape interfaces. It also
 		contains a small beeper to make noise :-)
+	  </li><li class="subitem"><a href="netusb/index.html" target="_new" class="extlink">Net/USB/SD</a> 
+		A combined Ethernet, USB host+device and SD-Card interface board!
+		All parts connected via <a href="../hwinfo/spi/spi65b">SPI65b</a>
+		(and 3.3V converters).
 	  </li><li class="subitem"><a href="etholi/index.html" target="_new" class="extlink">Ethernet</a> 
 		An ethernet interface for the CS/A! Using the CS8900A ethernet
 		chip on an Olimex adapter board. TCP/IP functionality provided

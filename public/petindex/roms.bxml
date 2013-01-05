@@ -4,6 +4,8 @@
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
+    <yearstart>1998</yearstart>
+    <yearend>2013</yearend>
   </author>
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
@@ -13,6 +15,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2013-01-04">
+	Added the section about the BASIC differences
+    </item>
     <item date="2011-06-04">
 	Added links section and to create your own MS Basic, and BASIC as scripting language
     </item>
@@ -21,6 +26,77 @@
     </item>
   </news>
   <toc/>
+
+  <section toc="hist" name="Commodore BASIC history">
+    <desc><p>The Commodore BASIC was originally created by Microsoft, and bought by 
+	Commodore for the use in the KIM and PET computers. The original 6502 BASIC
+	was, according to pagetable's analysis, a direct port from the Microsoft 8080 BASIC. 
+	It was very generic and for example asked for screen width and memory size on startup.
+	It has since then proliferated into "virtually every 6502-based computer",
+	including the Commodore, the Apple-II or Atari series.
+	</p><p>
+	It found its first use in the Commodore BASIC 1 - as found in the 
+	original ROMs. In the adoption process Commodore added commands like "OPEN" and other file I/O
+	commands, and also renamed the "OK" prompt to "READY.". They also did some "in place"
+	binary patching to work around bugs that.
+	</p><p>
+	Commodore adopted a later version of the BASIC even for the KIM-1. The first KIM, however,
+	were shipped with an early version of the 6502 with a buggy "ROR" instruction. So the KIM
+	BASIC worked around the broken "ROR" bug.
+	</p><p>
+	Microsoft later incorporated such changes as well. Commodore went back to Microsoft
+	for an update. In that process Microsoft created the famous "WAIT6502,x" Easter Egg 
+	in the BASIC2 version.
+	A comment in the pagetable's MS BASIC history is supposed to be by Bill Gates and says 
+	he put the WAIT easter egg there himself (I'd take that with a grain of salt though).
+	</p><p>
+	Anyway, the link below is a great analysis of the different MS BASIC versions,
+	including the versions for Apple and Altair and how they relate to each other. 
+	</p><p>
+	In another link it is discussed whether Bill Gates could write code. In fact I believe
+	he could. To understand the next part you have to know that the ROM contains the BASIC -
+	as written by Microsoft - but also the operating system "kernal" - written by 
+	Commodore and used by the BASIC for input/output.
+	</p><p>
+	The Commodore (MS) BASIC actually uses the "BIT ABS" opcode often to hide a 
+	two-byte opcode in the ABS operand. That was also in the Altair's 8080 BASIC version
+	written by Gates. The (Commodore) kernal did not use this technique, at least not in
+	the first version.
+	In fact it could even be his influence that this technique was later used even in the 
+	Commodore kernal. Here's one example:
+	</p><p>
+	The "BASIC 1" kernal for uses
+	<pre>
+ F0B6  A9 40     TALK       LDA #$40      
+ F0B8  D0 02                BNE ATNOUT    
+ F0BA  A9 20     LISTEN     LDA #$20      
+ F0BC  48        ATNOUT     PHA           
+	</pre>
+	while the "BASIC 4" kernal uses
+	<pre>
+ F0D2	TALK	LDA #$40
+ F0D4		.byte $2C	; BIT $20A9	note: the "LDA #$20" is hidden in the operand!
+ F0D5	LISTEN	LDA #$20
+ F0D7	ATNOUT	PHA
+	</pre>
+	I didn't do a further thorough research though.
+	</p>
+    </desc>
+	<extlink name="Create your own version of MS BASIC" link="http://www.pagetable.com/?p=46">
+		Pagetable's combined BASIC source code, with switches to create Commodore BASIC 1,
+		2, AppleSoft II and other variants.
+	</extlink>
+	<extlink name="Working around a broken ROR" link="http://www.pagetable.com/?p=45">
+		Quizzing about differences in BASIC versions...
+	</extlink>
+	<extlink name="Bill Gates' Personal Easter Egg in MS BASIC - Pagetable's MS BASIC history" link="http://www.pagetable.com/?p=43">
+		Musings about the WAIT6502 easter egg in Commodore BASIC.
+		Note one of the commenters...
+	</extlink>
+	<extlink name="Could Bill Gates write code?" link="http://www.theregister.co.uk/2001/05/15/could_bill_gates_write_code/"/>
+
+  </section>
+
   <section toc="main" name="Differences in Software">
     <desc>
 <P>
@@ -39,6 +115,7 @@ Original ROMs, from $c000, powers up <CODE>*** COMMODORE BASIC ***</CODE>.
 To be found in the calculator-style keyboard machines. Horribly broken,
 especially the IEEE488 did not work. The
 very low level routines worked, but on top of that a lot had to be fixed.
+(Note: the VICE emulator includes a patch that allows you to use the BASIC1 ROMs with the IEEE488 disks)
 In upper/lower case character mode (as opposed to upper case/graphics mode)
 the upper and lower characters were exchanged (SHIFT for lower case).
 Arrays could only be 256 elements in size.
@@ -76,43 +153,6 @@ boards #3 and #4)...
 	</desc>
 	<extlink name="4.0 ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/petdis"/>
 	<extlink name="4.0 ROMs memory map" link="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt"/>
-     </subsection>
-
-     <subsection toc="hist" name="BASIC History">
-	<desc><p>
-	The BASIC as used in the Commodore PET computers is actually something programmed
-	by Microsoft - in parts maybe even by Bill Gates himself. At least a comment in the
-	pagetable's MS BASIC history is supposed to be by Bill and says he put the WAIT easter egg there
-	himself (I'd take that with a grain of salt though).
-	</p><p>
-	Anyway, the link below is a great analysis of the different MS BASIC versions,
-	including the versions for Apple and Altair and how they relate to each other. 
-	</p><p>
-	In the second link it is discussed whether Bill Gates could write code. In fact I believe
-	he could. The Commodore BASIC actually uses the "BIT ABS" opcode often to hide a 
-	two-byte opcode in the ABS operand. That was also in the Altair's 8080 BASIC version
-	written by Gates.
-	</p><p>
-	In fact it could even be his influence that this technique was later used even in the 
-	Commodore kernal. The BASIC 1 kernal for example uses
-	<pre>
- F0B6  A9 40     TALK       LDA #$40      
- F0B8  D0 02                BNE ATNOUT    
- F0BA  A9 20     LISTEN     LDA #$20      
- F0BC  48        ATNOUT     PHA           
-	</pre>
-	while the BASIC 4 kernal uses
-	<pre>
- F0D2	TALK	LDA #$40
- F0D4		.byte $2C	; BIT $20A9	note: the "LDA #$20" is hidden in the operand!
- F0D5	LISTEN	LDA #$20
- F0D7	ATNOUT	PHA
-	</pre>
-	I didn't do a further thorough research though.
-	</p>
-	</desc>
-	<extlink name="Pagetable's MS BASIC history" link="http://www.pagetable.com/?p=43"/>
-	<extlink name="Could Bill Gates write code?" link="http://www.theregister.co.uk/2001/05/15/could_bill_gates_write_code/"/>
      </subsection>
 
   </section>
@@ -165,7 +205,6 @@ I assume this is used in nationalized machines with different charsets.
 
   <section toc="links" name="Links">
   	<desc>This section contains links concerning Commodore (MS) BASIC and kernal ROMs</desc>
-	<extlink name="Create your own version of MS BASIC" link="http://www.pagetable.com/?p=46"/>
 	<extlink name="Commodore BASIC as Unix/Windows scripting language" link="http://www.pagetable.com/?p=48"/>
   </section>
 

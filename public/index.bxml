@@ -19,7 +19,14 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
-    <item date="2012-05-06" state="hot">
+     <item date="2013-01-04" state="hot">
+        Added the new <a href="csa/netusb/index.html">NetUSB board</a> with SD-Card,
+        Ethernet and USB host + device!
+     </item>
+     <item date="2013-01-04">
+	A number of smaller updates, mostly PETindex.
+     </item>
+     <item date="2012-05-06" state="hot">
 	Published more extended docs for the <a href="65k/af65002/index.html">af65002</a> processor!
     </item>
     <item date="2012-05-06">

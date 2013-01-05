@@ -14,6 +14,7 @@ p term Bus terminators
 s I/O boards
 p vdc Video board
 p petio CBM PET I/O
+p netusb Net/USB/SD
 p etholi Ethernet
 p usb USB
 p shug PC floppy

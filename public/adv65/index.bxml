@@ -151,11 +151,13 @@
 
   <section toc="info" name="65xx Information">
     <desc><p>Here are some links to general 6502 and beyond information</p></desc>
+    <extlink name="Digging into Technology's Past - History of the 6502" link="http://archive.archaeology.org/1107/features/mos_technology_6502_computer_chip_cpu.html"/>
     <extlink name="The 6502/65C02/65C816 instruction set decoded" link="http://www.llx.com/~nparker/a2/opcodes.html"/>
     <extlink name="Programming the 65816 (PDF)" link="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf"/>
     <extlink name="Schematics of the original 6502 (reverse engineered)" link="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/"/>
     <extlink name="How the illegal instructions really work" link="http://www.pagetable.com/?p=39."/>
     <extlink name="A reengineered and visually simulated original 6502!" link="http://visual6502.org/"/>
+    <extlink name="27C3 presentation on the visual6502 reverse engineering process" link="http://dangerousprototypes.com/2011/01/01/27c3-reverse-engineering-the-mos-6502/"/>
     <extlink name="Reverse Engineering the 6502" link="http://dangerousprototypes.com/2011/01/01/27c3-reverse-engineering-the-mos-6502/"> A presentation of visual6502 from the 27C3 conference in december 2010</extlink>
     <extlink name="The ROR bug in early 6502 revisions!" link="http://www.pagetable.com/?p=45"/>
     <extlink name="6502.org forum: A taken branch delays interrupt handling by one instruction..." link="http://forum.6502.org/viewtopic.php?t=1634"/>
