@@ -15,7 +15,8 @@
 	</p><p>
 	All parts are connected via the <a href="../../hwinfo/spi/spi65b/index.html">SPI65b</a>
 	SPI interface. SD-Cards do SPI anyway, Ethernet is implemented via an ENC28J60 chip.
-	USB is done with a MAX3420 (device) and MAX3421 (host) chip.
+	USB is done with a MAX3420 (device) and MAX3421 (host) chip with the 
+	<a href="../../usb65/index.html">usb65</a> drivers.
   </p></overview>
   <news>
     <item date="2013-01-04">
