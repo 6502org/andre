@@ -1,0 +1,108 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="usb65 - 6502 USB host and device drivers">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2011</yearstart>
+    <yearend>2013</yearend>
+  </author>
+  <!--keywords></keywords>
+  <metadesc></metadesc-->
+  <overview><p>
+	The <em>usb65</em> USB drivers is an attempt in creating 
+	a set of cross-platform and cross-hardware USB drivers for the 6502 processor.
+The aim is to make
+them generic enough so they can be reused in many 6502 computers.
+	</p><p>
+Currently supported functionalities:
+</p>
+<ul>
+<li>Keyboard (host+device)</li>
+<li>mouse (host+device)</li>
+<li>hub (as host, can enumerate devices connected via a hub!)</li>
+</ul>
+<p>
+Currently supported hardware:
+</p><ul>
+<li>SL811HS (host+device) via processor bus interface</li>
+<li>MAX3420 (device) via an SPI interface</li>
+<li>MAX3421 (host+device - device is same as MAX3420) via an SPI interface</li>
+</ul><p>
+Currently supported platforms:
+</p><ul>
+<li>CS/A "Fat40" PET replica with<ul>
+	<li><a href="../csa/usb/index.html">NETUSB 1.x board</a> (2 SL811HS for host and device)</li>
+	<li><a href="../csa/netusb/index.html">NETUSB 2.x board</a> (MAX3420 for device + MAX3421 for host)</li>
+</ul></li>
+<li>Commodore PET with CS/A adapter <ul>
+	<li>(tested only with NETUSB 1.x)</li>
+	</ul>
+</li>
+</ul>
+<p>
+Future plans:
+</p><ul>
+<li>code cleanup<ul>
+	<li>more generic assembler</li>
+	<li>extract common code</li>
+	<li>separate platform specific code</li>
+	</ul>
+</li>
+<li>more supported platforms</li>
+<li>more functionalities<ul>
+	<li>RS232 via USB</li>
+	<li>mass storage device (USB stick)</li>
+	<li>Network (ethernet?) via USB</li>
+	</ul>
+</li></ul>
+  </overview>
+  <news>
+    <item date="2013-01-07">
+	Published the page
+    </item>
+  </news>
+  <!--toc/-->
+
+  <section toc="dl" name="Download">
+	<desc><p>
+	Currently there is only a github repository for it.
+	Please see there for more details.
+    </p></desc>
+
+	<extlink name="usb65 github repository" link="https://github.com/fachat/usb65"/>
+  </section>
+
+<!--
+  <section toc="xs1541" name="XS1541">
+    <desc> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
+create a new firmware for the XS1541 to provide the lptieee functionality...
+</p>
+	</desc>
+  </section>
+
+  <section toc="inprog" name="Work in progress">
+  <subsection toc="fpga" name="The 65k Project">
+    <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
+	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+</p>
+	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
+	</desc>
+
+  </subsection>
+     <subsection toc="netusb" name="Netusb2">
+	<desc><p>
+	As successor to my netusb board I have designed a netusb2 board. It's using 3.3V components communicating via an SPI interface.
+	I have created the board, and the SPI65/B solution from this board is already on this web site. 
+	It has an SD-card slot, an ENC28J60-based Ethernet interface, and an SPI-based USB host and device interface.
+	SD-card already works, Ethernet is being tested right now, USB is untested so far...
+	</p>
+	</desc>
+     </subsection>
+
+  </section>
+-->
+	  <closing>
+@FOOTER@
+  </closing>
+</webpage>

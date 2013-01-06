@@ -11,6 +11,8 @@ s Software
 p osa GeckOS operating system
 p lib6502 Lib6502 standard
 p o65 O65 file format
+p usb65 usb65 USB drivers
+p xd2031 XD2031 firmware
 p misc Misc software
 s Knowledge Bits
 d icapos Computer/OS Architecture

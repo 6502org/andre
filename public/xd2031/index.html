@@ -3,11 +3,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="author" content="Andr&eacute;  Fachat">
 
-<meta name="description" content="8-bit 6502 hardware networking">
-<meta name="keywords" content="8-bit,6502 networking">
+<meta name="description" content="">
+<meta name="keywords" content="">
 <link rev="made" href="mailto:afachat@gmx.de">
 <link rel="stylesheet" title="Default" type="text/css" href="../style-min.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
-<title>6502 Networking</title></head>
+<title>XD2031 - AtMega(tm) firmware for virtual CBM drives</title></head>
 <body><div id="mainbox"><a name="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text"></td><td><div id="cancel" class="i_cancel">&nbsp;</div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand">&nbsp;</div></td><td><div id="collapse" class="i_collapse">&nbsp;</div></td></tr></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="../index.html">Homepage</a>
@@ -28,14 +28,6 @@
 </li>
 <li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../adv65/index.html">Advanced 6502</a>
 
-<ul class="menu1" >
-<li><div class="i_link">&nbsp;</div><a href="../65k/index.html">The 65k Project</a></li>
-<li class="dir" id="m_adv65_pet816"><div class="i_dir">&nbsp;</div><a href="pet816/index.html">Speed up your 6502!</a>
-
-</li>
-<li><div class="i_link">&nbsp;</div><a href="../csa/index.html">CS/A65</a></li>
-<li><div class="i_file">&nbsp;</div><a href="65net.html" class="mcurrent">6502 networking</a></li>
-</ul>
 </li>
 <li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../hwinfo/index.html">ICs and Standards Info</a>
 
@@ -52,7 +44,7 @@
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../usb65/index.html">usb65 USB drivers</a>
 </li>
-<li><div class="i_file">&nbsp;</div><a href="../xd2031/index.html">XD2031 firmware</a>
+<li><div class="i_file">&nbsp;</div><a href="index.html" class="mcurrent">XD2031 firmware</a>
 </li>
 <li><div class="i_file">&nbsp;</div><a href="../misc/index.html">Misc software</a>
 </li>
@@ -68,6 +60,7 @@
 <li><div class="i_file">&nbsp;</div><a href="../sneak.html">Sneak preview</a></li>
 <li><div class="i_file">&nbsp;</div><a href="../design.html">Web design</a></li>
 </ul>
+
 
 </div>
 		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
@@ -90,35 +83,48 @@ more modern browser, like Internet Explorer 8 or later,
 </div><div class="top" id="content"><div id="minmax"></div>
 <div id="breadcrumbs">
 <a href="../index.html">Homepage</a>
-&gt;&gt;  <a href="index.html">Advanced 6502
-</a>&gt;&gt;  6502 networking</div>
-<h1>6502 Networking</h1><p class="copyright">(C)
-- Andr&eacute;  Fachat</p> 
-<div class="overview">
-	This page links projects about 6502-based networking systems.
-	I don't intend to do a full Ethernet list, but I am more interested
-	in specific networking solutions like the NadaNet.
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-06-04</small>
-	Created this page.
-    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="native">Native 6502-based networks</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>This section contains links to various projects of other people that implemented networks based on the 6502</p>
-	<h3><a name="nada">NadaNet</a></h3><p>
-			NadaNet is a network originally used to link Apple II computers. Physically it is a single-wire network
-			with a custom packet protocol on top of it. The author claims that "It can sustain a data transfer rate of over 10K bytes per second using 256-byte packets, with all synchronization and protocol overhead included", which is impressive. 
-		</p><ul><li><a href="http://home.comcast.net/~mjmahon/NadaNet.html" target="_blank" class="extlink">NadaNet</a> </li><li><a href="http://home.comcast.net/~mjmahon/Applecrate.html" target="_blank" class="extlink">AppleCrate I</a> The AppleCrate I is an 8-processor
-			compute cluster made of Apple II boards, using NadaNet for communication</li><li><a href="http://home.comcast.net/~mjmahon/AppleCrateII.html" target="_blank" class="extlink">AppleCrate II</a> The AppleCrate II is the
-			successor to AppleCrate I and has 17 processors, using NadaNet</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="tcpip">TCP/IP networks</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>There have been a number of ethernet interfaces been implemented, including TCP/IP support.
-	In the beginning there have been some SLIP (Serial Line Internet Protocol) implementations, but later
-	solutions using specific Ethernet ICs appeared. Most used the CS8900A chip for the ethernet communication, but
-	some used the RTL8019 and now SPI-based solutions using the ENC28J60 are appearing.
+&gt;&gt;  XD2031 firmware</div>
+<h1>XD2031 - AtMega(tm) firmware for virtual CBM drives</h1><p class="copyright">(C)
+2012-2013 Andr&eacute;  Fachat</p> 
+<div class="overview"><p>
+	The <em>XD2031</em> project is an AtMega(tm) firmware for devices like the
+	petSD or xs1541, to connect Commodore devices to the PC, and use the PC as
+	disk drive via an USB connection.
 	</p><p>
-	TODO: needs to be expanded
-	</p><ul><li><a href="http://www.6502.org/users/andre/osa/index.html" target="_blank" class="extlink">GeckOS with SLIP</a> </li><li><a href="http://ip65.sourceforge.net/" target="_blank" class="extlink">ip65 TCP/IP stack</a> One of the standard TCP/IP solutions for 6502</li><li><a href="http://www.sics.se/contiki/" target="_blank" class="extlink">uIP TCP/IP stack</a> A TCP/IP implementation written in Small C, so it can
-		be compiled by cc65 and has been used on the C64 and other 6502-based machines</li><li><a href="http://sbc.rictor.org/io/eth.html" target="_blank" class="extlink">Daryl Rictor's Ethernet interface</a>  using an ENC28J60 with the uIP stack</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">
-All Copyrights are acknowledged.
-The information here is provided under the terms of the
-GNU Public License version 2 unless noted otherwise.
-    </div></div><hr>
-<BR>Last updated 2011-06-10".
+This software enables to program an AVR AtMega device to play
+the role of a disk drive to a Commodore PET computer with IEEE488 
+interface.
+</p><p>
+XD-2031 consists of two main parts, an AtMega firmware, and a PC server.
+Both communicate via a serial line. 
+</p><p>
+Currently this hardware is supported:
+</p><ul>
+	<li>XS-1541 	Communication via serial line over USB</li>
+	<li>petSD   	Communication via serial line over USB</li>
+</ul><p>
+For more information see the README files in the repository.
+</p><p>
+Copyright
+</p><p>
+The code is under GPL V2. Please note that the PC server part is
+also available on later versions of the GPL, the AtMega firmware is
+ONLY(!) available under GPL V2.
+</p><p>
+(C) 2012 Andre Fachat
+	 Ingo Korb, Thomas Winkler, Nils Eilers and others!
+</p><p>
+Please see the individual files for specific copyright notices.
+</p>
+
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-01-07</small>
+	Published the page
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="dl">Download</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+	Currently there is only a github repository for it.
+	Please see there for more details.
+    </p><ul><li><a href="https://github.com/fachat/XD2031" target="_blank" class="extlink">XD2031 github repository</a> </li></ul></div></div><hr>
+<p>Return to <a href="../index.html">Homepage</a></p>
+
   </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){

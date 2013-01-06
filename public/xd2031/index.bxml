@@ -1,0 +1,92 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="XD2031 - AtMega(tm) firmware for virtual CBM drives">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2012</yearstart>
+    <yearend>2013</yearend>
+  </author>
+  <!--keywords></keywords>
+  <metadesc></metadesc-->
+  <overview><p>
+	The <em>XD2031</em> project is an AtMega(tm) firmware for devices like the
+	petSD or xs1541, to connect Commodore devices to the PC, and use the PC as
+	disk drive via an USB connection.
+	</p><p>
+This software enables to program an AVR AtMega device to play
+the role of a disk drive to a Commodore PET computer with IEEE488 
+interface.
+</p><p>
+XD-2031 consists of two main parts, an AtMega firmware, and a PC server.
+Both communicate via a serial line. 
+</p><p>
+Currently this hardware is supported:
+</p><ul>
+	<li>XS-1541 	Communication via serial line over USB</li>
+	<li>petSD   	Communication via serial line over USB</li>
+</ul><p>
+For more information see the README files in the repository.
+</p><p>
+Copyright
+</p><p>
+The code is under GPL V2. Please note that the PC server part is
+also available on later versions of the GPL, the AtMega firmware is
+ONLY(!) available under GPL V2.
+</p><p>
+(C) 2012 Andre Fachat
+	 Ingo Korb, Thomas Winkler, Nils Eilers and others!
+</p><p>
+Please see the individual files for specific copyright notices.
+</p>
+
+  </overview>
+  <news>
+    <item date="2013-01-07">
+	Published the page
+    </item>
+  </news>
+  <!--toc/-->
+
+  <section toc="dl" name="Download">
+	<desc><p>
+	Currently there is only a github repository for it.
+	Please see there for more details.
+    </p></desc>
+
+	<extlink name="XD2031 github repository" link="https://github.com/fachat/XD2031"/>
+  </section>
+
+<!--
+  <section toc="xs1541" name="XS1541">
+    <desc> <p>Well, I bought me a XS1541 and I plan to replace my lptieee board (which is currently broken) with it. However, I need to
+create a new firmware for the XS1541 to provide the lptieee functionality...
+</p>
+	</desc>
+  </section>
+
+  <section toc="inprog" name="Work in progress">
+  <subsection toc="fpga" name="The 65k Project">
+    <desc> <p>I'm working on a design for an FPGA-based 6502 CPU replacement, named '65k'. I chose this name to 
+	honor that the design numbers have 5 digits instead of 4, but still starting with 65 as the 6502.
+</p>
+	<p>I have already started that project with the <a href="65k/index.html">65k pages</a></p>
+	</desc>
+
+  </subsection>
+     <subsection toc="netusb" name="Netusb2">
+	<desc><p>
+	As successor to my netusb board I have designed a netusb2 board. It's using 3.3V components communicating via an SPI interface.
+	I have created the board, and the SPI65/B solution from this board is already on this web site. 
+	It has an SD-card slot, an ENC28J60-based Ethernet interface, and an SPI-based USB host and device interface.
+	SD-card already works, Ethernet is being tested right now, USB is untested so far...
+	</p>
+	</desc>
+     </subsection>
+
+  </section>
+-->
+	  <closing>
+@FOOTER@
+  </closing>
+</webpage>
