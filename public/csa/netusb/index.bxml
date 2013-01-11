@@ -101,7 +101,7 @@
 			This board has been successfully tested with SD-Card, Ethernet as well as USB host 
 			and device operations.
                 </note>
-                <file ltype="photo" ptype="png">netusb2.png</file>
+                <file ltype="photo" ptype="jpg">netusb2.jpg</file>
                 <file ltype="schem" ptype="esch">csa_netusb-v2.0b.sch</file>
                 <file ltype="schem" ptype="png">csa_netusb-v2.0b-sch-1.png</file>
                 <file ltype="schem" ptype="png">csa_netusb-v2.0b-sch-2.png</file>
