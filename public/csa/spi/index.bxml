@@ -13,7 +13,11 @@
 		<desc>itecture</desc>
 	</diagram-->
   <news>
-      <item date="2011-03-6">
+      <item date="2013-01-13">
+	Added a new revision - this time using the VIA shift register - YES it is possible! - to
+	access the SD card.
+      </item>
+      <item date="2011-03-06">
            Moved the SPI description from here to the <a href="../../hwinfo/spi.html">SPI page</a>.
       </item>
   </news>
@@ -135,8 +139,8 @@
 			first (falling) transition of its clock, so it can be
 			latched by the second (rising) edge by the receiver.
 			This would be SPI mode 3. You could reverse clock,
-			but you cannot make the VIA shift our earlier. So there
-			is no way to use the VIA SR. Instead I now use a 
+			but you cannot make the VIA shift our earlier. So - I thought - there
+			is no way to use the VIA SR. Instead in version 1.0 I used a 
 			bit-banging approach with CLK and MOSI.
 			</p><p>
 			For MISO, hoever, I decided to use an external shift
@@ -145,11 +149,87 @@
 			at the same time. Now it is just a convenience.
 		</p></desc>
         	</subsection>
+		<subsection toc="srmagic" name="Shift register magic">
+		<desc><p>
+			For release 1.1 of the board I decided I would take on another try of using
+			the VIA shift register. And indeed I found a neat trick, that only needed an 
+			extra IC.
+			</p><p>
+			The VIA shift register with CB1 as clock output and CB2 as data output 
+			directly implement SPI mode 3. Inverting the clock could make that an SPI mode 1.
+			However, for SPI modes 0 and 2, not only need the clock be inverted for mode 0, 
+			the first data bit needed to be available
+			already before the start of the first clock pulse! The VIA cannot give this
+			signal. So I though about setting the data line with the first bit manually.
+			And that is actually easy with an extra XOR. The VIA keeps the data output CB2
+			as the last valid bit of the previous shift, i.e. bit 0.
+			Make sure the last bit of every shifted
+			data is zero, then invert the data line when the highest bit of the <em>new</em> 
+			data is set, and shift
+			out the rest of the data.:</p>
+			<pre>
+SD_SENDBYTEW
+        ; mode 0
+        ; make sure last bit is 0, shifting bit 7 into carry
+        asl
+        bcs invert
+        ; last bit was 0, nothing to do but send the byte
+        sta SD_VIA+VIA_SR
+        ; wait to finish
+        lda #%00000100
+wait0   bit SD_VIA+VIA_IFR
+        beq wait0
+        bne end
+
+invert  ; invert the current bit (which is last bit from prev. 
+        ; data byte, which we set to zero
+        inc SD_VIA+VIA_DRA
+        ; compensate for the inversion
+        eor #$fe
+        ; send out the data
+        sta SD_VIA+VIA_SR
+        ; wait to finish
+        lda #%00000100
+wait1   bit SD_VIA+VIA_IFR
+        beq wait1
+        ; reset inverter
+        dec SD_VIA+VIA_DRA
+end     ; clear int
+        sta SD_VIA+VIA_IFR
+        ; read read data
+        lda SD_VIA+VIA_DRB      ; load from external shift reg
+        rts
+			</pre>
+			<p>This way the VIA can actually do SPI mode 0!</p>
+			<p>Note: I kept it simple. This schematics can only do mode 0 and mode 3. 
+			If I had to enable mode 1 and 2, then the inverter for the clock need to be
+			separated for an inverter for the clock going to the SPI bus, and an inverter
+			for the input shift register. Why that is is kept as excercise to the reader.
+		</p></desc>
+		</subsection>
 	</section>
         <driver>
-                <name>OS/A65 SPI driver</name>
+                <name>OS/A65 SPI driver 1.1</name>
                 <desc><p>
-			This is a test driver for the SPI schematics below.
+			This is a test driver for the SPI 1.1 schematics below.
+			I uses the VIA shift register to access the SD card.
+			</p><p>
+			It initializes the card, reads the operations conditions
+			register, the card id data, and can read and write
+			a block.
+			</p><p>Please note that it is clutterd with debug code.
+			</p><p>Also note that the driver is "conservative". It actually
+				waits even when sending a byte, to undo the inverter.
+				It could just "fire-and-forget" and check on the next
+				call whether the previous byte is done.
+			</p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >sdcard-viaspi.tar.gz</file>
+        </driver>
+        <driver>
+                <name>OS/A65 SPI driver 1.0</name>
+                <desc><p>
+			This is a test driver for the SPI 1.0 schematics below.
 			It initializes the card, reads the operations conditions
 			register, the card id data, and can read and write
 			a block.
@@ -158,6 +238,24 @@
                 </desc>
                 <file ltype="driver" ptype="tgz" >sdcard.tar.gz</file>
         </driver>
+	<rev>
+		<version>1.1A</version>
+		<status>prototype</status>
+		<note type="msg">
+			I have built this schematics on a prototyping board,
+			so there is no board layout for it.
+		</note>
+		<note type="msg">
+			This approach uses the VIA shift register, which allows
+			you much faster speed than bit-banging!
+		</note>
+		<note type="msg">
+			For hot-plugging a capacitor and inductor have been added
+			in the power supply lines for the card (this is untested though).
+		</note>
+		<file ltype="schem" ptype="esch">csa_viaspi-v1.1a.sch</file>
+		<file ltype="schem" ptype="png">csa_viaspi_v1.1a-sch.png</file>
+	</rev>
 	<rev>
 		<version>1.0A</version>
 		<status>prototype</status>

@@ -36,9 +36,11 @@ DIV.top {
 	/*box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;*/
 }
 
+/*
 body>table {
 	box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;
 }
+*/
 
 /* left/right cols have headers in the top level style */
 DIV.tophead {

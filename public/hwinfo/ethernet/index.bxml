@@ -82,7 +82,7 @@
      <subsection toc="tfe" name="The Final Ethernet">
 	<desc><p>This is a hardware solution for the Commodore 64 by Adam Dunkels and others</p>
 	</desc>
-	<extlink name="Original ROMs disassembly" link="http://dunkels.com/adam/tfe/"/>
+	<extlink name="The Final Ethernet" link="http://dunkels.com/adam/tfe/"/>
      </subsection>
   </section>
 

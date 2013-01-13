@@ -45,6 +45,39 @@
      </subsection>
   </section-->
 
+        <driver>
+                <name>SD-Card</name>
+                <desc><p>
+                        This is a test driver for the SD-Card access via SPI65B schematics below.
+                        </p><p>
+                        It initializes the card, reads the operations conditions
+                        register, the card id data, and can read and write
+                        a block.
+                        </p><p>Please note that it is clutterd with debug code.
+                        </p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >sdcard-netusb2.tar.gz</file>
+        </driver>
+
+        <driver>
+                <name>Ethernet</name>
+                <desc><p>
+                        This is a uIP stack with a builtin driver for the ENC28J60 via
+			SPI65B as on this board.
+                        </p>
+                </desc>
+                <file ltype="driver" ptype="tgz" >uip-1.0+netusb2.tar.gz</file>
+        </driver>
+
+        <driver>
+                <name>USB</name>
+                <desc><p>
+			The USB drivers for host and device are now hosted on github.
+                        </p>
+                </desc>
+		<extlink name="usb65 github repository" link="https://github.com/fachat/usb65"/>
+        </driver>
+
         <!--driver>
                 <name>USB Host Driver</name>
                 <desc><p>
