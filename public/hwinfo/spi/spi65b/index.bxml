@@ -48,6 +48,10 @@
 	</ul>
   </overview>
   <news>
+    <item date="2013-01-26">
+	Fixed the VHDL, it was producing spikes in mode 3. Unfortunately there was not enough
+	space in the chip, so the divisor had to be reduced to three bits.
+    </item>
     <item date="2012-01-01">
 	Started this page
     </item>
@@ -103,15 +107,22 @@
      </desc>
   </section>
 
-  <section toc="dl" name="Downloads">
+  <driver toc="dl10" name="Version 1.1">
+	<desc>Here is the updated documentation and the VHDL (source &amp; binary) files to program the CPLD.
+		Note: uses the same constraints file as 1.0.
+	</desc>
+                <file ltype="doc" ptype="pdf">65SPI-B Datasheet V1.1.pdf</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">SPI6502B1.1.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">SPI6502B.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">SPI6502B1.1.jed</file>
+  </driver>
+  <driver toc="dl10" name="Version 1.0">
 	<desc>Here is the documentation and the VHDL (source &amp; binary) files to program the CPLD</desc>
-	<items>
                 <file ltype="doc" ptype="pdf">65SPI-B Datasheet.pdf</file>
                 <file ltype="logic" ptype="vhd" note="CPLD VHDL source">SPI6502B.vhd</file>
                 <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">SPI6502B.ucf</file>
                 <file ltype="logic" ptype="jed" note="CPLD compiled source">SPI6502B.jed</file>
-	</items>
-  </section>
+  </driver>
   <closing>
 @FOOTER@
   </closing>

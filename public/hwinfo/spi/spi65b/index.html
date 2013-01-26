@@ -144,9 +144,12 @@ more modern browser, like Internet Explorer 8 or later,
 	<li>If only the lowest four bits of the divider are used, and only the low four devices, 
 		it is software-compatible with Daryl's 65SPI</li>
 	</ul>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2012-01-01</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-01-26</small>
+	Fixed the VHDL, it was producing spikes in mode 3. Unfortunately there was not enough
+	space in the chip, so the divisor had to be reduced to three bits.
+    </li><li><div>&nbsp;</div><small>2012-01-01</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#hw">Hardware</a></li><li><a href="#sw">Register Map</a></li><li><a href="#dl">Downloads</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="hw">Hardware</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#hw">Hardware</a></li><li><a href="#sw">Register Map</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1"></a></li><li><a href="#driver2"></a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="hw">Hardware</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><p>
 	The hardware of the SPI65/B is a Xilinx 9572 CPLD. This device is 5V, so for 3.3V devices level translation
 	is required.
 	</p>
@@ -187,7 +190,21 @@ more modern browser, like Internet Explorer 8 or later,
 								<td>Bit 0-3: Slave Select 0-3<br>Bit 4-7: IEN0-3 interrupt enable</td></tr>
 	</table>
 	<p>For a detailed description see the documentation linked below</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="dl">Downloads</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c">Here is the documentation and the VHDL (source &amp; binary) files to program the CPLD<h3>Files</h3><table>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><div class="driver"><h3><a name="driver1"></a></h3><table class="driver"><tr><td class="driverdesc">Here is the updated documentation and the VHDL (source &amp; binary) files to program the CPLD.
+		Note: uses the same constraints file as 1.0.
+	</td><td class="driverfiles"><table class="files">
+<tr class="R1"><td><div class="i_doc">&nbsp;</div></td>
+<td><a href="65SPI-B Datasheet V1.1.pdf">65SPI-B Datasheet V1.1.pdf</a></td>
+</tr>
+<tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
+<td><a href="SPI6502B1.1.vhd">SPI6502B1.1.vhd</a>(CPLD VHDL source)</td>
+</tr>
+<tr class="R1"><td><div class="i_logic">&nbsp;</div></td>
+<td><a href="SPI6502B.ucf">SPI6502B.ucf</a>(CPLD constraints file (pin mapping))</td>
+</tr>
+<tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
+<td><a href="SPI6502B1.1.jed">SPI6502B1.1.jed</a>(CPLD compiled source)</td>
+</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver2"></a></h3><table class="driver"><tr><td class="driverdesc">Here is the documentation and the VHDL (source &amp; binary) files to program the CPLD</td><td class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_doc">&nbsp;</div></td>
 <td><a href="65SPI-B Datasheet.pdf">65SPI-B Datasheet.pdf</a></td>
 </tr>
@@ -199,7 +216,7 @@ more modern browser, like Internet Explorer 8 or later,
 </tr>
 <tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="SPI6502B.jed">SPI6502B.jed</a>(CPLD compiled source)</td>
-</tr></table><ul></ul></div></div><hr>
+</tr></table></td></tr></table></div></div></div><hr>
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
   </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.js"></script><script type="text/javascript">
