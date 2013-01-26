@@ -5,6 +5,7 @@ s Hardware
 d 65k The 65k Project
 d csa CS/A65 Caspaer and Gecko computer
 d adv65 Advanced 6502
+d spi65b SPI65B
 d hwinfo ICs and Standards Info
 d mischw Other hardware (e.g. tools)
 s Software
