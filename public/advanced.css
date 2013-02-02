@@ -14,7 +14,7 @@
 
 BODY {
  /* non CSS3 browsers */
- background-color: #aaa;
+ background-color: #ddd;
 
 	/*font-family: "Arial","Sans Serif";*/
 	font-family: verdana,helvetica,arial,sans-serif;
@@ -29,46 +29,71 @@ a:hover { color:#ff0000; text-decoration:none }
 
 /* top level style */
 DIV.top {
-/*
-  	-moz-border-radius: 10px;
-  	-webkit-border-radius: 10px;
-*/
-	-moz-box-shadow:5px 5px 10px #000000;
-	-webkit-box-shadow:5px 5px 10px #000000;
-	box-shadow:5px 5px 10px #000000;
-
   	background-color: #ffffff; 
   	margin: 0;
-  	margin-top: 0em;
-  	margin-bottom: 1em;
-  	padding: 0em 1em 1em 1em;
+  	margin-bottom: 1.6em;
+  	padding: 15px;
+	/*box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;*/
+}
+
+table#topnav {
+margin:0;
+background:#555;
+margin-bottom: 0.5em;
+padding: 0;
+font-size: small;
+}
+
+tr.topnav0 {
+list-style-type:none;
+padding:0px;
+margin:0;
+}
+tr.topnav0 td {
+padding:0px;
+margin:0;
+}
+
+
+ul.topnav1 {
+padding:0.1em;
+text-align:left;
+margin:0;
+} 
+
+ul.topnav1 li {
+list-style:none;
+display:inline;
+margin:0;
+}
+
+ul.topnav1 a, div.topnav1 span {
+text-align:center;
+background-color:#777;
+color:#fff;
+float:left; 
+width: 9em;
+text-decoration: none; font-weight:bold;
+margin-left:0.1em;
+margin-bottom:0.1em;
+}
+ul.topnav1 a:hover {
+}
+ul.topnav1 div {
+clear: left;
 }
 
 /* left/right cols have headers in the top level style */
 DIV.tophead {
- 	background: -moz-linear-gradient(top, #fc6, #e80 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fc6), color-stop(1, #e80));	
-	background-color: #ee8800;
+	background-color: #555;
+	font-size: large;
 	color: #fff;
-/*
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-*/
-	/*text-shadow: 1px 1px 0px #e80, -1px -1px 0px #fc6;*/
-	text-shadow: -1px -1px 1px #fc6;
-
-	margin-left: -1em;
-	margin-right: -1em;
-/*
-	margin-top: -1em;
-*/
+	margin: -15px;
 	margin-bottom: 0.3em;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
-	padding-left: 2em;
-	padding-right: 2em;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 /* disable for IE6 */
@@ -80,16 +105,7 @@ div#ie6warn { display: none; }
 }
 
 DIV#hot DIV.tophead {
- 	background: -moz-linear-gradient(top, #f55, #e00 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f55), color-stop(1, #e00));	
 	background-color: #ee0000;
-
-/*
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-*/
 }
 
 P.copyright {
@@ -121,64 +137,23 @@ div.toplink {
 }
 
 /****************************************
+ */
+
+div#mtree div#pointr {
+  background:url("imgs/pointr.png") no-repeat;
+}
+
+/****************************************
  * Layout
  */
 
 DIV#mainbox {
-   /*padding-top: 1em;*/
    font-size: medium;
-
- /* W3C Spec *
- background: linear-gradient(top, #ddd 0, #fff 100%); */
- /* browser * requires IE code in addition! 
-  * ende der Seite unten nicht klar definiert (left/righcol gehen raus!?)
-  *
-  * #888 -> #fff	Graukeil
-  * #fc6 -> #e80	Orangekeil
-  * #369 -> 7ad		Blaukeil (6502.org)
-  *
- background: -moz-linear-gradient(top, #888 0, #fff 100%); /* mozilla *
- background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888), color-stop(1, #fff));	/* webkit *
- filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff'); /* IE6 & IE7 *
- -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#888888', endColorstr='#ffffff')"; /* IE8 *
- */
-
 }
 
 /****************************************
  * parts of mainbox 
  */
-
-div#header {
- 	background: -moz-linear-gradient(top, #ccc, #222 100%); 
- 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(1, #222));	
-	background-color: #222;
-	margin-top: -0.6em;
-	margin-left: -0.6em;
-	margin-right: -0.6em;
-	color: #fff;
-	/*text-shadow: -1px -1px 1px #000;*/
-	padding: 0.2em;
-	padding-bottom: 0em;
-	font-size: small;
-}
-
-div#header div.tab {
-	padding: 0.2em;
-	padding-left: 1em;
-	/*background-color: #ccc;*/
-	display: inline;
-}
-
-div#header a:link { color:#fff; text-decoration:none }
-div#header a:visited { color:#fff; text-decoration:none }
-
-div#header form {
-	float: right;
-}
-
-
-/****************************************/
 
 DIV#midcol {
   margin: 0;
@@ -193,22 +168,17 @@ DIV#midcol {
 
 DIV#leftcol {
   float: left; 
-  clear: left;
-/*  width: 20em;*/
   width: 15%;
   margin: 0; 
   padding: 0;
 }
 
 DIV#rightcol {
-  float: right;
-  clear: right; 
-/*  width: 19em;*/
+  float: right; 
   width: 15%;
   margin: 0; 
   padding: 0;
   font-size:x-small;
-  /*display: block;*/
 }
 
 /****************************************
@@ -221,14 +191,13 @@ DIV#rightcol {
 DIV#oldnewscontent  {
 	height: 40em;
 	overflow: scroll;
-	margin-left: -1em;
+	margin-left: -0.7em;
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	/*width: 10.0em;*/
-	margin-right: -1em;
-	margin-bottom: -1em;
+	margin-right: -0.7em;
 }
 
 DIV#browser {
@@ -255,7 +224,6 @@ DIV#footer {
   clear: both;
 }
 
-
 /****************************************
  * Menu formatting
  */
@@ -270,16 +238,13 @@ table#filterbox {
 	width: auto;
 }
 
-/*
-DIV#menu {
-  padding-left: 1em;
-  padding-right: 1em; 
-}
-*/
-
 div#filter {
   margin-bottom: 1em;
   font-size:x-small;
+  display:none;
+}
+
+div#share {
   display:none;
 }
 
@@ -303,6 +268,7 @@ DIV#mtree ul ul {
 
   margin-left: 1.2em;
   margin-top: 0em;
+
 }
 
 DIV#mtree li {
@@ -311,6 +277,8 @@ DIV#mtree li {
   padding-top: 0.2em;
   padding-bottom: 0em;
   font-size:small;
+
+  position: relative;
 }
 
 div#mtree a { 
@@ -325,13 +293,12 @@ div#mtree A.mcurrent {
 }
 
 div#mtree a:hover { 
-  background-color:#ff0; 
+  background-color:#ddd; 
 }
 
 div#mtree A#m_homepage {
   font-size: small;
   clear: both;
-
 }
 
 /* new style */
@@ -343,10 +310,12 @@ div#mtree div {
 }
 
 div#mtree div.i_dir {
-  background-position: 0 -64px;
+  background-position: -288px -32px;
+  //background-position: 0 -64px;
 }
 div#mtree div.i_file {
-  background-position: -128px -64px;
+  //background-position: -128px -64px;
+  background-position: -224px -32px;
 }
 div#mtree div.i_link {
   background-position: -160px -64px;
@@ -359,11 +328,11 @@ div#mtree div.i_link {
   padding-top: 0.1em;
 }
 
-
 div#mtree LI.separator {
   margin-top: 0.1em;
-  font-size:x-small;
+  font-size:small;
   font-weight:bold;
+  padding-left: 16px;
 }
 
 /* new style */
@@ -386,6 +355,58 @@ div#filter div.i_cancel {
 	background-position: -224px -64px;
 }
 
+
+/****************************************/
+
+div.driver {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+table.driver {
+  min-width: 100%;
+}
+
+td.driverdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
+}
+
+td.driverfiles {
+  vertical-align: top;
+  padding: 1em;
+}
+
+/****************************************/
+
+div.rev {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+table.rev {
+  min-width: 100%;
+}
+
+td.revdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
+}
+
+td.revfiles {
+  vertical-align: top;
+  padding: 1em;
+}
 
 /****************************************
  * right side floating elements
@@ -472,7 +493,6 @@ div.i_src {
   background-position: -32px 0px; 
 }
 
-
 /****************************************
  * main entry page (quickfinder)
  */
@@ -481,12 +501,15 @@ ul.quickfinder li {
 	padding-top: 0em;
 	padding-left: 60px;
 	list-style-type:none;
+	font-weight: normal;
+	font-size: large;
 }
 
 ul.quickfinder li li.subitem {
 	list-style-type:circle;
         margin-left:-40px;
 	padding-left: 0;
+	font-size: small;
 }
 
 /* new style */
@@ -596,38 +619,49 @@ table.memmap th {
 div#content table {
 	font-size: 100%;
 	width:auto;
+	border-collapse: collapse;
+	border-width: 1px;
 }
 
 
 div#content th {
 	background-color: #dddddd;
+	border-width: 1px;
+}
+
+div#content td {
+	border-width: 1px;
 }
 
 table.content {
 	text-align:center;
 	empty-cells:show;
 	margin:5px;
+	border-style: solid;
+	border-collapse: collapse;
 }
 table.content td {
 	padding:3px;
+	border-style: solid;
 }
 table.content th {
 	padding:5px;
+	border-style: solid;
 }
 
 /****************************************
  * table of content
  */
 
-div#toc dir {
+div#toc .dir {
 	margin-top: 0.3em;
 	margin-bottom: 0.3em;
 	padding-left: 3em;
 }
 
 /****************************************
- *  * text formatting
- *   */
+ * text formatting
+ */
 
 div#content p.conclusion {
 	font-weight: bold;
@@ -643,10 +677,10 @@ div#content p.conclusion {
 	background-color: #888888;
 	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
  	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
-/*
+
   	-moz-border-radius: 14px;
 	-webkit-border-radius:14px;
-*/
+
 	color:white;
 	text-decoration:none;
 	text-align:center;
@@ -656,9 +690,10 @@ div#content p.conclusion {
 
 }
 
+
 /****************************************
- *  * twisties
- *   */
+ * twisties
+ */
 .h2t {
 	display: none;		/* only if enabled with javascript */
 	float: left;
@@ -669,8 +704,8 @@ div#content p.conclusion {
 }
 
 /****************************************
- *  * min/max link
- *   */
+ * min/max link
+ */
 
 #minmax {
 	display: none;
