@@ -193,7 +193,7 @@ function changeFilter( val ) {
 	var filter = currentFilter;
 
 	// hide both LI and UL
-	var v = $("div#topsearch").children().children("ul");
+	var v = $("div#topfind").children("ul");
 	$(v).hide();
 
 	//printDOMTree( $(v).get(0), window.open());
@@ -207,11 +207,13 @@ function checkValue() {
 	var val = $(t).attr("value");
 	if (val.length == 0) {
 		if (currentFilter != "") {
-			changeFilter(val);
+			//changeFilter(val);
+			$("div#topfind").hide();
 		}
 	} else
 	if (val.length > 1) {
 		if (currentFilter != val) {
+			$("div#topfind").show();
 			changeFilter(val);
 		}
 	}
@@ -237,6 +239,7 @@ function setupFilter2() {
 			$(this).focusin( function() {
 				$(this).css({'background-color':'#fc6'});
 				if (currentFilter.length > 1) {
+					$("div#topfind").show();
 					changeFilter(currentFilter);
 				}
 				isFilterActive = 1;
@@ -249,6 +252,7 @@ function setupFilter2() {
 	$("div#topsearch input").focusout( function( ) {
 			$(this).css({'background-color':'#fff'});
 			isFilterActive = 0;
+			$("div#topfind").hide();
 		});		
 }
 

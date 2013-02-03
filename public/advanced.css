@@ -43,8 +43,8 @@ DIV.top {
 div#topnav {
 margin:0;
 background:#555;
-margin-bottom: 0.05em;
 padding: 0;
+padding-bottom: 0.1em;
 font-size: small;
 }
 
@@ -141,7 +141,32 @@ font-size: small;
 
 /* this is enabled by javascript */
 div#topfind {
-/*display:none;*/
+display:none;
+background-color:#555;
+position: absolute;
+z-index: 9000;
+padding-right:1em;
+}
+
+div#topfind ul, div#topfind div {
+display: inline;
+list-style:none;
+}
+
+div#topfind ul.menu0  li {
+padding-left: 1em;
+}
+
+div#topfind a {
+color: #fff;
+}
+
+div#topfind a:hover {
+color: #ddd;
+}
+
+div#topfind li.separator {
+font-weight: bold;
 }
 
 /*****************************************
@@ -615,12 +640,26 @@ LI.subitem {
  * news formatting
  */
 
-ul.news li {
+ul.news {
+float:left;
+width: 40%;
+}
+
+ul.news2 {
+display:block;
+/*float:right;*/
+}
+
+div.fend {
+/*clear: both;*/
+}
+
+ul.news li, ul.news2 li {
 	padding-top: 5px;
 	list-style-type: none;
 }
 
-ul.news li div {
+ul.news li div, ul.news2 li div {
 	margin-left:-28px;
 	display:inline;
 	float: left;
