@@ -150,53 +150,6 @@ function bindMenu( el ) {
    	});
 }
 
-// ----------------------------------------------------------------------------------------------------------
-// expand/collapse and filter functionality
-
-function triggerExpand( parent ) {
-
-	$(parent).find("li").show();
-
-	// find recursively. We can do that as we only process loaded ones
-	$(parent).find("li.dirp").each( function ( i, e ) {
-		loadMenu( e, function (target, data, loaded) {
-
-			// include loaded menu
-			var ok = processMenu( target, data, loaded );
-			if (ok) {
-				bindMinus(target);
-
-				if (loaded) {
-					// trigger further expand
-					triggerExpand( target );
-				}
-			}
-		});
-	});
-}
-
-function expandAll( ) {
-	// we cannot simply let jquery loop over all ul, as they may not be loaded yet
-	// but we can start with all the collapsed entries
-	// triggerExpand will do the rest for us in the ajax handler
-	var v = $("div#menu ul");
-	$(v).show();
-	triggerExpand($(v));
-}
-
-function collapseAll( ) {
-	var topul = $("div#menu").children().children("ul");
-
-	$(topul).show();
-	$(topul).children("li").each( function ( i, e ) {
-		// toplevel
-		$(e).show();
-		$(e).children("ul").hide();
-		if ($(e).hasClass("dirm")) {
-			bindPlus( e );
-		}
-	});
-}
 
 // ----------------------------------------------------------------------------------------------------------
 // filter
@@ -240,7 +193,7 @@ function changeFilter( val ) {
 	var filter = currentFilter;
 
 	// hide both LI and UL
-	var v = $("div#menu").children().children("ul");
+	var v = $("div#topsearch").children().children("ul");
 	$(v).hide();
 
 	//printDOMTree( $(v).get(0), window.open());
@@ -249,7 +202,7 @@ function changeFilter( val ) {
 }
 
 function checkValue() {
-	var t = $("div#menu input");
+	var t = $("div#topsearch input");
 
 	var val = $(t).attr("value");
 	if (val.length == 0) {
@@ -275,18 +228,9 @@ function monitorFilter() {
 // ----------------------------------------------------------------------------------------------------------
 // setup navigation
 
-function setupFilter() {
-	$("div#menu div.i_expand").click( expandAll );
-	$("div#menu div.i_collapse").click( collapseAll );
+function setupFilter2() {
 
-	$("div#menu div.i_cancel").click( function() {
-			isFilterActive = 0;
-			currentFilter = "";
-			expandAll();
-			$("div#menu input").attr("value", "");
-		});
-
-	$("div#menu input").focusin( function( ) {
+	$("div#topsearch input").focusin( function( ) {
 			$(this).css({'background-color':'#fc6'});
 			$(this).attr("value", "");
 			$(this).unbind("focusin");
@@ -302,135 +246,19 @@ function setupFilter() {
 			setTimeout(monitorFilter, 40);
 		});
 		
-	$("div#menu input").focusout( function( ) {
+	$("div#topsearch input").focusout( function( ) {
 			$(this).css({'background-color':'#fff'});
 			isFilterActive = 0;
 		});		
 }
 
 // ----------------------------------------------------------------------------------------------------------
-// setup twisties
-
-function setupTwisties() {
-	
-	$("div.h2t").each( function(i, e) {
-		//$(e).show();
-		$(e).css({'display': 'block'});
-		$(e).parent().click( twisty ); // click on h2h(eader)
-	});
-}
-
-function twisty() {
-	var content = $(this).parent().children(".h2c");
-	var twisty = $(this).children(".h2t");
-	if ( $(content).is(':visible') ) {
-		$(twisty).css({'background-position': '-256px -32px'});
-		$(content).hide();
-	} else {
-		$(twisty).css({'background-position': '-288px -32px'});
-		$(content).css({'display': 'block'});
-	}
-}
-
-// ----------------------------------------------------------------------------------------------------------
-// min/max handling
-
-function setupMinmax() {
-	var t = $("#minmax");
-	$(t).html("<a href=\"#\">Maximize</a>");
-	$(t).children("a").click( minmax );
-	$(t).show();
-}
-
-function minmax() {
-	var left = $("#leftcol");
-	var right = $("#rightcol");
-	var mid = $("#midcol");
-	if ( $(left).is(':visible') ) {
-		// maximize
-		$(left).hide();
-		$(right).hide();
-		$(mid).css({'margin-left':'1%'});
-		$(mid).css({'margin-right':'1%'});
-		$(this).html("Minimize");
-	} else {
-		// minimize
-		$(mid).css({'margin-left':'16%'});
-		$(mid).css({'margin-right':'16%'});
-		$(left).show();
-		$(right).show();
-		$(this).html("Maximize");
-	}
-}
-
-// ----------------------------------------------------------------------------------------------------------
-// navigation pointer
-
-//function setupPointer() {
-//	var p = $("#pointr");
-//	// basic setup
-//	//$(p).css({'background': 'url(imgs/sprite.png) no-repeat'});
-//	//$(p).css({'background-color': '#eee'});
-//	$(p).css({'width': '40px'});
-//	$(p).css({'height': '80px'});
-//	$(p).css({'background-position': '0px 0px'});
-//	//$(p).css({'display': 'block'});
-//	$(p).css({'position': 'absolute'});
-//	$(p).css({'top': '-10px'});
-//
-//	$(p).prev().resize( function() {
-//	   pointr(this.next());
-//	});
-//
-//	pointr(p);
-//
-//	$(p).show();
-//}
-
-//function pointr( p ) {
-//	var position = $(p).prev().position();
-//	var width = $(p).prev().outerWidth();
-//	//alert("position=" + position.top +"/"+ position.left +", width="+(position.left+width));
-////	$(p).css({'top': (position.top - 31) + "px"});
-////	$(p).css({'left': (position.left + width - 12) + "px" });
-//}
-
-// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
-function doInit() {
-	// filter is only usable with javascript, so hidden by default
-	$("div#filter").show();
-	$("div#share").show();
-	// initialize minmax
-	setupMinmax();
-	// initialize twisties
-	setupTwisties();
-	// initialize menu
-	// setup Ajax error on menu
-	setupAjax();
-	bindMenu($("div#menu"));
-	setupFilter();
-	// setup pointer
-//	setupPointer();
+function doInit2() {
+	setupFilter2();
 }
 
-// done to check advanced stylesheet
-function doTimer() {
-	if ($("div#twitter:visible").size() > 0) {
-		doInit();
-	} else {
-		setTimeout( doTimer, 1000);
-	}
-}
-
-$(document).ready(function(){
-
-	// only init for non-default stylesheets
-	// replace with "doInit();" once it is public
-	//doTimer();
-	doInit();
-});
-
+$(document).ready(doInit2);
 

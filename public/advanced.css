@@ -36,26 +36,54 @@ DIV.top {
 	/*box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;*/
 }
 
-table#topnav {
+/*****************************************
+ * top level navigation 
+ */
+
+div#topnav {
 margin:0;
 background:#555;
-margin-bottom: 0.5em;
+margin-bottom: 0.05em;
 padding: 0;
 font-size: small;
 }
 
-tr.topnav0 {
+ul.topnav0 {
 list-style-type:none;
 padding:0px;
 margin:0;
 }
-tr.topnav0 td {
+ul.topnav0 li {
 padding:0px;
 margin:0;
 }
+@media (min-width: 1010px) {
+	ul.topnav0 li {
+		float: left;
+	}
+	div.fend1 {
+		clear: left;
+	}
+}
 
+@media (min-width: 710px) and (max-width: 1009px) {
+	ul.topnav0 li {
+		float: left;
+	}
+	ul.topnav1 li,  
+	div.fend1h,
+	div.fend1 {
+		clear: left;
+	}
+}
 
-ul.topnav1 {
+@media (min-width: 500px) and (max-width: 709px) {
+	ul.topnav0 > li {
+		float: left;
+	}
+}
+
+ul.topnav1, ul.topnav1h {
 padding:0.1em;
 text-align:left;
 margin:0;
@@ -63,25 +91,62 @@ margin:0;
 
 ul.topnav1 li {
 list-style:none;
-display:inline;
+/*display:inline;*/
 margin:0;
 }
 
-ul.topnav1 a, div.topnav1 span {
-text-align:center;
-background-color:#777;
+ul.topnav1h li {
+list-style:none;
+/*display:inline;*/
+margin:0;
+}
+
+ul.topnav1 a, ul.topnav1h span {
+text-align:left;
 color:#fff;
-float:left; 
-width: 9em;
-text-decoration: none; font-weight:bold;
+/*float:left; */
+text-decoration: none; 
+/*font-weight:bold;*/
 margin-left:0.1em;
-margin-bottom:0.1em;
+margin-right:0.1em;
+padding-left: 0.4em;
+padding-right: 0.4em;
+margin-bottom:0.2em;
+}
+ul.topnav1h span {
+background-color:#555;
+font-weight:bold;
+width: 3em;
 }
 ul.topnav1 a:hover {
+color:#ddd;
 }
-ul.topnav1 div {
+/*ul.topnav1 div, div.fend0 {*/
+div.fend0 {
 clear: left;
 }
+
+/*****************************************
+ * top level search 
+ */
+
+div#topsearch {
+margin:0;
+background:#555;
+color:#fff;
+margin-bottom: 0.5em;
+padding: 0;
+font-size: small;
+}
+
+/* this is enabled by javascript */
+div#topfind {
+/*display:none;*/
+}
+
+/*****************************************
+ * top level styles 
+ */
 
 /* left/right cols have headers in the top level style */
 DIV.tophead {
@@ -675,12 +740,13 @@ div#content p.conclusion {
 	position:relative;
 
 	background-color: #888888;
+/*
 	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
  	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
 
   	-moz-border-radius: 14px;
 	-webkit-border-radius:14px;
-
+*/
 	color:white;
 	text-decoration:none;
 	text-align:center;

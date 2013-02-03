@@ -84,42 +84,76 @@ urchinTracker();
 
 <div id="mainbox">
 <!-- new nav header -->
-<table id="topnav">
-    <tr class="topnav0" id=topnavul><td>
+<div id="topnav">
+    <ul class="topnav0" id=topnavul><li>
 	<ul class="topnav1" id="main">
 		<li><a href="index.html">Home</a></li>
 		<li><a href="blog/index.html">Blog</a></li>
+	<div class="fend1"></div>
 	</ul>
-	</td><td>
-	<ul class="topnav1" id="createdhw">
+	</li><li>
+	<ul class="topnav1h" id="createdhw">
+	    <li><span>Hardware:</span></li>
+	    <li><ul class="topnav1">
 		<li><a href="65k/index.html">The 65k project</a></li>
 		<li><a href="csa/index.html">CS/A65</a></li>
+		<li><a href="cbmhw/index.html">CBM mods</a></li>
 		<li><a href="mischw/index.html">Other hardware</a><div></div></li>
+		<div class="fend1"></div>
+		</ul>
+	    </li>
+	<div class="fend1h"></div>
 	</ul>
-	</td><td>
-	<ul class="topnav1" id="createdhw">
+	</li><li>
+	<ul class="topnav1h" id="createdsw">
+	    <li><span>Software:</span></li>
+	    <li><ul class="topnav1">
 		<li><a href="osa/index.html">GeckOS</a></li>
 		<li><a href="lib6502/index.html">Lib6502</a></li>
 		<li><a href="o65/index.html">O65</a></li>
 		<li><a href="usb65/index.html">USB drivers</a></li>
 		<li><a href="xd2031/index.html">XD2031</a></li>
-		<li><a href="cbmhw/index.html">CBM mods</a></li>
 		<li><a href="misc/index.html">Misc</a><div></div></li>
+		<div class="fend1"></div>
+		</ul>
+	    </li>
+	<div class="fend1h"></div>
 	</ul>
-	</td><td>
-	<ul class="topnav1" id="curatednav">
+	</li><li>
+	<ul class="topnav1h" id="curatednav">
+	    <li><span>Library:</span></li>
+	    <li><ul class="topnav1">
 		<li><a href="petindex/index.html">PETindex</a></li>
 		<li><a href="adv65/index.html">Advanced 6502</a></li>
 		<li><a href="hwinfo/index.html">ICs and Standards</a><div></div></li>
+		<div class="fend1"></div>
+		</ul>
+	    </li>
+	<div class="fend1h"></div>
 	</ul>
-	</td><td>
+	</li><li>
 	<ul class="topnav1" id="miscnav">
-		<li><a href="design.html">Web Design</a><div></div></li>
+		<li><a href="design.html">Web&nbsp;Design</a><div></div></li>
 		<li><a href="contact.html">Contact</a></li>
+	<div class="fend1"></div>
 	</ul>
-    </td></table>
+    </li>
+<div class="fend0"></div>
+</ul>
 </div>
 <!-- end new nav header -->
+<!-- new find header -->
+<div id="topsearch">
+<form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit">(by Google)
+<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form>
+<div id="topfind">
+	<ul>
+		<li class="dirp">Home</li>
+	</ul>
+</div>
+</div>
+<!-- end new find header -->
+
 <a name="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div style="display: block;" id="filter"><form action="#"><table id="filterbox"><tbody><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text"></td><td><div id="cancel" class="i_cancel">&nbsp;</div></td></tr></tbody></table><table id="expcol"><tbody><tr><td><div id="expand" class="i_expand">&nbsp;</div></td><td><div id="collapse" class="i_collapse">&nbsp;</div></td></tr></tbody></table></form></div>
 <div id="mtree">
 <a id="m_homepage" href="http://www.6502.org/users/andre/index.html" class="mcurrent">Homepage</a>
@@ -174,11 +208,27 @@ urchinTracker();
 </ul>
 
 </div>
-		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
+		</div><!--div class="top" id="browser"><div class="tophead">browser</div><div>
 			Site has been tested with a number of browsers and systems. 
 Javascript required for advanced menu, but degrades gracefully without 
 Javascript. IE6 not supported anymore!
-			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search my site" type="submit"><br>(Google, in new window)
+			</div></div-->
+
+
+<div class="top" id="oldnews"><div class="tophead">News</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews">&nbsp;</div><small>2011-12-23</small>
+        Some small updates to the <a href="http://www.6502.org/users/andre/65k/specsprog.html">programming specs</a>; see change log there.
+     </li><li><div class="i_oldnews">&nbsp;</div><small>2011-06-04</small>
+	Added a <a href="http://www.6502.org/users/andre/adv65/65net.html">6502 networking page</a>
+        Updated the <a href="http://www.6502.org/users/andre/bios/index.html">BIOS board</a> with a new layout.
+        Updated and added a new version of the <a href="http://www.6502.org/users/andre/pwr/index.html">Power supply board</a>.
+	Various other updates across the site.
+    </li>
+</ul>
+</div>
+</div>
+
+
+</div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search my site" type="submit"><br>(Google, in new window)
 	                        <input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form></div></div><div style="display: block;" class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"><ul class="social_share_privacy_area"><li class="facebook help_info"><span class="info">2
  clicks for more privacy. Only when you click here the button becomes 
 active and you can send the recommendation. Already during the first 
@@ -199,7 +249,9 @@ detail available by clicking the <em>i</em> (in German!).</span></span></a><span
 <p>Interested in electronics design? Look at the <a href="http://www.6502.org/users/andre/icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="http://www.6502.org/users/andre/65k/index.html">65k processor design!</a></p>
 
-		</div></div><div class="top" id="oldnews"><div class="tophead">History</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews">&nbsp;</div><small>2011-12-23</small>
+		</div></div>
+
+<div class="top" id="oldnews"><div class="tophead">History</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews">&nbsp;</div><small>2011-12-23</small>
         Some small updates to the <a href="http://www.6502.org/users/andre/65k/specsprog.html">programming specs</a>; see change log there.
      </li><li><div class="i_oldnews">&nbsp;</div><small>2011-06-04</small>
 	Added a <a href="http://www.6502.org/users/andre/adv65/65net.html">6502 networking page</a>
@@ -413,8 +465,8 @@ machines with this CPU is there, like new C64 kernals, VC1541 modifications
 etc. A selfbuilt operating system
 features Multitasking, dynamic memory management, a standard library
 and internet access.</p>
-<p>For my further plans around the 6502 please see my new <a href="http://www.6502.org/users/andre/sneak.html">Sneak Preview</a> page!</p>
-  </div><div class="h2"><div class="h2h"><div style="display: block;" class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews">&nbsp;</div><small>2013-01-13</small>
+  </div>
+<div class="h2"><div class="h2h"><div style="display: block;" class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul class="news"><li><div class="i_hotnews">&nbsp;</div><small>2013-01-13</small>
 	The VIA can actually do SPI model 0 to access SD cards.... 
 	See the new version of my <a href="http://www.6502.org/users/andre/csa/spi/index.html">SD Card schematics</a>.
      </li><li><div class="i_hotnews">&nbsp;</div><small>2013-01-06</small>
@@ -488,7 +540,13 @@ The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
     </div></div><hr>
 Last updated 2010-09-10.
-  </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="";</script><script type="text/javascript" src="scripts-all.js"></script><script type="text/javascript" src="jquery-min.js"></script><script type="text/javascript" src="jquery.socialshareprivacy.js"></script><script type="text/javascript">
+  </div></div><div id="footer">&nbsp;</div></div>
+	<script type="text/javascript">myUp="";</script>
+	<script type="text/javascript" src="scripts-all.js"></script>
+	<script type="text/javascript" src="search.js"></script>
+	<script type="text/javascript" src="jquery-min.js"></script>
+	<script type="text/javascript" src="jquery.socialshareprivacy.js"></script>
+	<script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){
                             $('#socialshareprivacy').socialSharePrivacy();
