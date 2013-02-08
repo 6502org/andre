@@ -257,11 +257,33 @@ function setupFilter2() {
 }
 
 // ----------------------------------------------------------------------------------------------------------
+// nav twisties
+
+function setupTwisties2() {
+	$("div.twisty").each( function(i, e) {
+		$(e).click( twisty2 );
+	});
+}
+
+function twisty2() {
+	var content = $(this).parent().children("ul");
+        if ( $(content).is(':visible') ) {
+                $(content).hide();
+		$(this).parent().css({'height':'1.5em'});
+        } else {
+                $(content).show();
+		$(this).parent().css({'height':''});
+        }
+	
+}
+
+// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
 function doInit2() {
 	setupFilter2();
+	setupTwisties2();
 }
 
 $(document).ready(doInit2);
