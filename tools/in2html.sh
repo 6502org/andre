@@ -128,13 +128,60 @@ for i in $root/*.inx; do
 		doinsert1 $t1 $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			echo "<div id=\"mtree\">" >> $t2
-			cat $root/.files.xml \
-				| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
-				| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
-				>> $t2
-			echo "</div>" >> $t2
+			if [ -e $root/.files.xml ]; then
+				echo "<div id=\"mtree\">" >> $t2
+				cat $root/.files.xml \
+					| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
+					| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
+					>> $t2
+				echo "</div>" >> $t2
+			fi;
 			doinsert2 $i $t2 "@MENU@"
+		fi
+		mv $t2 $t1
+
+		doinsert1 $t1 $t2 "@MENU1@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			if [ -e $root/.files1.xml ]; then
+				echo "<div id=\"mtree\">" >> $t2
+				cat $root/.files1.xml \
+					| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
+					| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
+					>> $t2
+				echo "</div>" >> $t2
+			fi;
+			doinsert2 $i $t2 "@MENU1@"
+		fi
+		mv $t2 $t1
+
+		doinsert1 $t1 $t2 "@MENU2@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			if [ -e $root/.files2.xml ]; then
+				echo "<div id=\"mtree\">" >> $t2
+				cat $root/.files2.xml \
+					| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
+					| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
+					>> $t2
+				echo "</div>" >> $t2
+			fi;
+			doinsert2 $i $t2 "@MENU2@"
+		fi
+		mv $t2 $t1
+
+		doinsert1 $t1 $t2 "@MENU3@"
+		v=$?
+		if [ $v -eq 1 ]; then
+			if [ -e $root/.files3.xml ]; then
+				echo "<div id=\"mtree\">" >> $t2
+				cat $root/.files3.xml \
+					| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
+					| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
+					>> $t2
+				echo "</div>" >> $t2
+			fi;
+			doinsert2 $i $t2 "@MENU3@"
 		fi
 		mv $t2 $t1
 
