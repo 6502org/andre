@@ -25,7 +25,7 @@
         </h2>
       </xsl:otherwise>
     </xsl:choose>
-    <div class="toplink"><a href="#top">Top</a></div>
+    <!--div class="toplink"><a href="#top">Top</a></div-->
   </div>
 </xsl:template>
 
@@ -130,6 +130,7 @@
 </div> <!-- footer -->
 </div> <!-- content -->
 </div> <!-- midcol -->
+<xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>
 </div> <!-- mainbox -->
 <xsl:call-template name="bottom"/>
@@ -161,16 +162,6 @@
 
 <xsl:template name="bottomtxt">
 	<div id="rightcol">
-	        <div class="top" id="google"><div class="tophead">search</div><div>
-	                <form method="get" action="http://www.google.com/search" target="_blank">
-       		                <input alt="search parameters" type="text" name="q" size="10" maxlength="255" value="" />
-	                        <input class="advbutton" type="submit" value="Search my site" /><br/>(Google, in new window)
-	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
-	                </form>
-	        </div></div>
-	        <!--div class="top" id="share"><div class="tophead">share</div><div>
-	                <div id="socialshareprivacy"> </div>
-	        </div></div-->
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br/>
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br/> (In new window)
@@ -413,6 +404,7 @@
 <xsl:apply-templates select="closing"/>
 </div> <!-- content -->
 </div> <!-- midcol -->
+<xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>
 </div> <!-- mainbox -->
 <xsl:call-template name="bottom"/>
@@ -541,17 +533,16 @@
 </xsl:template>
 
 <xsl:template name="bottom">
-  <xsl:call-template name="bottomtxt"/>
   <script type="text/javascript">myUp="%up%";</script>
-  <script type="text/javascript" src="%up%scripts-all.js"></script>
-  <script type="text/javascript" src="%up%jquery.socialshareprivacy.js"></script>
+  <script type="text/javascript" src="%up%scripts2-all.js"></script>
+  <!--script type="text/javascript" src="%up%jquery.socialshareprivacy.js"></script>
   <script type="text/javascript">
           jQuery(document).ready(function($){
                   if($('#socialshareprivacy').length != 0){
                             $('#socialshareprivacy').socialSharePrivacy();
                   }
           });
-  </script>
+  </script-->
 </xsl:template>
 
 </xsl:stylesheet>

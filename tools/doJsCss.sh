@@ -64,8 +64,10 @@ jstarget=$root/public/scripts
 cat $root/src/scripts-copyright.txt > ${jstarget}.js.in
 
 cat $root/src/scripts.js >> ${jstarget}.js.in
+cat $root/src/scripts2.js >> ${jstarget}2.js.in
 
 mvmodified ${jstarget}.js.in ${jstarget}.js
+mvmodified ${jstarget}2.js.in ${jstarget}2.js
 
 #################################################################################
 # optimized, combined javascript
@@ -74,9 +76,13 @@ cat $root/src/scripts-copyright.txt > ${jstarget}-all.js.in
 
 cat ${libtarget}-min.js >> ${jstarget}-all.js.in
 
+cpmodified ${jstarget}-all.js.in ${jstarget}2-all.js.in
+
 yui-compressor --type js ${jstarget}.js >> ${jstarget}-all.js.in
+yui-compressor --type js ${jstarget}2.js >> ${jstarget}2-all.js.in
 
 mvmodified ${jstarget}-all.js.in ${jstarget}-all.js
+mvmodified ${jstarget}2-all.js.in ${jstarget}2-all.js
 
 
 #################################################################################

@@ -103,8 +103,8 @@ for i in $root/*.inx; do
 		doinsert1 $t1 $t2 "@HOT@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			if [ -f .hot.xml ]; then
-				cat .hot.xml >> $t2
+			if [ -f $root/$up/.hot.xml ]; then
+				cat $root/$up/.hot.xml >> $t2
 			fi;
 			doinsert2 $t1 $t2 "@HOT@" 
 		fi
