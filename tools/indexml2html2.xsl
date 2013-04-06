@@ -93,7 +93,6 @@
 <a name="top"/>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
-<xsl:call-template name="ie6warn"/>
 <div class="top" id="content">
 <div id="minmax"/>
 <xsl:text>
@@ -155,10 +154,12 @@
 	</div> <!-- topsearch -->
 
 	<!-- up to three levels of menu -->
-		@MENU1@
-		@MENU2@
-		@MENU3@
+	<div id="menubox">
+		@MENU@
+	</div>
+</xsl:template>
 
+<xsl:template name="bottomtxt">
 	<div id="rightcol">
 	        <div class="top" id="google"><div class="tophead">search</div><div>
 	                <form method="get" action="http://www.google.com/search" target="_blank">
@@ -167,9 +168,9 @@
 	                        <input type="hidden"  name="sitesearch" value="www.6502.org/users/andre" />
 	                </form>
 	        </div></div>
-	        <div class="top" id="share"><div class="tophead">share</div><div>
+	        <!--div class="top" id="share"><div class="tophead">share</div><div>
 	                <div id="socialshareprivacy"> </div>
-	        </div></div>
+	        </div></div-->
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br/>
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br/> (In new window)
@@ -340,7 +341,6 @@
 <a name="top"/>
 <xsl:call-template name="commoncol"/>
 <div id="midcol">
-<xsl:call-template name="ie6warn"/>
 <div class="top" id="content">
 <div id="minmax"/>
 <xsl:text>
@@ -531,7 +531,7 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<link rel="stylesheet" title="Default" type="text/css" href="%up%style-min.css"/>
+<link rel="stylesheet" title="Default" type="text/css" href="%up%style2.css"/>
 <xsl:if test="style">
   <link rel="stylesheet" type="text/css" href="{style}"/>
 </xsl:if>
@@ -540,17 +540,8 @@
 </xsl:text>
 </xsl:template>
 
-<xsl:template name="ie6warn">
-<div class="top" id="ie6warn">
-You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
-more modern browser, like Internet Explorer 8 or later, 
-<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
-<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
-<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div>
-</xsl:template>
-
 <xsl:template name="bottom">
+  <xsl:call-template name="bottomtxt"/>
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts-all.js"></script>
   <script type="text/javascript" src="%up%jquery.socialshareprivacy.js"></script>

@@ -61,53 +61,6 @@ doinsert2 () {
 		>> $tox
 }
 
-buildbread () {
-
-        #echo "buildbread myname = $1, rroot=" $2 ", level="$3 ", <p/>"
-
-        if [ -f $2/../.name.xml ]; then
-                buildbread $1 $2/.. ../$3
-        else
-                if [ -f $2/.name.xml ]; then
-                        echo "<a href=\""$3"index.html\">Homepage</a>"
-                else
-                        echo "Homepage"
-                fi;
-        fi;
-
-        if [ "x$3" = "x" ]; then
-                # bottom level
-		if [ "$myname" != "index.html" ]; then
-        	        x=`cat $2/.name.xml \
-				| grep "^index.html" \
-				| cut -d " " -f 2-`
-			if [ "x$x" != "x" ]; then
-                		echo -n '&gt;&gt; '
-	                	echo -n " <a href=\""$3"index.html\">"
-				echo $x;
-	                	echo -n "</a>"
-			fi;
-		fi;
-		x=`cat $2/.name.xml \
-			| grep "^$myname" \
-			| cut -d " " -f 2-`
-		if [ "x$x" != "x" ]; then
-                	echo -n '&gt;&gt;  '
-			echo -n $x;
-		fi;
-        else
-                # not bottom level
-	        x=`cat $2/.name.xml \
-			| grep "^index.html" \
-			| cut -d " " -f 2-`
-		if [ "x$x" != "x" ]; then
-                	echo -n '&gt;&gt;'" <a href=\""$3"index.html\">"
-			echo -n $x;
-                	echo -n "</a>";
-		fi;
-        fi;
-}
-
 #echo "Run: " $0 $root $up $upn $parent
 
 for i in $root/*.inx; do 
@@ -129,13 +82,9 @@ for i in $root/*.inx; do
 		doinsert1 $t1 $t2 "@MENU@"
 		v=$?
 		if [ $v -eq 1 ]; then
-			if [ -e $root/.files.xml ]; then
-				echo "<div id=\"mtree\">" >> $t2
-				cat $root/.files.xml \
-					| sed -e 's/"'$myname'"/"'$myname'" class="mcurrent"/g' \
-					| sed -e 's%"\.\./'$lastdir'/'$myname'"%"'$myname'" class="mcurrent"%g' \
-					>> $t2
-				echo "</div>" >> $t2
+			if [ -e $menu ]; then
+				#echo "MENU: $menu"
+				cat $menu >> $t2;
 			fi;
 			doinsert2 $i $t2 "@MENU@"
 		fi
@@ -158,24 +107,6 @@ for i in $root/*.inx; do
 				cat .hot.xml >> $t2
 			fi;
 			doinsert2 $t1 $t2 "@HOT@" 
-		fi
-		mv $t2 $t1
-
-		# insert breadcrumb
-		doinsert1 $t1 $t2 "@BREAD@"
-		v=$?
-		if [ $v -eq 1 ]; then
-			if [ -f $root/.name.xml ]; then
-				echo "<div id=\"breadcrumbs\">" >> $t2
-				#cat $root/.name.xml \
-				buildbread $myname $root \
-					| sed -e "s@%up%@.@g" \
-					>> $t2
-				echo "</div>" >> $t2
-			#else
-				#echo "Breadcrumbs not found @ " `pwd` ", root=" $root
-			fi;
-			doinsert2 $t1 $t2 "@BREAD@"
 		fi
 		mv $t2 $t1
 

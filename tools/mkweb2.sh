@@ -37,7 +37,7 @@ $bin/doxsl2.sh -f $dir
 ############################################
 # 3) create the html files by merging the menu with the .in files
 
-$bin/in2html.sh $dir
+$bin/in2html2.sh $dir
 
 ############################################
 # 4) create the compressed js and css files

@@ -37,6 +37,15 @@ yui-compressor --type css ${csstarget}.css.in > ${csstarget}-min.css.in
 mvmodified ${csstarget}.css.in ${csstarget}.css
 mvmodified ${csstarget}-min.css.in ${csstarget}-min.css
 
+# new style
+
+cat $root/src/style2.css > ${csstarget}2.css.in
+
+yui-compressor --type css ${csstarget}2.css.in > ${csstarget}2-min.css.in
+
+mvmodified ${csstarget}2.css.in ${csstarget}2.css
+mvmodified ${csstarget}2-min.css.in ${csstarget}2-min.css
+
 #################################################################################
 # Javascript jquery lib(s)
 
