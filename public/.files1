@@ -1,11 +1,11 @@
-f . Home
+h index.html Home
 f contact.html Contact
 f design.html Web design
 s Hardware
 d 65k The 65k Project
 d csa CS/A65
 d cbmhw CBM mods
-d spi65b SPI65B
+p spi65b SPI65B
 d mischw Other hardware
 s Software
 p osa GeckOS
