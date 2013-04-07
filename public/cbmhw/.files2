@@ -1,0 +1,13 @@
+h index.html CBM Modifications
+l ../adv65/pet816/index.html Speed up your PET!
+d ryofat40 Build your own PET replica!
+d ryo1581 Build your own VC1581 replica!
+d petnet Put your PET on the 'Net
+p c64csa CS/A adapter for C64
+p petcsa CS/A adapter for PETs
+p kernal C64 kernal modifications
+p scsi CBM SCSI interfaces
+p ieee488 IEEE488 interfaces
+f hwmods.html My Hardware mods
+p 8032sk A modified 8032-SK
+l ../icap/c64ser.html UART serial interface
