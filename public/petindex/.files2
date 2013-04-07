@@ -1,0 +1,29 @@
+h index.html PETindex
+s General Info
+p gallery PET gallery
+f versions.html PET versions
+f boards.html Boards and schematics
+f pinouts.html Connectors
+f keyboards.html Keyboards
+f extensions.html Hardware Extensions
+f lang.html Programming Languages
+f open.html Open questions
+s Specials
+f superpet.html SuperPET MMF9000
+f 8x96.html The 8096 and 8296 models
+f 8032sk.html The 8032-SK
+s Peripherals
+d drives Disk drives
+s Programming
+f progmod.html Hardware programming
+f roms.html ROM descriptions
+f crtc.html CRTC operation
+s Quirks
+d poke Killer poke
+f repairs.html Repairing the PET
+s Links
+f hw.html Hardware projects
+f sw.html Software projects
+f emus.html PET emulators
+f transfer.html File transfers
+f links.html Links
