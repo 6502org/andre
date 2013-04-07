@@ -1,0 +1,8 @@
+h index.html Hardware Info
+d crtc CRTC 6545/6845
+d ls610 74LS610 MMU
+f scsi.html SCSI
+f i2c.html I2C
+d spi SPI (MMC, SD-Cards)
+p ethernet Ethernet and TCP/IP
+p usb USB
