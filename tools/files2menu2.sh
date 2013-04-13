@@ -38,12 +38,47 @@ do_convert () {
 			print "<li><ul class=\"nav2\" >"; \
 			open = 2; \
 		}\
-		/^[fhl] / { \
+		/^S / { \
+			if (open >= 2) { \
+				print "<div class=\"nend2\"></div>";\
+				print "</ul>";\
+			} \
+			print "<li><span>" substr($0, 3) "</span></li>"; \
+			print "<li><ul class=\"nav2\" >"; \
+			open = 2; \
+		}\
+		/^[h] / { \
 			if (open < 1) { \
 				print "<ul class=\"nav1\">";
 				open = 1;
 			} \
+			if (open < 2) { \
+				print "<ul class=\"nav2\">";
+				open = 2;
+			} \
+			print "<li class=\"navhdr\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; \
+		}\
+		/^[f] / { \
+			if (open < 1) { \
+				print "<ul class=\"nav1\">";
+				open = 1;
+			} \
+			if (open < 2) { \
+				print "<ul class=\"nav2\">";
+				open = 2;
+			} \
 			print "<li><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "</a></li>"; \
+		}\
+		/^[l] / { \
+			if (open < 1) { \
+				print "<ul class=\"nav1\">";
+				open = 1;
+			} \
+			if (open < 2) { \
+				print "<ul class=\"nav2\">";
+				open = 2;
+			} \
+			print "<li><a href=\"%up%" $2 "\">&gt;" substr($0, 4+length($2)) "</a></li>"; \
 		}\
 		/^[dp] / { \
 			print "<li><a href=\"%up%" $2 "/index.html\">" substr($0, 4+length($2)) "</a>";\
@@ -102,6 +137,9 @@ do_2menu () {
 	p)	
 		# process pointed-to files
 		echo "process pointer: " $name
+		cat $file.xml2 \
+			| sed -e "s@%up%@../@g" \
+			> $dir/$name/index.html.menu
 		;;
 	d)	
 		# process directories
