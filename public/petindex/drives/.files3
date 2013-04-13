@@ -1,0 +1,9 @@
+h index.html Disk Drives
+p arch Drive architecture
+p gallery Drive gallery
+p roms DOS ROMs
+p progs Drive utilities
+f drives.html Drives list
+f harddisk.html Harddisk info
+f writegap.html Write gap info
+
