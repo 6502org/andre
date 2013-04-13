@@ -1,0 +1,10 @@
+h index.html CRTC
+f crtc.html CRTC operation
+f diffs.html Differences between models
+f uses.html CRTC system integration
+p internals CRTC internals
+f composite.html Composite video generation
+p pet CBM PET test programs
+l ../../csa/vdc/index.html CS/A VDC board
+l ../../cbmhw/8032sk/index.html Creative use
+
