@@ -151,6 +151,10 @@ do_2menu () {
 		;;
 	esac;
 	done;
+
+	rm $file.xml2
+	rm $file.xml
+	
 }
 
 do_2menu . 1 ./

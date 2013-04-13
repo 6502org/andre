@@ -85,6 +85,7 @@ for i in $root/*.inx; do
 			if [ -e $menu ]; then
 				#echo "MENU: $menu"
 				cat $menu >> $t2;
+				rm $menu
 			fi;
 			doinsert2 $i $t2 "@MENU@"
 		fi

@@ -213,7 +213,7 @@ var currentFilter = "";
 
 function triggerFilter( parent, filter ) {
 
-	// do not search rescursively with CSS, as visibility needs to be processed
+	// do not search recursively with CSS, as visibility needs to be processed
 	// in the correct order
 	$(parent).children("li").each( function ( i, e ) {
 		// hide each item

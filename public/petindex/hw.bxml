@@ -14,8 +14,11 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2013-04-13">
+        Added a custom RAM disk - "RAM Drive 2008".
+    </item>
     <item date="2011-05-01">
-        Added Nils Eilers' custom charractor ROM extension and the PET-SID extension.
+        Added Nils Eilers' custom charactor ROM extension and the PET-SID extension.
     </item>
   </news>
   <toc/>
@@ -39,9 +42,12 @@ to emulate IEEE488 disk drives (using VICE drive code :-),
 a System to have the PET access serial IEC disk drives, and IEEE488
 interfaces for the C64, VIC20 and the VC1541.
 </DD>
+
 <DT><A class="extlink" HREF="@CBMARC@/crossplatform/transfer/">The transfer section</A> of the CBM archive</DT><DD>Contains a lot of transfer utilities to copy files from the PC to the PET and back.</DD>
+
 <DT><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
 <DD>This page contains the description of the "Flash Attack" cable, as well as a PET sound interface.</DD>
+
 <DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A> and <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> have circuits for composite video output.</DT>
 <DD>One of the deficiencies of the PET is that it has no composite video
 output to connect normal monitors to it. These links show two circuits
@@ -50,6 +56,8 @@ oldcomputers.net claims their circuit is untested). Another sample
 circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A class="extlink" HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
 I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.html">VDC page</a> to include schematics and boards for adapted versions of the abovementioned two composite video circuits to work with my CS/A computer (which comes close to the PET in this respect).
 </DD>
+
+<DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmrd2008/">CBM RAM-Drive 2008</A>, a RAM disk extension for the 8296 (in German)</DT><DD>A small hardware RAM disk extension with schematics and a DOS program for it.</DD>
 </DL>
      </desc>
   </section>
