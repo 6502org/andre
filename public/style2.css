@@ -1,0 +1,609 @@
+
+/****************************************
+ *
+ * style.css 
+ *
+ * (c) 2010 A. Fachat
+ *
+ * All rights reserved!
+ */
+
+/****************************************
+ *  global 
+ */
+
+BODY {
+ /* non CSS3 browsers */
+ background-color: #fff;
+
+	/*font-family: "Arial","Sans Serif";*/
+	font-family: verdana,helvetica,arial,sans-serif;
+	font-size: 100%;
+}
+
+a:visited { color:#000080; text-decoration:none }
+a:link { color:#0000ff; text-decoration:none }
+a:active { color:#8888ff; text-decoration:none }
+a:focus { color:#888888; text-decoration:none }
+a:hover { color:#ff0000; text-decoration:none }
+
+/* top level style */
+DIV.top {
+}
+
+/*
+body>table {
+	box-shadow: 5px 5px 5px #bbb, -5px 5px 5px #bbb;
+}
+*/
+
+/* left/right cols have headers in the top level style */
+DIV.tophead {
+	margin-top: 1em;
+	background-color: #666;
+	padding: 0.2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	color: #fff;
+}
+
+DIV#hot DIV.tophead {
+	background-color: #e00;
+}
+
+P.copyright {
+	font-size:larger;
+	font-weight:bold;
+}
+
+.quote {
+	font-style: italic;
+}
+
+LI.extlink {
+	list-style-position: outside;
+	list-style-image:url(imgs/icon_extlink.jpg);
+}
+
+A.extlink {
+    	background: url("imgs/icon_extlink.jpg") center right no-repeat;
+    	padding-right: 16px;
+}
+
+H2 {
+	border-top: 2px solid;
+}
+
+div.toplink {
+	float:right;
+	margin-top: -3em;
+}
+
+/****************************************
+ */
+
+/****************************************
+ * Layout
+ */
+
+DIV#mainbox {
+	line-height: 1.5;
+	clear: both;
+	padding-top: 0px;
+}
+
+/****************************************
+ * parts of mainbox 
+ */
+
+
+/****************************************
+ * visible top level elements, parts of columns
+ */
+
+DIV#oldnewscontent  {
+	height: 40em;
+	overflow: scroll;
+	margin-left: -0.7em;
+ /* FF/GC add the scrollbar to the width, so we need to compensate by making it
+  * smaller. IE includes the scrollbar, so there is a browser fork below
+  * other browsers */
+ /* this is currently for indexadv.html only, check to replace with percentage as above? */
+  	/*width: 10.0em;*/
+	margin-right: -0.7em;
+}
+
+DIV#content {
+  text-align: left;
+}
+
+DIV#contentfooter {
+  border-top: 2px solid;
+}
+
+DIV#footer {
+  clear: both;
+}
+
+/****************************************
+ * Menu formatting
+ *
+ * First design is single column
+ * (with two- and three-column derivations below in media queries)
+ */
+
+div#topsearch {
+padding: 0.1em;
+margin: 0px;
+margin-bottom: 0.1em;
+background-color: #ccc;
+/*color: #fff;*/
+}
+
+/*div#menu1, div#menu2, div#menu3 {*/
+div#menubox {
+margin:0;
+padding: 0;
+padding-bottom: 0.1em;
+font-size: small;
+line-height: 1;
+}
+
+div#menu1 {
+background:#ccc;
+}
+
+div#menu2 {
+background:#ddd;
+}
+
+div#menu3 {
+background:#eee;
+}
+
+ul.nav1, ul.nav2 {
+list-style-type:none;
+padding:0px;
+padding-top: 0.1em;
+padding-bottom: 0.1em;
+margin:0;
+}
+
+ul.nav1 li {
+list-style-type:none;
+padding:1px;
+padding-left:0px;
+margin:0;
+}
+
+li.navhdr {
+font-size: large;
+}
+
+ul.nav2 a, ul.nav1 span
+{
+text-align:left;
+/*float:left; */
+text-decoration: none;
+/*font-weight:bold;*/
+margin-left:5px;
+margin-right:0.1em;
+padding-left: 5px;
+padding-right: 0.4em;
+padding-bottom: 1px;
+margin-bottom:0.2em;
+}
+
+ul.nav1 span, ul.nav2 span {
+font-weight:bold;
+/*width: 3em;*/
+}
+
+div.nend1, div.nend2 {
+/*clear: left;*/
+clear: both;
+}
+
+div.twisty {
+        float: right;
+        background-color: #fee;
+        width: 1.5em;
+        height: 1.5em;
+}
+
+/* two column design, with the navigation on top */
+@media only screen and (min-width: 790px) and (max-width: 1019px) {
+	div#menu1, div#menu2, div#menu3 {
+		float: left;
+		width: 100%;
+	}
+        ul.nav1 {
+                float: left;
+        }
+}
+
+/* three column design */
+@media only screen and (min-width: 1020px) {
+	div#midcol {
+		float: left;
+		width: 62%;
+		margin-left: 1%;
+		margin-right: 1%;
+	}
+	div#rightcol {
+		/*position: absolute;*/
+		float: right;
+		width: 20%;
+	}
+	div#menubox {
+		float: left;
+		width: 15%;
+	}
+        ul.nav1 li {
+        /*        float: left;*/
+        }
+        div.nend1 {
+                clear: left;
+        }
+        div#twisty {
+                display: none;
+        }
+}
+
+
+/****************************************/
+
+div.driver {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+table.driver {
+  min-width: 100%;
+}
+
+td.driverdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
+}
+
+td.driverfiles {
+  vertical-align: top;
+  padding: 1em;
+}
+
+/****************************************/
+
+div.rev {
+  margin: 1em;
+  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  /*background-color: #eee;*/
+}
+
+table.rev {
+  min-width: 100%;
+}
+
+td.revdesc {
+  /* direct descendant, i.e. outermost table */
+  width: 60%;
+  min-width: 60%;
+  vertical-align: top;
+}
+
+td.revfiles {
+  vertical-align: top;
+  padding: 1em;
+}
+
+/****************************************
+ * right side floating elements
+ */
+
+.rightimg {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+.leftimg {
+	float:left;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+.sidenote {
+	float:right;
+	margin: 10px 0 10px 10px;
+	width: 300px;
+	background-color: #eee;
+	padding: 5px;
+}
+
+DIV.rightbar {
+  border-style: solid;
+  border-width: 2px;
+  float: right;
+  width: 25em;
+  margin-top: -1.7em;
+  margin-right: -2em;
+  background-color: #dddddd; 
+  font-size:smaller;
+}
+
+/****************************************
+ * board-related styles
+ */
+
+/* used on the boards, for "note_*" icond */
+TD.noteicon {
+	vertical-align:top;
+	text-align:center;
+	padding:5px;
+}
+
+/* new design */
+table.notes div {
+  background: url(imgs/sprite.png) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+
+table.files div {
+  background: url(imgs/sprite.png) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+
+table.notes div.i_msg { background-position: -32px -32px; }
+table.notes div.i_warn { background-position: -96px -32px; }
+table.notes div.i_stop { background-position: -64px -32px; }
+table.notes div.i_deprecated { background-position: 0px -32px; }
+
+table.files div.i_desc { background-position: 0px 0px; }
+table.files div.i_layout { background-position: -64px 0px; }
+table.files div.i_logic { background-position: -96px 0px; }
+table.files div.i_memmap { background-position: -128px 0px; }
+table.files div.i_parts { background-position: -160px 0px; }
+table.files div.i_photo { background-position: -192px 0px; }
+table.files div.i_schem { background-position: -224px 0px; }
+table.files div.i_driver { background-position: -256px 0px; }
+table.files div.i_timing { background-position: -288px 0px; }
+
+div.i_src { 
+  background: url(imgs/sprite.png) no-repeat;
+  width: 32px;
+  height: 32px;
+  background-position: -32px 0px; 
+}
+
+/****************************************
+ * main entry page (quickfinder)
+ */
+
+ul.quickfinder li {
+	padding-top: 0em;
+	padding-left: 60px;
+	list-style-type:none;
+	font-weight: normal;
+	font-size: large;
+}
+
+ul.quickfinder li li.subitem {
+	list-style-type:circle;
+        margin-left:-40px;
+	padding-left: 0;
+	font-size: small;
+}
+
+/* new style */
+ul.quickfinder div {
+	position:relative;
+  	width:74px;
+	height:37px;
+	left:-80px;
+	top: 15px;
+	background:url(imgs/sprite.png) no-repeat;
+}
+
+
+ul.quickfinder div.i_cbm {
+	background-position: 0 -110px;
+}
+
+ul.quickfinder div.i_hw {
+	background-position: -75px -110px;
+}
+
+ul.quickfinder div.i_sw {
+	background-position: -150px -110px;
+}
+
+ul.quickfinder div.i_icap {
+	background-position: -225px -110px;
+}
+
+/* allgemeiner style! */
+LI.subitem {
+	list-style-position: outside;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
+
+/****************************************
+ * news formatting
+ */
+
+ul.news li {
+	padding-top: 5px;
+	list-style-type: none;
+}
+
+ul.news li div {
+	margin-left:-28px;
+	display:inline;
+	float: left;
+	background:url(imgs/sprite.png) no-repeat;
+	width:28px;
+	height:28px;
+	background-position: -128px -32px;
+}
+
+ul.news div.i_hotnews {
+	background-position: -192px -32px;
+}
+
+ul.news div.i_oldnews {
+	background-position: -160px -32px;
+}
+	
+/****************************************
+ * Interview formatting
+ */
+
+DIV.interview {
+	margin-left:1em;
+}
+
+DIV.interview p.first {
+	text-indent:-1em;
+}
+
+DIV.interview .me {
+	font-weight:bold;
+}
+DIV.interview .other {
+	font-weight:bold;
+}
+
+/****************************************
+ * memory map table
+ */
+
+table.memmap {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+}
+table.memmap td {
+	width:14mm;
+	padding:3px;
+	font-size:80%;
+}
+table.memmap th {
+	width:14mm;
+	padding:5px;
+	font-size:80%;
+}
+
+/****************************************
+ * general table formatting
+ */
+
+div#content table {
+	font-size: 100%;
+	width:auto;
+	border-collapse: collapse;
+	border-width: 1px;
+}
+
+
+div#content th {
+	background-color: #dddddd;
+	border-width: 1px;
+}
+
+div#content td {
+	border-width: 1px;
+}
+
+table.content {
+	text-align:center;
+	empty-cells:show;
+	margin:5px;
+	border-style: solid;
+	border-collapse: collapse;
+}
+table.content td {
+	padding:3px;
+	border-style: solid;
+}
+table.content th {
+	padding:5px;
+	border-style: solid;
+}
+
+/****************************************
+ * table of content
+ */
+
+div#toc .dir {
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	padding-left: 3em;
+}
+
+/****************************************
+ * text formatting
+ */
+
+div#content p.conclusion {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+/****************************************
+ * advanced style
+ */
+.advbutton {
+	position:relative;
+
+	background-color: #888888;
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#777777), to(#dddddd));
+ 	background: -moz-linear-gradient(top, #777777 0, #dddddd 100%); 
+
+  	-moz-border-radius: 14px;
+	-webkit-border-radius:14px;
+
+	color:white;
+	text-decoration:none;
+	text-align:center;
+
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+
+}
+
+
+/****************************************
+ * twisties
+ */
+.h2t {
+	display: none;		/* only if enabled with javascript */
+	float: left;
+	margin-top: 0.4em;
+	background:url(imgs/sprite.png) no-repeat;
+	width:2em;
+	background-position: -288px -32px;
+}
+
+/****************************************
+ * min/max link
+ */
+
+#minmax {
+	display: none;
+	float: right;
+}
+
