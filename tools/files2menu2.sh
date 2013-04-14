@@ -194,7 +194,7 @@ do_2menu () {
 	echo "</root>" >> sindex.xml;
         echo "xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html"
         xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html
-	rm sindex.xml
+	mv sindex.html sindex.xml
 )
 
 
