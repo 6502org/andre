@@ -103,7 +103,7 @@ function loadMenu( r, process ) {
                 // TODO: $(r).children("img").attr("src", myUp + "imgs/dirload.gif");
                 // load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
                 // XML DOM tree) directly into the html document
-                $.get(myUp + 'sindex.html', function(data) {
+                $.get(myUp + 'sindex.xml', function(data) {
                   process(target, data, true);
                 }, "html" );
         } else {
