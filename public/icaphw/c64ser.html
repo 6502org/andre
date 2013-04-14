@@ -1,101 +1,152 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta name="author" content="Andr&eacute;  Fachat">
 
 <meta name="description" content="Adding an UART to a 6502">
 <meta name="keywords" content="6502 UART 16550 16450 C64">
 <link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style-min.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
+<link rel="stylesheet" title="Default" type="text/css" href="../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
 <title>Adding an UART to a 6502</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="leftcol"><div id="menu" class="top"><div class="tophead">navigate</div><div id="filter"><form action="#"><table id="filterbox"><tr><td><input alt="menu filter" size="8" name="filter" value="filter" type="text"></td><td><div id="cancel" class="i_cancel">&nbsp;</div></td></tr></table><table id="expcol"><tr><td><div id="expand" class="i_expand">&nbsp;</div></td><td><div id="collapse" class="i_collapse">&nbsp;</div></td></tr></table></form></div>
-<div id="mtree">
-<a id="m_homepage" href="../index.html">Homepage</a>
-<ul class="menu0" >
-<li class="separator">Commodore</li>
-<li class="dir" id="m_petindex"><div class="i_dir">&nbsp;</div><a href="../petindex/index.html">CBM PETindex</a>
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
 
-</li>
-<li class="dir" id="m_cbmhw"><div class="i_dir">&nbsp;</div><a href="../cbmhw/index.html">CBM hardware and mods</a>
 
-</li>
-<li class="separator">Hardware</li>
-<li class="dir" id="m_65k"><div class="i_dir">&nbsp;</div><a href="../65k/index.html">The 65k Project</a>
-
-</li>
-<li class="dir" id="m_csa"><div class="i_dir">&nbsp;</div><a href="../csa/index.html">CS/A65 Caspaer and Gecko computer</a>
-
-</li>
-<li class="dir" id="m_adv65"><div class="i_dir">&nbsp;</div><a href="../adv65/index.html">Advanced 6502</a>
-
-</li>
-<li class="dir" id="m_spi65b"><div class="i_dir">&nbsp;</div><a href="../spi65b/index.html">SPI65B</a>
-
-</li>
-<li class="dir" id="m_hwinfo"><div class="i_dir">&nbsp;</div><a href="../hwinfo/index.html">ICs and Standards Info</a>
-
-</li>
-<li class="dir" id="m_mischw"><div class="i_dir">&nbsp;</div><a href="../mischw/index.html">Other hardware (e.g. tools)</a>
-
-</li>
-<li class="separator">Software</li>
-<li><div class="i_file">&nbsp;</div><a href="../osa/index.html">GeckOS operating system</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../lib6502/index.html">Lib6502 standard</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../o65/index.html">O65 file format</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../usb65/index.html">usb65 USB drivers</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../xd2031/index.html">XD2031 firmware</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="../misc/index.html">Misc software</a>
-</li>
-<li class="separator">Knowledge Bits</li>
-<li class="dir" id="m_icapos"><div class="i_dir">&nbsp;</div><a href="../icapos/index.html">Computer/OS Architecture</a>
-
-</li>
-<li class="dir" id="m_icaphw"><div class="i_dir">&nbsp;</div><a href="../icaphw/index.html">6502 Hardware Bits</a>
-
-<ul class="menu1" >
-<li><div class="i_file">&nbsp;</div><a href="design.html">Hardware design lesson</a></li>
-<li><div class="i_file">&nbsp;</div><a href="oscope/index.html">Oscilloscope bits</a>
-</li>
-<li><div class="i_file">&nbsp;</div><a href="xilinx.html">Xilinx CPLD tools</a></li>
-<li><div class="i_file">&nbsp;</div><a href="c64ser.html" class="mcurrent">UART serial interface</a></li>
-<li><div class="i_file">&nbsp;</div><a href="rdy.html">RDY generation</a></li>
-<li><div class="i_file">&nbsp;</div><a href="remote.html">Infrared remote control</a></li>
+<div id="menu1">
+<div id="twist1" class="twisty"></div>
+<div class="hdrtxt"><a href="../index.html">Home&nbsp;&gt;</a></div>
+<ul class="nav1">
+<li>
+<ul class="nav2">
+<li class="navhdr"><a href="../index.html">Home</a></li>
+<li><a href="../contact.html">Contact</a></li>
+<li><a href="../design.html">Web design</a></li>
+<div class="nend2"></div>
 </ul>
 </li>
-<li class="separator">Misc</li>
-<li><div class="i_file">&nbsp;</div><a href="../contact.html">Contact</a></li>
-<li><div class="i_file">&nbsp;</div><a href="../sneak.html">Sneak preview</a></li>
-<li><div class="i_file">&nbsp;</div><a href="../design.html">Web design</a></li>
+<div class="nend1"></div>
 </ul>
-
+<ul class="nav1" >
+<li><span>Hardware</span></li>
+<li><ul class="nav2" >
+<li><a href="../65k/index.html">The 65k Project</a>
+</li>
+<li><a href="../csa/index.html">CS/A65</a>
+</li>
+<li><a href="../cbmhw/index.html">CBM mods</a>
+</li>
+<li><a href="../spi65b/index.html">SPI65B</a>
+</li>
+<li><a href="../mischw/index.html">Other hardware</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Software</span></li>
+<li><ul class="nav2" >
+<li><a href="../osa/index.html">GeckOS</a>
+</li>
+<li><a href="../lib6502/index.html">lib6502 </a>
+</li>
+<li><a href="../o65/index.html">o65</a>
+</li>
+<li><a href="../usb65/index.html">usb65</a>
+</li>
+<li><a href="../xd2031/index.html">XD2031</a>
+</li>
+<li><a href="../misc/index.html">Misc</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Library</span></li>
+<li><ul class="nav2" >
+<li><a href="../petindex/index.html">PETindex</a>
+</li>
+<li><a href="../adv65/index.html">Advanced 6502</a>
+</li>
+<li><a href="../hwinfo/index.html">ICs and Standards</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Knowledge Bits</span></li>
+<li><ul class="nav2" >
+<li><a href="../icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li><a href="../icaphw/index.html">6502 Hardware Bits</a>
+</li>
+</ul>
+<div class="nend2"></div>
+</li>
+<div class="nend1"></div>
+</ul>
 </div>
-		</div><div class="top" id="browser"><div class="tophead">browser</div><div>
-			Site has been tested with a number of browsers and systems. Javascript required for advanced menu, but degrades gracefully without Javascript. IE6 not supported anymore!
-			</div></div></div><div id="rightcol"><div class="top" id="google"><div class="tophead">search</div><div><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search parameters" type="text" name="q" size="10" maxlength="255" value=""><input class="advbutton" type="submit" value="Search my site"><br>(Google, in new window)
-	                        <input type="hidden" name="sitesearch" value="www.6502.org/users/andre"></form></div></div><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
-<p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
-<p>Need more speed? Speed up your 6502 computer with this <a href="../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
-<p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
-<p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
+<div id="menu2">
+<div id="twist2" class="twisty"></div>
+<div class="hdrtxt"><a href="index.html">Hardware Bits&nbsp;&gt;</a></div>
+<ul class="nav1">
+<li>
+<ul class="nav2">
+<li class="navhdr"><a href="index.html">Hardware Bits</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Basics</span></li>
+<li><ul class="nav2" >
+<li><a href="design.html">Hardware design lesson</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Tools</span></li>
+<li><ul class="nav2" >
+<li><a href="oscope/index.html">Oscilloscope bits</a>
+</li>
+<li><a href="xilinx.html">Xilinx CPLD tools</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Interfaces</span></li>
+<li><ul class="nav2" >
+<li><a href="c64ser.html">UART serial interface</a></li>
+<li><a href="remote.html">Infrared remote control</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Misc</span></li>
+<li><ul class="nav2" >
+<li><a href="rdy.html">RDY generation</a></li>
+<li><a href="../csa/blitter/works.html">&gt;How a Blitter works</a></li>
+<li><a href="../petindex/poke/index.html">&gt;The PET Killer Poke</a></li>
+</ul>
+<div class="nend2"></div>
+</li>
+<div class="nend1"></div>
+</ul>
+</div>
+	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-		</div></div></div><div id="midcol"><div class="top" id="ie6warn">
-You are using an old MS Internet Explorer as browser. This version is not supported anymore. Please use a 
-more modern browser, like Internet Explorer 8 or later, 
-<a target="_blank" class="extlink" href="http://www.firefox.com">Firefox</a>,
-<a target="_blank" class="extlink" href="http://www.google.com/chrome">Google Chrome</a>, or
-<a target="_blank" class="extlink" href="http://www.opera.com">Opera</a>.
-</div><div class="top" id="content"><div id="minmax"></div>
-<div id="breadcrumbs">
-<a href="../index.html">Homepage</a>
-&gt;&gt;  <a href="index.html">6502 Hardware Bits
-</a>&gt;&gt;  UART serial interface</div>
 <h1>Adding an UART to a 6502</h1><p class="copyright">(C)
 1997-2010 Andr&eacute;  Fachat</p> 
 <div class="overview"><p>	I have now stumbled across quite some 6502 computers that use the
@@ -113,7 +164,7 @@ ACIA in my C64 with the UART 16550A.
 Note: this article has been published in the (now disappeared) "The Computer Journal",
 Issue #80 Fall 1997, under the title "High Speed Serial for 65xx - How to add a 16550 Uart to a 65xx system".
 </p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"><ul><li><a href="#bus">Bus Differences</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#c64">Here's how it works in the C64</a></li><li><a href="#otherex">Another Example</a></li><li><a href="#sw">The Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#ref">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="bus">Bus Differences</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#bus">Bus Differences</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#c64">Here's how it works in the C64</a></li><li><a href="#otherex">Another Example</a></li><li><a href="#sw">The Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#ref">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="bus">Bus Differences</a></h2></div><div class="h2c"> <p>
 The UART chips was designed for a different bus as the 6502, so there
 are differences in how to handle the chip. When I had a first look
 at the interface I really wondered why they built the chip this way...
@@ -142,7 +193,7 @@ thing terrible to program. See the Serial FAQ at
 ftp://ftp.phil.uni-sb.de/pub/people/chris/The_Serial_Port for more
 information.  But then the UART has the already mentioned advantage of
 the FIFO, which makes it attractive.
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schematics">Schematics</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schematics">Schematics</a></h2></div><div class="h2c"> <p>
 When I was rebuilding my ACIA interface to a UART interface, I had to reuse
 some sockets and chips, because I didn't really want to build everything
 from scratch (where I didn't have all the parts at home at that time anyway...)
@@ -160,7 +211,7 @@ to do the whole thing. It even really made the ACIA disappear from the
 memory map, when it was disabled.  This didn't work with the UART, because
 I needed more circuitry from the decoder to manage the RD/WR handling.
 Well, one could surely think of something cleaner, but I wanted it quick...
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="c64">Here's how it works in the C64</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="c64">Here's how it works in the C64</a></h2></div><div class="h2c"> <p>
 All pins from the SID are connected from the C64 SID socket to the SID
 socket on the daughterboard, except -CS (pin 8). This line is or'ed with
 the additional A9, to remove the SID from the upper half of its memory
@@ -181,7 +232,7 @@ beginning of Phi2, and doesn't work with the C64 that way. It needs the
 starting transition of Phi2 to be delayed).  The ORing with the inverted
 Phi2 then stops the access by invalidating the RD/WR lines when Phi2
 becomes inactive. This also is a reason for Phi2 being used as CS line.
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="otherex">Another Example</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="otherex">Another Example</a></h2></div><div class="h2c"> <p>
 I have also built a Dual UART card with two 16550A for my selfbuilt 6502
 computer, and there I used a similar approach.  I took a 74LS138, a
 3-to-8 decoder. The select line for the I/O area goes to the decoder as
@@ -195,7 +246,7 @@ chips.
 -Q2 -&gt; UART2 -WR,
 -Q3 -&gt; UART2 -RD
 </pre>
-    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sw">The Software</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+    </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sw">The Software</a></h2></div><div class="h2c"> <p>
 Now that you have the UART in your computer, you have to have some software
 to use it. I have also rewritten the C64 OS to use the UART as serial
 interface (which I had also done to use the ACIA before).
@@ -230,13 +281,13 @@ selfwritten OS, that uses an UART. On my 1 MHz C64 with builtin UART it
 replies to Internet PING messages without packet loss at 9600 baud. Using
 the same program with an ACIA, even at 2400 baud, is completely useless
 due to lost characters.
-</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="conclusion">Conclusion</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="conclusion">Conclusion</a></h2></div><div class="h2c"> <p>
 The 16550A might not be the chip of choice for simple applications, where
 a high data rate is not necessary. But if you don't want to use the serial
 line as a terminal line only, but want to do some serious data transfer,
 better take an UART. Here you see a way to use the UART in 6502 based
 systems and how to program it.
-</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ref">References</a></h2><div class="toplink"><a href="#top">Top</a></div></div><div class="h2c"> <p>
+</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ref">References</a></h2></div><div class="h2c"> <p>
 Here are the schematics and source code for the interface</p>
 <ul>
 <li><a href="c64ser/c64ser2.gif">c64ser2.gif</a> is the C64 interface on top of the SID chip (Source: <a href="c64ser/c64ser2.fig">c64ser2.fig</a></li>
@@ -248,10 +299,12 @@ Here are the schematics and source code for the interface</p>
 </div></div><hr>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
-  </div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.js"></script><script type="text/javascript">
-          jQuery(document).ready(function($){
-                  if($('#socialshareprivacy').length != 0){
-                            $('#socialshareprivacy').socialSharePrivacy();
-                  }
-          });
-  </script></body></html> 
+  </div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
+		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+<p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+<p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
+
+		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script></body></html> 

@@ -149,8 +149,6 @@
 			<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"/>
 		</form>
 		<div id="topfind">
-			<ul class="menu0">
-			</ul>
 		</div>
 	</div> <!-- topsearch -->
 

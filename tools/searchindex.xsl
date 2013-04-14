@@ -11,7 +11,7 @@
 <xsl:template match="root">
   <div class="filtered">
     <ul>
-    <xsl:for-each select="//a">
+    <xsl:for-each select="//div[not(@class='hdrtxt')]//ul[@class='nav2']/li[not(@class='navhdr')]//a">
 	<li>
 	<xsl:copy-of select="." />
 	</li>

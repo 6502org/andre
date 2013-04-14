@@ -151,6 +151,20 @@ background-color: #bbb;
 /*color: #fff;*/
 }
 
+div#topfind {
+	position: absolute;
+	font-size: small;
+	background-color: #fff;
+}
+div#topfind ul {
+	padding-left: 0.1em;
+}
+div#topfind li {
+	list-style: none;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+
 /*div#menu1, div#menu2, div#menu3 {*/
 div#menubox {
 margin:0;

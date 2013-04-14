@@ -6,6 +6,18 @@
 // This file is copyrighted. Other uses are prohibited without explicit permission by the copyright owner.
 //
 
+// Utility
+
+function dumpArrayToString( a, sep, start ) {
+        rv = "";
+        l = a.length;
+        for (i = start; i < l; i++) {
+                if (i > 1) rv = rv + sep;
+                rv = rv + a[i];
+        }
+        return rv;
+}
+
 
 // ----------------------------------------------------------------------------------------------------------
 // setup twisties
@@ -80,6 +92,147 @@ function setupMenu() {
 }
 
 // ----------------------------------------------------------------------------------------------------------
+// setup filter
+
+function loadMenu( r, process ) {
+
+        var target = r;
+
+        var ul = $(target).find("ul");
+        if ($(ul).size() == 0) {
+                // TODO: $(r).children("img").attr("src", myUp + "imgs/dirload.gif");
+                // load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
+                // XML DOM tree) directly into the html document
+                $.get(myUp + '/sindex.html', function(data) {
+                  process(target, data, true);
+                }, "html" );
+        } else {
+                $(r).children("ul").show();
+                process(target, "", false);
+        }
+}
+
+// ----------------------------------------------------------------------------------------------------------
+// ajax helper
+
+// process the retrieved menu part
+// as string, then append to target
+// returns true when correctly loaded
+function processMenu( target, data, loaded ) {
+
+        // highly parallel - so use local vars
+        if (loaded && typeof data == 'string') {
+
+                // filesystem local tests
+                var spl = data.split("%");
+                var l = spl.length;
+                for (i = 0; i < l; i++) {
+                        t = spl[i];
+                        if (t == "up") spl[i] = myUp;
+                }
+                data = dumpArrayToString(spl, "", 0);
+
+                if( $(target).children("ul").size() == 0) {
+                        // it was not already loaded in the meantime
+                        // append data (as string) to target
+                        $(target).append(data);
+                }
+        }
+
+        return (!loaded) || (typeof data == 'string' && data.length > 0);
+}
+
+
+var currentFilter = "";
+
+function triggerFilter( topfind, filter ) {
+
+	loadMenu(topfind, processMenu);
+
+        $(topfind).find("li").each( function ( i, e ) {
+
+                // hide each item
+                $(e).hide();
+
+                // search and show results
+                if ($(e).text().toLowerCase().indexOf(currentFilter) >= 0) {
+                        $(e).show();    // LI
+                        $(e).parents().each( function (i, x) {
+                                $(x).show();
+                        });
+                }
+        });
+}
+
+function hideFiltered() {
+	$("div#topfind").hide();
+}
+
+function changeFilter( val ) {
+
+        currentFilter = val.toLowerCase();
+
+        var filter = currentFilter;
+
+        // hide both LI and UL
+        var v = $("div#topfind");
+        $(v).hide();
+
+        triggerFilter(v, filter);
+}
+
+function checkValue() {
+        var t = $("div#topsearch input");
+
+        var val = $(t).attr("value");
+        if (val.length == 0) {
+                if (currentFilter != "") {
+                        changeFilter(val);
+                }
+        } else
+        if (val.length > 1) {
+                if (currentFilter != val) {
+                        changeFilter(val);
+                }
+        } else {
+		hideFiltered();
+	}
+}
+
+var isFilterActive = 0;
+function monitorFilter() {
+        checkValue();
+        if (isFilterActive == 1) {
+                setTimeout(monitorFilter, 40);
+        }
+}
+
+function setupFilter() {
+        $("div#topsearch input").focusin( function( ) {
+                        $(this).css({'background-color':'#fc6'});
+                        $(this).attr("value", "");
+                        $(this).unbind("focusin");
+                        $(this).focusin( function() {
+                                $(this).css({'background-color':'#fc6'});
+                                if (currentFilter.length > 1) {
+                                        changeFilter(currentFilter);
+                                }
+                                isFilterActive = 1;
+                                setTimeout(monitorFilter, 40);
+                        });
+                        isFilterActive = 1;
+                        setTimeout(monitorFilter, 40);
+                });
+
+        $("div#topsearch input").focusout( function( ) {
+                        $(this).css({'background-color':'#fff'});
+                        setTimeout(hideFiltered, 1000);
+                        isFilterActive = 0;
+                });
+}
+
+
+// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
@@ -87,15 +240,7 @@ function doInit() {
 	// initialize twisties
 	setupTwisties();
 	setupMenu();
-}
-
-// done to check advanced stylesheet
-function doTimer() {
-	if ($("div#twitter:visible").size() > 0) {
-		doInit();
-	} else {
-		setTimeout( doTimer, 1000);
-	}
+	setupFilter();
 }
 
 $(document).ready(function(){
