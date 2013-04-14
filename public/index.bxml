@@ -19,6 +19,14 @@ and internet access.</p>
 <p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p>
   </overview>
   <news>
+     <item date="2013-04-14" state="hot">
+	New, flexible web design, suitable for PCs as well as handheld devices :-)
+     </item>
+    <item date="2013-04-14">
+        Added a RAM drive for the 8296 to the <a href="petindex/hw.html">Hardware</a> page,
+        more on french internationalized machines on the new <a href="petindex/internat.html">Internationalization</a>
+        page. Added a link to the 60Hz version of the &quot;No PETs allowed&quot; Demo.
+    </item>
      <item date="2013-01-13">
 	Added drivers to the <a href="csa/netusb/index.html">NET/USB/SD-Card</a> board.
      </item>

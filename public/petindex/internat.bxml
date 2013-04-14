@@ -1,0 +1,59 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="International PETs...">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2013</yearstart>
+    <yearend>2013</yearend>
+  </author>
+  <keywords>Commodore PET CBM</keywords>
+  <metadesc>Information on Internationalized Commodore PET CBM</metadesc>
+  <overview><p>In this page I have collected information on internationalized PET versions</p>
+  </overview>
+  <news>
+    <item date="2013-04-14">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="fr" name="France">
+     <desc><p>From Didier Derny I got this information:</p>
+	<pre>
+In France we had an internationalization version of the PET.
+
+As Commodore was late with the internationalized keyboard
+The company I was working for,  PROCEP produced its own French keyboard
+(Procep was the official importator of Commodore in France)
+
+Later when it was available, it was replaced by the commodore keyboard
+The French Keyboard, said “Commodore Keyboard” was derived from the German Keyboard.
+(I went to commodore plant in Germany to finalize the French version of the keyboard)
+
+I still have a copy of the French eproms for the commodore 8000
+
+Btw the  Pet sold in france had an extra EPROM in $A000 delivered on all pet.
+This rom was a basic extension, but it only works with the right set of French eproms.
+	</pre>
+     </desc>
+  </section>
+
+  <section toc="jp" name="Japan">
+     <desc><p>
+	Some information on the Japanese version can be found on the <a href="keyboards.html">Keyboards</a> page for now.
+	</p>
+     </desc>
+  </section>
+
+  <section toc="jp" name="Germany">
+     <desc><p>
+	Some information on the German version can be found on the <a href="keyboards.html">Keyboards</a> page for now.
+	</p>
+     </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

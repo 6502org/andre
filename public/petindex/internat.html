@@ -4,11 +4,11 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta name="author" content="Andr&eacute;  Fachat">
 
-<meta name="description" content="PET index - Transfer files to the PET and back">
-<meta name="keywords" content="Commodore PET CBM ROM transfer">
+<meta name="description" content="Information on Internationalized Commodore PET CBM">
+<meta name="keywords" content="Commodore PET CBM">
 <link rev="made" href="mailto:afachat@gmx.de">
 <link rel="stylesheet" title="Default" type="text/css" href="../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../advanced.css">
-<title>PET index - Transfer files to the PET and back</title></head>
+<title>International PETs...</title></head>
 <body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
 
 
@@ -174,63 +174,34 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>PET index - Transfer files to the PET and back</h1><p class="copyright">(C)
-1998-2013 Andr&eacute;  Fachat</p> 
-<div class="overview"><P>
-This page contains descriptions and links to projects that allow to transfer
-files from the PC to the PET and from the PET to the PC.
-With the popularity of the AtMega or Arduino controllers there have been a number
-of new entries!
-</P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#disc">Disclaimer</a></li><li><a href="#filetransfer">Transfer Projects</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="disc">Disclaimer</a></h2></div><div class="h2c"><P>Whatever you do with the information in these pages or on the linked pages, I am not responsible for any damage you have for using this information. The information herein is provided AS-IS and there is no warranty whatsoever!</P>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="filetransfer">Transfer Projects</a></h2></div><div class="h2c"><P>This section contains projects for file transfer.</P>
-<DL>
+<h1>International PETs...</h1><p class="copyright">(C)
+2013-2013 Andr&eacute;  Fachat</p> 
+<div class="overview"><p>In this page I have collected information on internationalized PET versions</p>
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-04-14</small>
+	Started this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#fr">France</a></li><li><a href="#jp">Japan</a></li><li><a href="#jp">Germany</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="fr">France</a></h2></div><div class="h2c"><p>From Didier Derny I got this information:</p>
+	<pre>
+In France we had an internationalization version of the PET.
 
-<DT><A HREF="https://github.com/fachat/XD2031">XD2031</A></DT>
-<DD>The XD2031 is an AtMega firmware that allows to use a PC as PET disk drive via a USB connection.
-Supported hardware are petSD and xs1541 (see below).</DD>
+As Commodore was late with the internationalized keyboard
+The company I was working for,  PROCEP produced its own French keyboard
+(Procep was the official importator of Commodore in France)
 
-<DT><A HREF="http://petsd.net/">petSD</A></DT>
-<DD>Another AtMega-based solution to use an SD card as disk drive is the petSD hardware.</DD>
+Later when it was available, it was replaced by the commodore keyboard
+The French Keyboard, said &ldquo;Commodore Keyboard&rdquo; was derived from the German Keyboard.
+(I went to commodore plant in Germany to finalize the French version of the keyboard)
 
-<DT><A HREF="http://www.bitfixer.com/bf/petdisk">PETdisk</A></DT>
-<DD>An AtMega-based SD-Card solution. You can use an SD Card as disk drive for the PET, and
-exchange files with the PC via such a card!</DD>
+I still have a copy of the French eproms for the commodore 8000
 
-<DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/C2N232/">C2N232</A></DT>
-<DD>From the website: C2N232 is a Commodore C2N cassette drive (datassette) emulator with an RS-232 interface. It was designed by Marko M&auml;kel&auml; (http://www.funet.fi/~msmakela/).
- The device allows data transfers between all 8-bit Commodore computers that are equipped with a cassette interface (PET series, VIC-20, C64, C128, 264 series, PET-II series) and any computer that has a 38400 bps RS-232 interface. Supported protocols include pulse width modulation (normal cassette LOAD/SAVE/OPEN, and any tape speeders that use at most 3 different pulse widths), and a custom protocol whose transfer speed exceeds 38400 bps already on a 1 MHz Commodore.
- The software is work in progress. The preferred methods of using the C2N232 are c2nload and cbmlink, the replacement of prlink.
-</DD>
-
-<DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/crossplatform/transfer/C2N232/">cbmlink</A></DT>
-<DD>In the same location there is cbmlink. Whereas C2N232 uses a microcontroller, cbmlink also works with a lot of different types
-of cables between the PET and the PC. You find a list of supported cables in the documentation.
-</DD>
-
-<DT><A HREF="http://www.6502.org/users/andre/ieee488/">lptiec</A></DT>
-<DD>Lptiec is a small (hardware) interface to the PC printer port. It
-allows the PC to emulate an IEEE488 device, so that you can use the
-PC as a harddisk for the PET. The PC software runs on Linux.
-</DD>
-
-<DT><A HREF="http://www.6502.org/users/andre/ieee488/">par2ser</A></DT>
-<DD>This is an experimental system that transforms the parallel IEEE488
-into Commodore serial IEC. I.e. with this system the PET can use
-normal serial bus floppy disks like the VC1541 and company.
-</DD>
-
-<DT><A HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
-<DD>In this project by Ruud Baltissen the PC can be used "to simulate various IEEE drives".
-It uses a cable from the printerport, with only a little additional logic.
-The PC software runs under DOS/WIN98-DOS.
-</DD>
-
-<DT><A HREF="http://xs1541.t-winkler.net/index_en.html">xs1541</A> in english and the <a href="http://xs1541.t-winkler.net/">xs1541 german original</a>.</DT>
-<DD>This project uses an Atmel controller and connects the serial as well as the PET's parallel IEEE488 bus to a PC USB port!
-Currently, however, only reading - transfer from disk to PC - is supported!</DD>
-
-</DL>
+Btw the  Pet sold in france had an extra EPROM in $A000 delivered on all pet.
+This rom was a basic extension, but it only works with the right set of French eproms.
+	</pre>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="jp">Japan</a></h2></div><div class="h2c"><p>
+	Some information on the Japanese version can be found on the <a href="keyboards.html">Keyboards</a> page for now.
+	</p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="jp">Germany</a></h2></div><div class="h2c"><p>
+	Some information on the German version can be found on the <a href="keyboards.html">Keyboards</a> page for now.
+	</p>
      </div></div><hr>
 <p>Return to <a href="../index.html">Homepage</a></p>
 

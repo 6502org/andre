@@ -103,7 +103,7 @@ function loadMenu( r, process ) {
                 // TODO: $(r).children("img").attr("src", myUp + "imgs/dirload.gif");
                 // load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
                 // XML DOM tree) directly into the html document
-                $.get(myUp + '/sindex.html', function(data) {
+                $.get(myUp + 'sindex.html', function(data) {
                   process(target, data, true);
                 }, "html" );
         } else {
@@ -122,7 +122,6 @@ function processMenu( target, data, loaded ) {
 
         // highly parallel - so use local vars
         if (loaded && typeof data == 'string') {
-
                 // filesystem local tests
                 var spl = data.split("%");
                 var l = spl.length;

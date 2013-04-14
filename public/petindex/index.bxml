@@ -37,8 +37,13 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2013-04-14">
+	Added a RAM drive for the 8296 to the <a href="hw.html">Hardware</a> page,
+	more on french internationalized machines on the new <a href="internat.html">Internationalization</a>
+	page. Added a link to the 60Hz version of the &quot;No PETs allowed&quot; Demo.
+    </item>
     <item date="2011-05-01">
-	Added some extensions to the <a href="petindex/hw.html">PETindex hardware projects</a> page,
+	Added some extensions to the <a href="hw.html">PETindex hardware projects</a> page,
 	especially one that can dynamically replace the character ROM!
     </item>
     <item date="2011-04-23">

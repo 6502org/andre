@@ -133,7 +133,7 @@ do_2menu () {
 	file=$dir/.files$level
 
 	cat $file.xml \
-		| sed -e "s@%up%@%up%/$path/@g" \
+		| sed -e "s@%up%@%up%$path/@g" \
 		>> $findindex;
 
 	echo "2menu $file on level $level with $topmenu and $path at `pwd`"
