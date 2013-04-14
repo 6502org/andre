@@ -35,8 +35,8 @@ do_convert () {
 		} \
 		/^s / { \
 			if (open >= 2) { \
-				print "</ul>";\
 				print "<div class=\"nend2\"></div>";\
+				print "</ul>";\
 				print "</li>";\
 			} \
 			if (open >= 1) { \
@@ -52,6 +52,7 @@ do_convert () {
 			if (open >= 2) { \
 				print "<div class=\"nend2\"></div>";\
 				print "</ul>";\
+				print "</li>";\
 			} \
 			print "<li><span>" substr($0, 3) "</span></li>"; \
 			print "<li><ul class=\"nav2\" >"; \
@@ -98,7 +99,15 @@ do_convert () {
 			print "</li>"; \
 		}\
 		END { \
-			print "</ul>"; 
+			if (open >= 2) { \
+				print "</ul>";\
+				print "<div class=\"nend2\"></div>";\
+				print "</li>";\
+			} \
+			if (open >= 1) { \
+				print "<div class=\"nend1\"></div>";\
+				print "</ul>";\
+			} \
 			print "</div>"; 
 		} \
 	' \
@@ -116,12 +125,18 @@ do_2menu () {
 	dir="$1"
 	level="$2"
 	# relative "up" path
-	uppath="$3"	
+	path="$3"	
 	topmenu="$4"
+
+	findindex=sindex.xml
 
 	file=$dir/.files$level
 
-	echo "2menu $file on level $level with $topmenu and $uppath"
+	cat $file.xml \
+		| sed -e "s@%up%@$path/@g" \
+		>> $findindex;
+
+	echo "2menu $file on level $level with $topmenu and $path at `pwd`"
 
 	if [ ! -e $file ]; then
 		echo "File $file not found!";
@@ -132,7 +147,7 @@ do_2menu () {
 	if [ -n "$topmenu" -a -e ./$topmenu ]; then
 		echo "merge $topmenu"
 		cat $topmenu \
-			| sed -e "s@%up%@$uppath%up%@g" \
+			| sed -e "s@%up%@../%up%@g" \
 			>> $file.xml2;
 	fi;
 	cat $file.xml \
@@ -157,7 +172,7 @@ do_2menu () {
 	d)	
 		# process directories
 		echo "process directory: " $name
-		(do_2menu $dir/$name $((level+1)) ../ $file.xml2)
+		(do_2menu $dir/$name $((level+1)) $path/$name $file.xml2)
 		;;
 	*)
 		# ignore
@@ -170,5 +185,16 @@ do_2menu () {
 	
 }
 
-do_2menu . 1 ./
+(
+	bindir=`dirname $bin`/../tools;
+	cd $root;
+	echo '<!DOCTYPE webpage [ <!ENTITY eacute "&#233;">  <!ENTITY nbsp "&#160;"> ]>' > sindex.xml
+	echo "<root>" >> sindex.xml;
+	do_2menu . 1 .;
+	echo "</root>" >> sindex.xml;
+        echo "xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html"
+        xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html
+	rm sindex.xml
+)
+
 
