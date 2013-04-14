@@ -287,7 +287,7 @@ div.twisty {
         /*        float: left;*/
         }
         div.nend1 {
-                clear: left;
+        /*        clear: left;*/
         }
         div#twisty {
                 display: none;
