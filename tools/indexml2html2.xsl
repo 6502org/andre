@@ -145,7 +145,7 @@
 	<div id="topsearch">
 		<form method="get" action="http://www.google.com/search" target="_blank">
 			<input alt="search" name="q" size="10" maxlength="255" type="text"/>
-			<input class="advbutton" value="Search site" type="submit"/>(by Google)
+			<input class="advbutton" value="Search site" type="submit"/><div id="srchprov">(by Google)</div>
 			<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"/>
 		</form>
 		<div id="topfind">
@@ -513,6 +513,8 @@
 <xsl:text>
 </xsl:text>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><xsl:text>
+</xsl:text>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /><xsl:text>
 </xsl:text>
 <meta name="author" content="{author/name}"/><xsl:text>
 

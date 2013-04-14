@@ -21,6 +21,16 @@ do_convert () {
 		BEGIN { \
 			print "<div id=\"menu" upn "\">"; \
 			print "<div id=\"twist" upn "\" class=\"twisty\"></div>"; \
+		} \
+		/^[h] / { \
+			print "<div class=\"hdrtxt\"><a href=\"%up%" $2 "\">" substr($0, 4+length($2)) "&nbsp;&gt;</a></div>"; \
+		}\
+	' \
+	> $file.xml;
+
+    	cat $file \
+	  | awk -v upn="$upn" -v open="0" ' \
+		BEGIN { \
 			open=0; \
 		} \
 		/^s / { \
@@ -53,6 +63,7 @@ do_convert () {
 				open = 1;
 			} \
 			if (open < 2) { \
+				print "<li>";
 				print "<ul class=\"nav2\">";
 				open = 2;
 			} \
@@ -64,6 +75,7 @@ do_convert () {
 				open = 1;
 			} \
 			if (open < 2) { \
+				print "<li>";
 				print "<ul class=\"nav2\">";
 				open = 2;
 			} \
@@ -75,6 +87,7 @@ do_convert () {
 				open = 1;
 			} \
 			if (open < 2) { \
+				print "<li>";
 				print "<ul class=\"nav2\">";
 				open = 2;
 			} \
@@ -89,7 +102,7 @@ do_convert () {
 			print "</div>"; 
 		} \
 	' \
-	> $file.xml;
+	>> $file.xml;
 }
 
 for upn in 1 2 3 4; do 

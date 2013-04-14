@@ -1,4 +1,4 @@
-<!DOCTYPE webpage [ <!ENTITY auml "&#228; "> <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<!DOCTYPE webpage [ <!ENTITY auml "&#228;"> <!ENTITY eacute "&#233;"> <!ENTITY nbsp "&#160;"> ]>
 <webpage name="PET index">
   <author>
     <name>Andr&eacute; Fachat</name> 

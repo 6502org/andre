@@ -31,6 +31,53 @@ function twisty() {
 	}
 }
 
+// ----------------------------------------------------------------------------------------------------------
+// setup menu folding
+
+
+
+function menuClose(menu) {
+	var hdrtxt = $(menu).children( ".hdrtxt" );
+	$(menu).children( "ul" ).hide();
+	$(hdrtxt).show();
+}
+
+function menuOpen(menu) {
+	var hdrtxt = $(menu).children( ".hdrtxt" );
+	$(hdrtxt).hide();
+	$(menu).children( "ul" ).show();
+}
+
+function menutwisty() {
+	var menu = $(this); //.parent();
+	var hdrtxt = $(menu).children( ".hdrtxt" );
+	if ( $(hdrtxt).is(":visible") ) {
+		menuOpen(menu);
+	} else {
+		menuClose(menu);
+	}
+}
+
+function setupMenu() {
+	
+	$("div.twisty").each( function(i, e) {
+		//$(e).show();
+		$(e).parent().click( menutwisty ); // click on h2h(eader)
+	});
+
+	// close menu 1 when menu 2 exists
+	$("div#menu2").each( function(i, e) {
+		$("div#menu1").each( function (i, e) {
+			menuClose(e);
+		});
+	});
+	// close menu 2 when menu 3 exists
+	$("div#menu3").each( function(i, e) {
+		$("div#menu2").each( function (i, e) {
+			menuClose($(e));
+		});
+	});
+}
 
 // ----------------------------------------------------------------------------------------------------------
 // initialization
@@ -39,6 +86,7 @@ function twisty() {
 function doInit() {
 	// initialize twisties
 	setupTwisties();
+	setupMenu();
 }
 
 // done to check advanced stylesheet

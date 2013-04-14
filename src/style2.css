@@ -17,8 +17,13 @@ BODY {
  background-color: #fff;
 
 	/*font-family: "Arial","Sans Serif";*/
-	font-family: verdana,helvetica,arial,sans-serif;
+	font-family: helvetica,arial,sans-serif;
 	font-size: 100%;
+}
+
+h1, h2, h3, div.tophead
+/*, div#menu1, div#menu2, div#menu3*/  {
+	font-family: Nobile, Courier, Arial, sans-serif;
 }
 
 a:visited { color:#000080; text-decoration:none }
@@ -49,6 +54,11 @@ DIV.tophead {
 
 DIV#hot DIV.tophead {
 	background-color: #e00;
+}
+
+div#srchprov {
+	display: inline;
+	font-size: small;
 }
 
 P.copyright {
@@ -134,9 +144,10 @@ DIV#footer {
 
 div#topsearch {
 padding: 0.1em;
+padding-bottom: 1px;
 margin: 0px;
-margin-bottom: 0.1em;
-background-color: #ccc;
+margin-bottom: 0px;
+background-color: #bbb;
 /*color: #fff;*/
 }
 
@@ -171,13 +182,18 @@ margin:0;
 
 ul.nav1 li {
 list-style-type:none;
-padding:1px;
-padding-left:0px;
+padding:0.1em;
 margin:0;
 }
 
-li.navhdr {
+li.navhdr, div.hdrtxt {
 font-size: large;
+}
+
+div.hdrtxt {
+text-align:left;
+text-decoration: none;
+padding: 0.3em;
 }
 
 ul.nav2 a, ul.nav1 span
@@ -186,9 +202,9 @@ text-align:left;
 /*float:left; */
 text-decoration: none;
 /*font-weight:bold;*/
-margin-left:5px;
+margin-left:0px;
 margin-right:0.1em;
-padding-left: 5px;
+padding-left: 0.1em;
 padding-right: 0.4em;
 padding-bottom: 1px;
 margin-bottom:0.2em;
@@ -205,25 +221,53 @@ clear: both;
 }
 
 div.twisty {
+	display: none;
         float: right;
         background-color: #fee;
-        width: 1.5em;
-        height: 1.5em;
+        width: 1.2em;
+        height: 1.2em;
+}
+
+@media handheld, screen and (max-width: 480px) {
+        ul.nav1 {
+		display: none;
+        }
+	div.hdrtxt {
+ 		display: block;
+	}
+	/* fat fingering */
+	ul.nav2 li {
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+}
+
+@media handheld, screen and (min-width: 481px) and (max-width: 790px) {
+        ul.nav1 {
+		display: none;
+        }
+	div.hdrtxt {
+ 		display: block;
+	}
 }
 
 /* two column design, with the navigation on top */
-@media only screen and (min-width: 790px) and (max-width: 1019px) {
+@media handheld, screen and (min-width: 791px) and (max-width: 1024px) {
 	div#menu1, div#menu2, div#menu3 {
 		float: left;
 		width: 100%;
 	}
         ul.nav1 {
                 float: left;
+		display: block;
         }
+	div.hdrtxt {
+ 		display: none;
+	}
 }
 
 /* three column design */
-@media only screen and (min-width: 1020px) {
+@media handheld, screen and (min-width: 1025px) {
 	div#midcol {
 		float: left;
 		width: 62%;
@@ -248,8 +292,21 @@ div.twisty {
         div#twisty {
                 display: none;
         }
+        ul.nav1 {
+		display: block;
+        }
+	div.hdrtxt {
+ 		display: none;
+	}
 }
 
+@media handheld, screen and (min-width: 481px) {
+	/* fat fingering */
+	ul.nav2 li {
+		padding-top: 0.3em;
+		padding-bottom: 0.3em;
+	}
+}
 
 /****************************************/
 
@@ -567,6 +624,7 @@ div#content p.conclusion {
  * advanced style
  */
 .advbutton {
+/*
 	position:relative;
 
 	background-color: #888888;
@@ -579,7 +637,7 @@ div#content p.conclusion {
 	color:white;
 	text-decoration:none;
 	text-align:center;
-
+*/
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 
