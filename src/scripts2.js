@@ -94,12 +94,16 @@ function setupMenu() {
 // ----------------------------------------------------------------------------------------------------------
 // setup filter
 
-function loadMenu( r, process ) {
+function loadMenu( topfind, process ) {
 
-        var target = r;
+        var target = topfind;
 
         var ul = $(target).find("ul");
+
         if ($(ul).size() == 0) {
+
+		progressShow(topfind);
+
                 // TODO: $(r).children("img").attr("src", myUp + "imgs/dirload.gif");
                 // load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
                 // XML DOM tree) directly into the html document
@@ -107,13 +111,36 @@ function loadMenu( r, process ) {
                   process(target, data, true);
                 }, "html" );
         } else {
-                $(r).children("ul").show();
                 process(target, "", false);
         }
 }
 
 // ----------------------------------------------------------------------------------------------------------
 // ajax helper
+
+var time = 0.0;
+var progressbar;
+
+function progressHide( topfind ) {
+	var progress = $(topfind).children("#topprogress");
+
+	clearInterval( progressbar );
+
+	$(progress).hide();
+}
+
+function progressShow( topfind ) {
+	var progress = $(topfind).children("#topprogress");
+
+	$(progress).show();
+
+	progressbar = setInterval( function() {
+		var sin = Math.round(8 + (Math.sin(time) * 7)).toString(16);
+		time = time + 0.1;
+		var val = "#" + sin+sin+sin;
+		progress.css( "background", val);
+	}, 50);
+}
 
 // process the retrieved menu part
 // as string, then append to target
@@ -131,6 +158,8 @@ function processMenu( target, data, loaded ) {
                 }
                 data = dumpArrayToString(spl, "", 0);
 
+		progressHide(target);
+
                 if( $(target).children("ul").size() == 0) {
                         // it was not already loaded in the meantime
                         // append data (as string) to target
@@ -144,56 +173,59 @@ function processMenu( target, data, loaded ) {
 
 var currentFilter = "";
 
-function triggerFilter( topfind, filter ) {
+function doFilter(topfind) {
 
-	loadMenu(topfind, processMenu);
+	progressHide(topfind);
 
-        $(topfind).find("li").each( function ( i, e ) {
+       	$(topfind).find("li").each( function ( i, e ) {
 
-                // hide each item
-                $(e).hide();
+               	// hide each item
+               	$(e).hide();
 
                 // search and show results
-                if ($(e).text().toLowerCase().indexOf(currentFilter) >= 0) {
-                        $(e).show();    // LI
-                        $(e).parents().each( function (i, x) {
-                                $(x).show();
-                        });
-                }
-        });
+       	        if ($(e).text().toLowerCase().indexOf(currentFilter) >= 0) {
+               	        $(e).show();    // LI
+                       	$(e).parents().each( function (i, x) {
+                       	        $(x).show();
+                       	});
+               	}
+       	});
+
+	$(topfind).children("ul").show();
 }
 
 function hideFiltered() {
-	$("div#topfind").hide();
+	$("div#topfind").children("ul").hide();
 }
 
 function changeFilter( val ) {
 
-        currentFilter = val.toLowerCase();
+	var newval = val.trim().toLowerCase();
 
-        var filter = currentFilter;
+	if (newval == currentFilter) {
+		return;
+	}
 
-        // hide both LI and UL
-        var v = $("div#topfind");
-        $(v).hide();
+        currentFilter = newval;
 
-        triggerFilter(v, filter);
+	var topfind = $("div#topfind");
+
+	loadMenu(topfind, 
+		function(proc, data, loaded) {
+			processMenu(proc, data, loaded);
+
+			doFilter(topfind);
+		});
 }
 
 function checkValue() {
         var t = $("div#topsearch input");
 
         var val = $(t).attr("value");
-        if (val.length == 0) {
-                if (currentFilter != "") {
-                        changeFilter(val);
-                }
-        } else
         if (val.length > 1) {
-                if (currentFilter != val) {
-                        changeFilter(val);
-                }
+                changeFilter(val);
         } else {
+		currentFilter = "";
 		hideFiltered();
 	}
 }

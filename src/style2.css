@@ -45,11 +45,12 @@ body>table {
 /* left/right cols have headers in the top level style */
 DIV.tophead {
 	margin-top: 1em;
-	background-color: #666;
+	background-color: #bbb;
 	padding: 0.2em;
 	padding-left: 1em;
 	padding-right: 1em;
 	color: #fff;
+	font-weight: bold;
 }
 
 DIV#hot DIV.tophead {
@@ -151,6 +152,12 @@ background-color: #bbb;
 /*color: #fff;*/
 }
 
+div#topprogress {
+	display: none;
+	width: 20px;
+	height: 20px;
+}
+
 div#topfind {
 	position: absolute;
 	font-size: small;
@@ -242,6 +249,10 @@ div.twisty {
         height: 1.2em;
 }
 
+div.driverfiles {
+	padding-top: 20px;
+}
+
 @media handheld, screen and (max-width: 480px) {
         ul.nav1 {
 		display: none;
@@ -297,12 +308,6 @@ div.twisty {
 		float: left;
 		width: 15%;
 	}
-        ul.nav1 li {
-        /*        float: left;*/
-        }
-        div.nend1 {
-        /*        clear: left;*/
-        }
         div#twisty {
                 display: none;
         }
@@ -311,6 +316,28 @@ div.twisty {
         }
 	div.hdrtxt {
  		display: none;
+	}
+	div.revnotes {
+		width: 45%;
+		float: left;
+	}
+	div.revfiles {
+		float: right;
+		width: 45%;
+	}
+	div.revend {
+		clear: both;
+	}
+	div.driverdesc {
+		width: 45%;
+		float: left;
+	}
+	div.driverfiles {
+		float: right;
+		width: 45%;
+	}
+	div.driverend {
+		clear: both;
 	}
 }
 
