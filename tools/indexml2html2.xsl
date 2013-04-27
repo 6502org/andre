@@ -149,6 +149,7 @@
 			<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"/>
 		</form>
 		<div id="topfind">
+			<div id="topprogress" />
 		</div>
 	</div> <!-- topsearch -->
 
@@ -171,11 +172,11 @@
 			</xsl:for-each>
 			<p>(Forum registration required to post)</p>
 		</div></div>
-		<div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		<div class="top" id="hot"><div class="tophead">hot!</div><div>
 			@HOT@
 		</div></div>
 		<xsl:if test="oldnews">
-			<div class="top" id="oldnews"><div class="tophead">History</div>
+			<div class="top" id="oldnews"><div class="tophead">history</div>
 			<div id="oldnewscontent">
 				<xsl:apply-templates select="oldnews"/>
 			</div></div>
@@ -243,27 +244,33 @@
 <div class="rev">
 <h3><a name="board{position()}">Version: <xsl:value-of select="version"/></a></h3><xsl:text>
 </xsl:text>
-<table class="rev"><tr><td class="revdesc">
-<p>Status: <xsl:value-of select="status"/></p><xsl:text>
+	<div class="revdesc">
+		<p>Status: <xsl:value-of select="status"/></p><xsl:text>
 </xsl:text>
-<xsl:if test="note">
-<h4>Notes</h4>
-<table class="notes">
-<xsl:for-each select="note">
-<tr><td class="noteicon"><div class="i_{@type}">&nbsp;</div></td><xsl:text>
-</xsl:text><td><xsl:copy-of select="text()|*"/></td></tr><xsl:text>
+	</div><!-- revdesc -->
+	<div class="revnotes">
+		<xsl:if test="note">
+			<h4>Notes</h4>
+			<table class="notes">
+				<xsl:for-each select="note">
+					<tr><td class="noteicon"><div class="i_{@type}">&nbsp;</div></td><xsl:text>
 </xsl:text>
-</xsl:for-each><!-- note -->
-</table>
-</xsl:if>
-</td><td class="revfiles">
-<xsl:if test="file">
-<h4>Files</h4>
-<table class="files">
-<xsl:apply-templates select="file"/>
-</table></xsl:if><xsl:text>
+					<td><xsl:copy-of select="text()|*"/></td></tr><xsl:text>
 </xsl:text>
-</td></tr></table>
+				</xsl:for-each><!-- note -->
+			</table>
+		</xsl:if>
+	</div><!-- revnotes -->
+	<div class="revfiles">
+		<xsl:if test="file">
+			<h4>Files</h4>
+			<table class="files">
+				<xsl:apply-templates select="file"/>
+			</table>
+		</xsl:if><xsl:text>
+</xsl:text>
+	</div><!-- revfiles -->
+	<div class="revend" />
 </div><!-- class=rev -->
 </xsl:template>
 
@@ -283,12 +290,14 @@
 
 <xsl:template match="driver">
 <div class="driver">
-<h3><a name="driver{position()}"><xsl:value-of select="name"/></a></h3>
-<table class="driver"><tr><td class="driverdesc">
-<xsl:apply-templates select="desc"/>
-</td><td class="driverfiles">
-<table class="files"><xsl:apply-templates select="file"/></table>
-</td></tr></table>
+	<h3><a name="driver{position()}"><xsl:value-of select="name"/></a></h3>
+	<div class="driverdesc">
+		<xsl:apply-templates select="desc"/>
+	</div>
+	<div class="driverfiles">
+		<table class="files"><xsl:apply-templates select="file"/></table>
+	</div>
+	<div class="driverend" />
 </div>
 </xsl:template>
 

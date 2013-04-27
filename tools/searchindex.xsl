@@ -9,7 +9,7 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="root">
-  <div class="filtered">
+  <!--div class="filtered"-->
     <ul>
     <xsl:for-each select="//div[not(@class='hdrtxt')]//ul[@class='nav2']/li[not(@class='navhdr')]//a">
 	<li>
@@ -17,7 +17,7 @@
 	</li>
     </xsl:for-each>
     </ul>
-  </div>
+  <!--/div-->
 </xsl:template>
 
 </xsl:stylesheet>
