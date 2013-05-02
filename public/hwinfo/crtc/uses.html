@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>CRTC operation</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -190,7 +190,7 @@ computer page or in the PET schematics on the
 </P>
   </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2010-12-20</small>
 	Separated from the main <a href="crtc.html">CRTC</a> page.
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pet">Example CRTC use in the Commodore PET</a></li><li style="list-style-type:none;"><ul><li><a href="#fat40">PET 4032 'Fat40'</a></li><li><a href="#8032">PET 8032</a></li><li><a href="#8296">PET 8296</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="pet">Example CRTC use in the Commodore PET</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pet">Example CRTC use in the Commodore PET</a></li><li style="list-style-type:none;"><ul><li><a href="#fat40">PET 4032 'Fat40'</a></li><li><a href="#8032">PET 8032</a></li><li><a href="#8296">PET 8296</a></li><li><a href="#colourpet">Steve Gray's Colour PET</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="pet">Example CRTC use in the Commodore PET</a></h2></div><div class="h2c">
 <P>
 There are a few things that might be different from other implementations
 in the PET. The CRTC has been used in 40 columns and 80 columns models.
@@ -380,7 +380,69 @@ that the memory is accessed faster than 2MHz. In fact it is accessed
 faster, with approx. 4Mhz, as can be seen in the description of the UC2
 PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+	<h3><a name="colourpet">Steve Gray's Colour PET</a></h3>
+<P>Steve Gray has come up with an ingenious way of converting a
+green/black 80 column PET into a 40 column colour PET!
+In each cycle the 80 column PET reads two bytes, as described above.
+Steve now uses the first byte for normal display, just with 
+8MHz pixel clock, and the second byte is used to define the colours
+for the on and off bits.
+</P>
+<PRE>
+Colour PET CRTC usage block diagram
+---------------------------------
+
+
+                |               CRTC                                                        |
+                -----------------------------------------------------------------------------
+           MA0-9  |                                RA0-2 |    -------                   DE|
+                  |                                      |    |     |                     |
+                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
+                  |  |   |      |     |         -----         |     |D0-7  |   |     ---  +--| | Video
+                  +--|   | A0-9 | even| D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|------+
+                     | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |      |
+ CPU A0-9 -----------|   |   |  |     |   |     |   |   |     |     |      -----   +-| |     ---      |
+                     |   |   |  |     |   |     -----   |     -------      shift   | ---      AND     |
+                     -----   |  -------   |     Latch   |     Charrom     register |  XOR             |
+                      Mux    |            |             |  D7                      |                  |
+                     2-to-1  |            |             +--------------------------+    +-------------+
+                             |  -------   |      odd                                    | 
+                             |  |     |   |     -----          -----                 -----
+                             |  | odd |   |     |   |          |   |              +--|   |
+                             +--| RAM |--/|\-+--|   |----------|   |--------------+  |   |----- RGBI output
+                                |     |   |  |  |   |          |   |              +--|   |
+                                |     |   |  |  -----          -----                 -----
+                     even       -------   |  |  Latch          delay            select foreground/
+                     -----                |  |                 latch            background colour
+                     |   |                |  |
+ CPU D0-7 ------+----|   |-----------------  |
+                |    |   |                   |
+                |    -----                   |
+                |     odd                    |
+                |    -----                   |
+                |    |   |                   |
+                -----|   |-------------------+
+                     |   |
+                     -----
+                     Buffer
+</PRE>
+<P>The difference to the main 80 column PET is that the data from the odd latch is not
+given to the character ROM, but stored in the latch and given to a 2-to-1 multiplexer.
+This multiplexer selects either the upper or the lower nibble of the stored data byte by using
+the video bit stream as selector. It then 
+outputs them as RGBI foreground or background colour.
+This results in a 8x8 pixel array that have the same foreground and background colour (notwithstanding
+carefully timed changes to the colour RAM as was often done on the C64 :-).
+</P><P>
+Some caveats: The RAM address muxes must be set to a 40 column model ta achieve a continous 
+video RAM in $8000-$83ff and a colour RAM in $8400-$87ff. The pixel clock must also be set to the 
+40 column model's 8 MHz and not the 80 column model's 16 MHz. 
+</P><P>
+The delay between reading the data and actually shifting it out must also be taken into account 
+by using some delay latch. Otherwise the shifted data changes colour when the next data byte is 
+being read from the RAM.
+</P>
+	<ul><li><a href="http://www.6502.org/users/sjgray/projects/colourpet/index.html" target="_blank" class="extlink">The Colour PET</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
@@ -389,7 +451,7 @@ GNU Public License version 2 unless noted otherwise.
 	
   </div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

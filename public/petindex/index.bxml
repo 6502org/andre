@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2013</yearend>
   </author>
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>PET index</metadesc>
@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2013-05-02">
+        Added the <a href="hw.html#colourpet">Colour PET</a> project description.
+    </item>
     <item date="2013-04-14">
 	Added a RAM drive for the 8296 to the <a href="hw.html">Hardware</a> page,
 	more on french internationalized machines on the new <a href="internat.html">Internationalization</a>

@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>Commodore PET 65816 CPU card</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -182,7 +182,7 @@ a feature in these days.
 			Explanations still to come though.
 		</li><li><div>&nbsp;</div><small>2010-04-20</small>
 			Published the board.
-		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PET 4032 test machine</a></li><li><a href="#driver2">Testsuite</a></li><li><a href="#driver3">VHDL code</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2b</a> (ok)</li><li><a href="#board2">1.2a</a> (prototype)</li><li><a href="#board3">1.0b</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">PET 4032 test machine</a></h3><table class="driver"><tr><td class="driverdesc"><p>I tried to repair a PET 4032 machine, that seems to have a memory problem.
+		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PET 4032 test machine</a></li><li><a href="#driver2">Testsuite</a></li><li><a href="#driver3">VHDL code</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2b</a> (ok)</li><li><a href="#board2">1.2a</a> (prototype)</li><li><a href="#board3">1.0b</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">PET 4032 test machine</a></h3><div class="driverdesc"><p>I tried to repair a PET 4032 machine, that seems to have a memory problem.
 			So I put in the 65816 board, with some boot code in the ROM, to run the PET
 			in the 65816 board only. The result can be seen in the gallery, the PET
 			runs at 10&nbsp;MHz.
@@ -199,10 +199,10 @@ a feature in these days.
 			Atmel Flash PROM for the write algorithm, as does the <code>progrom</code>
 			programs below.
 			</p>
-		</td><td class="driverfiles"><table class="files">
+		</div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="petdebug.tar.gz">petdebug.tar.gz</a>(PET 4032 test ROM)</td>
-</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver2">Testsuite</a></h3><table class="driver"><tr><td class="driverdesc"><p>Here are some small tests that test the various features of the board.
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">Testsuite</a></h3><div class="driverdesc"><p>Here are some small tests that test the various features of the board.
 		</p><p>Note that building them requires the <code>xa</code> cross assembler, using 
 		the <code>-w</code> switch to enable 65816 code, as well as <code>petcat</code> 
 		from the VICE emulator package to build the BASIC parts.
@@ -232,14 +232,14 @@ a feature in these days.
 			problems with larger blocks - better use the <code>proglib.a65</code> 
 			code from <code>petdebug.tar.gz</code> above)</li>
 		</ul>
-		</td><td class="driverfiles"><table class="files">
+		</div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="x816tests-1.0.tgz">x816tests-1.0.tgz</a>(Feature test suite)</td>
-</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver3">VHDL code</a></h3><table class="driver"><tr><td class="driverdesc"><p>
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver3">VHDL code</a></h3><div class="driverdesc"><p>
 			This is the VHDL code for the board. It is packaged as the XILINX ISE Webpack (v11.1) directory. Included in this directory is a "testbench" directory with some simulation test runs. Requires Linux with ghdl and GTKWave installed, then look into the Makefile.
 		</p><p>
 		Version 1.7.1 just has an updated testsuite.
-		</p></td><td class="driverfiles"><table class="files">
+		</p></div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="PET816_1.7.1.tar.bz2">PET816_1.7.1.tar.bz2</a>(Archive of the XILINX ISE Webpack CPLD logic - includes VHDL source, JED binary file, as well as a testbench. )</td>
 </tr>
@@ -254,16 +254,16 @@ a feature in these days.
 </tr>
 <tr class="R1"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="imgs/gtkwave.png">imgs/gtkwave.png</a>(Sample screenshot of the timing simulation in the testbench)</td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.2b</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.2b</a></h3>
+<div class="revdesc"><p>Status: ok</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			This board is an update on the 1.2A, and only contains a few small changes:
 			Two delay loops that can be used in the VHDL code have been added. Also
 			an "official" diagnostics pin has been added too, to get easy access to a 
 			signal "exported" from the CPLD.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="pet_cpu816-v1.2b.sch">pet_cpu816-v1.2b.sch</a></td>
 </tr>
@@ -276,13 +276,13 @@ a feature in these days.
 <tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
 <td><a href="pet_cpu816-v1.2b-brd.png">pet_cpu816-v1.2b-brd.png</a></td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board2">Version: 1.2a</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.2a</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
 <td>
 			This board has been only barely tested
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="pet_cpu816-v1.2a.sch">pet_cpu816-v1.2a.sch</a></td>
 </tr>
@@ -295,13 +295,13 @@ a feature in these days.
 <tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
 <td><a href="pet_cpu816-v1.2a-brd.png">pet_cpu816-v1.2a-brd.png</a></td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board3">Version: 1.0b</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3">Version: 1.0b</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
 <td>
 			This board has been only barely tested
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="pet_cpu816-v1.0b.sch">pet_cpu816-v1.0b.sch</a></td>
 </tr>
@@ -315,7 +315,7 @@ GNU Public License version 2 unless noted otherwise.
 
 </div></div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=1573"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=1573"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

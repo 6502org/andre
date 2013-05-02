@@ -115,13 +115,13 @@ DIV#mainbox {
 DIV#oldnewscontent  {
 	height: 40em;
 	overflow: scroll;
-	margin-left: -0.7em;
+	/*margin-left: -0.7em;*/
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	/*width: 10.0em;*/
-	margin-right: -0.7em;
+	/*margin-right: -0.7em;*/
 }
 
 DIV#content {

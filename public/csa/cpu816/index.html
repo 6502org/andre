@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>CS/A 65816 CPU</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -549,12 +549,12 @@
 		<code>Q7</code>, when <code>XQ7</code> is sampled by <code>8Phi2</code>, 65ns before 
 		<code>Phi2</code> goes low. This may or may not be a problem for slow memory that uses
 		<code>RDY</code>.
- 		</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><table class="driver"><tr><td class="driverdesc">These tests test the basic functionality of the board, and also do some timing
+ 		</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><div class="driverdesc">These tests test the basic functionality of the board, and also do some timing
 			measurement to actually see if the access is fast or not.
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
 			switch to allow 65816 code.
-		</td><td class="driverfiles"><table class="files">
+		</div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="pettest1.a65">pettest1.a65</a>(Copies 4k from (slow) ROM to fast RAM and back to slow RAM. I used it to investigate the stray writes which appeared in the slow memory when writing to the fast memory.)</td>
 </tr>
@@ -569,7 +569,7 @@
 </tr>
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="pettest4a.a65">pettest4a.a65</a>(Use the VIA timer to time exactly one (fast) memory access)</td>
-</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver2">PET Fat40 ROM patch</a></h3><table class="driver"><tr><td class="driverdesc"><p>This patch lets the PET copy the PET ROM from the slow ROM on the BIOS card to the
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">PET Fat40 ROM patch</a></h3><div class="driverdesc"><p>This patch lets the PET copy the PET ROM from the slow ROM on the BIOS card to the
 		(mirrored) fast bank 0 RAM when it boots. Additional code at address 65080 then switches
 		from BOOT mode into normal mode, i.e. unmaps the slow CS/A memory from bank 0 and jumps
 		into the copied PET ROM Reset. Besides this code some BIOS card, VDC card and CRTC registers are 
@@ -582,30 +582,30 @@
 		with <code>SYS 40960</code>.
 		</p><p>
 		Also note that IEEE488 has not been tested yet (due to my broken lpt-ieee488 interface).
-		</p></td><td class="driverfiles"><table class="files">
+		</p></div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="petpatch2.a65">petpatch2.a65</a>(CS/A Fat40 65816 setup ROM Patch to apply to a normal 40col CRTC PET ROM)</td>
 </tr>
 <tr class="R0"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="fat40_816v4.bin">fat40_816v4.bin</a>(Precompiled CS/A Fat40 65816 setup ROM (32k))</td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.1F</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.1F</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			Compared to the 1.1E board this board adds a 2k2 pull-up resistor on <code>BRDY</code>. Now
 			the CS/A bus RDY handling works, i.e. a CS/A bus board can slow down the CPU even more
 			if necessary.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_cpu816-v1.1f.sch">csa_cpu816-v1.1f.sch</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_cpu816-v1.1f-sch.png">csa_cpu816-v1.1f-sch.png</a></td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board2">Version: 1.1E</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.1E</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			The shown schematics has been implemented by patching up
 			an older 1.1 board version. However, as there are too many differences,
@@ -632,7 +632,7 @@
 			The TTL types are mostly 'ALS. Please refer to the parts list and not
 			to the schematics for the TTL technology type.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
 <td><a href="CPU816 top.PNG">CPU816 top.PNG</a>(65816 prototype board from top with replaced ICs ...)</td>
 </tr>
@@ -666,7 +666,7 @@
 <tr class="R1"><td><div class="i_timing">&nbsp;</div></td>
 <td><a href="timing2.png">timing2.png</a>(Sample high-res timing diagram)</td>
 </tr></table>
-</td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="diagram.gif" alt="block diagram"><div class="diagcaption">Block diagram of the cpu board. 
+</div><div class="revend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="diagram.gif" alt="block diagram"><div class="diagcaption">Block diagram of the cpu board. 
 		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
 		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
 		control logic - which is the most complex part here... RDY is used to slow down the CPU during CS/A bus access, which 
@@ -676,7 +676,7 @@
 
 </div></div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

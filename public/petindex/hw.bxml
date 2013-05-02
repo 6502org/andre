@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2013</yearend>
   </author>
   <keywords>Commodore PET CBM hardware project</keywords>
   <metadesc>PET index - hardware projects</metadesc>
@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2013-05-02">
+	Added the Colour PET
+    </item>
     <item date="2013-04-13">
         Added a custom RAM disk - "RAM Drive 2008".
     </item>
@@ -62,8 +65,20 @@ I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.ht
      </desc>
   </section>
 
-  <section toc="chargen" name="Character Generator">
-    <desc><p>This section describes extensions for the character generator ROM</p></desc>
+  <section toc="graphics" name="Graphics">
+    <desc><p>This section describes extensions for the graphics generation and character generator ROM</p></desc>
+    <subsection toc="colourpet" name="Colour PET">
+        <desc><p>Steve Gray has announced this brand new project: add colour to your PET!
+		It takes an interesting approach - it converts an 80 column PET back into a 40 column one
+		and uses the extra byte fetched to achieve 80 columns as colour information instead!
+		What's much more astounding is that it only takes <em>two</em> extra chips!
+		The pictures on the link below show that the timing still needs to be improved though
+		(as of May 2013) - the colour does not change exactly on the character borders.
+		But I am confident that this will be fixed.
+	</p></desc>
+        <extlink name="The Colour PET" link="http://www.6502.org/users/sjgray/projects/colourpet/index.html"/>
+    </subsection>
+
     <subsection toc="charram" name="Character generator RAM">
         <desc><p>Nils Eilers has managed to replace the - normally fixed - character ROM of the PET with a
                 dual-port RAM card! It is written by mapping the character generator into a PET extension ROM
@@ -73,7 +88,6 @@ I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.ht
         <extlink name="Nils Eilers' Character generator RAM" link="http://home.germany.net/nils.eilers/chargen/index.htm"/>
      </subsection>
   </section>
-
 
   <section toc="sound" name="Sound extensions">
     <desc><p>This section describes extensions projects for a better sound on the PET:</p></desc>

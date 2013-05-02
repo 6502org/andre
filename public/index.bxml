@@ -21,6 +21,8 @@ and internet access.</p>
   <news>
      <item date="2013-05-02">
 	Fix some web design bugs, a few smaller updates
+        Added the <a href="petindex/hw.html#colourpet">Colour PET</a> project description.
+        Added the <a href="hwinfo/crtc/uses.html">Colour PET</a> description to the CRTC pages.
      </item>
      <item date="2013-04-14" state="hot">
 	New, flexible web design, suitable for PCs as well as handheld devices :-)
@@ -387,6 +389,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
 @DISCLAIMER@
     </disclaimer>
   <closing>
-Last updated 2010-09-10.
+Last updated 2013-05-02.
   </closing>
 </webpage>

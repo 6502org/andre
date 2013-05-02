@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>Block Transfer Engine</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -387,7 +387,7 @@
 	address values; then there is the data bus driver, connecting the INBUS with the CPU data bus.
 	The right-most 20-pin chip is the ALU output driver, that drives the adder output onto the
 	INBUS. The smaller chips to the right are '293 4-bit adders, implementing the actually "ALU" adder.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><table class="driver"><tr><td class="driverdesc"><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><div class="driverdesc"><p>
 			These tests implement some basic test cases:</p>
 	                <div class="rightimg">
                         	<a href="blitter-reversemem.png"><img width="200px" src="blitter-reversemem.png"></a><br>
@@ -411,16 +411,16 @@
 			<li>blitter5.a65: copies 4k from $f000 to $2000, but with intermediate storage
 				in the video memory board at $10000</li>
 			</ul>
-                </td><td class="driverfiles"><table class="files">
+                </div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="Blitter.tar.gz">Blitter.tar.gz</a>(blitter tests)</td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 2.1C</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 2.1C</a></h3>
+<div class="revdesc"><p>Status: ok</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			Working!
                 </td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_blitter-v2.1c.sch">csa_blitter-v2.1c.sch</a></td>
 </tr>
@@ -448,15 +448,15 @@
 <tr class="R1"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board2">Version: 2.1B</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: working, but API with bugs</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 2.1B</a></h3>
+<div class="revdesc"><p>Status: working, but API with bugs</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
 <td>
 			Working - except for some sign issues... which are fixed in 2.1C: The selection
 			between the Fetch and Store bits in the control register was the wrong way around,
 			and the LDIOSEL control bit was resulting in the wrong level...
                 </td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_blitter-v2.1b.sch">csa_blitter-v2.1b.sch</a></td>
 </tr>
@@ -484,9 +484,9 @@
 <tr class="R1"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="blitter-v2.1b.jed">blitter-v2.1b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board3">Version: 2.1A</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3">Version: 2.1A</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
 <td>
 			I have tested this board and found some bugs - that are fixed with 2.1B above.
                 </td></tr>
@@ -494,7 +494,7 @@
 <td>
 			This board is a prototype design that I still have to build and test!
                 </td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_blitter-v2.1a.sch">csa_blitter-v2.1a.sch</a></td>
 </tr>
@@ -510,9 +510,9 @@
 <tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
 <td><a href="csa_blitter-v2.1a-layout.png">csa_blitter-v2.1a-layout.png</a></td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board4">Version: 1.0B</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: not working</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board4">Version: 1.0B</a></h3>
+<div class="revdesc"><p>Status: not working</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
 <td>
 			This is an example of how not to do it. The schematics sport an own 
 			adder resp. incrementer for each address, load and store, and the increment value.
@@ -529,7 +529,7 @@
 			line as well) I decided to skip this feature. This also removed the need to
 			read the counter register.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_blitter-v1.0b.sch">csa_blitter-v1.0b.sch</a></td>
 </tr>
@@ -539,12 +539,12 @@
 <tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
 <td><a href="csa_blitter-v1.0b-brd.png">csa_blitter-v1.0b-brd.png</a></td>
 </tr></table>
-</td></tr></table></div></div></div><hr>
+</div><div class="revend"></div></div></div></div><hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

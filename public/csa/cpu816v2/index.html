@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>CS/A 65816 V2 CPU</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -365,7 +365,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 		5) The control port was planned to be read-write, but I only managed to make it write only.
 		This could be fixed.
 		</p>
-		</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><table class="driver"><tr><td class="driverdesc">These tests test the basic functionality of the board, and also do some timing
+		</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Simple test suite</a></h3><div class="driverdesc">These tests test the basic functionality of the board, and also do some timing
 			measurement to actually see if the access is fast or not.
 			Note that these tests are small as I had to enter them with the hex editor.
 			Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
@@ -373,12 +373,12 @@ Now that the version 1 board was working, I decided to use this as a starting po
                 <div class="rightimg">
 			<a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"></a><br><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
 	                </div>
-		</td><td class="driverfiles"><table class="files">
+		</div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="test1.a65">test1.a65</a>(copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM )</td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 2.0E</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 2.0E</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			This version adds a jumper to define the control port address.
 			Also the new <code>/ROMOE</code> signal enables writing the ROM in-system...
@@ -387,7 +387,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0E.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0e.sch">csa_cpu816-v2.0e.sch</a></td>
 </tr>
@@ -412,9 +412,9 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="csacpu816-v2.0e.jed">csacpu816-v2.0e.jed</a>(CPLD compiled source)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board2">Version: 2.0C</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 2.0C</a></h3>
+<div class="revdesc"><p>Status: deprecated</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			Compared to the 2.0B board it adds a protection resistor for the RDY signal. 
 			When the CPU executes a WAI instruction, RDY is pulled low, this may overload the
@@ -428,7 +428,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0c.sch">csa_cpu816-v2.0c.sch</a></td>
 </tr>
@@ -453,9 +453,9 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board3">Version: 2.0B</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3">Version: 2.0B</a></h3>
+<div class="revdesc"><p>Status: deprecated</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			Compared to the 2.0A board it fixes the timing bugs.
 		</td></tr>
@@ -463,7 +463,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <td>
 			The layout has not been tested, I fixed my 2.0A version up to 2.0B.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0b.sch">csa_cpu816-v2.0b.sch</a></td>
 </tr>
@@ -488,14 +488,14 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R0"><td><div class="i_logic">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0b.jed">csa_cpu816-v2.0b.jed</a>(CPLD compiled source)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board4">Version: 2.0A</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: deprecated</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board4">Version: 2.0A</a></h3>
+<div class="revdesc"><p>Status: deprecated</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
 <td>
 			There are a few timing issues, and the main bug is that the counter counts the wrong way - so
 			the phase between phi2 and 8phi2 is wrong.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
 <td><a href=""></a>(Picture of the assembled board)</td>
 </tr>
@@ -511,7 +511,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 <tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
 <td><a href="csa_cpu816-v2.0a-brd.png">csa_cpu816-v2.0a-brd.png</a></td>
 </tr></table>
-</td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="diagram.gif" alt="block diagram"><div class="diagcaption">Block diagram of the cpu board. 
+</div><div class="revend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="diagram.gif" alt="block diagram"><div class="diagcaption">Block diagram of the cpu board. 
 		In principle the board is simple - the CPU is connected to the bus and the fast memory with its address and data lines.
 		The '573 address latch takes the address bits 16-23 from the data bus during Phi2 low. Everything is controlled by the
 		control logic - which is the most complex part here and integrated into the CPLD. RDY is used to slow down the CPU during CS/A bus access, which 
@@ -521,7 +521,7 @@ Now that the version 1 board was working, I decided to use this as a starting po
 
 </div></div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

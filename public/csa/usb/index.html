@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:afachat@gmx.de">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>USB (+Ethernet) board</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -225,7 +225,7 @@
 	please see there.
   </p></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-04-22</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">USB Host Driver</a></li><li><a href="#driver2">USB Device Driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0C</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">USB Host Driver</a></h3><table class="driver"><tr><td class="driverdesc"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">USB Host Driver</a></li><li><a href="#driver2">USB Device Driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0C</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">USB Host Driver</a></h3><div class="driverdesc"><p>
 		This is the USB Host driver. It currently supports keyboards, mouse devices, and
 		hubs.
 		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
@@ -245,7 +245,7 @@
 		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
 		actual hardware driver code is an integral part, and falls under GPL - so hardware 
 		drivers must be published, but the full driver can be used in non-GPL projects.
-                </p></td><td class="driverfiles"><table class="files">
+                </p></div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="USB-0.6.tar.gz">USB-0.6.tar.gz</a>(6502 USB Host Driver)</td>
 </tr>
@@ -254,7 +254,7 @@
 </tr>
 <tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
 <td><a href="host_success.png">host_success.png</a>(First getting correct chars from a USB keyboard)</td>
-</tr></table></td></tr></table></div><div class="driver"><h3><a name="driver2">USB Device Driver</a></h3><table class="driver"><tr><td class="driverdesc"><p>
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">USB Device Driver</a></h3><div class="driverdesc"><p>
 		This is the USB Device driver. It currently supports keyboards only.
 		</p><p>To build the driver, you need the xa65 cross assembler in your path, then
 		type "make". It builds three files:</p>
@@ -270,20 +270,20 @@
 		</p><p>The driver is under the LGPL 3.0 license, with the additional note that the
 		actual hardware driver code is an integral part, and falls under GPL - so hardware 
 		drivers must be published, but the full driver can be used in non-GPL projects.
-                </p></td><td class="driverfiles"><table class="files">
+                </p></div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="USBdev-0.8.tar.gz">USBdev-0.8.tar.gz</a>(6502 USB Host Driver)</td>
 </tr>
 <tr class="R0"><td><div class="i_txt">&nbsp;</div></td>
 <td><a href="USBdev-README.txt">USBdev-README.txt</a>(README)</td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0C</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: prototype</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0C</a></h3>
+<div class="revdesc"><p>Status: prototype</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td>
 			This board has been successfully tested with Ethernet as well as USB host 
 			and device operations.
                 </td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
 <td><a href="netusb.png">netusb.png</a></td>
 </tr>
@@ -293,12 +293,12 @@
 <tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csa_netusb-v1.0c-sch.png">csa_netusb-v1.0c-sch.png</a></td>
 </tr></table>
-</td></tr></table></div></div></div><hr>
+</div><div class="revend"></div></div></div></div><hr>
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   </div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

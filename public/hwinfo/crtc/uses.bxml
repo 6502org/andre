@@ -245,6 +245,72 @@ PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
 	</desc>
 	</subsection>
+	<subsection name="Steve Gray's Colour PET" toc="colourpet">
+	<desc>
+<P>Steve Gray has come up with an ingenious way of converting a
+green/black 80 column PET into a 40 column colour PET!
+In each cycle the 80 column PET reads two bytes, as described above.
+Steve now uses the first byte for normal display, just with 
+8MHz pixel clock, and the second byte is used to define the colours
+for the on and off bits.
+</P>
+<PRE>
+Colour PET CRTC usage block diagram
+---------------------------------
+
+
+                |               CRTC                                                        |
+                -----------------------------------------------------------------------------
+           MA0-9  |                                RA0-2 |    -------                   DE|
+                  |                                      |    |     |                     |
+                  |  -----      -------         even     +----|A0-2 |      -----          |  ---
+                  |  |   |      |     |         -----         |     |D0-7  |   |     ---  +--| | Video
+                  +--|   | A0-9 | even| D0-7    |   |    D0-6 |     |------|   |-----| |     |&gt;|------+
+                     | &gt; |---+--| RAM |---+-----|   |-+-+-----|A3-8 |      |   |     | |-----| |      |
+ CPU A0-9 -----------|   |   |  |     |   |     |   |   |     |     |      -----   +-| |     ---      |
+                     |   |   |  |     |   |     -----   |     -------      shift   | ---      AND     |
+                     -----   |  -------   |     Latch   |     Charrom     register |  XOR             |
+                      Mux    |            |             |  D7                      |                  |
+                     2-to-1  |            |             +--------------------------+    +-------------+
+                             |  -------   |      odd                                    | 
+                             |  |     |   |     -----          -----                 -----
+                             |  | odd |   |     |   |          |   |              +--|   |
+                             +--| RAM |--/|\-+--|   |----------|   |--------------+  |   |----- RGBI output
+                                |     |   |  |  |   |          |   |              +--|   |
+                                |     |   |  |  -----          -----                 -----
+                     even       -------   |  |  Latch          delay            select foreground/
+                     -----                |  |                 latch            background colour
+                     |   |                |  |
+ CPU D0-7 ------+----|   |-----------------  |
+                |    |   |                   |
+                |    -----                   |
+                |     odd                    |
+                |    -----                   |
+                |    |   |                   |
+                -----|   |-------------------+
+                     |   |
+                     -----
+                     Buffer
+</PRE>
+<P>The difference to the main 80 column PET is that the data from the odd latch is not
+given to the character ROM, but stored in the latch and given to a 2-to-1 multiplexer.
+This multiplexer selects either the upper or the lower nibble of the stored data byte by using
+the video bit stream as selector. It then 
+outputs them as RGBI foreground or background colour.
+This results in a 8x8 pixel array that have the same foreground and background colour (notwithstanding
+carefully timed changes to the colour RAM as was often done on the C64 :-).
+</P><P>
+Some caveats: The RAM address muxes must be set to a 40 column model ta achieve a continous 
+video RAM in $8000-$83ff and a colour RAM in $8400-$87ff. The pixel clock must also be set to the 
+40 column model's 8 MHz and not the 80 column model's 16 MHz. 
+</P><P>
+The delay between reading the data and actually shifting it out must also be taken into account 
+by using some delay latch. Otherwise the shifted data changes colour when the next data byte is 
+being read from the RAM.
+</P>
+	</desc>
+        <extlink name="The Colour PET" link="http://www.6502.org/users/sjgray/projects/colourpet/index.html"/>
+	</subsection>
   </itemlist>
   <disclaimer name="Disclaimer">
 	@DISCLAIMER@

@@ -9,7 +9,7 @@
 <link rev="made" href="mailto:">
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2.css"><link rel="alternate stylesheet" title="Advanced" type="text/css" href="../../advanced.css">
 <title>CS/A65 Copro</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -229,19 +229,19 @@
 	
 </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2006-12-16</small>
                         Published the new, tested and working(!) revision of the board.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Copro test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li><li><a href="#board2">1.0</a> (draft)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Copro test suite</a></h3><table class="driver"><tr><td class="driverdesc"><p>This test suite contains four tests that each use
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Copro test suite</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li><li><a href="#board2">1.0</a> (draft)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Copro test suite</a></h3><div class="driverdesc"><p>This test suite contains four tests that each use
 			the coprocessor in a different way. The first test
 			simply sets the shared memory to new values, the other
 			tests use an I/O board (here a DRVIO board) to toggle
 			I/O lines (here the two LED lines of the DRVIO board).
 			These tests test the I/O and the interrupt abilities.
                         </p>
-                </td><td class="driverfiles"><table class="files">
+                </div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
 <td><a href="copro.tar.gz">copro.tar.gz</a></td>
-</tr></table></td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0B</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: ok</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0B</a></h3>
+<div class="revdesc"><p>Status: ok</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
 <td><p>
 			This board has been fully tested in a test 
 			setup. The driver above contains the test
@@ -252,7 +252,7 @@
 			is called the "addon" board.
 			</p>
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
 <td><a href="csacoprodesc-v1.0b.txt">csacoprodesc-v1.0b.txt</a></td>
 </tr>
@@ -286,9 +286,9 @@
 <tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
 <td><a href="copro-separated-sameside.jpg">copro-separated-sameside.jpg</a>(The two coprocessor boards; note that I have used two 32k RAM chips in the tests.)</td>
 </tr></table>
-</td></tr></table></div><div class="rev"><h3><a name="board2">Version: 1.0</a></h3>
-<table class="rev"><tr><td class="revdesc"><p>Status: draft</p>
-<h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.0</a></h3>
+<div class="revdesc"><p>Status: draft</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
 <td>
 			Please note that the current state of this 
 			is a draft, so there are only scanned versions
@@ -296,7 +296,7 @@
 			its size the schematics is separated into to
 			parts.
 		</td></tr>
-</table></td><td class="revfiles"><h4>Files</h4><table class="files">
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
 <td><a href="csacoprodesc.txt">csacoprodesc.txt</a></td>
 </tr>
@@ -309,7 +309,7 @@
 <tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
 <td><a href="csacopro2.tiff.gz">csacopro2.tiff.gz</a></td>
 </tr></table>
-</td></tr></table></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="copro-diag.gif" alt="block diagram"><div class="diagcaption">Block diagram of the coprocessor board. The coprocessor
+</div><div class="revend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="blkdiag">Block diagram</a></h2></div><div class="h2c"><img src="copro-diag.gif" alt="block diagram"><div class="diagcaption">Block diagram of the coprocessor board. The coprocessor
 		and the CS/A bus CPU access the shared memory and I/O register
 		using time sharing: during Phi2 the bus CPU has access, and
 		during Phi1 the coprocessor has access.
@@ -318,7 +318,7 @@
 
 </div></div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            Follow my 8-bit tweets on<br><a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br> (In new window)
-		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">Hot!</div><div>
+		</div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

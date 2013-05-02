@@ -45,11 +45,12 @@ body>table {
 /* left/right cols have headers in the top level style */
 DIV.tophead {
 	margin-top: 1em;
-	background-color: #666;
+	background-color: #bbb;
 	padding: 0.2em;
 	padding-left: 1em;
 	padding-right: 1em;
 	color: #fff;
+	font-weight: bold;
 }
 
 DIV#hot DIV.tophead {
@@ -114,13 +115,13 @@ DIV#mainbox {
 DIV#oldnewscontent  {
 	height: 40em;
 	overflow: scroll;
-	margin-left: -0.7em;
+	/*margin-left: -0.7em;*/
  /* FF/GC add the scrollbar to the width, so we need to compensate by making it
   * smaller. IE includes the scrollbar, so there is a browser fork below
   * other browsers */
  /* this is currently for indexadv.html only, check to replace with percentage as above? */
   	/*width: 10.0em;*/
-	margin-right: -0.7em;
+	/*margin-right: -0.7em;*/
 }
 
 DIV#content {
@@ -149,6 +150,12 @@ margin: 0px;
 margin-bottom: 0px;
 background-color: #bbb;
 /*color: #fff;*/
+}
+
+div#topprogress {
+	display: none;
+	width: 20px;
+	height: 20px;
 }
 
 div#topfind {
@@ -250,6 +257,10 @@ div.twisty {
         height: 1.2em;
 }
 
+div.driverfiles {
+	padding-top: 20px;
+}
+
 @media handheld, screen and (max-width: 480px) {
         ul.nav1 {
 		display: none;
@@ -305,12 +316,6 @@ div.twisty {
 		float: left;
 		width: 15%;
 	}
-        ul.nav1 li {
-        /*        float: left;*/
-        }
-        div.nend1 {
-        /*        clear: left;*/
-        }
         div#twisty {
                 display: none;
         }
@@ -319,6 +324,28 @@ div.twisty {
         }
 	div.hdrtxt {
  		display: none;
+	}
+	div.revnotes {
+		width: 45%;
+		float: left;
+	}
+	div.revfiles {
+		float: right;
+		width: 45%;
+	}
+	div.revend {
+		clear: both;
+	}
+	div.driverdesc {
+		width: 45%;
+		float: left;
+	}
+	div.driverfiles {
+		float: right;
+		width: 45%;
+	}
+	div.driverend {
+		clear: both;
 	}
 }
 
