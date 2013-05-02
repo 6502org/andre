@@ -16,6 +16,11 @@ machines with this CPU is there, like new C64 kernals, VC1541 modifications
 etc. A selfbuilt operating system
 features Multitasking, dynamic memory management, a standard library
 and internet access.</p>
+<p>As a side note, together with Ed Spittles I am curating the
+<a href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
+on Google+. We're posting weekly about anything 6502-related. If you like it,
+subscribe and share!
+</p>
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
@@ -162,7 +167,7 @@ and internet access.</p>
 	annoying.
     </item>
     <item date="2010-05-31">
-	Added a <a href="sneak.html">Sneak Preview page</a> with my 8-bit plans...
+	Added a Sneak Preview page with my 8-bit plans... (Edit: removed since then)
     </item>
     <item date="2010-05-11">
 	Added some links and updates to the <a href="petindex/index.html">PETindex page</a>
@@ -341,8 +346,7 @@ to this page.</subitem>
 	is there for projects that go beyond the original 6502 design. 
 	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
 	that speeds up a 1&#160;MHz PET up to 10&#160;MHz!
-	This page will also be the home for the future <em>65k</em> project - see my
-	<a href="sneak.html">sneak preview page</a> for more on that.
+	This page will also be the home for the future <em>65k</em> project.
       </subitem>
       <subitem name="Hardware info" 
 		link="hwinfo/index.html">: Information on various 
