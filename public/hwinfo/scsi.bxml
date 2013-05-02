@@ -11,11 +11,11 @@
   <metadesc>SCSI</metadesc>
   <!--overview><p>	</p>
   </overview-->
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2013-05-01">
+	Added History section.
     </item>
-  </news-->
+  </news>
   <!--toc/-->
   <section toc="main" name="SCSI Standard">
     <desc> 
@@ -62,6 +62,24 @@ the linux version should not matter that much here).
 </p>
    </desc>
   </section>
+  <section toc="history" name="History">
+	<desc><p>
+	SCSI was derived from the &quot;Shugart Associates System Interface&quot;. 
+	Commodore used a SASI board as disk controller for its 9060 and 9090 harddisk drives for the PET.
+	</p><p>
+	Wikipedia states: &quot;SASI, which was used in mini- and early microcomputers, defined the interface as using a 50-pin flat ribbon connector which was adopted as the SCSI-1 connector. SASI is a fully compliant subset of SCSI-1 so that many, if not all, of the then-existing SASI controllers were SCSI-1 compatible.&quot;
+	</p><p>
+	One caveat with old SASI and/or SCSI drives is the TERMPWR line. It provides a power supply 
+	for the interface part of devices that are switched off, so that bus terminators for example
+	could be powered. Only if more that one drive drives this line, short circuit problems could appear.
+	</p><p>
+	Installing a SCSI drive instead of the SASI-to-MFM controller board in the Commodore disk drive
+	has been reported to melt the TERMPWR line in the cable (yuck!).
+	Also the 9060/9090 drives us 256 byte sectors as opposed to the 512 byte sectors commonly in use
+	today (before the advent of the 4k sectors).
+	</p>
+	</desc>
+  </section>
   <section toc="resources" name="Resources">
 	<desc><p>The SCSI standard is now managed by the Technical Committee T10, that unfortunately have decided to give access
 		to the standards only after registration as I understand. Here are some links anyway.
@@ -70,6 +88,7 @@ the linux version should not matter that much here).
 	<extlink name="The SCSI Standards" link="http://www.t10.org/scsi-3.htm">The T10 web site</extlink>
 	<extlink name="SCSI introduction" link="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html">A very good IBM developerworks article on SCSI</extlink>
 	<extlink name="Wikipedia on SCSI" link="http://en.wikipedia.org/wiki/Scsi"/>
+	<extlink name="SCSI FAQ" link="http://www.scsifaq.org/"/>
   </section>
 
   <closing>

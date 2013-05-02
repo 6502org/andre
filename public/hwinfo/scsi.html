@@ -12,7 +12,7 @@
 <body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"></div></div><div id="menubox">
 
 
-<div id="menu1">
+<div id="menu1" class="mclose">
 <div id="twist1" class="twisty"></div>
 <div class="hdrtxt"><a href="../index.html">Home&nbsp;&gt;</a></div>
 <ul class="nav1">
@@ -91,7 +91,7 @@
 <div class="nend1"></div>
 </ul>
 </div>
-<div id="menu2">
+<div id="menu2" class="mopen">
 <div id="twist2" class="twisty"></div>
 <div class="hdrtxt"><a href="index.html">Hardware Info&nbsp;&gt;</a></div>
 <ul class="nav1">
@@ -136,7 +136,9 @@
 
 <h1>SCSI interface information</h1><p class="copyright">(C)
 1997-2010 Andr&eacute;  Fachat</p> 
-<div class="overview"></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="main">SCSI Standard</a></h2></div><div class="h2c"> 
+<div class="overview"></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-05-01</small>
+	Added History section.
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="main">SCSI Standard</a></h2></div><div class="h2c"> 
 <p>CSI means "Small Computer System Interface". It is an
 interface that connectes computers with peripheral devices, like
 disks, scanners, CD-ROMs etc. As such it is very flexible.
@@ -178,10 +180,25 @@ All code references relative to the main source directory, usually under
 <code>/usr/src/linux/</code>, of linux kernel version 2.0.36 (although
 the linux version should not matter that much here).
 </p>
-   </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="resources">Resources</a></h2></div><div class="h2c"><p>The SCSI standard is now managed by the Technical Committee T10, that unfortunately have decided to give access
+   </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="history">History</a></h2></div><div class="h2c"><p>
+	SCSI was derived from the "Shugart Associates System Interface". 
+	Commodore used a SASI board as disk controller for its 9060 and 9090 harddisk drives for the PET.
+	</p><p>
+	Wikipedia states: "SASI, which was used in mini- and early microcomputers, defined the interface as using a 50-pin flat ribbon connector which was adopted as the SCSI-1 connector. SASI is a fully compliant subset of SCSI-1 so that many, if not all, of the then-existing SASI controllers were SCSI-1 compatible."
+	</p><p>
+	One caveat with old SASI and/or SCSI drives is the TERMPWR line. It provides a power supply 
+	for the interface part of devices that are switched off, so that bus terminators for example
+	could be powered. Only if more that one drive drives this line, short circuit problems could appear.
+	</p><p>
+	Installing a SCSI drive instead of the SASI-to-MFM controller board in the Commodore disk drive
+	has been reported to melt the TERMPWR line in the cable (yuck!).
+	Also the 9060/9090 drives us 256 byte sectors as opposed to the 512 byte sectors commonly in use
+	today (before the advent of the 4k sectors).
+	</p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="resources">Resources</a></h2></div><div class="h2c"><p>The SCSI standard is now managed by the Technical Committee T10, that unfortunately have decided to give access
 		to the standards only after registration as I understand. Here are some links anyway.
 	</p>
-	<ul><li><a href="http://www.t10.org/scsi-3.htm" target="_blank" class="extlink">The SCSI Standards</a> The T10 web site</li><li><a href="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html" target="_blank" class="extlink">SCSI introduction</a> A very good IBM developerworks article on SCSI</li><li><a href="http://en.wikipedia.org/wiki/Scsi" target="_blank" class="extlink">Wikipedia on SCSI</a> </li></ul></div></div><hr>
+	<ul><li><a href="http://www.t10.org/scsi-3.htm" target="_blank" class="extlink">The SCSI Standards</a> The T10 web site</li><li><a href="http://www-128.ibm.com/developerworks/power/library/pa-spec8.html" target="_blank" class="extlink">SCSI introduction</a> A very good IBM developerworks article on SCSI</li><li><a href="http://en.wikipedia.org/wiki/Scsi" target="_blank" class="extlink">Wikipedia on SCSI</a> </li><li><a href="http://www.scsifaq.org/" target="_blank" class="extlink">SCSI FAQ</a> </li></ul></div></div><hr>
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   </div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div>

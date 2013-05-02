@@ -21,7 +21,7 @@
   <section toc="fr" name="France">
      <desc><p>From Didier Derny I got this information:</p>
 	<pre>
-In France we had an internationalization version of the PET.
+In France there was an internationalized version of the PET.
 
 As Commodore was late with the internationalized keyboard
 The company I was working for,  PROCEP produced its own French keyboard
@@ -46,7 +46,7 @@ This rom was a basic extension, but it only works with the right set of French e
      </desc>
   </section>
 
-  <section toc="jp" name="Germany">
+  <section toc="de" name="Germany">
      <desc><p>
 	Some information on the German version can be found on the <a href="keyboards.html">Keyboards</a> page for now.
 	</p>

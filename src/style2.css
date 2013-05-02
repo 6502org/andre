@@ -181,6 +181,14 @@ font-size: small;
 line-height: 1;
 }
 
+div.mclose > ul {
+	display: none;
+}
+
+div.mclose > div.hdrtxt {
+	display: block;
+}
+
 div#menu1 {
 background:#ccc;
 }

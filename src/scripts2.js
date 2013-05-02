@@ -70,11 +70,25 @@ function menutwisty() {
 	}
 }
 
+function stopEvents(event)
+{
+   if (event.stopPropagation){
+       event.stopPropagation();
+   }
+   else if(window.event){
+      window.event.cancelBubble=true;
+   }
+}
+
 function setupMenu() {
 	
 	$("div.twisty").each( function(i, e) {
 		//$(e).show();
 		$(e).parent().click( menutwisty ); // click on h2h(eader)
+	});
+
+	$("div#menu1, div#menu2, div#menu3").find("a").click( function(ev) {
+			stopEvents(ev);
 	});
 
 	// close menu 1 when menu 2 exists

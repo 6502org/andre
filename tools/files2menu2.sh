@@ -19,7 +19,7 @@ do_convert () {
     	cat $file \
 	  | awk -v upn="$upn" -v open="0" ' \
 		BEGIN { \
-			print "<div id=\"menu" upn "\">"; \
+			print "<div id=\"menu" upn "\" class=\"%open%\">"; \
 			print "<div id=\"twist" upn "\" class=\"twisty\"></div>"; \
 		} \
 		/^[h] / { \
@@ -148,6 +148,7 @@ do_2menu () {
 		echo "merge $topmenu"
 		cat $topmenu \
 			| sed -e "s@%up%@../%up%@g" \
+			| sed -e "s@%open%@mclose@g" \
 			>> $file.xml2;
 	fi;
 	cat $file.xml \
@@ -160,6 +161,7 @@ do_2menu () {
 		echo "process file: " $name
 		cat $file.xml2 \
 			| sed -e "s@%up%@@g" \
+			| sed -e "s@%open%@mopen@g" \
 			> $dir/$name.menu
 		;;
 	p)	
