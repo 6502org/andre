@@ -143,7 +143,7 @@
 	<!-- topsearch is an input field to filter the content of the menu, plus
 		if return is pressed, search via google -->
 	<div id="topsearch">
-		<form method="get" action="http://www.google.com/search" target="_blank">
+		<form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off">
 			<input alt="search" name="q" size="10" maxlength="255" type="text"/>
 			<input class="advbutton" value="Search site" type="submit"/><div id="srchprov">(by Google)</div>
 			<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"/>
@@ -532,7 +532,7 @@
 </xsl:text>
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
-<link rel="stylesheet" title="Default" type="text/css" href="%up%style2.css"/>
+<link rel="stylesheet" title="Default" type="text/css" href="%up%style2-min.css"/>
 <xsl:if test="style">
   <link rel="stylesheet" type="text/css" href="{style}"/>
 </xsl:if>

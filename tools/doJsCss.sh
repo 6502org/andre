@@ -25,6 +25,17 @@ cpmodified () {
 	fi;
 }
 
+# takes input file, minimizes it and puts it to the function's stdout
+minifyjs () {
+	#slimit "$1" 
+	yui-compressor --type js "$1" 
+}
+
+# takes input file, minimizes it and puts it to the function's stdout
+minifycss () {
+	yui-compressor --type css "$1" 
+}
+
 #################################################################################
 # CSS
 
@@ -32,7 +43,7 @@ csstarget=$root/public/style
 
 cat $root/src/style.css > ${csstarget}.css.in
 
-yui-compressor --type css ${csstarget}.css.in > ${csstarget}-min.css.in
+minifycss ${csstarget}.css.in > ${csstarget}-min.css.in
 
 mvmodified ${csstarget}.css.in ${csstarget}.css
 mvmodified ${csstarget}-min.css.in ${csstarget}-min.css
@@ -41,7 +52,7 @@ mvmodified ${csstarget}-min.css.in ${csstarget}-min.css
 
 cat $root/src/style2.css > ${csstarget}2.css.in
 
-yui-compressor --type css ${csstarget}2.css.in > ${csstarget}2-min.css.in
+minifycss ${csstarget}2.css.in > ${csstarget}2-min.css.in
 
 mvmodified ${csstarget}2.css.in ${csstarget}2.css
 mvmodified ${csstarget}2-min.css.in ${csstarget}2-min.css
@@ -78,8 +89,8 @@ cat ${libtarget}-min.js >> ${jstarget}-all.js.in
 
 cpmodified ${jstarget}-all.js.in ${jstarget}2-all.js.in
 
-yui-compressor --type js ${jstarget}.js >> ${jstarget}-all.js.in
-yui-compressor --type js ${jstarget}2.js >> ${jstarget}2-all.js.in
+minifyjs ${jstarget}.js >> ${jstarget}-all.js.in
+minifyjs ${jstarget}2.js >> ${jstarget}2-all.js.in
 
 mvmodified ${jstarget}-all.js.in ${jstarget}-all.js
 mvmodified ${jstarget}2-all.js.in ${jstarget}2-all.js
