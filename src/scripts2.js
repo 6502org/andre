@@ -189,9 +189,12 @@ var currentFilter = "";
 
 function doFilter(topfind) {
 
-	progressHide(topfind);
+	var lis = $(topfind).find("li");
 
-       	$(topfind).find("li").each( function ( i, e ) {
+	if (lis.size() > 0) {
+	    progressHide(topfind);
+
+       	    $(lis).each( function ( i, e ) {
 
                	// hide each item
                	$(e).hide();
@@ -203,9 +206,10 @@ function doFilter(topfind) {
                        	        $(x).show();
                        	});
                	}
-       	});
+       	    });
 
-	$(topfind).children("ul").show();
+	    $(topfind).children("ul").show();
+	}
 }
 
 function hideFiltered() {
