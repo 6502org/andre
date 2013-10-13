@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160; "> ]>
+<board>
+  <name>Commodore Userport USB interface</name>
+  <keywords>Commodore hardware usb</keywords>
+  <lastmodified>2013-10-13</lastmodified>
+  <desc>
+	<p>
+	The userport USB interface provides USB connectivity to the 
+	Commodore line of computers - it's designed to work with the
+	PET, VIC20, and C64 (and in extension with the C128).
+	</p><p>
+	The USB interface provides the host as well as client USB interface.
+	So you can use USB devices on the PET - see the video below for example -
+	or you can use the PET as device on a PC's USB bus (although not at the
+	same time)!
+	</p>
+<iframe width="420" height="315" src="http://www.youtube-nocookie.com/embed/Oof1uryV-bo" frameborder="0" allowfullscreen="1"></iframe>
+	<p>
+	The userport interface actually not only uses the userport, but also
+	the tape port - as there is no supply voltage on the userport (at least on the
+	PET - on the C64 you could conjure up something from the 9VAC). But also
+	the device needs more control lines than available on the userport, so it
+	takes them from the tape port.
+	</p><p>
+	The chip used is a MAX3421 USB interface chip, and the interface board includes
+	some glue logic to connect it to the CBM. The 3421 uses an SPI interface in mode&nbsp;3
+	(or, alternatively, 0). Fortunately the VIA uses SPI mode 3 when shifting through
+	its serial shift register. There is only one shift register, though, so shifting
+	out is taken care of by the VIA shift register, the data shifted in (at the same time
+	as data is shifted out) is de-serialized by a simple external 74LS164 shift register
+	and presented as 8&nbsp;bit parallel data on the userport's I/O port.
+	</p>
+  </desc>
+  <news>
+    <item date="2013-10-13">
+	Started this page
+    </item>
+   </news>
+   <!--oldnews>
+   </oldnews-->
+   <driver>
+	<name>USB65</name>
+	<desc>
+		<p>
+		This driver is a collection of drivers for this and some
+		other platforms. You can find it on
+		<a href="http://www.github.com/fachat/usb65" target="_blank">github</a>
+		</p>
+		<p>
+		Please note that since board version 1.1, if you want to use the switchable
+		USB supply voltage, some care has to be taken with the interrupt routine.
+		The PET ROM for example handles the tape MOTOR output - which controls the 
+		power supply - in the interrupt routine. If you don't work around this, the
+		power will stay off...
+		</p>
+	</desc>
+   </driver>
+
+   <rev>
+	<version>1.1A</version>
+	<status>untested</status>
+	<note type="msg">
+		This version adds a separate - jumperable - way to produce the 
+		5V required by the USB host bus. It uses the tape output of
+		unregulated 9V DC and uses a power requlator separate from the
+		5V used for the actual USB interface.
+		This way you can switch USB power, and don't have any bad effects
+		of USB power consumption on the actual interface or the main
+		computer itself. 
+	</note>
+	<note type="msg">
+		This version also moves the mini-USB interface to the side,
+		as the assumption goes this will be less used than the USB micro.
+		Some parts options have been removed due to space optimization.
+	</note>
+	<note type="warn">
+		This schematics and board is only derived from some experiments
+		with board version 1.0, and thus untested as a real board.
+	</note>
+	<file ltype="schem" ptype="png">cbm-usb-v1.1a-1-sch.png</file>
+	<file ltype="schem" ptype="png">cbm-usb-v1.1a-2-sch.png</file>
+	<file ltype="schem" ptype="png">cbm-usb-v1.1a-3-sch.png</file>
+	<file ltype="schem" ptype="esch">cbm_usb_v1.1a.sch</file>
+        <file ltype="layout" ptype="png">cbm-usb-v1.1a-brd.png</file>
+        <file ltype="layout" ptype="ebrd">cbm_usb_v1.1a.brd</file>
+   </rev>
+   <rev>
+	<version>1.0A</version>
+	<status>ok</status>
+	<note type="msg">
+		This is the initial version of the board. And it worked right without further changes! :-)
+	</note>
+	<note type="warn">
+		Although this board has soldering jumpers to work with different types of machines
+		from PET over VIC20 to C64, it has so far only been tested with the PET.
+	</note>
+	<file ltype="schem" ptype="png">cbm-usb-v1.0a-1-sch.png</file>
+	<file ltype="schem" ptype="png">cbm-usb-v1.0a-2-sch.png</file>
+	<file ltype="schem" ptype="png">cbm-usb-v1.0a-3-sch.png</file>
+	<file ltype="schem" ptype="esch">cbm_usb_v1.0a.sch</file>
+        <file ltype="layout" ptype="png">cbm-usb-v1.0a-brd.png</file>
+        <file ltype="layout" ptype="ebrd">cbm_usb_v1.0a.brd</file>
+   </rev>
+
+</board>
