@@ -103,7 +103,11 @@ From version 2.0.0 on it has a lot of new features:</p>
 <li>lib6502 standard library</li>
 <li>internet support</li>
 </ul>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#download">Download</a></li><li><a href="#desc">Description</a></li><li><a href="#arch">Architecture</a></li><li><a href="#dev">Development</a></li><li><a href="#docs">More Docs</a></li><li><a href="#old">Old Stuff</a></li><li><a href="#history">History</a></li><li><a href="#ideas">Ideas for later versions</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="download">Download</a></h2></div><div class="h2c">
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-10-06</small>
+	Updated GeckOS to 2.0.9
+    </li><li><div>&nbsp;</div><small>2010-01-04</small>
+	Started this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#download">Download</a></li><li><a href="#desc">Description</a></li><li><a href="#arch">Architecture</a></li><li><a href="#dev">Development</a></li><li><a href="#docs">More Docs</a></li><li><a href="#old">Old Stuff</a></li><li><a href="#history">History</a></li><li><a href="#ideas">Ideas for later versions</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="download">Download</a></h2></div><div class="h2c">
 <ul>
 <li><a href="oa-2.0.0.tar.gz">oa-2.0.0.tar.gz</a> Full source archive. To build the binaries you have to have the xa65 package (see below).</li>
 <li><a href="oa-2.0.0.base.tar.gz">oa-2.0.0.base.tar.gz</a> Base archive, without the Gecko and CS/A65 architectures and without the copyrighted BASIC
@@ -120,9 +124,12 @@ Start with "x64 -8 c64.d64 -1541".</li>
 Start with "xpet -8 pet32k.d64 -model 8032"</li>
 </ul><p>
 After starting the emulators do a `LOAD"LOADER",8' and then `RUN'. This
-should do it. Normally you have a libshell (lsh) and an old-style shell/monitor
-coming up on two different virtual consoles.
-</p><p>
+should do it. On the C64 and the 8x96 PET you have a libshell (lsh) and an old-style shell/monitor
+coming up on two different virtual consoles. The standard 32k PET only runs a libshell.
+You can switch between consoles with the TAB (pet32k), the ESC/@ (VICE/real 8x96), or the F1 (C64) key.
+</p>
+<p>Watch a small demo video here</p>
+<iframe width="420" height="315" src="https://www.youtube-nocookie.com/embed/R0uLi5icnoE" frameborder="0" allowfullscreen="1"></iframe><p>
 Due to heavy time constraints I am currently not able to do more development.
 So there is a not-so-well tested version here. Most improvements are in
 the FSIBM filesystem, that handles PC disks. Now it can also handle
@@ -133,8 +140,12 @@ architecture, so this has changed a bit more.
 Anyway, there is a TODO file that describes what has to be done for
 2.1 and a LOG-2.0 file that describes what has already be done.
 <br>
-Download it as <a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.
+Download it as 
 </p>
+<ul>
+<li><a href="oa-2.0.9.tar.gz">oa-2.0.9.tar.gz</a>.</li>
+<li><a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.</li>
+</ul>
     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="desc">Description</a></h2></div><div class="h2c"> 
 <p>
 OS/A65 is a full-featured Multitasking/Multithreading operating system

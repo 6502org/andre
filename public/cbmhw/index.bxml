@@ -12,6 +12,9 @@
 	and devices for Commodore 8-bit computer.
   </overview>
   <news>
+     <item date="2013-10-13" state="hot">
+        Added the <a href="cbmusb/index.html">Commodore USB interface</a>
+     </item>
     <item date="2011-04-24">
 	Added the <a href="8032sk/index.html">8032-KS</a> page to document the
 	changes I found in an 8032 I acquired.
@@ -52,6 +55,10 @@
     <desc>
     </desc>
     <items>
+      <subitem name="Commodore USB interface" link="cbmusb/index.html">
+	A userport interface for the Commodore, to use USB devices, or even
+	BE a USB device for a PC!
+      </subitem>
       <subitem name="PET 65816 CPU" link="pet816/index.html">
 	A 65816 board for the Commodore PET!
       </subitem>

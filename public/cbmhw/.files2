@@ -8,6 +8,7 @@ s CS/A adapters
 p c64csa CS/A adapter for C64
 p petcsa CS/A adapter for PETs
 S Interfaces
+p cbmusb Userport USB interface
 d petnet Put your PET on the 'Net
 p scsi CBM SCSI interfaces
 p ieee488 IEEE488 interfaces

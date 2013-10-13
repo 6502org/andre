@@ -24,6 +24,12 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+     <item date="2013-10-13" state="hot">
+	Added the <a href="cbmhw/cbmusb/index.html">Commodore USB interface</a>
+     </item>
+     <item date="2013-10-13">
+	Added a small demo video to my <a href="osa/index.html">GeckOS</a> Operating System page.
+     </item>
      <item date="2013-05-02">
 	Fix some web design bugs, a few smaller updates
         Added the <a href="petindex/hw.html#colourpet">Colour PET</a> project description.

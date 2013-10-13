@@ -1,6 +1,7 @@
 l ../adv65/pet816/index.html Speed up your PET!
 d ryofat40 Build your own PET replica!
 d ryo1581 Build your own VC1581 replica!
+p cbmusb CBM userport USB interface
 d petnet Put your PET on the 'Net
 p c64csa CS/A adapter for C64
 p petcsa CS/A adapter for PETs

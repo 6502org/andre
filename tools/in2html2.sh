@@ -16,6 +16,8 @@ if [ $# -ge 4 ]; then
    parent="$4";
 fi
 
+echo "inx->html: $1"
+
 print_disclaimer () {
 	echo "All Copyrights are acknowledged."
 	echo "The information here is provided under the terms of the"

@@ -19,11 +19,14 @@ From version 2.0.0 on it has a lot of new features:</p>
 <li>internet support</li>
 </ul>
   </overview>
-  <!--news>
+  <news>
+    <item date="2013-10-06">
+	Updated GeckOS to 2.0.9
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
-  </news-->
+  </news>
   <toc/>
   <section toc="download" name="Download">
     <desc>
@@ -43,9 +46,12 @@ Start with "x64 -8 c64.d64 -1541".</li>
 Start with "xpet -8 pet32k.d64 -model 8032"</li>
 </ul><p>
 After starting the emulators do a `LOAD"LOADER",8' and then `RUN'. This
-should do it. Normally you have a libshell (lsh) and an old-style shell/monitor
-coming up on two different virtual consoles.
-</p><p>
+should do it. On the C64 and the 8x96 PET you have a libshell (lsh) and an old-style shell/monitor
+coming up on two different virtual consoles. The standard 32k PET only runs a libshell.
+You can switch between consoles with the TAB (pet32k), the ESC/@ (VICE/real 8x96), or the F1 (C64) key.
+</p>
+<p>Watch a small demo video here</p>
+<iframe width="420" height="315" src="https://www.youtube-nocookie.com/embed/R0uLi5icnoE" frameborder="0" allowfullscreen="1"></iframe><p>
 Due to heavy time constraints I am currently not able to do more development.
 So there is a not-so-well tested version here. Most improvements are in
 the FSIBM filesystem, that handles PC disks. Now it can also handle
@@ -56,8 +62,12 @@ architecture, so this has changed a bit more.
 Anyway, there is a TODO file that describes what has to be done for
 2.1 and a LOG-2.0 file that describes what has already be done.
 <br/>
-Download it as <a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.
+Download it as 
 </p>
+<ul>
+<li><a href="oa-2.0.9.tar.gz">oa-2.0.9.tar.gz</a>.</li>
+<li><a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.</li>
+</ul>
     </desc>
   </section>
 
