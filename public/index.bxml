@@ -24,6 +24,12 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2013-11-02">
+        Moved the description of the different modes of operation from the
+        diffs page to the <a href="hwinfo/crtc/crtc.html">CRTC operation page</a>.
+        Added the C64 80 column card and hires mode descriptions
+        to the <a href="hwinfo/crtc/uses.html">CRTC system integration</a> page.
+    </item>
      <item date="2013-10-13" state="hot">
 	Added the <a href="cbmhw/cbmusb/index.html">Commodore USB interface</a>
      </item>

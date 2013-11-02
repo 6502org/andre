@@ -3,7 +3,7 @@
   <author>
     <name>Andr&eacute; Fachat</name> 
     <yearstart>1999</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2013</yearend>
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
   </author>
@@ -14,6 +14,12 @@
 	chips.
   </overview>
   <news>
+    <item date="2013-11-02">
+	Moved the description of the different modes of operation from the 
+	diffs page to the <a href="crtc.html">CRTC operation page</a>.
+	Added the C64 80 column card and hires mode descriptions
+	to the <a href="uses.html">CRTC system integration</a> page.
+    </item>
     <item date="2013-05-02">
 	Added the <a href="uses.html">Colour PET</a> description
     </item>

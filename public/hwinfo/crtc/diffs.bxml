@@ -227,71 +227,9 @@ Motorola 6845-1
 		11: not available
 </pre><p>
 	What can be learned already from this diagram? The Motorola 6845 (or the Hitachi 46505, but unlikely) was first and defined a basic set of features. Rockwell and Commodore then used the same derivation from the original design, while Motorola developed slightly different features. However, looking at the "must program to 0" entries, it seems Rockwell was not quick enough to implement the interlace modes and thus released an early version as 6545-1, before getting the full 6545 done, with some additional features.
-</p><p>
-Now lets explain certain features that are mentioned in the table.
 </p>
 	</desc>
       </item>
-    </items>
-    <!--disclaimer name="">
-    </disclaimer-->
-  </itemlist>
-  <itemlist name="Different Modes of Operation" toc="opmodes">
-    <desc>
-	The following sections explain the different modes of operation
-	of the different models.
-    </desc>
-    <items>
-     <!--subitem name="" link=""></subitem-->
-     <item name="Straight binary vs. row/column addressing" toc="rowcol">
-	<desc>
-	<p>
-	The memory address counter can be set to two different modes. In the "straight binary" mode the counter is a normal 14 bit binary counter. The characters displayed on screen are taken from a consecutive area when MA0-MA13 are used as memory address.
-	</p><p>
-In row/column mode MA0-MA7 dubs as the column counter CC0-CC7 and presents the value of the character counter for each rasterline. MA8-MA13 dub as row counter CR0-CR5 and present the number of the current characterline.
-	</p><p>
-	This means that in row/column addressing mode each rasterline is
-	a power of two long, in general
-	256 bytes (or less, depending on how many address bits are used).
-	</p>
-	</desc>
-      <!--subitem name="" link=""></subitem-->
-     </item>
-     <item name="Interlace and Video modes (All but Commodore)" toc="interlace">
-	<desc>
-	<p>
-In the interlace mode the vertical sync signal is alternately delayed or not delayed for half of a rasterline time. This results in that every even-numbered frame is slightly shifted up or down as compared to the odd-numbered frame. This allows to fill up the double number of rasterlines, where two rasterlines always have the same content. The total frame time would then be double the "normal" CRTC frame time, as the second CRTC frame is used to fill the rasterlines "in between". So two identical CRTC frames, slightly shifted, make up a full frame on the display.
-	</p><p>
-This is different in the "interlace &amp; video" mode. Here the rasterline counter for each char increases by two. Thus in the first of the two interlaced CRTC frames the even rasterlines are drawn and in the second the odd ones. This effectively doubles the vertical resolution of the monitor: One character still is e.g. 8 rasterlines high, but the even 4 rasterlines are drawn in the first frame, and the odd 4 rasterlines in the second.
-There are certain restrictions on the register values for interlace and interlace &amp; video mode, please refer to the Motorola documentation. The most important is that the vertical display register (R6) must hold half the number of displayed characterlines.
-	</p>
-	</desc>
-      <!--subitem name="" link=""></subitem-->
-     </item>
-     <item name="Shared and Transparent Addressing (Rockwell 6545 only)" toc="transparent">
-	<desc>
-	<p>
-This mode is set with R8 bit 3. Writing a 0 sets the shared adressing mode. In this mode the CRTC assumes that the CPU has an independent means of accessing the video memory - sharing the memory. A very common method is to switch the memory addresses from CRTC during Phi2/E low to CPU during Phi2/E high.
-	</p><p>
-More interesting is the transparent mode that is set with R8, bit 3=1. In this case the CPU cannot directly access the video RAM. The CRTC has to generate the address for the CPU. This is done via the write-only registers
-	</p>
-	<pre>
-R18	Update Register high (6 bit)
-R19	Update Register low (8 bit)
-	</pre>
-	<p>
-When R8 bit 7=1 then the CRTC puts the display memory address on MA0-13 during Phi2/E low, and the update address from R18/R19 during Phi2/E high, mimicking interleaved CPU access [I would assume this to be quite difficult if CCLK is not connected to Phi2/E]. In this mode it can be assumed that the CPU hardware knows when to access the memory. When R8 bit 7=0, then the CRTC waits for the horizontal and vertical retrace times to put the update address from R18/R19 on the address lines MA0-13. With R8 bit 6=1 pin 34 can be programmed to give a high pulse when the update address is valid. External latches might be necessary to store the data between initiating the access and receiving it.
-	</p><p>
-The CRTC docs do not say anything about the read/write control, so this has to be set up with external hardware.
-	</p><p>
-After each update access the address in the update register is incremented by 1. How does the CRTC know when an update has to be done? Status register bit 7 gives the answer. Reading or writing the - otherwise nonexisting - register R31 tells the CRTC to perform an update.
-	</p><p>
-Interestingly the Commodore 8563 VDC chip used in the C128 computer seems to be a direct descendant of the CRTC. The first 20 registers (with the exception of the mode register, R8) are the same as the Rockwell 6545 registers. Specifically the VDC only allows the transparent addressing. Therefore even R31 is kept - here the data to be transferred to/from the video memory must be written to/read from. Because this access is horribly slow, the VDC can also do copy operations in the video RAM by itself.
-	</p><p>
-	</p>
-	</desc>
-      <!--subitem name="" link=""></subitem-->
-     </item>
     </items>
     <!--disclaimer name="">
     </disclaimer-->

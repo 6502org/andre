@@ -39,6 +39,10 @@ computer page or in the PET schematics on the
 </P>
   </overview>
   <news>
+    <item date="2013-11-02">
+	Added the C64 80 column card description, as well as the
+	hires mode description.
+    </item>
     <item date="2010-12-20">
 	Separated from the main <a href="crtc.html">CRTC</a> page.
     </item>
@@ -245,6 +249,7 @@ PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
 	</desc>
 	</subsection>
+
 	<subsection name="Steve Gray's Colour PET" toc="colourpet">
 	<desc>
 <P>Steve Gray has come up with an ingenious way of converting a
@@ -311,6 +316,144 @@ being read from the RAM.
 	</desc>
         <extlink name="The Colour PET" link="http://www.6502.org/users/sjgray/projects/colourpet/index.html"/>
 	</subsection>
+
+	<subsection name="C64 80 column card" toc="c64_80col">
+	<desc>
+<P>Bil Herd has found a set of schematics - for the C64 80 columns card.
+This card also uses a CRTC - but the schematics show an interesting quirk: the
+C64 does not have access to the video RAM! Well, at least not directly.
+It uses the transparent addressing mode available in the 6545-1. I.e. the
+CRTC always generates the video RAM addresses, but the CPU can access the
+video RAM via separate data bus buffers.
+</P>
+<PRE>
+Colour PET CRTC usage block diagram
+---------------------------------
+
+
+     |                          CRTC                                                        |
+     ----------------------------------------------------------------------------------------
+        RA4| MA0-9|                    CE|                RA0-2 |                         
+           |      |                      |    +--+              |    -------             
+           |      |                      +----|  |XOR           |    |     |            
+           |      |             -------   D7+-|  |-+            +----|A0-2 |      -----  
+           |      |             |     |     | +--+ |   -----         |     |D0-7  |   |  
+           |      |       A0-10 |     | D0-7|      |   |   |    D0-7 |     |------|   |-----
+           |      +----------+--| RAM |---+-+------+---|   |---------|A3-8 |      |   |  
+           |                    |     |   |            |   |         |     |      -----   
+           |  CPU               |     |   |            -----         -------      shift    
+           +--+-----+           -------   |            Latch         Charrom     register
+              |     |   read              |  
+              |     |   -----             | 
+              |     +---|   |             |  
+ CPU D0-7 ---/|\---+----|   |-------------+  
+              |    |    |   |             |
+              |    |    -----             |
+              |    |    write             |
+              |    |    -----             |
+              |    |    |   |             |
+              |    -----|   |-------------+
+              +---------|   |
+                        -----
+                        Buffer
+</PRE>
+<P>
+This schematics works, as mentioned with the CRTC creating the video address for the CPU access.
+To achieve this the CPU sets the address it wants to access into registers 18 and 19 in the CRTC.
+The CRTC then waits for an appropriate time and puts a latch on the RA4 line that is used as 
+update strobe. This enables data transfer with the read or write buffers (the schematics here
+is simplified. Write buffer control is via a PLA).
+</P><P>
+Another interesting quirk is the cursor generation. The cursor can be automatically enabled by the
+CRTC (other than in the PET). Other than inverting the data from the character ROM the 
+uppermost bit of the data read from RAM is inverted! This means you select a different page
+of the character ROM, not just the same inverted character from ROM. Thus you could switch between
+two completely different characters - if you were to use a custom character ROM. Of course the
+character ROM just had the inverted character in it (but still leaving open whether the character is
+optimized for inverted display).
+</P><P>
+Another interesting point is the display enable handling. The DE line controls whether the
+shift register is loaded. If DE is disabled, the character ROM is not loaded from the character
+data anymore and just displays the data from the serial in pin - meaning blank video.
+</P><P>
+What is not shown here is a separate control register that allows to invert the video output (REVSCN),
+select a second character set in the charrom (SETSEL), and a 40/80 column switch - that 
+switches between the 80 column output from above and a through-connected video input (connected
+from the C64's VIC video output via separate cable).
+</P>
+	</desc>
+        <extlink name="C64 80 column card" link="http://c128.com/commodore-c64-80-column-adapter"/>
+	</subsection>
+
+	<subsection name="Hires modes" toc="hires">
+	<desc>
+<P>
+The CRTC is made for character-based display. To use it for hires graphics therefore some
+tricks need to be done. 
+</P>
+<ul>
+<li>The normal display has over 512 raster lines. The CRTC can only do 128 character lines - thus
+a graphics mode cannot just set one character line per raster lines.</li>
+<li>The graphics RAM output is normally passed through the character ROM - but for graphics
+the data must be passed through unchanged</li>
+</ul>
+<p>
+The following diagram shows one way to achieve hires mode:
+</p>
+<ul>
+<li>The uppermost video address bits are replaced with the RA0 and RA1 lines (via a 2-to-1 mux so you 
+can still use the original setup). This makes for an interleaved memory layout. The first rasterline
+for each character is in the first 4k RAM, the second rasterline is in the second 4k RAM, until the
+fourth rasterline is in the fourth 4k RAM. A character line is set to 4 rasterlines only, so that
+the fifth rasterline is back in the first 4k RAM, but in the next character line.
+With this setup each character position / rasterline in character combination has its own
+byte stored in RAM, so that each position can be controller individually. 
+Setting the character line to four rasterlines also allows to have the 512+ rasterlines with
+only up to 128 character lines as the CRTC allows.</li>
+<li>The character ROM has a special mapping - a one-to-one mapping that just passes through each
+input byte as output byte. Each input byte from 0-255 is mapped multiple times, as the
+RA0/1 lines are still connected to the character ROM.</li>
+</ul>
+<PRE>
+Hires modes
+-----------
+
+
+     |                                 CRTC                                                      |
+     ----------------------------------------------------------------------------------------------
+ MA12/13|         MA0-11 |                               RA0-2 |                              DE|
+        |  RA0/1         |                                     |                                |
+        |  +------------/|\------------------------------------+                                |
+        |  | -----       |                                     |                                |
+        |  +-|   |       |                                     |    -------                     |
+        |    | &gt; |----+  |                                     |    |     |                     |
+        +----|   |    |  |  -----       -------                -----|A0-2 |      -----          |  ---
+             -----    |  |  |   |       |     |       -----         |     |D0-7  |   |     ---  +--| | Video
+           Mux 2-to-1 +--+--|   | A0-13 |     | D0-7  |   |    D0-6 |     |------|   |-----| |     |&gt;|---
+                            | &gt; |-------| RAM |---+---|   |---+-----|A3-8 |      |   |     | |-----| |
+ CPU A0-13 -----------------|   |       |     |   |   |   |   |     |     |      -----   +-| |     ---
+                            |   |       |     |   |   -----   |     -------      shift   | ---      AND
+                            -----       -------   |   Latch   |     Charrom     register |  XOR
+                          Mux 2-to-1              |           |D7                        |
+                                                  |           +--------------------------+
+                            -----                 |
+                            |   |                 |
+ CPU D0-7 ------------------|   |-----------------+
+                            |   |
+                            -----
+                           Buffer
+</PRE>
+<P>
+The schematics shown here is - in principle, the card uses dRAM with extra MUXes - the one as 
+used in the CS/A65 video card.
+Incidentially the IBM PC CGA graphics card uses a similar scheme, with just RA0
+switching between two 8k memory banks.
+</P>
+	</desc>
+        <extlink name="CS/A65 video card" link="http://localhost:8080/8bit/csa/vdc/index.html"/>
+        <extlink name="IBM PC CGA graphics card" link="http://www.seasip.info/VintagePC/cga.html"/>
+	</subsection>
+
   </itemlist>
   <disclaimer name="Disclaimer">
 	@DISCLAIMER@
