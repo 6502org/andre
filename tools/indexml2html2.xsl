@@ -187,7 +187,29 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="desc">
-<xsl:copy-of select="*|text()"/>
+	<xsl:copy-of select="*|text()"/>
+</xsl:template>
+
+<xsl:template match="gallery">
+	<div class="gallery">
+	<xsl:for-each select="image">
+		<div class="galleryimg">
+			<xsl:choose>
+				<xsl:when test="full">
+					<a href="{full}">
+					<img class="full" src="{full}" alt="{alt}" />
+					<img class="thumb" src="{thumb}" alt="{alt}" />
+					</a>
+				</xsl:when>
+				<xsl:otherwise>
+					<img src="{thumb}" alt="{alt}"/>
+				</xsl:otherwise>
+			</xsl:choose>
+			<div class="desc"><xsl:apply-templates select="desc"/></div>
+		</div>
+	</xsl:for-each>
+	<div class="gallend"/>
+	</div>
 </xsl:template>
 
 <xsl:template match="section">
@@ -198,6 +220,7 @@
     </xsl:call-template>
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
+      <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="subsection"/>
       <xsl:if test="subitem|extlink|file">
         <ul>
@@ -359,6 +382,7 @@
 <xsl:copy-of select="overview/*|overview/text()"/>
 </div> <!-- overview -->
 <xsl:apply-templates select="news"/>
+<xsl:apply-templates select="gallery"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
   <div class="h2">
@@ -368,6 +392,7 @@
     </xsl:call-template>
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
+      <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="subsection"/>
       <!-- (very) old style pages may still use this -->
       <xsl:for-each select="items[item|subitem|file]">

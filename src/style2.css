@@ -357,6 +357,52 @@ div.driverfiles {
 	}
 }
 
+/****************************************
+ * Gallery formatting
+ */
+
+div.gallery {
+  margin: 1em;
+  padding: 1em;
+  background-color: #eee;
+}
+
+div.gallery div.galleryimg {
+  text-align: center;
+  width: 27%;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 1em;
+  padding: 1em;
+  float: left;
+  background-color: #fff;
+}
+
+div.gallery div.galleryimg img.full {
+  display: none;
+}
+
+div.gallery div.galleryimg a:hover img.full {
+  padding: 2em;
+  background-color: #222;
+  display: block;
+  position: fixed;
+  top: 10%;
+  left: 10%; /*position where enlarged image should offset horizontally */
+  z-index: 50;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+div.gallery div.galleryimg img.thumb {
+  max-width: 290px;
+  max-height: 220px;
+}
+
+div.gallery div.gallend {
+  clear: both;
+}
+
 /****************************************/
 
 div.driver {

@@ -24,7 +24,64 @@
   <section toc="main" name="Gallery">
      <desc>
 	<p>Click on the images to enlarge</p>
-	<table border="1" valign="center">
+     </desc>
+     <gallery>
+        <image>
+                <thumb>imgs/pet816_top_small.png</thumb>
+                <full>imgs/pet816_top.png</full>
+                <alt>the pet816 board from top</alt>
+                <desc>The board from the top ...</desc>
+        </image>
+        <image>
+                <thumb>imgs/pet816_bottom_small.png</thumb>
+                <full>imgs/pet816_bottom.png</full>
+                <alt>the pet816 board from the bottom</alt>
+                <desc>... and from the bottom. You can see the three bridges that make up the difference between V1.2A and V1.2B</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_8296_small.png</thumb>
+                <full>imgs/gal_8296.png</full>
+                <alt>the 8296 test system</alt>
+                <desc>The Commodore 8296 test system</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_8296_open1_small.png</thumb>
+                <full>imgs/gal_8296_open1.png</full>
+                <alt>the testsystem opened</alt>
+                <desc>The test system with the board installed. The white connector at the left upper end of the board is an additional power connector, going to the tape port</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_8296_open2_small.png</thumb>
+                <full>imgs/gal_8296_open2.png</full>
+                <alt>the test system opened</alt>
+                <desc>The board installed into the 8296. Here you see the additional power cable going out of the case and to the C2N232 connector I reused to get the power ...</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_bench1_small.png</thumb>
+                <full>imgs/gal_bench1.png</full>
+                <alt></alt>
+                <desc>The benchmark determines the system speed using the screen sync frequency.</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_speed_small.png</thumb>
+                <full>imgs/gal_speed.png</full>
+                <alt>benchmark results</alt>
+                <desc>eah! The system runs at 10&nbsp;MHz!<br/><br/> Each benchmark has two lines. The first line shows the configuration for the clock register ("speed"), and control register ("conf"), plus it names the actual bits that are set for convenience. The second line shows the benchmark result in terms of system cycles for the benchmark loop, and the speed calculated from that.</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_hbogus_small.png</thumb>
+                <full>imgs/gal_hbogus.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>For certain workloads quite some speedup can be obtained by hiding bogus cycles. Note that older test systems - like the 3032 - require the RAM addresses too early for this to work.</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_vread_small.png</thumb>
+                <full>imgs/gal_vread.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>As there is only one screen read cycle per benchmark loop, not much of a speedup is expected, as shown. But other workloads may differ, esp. when they already run in fast RAM</desc>
+        </image>
+     </gallery>
+	<!--table border="1" valign="center">
 	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td>The board from top ...</td><td><a href="imgs/pet816_top.png"><img width="200px" src="imgs/pet816_top_small.png"/></a></td></tr>
 	<tr><td><a href="imgs/pet816_bottom.png"><img width="200px" src="imgs/pet816_bottom_small.png"/></a></td><td>... and from the bottom. You can see the three bridges that make up the difference between V1.2A and V1.2B</td></tr>
@@ -35,23 +92,82 @@
 	<tr><td>Yeah! The system runs at 10&nbsp;MHz!<br/><br/> Each benchmark has two lines. The first line shows the configuration for the clock register ("speed"), and control register ("conf"), plus it names the actual bits that are set for convenience. The second line shows the benchmark result in terms of system cycles for the benchmark loop, and the speed calculated from that.</td><td><a href="imgs/gal_speed.png"><img width="200px" src="imgs/gal_speed_small.png"/></a></td></tr>
 	<tr><td><a href="imgs/gal_hbogus.png"><img width="200px" src="imgs/gal_hbogus_small.png"/></a></td><td>For certain workloads quite some speedup can be obtained by hiding bogus cycles</td></tr>
 	<tr><td>As there is only one screen read cycle per benchmark loop, not much of a speedup is expected, as shown. But other workloads may differ, esp. when they already run in fast RAM </td><td><a href="imgs/gal_vread.png"><img width="200px" src="imgs/gal_vread_small.png"/></a></td></tr>
+-->
+     <gallery>
+        <image>
+                <thumb>imgs/pet816_csa_small.png</thumb>
+                <full>imgs/pet816_csa.png</full>
+                <alt>board installed in a CS/A computer</alt>
+                <desc>Here the board is installed in my 2&nbsp;MHz PET replica</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_bench_csa_small.png</thumb>
+                <full>imgs/gal_bench_csa.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>The benchmark calibrates itself here as well</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_bench_csa_speed_small.png</thumb>
+                <full>imgs/gal_bench_csa_speed.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>Yeah, runs at 10&nbsp;MHz as well!</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_bench_csa_fmode_small.png</thumb>
+                <full>imgs/gal_bench_csa_fmode.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>This shows the effect of the FASTMODE clock register bit</desc>
+        </image>
+     </gallery>
 
-	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
+	<!--tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td><a href="imgs/pet816_csa.png"><img width="200px" src="imgs/pet816_csa_small.png"/></a></td><td>Here the board is installed in my 2&nbsp;MHz PET replica</td></tr>
 	<tr><td>The benchmark calibrates itself here as well</td><td><a href="imgs/gal_bench_csa.png"><img width="200px" src="imgs/gal_bench_csa_small.png"/></a></td></tr>
 	<tr><td><a href="imgs/gal_bench_csa_speed.png"><img width="200px" src="imgs/gal_bench_csa_speed_small.png"/></a></td><td>Yeah, runs at 10&nbsp;MHz as well!</td></tr>
 	<tr><td>This shows the effect of the FASTMODE clock register bit</td><td><a href="imgs/gal_bench_csa_fmode.png"><img width="200px" src="imgs/gal_bench_csa_fmode_small.png"/></a></td></tr>
+-->
 
-	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
+     <gallery>
+        <image>
+                <thumb>imgs/gal_4032_open_small.png</thumb>
+                <full>imgs/gal_4032_open.png</full>
+                <alt>board installed in a 4032</alt>
+                <desc>The board installed in a 4032 PET. Note that the 4032 is actually broken. It seems to have some defective RAM chip, but it can actually be used running completely in the 65816 board.</desc>
+        </image>
+        <image>
+                <thumb>imgs/gal_4032_speed_small.png</thumb>
+                <full>imgs/gal_4032_speed.png</full>
+                <alt>benchmark screenshot</alt>
+                <desc>Speed benchmark showing the 4032 at about 10&nbsp;MHz. (Note the screen cycles is faked. The code assumes 20000 cycles per screen for 1&nbsp;MHz operation, but this non-CRTC model has about 16000 cycles only.</desc>
+        </image>
+     </gallery>
+
+	<!--tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td><a href="imgs/gal_4032_open.png"><img width="200px" src="imgs/gal_4032_open_small.png"/></a></td><td>The board installed in a 4032 PET. Note that the 4032 is actually broken. It seems to have some defective RAM chip, but it can actually be used running completely in the 65816 board.</td></tr>
 	<tr><td>Speed benchmark showing the 4032 at about 10&nbsp;MHz. (Note the screen cycles is faked. The code assumes 20000 cycles per screen for 1&nbsp;MHz operation, but this non-CRTC model has about 16000 cycles only.</td><td><a href="imgs/gal_4032_speed.png"><img width="200px" src="imgs/gal_4032_speed_small.png"/></a></td></tr>
+-->
 
-	<tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
+     <gallery>
+        <image>
+                <thumb>imgs/pet816_8296a_small.png</thumb>
+                <full>imgs/pet816_8296a.png</full>
+                <alt>the prototype board installed in an 8296</alt>
+                <desc>The first prototype installed in the 8296 test system</desc>
+        </image>
+        <image>
+                <thumb>imgs/pet816_proto_small.png</thumb>
+                <full>imgs/pet816_proto.png</full>
+                <alt>prototype board</alt>
+                <desc>The first working prototype (with the fixed address drivers, that weren't '273 in the beginning))</desc>
+        </image>
+     </gallery>
+
+
+	<!--tr><th width="50%">&nbsp;</th><th width="50%">&nbsp;</th></tr>
 	<tr><td><a href="imgs/pet816_8296a.png"><img width="200px" src="imgs/pet816_8296a_small.png"/></a></td><td>The first prototype installed in the 8296 test system</td></tr>
 	<tr><td>The first working prototype (with the fixed address drivers, that weren't '273 in the beginning))</td><td><a href="imgs/pet816_proto.png"><img width="200px" src="imgs/pet816_proto_small.png"/></a></td></tr>
 
-	</table>
-     </desc>
+	</table-->
   </section>
 
   <closing>
