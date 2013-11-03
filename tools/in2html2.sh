@@ -36,25 +36,25 @@ print_disclaimer () {
 #   key		- keyword
 #
 doinsert1 () {
-	from="$1"
+	fromx="$1"
 	tox="$2"
 	key="$3"
-		cat $from \
+		cat $fromx \
 			| awk -v m="$key" '
 				BEGIN { pp=1; } 
 				{ if (index($0, m) > 0) { pp=0; } } 
 				{ if ( pp>0 ) print $0; } 
 			'\
 		> $tox
-	diff -q $from $tox > /dev/null
+	diff -q $fromx $tox > /dev/null
 	rv=$?
 	return $rv
 }	
 doinsert2 () {
-	from="$1"
+	fromx="$1"
 	tox="$2"
 	key="$3"
-		cat $from \
+		cat $fromx \
 			| awk -v m="$key" '
 				BEGIN { pp=0; } 
 				{ if ( pp>0 ) print $0; } 
@@ -70,10 +70,12 @@ for i in $root/*.inx; do
 	t1=${i}_1;
 	t2=${i}_2;
 	myname=`basename $i .inx`.html;
+	srcname=`basename $i .inx`.bxml;
 	dir=`dirname $i`;
 	lastdir=`basename $dir`;
 	#echo "lastdir=" $lastdir;
 	to=`dirname $i`/$myname;
+	from=`dirname $i`/$srcname;
 	menu="$to".menu;
 	if [ -f $i ]; then
 		#echo "from " $i " to " $t2 " with to: " $to
@@ -110,6 +112,19 @@ for i in $root/*.inx; do
 				cat $root/$up/.hot.xml >> $t2
 			fi;
 			doinsert2 $t1 $t2 "@HOT@" 
+		fi
+		mv $t2 $t1
+
+		# insert Modified date 
+		doinsert1 $t1 $t2 "@MODDATE@"
+		v=$?
+		if [ $v -eq 1 ]; then
+echo "FROM=$from"
+ls -l --time-style=full-iso $from | cut -d ' ' -f 6 
+			if [ -f $from ]; then
+				ls -l --time-style=full-iso $from | cut -d ' ' -f 6 >> $t2
+			fi;
+			doinsert2 $t1 $t2 "@MODDATE@" 
 		fi
 		mv $t2 $t1
 

@@ -96,7 +96,7 @@
 <div class="top" id="content">
 <div id="minmax"/>
 <xsl:text>
-@BREAD@
+
 </xsl:text>
 <h1><xsl:value-of select="name"/></h1>
 <xsl:text>
@@ -129,6 +129,7 @@
 @FOOTER@
 </div> <!-- footer -->
 </div> <!-- content -->
+<xsl:call-template name="moddate"/>
 </div> <!-- midcol -->
 <xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>
@@ -182,6 +183,12 @@
 			</div></div>
 		</xsl:if>
 	</div>
+</xsl:template>
+
+<xsl:template name="moddate">
+	<xsl:text>Last modified: 
+@MODDATE@
+	</xsl:text>
 </xsl:template>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -365,7 +372,7 @@
 <div class="top" id="content">
 <div id="minmax"/>
 <xsl:text>
-@BREAD@
+
 </xsl:text>
 <h1><xsl:value-of select="@name"/></h1>
 
@@ -435,6 +442,7 @@
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
 </div> <!-- content -->
+<xsl:call-template name="moddate"/>
 </div> <!-- midcol -->
 <xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>
