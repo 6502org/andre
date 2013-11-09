@@ -125,11 +125,17 @@
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <div id="contentfooter">
+<xsl:choose>
+	<xsl:when test="lastmodified">
 <p><xsl:text>Last modified: </xsl:text><xsl:value-of select="lastmodified"/>.</p>
+	</xsl:when>
+	<xsl:otherwise>
+<xsl:call-template name="moddate"/>
+	</xsl:otherwise>
+</xsl:choose>
 @FOOTER@
 </div> <!-- footer -->
 </div> <!-- content -->
-<xsl:call-template name="moddate"/>
 </div> <!-- midcol -->
 <xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>
@@ -163,8 +169,8 @@
 <xsl:template name="bottomtxt">
 	<div id="rightcol">
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
-		            Follow my 8-bit tweets on<br/>
-		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a><br/> (In new window)
+		            <p>Follow my 8-bit tweets on
+		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p>
 		</div></div>
 		<div class="top" id="forum"><div class="tophead">discuss</div><div>
 			<p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p>
@@ -441,8 +447,8 @@
 <!--xsl:apply-templates select="oldnews"/-->
 <xsl:apply-templates select="disclaimer"/>
 <xsl:apply-templates select="closing"/>
-</div> <!-- content -->
 <xsl:call-template name="moddate"/>
+</div> <!-- content -->
 </div> <!-- midcol -->
 <xsl:call-template name="bottomtxt"/>
 <div id="footer">&nbsp;</div>

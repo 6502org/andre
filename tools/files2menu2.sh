@@ -136,7 +136,7 @@ do_2menu () {
 		| sed -e "s@%up%@%up%$path/@g" \
 		>> $findindex;
 
-	echo "2menu $file on level $level with $topmenu and $path at `pwd`"
+	#echo "2menu $file on level $level with $topmenu and $path at `pwd`"
 
 	if [ ! -e $file ]; then
 		echo "File $file not found!";
@@ -158,7 +158,7 @@ do_2menu () {
 	case $type in
 	f|h)
 		# process files
-		echo "process file: " $name
+		#echo "process file: " $name
 		cat $file.xml2 \
 			| sed -e "s@%up%@@g" \
 			| sed -e "s@%open%@mopen@g" \
@@ -166,14 +166,14 @@ do_2menu () {
 		;;
 	p)	
 		# process pointed-to files
-		echo "process pointer: " $name
+		#echo "process pointer: " $name
 		cat $file.xml2 \
 			| sed -e "s@%up%@../@g" \
 			> $dir/$name/index.html.menu
 		;;
 	d)	
 		# process directories
-		echo "process directory: " $name
+		#echo "process directory: " $name
 		(do_2menu $dir/$name $((level+1)) $path/$name $file.xml2)
 		;;
 	*)

@@ -119,8 +119,8 @@ for i in $root/*.inx; do
 		doinsert1 $t1 $t2 "@MODDATE@"
 		v=$?
 		if [ $v -eq 1 ]; then
-echo "FROM=$from"
-ls -l --time-style=full-iso $from | cut -d ' ' -f 6 
+#echo "FROM=$from"
+#ls -l --time-style=full-iso $from | cut -d ' ' -f 6 
 			if [ -f $from ]; then
 				ls -l --time-style=full-iso $from | cut -d ' ' -f 6 >> $t2
 			fi;
