@@ -4,14 +4,14 @@
 	list-style-type: none;
 	padding: 0 !important;
 	width: auto;
-	height: 65px;
+	height: 70px;
 	display: block;
 }
 .social_share_privacy_area li {
 	margin: 0 !important;
 	padding: 0 !important;
-	height: 30px;
-	float: left;
+	height: 27px;
+	/*float: left;*/
 }
 .social_share_privacy_area li .dummy_btn {
     float: left;
@@ -99,7 +99,7 @@
 }
 .social_share_privacy_area li .help_info.icon .info {
     left: -243px;
-    width: 350px;
+    width: 270px;
 }
 .social_share_privacy_area li.help_info.display .info, 
 .social_share_privacy_area li .help_info.icon.display .info {

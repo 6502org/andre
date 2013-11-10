@@ -327,6 +327,9 @@ div.driverfiles {
 
 /* three column design */
 @media handheld, screen and (min-width: 1025px) {
+	div#topsearch {
+   		box-shadow: 5px 5px 3px #333;
+	}
 	div#midcol {
 		float: left;
 		width: 63%;
@@ -380,7 +383,6 @@ div.driverfiles {
    		box-shadow: 5px 5px 3px #333;
 	}
 }
-
 @media handheld, screen and (min-width: 481px) {
 	/* fat fingering */
 	ul.nav2 li {
@@ -388,6 +390,56 @@ div.driverfiles {
 		padding-bottom: 0.3em;
 	}
 }
+
+/****************************************
+ * Teaser formatting
+ */
+
+div.teasers {
+  padding-top: 0.5em;
+  background-color: #eee;
+}
+
+div.teaser {
+  background-color: #eee;
+  float: left;
+  display: inline;
+  padding: 1em;
+}
+
+div.teaser div.teaserimg {
+  text-align: center;
+  height: 120px;
+  padding: 0.5em;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+div.teaser div.teaserlst {
+  display: block;
+  background-color: #fff;
+  margin-top: -1em;
+  padding: 1em;
+}
+
+div.teaser div.teaserimg img {
+  width: 95%;
+}
+
+div.teasers div.teaserend {
+  clear: both;
+}
+
+@media handheld, screen and (min-width: 1190px) {
+	div.teaser div.teaserimg {
+		float: left;
+  		width: 27%;
+	}
+	div.teaser div.teaserlst {
+		padding-left: 28%;
+	}
+}
+
 
 /****************************************
  * Gallery formatting
@@ -632,6 +684,7 @@ LI.subitem {
 ul.news li {
 	padding-top: 5px;
 	list-style-type: none;
+	font-size:small;
 }
 
 ul.news li div {
@@ -791,4 +844,9 @@ div#content p.conclusion {
 	display: none;
 	float: right;
 }
+
+div#share {
+   display: none;
+}
+
 

@@ -10,14 +10,10 @@
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
   <overview>
-<p>On these pages you will find quite some information concerning selfbuilt
-8-bit computers of the 6502 line. Also some stuff for old Commodore
-machines with this CPU is there, like new C64 kernals, VC1541 modifications
-etc. A selfbuilt operating system
-features Multitasking, dynamic memory management, a standard library
-and internet access.</p>
-<p>As a side note, together with Ed Spittles I am curating the
-<a href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
+<p>On these pages you will find quite some information concerning 
+8-bit computers of the 6502 line.
+As a side note, together with Ed Spittles I am curating the
+<a class="extlink" target="_new" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
 on Google+. We're posting weekly about anything 6502-related. If you like it,
 subscribe and share!
 </p>
@@ -37,6 +33,8 @@ subscribe and share!
 	Added a small demo video to my <a href="osa/index.html">GeckOS</a> Operating System page.
         Also added small demo video on the <a href="adv65/pet816/index.html">PET816</a> accelerator card.
      </item>
+ </news>
+  <oldnews>
      <item date="2013-05-02">
 	Fix some web design bugs, a few smaller updates
         Added the <a href="petindex/hw.html#colourpet">Colour PET</a> project description.
@@ -71,8 +69,6 @@ subscribe and share!
      <item date="2013-01-04">
 	A number of smaller updates, mostly PETindex.
      </item>
- </news>
-  <oldnews>
      <item date="2012-05-06">
 	Published more extended docs for the <a href="65k/af65002/index.html">af65002</a> processor!
     </item>
@@ -333,8 +329,8 @@ subscribe and share!
   <itemlist name="Quickfinder">
     <!--desc>
     </desc-->
-    <items class="quickfinder">
-     <item name="Commodore 8-bit stuff" icon="i_cbm">
+    <teasers>
+     <item name="Commodore 8-bit stuff" icon="i_cbm" headerimg="web_PET.png">
       <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
 information and links to the old CBM PET machines</subitem>
       <subitem name="Commodore Hardware mods and projects" 
@@ -347,7 +343,7 @@ information and links to the old CBM PET machines</subitem>
       <subitem name="PET816" link="cbmhw/pet816/index.html"> - a 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
       </subitem>
      </item>
-     <item name="General 6502 hardware stuff" icon="i_hw">
+     <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.png">
       <subitem name="CS/A65" link="csa/index.html"> and
 <a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
 multi- resp. singleboard 6502 computers.
@@ -372,7 +368,7 @@ to this page.</subitem>
 	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
       </subitem>
      </item>
-     <item name="6502 software stuff" icon="i_sw">
+     <item name="6502 software stuff" icon="i_sw" headerimg="web_prog.png">
       <subitem name="GeckOS/A65" link="osa/index.html">
 A small 6502 multitasking operating
 system that runs on the Commodore C64 and PET computers, as well as my
@@ -383,7 +379,7 @@ selfbuilt 6502s.
       <subitem name="Software" link="misc/index.html"> I wrote with relation
 to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
      </item>
-     <item name="6502 knowledge bits" icon="i_icap">
+     <item name="6502 knowledge bits" icon="i_icap" headerimg="web_knowledge.png">
       <subitem name="Articles" link="icapos/index.html"> I wrote about computer system and
 	operating system architecture with relation to the 6502.
 	Currently contains a articles about <a href="icapos/mp.html">6502 multiasking</a>,
@@ -400,7 +396,7 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
 	am using for my newest designs.
       </subitem>
      </item>
-    </items>
+    </teasers>
   </itemlist>
     <disclaimer name="Disclaimer">
 @DISCLAIMER@

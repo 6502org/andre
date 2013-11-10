@@ -168,6 +168,9 @@
 
 <xsl:template name="bottomtxt">
 	<div id="rightcol">
+		<div class="top" id="share"><div class="tophead">share</div><div>
+			    <div id="socialshareprivacy"/>
+		</div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            <p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p>
@@ -260,6 +263,22 @@
 <xsl:apply-templates select="file"/>
 </table>
 </xsl:if>
+</xsl:template>
+
+<xsl:template match="teasers">
+<div class="teasers">
+<xsl:for-each select="item">
+  <div class="teaser">
+    <div class="teaserimg"><img src="imgs/{@headerimg}" alt="{@headeralt}"/></div>
+    <div class="teaserlst">
+      <ul>
+	<xsl:apply-templates select="subitem"/>
+      </ul>
+    </div>
+  </div>
+</xsl:for-each>
+<div class="teaserend"/>
+</div>
 </xsl:template>
 
 <xsl:template name="allrev">
@@ -407,6 +426,7 @@
       <xsl:apply-templates select="desc"/>
       <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="subsection"/>
+      <xsl:apply-templates select="teasers"/>
       <!-- (very) old style pages may still use this -->
       <xsl:for-each select="items[item|subitem|file]">
         <xsl:if test="file">
@@ -583,11 +603,19 @@
 <xsl:template name="bottom">
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts2-all.js"></script>
-  <!--script type="text/javascript" src="%up%jquery.socialshareprivacy.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript" src="%up%jquery.socialshareprivacy.min.js"></script>
+  <!--script type="text/javascript">
           jQuery(document).ready(function($){
-                  if($('#socialshareprivacy').length != 0){
-                            $('#socialshareprivacy').socialSharePrivacy();
+                  if($('#socialshareprivacy').length > 0){
+                            $('#socialshareprivacy').socialSharePrivacy({
+				services : {
+				  facebook : {
+				    'action' : 'recommend'
+				  }
+				},
+				'txt_help' : 'By activating these fields through clicking, you accept that information will be sent to Facebook, Twitter or Google and stored there. More information by clicking on the \'i\' (in German)',
+				'settings_perma' : 'Accept data transfer and activate permanently'
+			    });
                   }
           });
   </script-->

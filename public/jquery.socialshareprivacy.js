@@ -85,9 +85,8 @@
             'services' : {
                 'facebook' : {
                     'status'            : 'on',
-                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_facebook_en.png',
-                    'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Facebook senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
-                    'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more (German) info.',
+                    'dummy_img'         : 'socialshareprivacy/images/dummy_facebook.png',
+                    'txt_info'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Facebook senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_fb_off'        : 'nicht mit Facebook verbunden',
                     'txt_fb_on'         : 'mit Facebook verbunden',
                     'perma_option'      : 'on',
@@ -98,9 +97,8 @@
                 }, 
                 'twitter' : {
                     'status'            : 'on', 
-                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_twitter.png',
-                    'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Twitter senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
-                    'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more (German) info.',
+                    'dummy_img'         : 'socialshareprivacy/images/dummy_twitter.png',
+                    'txt_info'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Twitter senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_twitter_off'   : 'nicht mit Twitter verbunden',
                     'txt_twitter_on'    : 'mit Twitter verbunden',
                     'perma_option'      : 'on',
@@ -111,9 +109,8 @@
                 },
                 'gplus' : {
                     'status'            : 'on',
-                    'dummy_img'         : '/users/andre/socialshareprivacy/images/dummy_gplus.png',
-                    'txt_info_de'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Google+ senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
-                    'txt_info'          : '2 clicks for more privacy. Only when you click here the button becomes active and you can send the recommendation. Already during the first click data is being sent to a third party. See <em>i</em> for more (German) info.',
+                    'dummy_img'         : 'socialshareprivacy/images/dummy_gplus.png',
+                    'txt_info'          : '2 Klicks f&uuml;r mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k&ouml;nnen Ihre Empfehlung an Google+ senden. Schon beim Aktivieren werden Daten an Dritte &uuml;bertragen &ndash; siehe <em>i</em>.',
                     'txt_gplus_off'     : 'nicht mit Google+ verbunden',
                     'txt_gplus_on'      : 'mit Google+ verbunden',
                     'perma_option'      : 'on',
@@ -123,14 +120,12 @@
                 }
             },
             'info_link'         : 'http://www.heise.de/ct/artikel/2-Klicks-fuer-mehr-Datenschutz-1333879.html',
-            'txt_help_de'          : 'Wenn Sie diese Felder durch einen Klick aktivieren, werden Informationen an Facebook, Twitter oder Google in die USA &uuml;bertragen und unter Umst&auml;nden auch dort gespeichert. N&auml;heres erfahren Sie durch einen Klick auf das <em>i</em>.',
-            'txt_help'          : 'When activating the fields by clicking on them, information is being sent to Facebook Twitter or Google in the USA an can be stored there. More detail available by clicking the <em>i</em> (in German!).',
-            'settings_perma_de'    : 'Dauerhaft aktivieren und Daten&uuml;ber&shy;tragung zustimmen:',
-            'settings_perma'    : 'Activate persistently and agree to data transfer:',
+            'txt_help'          : 'Wenn Sie diese Felder durch einen Klick aktivieren, werden Informationen an Facebook, Twitter oder Google in die USA &uuml;bertragen und unter Umst&auml;nden auch dort gespeichert. N&auml;heres erfahren Sie durch einen Klick auf das <em>i</em>.',
+            'settings_perma'    : 'Dauerhaft aktivieren und Daten&uuml;ber&shy;tragung zustimmen:',
             'cookie_path'       : '/',
             'cookie_domain'     : document.location.host,
             'cookie_expires'    : '365',
-            'css_path'          : '/users/andre/socialshareprivacy/socialshareprivacy.css',
+            'css_path'          : 'socialshareprivacy/socialshareprivacy.css',
             'uri'               : getURI
         };
 
