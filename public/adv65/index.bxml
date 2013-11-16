@@ -9,10 +9,11 @@
   <metadesc>8-bit 6502 hardware knowledge</metadesc>
   <overview>
 	Here I have projects that extend the usual 6502 processor in various bits.
-	In the future (see the <a href="../sneak.html">sneak preview</a> page) this page
-	will also host the <em>65k</em> project.
   </overview>
   <news>
+    <item date="2013-11-16">
+	Added some links about AVR-based emulation and the 65el02.
+    </item>
     <item date="2013-10-13">
 	Added small demo video on the <a href="pet816/index.html">PET816</a> accelerator card.
     </item>
@@ -134,6 +135,16 @@
 		<extlink name="AppleCrate I" link="http://home.comcast.net/~mjmahon/Applecrate.html"> with 8 processors</extlink>
 		<extlink name="AppleCrate II" link="http://home.comcast.net/~mjmahon/AppleCrateII.html"> with 17 processors</extlink>
 	</subsection>	
+
+	<subsection toc="el02" name="65el02">
+		<desc><p>Eloraam has implemented a 6502 emulation in minecraft!</p>
+		<p>This 65el02 implements 6502 and 65C02 opcodes, part of the 65816 and own instructions.
+			It adds a "D" registers that allows using multiply and divide opcodes
+		</p>
+		</desc>
+		<extlink name="65el02 opcodes" link="http://www.eloraam.com/nonwp/redcpu.php"></extlink>
+		<extlink name="65el02 announcement" link="http://www.eloraam.com/blog/2011/10/14/welcome-to-the-future/"></extlink>
+	</subsection>	
   </section>
 
   <section toc="emul" name="65xx Emulation">
@@ -147,6 +158,8 @@
 		<extlink name="Mikrocontroller.net on 6502 emulation in AVRs (German)" link="http://www.mikrocontroller.net/articles/AVR_6502_Emulator"/>
 		<extlink name="Thread on Mikrocontroller.net (in German)" link="http://www.mikrocontroller.net/topic/193632">last post seems to contain code</extlink>
 		<extlink name="NES 6502 emulation in an ATMega" link="http://instruct1.cit.cornell.edu/courses/ee476/FinalProjects/s2009/bhp7_teg25/bhp7_teg25/index.html"/>
+		<extlink name="6502 emulation on AVR" link="http://forum.6502.org/viewtopic.php?f=8&amp;t=2312">(on forum.6502.org)</extlink>
+		<extlink name="AVR-based Apple II emulator" link="http://forum.6502.org/viewtopic.php?f=8&amp;t=2766">(on forum.6502.org)</extlink>
 	</subsection>
 
 	<exlink name="6502.org emulation links" link="http://www.6502.org/tools/emu/"/>
