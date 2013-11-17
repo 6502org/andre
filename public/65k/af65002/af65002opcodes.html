@@ -167,6 +167,7 @@
 <li><a href="af65002mem.html">Memory Management</a></li>
 <li><a href="af65002config.html">Configuration Registers</a></li>
 <li><a href="af65002compat.html">Compatibility</a></li>
+<li><a href="af65002usage.html">Usage notes</a></li>
 <div class="nend2"></div>
 </ul>
 </li>
@@ -625,7 +626,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">ASR abs</div>
 </td><td><div class="opc">ASL abs,Y</div>
 </td></tr>
-<tr><th>1</th><td class="unused"></td><td><div class="opc">PEA (abs,X)</div>
+<tr><th>1</th><td><div class="opc">BEV rel</div>
+</td><td><div class="opc">PEA (abs,X)</div>
 </td><td><div class="opc">PEA (abs)</div>
 </td><td class="unused"></td><td class="unused"><div class="opc">MVP </div>
 </td><td class="unused"></td><td><div class="opc">ASR zp,X</div>
@@ -648,7 +650,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">RDL abs</div>
 </td><td><div class="opc">ROL abs,Y</div>
 </td></tr>
-<tr><th>3</th><td class="unused"></td><td><div class="opc">LEA (abs,X)</div>
+<tr><th>3</th><td><div class="opc">BOD rel</div>
+</td><td><div class="opc">LEA (abs,X)</div>
 </td><td><div class="opc">LEA (abs)</div>
 </td><td class="unused"></td><td><div class="opc">BIT </div>
 </td><td><div class="opc">ADE </div>
@@ -669,7 +672,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">LSR (E)</div>
 </td><td class="unused"></td><td><div class="opc">LSR abs,Y</div>
 </td></tr>
-<tr><th>5</th><td class="unused"></td><td><div class="opc">PEA [[abs,X]]</div>
+<tr><th>5</th><td><div class="opc">BLTS rel</div>
+</td><td><div class="opc">PEA [[abs,X]]</div>
 </td><td><div class="opc">PEA [[abs]]</div>
 </td><td class="unused"></td><td class="unused"><div class="opc">PLL </div>
 </td><td><div class="opc">ADS </div>
@@ -689,7 +693,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">RDR abs</div>
 </td><td><div class="opc">ROR abs,Y</div>
 </td></tr>
-<tr><th>7</th><td class="unused"></td><td><div class="opc">LEA [[abs,X]]</div>
+<tr><th>7</th><td><div class="opc">BGES rel</div>
+</td><td><div class="opc">LEA [[abs,X]]</div>
 </td><td><div class="opc">LEA [[abs]]</div>
 </td><td class="unused"></td><td class="unused"><div class="opc">WMB </div>
 </td><td><div class="opc">ADB </div>
@@ -754,7 +759,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">PEA abs</div>
 </td><td><div class="opc">DEC abs,Y</div>
 </td></tr>
-<tr><th>D</th><td class="unused"></td><td><div class="opc">PEA [[zp,X]]</div>
+<tr><th>D</th><td><div class="opc">BLES rel</div>
+</td><td><div class="opc">PEA [[zp,X]]</div>
 </td><td><div class="opc">PEA [[zp]]</div>
 </td><td class="unused"></td><td><div class="opc">SWP </div>
 </td><td><div class="opc">SBS </div>
@@ -775,7 +781,8 @@ Transfer the contents of the Y register into the accumulator</li>
 </td><td><div class="opc">INC (E)</div>
 </td><td class="unused"></td><td><div class="opc">INC abs,Y</div>
 </td></tr>
-<tr><th>F</th><td class="unused"></td><td><div class="opc">LEA [[zp,X]]</div>
+<tr><th>F</th><td><div class="opc">BGTS rel</div>
+</td><td><div class="opc">LEA [[zp,X]]</div>
 </td><td><div class="opc">LEA [[zp]]</div>
 </td><td class="unused"></td><td class="unused"><div class="opc">BSW </div>
 </td><td><div class="opc">SBB </div>
@@ -802,11 +809,29 @@ Arithmetic Shift Right - Similar to LSR, but shifts in the sign of the value, no
 <a href="af65002opdesc.html#BCN">BCN: </a>
 Bit Count: counts 1-bits in AC or in given location, stores number of 1-bits back in AC</li>
 <li>
+<a href="af65002opdesc.html#BEV">BEV: </a>
+Branch on even</li>
+<li>
+<a href="af65002opdesc.html#BGES">BGES: </a>
+Branch on signed greater or equal than</li>
+<li>
 <a href="af65002opdesc.html#BGT">BGT: </a>
 Branch if greater - take branch when C flag is set but Z flag is clear</li>
 <li>
+<a href="af65002opdesc.html#BGTS">BGTS: </a>
+Branch if greater - take branch when signed greater or equal G flag is set but Z flag is clear</li>
+<li>
 <a href="af65002opdesc.html#BLE">BLE: </a>
 Branch if less or equal - take branch when C flag is clear or Z flag is set</li>
+<li>
+<a href="af65002opdesc.html#BLES">BLES: </a>
+Branch if less or equal - take branch when signed greater or equal flag G is clear or Z flag is set</li>
+<li>
+<a href="af65002opdesc.html#BLTS">BLTS: </a>
+Branch on signed less than</li>
+<li>
+<a href="af65002opdesc.html#BOD">BOD: </a>
+Branch on odd</li>
 <li>
 <a href="af65002opdesc.html#BSW">BSW: </a>
 Bit Swap: exchanges bit 0 with bit W-1, bit 1 with bit W-2 and so on.</li>
@@ -870,6 +895,9 @@ Push contents of all registers (A, X, Y, B, E) onto the stack</li>
 <li>
 <a href="af65002opdesc.html#RDL">RDL: </a>
 Rotate Direct Left - similar to ROL, but do not shift in carry, but the highest bit of the original value</li>
+<li>
+<a href="af65002opdesc.html#RDR">RDR: </a>
+Rotate Direct Right - similar to ROR, but do not shift in carry, but the lowest bit of the original value</li>
 <li>
 <a href="af65002opdesc.html#RMB">RMB: </a>
 Read memory barrier: invalidates cache content (globally, or for a specific, given location)</li>
@@ -956,7 +984,7 @@ in <a href="af65002front.html#lic">the license section</a>.
     </div></div><hr>
 Last updated 2012-04-23.
   Last modified: 
-2012-04-29
+2013-11-17
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

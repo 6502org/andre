@@ -335,7 +335,7 @@
 </td><td class="prefix"><div class="opc">JMP [[abs]]</div>
 <div class="prefixes"><br/>UM, OF, LE, AM=1</div>
 </td><td><div class="opc">PHP </div>
-<div class="prefixes"><br/>UM</div>
+<div class="prefixes"><br/>RS, UM</div>
 </td><td><div class="opc">ORA #byte</div>
 <div class="prefixes"><br/>NF, RS, LE</div>
 </td><td><div class="opc">ASL </div>
@@ -808,7 +808,9 @@
 </td><td><div class="opc">ASL abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>1</th><td class="unused"></td><td><div class="opc">PEA (abs,X)</div>
+<tr><th>1</th><td><div class="opc">BEV rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">PEA (abs,X)</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
 </td><td><div class="opc">PEA (abs)</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
@@ -852,7 +854,9 @@
 </td><td><div class="opc">ROL abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>3</th><td class="unused"></td><td><div class="opc">LEA (abs,X)</div>
+<tr><th>3</th><td><div class="opc">BOD rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">LEA (abs,X)</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>
 </td><td><div class="opc">LEA (abs)</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>
@@ -892,7 +896,9 @@
 </td><td class="unused"></td><td><div class="opc">LSR abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>5</th><td class="unused"></td><td><div class="opc">PEA [[abs,X]]</div>
+<tr><th>5</th><td><div class="opc">BLTS rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">PEA [[abs,X]]</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
 </td><td><div class="opc">PEA [[abs]]</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
@@ -930,7 +936,9 @@
 </td><td><div class="opc">ROR abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>7</th><td class="unused"></td><td><div class="opc">LEA [[abs,X]]</div>
+<tr><th>7</th><td><div class="opc">BGES rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">LEA [[abs,X]]</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>
 </td><td><div class="opc">LEA [[abs]]</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>
@@ -1054,7 +1062,9 @@
 </td><td><div class="opc">DEC abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>D</th><td class="unused"></td><td><div class="opc">PEA [[zp,X]]</div>
+<tr><th>D</th><td><div class="opc">BLES rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">PEA [[zp,X]]</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
 </td><td><div class="opc">PEA [[zp]]</div>
 <div class="prefixes"><br/>UM, OF, AM</div>
@@ -1094,7 +1104,9 @@
 </td><td class="unused"></td><td><div class="opc">INC abs,Y</div>
 <div class="prefixes"><br/>NF, RS, UM, OF, AM</div>
 </td></tr>
-<tr><th>F</th><td class="unused"></td><td><div class="opc">LEA [[zp,X]]</div>
+<tr><th>F</th><td><div class="opc">BGTS rel</div>
+<div class="prefixes"><br/>RS</div>
+</td><td><div class="opc">LEA [[zp,X]]</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>
 </td><td><div class="opc">LEA [[zp]]</div>
 <div class="prefixes"><br/>NF, UM, OF, AM</div>

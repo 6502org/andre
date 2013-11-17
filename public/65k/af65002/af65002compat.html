@@ -167,6 +167,7 @@
 <li><a href="af65002mem.html">Memory Management</a></li>
 <li><a href="af65002config.html">Configuration Registers</a></li>
 <li><a href="af65002compat.html">Compatibility</a></li>
+<li><a href="af65002usage.html">Usage notes</a></li>
 <div class="nend2"></div>
 </ul>
 </li>
@@ -211,6 +212,11 @@
           As a result, if some 6502 software creates an artificial stack frame with bit5 cleared,
           it will trigger the use of an extended stack frame and crash.
         </p>
+	<p>A similar result will happen on a PLP, as PLP reads the extended status register
+	  if in the normal status register on the stack bit 5 is zero (The extended status
+	  register has the G and OE flags that are available from user mode. All other bits
+	  are set to zero)
+	</p>
         </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="compatpointer">Interrupt Pointer</a></h2></div><div class="h2c"><p>
           As the 65k has an extended interrupt functionality, the number - and size - of the 6502 interrupt
           pointer does not suffice anymore for an efficient operation.
@@ -227,7 +233,7 @@
 	The 65k can be configured in 16, 32 or 64 bit width. Thus a return address for a subroutine is
 	16, 32, or 64 bit wide. Only a 16 bit wide return address is compatible though.
 	</p><p>
-	The user mode configuration register however allows to restrict the effective processor width
+	The user mode configuration register however allows to restrict the effective processor address width
 	to 16 (or 32) bit. In this mode the return address is restricted to 16 bit, and the real address
 	is extended with the upper bits (16-31/63) of the program counter.
         </p>
@@ -245,9 +251,9 @@ All Copyrights are acknowledged.
 The information here is provided under the terms as described
 in <a href="af65002front.html#lic">the license section</a>.
     </div></div><hr>
-Last updated 2012-04-23.
+Last updated 2013-11-17.
   Last modified: 
-2012-04-29
+2013-11-17
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

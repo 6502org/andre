@@ -167,6 +167,7 @@
 <li><a href="af65002mem.html">Memory Management</a></li>
 <li><a href="af65002config.html">Configuration Registers</a></li>
 <li><a href="af65002compat.html">Compatibility</a></li>
+<li><a href="af65002usage.html">Usage notes</a></li>
 <div class="nend2"></div>
 </ul>
 </li>
@@ -225,18 +226,23 @@
 <tr><td>C</td><td>Carry</td><td>Carry for arithmetic operations and compares</td></tr>
     </table>
     <p>The second byte is an extended status byte. It is written on the stack frame on TRAP (user and
-        hypervisor mode) and interrupts in hypervisor mode:</p>
+        hypervisor mode) and interrupts in hypervisor mode. It can also be written with a word-wide 
+	PHP and restored with a word-wide PLP. However, only the G and OE flags are written and
+	restored, the others are written and read as zero on PHP.w/PLP</p>
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
 <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>H</td><td>0</td><td>SF1</td><td>SF0</td></tr>
+<tr><td>G</td><td>OE</td><td>0</td><td>0</td><td>H</td><td>0</td><td>SF1</td><td>SF0</td></tr>
     </table>
     <table border="1">
 <tr><th>Bit</th><th>Name</th><th>Explanation</th><th>State on Reset</th></tr>
 <tr><td>H</td><td>Hypervisor mode</td><td>Set when the processor is in hypervisor mode</td><td>1</td></tr>
 <tr><td>SF1/SF0</td><td>Stack Frame Size</td><td>Determines the stack frame size for a TRAP or an interrupt
         (01=2 byte, 10=4 byte, 11=8 byte return address. 00 is the native size of the processor)
-        </td><td>01</td></tr>
+        </td><td>01</td>
+<tr><td>G</td><td>Signed greater or equal</td><td>Set when the processor does an SBC or CMP, and detects that the result of the comparison is greater or equal. This should always be (N xor V) after SBC, but CMP does not set V, so there it is different, and enables signed compares.</td><td>0</td></tr>
+<tr><td>OE</td><td>Odd</td><td>Odd/Even flag. Set at the same time the Z-flag is set, directly from bit 0 of the value.</td><td>0</td></tr>
+	</tr>
         <p>
         Note that the value read from the stack on RTI and RTU opcodes is fully executed only when read from the
         supervisor stack. 
@@ -382,7 +388,7 @@ in <a href="af65002front.html#lic">the license section</a>.
     </div></div><hr>
 Last updated 2012-04-29.
   Last modified: 
-2012-04-29
+2013-11-17
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

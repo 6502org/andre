@@ -12,5 +12,6 @@ f af65002hyper.html User- and Hypervisor Mode
 f af65002mem.html Memory Management
 f af65002config.html Configuration Registers
 f af65002compat.html Compatibility
+f af65002usage.html Usage notes
 s Implementation
 f af65002arch.html Architecture Overview

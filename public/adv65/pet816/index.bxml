@@ -176,5 +176,7 @@ a feature in these days.
 		<file ltype="schem" ptype="esch">pet_cpu816-v1.0b.sch</file>
 		<file ltype="schem" ptype="png">pet_cpu816-v1.0b-sch.png</file>
 	</rev>
-	<disclaimer name="Disclaimer">@DISCLAIMER@</disclaimer>
+	<disclaimer name="Disclaimer">
+@DISCLAIMER@
+	</disclaimer>
 </board>
