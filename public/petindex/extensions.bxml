@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2013-12-27">
+	Added link to Z-RAM and PEDISK-II.
+    </item>
     <item date="2011-06-04">
 	Added link to MTU graphics card and the Softbox computer
     </item>
@@ -280,7 +283,7 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	<extlink name="PET RAM expansion" link="http://freenet-homepage.de/x1541/hardware/petram.html"/>
 	<extlink name="flasher program" link="@CBMARC@/documents/projects/memory/index.html"/>
      </subsection>
-	<subsection toc="eprom" name="PET EPROM adapter">
+     <subsection toc="eprom" name="PET EPROM adapter">
 	<desc>
 		An adapter for the PET2001 to install additional ROM sets of 16k - installed under the CPU
 	</desc>
@@ -311,6 +314,14 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	</p></desc>
 	<extlink name="SSE Softbox Z80 computer" link="http://mikenaberezny.com/hardware/pet-cbm/sse-softbox-z80-computer/"/>
      </subsection>
+     <subsection toc="zram" name="Z-RAM">
+	<desc>
+		This board not only adds 64k RAM "similar in ways to the 8096", but also a Z80 CPU to run CP/M.
+		It was also known as CP/Maker in Europe.
+		Mike Naberezny's page even includes the schematics!
+	</desc>
+	<extlink name="Z-RAM" link="http://mikenaberezny.com/hardware/pet-cbm/madison-computer-z-ram/"/>
+     </subsection>
    </section>
 
    <section toc="floppies" name="Floppy drives">
@@ -318,6 +329,13 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	Some of the floppy drives used in the PET were not as intelligent as the Commodore ones and
 	a controller had to be added to the PET
     </desc>
+     <subsection toc="pedisk2" name="PEDISK-II">
+	<desc>
+		The PEDISK-II is a disk drive that uses its own controller to be plugged into the PET instead
+		of being attached via IEEE488 cable.
+	</desc>
+	<extlink name="Mike Naberezny's PEDISK-II page" link="http://mikenaberezny.com/hardware/pet-cbm/microtech-pedisk-ii/"/>
+     </subsection>
      <subsection toc="floppiesunknown" name="Unknown brand">
 	<desc>
 		This one can be seen in Daves Old Computers collections.

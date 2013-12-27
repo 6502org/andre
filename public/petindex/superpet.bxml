@@ -109,6 +109,16 @@ feature of the PET motherboard.
 </desc>
   </section>
 
+  <section toc="m6809" name="M6809 Software">
+     <desc><p>
+	The SuperPET was a collaboration between Commodore and the University of Waterloo in Ontario,
+	Canada. A set of original 6809 software was available, like Fortran, Pascal, or even APL language compilers.
+     </p></desc>
+     <extlink name="Bo's SuperPET page" link="http://zimmers.net/cbmpics/csp9000.html"/>
+     <extlink name="Mike's first SuperPET page" link="http://mikenaberezny.com/2008/09/01/commodore-superpet/"/>
+     <extlink name="Mike's SuperPET page" link="http://mikenaberezny.com/hardware/superpet/">(don't despair - look in the right side menu for a wealth of SuperPET menu entries!</extlink>
+     <extlink name="Mike's OS/9 page" link="http://mikenaberezny.com/hardware/superpet/super-os9-mmu/"/>
+  </section>
   <closing>
 @FOOTER@
   </closing>

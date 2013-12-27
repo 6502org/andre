@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2013-12-27">
+	Added the SuperPET OS/9 link
+    </item>
     <item date="2013-05-02">
 	Added the Colour PET
     </item>
@@ -126,6 +129,11 @@ $8800-$8fff memory area.
 <DT><A class="extlink" HREF="http://www.cbm-ii.com/my-projects/fitting-8250lp-in-the-high-profile-cbm-ii-case/">Fitting 8250LP in the high-profile CBM-II case</A></DT>
 <DD>A description how to fit the 8250LP disk drive into a high-profile CBM-II case - which is very similar to the 8296 case.
 So this might be as model to fit a 8250LP into a 8296 case to make a 8296D
+</DD>
+<DT><A class="extlink" HREF="http://mikenaberezny.com/hardware/superpet/super-os9-mmu/">Adding an MMU to a SuperPET and run OS/9</A></DT>
+<DD>
+	A description of the MMU fitted under the 6809 of the SuperPET to be able to run OS/9 on it!
+	Mike Naberezny's site even has permission to redistribute OS/9 for that machine!
 </DD>
 </DL>
      </desc>
