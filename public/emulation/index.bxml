@@ -1,0 +1,50 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="6502 Emulation">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2013</yearstart>
+  </author>
+  <keywords>mos6502 6502 emulation</keywords>
+  <metadesc>mos6502 6502 emulation</metadesc>
+  <overview><p>	</p>
+  </overview>
+  <!--news>
+    <item date="2010-01-04">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="main" name="Emulating a 6502 in software">
+     <desc>
+	In 2013 I took part in the Shift-Restore-Escape lecture series at the Humboldt University in Berlin and gave a lecture
+	on the emulation of computers in general and VICE specifically. You can now find the lectures on the web see the links below.
+	I have also re-done the lecture in English for the international audience :-)
+     </desc>
+     <extlink name="English presentation" link="http://www.youtube.com/watch?v=84XfgIjFtDU">(in German)</extlink>
+     <extlink name="German presentation" link="http://www.youtube.com/watch?v=DZ6shiQ-MFQ">(in German)</extlink>
+     <extlink name="Shift-Restore-Escape web site" link="http://www.medienwissenschaft.hu-berlin.de/medientheorien/shift-restore-escape">(in German)</extlink>
+  </section>
+
+  <section toc="vice" name="VICE Versatile Commodore Emulator">
+     <desc>
+	During my time at university I was part of the VICE emulator team. I have now retired, but I am still proud that 
+	I started the PET and CBM-II emulators and added valuable other code - like the CIA timer emulation.
+     </desc>
+     <extlink name="VICE homepage" link="http://vice-emu.sourceforge.net/"></extlink>
+  </section>
+
+  <section toc="xcbm" name="xcbm Emulator">
+     <desc>
+	Before I started the VICE team, I actually started my own emulator. It is still there, only running 
+	in a Linux terminal windows. 
+     </desc>
+     <extlink name="xcbm" link="http://www.6502.org/users/andre/misc/"></extlink>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
