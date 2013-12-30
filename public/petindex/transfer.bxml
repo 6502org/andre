@@ -16,11 +16,11 @@ With the popularity of the AtMega or Arduino controllers there have been a numbe
 of new entries!
 </P>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2013-12-30">
+	Added Zoomfloppy and the Flyer modem.
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="disc" name="Disclaimer">
@@ -75,6 +75,14 @@ The PC software runs under DOS/WIN98-DOS.
 <DT><A HREF="http://xs1541.t-winkler.net/index_en.html">xs1541</A> in english and the <a href="http://xs1541.t-winkler.net/">xs1541 german original</a>.</DT>
 <DD>This project uses an Atmel controller and connects the serial as well as the PET's parallel IEEE488 bus to a PC USB port!
 Currently, however, only reading - transfer from disk to PC - is supported!</DD>
+
+<DT><A HREF="http://store.go4retro.com/zoomfloppy/">ZoomFloppy</A></DT>
+<DD>This little device is mainly for users of the IEC drives, but at least some basic IEEE functionality seems to be available.</DD>
+
+<DT><A HREF="http://www.retroswitch.com/products/flyer/">Flyer Internet Modem</A></DT>
+<DD>
+This is a "combination of internet modem and disk drive emulator for Commodore 8-bit computers".
+</DD>
 
 </DL>
      </desc>

@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2013-12-30">
+	Added the ZoomFloppy and the Internet Flyer Modem to the <a href="transfer.html">transfer</a> page.
+    </item>
     <item date="2013-12-27">
         Added link to Z-RAM and PEDISK-II to the <a href="extensions.html">Extensions page</a>.
 	Also added the link to the SuperPET OS/9 project on the <a href="hw.html">Hardware Projects</a> page, and some

@@ -20,6 +20,9 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2013-12-30">
+	Minor updates in the <a href="petindex/index.html">PETindex</a>.
+    </item>
     <item date="2013-11-02">
         Moved the description of the different modes of operation from the
         diffs page to the <a href="hwinfo/crtc/crtc.html">CRTC operation page</a>.
@@ -330,7 +333,7 @@ subscribe and share!
     <!--desc>
     </desc-->
     <teasers>
-     <item name="Commodore 8-bit stuff" icon="i_cbm" headerimg="web_PET.png">
+     <item name="Commodore 8-bit stuff" icon="i_cbm" headerimg="web_PET.jpg">
       <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
 information and links to the old CBM PET machines</subitem>
       <subitem name="Commodore Hardware mods and projects" 
@@ -343,7 +346,7 @@ information and links to the old CBM PET machines</subitem>
       <subitem name="PET816" link="cbmhw/pet816/index.html"> - a 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
       </subitem>
      </item>
-     <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.png">
+     <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.jpg">
       <subitem name="CS/A65" link="csa/index.html"> and
 <a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
 multi- resp. singleboard 6502 computers.
@@ -368,7 +371,7 @@ to this page.</subitem>
 	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
       </subitem>
      </item>
-     <item name="6502 software stuff" icon="i_sw" headerimg="web_prog.png">
+     <item name="6502 software stuff" icon="i_sw" headerimg="web_prog.jpg">
       <subitem name="GeckOS/A65" link="osa/index.html">
 A small 6502 multitasking operating
 system that runs on the Commodore C64 and PET computers, as well as my
@@ -379,7 +382,7 @@ selfbuilt 6502s.
       <subitem name="Software" link="misc/index.html"> I wrote with relation
 to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
      </item>
-     <item name="6502 knowledge bits" icon="i_icap" headerimg="web_knowledge.png">
+     <item name="6502 knowledge bits" icon="i_icap" headerimg="web_knowledge.jpg">
       <subitem name="Articles" link="icapos/index.html"> I wrote about computer system and
 	operating system architecture with relation to the 6502.
 	Currently contains a articles about <a href="icapos/mp.html">6502 multiasking</a>,
