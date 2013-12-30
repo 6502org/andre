@@ -21,4 +21,5 @@ d hwinfo ICs and Standards
 s Knowledge Bits
 d icapos Computer/OS Architecture
 d icaphw 6502 Hardware Bits
+d emulation Emulation
 

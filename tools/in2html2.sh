@@ -153,8 +153,8 @@ for i in $root/*.inx; do
 	fi;
 done
 
-if [ -f $root/.files ]; then
-    for i in `cat $root/.files | grep "^[pd] " | cut -d " " -f 2`; do
+if [ -f $root/.files[1234] ]; then
+    for i in `cat $root/.files[1234] | grep "^[pd] " | cut -d " " -f 2`; do
 	"$0" $root/$i $up../ $(($upn+1)) $i
 	#rm -f $root/$i/.files.xml
 	rm -f $root/$i/.bread.xml

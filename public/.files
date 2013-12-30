@@ -18,6 +18,7 @@ p misc Misc software
 s Knowledge Bits
 d icapos Computer/OS Architecture
 d icaphw 6502 Hardware Bits
+d emulation Emulation
 s Misc
 f contact.html Contact
 f sneak.html Sneak preview
