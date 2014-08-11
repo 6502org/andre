@@ -328,7 +328,7 @@ div.driverfiles {
 /* three column design */
 @media handheld, screen and (min-width: 1025px) {
 	div#topsearch {
-   		box-shadow: 5px 5px 3px #333;
+   		box-shadow: 3px 3px 3px #444;
 	}
 	div#midcol {
 		float: left;
@@ -345,7 +345,7 @@ div.driverfiles {
 	div#menubox {
 		float: left;
 		width: 15%;
-   		box-shadow: 5px 5px 3px #333;
+   		box-shadow: 3px 3px 3px #444;
 		margin-top: 1em;
 	}
         div#twisty {
@@ -380,7 +380,7 @@ div.driverfiles {
 		clear: both;
 	}
 	div.top {
-   		box-shadow: 5px 5px 3px #333;
+   		box-shadow: 3px 3px 3px #444;
 	}
 }
 @media handheld, screen and (min-width: 481px) {

@@ -31,6 +31,8 @@
 <li><ul class="nav2" >
 <li><a href="../65k/index.html">The 65k Project</a>
 </li>
+<li><a href="../pet816/index.html">PET816 Accelerator</a>
+</li>
 <li><a href="../csa/index.html">CS/A65</a>
 </li>
 <li><a href="../cbmhw/index.html">CBM mods</a>
@@ -407,21 +409,21 @@ Please check it out at its <a href="emu/index.html">site</a>.
 </p>
 <p>The board pages contain driver code where appropriate and available.</p>
 	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Boards</a></h2></div><div class="h2c">
-	This section describes the different boards and links to the schematics and more detailled descriptions.<h3><a name="mainboards">Main Boards</a></h3>Those boards are the heart of the CS/A65 and Gecko computers.<ul><li class="subitem"><a href="cpu/index.html" target="_new" class="extlink">CS/A65 CPU</a> 
+	This section describes the different boards and links to the schematics and more detailled descriptions.<h3><a name="mainboards">Main Boards</a></h3>Those boards are the heart of the CS/A65 and Gecko computers.<ul><li class="subitem"><a href="cpu/index.html" target="_blank" class="extlink">CS/A65 CPU</a> 
 		The main CPU board features an MMU, and newer versions also
 		sport bus error condition detection. It is a CPU-only board
 		and thus requires the BIOS board for its operation.
-	  </li><li class="subitem"><a href="cpu816v2/index.html" target="_new" class="extlink">65816 CPU</a> 
+	  </li><li class="subitem"><a href="cpu816v2/index.html" target="_blank" class="extlink">65816 CPU</a> 
 		This board uses a 65816 instead of a 6502, and does not use a real MMU.
 		Instead the 1MByte CS/A bus memory is mapped into the 16MByte 65816 address space.
 		The CPU runs at a whopping 8MHz and the board includes 2MByte fast RAM, while
 		the CS/A bus is clocked at 1MHz. It is a CPU-only board and needs the BIOS board
 		to boot.
-	  </li><li class="subitem"><a href="bios/index.html" target="_new" class="extlink">CS/A65 BIOS</a> 
+	  </li><li class="subitem"><a href="bios/index.html" target="_blank" class="extlink">CS/A65 BIOS</a> 
 		This BIOS board contains RAM and ROM for the main CPU, as
 		well as simple 50Hz interrupt generation, and a
 		serial (RS232) interface.
-	  </li><li class="subitem"><a href="petcpu/index.html" target="_new" class="extlink">64k PET CPU</a> 
+	  </li><li class="subitem"><a href="petcpu/index.html" target="_blank" class="extlink">64k PET CPU</a> 
 		This board implements a simple CPU board that includes
 		not only the CPU, but also RAM and ROM (and also a serial
 		interface). It can - as it does not have an MMU - make only
@@ -430,14 +432,14 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		instead of a main CPU and BIOS board to build a 
 		<a href="#fat40">Commodore 4032</a> or a 
 		<a href="#vc1581">Commodore VC1581</a> replica.
-	  </li><li class="subitem"><a href="gecko/index.html" target="_new" class="extlink">Gecko</a> 
+	  </li><li class="subitem"><a href="gecko/index.html" target="_blank" class="extlink">Gecko</a> 
 		This board implements a single-board computer with a 
 		6502, RAM and ROM, that 
 		accidentially ;-) contains a CS/A65 bus connector.
 		It sports a serial interface (RS232), Commodore serial IEC
 		bus, infrared LED driver to use as remote control
 		and a small keyboard interface.
-	  </li><li class="subitem"><a href="auxcpu/index.html" target="_new" class="extlink">Auxiliary CPU</a> 
+	  </li><li class="subitem"><a href="auxcpu/index.html" target="_blank" class="extlink">Auxiliary CPU</a> 
 		This board is an optional extension to the CS/A65 CPU board
 		(only! - it requires the MMU features on the CPU board, which
 		are not available on the 65816, PETCPU, or Gecko boards).
@@ -446,85 +448,85 @@ Please check it out at its <a href="emu/index.html">site</a>.
 		error conditions are write protect error, "no execution" 
 		fault, or unmapped pages. It can also be used to take a
 		trace of the main CPU.
-	  </li><li class="subitem"><a href="pwr/index.html" target="_new" class="extlink">Power board</a> 
+	  </li><li class="subitem"><a href="pwr/index.html" target="_blank" class="extlink">Power board</a> 
 		This board provides basic services, using power from a 
 		PC power supply. It includes voltage monitor, 3.3V generation,
 		battery buffered power, as well as I2C controlled 
 		clock, RAM, and an I2C flash ROM.
 	  </li></ul><h3><a name="ioboards">I/O boards</a></h3>Many of the I/O boards are designed to be at least to some extent
-Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html" target="_new" class="extlink">Video</a> 
+Commodore PET compatible 	<ul><li class="subitem"><a href="vdc/index.html" target="_blank" class="extlink">Video</a> 
 		The VDC board implements a 6545 CRTC-based video interface.
 		It includes 64k dynamic RAM that is used as video memory
 		(at least parts of). If the system bus runs with 1MHz it can
 		display 40 columns PAL video, on 2MHz it can display 80 columns
 		video.
-	  </li><li class="subitem"><a href="petio/index.html" target="_new" class="extlink">CBM PET I/O</a> 
+	  </li><li class="subitem"><a href="petio/index.html" target="_blank" class="extlink">CBM PET I/O</a> 
 		This board contains basically all Commodore PET I/O interfaces
 		except for the video. It thus features an IEEE488 interface,
 		as well as keyboard, userport and tape interfaces. It also
 		contains a small beeper to make noise :-)
-	  </li><li class="subitem"><a href="netusb/index.html" target="_new" class="extlink">Net/USB/SD</a> 
+	  </li><li class="subitem"><a href="netusb/index.html" target="_blank" class="extlink">Net/USB/SD</a> 
 		A combined Ethernet, USB host+device and SD-Card interface board!
 		All parts connected via <a href="../hwinfo/spi/spi65b">SPI65b</a>
 		(and 3.3V converters).
-	  </li><li class="subitem"><a href="etholi/index.html" target="_new" class="extlink">Ethernet</a> 
+	  </li><li class="subitem"><a href="etholi/index.html" target="_blank" class="extlink">Ethernet</a> 
 		An ethernet interface for the CS/A! Using the CS8900A ethernet
 		chip on an Olimex adapter board. TCP/IP functionality provided
 		by the uIP TCP/IP stack.
-	  </li><li class="subitem"><a href="usb/index.html" target="_new" class="extlink">USB</a> 
+	  </li><li class="subitem"><a href="usb/index.html" target="_blank" class="extlink">USB</a> 
 		A USB interface for the CS/A! Using one SL811HS ethernet
 		chip each for host and device operations, this board allows
 		to use a USB keyboard and mouse, but can also provide a USB keyboard
 		for a USB host!
-	  </li><li class="subitem"><a href="spi/index.html" target="_new" class="extlink">MMC/SD-Card</a> 
+	  </li><li class="subitem"><a href="spi/index.html" target="_blank" class="extlink">MMC/SD-Card</a> 
 		The MMC- and SD-cards can use a simple SPI-based interface. On this
 		board the CS/A can read MMC and SD-Cards!
-	  </li><li class="subitem"><a href="scsi/index.html" target="_new" class="extlink">SCSI</a> 
+	  </li><li class="subitem"><a href="scsi/index.html" target="_blank" class="extlink">SCSI</a> 
 		This board implements a parallel SCSI interface to attach SCSI devices
 		to the CS/A65 computer. It is currently only tested with
 		disk drives, though.
-	  </li><li class="subitem"><a href="drvio/index.html" target="_new" class="extlink">DRVIO floppy and IEC</a> 
+	  </li><li class="subitem"><a href="drvio/index.html" target="_blank" class="extlink">DRVIO floppy and IEC</a> 
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip in a way that is compatible with the 
 		Commodore VC1581 disk drive - so that it can be used to
 		build a <a href="#vc1581">Commodore VC1581</a> replica.
-	  </li><li class="subitem"><a href="duart/index.html" target="_new" class="extlink">Double UART</a> 
+	  </li><li class="subitem"><a href="duart/index.html" target="_blank" class="extlink">Double UART</a> 
 		Two UART 16550A implement two serial line RS232 interfacs.
-	  </li><li class="subitem"><a href="shug/index.html" target="_new" class="extlink">PC floppy</a> 
+	  </li><li class="subitem"><a href="shug/index.html" target="_blank" class="extlink">PC floppy</a> 
 		This board contains a PC-style floppy drive interface using
 		the WD1772 chip. It also contains a small printer interface.
 	  </li></ul><h3><a name="specialboards">Special purpose boards</a></h3>Special interest in this computer system is on the topic of emulation.
 The larger address space and the MMU allows for mapping of other
 computers memory into the main memory map.
-	<ul><li class="subitem"><a href="blitter/index.html" target="_new" class="extlink">Block Transfer Engine</a> 
+	<ul><li class="subitem"><a href="blitter/index.html" target="_blank" class="extlink">Block Transfer Engine</a> 
 		This block transfer engine allows to copy blocks of memory without
 		using the CPU - in a way that is much faster than even the 65816:
 		it uses only two cycles per transferred byte!
-	  </li><li class="subitem"><a href="ramdisk/index.html" target="_new" class="extlink">SIMM RAMDisk</a> 
+	  </li><li class="subitem"><a href="ramdisk/index.html" target="_blank" class="extlink">SIMM RAMDisk</a> 
 		This board implements a RAM Disk based on the (nowadays quite old)
 		SIMM memory modules. Using four of them you can build 
 		a RAM disk drive with up to 16MByte capacity (only tested to 4M though). 
 		Two versions are available, an older one with complete discrete
 		logic, and a new one using a CPLD programmable logic chip.
-	  </li><li class="subitem"><a href="copro/index.html" target="_new" class="extlink">Coprocessor</a> 
+	  </li><li class="subitem"><a href="copro/index.html" target="_blank" class="extlink">Coprocessor</a> 
 		This is a coprocessor board, that 
 		runs in parallel to the main CPU and has its own 64k of memory
 		mapped into the 1M bus address space as shared memory.
 		It can be used for I/O offloading, e.g. for a SCSI or 
 		TCP/IP interface.
-	  </li><li class="subitem"><a href="cpuemu/index.html" target="_new" class="extlink">Emulate a 6502</a> 
+	  </li><li class="subitem"><a href="cpuemu/index.html" target="_blank" class="extlink">Emulate a 6502</a> 
 		This board allows to connect another 6502-based computer
 		with the CS/A65. The other 6502's 64k address space is
 		mapped into the 1M bus address space. So with the help of
 		the MMU that main CPU can play the role of the replaced
 		other computer's CPU for example to test new ROM versions
 		of the other computer.
-	  </li><li class="subitem"><a href="keyemu/index.html" target="_new" class="extlink">Emulate a keyboard</a> 
+	  </li><li class="subitem"><a href="keyemu/index.html" target="_blank" class="extlink">Emulate a keyboard</a> 
 		This board emulates up to two matrix-based keyboard.
 		It features two shared memory areas, where the memory
 		is shared between the main CPU and the keyboard matrix
 		select and detect lines.
-	  </li><li class="subitem"><a href="viaproto/index.html" target="_new" class="extlink">VIA prototyping</a> 
+	  </li><li class="subitem"><a href="viaproto/index.html" target="_blank" class="extlink">VIA prototyping</a> 
 		This board has a VIA, with address decoding and a large
 		area ready for prototyping.
 	  </li></ul><h3><a name="deprecatedboards">Deprecated boards</a></h3>These boards are deprecated and I will not support them
@@ -532,22 +534,22 @@ computers memory into the main memory map.
 (well, Commodore managed to spread the IEEE488
 interface across 3 ICs, which was not nice for building it on PCBs
 like these, why I moved some of the lines around those days...)
-	<ul><li class="subitem"><a href="cpu816/index.html" target="_new" class="extlink">65816 V1 CPU</a> 
+	<ul><li class="subitem"><a href="cpu816/index.html" target="_blank" class="extlink">65816 V1 CPU</a> 
 		The predecessor of the current V2 65816 CPU board.
 		It does not use a CPLD but only a PAL as programmable logic.
 		So it is easier to understand and kept here for reference
 		and educational purposes.
-	  </li><li class="subitem"><a href="cpu65b/index.html" target="_new" class="extlink">64k CPU</a> 
+	  </li><li class="subitem"><a href="cpu65b/index.html" target="_blank" class="extlink">64k CPU</a> 
 		This is a 64k CPU that is actually a stripped down
 		Gecko board. It only existed as schematics and is replaced
 		by the PETCPU board.
-	  </li><li class="subitem"><a href="key/index.html" target="_new" class="extlink">Keyboard and RS232</a> 
+	  </li><li class="subitem"><a href="key/index.html" target="_blank" class="extlink">Keyboard and RS232</a> 
 		This is a PET compatible keyboard interface, plus a
 		ACIA 6551 based serial (RS232) interface. As the 6551
 		is a rather rough-edged chip, and the keyboard interface
 		is available with the PETIO board in a more compatible way, 
 		this board is replaced by the PETIO and DUART boards.
-	  </li><li class="subitem"><a href="iec/index.html" target="_new" class="extlink">IEEE488 and CBM IEC</a> 
+	  </li><li class="subitem"><a href="iec/index.html" target="_blank" class="extlink">IEEE488 and CBM IEC</a> 
 		This board implements a partially PET compatible IEEE488
 		interface, plus a Commodore serial IEC bus as it is used
 		in the C64 for example. In addition both busses can be used
@@ -595,7 +597,7 @@ like these, why I moved some of the lines around those days...)
 </div></div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
-<p>Need more speed? Speed up your 6502 computer with this <a href="../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../pet816/index.html">10&nbsp;MHz 6502 CPU accelerator board</a></p>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 

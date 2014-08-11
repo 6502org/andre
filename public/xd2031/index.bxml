@@ -31,10 +31,10 @@ For more information see the README files in the repository.
 Copyright
 </p><p>
 The code is under GPL V2. Please note that the PC server part is
-also available on later versions of the GPL, the AtMega firmware is
-ONLY(!) available under GPL V2.
+also available on V2 or later versions of the GPL, the AtMega firmware is
+ONLY(!) available under GPL V2 (due to some older files from sd2iec still in use).
 </p><p>
-(C) 2012 Andre Fachat
+(C) 2012,2014 Andre Fachat
 	 Ingo Korb, Thomas Winkler, Nils Eilers and others!
 </p><p>
 Please see the individual files for specific copyright notices.

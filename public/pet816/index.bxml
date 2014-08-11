@@ -19,7 +19,7 @@ in the 6502 CPU socket of the PET. On the board there is the CPU, the CPLD logic
 parts, as well as two 512k static RAM and one 512k Flash RAM chip. The board is all-through-hole - i.e. no SMD parts! I call that 
 a feature in these days.
 	</p><p>
-		The prototype has been tested with my <a href="../../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
+		The prototype has been tested with my <a href="../csa/index.html">CS/A65</a> computer, in the MMU board - which is 
 		easier to handle when you have to change things often. But it also now runs in the CBM8296. Tests with other PETs will follow.
 	</p><p>Here's a small demo (note: don't judge the absolute speed of the demo - only the difference between 1 and 10 MHz. I just didn't have enough time to really do the optimization...</p>
 <iframe width="420" height="315" src="http://www.youtube-nocookie.com/embed/ar45QJisxSg" frameborder="0" allowfullscreen="1"></iframe>

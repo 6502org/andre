@@ -27,7 +27,7 @@
      <desc><p>Here the general design is discussed</p>
      </desc>
      <subsection toc="challenge" name="The challenge...">
-	<desc><p>As there are already 65816-based boards (like my <a href="../../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
+	<desc><p>As there are already 65816-based boards (like my <a href="../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
 	Well, it's the timing! In my other 65816 board the actual system clock is derived from the
 	65816 fast clock in a synchronous way. But in a 6502 replacement no such synchronous clock is
 	available. There are two clock domains, the system domain that feeds the board with a 

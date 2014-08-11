@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2013</yearend>
+    <yearend>2014</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore resp. 8-bit 6502 information</metadesc>
@@ -13,7 +13,7 @@
 <p>On these pages you will find quite some information concerning 
 8-bit computers of the 6502 line.
 As a side note, together with Ed S. I am curating the
-<a class="extlink" target="_new" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
+<a class="extlink" target="_blank" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
 on Google+. We're posting weekly about anything 6502-related. If you like it,
 subscribe and share!
 </p>
@@ -349,7 +349,9 @@ information and links to the old CBM PET machines</tsubitem>
 		Other items are C64 kernel mods and <a href="cbmhw/ieee488/index.html">IEEE488 interfaces</a>, including
 		one for the PC to use it as disk drive.
       </tsubitem>
-      <tsubitem name="PET816" link="cbmhw/pet816/index.html">A 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
+      <tsubitem name="PET816" link="cbmhw/pet816/index.html">A 65816 replacement and accelerator board for a 6502, as tested in CBM PETs and my CS/A
+      </tsubitem>
+      <tsubitem name="XD2031" link="xd2031/index.html">A firmware and server to use an embedded device as disk drive for the Commodore (PET as well as C64 and others), with the help of a PC serving files or internet connections.
       </tsubitem>
      </item>
      <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.jpg">
@@ -405,7 +407,16 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</tsubitem>
 	am using for my newest designs.
       </tsubitem>
       <tsubitem name="Emulation related articles" link="emulation/index.html">I wrote, resp. videos on a
-	presentation I gave. Further information can be found on my blog <a class="extlink" target="_blank" href="http://blog.extrapages.de">extrapages</a> in the <a class="extlink" href="http://blog.extrapages.de/categories/8bit">8bit category</a>.
+	presentation I gave. 
+      </tsubitem>
+      <tsubitem name="Blog" link="http://blog.extrapages.de/categories/8bit">
+Further information can be found on my blog <a class="extlink" target="_blank" href="http://blog.extrapages.de">extrapages</a> in the <a class="extlink" href="http://blog.extrapages.de/categories/8bit">8bit category</a>.
+	<br/>
+	<br/>
+	Together with Ed S. I am also curating the
+<a class="extlink" target="_blank" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
+on Google+. We're posting weekly about anything 6502-related. If you like it,
+subscribe and share!
       </tsubitem>
      </item>
     </teasers>

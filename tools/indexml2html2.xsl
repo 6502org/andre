@@ -553,7 +553,7 @@
   <xsl:choose>
     <xsl:when test="@link">
 	<li class="subitem">
-	      <a href="{@link}" target="_new" class="extlink">
+	      <a href="{@link}" target="_blank" class="extlink">
 	      <xsl:value-of select="@name"/>
 	      </a><xsl:text> </xsl:text>
   	      <xsl:copy-of select="*|text()"/>
@@ -576,7 +576,7 @@
   <xsl:choose>
     <xsl:when test="@link">
 	<h3 class="subitem">
-	      <a href="{@link}" target="_new" class="extlink">
+	      <a href="{@link}" target="_blank" class="extlink">
 	      <xsl:value-of select="@name"/>
 	      </a>
 	</h3>

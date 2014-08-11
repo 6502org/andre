@@ -32,6 +32,8 @@
 <li><ul class="nav2" >
 <li><a href="../../65k/index.html">The 65k Project</a>
 </li>
+<li><a href="../../pet816/index.html">PET816 Accelerator</a>
+</li>
 <li><a href="../../csa/index.html">CS/A65</a>
 </li>
 <li><a href="../../cbmhw/index.html">CBM mods</a>
@@ -218,7 +220,7 @@
 	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
 	from VDC to PETIO and the character ROM selection.
 	from PETIO to VDC.</p>
-    <ul><li class="subitem"><a href="../../csa/petcpu/index.html" target="_new" class="extlink">PETCPU board</a> 
+    <ul><li class="subitem"><a href="../../csa/petcpu/index.html" target="_blank" class="extlink">PETCPU board</a> 
 	The PETCPU board must be set to a maximum of 32k RAM on the board
 	itself, and maximum of 28k of ROM, so that the memory area at
 	$8*** is selected on the CS/A65 bus and can be handled by the
@@ -233,12 +235,12 @@
 	<br>You can see the jumpers in this <a href="petcpu.jpg">picture</a>.
 	Please note that this is jumpered for 2MHz, and the RAM is missing -
 	as the RAM is setup to be used from the video board.
-     </li><li class="subitem"><a href="../../csa/petio/index.html" target="_new" class="extlink">PETIO board</a> 
+     </li><li class="subitem"><a href="../../csa/petio/index.html" target="_blank" class="extlink">PETIO board</a> 
 	On the PETIO board only the "special features" must be
 	switched off, especially the IEEE488 slave mode feature, as the
 	ROM does not handle this, as well as the EOI must be located
 	at its original place on the keyboard PIA.
-     </li><li class="subitem"><a href="../../csa/vdc/index.html" target="_new" class="extlink">Video board</a> 
+     </li><li class="subitem"><a href="../../csa/vdc/index.html" target="_blank" class="extlink">Video board</a> 
 	The video board must be set to the memory area $01****. Otherwise
 	it should best be a 1.4 version, as the control port is reset
 	with /RES and needs not be set by the ROM.
@@ -248,9 +250,9 @@
 	CRTC timing parameters. Please note that the 2MHz (8032) version
 	is experimental only, as the IEEE488 timing seems to be flakey
 	now.</p>
-    <ul><li class="subitem"><a href="roms/pet-fat40-1mhz-n.bin" target="_new" class="extlink">Fat40 4032 graphics keyboard 1MHz</a> 
+    <ul><li class="subitem"><a href="roms/pet-fat40-1mhz-n.bin" target="_blank" class="extlink">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output.
-     </li><li class="subitem"><a href="roms/pet-8032-2mhz-b.bin" target="_new" class="extlink">8032 business keyboard 2MHz</a> 
+     </li><li class="subitem"><a href="roms/pet-8032-2mhz-b.bin" target="_blank" class="extlink">8032 business keyboard 2MHz</a> 
 	This 2MHz version is experimental. As the VDC board can only do 80 columns with 2MHz bus frequency, no 8032 with 1MHz is possible.
      </li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Caspaer Setup</h2></div><div class="h2c">This section contains a description of a setup
 	using the main CPU (including MMU) and BIOS board instead of the
@@ -262,12 +264,12 @@
 	PETIO boards, to handle the video retrace (VSYNC) interrupt generation
 	is still required as above.
 	</p>
-    <ul><li class="subitem"><a href="../../csa/cpu/index.html" target="_new" class="extlink">CSACPU board</a> 
+    <ul><li class="subitem"><a href="../../csa/cpu/index.html" target="_blank" class="extlink">CSACPU board</a> 
 	The CPU board must be set to 1MHz. The ROM patch below expects
 	the MMU at $eff*, so the board must be set to an I/O area of
 	2k from $E800-$EFFF and the MMU to $EFF*. By modifying the patch
 	other values are possible.
-     </li><li class="subitem"><a href="../../csa/bios/index.html" target="_new" class="extlink">BIOS board</a> 
+     </li><li class="subitem"><a href="../../csa/bios/index.html" target="_blank" class="extlink">BIOS board</a> 
 	The BIOS must be set that the ROM as described below
 	is found at $08000-$0FFFF so that the CPU boots from it.
 	The RAM should be on $00000-$07FFF.
@@ -285,16 +287,16 @@
 	not - as it comes with the PET - work at higher speeds than 1MHz CPU clock.
 	I have now also patched the ROM to work in the Caspaer setup with 2MHz.
 	</p>
-    <ul><li class="subitem"><a href="roms/pet-fat40-1mhz-n-mmu.bin" target="_new" class="extlink">Fat40 4032 graphics keyboard 1MHz</a> 
+    <ul><li class="subitem"><a href="roms/pet-fat40-1mhz-n-mmu.bin" target="_blank" class="extlink">Fat40 4032 graphics keyboard 1MHz</a> 
 	This is the 1MHz ROM that produces roughly PAL compatible video output in the MMU version.
-     </li><li class="subitem"><a href="roms/pet-fat40-1mhz-n-mmu+mon.bin" target="_new" class="extlink">Fat40 4032 graphics keyboard 1MHz @MON</a> 
+     </li><li class="subitem"><a href="roms/pet-fat40-1mhz-n-mmu+mon.bin" target="_blank" class="extlink">Fat40 4032 graphics keyboard 1MHz @MON</a> 
 	This is the same ROM as above, only that it includes a PET version
 	of the <a href="../../misc/index.html">@MON</a> machine language
 	monitor at $A000, to start with "SYS 40960".
-     </li><li class="subitem"><a href="roms/csabiospet2mhz_n_ieee.bin" target="_new" class="extlink">Fat40 8032 graphics keyboard 2MHz @MON</a> 
+     </li><li class="subitem"><a href="roms/csabiospet2mhz_n_ieee.bin" target="_blank" class="extlink">Fat40 8032 graphics keyboard 2MHz @MON</a> 
 	This is the same ROM as above, with the patched IEEE488 and video timing to run at 2MHz.
-     </li><li class="subitem"><a href="mmu.diff" target="_new" class="extlink">ROM diff</a> This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
-     </li><li class="subitem"><a href="initcsa.a65" target="_new" class="extlink">Patch source</a> This is the source for the ROM patch (excluding the modified reset vector.
+     </li><li class="subitem"><a href="mmu.diff" target="_blank" class="extlink">ROM diff</a> This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
+     </li><li class="subitem"><a href="initcsa.a65" target="_blank" class="extlink">Patch source</a> This is the source for the ROM patch (excluding the modified reset vector.
      </li><li class="subitem"><strong>IEEE488 patch</strong>: 
   	      This is the IEEE488 patch that makes the IEEE488 work at 2Mhz (beta).
 	<pre>
@@ -321,7 +323,7 @@ GNU Public License version 2 unless noted otherwise.
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
-<p>Need more speed? Speed up your 6502 computer with this <a href="../../adv65/pet816/index.html">10&nbsp;MHz 6502 CPU replacement board</a></p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../../pet816/index.html">10&nbsp;MHz 6502 CPU accelerator board</a></p>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
