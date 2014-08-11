@@ -272,7 +272,7 @@
     <div class="teaserimg"><img src="imgs/{@headerimg}" alt="{@headeralt}"/></div>
     <div class="teaserlst">
       <ul>
-	<xsl:apply-templates select="subitem"/>
+	<xsl:apply-templates select="tsubitem"/>
       </ul>
     </div>
   </div>
@@ -567,6 +567,27 @@
 	      </strong>: <!--<br/>-->
   	      <xsl:copy-of select="*|text()"/>
 	</li>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- teaser subitem -->
+<xsl:template match="tsubitem">
+  <xsl:choose>
+    <xsl:when test="@link">
+	<h3 class="subitem">
+	      <a href="{@link}" target="_new" class="extlink">
+	      <xsl:value-of select="@name"/>
+	      </a>
+	</h3>
+  	<xsl:copy-of select="*|text()"/>
+    </xsl:when>
+    <xsl:otherwise>
+	<h3 class="subitem">
+	<xsl:if test="@icon"><div><xsl:attribute name="class"><xsl:value-of select="@icon"/></xsl:attribute>&nbsp;</div></xsl:if>
+	      <xsl:value-of select="@name"/>
+	</h3>
+        <xsl:copy-of select="*|text()"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
