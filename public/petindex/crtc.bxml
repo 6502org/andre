@@ -36,6 +36,8 @@ computer page or in the PET schematics on the
 <p>There also is a page how to create <a href="../hwinfo/crtc/composite.html">composite video signals from a PET's video output</a>.</p> 
   </overview>
   <news>
+    <item date="2014-08-11">Added link to better compilation of timing values
+    </item>
     <item date="2006-11-21">Added descriptions of 8032 and 8296 use of the CRTC.
     </item>
   </news>
@@ -256,6 +258,8 @@ double the characters by hardware (i.e. writing 40 to R1).
 Interestingly enough the CS/A65 parameter that have been found by
 trial and error match the 8032 values quite well.
 </P>
+<P>Please note that there is a much more complete compilation of 
+timing values here: <a target="_blank" class="extlink" href="http://inchocks.co.uk/commodore/PET/PET_CRTC.xls">PET_CRTC.xls</a>.</P>
 <PRE>
                       4032    4032    8032    8032    CS/A65   CS/A65
                       text    graph   text    graph   1 MHz    2 MHz

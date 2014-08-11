@@ -71,6 +71,8 @@
 <li><ul class="nav2" >
 <li><a href="../petindex/index.html">PETindex</a>
 </li>
+<li><a href="../petindex/drives/index.html">PET drives</a>
+</li>
 <li><a href="../adv65/index.html">Advanced 6502</a>
 </li>
 <li><a href="../hwinfo/index.html">ICs and Standards</a>
@@ -183,7 +185,9 @@
 <div class="overview"><P>
 This page contains links to some hardware projects around the PET machines.
 </P>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-12-27</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2014-08-11</small>
+	Added new PET video mixer link, add VGA output
+    </li><li><div>&nbsp;</div><small>2013-12-27</small>
 	Added the SuperPET OS/9 link
     </li><li><div>&nbsp;</div><small>2013-05-02</small>
 	Added the Colour PET
@@ -211,13 +215,17 @@ interfaces for the C64, VIC20 and the VC1541.
 <DT><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
 <DD>This page contains the description of the "Flash Attack" cable, as well as a PET sound interface.</DD>
 
-<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A> and <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> have circuits for composite video output.</DT>
+<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A>, <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A>, and <a class="extlinK" target="_blank" href="http://www.dasarodesigns.com/product/commodore-pet-video-mixer/">d'asaro designs (formerly known as 6540rom.com)</a> have circuits for composite video output.</DT>
 <DD>One of the deficiencies of the PET is that it has no composite video
 output to connect normal monitors to it. These links show two circuits
 (PET library from "THE PET REVEALED" by Nick Hampshire, p117f, 1979, whereas
 oldcomputers.net claims their circuit is untested). Another sample
 circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A class="extlink" HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
 I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.html">VDC page</a> to include schematics and boards for adapted versions of the abovementioned two composite video circuits to work with my CS/A computer (which comes close to the PET in this respect).
+<br>
+Herv&eacute;  from the cbm-hackers list tells how to get video output on a VGA adapter:
+<br>
+"Simply take the schematics from 6540rom.com [ed: now d'asaro designs] and omit all resistors/capacitors that are 100% unneeded in this purpose (directly connect pin 6 of the 74LS02 to the PET's video connector). Take the [VGA] color signal at pin 10 of the 74LS02 and synchro from pin 4. You can add a decoupling capacitor between pins 7 &amp; 14 of the 74LS02 but that is [] not necessary."
 </DD>
 
 <DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmrd2008/">CBM RAM-Drive 2008</A>, a RAM disk extension for the 8296 (in German)</DT><DD>A small hardware RAM disk extension with schematics and a DOS program for it.</DD>
@@ -279,7 +287,7 @@ So this might be as model to fit a 8250LP into a 8296 case to make a 8296D
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2013-12-30
+2014-08-11
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

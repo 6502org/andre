@@ -13,6 +13,10 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2014-08-11">
+	Add section on repairing drives, as well as SuperPET information.
+	Update link to ROM adapter, add RAM adapter (from same source)
+    </item>
     <item date="2013-01-04">
 	Updated links
     </item>
@@ -261,6 +265,44 @@ version of the video board for the original PET that went bad frequently.</p>
       </subitem>
     </items>  
    </itemlist>
+   <itemlist toc="drives" name="Disk Drives">
+	<desc>To identify problems with drives, have a look at this section</desc>
+	<items>
+	  <subitem name="Blink codes" link="drives/index.html#blink">
+		<desc>When being switched on, the drives perform a self test.
+			When an error is found, a specific blink code is shown on the
+			LED. On the link you find the error codes that give you
+			hints what could be wrong with the drive.
+		</desc>
+	  </subitem>
+	  <subitem name="Error channel">
+		<desc><p>Once the drive runs, you can check the error channel of the 
+			drive. If it works ok, it means that at least the DOS
+			part of the drive and the communication with the computer
+			seems to work - the FDC part may still
+			be broken depending on the symptoms.
+		</p><p>
+			Also via the error channel you could perform some memory
+			test yourself.
+		</p>
+		</desc>
+	  </subitem>
+    </items>  
+   </itemlist>
+   <itemlist toc="superpet" name="SuperPET specifics">
+	<desc>Some information regarding SuperPET machines.</desc>
+	<items>
+	  <subitem name="Power connector">
+		<desc>William Levak on the cbm-hackers mailing list reported intermittend
+		power problems with the SuperPET. He fixed it temporarily by pressing on the
+		connectors of the power cable that foes from the 6809 board to the main system
+		board. When it went out completely, he found that the cable had been pulled out
+		and he had to re-crimp it (stripping off a bit more insulation to get more
+		bare wire to crimp).
+		</desc>
+	  </subitem>
+	</items>
+   </itemlist>
    <itemlist toc="links" name="Links">
     <desc>
 	This section has links to descriptions of how hardware
@@ -298,9 +340,13 @@ version of the video board for the original PET that went bad frequently.</p>
 	</desc>
       </subitem>
 
-      <subitem name="6540 ROM sockets" link="http://home.comcast.net/~medasaro/6540rom.com/6540romadapter.html">
+      <subitem name="6540 ROM sockets" link="http://www.dasarodesigns.com/product/6540-rom-adapter/">
 	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
 	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
+      </subitem>
+      <subitem name="6550 RAM sockets" link="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/">
+	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
+	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
       </subitem>
 
     </items>

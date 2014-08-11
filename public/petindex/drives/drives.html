@@ -72,6 +72,8 @@
 <li><ul class="nav2" >
 <li><a href="../../petindex/index.html">PETindex</a>
 </li>
+<li><a href="../../petindex/drives/index.html">PET drives</a>
+</li>
 <li><a href="../../adv65/index.html">Advanced 6502</a>
 </li>
 <li><a href="../../hwinfo/index.html">ICs and Standards</a>
@@ -204,7 +206,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - disk drives</h1><p class="copyright">(C)
-1998-2010 Andr&eacute;  Fachat</p> 
+1998-2014 Andr&eacute;  Fachat</p> 
 <div class="overview">
 <P>There a a great variety of 5.25" disk drives. For the first PET
 with BASIC&nbsp;2 it started with the 2040 disk drive and with
@@ -225,23 +227,23 @@ The DOS part - the 6502 ROM - was the same for a product line.
 The FDC part - the 6504 ROM - however can be different for different
 drive mechanics.
 </P><P>
-The 2040 is a dual drive floppy disk.
+The <em>2040</em> is a dual drive floppy disk.
 Its DOS 1.0 has a disk format that is very similar to the
 1541 disk format. Only in one of the speed zones the format
 has one additional sector (resulting in 670 blocks free after format).
 The DOS lacked the relative files, though.
-It is assumed that the 3040 only is a renaming of the 2040,
+It is assumed that the <em>3040</em> only is a renaming of the 2040,
 to accompany the 30xx PET models. It has DOS&nbsp;1.2, that was also shipped in later 2040 drives.
 </P><P>
-The 4040 then got DOS 2.0. It features the same format as the
+The <em>4040</em> then got DOS 2.0. It features the same format as the
 1541 (664 blocks free) and relative files. Later it then got
 DOS 2.1. These drives were the first to sport relative files.
 </P><P>
-DOS 2.5 then came with the 8050 drives and DOS 2.7 came with the 8250 drives.
+DOS 2.5 then came with the <em>8050</em> drives and DOS 2.7 came with the <em>8250</em> drives.
 Those drives feature 500k
 on one single-sided disk (8050) or 1M on a double-sided disk (8250)!
 The new DOS was needed to handle the
-77 (8050) resp 154 (8250) tracks resp. The internal structure is still
+77 (8050) resp 154 (8250) tracks resp. The internal drive architecture is still
 the same as the 2040, with its 2 processors etc.
 </P><P>
 DOS 2.7 is even capable of being used in the 4040, the 8050 and 8250
@@ -250,30 +252,32 @@ drive (170k, 500k or 1M) connected and adjusts its tables appropriately.
 However, besides some 4040 prototypes this DOS is only seen in
 8050 and 8250 drives.
 </P><P>
-The SFD1001 is a single drive disk drive. Basically it is
+The <em>SFD1001</em> is a single drive disk drive. Basically it is
 a single-drive 8250. In fact it uses the same ROM. Only the
 FDC always returns an error for the second drive.
 </P><P>
-The 2031 seems to be a single drive 4040, yet it is not.
-It is in fact the sister drive of the 1541.
-As such it has only one CPU and the two ROM parts (DOS and FDC)
+The <em>4031</em> and <em>2031</em> seems to be single drive 4040, yet they are not.
+It they are in fact the sister drive of the 1541.
+As such they have only one CPU and the two ROM parts (DOS and FDC)
 have been put together into one.
 The FDC code has been put into the interrupt routine, while the
 DOS ROM is the main loop. Also the hardware GCR encode has been
 removed, so software GCR encoding and decoding routines have been
-added. The DOS version here is 2.6.
+added. The DOS version here is 2.6. They came in high-profile (2031 and 4031)
+cases as well as 1541-like low-profile cases (2031lp).
+See for example <a href="http://www.zimmers.net/cbmpics/dlieee.html" target="_blank" class="extlink">here</a>
+</P><P>
 The early 1540/1541 manual says that DOS 2.6 is read/write compatible
 with the 4040 DOS. However, rumors have it that the write gap between
 header and block is different between the two, so that they
-are only read compatible (<A HREF="writegap.html">Read more</A>).
-</P>
+are only read compatible (<A HREF="writegap.html">Read more</A>).</P>
 <P>Here is a list of disk drives for the Commodore PET</P>
 <TABLE BORDER="1" class="content">
 <TR><TH COLSPAN="4">Commodore IEEE-488 5.25" models</TH></TR>
 <TR><TD>2040</TD><TD>DOS1.0/DOS1.2</TD><TD>DOS1.0 contained bugs, most have been updated to DOS1.2, later models shipped with DOS1.2; 670 blocks free</TD><TD ROWSPAN="2">Many of these drives have later been updated to DOS2</TD></TR>
 <TR><TD>3040</TD><TD>DOS1.2</TD><TD>European 2040, like the 3000 series PET</TD></TR>
 <TR><TD>4040</TD><TD>DOS2.0/2.1</TD><TD>664 blocks free, read compatible with 1541</TD></TR>
-<TR><TD>4031/2031/2031LP</TD><TD>DOS2.6</TD><TD>Single drive only. Read/Write compatible with 1541/1571s.</TD><TD>Basically a 1541 with an IEEE488 interface, i.e. one CPU only.</TD></TR>
+<TR><TD>4031/2031/2031LP</TD><TD>DOS2.6</TD><TD>Single drive only. Read/Write compatible with 1541/1571s.</TD><TD>Basically a 1541 with an IEEE488 interface, i.e. one CPU only. They were, however, available in high profile (4031/2031) or low profile cases similar to the 1541 (2031LP)</TD></TR>
 <TR><TD>8050</TD><TD>DOS2.5/2.7</TD><TD>Single Sided/Quad Density format, 512k per disk side.</TD><TD ROWSPAN="2">The DOS2.7 was the same for both, in fact even for the 1001, only the controller ROM differed.</TD></TR>
 <TR><TD>8250/8250LP</TD><TD>DOS2.7</TD><TD>Double Sided/Quad Density format, 1mb per disk</TD></TR>
 <TR><TD>SFD-1001</TD><TD>DOS2.7</TD><TD>Same as 8250, but single drive unit.</TD><TD>Other than the 2031 it still had both CPUs, and even the very same DOS as the 8250. Only the Controller DOS differed.</TD></TR>
@@ -299,7 +303,7 @@ are only read compatible (<A HREF="writegap.html">Read more</A>).
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
-2011-04-23
+2014-08-11
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

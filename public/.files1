@@ -17,6 +17,7 @@ p xd2031 XD2031
 p misc Misc
 s Library
 d petindex PETindex
+d petindex/drives PET drives
 d adv65 Advanced 6502
 d hwinfo ICs and Standards
 s Knowledge Bits

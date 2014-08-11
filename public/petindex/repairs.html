@@ -71,6 +71,8 @@
 <li><ul class="nav2" >
 <li><a href="../petindex/index.html">PETindex</a>
 </li>
+<li><a href="../petindex/drives/index.html">PET drives</a>
+</li>
 <li><a href="../adv65/index.html">Advanced 6502</a>
 </li>
 <li><a href="../hwinfo/index.html">ICs and Standards</a>
@@ -184,13 +186,16 @@
 	This page contains an overview over hardware defects,
 	how to detect them and how to fix them.
 	</p><p>Note: this is a work in progress!</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-01-04</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2014-08-11</small>
+	Add section on repairing drives, as well as SuperPET information.
+	Update link to ROM adapter, add RAM adapter (from same source)
+    </li><li><div>&nbsp;</div><small>2013-01-04</small>
 	Updated links
     </li><li><div>&nbsp;</div><small>2010-04-12</small>
 	Added the vertical lines screen problem with link to the solution.
     </li><li><div class="i_oldnews">&nbsp;</div><small>2006-12-21</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#generic">Generic Advice</a></li><li style="list-style-type:none;"><ul><li><a href="#tools">Tools</a></li></ul></li><li><a href="#dead">PET's dead</a></li><li><a href="#funny">Funny characters on the screen</a></li><li><a href="#monitor">Monitor and other weird symptoms</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="generic">Generic Advice</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#generic">Generic Advice</a></li><li style="list-style-type:none;"><ul><li><a href="#tools">Tools</a></li></ul></li><li><a href="#dead">PET's dead</a></li><li><a href="#funny">Funny characters on the screen</a></li><li><a href="#monitor">Monitor and other weird symptoms</a></li><li><a href="#drives">Disk Drives</a></li><li><a href="#superpet">SuperPET specifics</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="generic">Generic Advice</a></h2></div><div class="h2c">
 	This section contains generic advice.
     <ul><li><strong><a name="tools">Tools</a></strong>
 	In general you should have good tools if you endeavor to analyze
@@ -404,7 +409,34 @@ version of the video board for the original PET that went bad frequently.</p>
 	So both problems came from the same source, the bus driver
 	that separated the video RAM from the CPU bus. It had a broken
 	driver in one of the lines. 
-      </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="links">Links</a></h2></div><div class="h2c">
+      </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="drives">Disk Drives</a></h2></div><div class="h2c">To identify problems with drives, have a look at this section<ul><li class="subitem"><a href="drives/index.html#blink" target="_blank" class="extlink">Blink codes</a> 
+		<desc>When being switched on, the drives perform a self test.
+			When an error is found, a specific blink code is shown on the
+			LED. On the link you find the error codes that give you
+			hints what could be wrong with the drive.
+		</desc>
+	  </li><li class="subitem"><strong>Error channel</strong>: 
+  	      
+		<desc><p>Once the drive runs, you can check the error channel of the 
+			drive. If it works ok, it means that at least the DOS
+			part of the drive and the communication with the computer
+			seems to work - the FDC part may still
+			be broken depending on the symptoms.
+		</p><p>
+			Also via the error channel you could perform some memory
+			test yourself.
+		</p>
+		</desc>
+	  </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="superpet">SuperPET specifics</a></h2></div><div class="h2c">Some information regarding SuperPET machines.<ul><li class="subitem"><strong>Power connector</strong>: 
+  	      
+		<desc>William Levak on the cbm-hackers mailing list reported intermittend
+		power problems with the SuperPET. He fixed it temporarily by pressing on the
+		connectors of the power cable that foes from the 6809 board to the main system
+		board. When it went out completely, he found that the cable had been pulled out
+		and he had to re-crimp it (stripping off a bit more insulation to get more
+		bare wire to crimp).
+		</desc>
+	  </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="links">Links</a></h2></div><div class="h2c">
 	This section has links to descriptions of how hardware
 	issues with the PET have been resolved.
     <ul><li class="subitem"><a href="http://www.vintage-computer.com/vcforum/forumdisplay.php?21-Commodore" target="_blank" class="extlink">Vintage Computer Forum</a> 
@@ -430,9 +462,12 @@ version of the video board for the original PET that went bad frequently.</p>
 	<p>The original web site seems gone, but there is <a class="extlink" target="_new" href="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">the Vintage Computer Forum on that machine</a>.
 	</p>
 	</desc>
-      </li><li class="subitem"><a href="http://home.comcast.net/~medasaro/6540rom.com/6540romadapter.html" target="_blank" class="extlink">6540 ROM sockets</a> 
+      </li><li class="subitem"><a href="http://www.dasarodesigns.com/product/6540-rom-adapter/" target="_blank" class="extlink">6540 ROM sockets</a> 
 	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
 	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
+      </li><li class="subitem"><a href="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/" target="_blank" class="extlink">6550 RAM sockets</a> 
+	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
+	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
       </li></ul><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
@@ -441,7 +476,7 @@ GNU Public License version 2 unless noted otherwise.
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2013-01-04
+2014-08-11
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

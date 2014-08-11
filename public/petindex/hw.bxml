@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2014-08-11">
+	Added new PET video mixer link, add VGA output
+    </item>
     <item date="2013-12-27">
 	Added the SuperPET OS/9 link
     </item>
@@ -54,13 +57,17 @@ interfaces for the C64, VIC20 and the VC1541.
 <DT><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
 <DD>This page contains the description of the "Flash Attack" cable, as well as a PET sound interface.</DD>
 
-<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A> and <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> have circuits for composite video output.</DT>
+<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A>, <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A>, and <a class="extlinK" target="_blank" href="http://www.dasarodesigns.com/product/commodore-pet-video-mixer/">d'asaro designs (formerly known as 6540rom.com)</a> have circuits for composite video output.</DT>
 <DD>One of the deficiencies of the PET is that it has no composite video
 output to connect normal monitors to it. These links show two circuits
 (PET library from "THE PET REVEALED" by Nick Hampshire, p117f, 1979, whereas
 oldcomputers.net claims their circuit is untested). Another sample
 circuit (well, some resitors basically...) for a 6545 CRTC can be found in my <A class="extlink" HREF="http://www.6502.org/users/andre/csa/">CS/A65</A> computer.
 I have now updated the <a href="http://www.6502.org/users/andre/csa/vdc/index.html">VDC page</a> to include schematics and boards for adapted versions of the abovementioned two composite video circuits to work with my CS/A computer (which comes close to the PET in this respect).
+<br/>
+Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA adapter:
+<br/>
+&quot;Simply take the schematics from 6540rom.com [ed: now d'asaro designs] and omit all resistors/capacitors that are 100% unneeded in this purpose (directly connect pin 6 of the 74LS02 to the PET's video connector). Take the [VGA] color signal at pin 10 of the 74LS02 and synchro from pin 4. You can add a decoupling capacitor between pins 7 &amp; 14 of the 74LS02 but that is [] not necessary.&quot;
 </DD>
 
 <DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmrd2008/">CBM RAM-Drive 2008</A>, a RAM disk extension for the 8296 (in German)</DT><DD>A small hardware RAM disk extension with schematics and a DOS program for it.</DD>
