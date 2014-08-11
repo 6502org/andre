@@ -20,6 +20,10 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2014-08-11">
+	Linked my blog <a class="extlink" target="_blank" href="http://blog.extrapages.de">extrapages</a> 
+	on the article teaser.
+    </item>
     <item date="2013-12-30">
 	Minor updates in the <a href="petindex/index.html">PETindex</a>.
 	Also added the <a href="emulation/index.html">Emulation page</a>, with link to my 
@@ -336,62 +340,62 @@ subscribe and share!
     </desc-->
     <teasers>
      <item name="Commodore 8-bit stuff" icon="i_cbm" headerimg="web_PET.jpg">
-      <subitem name="PETindex" link="petindex/index.html"> - a list of hardware
-information and links to the old CBM PET machines</subitem>
-      <subitem name="Commodore Hardware mods and projects" 
-		link="cbmhw/index.html">: Various CBM hardware projects, like
+      <tsubitem name="PETindex" link="petindex/index.html">A list of hardware
+information and links to the old CBM PET machines</tsubitem>
+      <tsubitem name="Commodore Hardware mods and projects" 
+		link="cbmhw/index.html">Various CBM hardware projects, like
 		<a href="cbmhw/scsi/index.html">SCSI</a> interface, or a project to build
 		<a href="cbmhw/ryofat40/index.html">Your own new PET 4032</a>.
 		Other items are C64 kernel mods and <a href="cbmhw/ieee488/index.html">IEEE488 interfaces</a>, including
 		one for the PC to use it as disk drive.
-      </subitem>
-      <subitem name="PET816" link="cbmhw/pet816/index.html"> - a 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
-      </subitem>
+      </tsubitem>
+      <tsubitem name="PET816" link="cbmhw/pet816/index.html">A 65816 replacement board for a 6502, as tested in CBM PETs and my CS/A
+      </tsubitem>
      </item>
      <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.jpg">
-      <subitem name="CS/A65" link="csa/index.html"> and
+      <tsubitem name="CS/A65" link="csa/index.html">and
 <a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
 multi- resp. singleboard 6502 computers.
 The CS/A65 features virtual memory, video card, a SCSI interface
 and many more stuff
 I have now linked my CS/A65 emulator, based on the VICE emulator,
-to this page.</subitem>
-      <subitem name="The Advanced 6502 page" link="adv65/index.html">
+to this page.</tsubitem>
+      <tsubitem name="The Advanced 6502 page" link="adv65/index.html">
 	is there for projects that go beyond the original 6502 design. 
 	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
 	that speeds up a 1&#160;MHz PET up to 10&#160;MHz!
 	This page will also be the home for the future <em>65k</em> project.
-      </subitem>
-      <subitem name="Hardware info" 
-		link="hwinfo/index.html">: Information on various 
+      </tsubitem>
+      <tsubitem name="Hardware info" 
+		link="hwinfo/index.html">Information on various 
 	items and standards used in these pages. Examples are 
 	<a href="hwinfo/crtc/index.html">CRTC</a> and <a href="hwinfo/ls610/index.html">74ls610</a> MMU info, and information about
 	the <a href="hwinfo/scsi.html">SCSI</a> and <a href="hwinfo/i2c.html">I2C</a> standards.
-      </subitem>
-      <subitem name="Hardware Tools and Stuff" 
-		link="mischw/index.html">: Miscellaneous hardware stuff. 
+      </tsubitem>
+      <tsubitem name="Hardware Tools and Stuff" 
+		link="mischw/index.html">Miscellaneous hardware stuff. 
 	Currently contains a <a href="mischw/probe/index.html">Logic Probe</a>.
-      </subitem>
+      </tsubitem>
      </item>
      <item name="6502 software stuff" icon="i_sw" headerimg="web_prog.jpg">
-      <subitem name="GeckOS/A65" link="osa/index.html">
+      <tsubitem name="GeckOS/A65" link="osa/index.html">
 A small 6502 multitasking operating
 system that runs on the Commodore C64 and PET computers, as well as my
 selfbuilt 6502s.
-      </subitem>
-      <subitem name="LIB6502" link="lib6502/index.html">is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.</subitem>
-      <subitem name="o65" link="o65/index.html">fileformat is a flexible relocatable 6502/65816 fileformat.</subitem>
-      <subitem name="Software" link="misc/index.html"> I wrote with relation
-to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
+      </tsubitem>
+      <tsubitem name="LIB6502" link="lib6502/index.html">is an attempt in defining a C-like standard library for 6502 assemblers. It is used in GeckOS/A65.</tsubitem>
+      <tsubitem name="o65" link="o65/index.html">fileformat is a flexible relocatable 6502/65816 fileformat.</tsubitem>
+      <tsubitem name="Software" link="misc/index.html">I wrote with relation
+to the 6502. Features cross assembler, C64 basic extension, etc.</tsubitem>
      </item>
      <item name="6502 knowledge bits" icon="i_icap" headerimg="web_knowledge.jpg">
-      <subitem name="Articles" link="icapos/index.html"> I wrote about computer system and
+      <tsubitem name="Articles" link="icapos/index.html">I wrote about computer system and
 	operating system architecture with relation to the 6502.
 	Currently contains a articles about <a href="icapos/mp.html">6502 multiasking</a>,
 	<a href="icapos/mmu65.html">Use of an MMU</a> with the 6502, and about the
 	<a href="icapos/osa65.html">GeckOS/A65 multitasking operating system</a>.
-      </subitem>
-      <subitem name="6502 hardware related articles" link="icaphw/index.html"> I wrote.
+      </tsubitem>
+      <tsubitem name="6502 hardware related articles" link="icaphw/index.html">I wrote.
 	Articles are about hardware like <a href="icaphw/rdy.html">RDY generation</a>,
 	using a <a href="icaphw/c64ser.html">UART in a 6502 system</a>, or
 	how to create an infrared <a href="icaphw/remote.html">remote control</a>.
@@ -399,7 +403,10 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</subitem>
 	the hardware designer of the Commodore 128.
 	Now contains the <a href="icaphw/xilinx.html">Xilinx tools</a> page about the CPLD tools I 
 	am using for my newest designs.
-      </subitem>
+      </tsubitem>
+      <tsubitem name="Emulation related articles" link="emulation/index.html">I wrote, resp. videos on a
+	presentation I gave. Further information can be found on my blog <a class="extlink" target="_blank" href="http://blog.extrapages.de">extrapages</a> in the <a class="extlink" href="http://blog.extrapages.de/categories/8bit">8bit category</a>.
+      </tsubitem>
      </item>
     </teasers>
   </itemlist>
