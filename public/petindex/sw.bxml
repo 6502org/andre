@@ -12,11 +12,11 @@
   <overview><p>This page contains links to PET software projects and archives.
 	</p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2014-08-22">
+	Added Petsynth link.
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="disc" name="Disclaimer">
@@ -26,6 +26,15 @@
 
   <section toc="sw" name="Software Projects">
      <desc><P>This section contains projects for PET software.</P>
+<DL>
+<DT><A HREF="http://petsynth.org/">PetSynth</A></DT>
+<DD>The Petsynth is a great music player for the single-bit audio output of the machine!</DD>
+</DL>
+     </desc>
+  </section>
+
+  <section toc="sys" name="System Software Projects">
+     <desc><P>This section contains projects for PET system software.</P>
 <DL>
 <DT><A HREF="http://www.6502.org/users/andre/osa/">GeckOS/A65</A></DT>
 <DD>This is a new operating system for 6502 computers, and has

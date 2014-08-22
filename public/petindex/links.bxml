@@ -11,12 +11,22 @@
   <metadesc>Commodore PET CBM ROM descriptions</metadesc-->
   <!--overview><p></p>
   </overview-->
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2014-08-22">
+	Add the section for original documents.
     </item>
-  </news-->
+  </news>
   <toc/>
+
+  <section toc="cbm" name="Original Commodore Documents">
+	<desc>
+		Here are links to original Commodore documents - mostly in scanned and/or OCR'd form.
+	</desc>	
+     <extlink name="Commodore manuals on commodore.ca" link="http://www.commodore.ca/commodore-manuals/"/>
+     <extlink name="The cbm archive" link="@CBMARC@/pet/index.html"/>
+     <extlink name="Dave Dunfield's page" link="http://classiccmp.org/dunfield/pet/index.htm"/>
+     <extlink name="Compirudi's page (R.I.P.)" link="http://www.compirudi.bplaced.net/manualse.htm"/>
+  </section>
 
   <section toc="otherpet" name="Other PET Documents">
     <desc><UL>
@@ -57,6 +67,7 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
     <desc> <UL>
 <LI><A target="_blank" class="extlink" HREF="http://www.6502.org">6502.org</A> with a host of 6502-related stuff and original host of the PET index.
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.zimmers.net/cbmpics/">Bo Zimmermann's amazing collection</A>
+</LI><LI><A target="_blank" class="extlink" HREF="http://mikenaberezny.com/hardware/">Mike Naberezny's hardware page</A>
 </LI><LI>The <A target="_blank" class="extlink" HREF="http://members.tripod.com/~petlibrary/">PET library</A>
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:start">Larry's Classic Computing Pages</A>, including his <A target="_blank" class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:pet:start">PET pages</A>.
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.floodgap.com/retrobits/ckb/">The Commodore Knowledge Base</A>

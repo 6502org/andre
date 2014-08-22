@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2014-08-22">
+	Added link to Speedos, D'asaro's PET Video mixer
+    </item>
     <item date="2013-12-27">
 	Added link to Z-RAM and PEDISK-II.
     </item>
@@ -225,10 +228,13 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
      </subsection>
      <subsection toc="pcuoe" name="PET user group of england">
 	<desc>
+	This is the PET video mixer by the UK PET users group. There even is 
+	a version for purchase now.
 	</desc>
 	<extlink name="composite video from 'PET user group of england'" link="http://www.classiccmp.org/pipermail/cctech/2008-October/098537.html"/>
 	<extlink name="schematics of composite video" link="http://oldcomputers.net/pics/pet-video.jpg"/>
 	<extlink name="updated version" link="http://www.6502.org/users/andre/csa/vdc/index.html"/>
+	<extlink name="D'asaro design" link="http://www.dasarodesigns.com/product/commodore-pet-video-mixer/"/>
      </subsection>
      <subsection toc="witte" name="Witte Video interface">
 	<desc>A German company sold PET video adapters, see link</desc>
@@ -335,6 +341,16 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 		of being attached via IEEE488 cable.
 	</desc>
 	<extlink name="Mike Naberezny's PEDISK-II page" link="http://mikenaberezny.com/hardware/pet-cbm/microtech-pedisk-ii/"/>
+     </subsection>
+     <subsection toc="speedos" name="Speedos">
+	<desc>
+		This is a drive extension that modified the DOS of a 8050 or 8250
+		disk drive and adds a number of improvements: bug fixes, 
+		speed improvements, and even format improvements for example 
+		to use more files than 224 in the directory.
+		Unfortunately there is only a German description available.
+	</desc>
+	<extlink name="Speedos" link="http://www.winfa.de/cbm/Speedos-Handbuch.pdf"/>
      </subsection>
      <subsection toc="floppiesunknown" name="Unknown brand">
 	<desc>

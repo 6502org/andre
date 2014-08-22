@@ -11,12 +11,20 @@
 	Here you can find information you need to program the PET computer.
   </p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2014-08-22">
+	Added the BASIC section.
     </item>
-  </news-->
+  </news>
   <toc/>
+  <section toc="memmap" name="Hardware Memory Map">
+    <desc>
+	When you switch the machine on, it greats you with a BASIC prompt.
+	Here's a quick reference guide for the Commodore BASIC
+    </desc>
+    <extlink name="BASIC 4.0 quick reference" link="http://www.zimmers.net/cbmpics/cbm/PETx/basicref.html"/>
+  </section>
+
   <section toc="memmap" name="Hardware Memory Map">
     <desc>
 <P>The memory map of the PET is pretty simple - if you do not consider

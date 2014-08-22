@@ -288,6 +288,12 @@ div.driverfiles {
 }
 
 @media handheld, screen and (max-width: 480px) {
+	div#topsearch {
+		font-size: large;
+	}
+	div#menubox {
+		font-size: large;
+	}
         ul.nav1 {
 		display: none;
         }
@@ -302,6 +308,12 @@ div.driverfiles {
 }
 
 @media handheld, screen and (min-width: 481px) and (max-width: 790px) {
+	div#topsearch {
+		font-size: medium;
+	}
+	div#menubox {
+		font-size: medium;
+	}
         ul.nav1 {
 		display: none;
         }

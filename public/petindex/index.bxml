@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2013</yearend>
+    <yearend>2014</yearend>
   </author>
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>PET index</metadesc>
@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2014-08-22">
+        Added some links.
+    </item>
     <item date="2014-08-11">
 	Add some bits here and there, mainly some repair info, as well as DOS ROM information.
     </item>
@@ -48,6 +51,8 @@ I hope you enjoy this document.<br/>
 	Also added the link to the SuperPET OS/9 project on the <a href="hw.html">Hardware Projects</a> page, and some
 	links on the <a href="superpet.html">SuperPET</a> page.
     </item>
+  </news>
+  <oldnews>
     <item date="2013-05-02">
         Added the <a href="hw.html#colourpet">Colour PET</a> project description.
     </item>
@@ -75,7 +80,7 @@ I hope you enjoy this document.<br/>
     <item date="2010-08-28">
 	Added pictures of Japanese and a German keyboards on the <a href="keyboards.html">keyboards</a> page.
     </item>
-  </news>
+  </oldnews>
   <!--toc/-->
 
   <section toc="coverage" name="What is covered and what not?">
@@ -91,6 +96,7 @@ and the 510-520 (also known as P500)</p>
      </desc>
 	<items>
 <subitem name="The PET model index" link="versions.html"></subitem>
+<subitem name="PET documentation" link="docs.html"></subitem>
 <subitem link="drives/index.html" name="The Disk drive model index"><!--(<img src="../imgs/news.gif" alt="UPDATED"/> JAN 2010: harddisk info)-->
 </subitem><subitem link="boards.html" name="Boards"> that make up a PET <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="pinouts.html" name="Pinouts"> of various PET connectors
