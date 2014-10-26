@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2014-10-26">
+	Add link to PET RAM test.
+    </item>
     <item date="2014-08-11">
 	Add section on repairing drives, as well as SuperPET information.
 	Update link to ROM adapter, add RAM adapter (from same source)
@@ -117,6 +120,13 @@ On later models the diagnostic routine has been replaced with the
 machine language monitor.
 </p><p>
 So far I don't have the schematics for the CPU connector, nor the ROMs and test programs, sorry. So if you can provide this info, this would be very helpful!</p>
+      </subitem>
+      <subitem name="Test programs"> Test programs that can be used to identify problems
+	with an at least partially working PET:
+	<ul>
+	<li>A RAM test program: <a target="_new" class="extlink" href="http://www.commodore.ca/manuals/PET_RAM_test.htm">http://www.commodore.ca/manuals/PET_RAM_test.htm</a>
+	</li>
+	</ul>
       </subitem>
 	</item>
       <subitem name="Be Careful" >
