@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2014-11-09">
+	Add keyboard repair links.
+    </item>
     <item date="2014-10-26">
 	Add link to PET RAM test.
     </item>
@@ -299,6 +302,45 @@ version of the video board for the original PET that went bad frequently.</p>
 	  </subitem>
     </items>  
    </itemlist>
+   <itemlist toc="memory" name="PET Memory">
+	<desc>Problems with memory. The First CBM PET used specific 6540 and 6550 ROM and RAM chips. Those
+	are Commodore-specific and not to get. However, they can be replaced with adapter sockets.
+	Later models use more standard chips. Sometimes the RAM itself is bad, but often the 74LS244 bus 
+	driver chips are reported to have gone bad, so it is worth checking them first.
+	</desc>
+	<items>
+      <subitem name="6540 ROM sockets" link="http://www.dasarodesigns.com/product/6540-rom-adapter/">
+	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
+	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
+      </subitem>
+      <subitem name="6550 RAM sockets" link="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/">
+	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
+	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
+      </subitem>
+
+	</items>
+   </itemlist>
+   <itemlist toc="keyboard" name="Keyboard Repair">
+	<desc>Fixing a PET (or CBM) keyboard). The Commodore keyboards (the full size ones) all share
+	the same construction plan. A key cap sits on top of a spring that keeps it up and sticks in 
+	a switch. This switch is basically a carbon(?) contact that, when the key is pressed, shorts
+	two gold plated contacts on the board under the key. These contacts get dirty and sometimes
+	need to be cleaned to make the key work as lightly as new.
+	</desc>
+	<items>
+	  <subitem name="Keyboard Repair Descriptions">
+		<desc>
+		<ul>
+			<li><a class="extlink" target="_new" href="ftp://www.zimmers.net/pub/cbm/documents/repair/keyboard.txt">ftp://www.zimmers.net/pub/cbm/documents/repair/keyboard.txt</a></li>
+			<li><a class="extlink" target="_new" href="http://www.commodorecomputerclub.com/cleaning-a-pet-4032-keyboard/">http://www.commodorecomputerclub.com/cleaning-a-pet-4032-keyboard/</a></li>
+			<li><a class="extlink" target="_new" href="https://www.flickr.com/photos/afachat/sets/72157646409152698/">https://www.flickr.com/photos/afachat/sets/72157646409152698/</a></li>
+			<li><a class="extlink" target="_new" href="http://www.bjtechserv.com/Magazine/C64/C64_Keyboard_Clean.htm">http://www.bjtechserv.com/Magazine/C64/C64_Keyboard_Clean.htm</a></li>
+			<li><a class="extlink" target="_new" href="https://www.youtube.com/watch?v=TwAu_seSt2A">https://www.youtube.com/watch?v=TwAu_seSt2A</a> (for a C64, keyboard starts at 4:00)</li>
+		</ul>
+		</desc>
+	  </subitem>
+	</items>
+   </itemlist>
    <itemlist toc="superpet" name="SuperPET specifics">
 	<desc>Some information regarding SuperPET machines.</desc>
 	<items>
@@ -348,15 +390,6 @@ version of the video board for the original PET that went bad frequently.</p>
 	<p>The original web site seems gone, but there is <a class="extlink" target="_new" href="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">the Vintage Computer Forum on that machine</a>.
 	</p>
 	</desc>
-      </subitem>
-
-      <subitem name="6540 ROM sockets" link="http://www.dasarodesigns.com/product/6540-rom-adapter/">
-	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
-	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
-      </subitem>
-      <subitem name="6550 RAM sockets" link="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/">
-	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
-	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
       </subitem>
 
     </items>
