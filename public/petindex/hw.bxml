@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2013</yearend>
+    <yearend>2014</yearend>
   </author>
   <keywords>Commodore PET CBM hardware project</keywords>
   <metadesc>PET index - hardware projects</metadesc>
@@ -14,7 +14,10 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
-    <item date="2014-08-11">
+    <item date="2014-12-08">
+	Added the 40-column conversion.
+    </item>
+   <item date="2014-08-11">
 	Added new PET video mixer link, add VGA output
     </item>
     <item date="2013-12-27">
@@ -40,7 +43,7 @@ This page contains links to some hardware projects around the PET machines.
   <section toc="peripherals" name="Peripherals">
      <desc><P>This section contains projects related to PET peripherals, mostly IEEE488 related.</P>
 <DL>
-<DT><A class="extlink" HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
+<DT><A class="extlink" target="_blank" HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
 <DD>Ruud Baltissen has made a project to emulate Commodore IEEE488 disk drives
 using a PC and some hardware.</DD>
 <DT><A HREF="http://www.6502.org/users/andre/ieee488/">LPTIEC and other IEEE488 stuff</A></DT>
@@ -52,12 +55,12 @@ a System to have the PET access serial IEC disk drives, and IEEE488
 interfaces for the C64, VIC20 and the VC1541.
 </DD>
 
-<DT><A class="extlink" HREF="@CBMARC@/crossplatform/transfer/">The transfer section</A> of the CBM archive</DT><DD>Contains a lot of transfer utilities to copy files from the PC to the PET and back.</DD>
+<DT><A class="extlink" target="_blank" HREF="@CBMARC@/crossplatform/transfer/">The transfer section</A> of the CBM archive</DT><DD>Contains a lot of transfer utilities to copy files from the PC to the PET and back.</DD>
 
-<DT><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
+<DT><A class="extlink" target="_blank" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:classiccomp:flash_attack:start">Flash Attack cable and sound</A></DT>
 <DD>This page contains the description of the "Flash Attack" cable, as well as a PET sound interface.</DD>
 
-<DT>The <A class="extlink" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A>, <A class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A>, and <a class="extlinK" target="_blank" href="http://www.dasarodesigns.com/product/commodore-pet-video-mixer/">d'asaro designs (formerly known as 6540rom.com)</a> have circuits for composite video output.</DT>
+<DT>The <A class="extlink" target="_blank" HREF="http://members.tripod.com/~petlibrary/COMPVID.HTM">PET library</A>, <A class="extlink" target="_blank" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A>, and <a class="extlinK" target="_blank" href="http://www.dasarodesigns.com/product/commodore-pet-video-mixer/">d'asaro designs (formerly known as 6540rom.com)</a> have circuits for composite video output.</DT>
 <DD>One of the deficiencies of the PET is that it has no composite video
 output to connect normal monitors to it. These links show two circuits
 (PET library from "THE PET REVEALED" by Nick Hampshire, p117f, 1979, whereas
@@ -113,8 +116,13 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
   <section toc="system" name="System Projects">
      <desc><P>This section contains projects that relate more to the PET itself</P>
 <DL>
+
+<DT><A target="_blank" class="extlink" HREF="http://blog.tynemouthsoftware.co.uk/2014/08/commodore-pet-repair-part-6-8032-to.html">40 column conversion of a 8032 universal board</A></DT>
+<DD>This blog post describes the conversion of an 8032 universal board to a 40 column system. Some connections need to be changed, and even some chips removed - but the board is prepared for it.</DD>
+
 <DT><A HREF="http://www.6502.org/users/andre/cbmhw/pet816/">PET816</A></DT>
 <DD>A CPU replacement for the PET that allows it to run at up to 10MHz!</DD>
+
 <DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
 <DD>This computer system is a modular system with an MMU and other nice
 features. One feature is the 95% PET compatibility. It actually runs
@@ -123,21 +131,26 @@ a 3032 PET emulator - which is a slightly patched up copy of the PET ROM
 some IEEE488 lines are swapped around). I plan on building an
 adapter to use the CS/A65 I/O cards in a PET computer.
 </DD>
+
 <DT><A HREF="http://www.6502.org/users/andre/cbmhw/ryofat40/index.html">Build your own Fat40</A></DT>
 <DD>This project consists of three specific boards for the <a href="http://www.6502.org/users/andre/csa/index.html">CS/A65</a> computer that together
 can make up a PET 4032.
 </DD>
-<DT><A class="extlink" HREF="http://people.freenet.de/x1541/hardware/petram.html">PET RAM</A> - a universal 6502 RAM/ROM expansion</DT>
+
+<DT><A class="extlink" target="_blank" HREF="http://people.freenet.de/x1541/hardware/petram.html">PET RAM</A> - a universal 6502 RAM/ROM expansion</DT>
 <DD>This is a universal PET RAM/Flash ROM expansion with schematics and board diagrams in Eagle(tm) format.</DD>
-<DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmpet/petcart.php">PET-REU</A></DT>
+
+<DT><A class="extlink" target="_blank" HREF="http://www.cbmhardware.de/cbmpet/petcart.php">PET-REU</A></DT>
 <DD>This is a RAM expansion unit for the PET, using the (in old boards) unused
 $8800-$8fff memory area.
 </DD>
-<DT><A class="extlink" HREF="http://www.cbm-ii.com/my-projects/fitting-8250lp-in-the-high-profile-cbm-ii-case/">Fitting 8250LP in the high-profile CBM-II case</A></DT>
+
+<DT><A class="extlink" target="_blank" HREF="http://www.cbm-ii.com/my-projects/fitting-8250lp-in-the-high-profile-cbm-ii-case/">Fitting 8250LP in the high-profile CBM-II case</A></DT>
 <DD>A description how to fit the 8250LP disk drive into a high-profile CBM-II case - which is very similar to the 8296 case.
 So this might be as model to fit a 8250LP into a 8296 case to make a 8296D
 </DD>
-<DT><A class="extlink" HREF="http://mikenaberezny.com/hardware/superpet/super-os9-mmu/">Adding an MMU to a SuperPET and run OS/9</A></DT>
+
+<DT><A class="extlink" target="_blank" HREF="http://mikenaberezny.com/hardware/superpet/super-os9-mmu/">Adding an MMU to a SuperPET and run OS/9</A></DT>
 <DD>
 	A description of the MMU fitted under the 6809 of the SuperPET to be able to run OS/9 on it!
 	Mike Naberezny's site even has permission to redistribute OS/9 for that machine!
@@ -150,10 +163,10 @@ So this might be as model to fit a 8250LP into a 8296 case to make a 8296D
      <desc><P>This section contains other 6502-related links, that are less PET-related.</P>
 <P>Note: schematics and chip data are linked from the <A HREF="links.html">links page</A></P>
 <UL>
-<LI><A class="extlink" HREF="http://www.6502.org">6502.org</A> with a host of 6502-related stuff and original host of the PET index.
-</LI><LI><A class="extlink" HREF="http://www.baltissen.org/">Ruud Baltissen</A> not only has the CBM-HD, but other Commodore hardware and software projects as well.
-</LI><LI><A class="extlink" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:pet:pet_faq-peripherals_interfacing">Peripherals info</A> from the PETFAQ, includes for example how to add a Joystick.
-</LI><LI><A class="extlink" HREF="http://www.cbmhardware.de/cbmpet/pethard.php?Lang=D&amp;from=petindex">cbmhardware.de</A> has some german info.
+<LI><A class="extlink" target="_blank" HREF="http://www.6502.org">6502.org</A> with a host of 6502-related stuff and original host of the PET index.
+</LI><LI><A class="extlink" target="_blank" HREF="http://www.baltissen.org/">Ruud Baltissen</A> not only has the CBM-HD, but other Commodore hardware and software projects as well.
+</LI><LI><A class="extlink" target="_blank" HREF="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:commodore:pet:pet_faq-peripherals_interfacing">Peripherals info</A> from the PETFAQ, includes for example how to add a Joystick.
+</LI><LI><A class="extlink" target="_blank" HREF="http://www.cbmhardware.de/cbmpet/pethard.php?Lang=D&amp;from=petindex">cbmhardware.de</A> has some german info.
 </LI></UL>
      </desc>
   </section>

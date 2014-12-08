@@ -186,7 +186,9 @@
 	This page contains an overview over hardware defects,
 	how to detect them and how to fix them.
 	</p><p>Note: this is a work in progress!</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2014-10-26</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2014-11-09</small>
+	Add keyboard repair links.
+    </li><li><div>&nbsp;</div><small>2014-10-26</small>
 	Add link to PET RAM test.
     </li><li><div>&nbsp;</div><small>2014-08-11</small>
 	Add section on repairing drives, as well as SuperPET information.
@@ -197,7 +199,7 @@
 	Added the vertical lines screen problem with link to the solution.
     </li><li><div class="i_oldnews">&nbsp;</div><small>2006-12-21</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#generic">Generic Advice</a></li><li style="list-style-type:none;"><ul><li><a href="#tools">Tools</a></li></ul></li><li><a href="#dead">PET's dead</a></li><li><a href="#funny">Funny characters on the screen</a></li><li><a href="#monitor">Monitor and other weird symptoms</a></li><li><a href="#drives">Disk Drives</a></li><li><a href="#superpet">SuperPET specifics</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="generic">Generic Advice</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#generic">Generic Advice</a></li><li style="list-style-type:none;"><ul><li><a href="#tools">Tools</a></li></ul></li><li><a href="#dead">PET's dead</a></li><li><a href="#funny">Funny characters on the screen</a></li><li><a href="#monitor">Monitor and other weird symptoms</a></li><li><a href="#drives">Disk Drives</a></li><li><a href="#memory">PET Memory</a></li><li><a href="#keyboard">Keyboard Repair</a></li><li><a href="#superpet">SuperPET specifics</a></li><li><a href="#links">Links</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="generic">Generic Advice</a></h2></div><div class="h2c">
 	This section contains generic advice.
     <ul><li><strong><a name="tools">Tools</a></strong>
 	In general you should have good tools if you endeavor to analyze
@@ -436,6 +438,34 @@ version of the video board for the original PET that went bad frequently.</p>
 			test yourself.
 		</p>
 		</desc>
+	  </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memory">PET Memory</a></h2></div><div class="h2c">Problems with memory. The First CBM PET used specific 6540 and 6550 ROM and RAM chips. Those
+	are Commodore-specific and not to get. However, they can be replaced with adapter sockets.
+	Later models use more standard chips. Sometimes the RAM itself is bad, but often the 74LS244 bus 
+	driver chips are reported to have gone bad, so it is worth checking them first.
+	<ul><li class="subitem"><a href="http://www.dasarodesigns.com/product/6540-rom-adapter/" target="_blank" class="extlink">6540 ROM sockets</a> 
+	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
+	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
+      </li><li class="subitem"><a href="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/" target="_blank" class="extlink">6550 RAM sockets</a> 
+	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
+	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
+      </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="keyboard">Keyboard Repair</a></h2></div><div class="h2c">Fixing a PET (or CBM) keyboard). The Commodore keyboards (the full size ones) all share
+	the same construction plan. A key cap sits on top of a spring that keeps it up and sticks in 
+	a switch. This switch is basically a carbon(?) contact that, when the key is pressed, shorts
+	two gold plated contacts on the board under the key. These contacts get dirty and sometimes
+	need to be cleaned to make the key work as lightly as new.
+	<ul><li class="subitem"><strong>Keyboard Repair Descriptions</strong>: 
+  	      
+		<desc>
+		<ul>
+			<li><a class="extlink" target="_new" href="ftp://www.zimmers.net/pub/cbm/documents/repair/keyboard.txt">ftp://www.zimmers.net/pub/cbm/documents/repair/keyboard.txt</a></li>
+			<li><a class="extlink" target="_new" href="http://www.commodorecomputerclub.com/cleaning-a-pet-4032-keyboard/">http://www.commodorecomputerclub.com/cleaning-a-pet-4032-keyboard/</a></li>
+			<li><a class="extlink" target="_new" href="https://www.flickr.com/photos/afachat/sets/72157646409152698/">https://www.flickr.com/photos/afachat/sets/72157646409152698/</a></li>
+			<li><a class="extlink" target="_new" href="http://www.bjtechserv.com/Magazine/C64/C64_Keyboard_Clean.htm">http://www.bjtechserv.com/Magazine/C64/C64_Keyboard_Clean.htm</a></li>
+			<li><a class="extlink" target="_new" href="http://www.6502.org/users/sjgray/projects/petkeyboard/index.html">http://www.6502.org/users/sjgray/projects/petkeyboard/index.html</a> </li>
+			<li><a class="extlink" target="_new" href="http://blog.tynemouthsoftware.co.uk/2014/09/commodore-pet-repair-part-8-keyboard.html">http://blog.tynemouthsoftware.co.uk/2014/09/commodore-pet-repair-part-8-keyboard.html</a> </li>
+			<li><a class="extlink" target="_new" href="https://www.youtube.com/watch?v=TwAu_seSt2A">https://www.youtube.com/watch?v=TwAu_seSt2A</a> (for a C64, keyboard starts at 4:00)</li>
+		</ul>
+		</desc>
 	  </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="superpet">SuperPET specifics</a></h2></div><div class="h2c">Some information regarding SuperPET machines.<ul><li class="subitem"><strong>Power connector</strong>: 
   	      
 		<desc>William Levak on the cbm-hackers mailing list reported intermittend
@@ -471,12 +501,6 @@ version of the video board for the original PET that went bad frequently.</p>
 	<p>The original web site seems gone, but there is <a class="extlink" target="_new" href="http://www.vintage-computer.com/vcforum/showthread.php?25264-Another-PET-2001-motherboard-needs-your-help...">the Vintage Computer Forum on that machine</a>.
 	</p>
 	</desc>
-      </li><li class="subitem"><a href="http://www.dasarodesigns.com/product/6540-rom-adapter/" target="_blank" class="extlink">6540 ROM sockets</a> 
-	<desc>The original PET came with 6540 ROM chips. These are basically gone now. On the link you
-	find an adapter to replace such a ROM with a 2716 EPROM</desc>.
-      </li><li class="subitem"><a href="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/" target="_blank" class="extlink">6550 RAM sockets</a> 
-	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
-	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
       </li></ul><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
@@ -485,7 +509,7 @@ GNU Public License version 2 unless noted otherwise.
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2014-10-26
+2014-12-08
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
