@@ -85,7 +85,9 @@ computers. A special version for the CBM&nbsp;600 (aka B128) is available.
 PC floppy disks on a C128 with a VC1571 disk drive.
 I once published a version in the 64er magazin as <em>project of the month</em>.
 Nowadays I would suggest using the transfer tools from
-<a href="@CBMARC@/crossplatform/transfer/index.html">@CBMARC@/transfer/</a>.</subitem>
+<a href="@CBMARC@/crossplatform/transfer/index.html">@CBMARC@/transfer/</a>.<br/>
+Just in case, here is the last version of BDOS (for which I got permission from the 64er magazine to publish it:
+<a href="bdos+.x64.gz">bdos+.x64.gz</a>.</subitem>
       <subitem name="xcbm">This was my first attempt in writing a C64/PET
 emulator running on Unix before I joined the VICE team. It basically
 emulates the
