@@ -2,7 +2,7 @@
 	"cache": {
 		"ttl": 60
 	},
-	"domain": "www.heise.de",
+	"domain": "www.6502.org",
 	"services": [
 		"GooglePlus",
 		"Twitter",
