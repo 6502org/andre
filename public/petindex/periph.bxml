@@ -1,0 +1,62 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET Peripherals">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2015</yearstart>
+    <yearend></yearend>
+  </author>
+  <keywords>Commodore PET CBM Peripherals</keywords>
+  <metadesc>Commodore PET CBM Peripherals</metadesc>
+  <overview><p>	</p>
+  </overview>
+  <news>
+    <item date="2015-02-01">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="noncbmdisks" name="Non-CBM Disk Drives">
+     <desc>
+     </desc>
+     <subsection toc="computhink" name="Computhink extension">
+	<desc>
+		<p>When the PET came out, Commodore did not yet have disk drives ready for it.
+		In fact the IEEE488 part of the ROM was broken, so that later a ROM upgrade from
+		BASIC1 to BASIC2 was necessary to make the Commodore drives work. 
+		</p><p>
+		Thus the other vendors chimed in and Computhink actually had 
+		disk drives ready before Commodore. Of course they then were completely
+		incompatible and even relied on a built-in extension board. 
+		This board, the "Expandamem" board contains a memory expansion (remember,
+		the very first machines really had only 4k of RAM...). On this board again
+		there are expansion slots, one of the could be used for the computhink drive.
+		</p><p>
+		In fact the drives - with their ROM code - was not working any more on the later BASIC2
+		machines.
+		</p>
+	</desc>
+	<extlink name="Chipitos' web site" link="http://chipitos.be/main/index.php/mycollection/commodore/interfaces/pet-series/expandamem"/>
+	<extlink name="Thread on the Vintage Computer Forum" link="http://www.vintage-computer.com/vcforum/showthread.php?5206-Apple-II-Commodore-PET-Expandamem"/>
+	<extlink name="Nightfall crew's site" link="http://www.nightfallcrew.com/31/08/2013/computhink-expandamem-for-commodore-pet-kim-1/"/>
+	<extlink name="Nightfall crew's Computhink manual (PDF)" link="http://www.nightfallcrew.com/wp-content/uploads/downloads/2013/08/CompuThink-Memory-expansion_for_CBM_PET__manual.pdf"/>
+     </subsection>
+<!--
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="orig" name="Original ROMs ($C000-$FFFF)">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+-->
+  </section>
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
