@@ -27,6 +27,9 @@ countries.
 </p>
   </overview>
   <news>
+    <item date="2015-02-01">
+	Added finish and swedish keyboards (thanks to Ville Muikkula).
+    </item>
     <item date="2010-08-28">
 	Added pictures of German and Japanese keyboards
     </item>
@@ -37,10 +40,10 @@ countries.
     <desc> <p>I now have put my worksheet of the PET keyboard layout here. It
 is a graphical representation of the PET graphics and business-uk
 (50Hz) keyboards, with the keycaps and the row/column number
-in the scan matrix. There is a postscript file for the
-<A HREF="keymap/petbusi-uk.ps.gz">UK (50Hz) business keyboard</A>
-and the <A HREF="keymap/petgraph.ps.gz">Graphics keyboard</A>.
-For those of you who would like to send me other mappings, please
+in the scan matrix. There is a mapping for the
+<A HREF="keymap/petbusi-uk.png">UK (50Hz) business keyboard</A>
+and the <A HREF="keymap/petgraph.png">Graphics keyboard</A>.
+For those of you who would like to send me other mappings, you can 
 use the unix <CODE>xfig</CODE> program and the templates in
 <A HREF="keymap/petmaps.tar.gz">petmaps.tar.gz</A>.
 (If displaying postscript, use A4 paper format, 29.7cm x 21cm).
@@ -283,6 +286,17 @@ Bottom - 225,(Top-24)
 	</p>
 	<table>
 	<tr><td>German business keyboard</td><td><a href="keymap/kbd_german.png"><img width="300px" src="keymap/kbd_german.png"/></a></td></tr>
+	</table>
+	</desc>
+     </subsection>
+     <subsection toc="nordic" name="Finland / Sweden">
+	<desc><p>Ville Muikkula was so kind to send me the mappings for the swedish and finnish 
+	keyboard mapping (they were using the same mapping in both countries).
+	The ROMs used are the swedish ones on the <a href="@CBMARC@/firmware/computers/pet/">CBM archive</a>.
+	</p>
+	<table>
+	<tr><td>Picture of the changed keys</td><td><a href="keymap/finnish_cbm_business_keyboard.jpg"><img width="300px" src="keymap/finnish_cbm_business_keyboard.jpg"/></a></td></tr>
+	<tr><td>Swedish/Finnish keyboard mapping</td><td><a href="keymap/petbusi-fi.png"><img width="300px" src="keymap/petbusi-fi.png"/></a></td></tr>
 	</table>
 	</desc>
      </subsection>

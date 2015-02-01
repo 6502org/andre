@@ -1,11 +1,14 @@
 {
 	"cache": {
-		"ttl": 60
+		"ttl": 60,
+		"cacheDir": "/tmp"
 	},
 	"domain": "www.6502.org",
 	"services": [
 		"GooglePlus",
 		"Twitter",
-		"Facebook"
+		"Facebook",
+		"LinkedIn",
+		"Xing"
 	]
 }
