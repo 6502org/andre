@@ -195,8 +195,11 @@ do_2menu () {
 	do_2menu . 1 .;
 	echo "</root>" >> sindex.xml;
         echo "xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html"
-        #xsltproc $bindir/searchindex.xsl sindex.xml > sindex.html
-        xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html
+        if [ -x "/usr/bin/xsltproc" ]; then
+        	xsltproc $bindir/searchindex.xsl sindex.xml > sindex.html;
+	else
+        	xsl-c -xsl $bindir/searchindex.xsl -in sindex.xml -html -out sindex.html;
+	fi;
 	mv sindex.html sindex.xml
 )
 

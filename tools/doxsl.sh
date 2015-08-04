@@ -24,8 +24,11 @@ for i in `find $dir -name \*.bxml`; do
 	to=`dirname $i`/`basename $i .bxml`.inx
 	echo $i " -> " $to;
 	if [ $force = "true" -o $i -nt $to ]; then
-		#xsltproc $bin/indexml2html.xsl $i > $to
-		xsl-c -xsl $bin/indexml2html.xsl -in $i -html -out $to
+		if [ -x "/usr/bin/xsltproc" ]; then
+			xsltproc $bin/indexml2html.xsl $i > $to;
+		else 
+			xsl-c -xsl $bin/indexml2html.xsl -in $i -html -out $to;
+		fi;
 	else 
 		echo "not newer!"
 	fi
