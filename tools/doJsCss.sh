@@ -28,12 +28,12 @@ cpmodified () {
 # takes input file, minimizes it and puts it to the function's stdout
 minifyjs () {
 	#slimit "$1" 
-	yui-compressor --type js "$1" 
+	java -jar $root/tools/yuicompressor-2.4.8.jar --type js "$1" 
 }
 
 # takes input file, minimizes it and puts it to the function's stdout
 minifycss () {
-	yui-compressor --type css "$1" 
+	java -jar $root/tools/yuicompressor-2.4.8.jar --type css "$1" 
 }
 
 #################################################################################
