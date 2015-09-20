@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2015-09-20">
+	Identified the unknown brand Z80 card as Z-RAM.
+    </item>
     <item date="2014-08-22">
 	Added link to Speedos, D'asaro's PET Video mixer
     </item>
@@ -308,11 +311,8 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
      </subsection>
      <subsection toc="cpuunknown" name="Unknown brand Z80 CP/M card">
 	<desc>
-		This one can be seen in Daves Old Computers collections.
-		Look for "Commodore CBM 8032 (Later version)".  The board is mounted under the monitor.
+		This previous entry has now been identifed as <a href="#zram">Z-RAM</a> card.
 	</desc>
-	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
-	<extlink name="Ruud Baltissen has one too" link="http://www.baltissen.org/images/z80card.jpg"/>
      </subsection>
      <subsection toc="softbox" name="SSE Softbox Z80 computer">
 	<desc><p>In another solution SSE implemented a Z80 computer that connected to the PET
@@ -325,8 +325,14 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 		This board not only adds 64k RAM "similar in ways to the 8096", but also a Z80 CPU to run CP/M.
 		It was also known as CP/Maker in Europe.
 		Mike Naberezny's page even includes the schematics!
+		It can also be seen in Daves Old Computers collections.
+		Look for "Commodore CBM 8032 (Later version)".  The board is mounted under the monitor.
+		Note that the later two links used to be under "unknown brand Z80 card". It has
+		in the meantime been identified as Z-RAM, according to Mike Naberezny.
 	</desc>
 	<extlink name="Z-RAM" link="http://mikenaberezny.com/hardware/pet-cbm/madison-computer-z-ram/"/>
+	<extlink name="Daves Old Computers" link="http://www.classiccmp.org/dunfield/pet/index.htm"/>
+	<extlink name="Ruud Baltissen has one too" link="http://www.baltissen.org/images/z80card.jpg"/>
      </subsection>
    </section>
 

@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1997</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2015</yearend>
   </author>
   <keywords>Commodore PET CBM ROM SuperPET</keywords>
   <metadesc>PET index - SuperPET</metadesc>
@@ -16,11 +16,11 @@ to the add-on board. On the board are the original 6502, another CPU,
 the 6809, a 6551 RS232 interface, 64k RAM and some 6809 ROMs.
 </P>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2015-09-20">
+	Added SuperPET links
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="overview" name="Overview Diagram">
@@ -118,6 +118,10 @@ feature of the PET motherboard.
      <extlink name="Mike's first SuperPET page" link="http://mikenaberezny.com/2008/09/01/commodore-superpet/"/>
      <extlink name="Mike's SuperPET page" link="http://mikenaberezny.com/hardware/superpet/">(don't despair - look in the right side menu for a wealth of SuperPET menu entries!</extlink>
      <extlink name="Mike's OS/9 page" link="http://mikenaberezny.com/hardware/superpet/super-os9-mmu/"/>
+  </section>
+  <section toc="links" name="SuperPET links">
+     <desc></desc>
+     <extlink name="Great SuperPET article and pictures" link="http://www.oldcomputr.com/commodore-mmf-9000-superpet-1981/"/>
   </section>
   <closing>
 @FOOTER@

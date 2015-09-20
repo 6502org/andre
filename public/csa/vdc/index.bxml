@@ -10,11 +10,13 @@
 		display 40 columns a line at 1MHz system clock, and 80 columns
 		a line at 2MHz system clock.
 			<div class="rightimg">
-				<a href="vdcold.png"><img width="300px" src="vdcold.png"/></a><br/>
+				<a href="vdcold.png"><img width="300px" src="vdcold_small.png"/></a><br/>
 					The old and the new version front ...<br/>
-				<a href="vdcoldback.png"><img width="300px" src="vdcoldback.png"/></a><br/>
+				<a href="vdcoldback.png"><img width="300px" src="vdcoldback_small.png"/></a><br/>
 					... and back side. What a difference!
 			</div>
+		Please note that to get a composite video signal, you need an extra circuit on the video connector.
+		You can find some on the <a href="../../hwinfo/crtc/composite.html">composite video page</a>
 	</desc>
         <news>
                 <item date="2011-05-04">

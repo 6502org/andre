@@ -17,6 +17,9 @@ of new entries!
 </P>
   </overview>
   <news>
+    <item date="2015-09-20">
+	Added chipitos IEEE488 to IEC.
+    </item>
     <item date="2013-12-30">
 	Added Zoomfloppy and the Flyer modem.
     </item>
@@ -38,6 +41,9 @@ Supported hardware are petSD and xs1541 (see below).</DD>
 
 <DT><A HREF="http://petsd.net/">petSD</A></DT>
 <DD>Another AtMega-based solution to use an SD card as disk drive is the petSD hardware.</DD>
+
+<DT><A HREF="http://chipitos.be/main/index.php/project/266-ieee488-to-iec-for-the-pet">IEEE488 to IEC</A></DT>
+<DD>An AtMega-based solution to convert the IEEE488 bus commands from the PET to an IEC bus, to connect a VC1541.</DD>
 
 <DT><A HREF="http://www.bitfixer.com/bf/petdisk">PETdisk</A></DT>
 <DD>An AtMega-based SD-Card solution. You can use an SD Card as disk drive for the PET, and

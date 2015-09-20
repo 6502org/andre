@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2014</yearend>
+    <yearend>2015</yearend>
   </author>
   <keywords>Commodore PET CBM hardware project</keywords>
   <metadesc>PET index - hardware projects</metadesc>
@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2015-09-20">
+	Added the High-Resolution Graphics extension.
+    </item>
     <item date="2014-12-08">
 	Added the 40-column conversion.
     </item>
@@ -80,6 +83,11 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
 
   <section toc="graphics" name="Graphics">
     <desc><p>This section describes extensions for the graphics generation and character generator ROM</p></desc>
+    <subsection toc="hre" name="High-Resolution Extension (HRE)">
+	<desc><p>An AtMega-based graphics processor connected to the PET, overlaying the original screen with its own graphics output, on the original CRT!
+	</p></desc>
+	<extlink name="High-Resolution Extension" link="http://minus56.com/rc-20157-final-post"/>
+    </subsection>
     <subsection toc="colourpet" name="Colour PET">
         <desc><p>Steve Gray has announced this brand new project: add colour to your PET!
 		It takes an interesting approach - it converts an 80 column PET back into a 40 column one
