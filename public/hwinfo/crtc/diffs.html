@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Differences of CRTC models 6545 and 6845">
-<meta name="keywords" content="CRTC 6545 6845 differences">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Differences of CRTC models 6545 and 6845" />
+<meta name="keywords" content="CRTC 6545 6845 differences" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>Differences of CRTC models</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -165,7 +166,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Differences of CRTC models</h1><p class="copyright">(C)
-1999-2006 Andr&eacute;  Fachat</p> 
+1999-2006 André  Fachat</p> 
 <div class="overview">
 	<P>
 	I have gathered together the differences between CRTC models from various sources. The docs to
@@ -184,9 +185,9 @@
 	I will not go into details that are common to all chips. If you have further questions please refer to the CRTC documentation on <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html">http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html</a> and 
 	<a href="http://www.6502.org/documents/datasheets/">http://www.6502.org/documents/datasheets/</a>.
 	</P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pinout">Pinout</a></li><li><a href="#statusreg">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#regdiffs">The major differences in the register file</a></li><li style="list-style-type:none;"><ul><li><a href="#diffr3">R3, sync widths</a></li><li><a href="#diffr8">R8, Mode Control</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="pinout">Pinout</a></h2></div><div class="h2c">
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pinout">Pinout</a></li><li><a href="#statusreg">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#regdiffs">The major differences in the register file</a></li><li style="list-style-type:none;"><ul><li><a href="#diffr3">R3, sync widths</a></li><li><a href="#diffr8">R8, Mode Control</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="pinout" id="pinout">Pinout</a></h2></div><div class="h2c">
 	Although the pin naming is different, the pinout itself is the same for all chips, and all pins have the same meaning.
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="statusreg">Status Register</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="statusreg" id="statusreg">Status Register</a></h2></div><div class="h2c">
 	The Status register is read when the register select (RS) pin is low (when writing to this address, the index in the CRTC register file is written).
 	<pre>
 Commodore 6545-1, Rockwell 6545-1
@@ -219,7 +220,7 @@ Motorola 6845, 6845-1, Hitachi 46505
     before vertical retrace ends to ensure that critical timings for
     refresh RAM is met."
 	</pre>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="registers">Register File</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="registers" id="registers">Register File</a></h2></div><div class="h2c">
 	The following registers are basically the same for all chips (see notes):
 	<pre>
 R0	Horizontal Total (-1)
@@ -248,9 +249,9 @@ R17	Lightpen address low (8 bit)
     All others can only read R14-R17.
 	</pre>
 	Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="regdiffs">The major differences in the register file</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="regdiffs" id="regdiffs">The major differences in the register file</a></h2></div><div class="h2c">
 	The following items describe the major register file differences.
-    <ul><li><strong><a name="diffr3">R3, sync widths</a></strong>
+    <ul><li><strong><a name="diffr3" id="diffr3">R3, sync widths</a></strong>
 <pre>
 Motorola 6845, Hitachi 46505:
 
@@ -262,7 +263,7 @@ Commodore 6545-1, Rockwell 6545 and 6545-1, Motorola 6845-1:
 	Bits 0-3: horizontal sync width in character times. Value=0 -&gt; 16
 	Bits 4-7: vertical sync width in rasterlines. Value=0 -&gt; 16
 </pre>
-	</li><li><strong><a name="diffr8">R8, Mode Control</a></strong>
+	</li><li><strong><a name="diffr8" id="diffr8">R8, Mode Control</a></strong>
 <pre>
 Commodore 6545-1 and Rockwell 6545-1:
 
@@ -336,11 +337,11 @@ Motorola 6845-1
 </pre><p>
 	What can be learned already from this diagram? The Motorola 6845 (or the Hitachi 46505, but unlikely) was first and defined a basic set of features. Rockwell and Commodore then used the same derivation from the original design, while Motorola developed slightly different features. However, looking at the "must program to 0" entries, it seems Rockwell was not quick enough to implement the interlace modes and thus released an early version as 6545-1, before getting the full 6545 done, with some additional features.
 </p>
-	</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+	</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </div></div><hr>
+  </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 	
   Last modified: 
@@ -352,4 +353,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

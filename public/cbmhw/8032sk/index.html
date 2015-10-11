@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Modifications of my 8032-SK">
-<meta name="keywords" content="Commodore hardware 8032-SK 8032 PET">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Modifications of my 8032-SK" />
+<meta name="keywords" content="Commodore hardware 8032-SK 8032 PET" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>A creatively modified 8032-SK</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -170,7 +171,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>A creatively modified 8032-SK</h1><p class="copyright">(C)
-2011- Andr&eacute;  Fachat</p> 
+2011- André  Fachat</p> 
 <div class="overview"><p>
 	In spring 2011 I got a new addition to my collection - an 8032-SK.
 	First I thought that would be a standard PET, but then I found that some
@@ -182,7 +183,7 @@
 	</p><p>
 	But the non-standard extensions were much more interesting. Read about them below.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#editor">Editor ROM</a></li><li style="list-style-type:none;"><ul><li><a href="#defect">EPROM defect?</a></li><li><a href="#triggers">Key Code Triggers</a></li><li><a href="#keytables">Keyboard tables</a></li><li><a href="#runstop">Run key</a></li><li><a href="#geo">Screen Geometry</a></li></ul></li><li><a href="#chargen">Character Generator</a></li><li style="list-style-type:none;"><ul><li><a href="#chars">Modified Character Set</a></li><li><a href="#howto">How the trigger works</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="editor">Editor ROM</a></h2></div><div class="h2c"><p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#editor">Editor ROM</a></li><li style="list-style-type:none;"><ul><li><a href="#defect">EPROM defect?</a></li><li><a href="#triggers">Key Code Triggers</a></li><li><a href="#keytables">Keyboard tables</a></li><li><a href="#runstop">Run key</a></li><li><a href="#geo">Screen Geometry</a></li></ul></li><li><a href="#chargen">Character Generator</a></li><li style="list-style-type:none;"><ul><li><a href="#chars">Modified Character Set</a></li><li><a href="#howto">How the trigger works</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="editor" id="editor">Editor ROM</a></h2></div><div class="h2c"><p>
 		The Editor ROM was modified in a very custom way. Here is the diff to a standard
 		editor ROM (901474-04):
 	</p><pre>
@@ -241,14 +242,14 @@
 	</pre><p>
 		The diff contains different parts:
 	</p>
-	<h3><a name="defect">EPROM defect?</a></h3><p>
+	<h3><a name="defect" id="defect">EPROM defect?</a></h3><p>
 			The diff at $e4b0 changes the opcode from $AD to $A5 - 
 			this means a <code>LDA abs</code> becomes an <code>LDA zp</code>
 			followed by a <code>INX</code>. Looking at the ROM listing,
 			I can't seem to make a sense of that. It seems this is an
 			EPROM defect, although a stable one (it did not change through
 			multiple reads).
-		</p><h3><a name="triggers">Key Code Triggers</a></h3><p>
+		</p><h3><a name="triggers" id="triggers">Key Code Triggers</a></h3><p>
 			The diff at $e56c inserts a JMP to $e790. The routine there
 			checks if the key code given is $84, in which case it 
 			manipulates the register 12 of the CRTC (see below),
@@ -270,12 +271,12 @@
 			Adding a shift key (automatic for $06, but necessary for $04) then 
 			results in $84 resp. $86 key codes! So you have to press three ($86)
 			resp. 4 keys ($84) to trigger one of these codes.
-		</p><h3><a name="keytables">Keyboard tables</a></h3><p>
+		</p><h3><a name="keytables" id="keytables">Keyboard tables</a></h3><p>
 			The changes from $e6d1 to $e720 are changes in the keyboard
 			decoding tables, where some keys have been mapped around in a,
 			let's say, non-standard way. If you're not used to them, you
 			get some problems.
-		</p><h3><a name="runstop">Run key</a></h3><p>
+		</p><h3><a name="runstop" id="runstop">Run key</a></h3><p>
 			At $e721 there is a change in the character sequence for the
 			RUN key. Interestingly it changes it back from the BASIC 4
 			</p><pre>
@@ -287,23 +288,23 @@
 			lO"*
 			run
 			</pre>
-		<h3><a name="geo">Screen Geometry</a></h3><p>
+		<h3><a name="geo" id="geo">Screen Geometry</a></h3><p>
 			Finally the changes at $e72a are modifications in the 
 			CRTC register settings for the graphics and lower case modes.
-		</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="chargen">Character Generator</a></h2></div><div class="h2c"><p>
+		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="chargen" id="chargen">Character Generator</a></h2></div><div class="h2c"><p>
 		The other surprise was the character generator ROM. The first impression
 		showed that there were at least German umlauts. But when I found the keyboard code
 		trigger I had a good laugh.
-	</p><h3><a name="chars">Modified Character Set</a></h3><p>Once I found the trigger I found what it did: it switched the
+	</p><h3><a name="chars" id="chars">Modified Character Set</a></h3><p>Once I found the trigger I found what it did: it switched the
 			character set.</p>
 	<table border="1"><tr>
-	<td><a href="chargen-screenshot1.png"><img width="50%" src="chargen-screenshot1.png"></a></td>
-	<td><a href="chargen-screenshot2.png"><img width="50%" src="chargen-screenshot2.png"></a></td>
+	<td><a href="chargen-screenshot1.png"><img width="50%" src="chargen-screenshot1.png" /></a></td>
+	<td><a href="chargen-screenshot2.png"><img width="50%" src="chargen-screenshot2.png" /></a></td>
 	</tr></table>
 		<p>As you can see the character set mimics what then was thought of being a "computer readable"
 		character set. Looking at this today makes you smile :-)
 		</p>
-		<p>Note that there are German umlauts, paragraph and "sharp s" (&szlig; ), although 
+		<p>Note that there are German umlauts, paragraph and "sharp s" (ß ), although 
 		in non-standard places, at least compared to the standard German (CBM 8296) character
 		generator ROM.
 		</p><p>
@@ -311,10 +312,10 @@
 		</p><p>
 		This change also is in the "standard" upper/lower case character generator:</p>
 	<table border="1"><tr>
-	<td><a href="chargen-screenshot3.png"><img width="50%" src="chargen-screenshot1.png"></a></td>
+	<td><a href="chargen-screenshot3.png"><img width="50%" src="chargen-screenshot1.png" /></a></td>
 	<td> </td>
 	</tr></table>
-	<h3><a name="howto">How the trigger works</a></h3><p>
+	<h3><a name="howto" id="howto">How the trigger works</a></h3><p>
 		The trigger uses a lesser-known feature of the PET video graphics system.
 		The CRTC chip has 14 address lines, capable of addressing 16k of video RAM.
 		Only 4k are used in the PET. So the upper lines can be used for other purposes.
@@ -343,7 +344,7 @@
 		And this is exactly what the trigger code in the editor ROM shown above does.
 		By pressing left-shift, "3", "x", and "/" at the same time, you can toggle between
 		the normal and the "computer" character set.
-		</p></div></div><hr>
+		</p></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -355,4 +356,5 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

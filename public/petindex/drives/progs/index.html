@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="PET index - Drive utilities">
-<meta name="keywords" content="Commodore PET CBM ROM disk drives">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css">
+<meta name="description" content="PET index - Drive utilities" />
+<meta name="keywords" content="Commodore PET CBM ROM disk drives" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css" />
 <title>PET index - Drive utilities</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -207,9 +208,9 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - Drive utilities</h1><p class="copyright">(C)
-1998-2010 Andr&eacute;  Fachat</p> 
+1998-2010 André  Fachat</p> 
 <div class="overview"><P>This page contains some small utilities for the Commodore disk drives.</P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#roms">Read Disk Drive ROMs</a></li><li><a href="#imgs">Read Disk Images</a></li><li><a href="#other">Other Utilities</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="roms">Read Disk Drive ROMs</a></h2></div><div class="h2c"><P>These two programs read out the drive ROMs. There is one - simple - program
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#roms">Read Disk Drive ROMs</a></li><li><a href="#imgs">Read Disk Images</a></li><li><a href="#other">Other Utilities</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="roms" id="roms">Read Disk Drive ROMs</a></h2></div><div class="h2c"><P>These two programs read out the drive ROMs. There is one - simple - program
 to read out the DOS ROM. It actually reads the upper 16k.
 Another more complicated one is used to read out the FDC ROM. For this purpose it transfers some code into the drive buffer and lets it execute by the FDC
 CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffers so that they can be read by the readout programm.</P>
@@ -218,7 +219,7 @@ CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffer
 <TR><TD>Read FDC ROM</TD><TD><A HREF="readfdc">readfdc</A></TD><TD><A HREF="readfdc.lst">readfdc.lst</A></TD><TD>Read the FDC ROM from a dual processor drive. As after the reading the FDC CPU is stuck in an endless loop, the drive must be reset during execution.</TD></TR>
 <TR><TD>Read DOS ROM</TD><TD><A HREF="readdos">readdos</A></TD><TD><A HREF="readdos.lst">readdos.lst</A></TD><TD>Read the upper 16k of the DOS CPU address space from a dual processor drive. This includes the ROM image and is large enough for all dual CPU DOS versions.</TD></TR>
 </TABLE>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="imgs">Read Disk Images</a></h2></div><div class="h2c"><P>These programmes can be used to read disks into disk images and
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="imgs" id="imgs">Read Disk Images</a></h2></div><div class="h2c"><P>These programmes can be used to read disks into disk images and
 write the images back into disks. These files are linked from the
 <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/index.html">CBM archive</A> (except for the listings).</P>
 <TABLE BORDER="1" class="content">
@@ -226,13 +227,13 @@ write the images back into disks. These files are linked from the
 <TR><TD>Read image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/dsk2file.prg">dsk2file.prg</A></TD><TD><A HREF="dsk2file.lst">dsk2file.lst</A></TD><TD>A BASIC/ML program to convert any CBM disk to a dump file (like VC1541 disk to .d64) for a PET or C64.
  The dump file should be written to a device larger than the dumped disk (although the program can be tailored to split an image).</TD></TR>
 <TR><TD>Write image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/file2dsk.prg">file2dsk.prg</A></TD><TD><A HREF="file2dsk.lst">file2dsk.lst</A></TD><TD>A BASIC/ML program to restore any CBM disk from a fitting disk image (like .d64 restore to a VC1541).</TD></TR>
-<TR><TD>Read/Write disk image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.prg">emutil.prg</A></TD><TD><A HREF="emutil.lst">emutil.lst</A></TD><TD>EMUTIL is a disk image archiver for the Commodore 64 and 16K+ CBM/PET computers. It supports all known Commodore disk drives, of all capacities. It also supports all CMD HD and RL Native partitions. Programmed by Bo Zimmerman and Andr&eacute;  Fachat.(See also <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.readme">emutil.readme</A>)</TD></TR>
+<TR><TD>Read/Write disk image</TD><TD><A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.prg">emutil.prg</A></TD><TD><A HREF="emutil.lst">emutil.lst</A></TD><TD>EMUTIL is a disk image archiver for the Commodore 64 and 16K+ CBM/PET computers. It supports all known Commodore disk drives, of all capacities. It also supports all CMD HD and RL Native partitions. Programmed by Bo Zimmerman and André  Fachat.(See also <A HREF="http://www.zimmers.net/anonftp/pub/cbm/pet/archivers/emutil.readme">emutil.readme</A>)</TD></TR>
 </TABLE>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="other">Other Utilities</a></h2></div><div class="h2c"><TABLE BORDER="1" class="content">
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="other" id="other">Other Utilities</a></h2></div><div class="h2c"><TABLE BORDER="1" class="content">
 <TR><TH>Program</TH><TH>Binary</TH><TH>Listing</TH><TH>Comments</TH></TR>
 <TR><TD>diskcopy</TD><TD><A HREF="diskcopy.zip">diskcopy.zip</A></TD><TD></TD><TD>Diskcopy by <a href="http://www.baltissen.org">Ruud Baltissen</a> copies a disk from one drive to another.</TD></TR>
 </TABLE>
-     </div></div><hr>
+     </div></div><hr />
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -244,4 +245,5 @@ write the images back into disks. These files are linked from the
 <p>Interested in electronics design? Look at the <a href="../../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

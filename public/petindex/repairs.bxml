@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2015-10-11">
+	Add Classic Computing Forum link
+    </item>
     <item date="2014-11-09">
 	Add keyboard repair links.
     </item>
@@ -363,6 +366,9 @@ version of the video board for the original PET that went bad frequently.</p>
 	issues with the PET have been resolved.
     </desc>
     <items>
+      <subitem name="Classic Computing Forum" link="forum.classic-computing.de/index.php?page=Thread%26threadID=7129">
+	<desc>A collection of helpful documents for the repair of a PET. Note the forum is in German, but the documents usually are in English).</desc>
+      </subitem>
       <subitem name="Vintage Computer Forum" link="http://www.vintage-computer.com/vcforum/forumdisplay.php?21-Commodore">
 	<desc>Very(!) helpful people in this forum.</desc>
       </subitem>

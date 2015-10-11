@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="">
-<meta name="keywords" content="CSA65 6502 shugart floppy">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="CSA65 6502 shugart floppy" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>CS/A65 PC floppy interface</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -224,9 +225,9 @@
 <div class="overview">This board implements a shugart bus interface as used 
 		in the standard PC floppy disk drives (5.25" and 3.5").
 	
-</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2006-11-01</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li><li><a href="#driver2">OS/A65 shugart bus floppy driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2A</a> (ok)</li><li><a href="#board2">1.0B</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">PETCPU test</a></h3><div class="driverdesc"><p>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li><li><a href="#driver2">OS/A65 shugart bus floppy driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2A</a> (ok)</li><li><a href="#board2">1.0B</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><div class="driverdesc"><p>
 			This file includes a small test program that
 			does a "readaddress" command on the WDC and either
 			prints the sector header (in reverse) or the 
@@ -236,9 +237,9 @@
 			card I/O at $E8C0 (WD177x) and $E8D0 (VIA).
 			</p>
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test1.tar.gz">test1.tar.gz</a></td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">OS/A65 shugart bus floppy driver</a></h3><div class="driverdesc">
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2" id="driver2">OS/A65 shugart bus floppy driver</a></h3><div class="driverdesc">
                         This driver handles the WD1770/1772 shugart bus floppy device.
 			It is included in the <code>fsibm</code> filesystem code
 			and provides the interface the filesystem expects.
@@ -252,20 +253,20 @@
 			The driver calls the method <code>dchanged</code> to
 			signal that a disk has been changed.
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="drv_wd1770.a65">drv_wd1770.a65</a>(floppy driver)</td>
 </tr>
-<tr class="R0"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="wd1770.i65">wd1770.i65</a>(wd1770 register definitions)</td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.2A</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.2A</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board implements a (shugart-type i.e PC-type) 
 			floppy disk controller. The board has been tested
 			with 5.25" and 3.5" PC disk drives.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			I can't reconstruct what mandated the move to a 1.2 revision.
 			The only difference I can currently see is the jumper to select
@@ -273,47 +274,47 @@
 			the hand- and computer-drawn schematics were not always fully
 			in sync (see the revision marks and the respective dates...)
 		</td></tr>
-<tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			Using this board with HD-drives (i.e. 1.44M 3.5"
 			floppies overclocks the WDC1772 chip used in this
 			board, as it is only specified for DD-disks (720k).
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csashug-1.2A-schem.png">csashug-1.2A-schem.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.0B</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board implements a (shugart-type i.e PC-type) 
 			floppy disk controller. The board has been tested
 			with 5.25" and 3.5" PC disk drives.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			Using this board with HD-drives (i.e. 1.44M 3.5"
 			floppies overclocks the WDC1772 chip used in this
 			board, as it is only specified for DD-disks (720k).
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csashug.ps.gz">csashug.ps.gz</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csashug.png">csashug.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csashug.fig">csashug.fig</a></td>
 </tr>
-<tr class="R0"><td><div class="i_parts">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_parts"> </div></td>
 <td><a href="csashugparts.txt">csashugparts.txt</a></td>
 </tr>
-<tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csashugdesc.txt">csashugdesc.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="csashug.jpg">csashug.jpg</a></td>
 </tr></table>
 </div><div class="revend"></div></div></div></div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
@@ -326,4 +327,4 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>

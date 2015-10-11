@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 16bit 32bit expansion">
-<meta name="keywords" content="6502 16bit 32bit expansion">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="6502 16bit 32bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit expansion" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>The 65k Project - Architecture Overview</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -148,23 +149,23 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>The 65k Project - Architecture Overview</h1><p class="copyright">(C)
-2010-2011 Andr&eacute;  Fachat</p> 
+2010-2011 André  Fachat</p> 
 <div class="overview">
 	<p>
 	This page describes an overview on the 65k architecture.
 	</p><p>
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2010-10-23</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-10-23</small>
 	Published this page
-    </li><li><div>&nbsp;</div><small>2010-10-14</small>
+    </li><li><div> </div><small>2010-10-14</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li><li><a href="#opanalysis">Opcode Data Path Analysis</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="preface">Preface</a></h2></div><div class="h2c"><h3><a name="lic">License</a></h3><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#preface">Preface</a></li><li style="list-style-type:none;"><ul><li><a href="#lic">License</a></li><li><a href="#disc">Disclaimer</a></li><li><a href="#cont">Contributors</a></li><li><a href="#chg">Changes</a></li></ul></li><li><a href="#general">General Considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#genrwseq">Read/Write Sequencers</a></li><li><a href="#smt">Simultaneous Multithreading</a></li><li><a href="#pipelining">Pipelining</a></li></ul></li><li><a href="#coreanalysis">Core Analysis</a></li><li style="list-style-type:none;"><ul><li><a href="#adanalysis">Addressing Mode Analysis</a></li><li><a href="#opanalysis">Opcode Data Path Analysis</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="preface" id="preface">Preface</a></h2></div><div class="h2c"><h3><a name="lic" id="lic">License</a></h3><p>
         This content is licensed under the Creative Commons Attribution Share-Alike license, CC-BY-SA version 3.0.
     </p><p>
         Note this "content" includes this web page, but does not include the 6502.org header
         and the left and right web page columns.  Click on the "Maximize" link to see
         the contents covered by this license.
-    </p><ul><li><a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode" target="_blank" class="extlink">CC-BY-SA legal code</a> </li><li><a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" class="extlink">CC-BY-SA license deed (short form)</a> </li></ul><h3><a name="disc">Disclaimer</a></h3><p>
+    </p><ul><li><a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode" target="_blank" class="extlink">CC-BY-SA legal code</a> </li><li><a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" class="extlink">CC-BY-SA license deed (short form)</a> </li></ul><h3><a name="disc" id="disc">Disclaimer</a></h3><p>
         The content comes with no warranty at all!
         There is no guarantee and no promise that this specification is correct, consistent, will actually work,
         or will ever be implemented at all.
@@ -173,18 +174,18 @@
         Still there is no guarantee that a processor according to this spec would not be covered by some patents.
     </p><p>
         Subject to change without notice!
-    </p><h3><a name="cont">Contributors</a></h3><ul>
-        <li>Andr&eacute;  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
-    </ul><h3><a name="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
+    </p><h3><a name="cont" id="cont">Contributors</a></h3><ul>
+        <li>André  Fachat - initial author: <a href="http://www.6502.org/users/andre">8bit Homepage</a></li>
+    </ul><h3><a name="chg" id="chg">Changes</a></h3><p>This section describes the changes to the document:</p>
       <table border="1">
         <tr><th>Date</th><th>Author</th><th>Changes</th></tr>
-        <tr><td>2010-10-25</td><td>Andr&eacute;  Fachat</td><td>Updated Core Architecture Diagram and Description</td></tr>
+        <tr><td>2010-10-25</td><td>André  Fachat</td><td>Updated Core Architecture Diagram and Description</td></tr>
       </table>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="general">General Considerations</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="general" id="general">General Considerations</a></h2></div><div class="h2c">
       <p>
 	This section describes general considerations for the processor design.
       </p>
-    <h3><a name="genrwseq">Read/Write Sequencers</a></h3>
+    <h3><a name="genrwseq" id="genrwseq">Read/Write Sequencers</a></h3>
 	<p>
 	The processor has one problem: addresses are at byte level, bus and register
 	widths are in general more than one byte wide - so misaligned accesses can happen:
@@ -224,7 +225,7 @@
 	Doing misaligned accesses slows the processor down from its optimum speed. In general wider bus width
 	is still faster than narrower bus widths.
 	</p>
-      <h3><a name="smt">Simultaneous Multithreading</a></h3>
+      <h3><a name="smt" id="smt">Simultaneous Multithreading</a></h3>
 	  <p>
 	The 6502 - as well as the 65k - is very efficient concerning bus read/write cycles per opcode.
 	If, however, a misaligned wide access is broken down into two or more smaller memory
@@ -238,7 +239,7 @@
 	  </p><p>
 	This is a topic for a later version though anyway.
 	  </p>
-       	<h3><a name="pipelining">Pipelining</a></h3><p>
+       	<h3><a name="pipelining" id="pipelining">Pipelining</a></h3><p>
 	Pipelining is a processor technique that divides the execution of an opcode into different
 	stages like fetch, decoding, execution and store. Modern processors have pipelines up to 
 	31 such stages (Pentium 4, Pentium D, see link). 
@@ -265,10 +266,10 @@
 	</p><p>
 	The 65k architecture will in the current version implement pipelining similar to the 6502.
 	  </p>
-       	<ul><li><a href="http://en.wikipedia.org/wiki/Instruction_pipeline" target="_blank" class="extlink">Instruction Pipeline</a> </li><li><a href="http://en.wikipedia.org/wiki/Little-endian" target="_blank" class="extlink">Endianness</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634&amp;sid=5dae06f4d153431ee0c86b4cc2b01fa6" target="_blank" class="extlink">6502.org forum: A branch taken delays interrupt ...</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="coreanalysis">Core Analysis</a></h2></div><div class="h2c"><p>
+       	<ul><li><a href="http://en.wikipedia.org/wiki/Instruction_pipeline" target="_blank" class="extlink">Instruction Pipeline</a> </li><li><a href="http://en.wikipedia.org/wiki/Little-endian" target="_blank" class="extlink">Endianness</a> </li><li><a href="http://forum.6502.org/viewtopic.php?t=1634&amp;sid=5dae06f4d153431ee0c86b4cc2b01fa6" target="_blank" class="extlink">6502.org forum: A branch taken delays interrupt ...</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="coreanalysis" id="coreanalysis">Core Analysis</a></h2></div><div class="h2c"><p>
 	This section analyses the requirements for the core architecture.
 	</p>
-     <h3><a name="adanalysis">Addressing Mode Analysis</a></h3>
+     <h3><a name="adanalysis" id="adanalysis">Addressing Mode Analysis</a></h3>
 	  <p>To define the necessary data paths in the core between registers, ALU and other components,
 	here the addressing modes are analysed. As the internal register and data path widths is 
 	always full width, arithmethic operations (adds) do not need to be broken up into 
@@ -389,7 +390,7 @@
 	was a carry - and thus a 16 bit 65k with 8 bit data bus will actually be one cycle slower than the 6502
 	if there is no carry</li>
 	</ol>
-       	<h3><a name="opanalysis">Opcode Data Path Analysis</a></h3>
+       	<h3><a name="opanalysis" id="opanalysis">Opcode Data Path Analysis</a></h3>
 	<p>In this section is an analysis of the different types of opcodes. </p>
 	<h3>Load/Store</h3>
 	<p>Opcodes: LDA, LDX, LDY, STA, STX, STY, STZ</p>
@@ -488,7 +489,7 @@
 	<li>If the ALU does not provide a pass-through mode, then a pass gate from the temp register output to 
 	the register input bus is required</li>
 	</ol>
-       	</div></div><hr>
+       	</div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -500,4 +501,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

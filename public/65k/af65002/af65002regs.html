@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="65002 documentation">
-<meta name="keywords" content="8-bit,6502,65002">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>65002 Register Set</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -199,7 +200,7 @@
         As there are different options for register widths, "W" describes the width
         option, i.e. either 16, 32 or 64 bit.
         </p><p>In addition to the core registers there are registers for the memory management.</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#core">Core Register Set</a></li><li><a href="#intregs">Interrupt Registers</a></li><li><a href="#mode">User- and Hypervisor Mode Control</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="core">Core Register Set</a></h2></div><div class="h2c">
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#core">Core Register Set</a></li><li><a href="#intregs">Interrupt Registers</a></li><li><a href="#mode">User- and Hypervisor Mode Control</a></li><li><a href="#regmem">Memory Management Register</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="core" id="core">Core Register Set</a></h2></div><div class="h2c">
     <table border="1">
         <tr><th>Register</th><th>Name</th><th>6502</th><th>65k</th><th>Comment</th></tr>
         <tr><td>PC</td><td>Program Counter</td><td>16 bit</td><td>W bit</td><td></td></tr>
@@ -213,7 +214,7 @@
         <tr><td>SR</td><td>Status Register</td><td>8 bit, with bit 5 set to 1</td><td>8 bit</td><td>Same as 6502, bit5 set to 0, high 8 bit see below</td></tr>
         <tr><td>ESR</td><td>Extended Status Register</td><td>-</td><td>8 bit</td><td>See below</td></tr>
     </table>
-    <p>The A, X and Y registers are similar to the 6502 registers, only that they are at least 16&nbsp; bit wide.</p>
+    <p>The A, X and Y registers are similar to the 6502 registers, only that they are at least 16  bit wide.</p>
     <p>The status register is divided into two bytes, the status and the extended status. The first mirrors the original 6502 status byte:</p>
     <table border="1">
 <tr><th>bit 7</th><th>bit 6</th><th>bit 5</th><th>bit 4</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th></tr>
@@ -257,7 +258,7 @@
         with a size according to SF.
         </p>
     </table>
-   </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="intregs">Interrupt Registers</a></h2></div><div class="h2c">
+   </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="intregs" id="intregs">Interrupt Registers</a></h2></div><div class="h2c">
      <table>
         <tr><th colspan="5">Interrupt Management Registers</th></tr>
         <tr><th>Register</th><th>Name</th><th>6502</th><th>65k</th><th>Comment</th></tr>
@@ -329,7 +330,7 @@
 <tr><th>AV</th><td>Address of abort vectors table; lowest 8 bit are reserved and must be 0</td></tr>
     </table>
 	<p>For details see the <a href="af65002-int.html">Interrupts page</a>.</p>
-  </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="mode">User- and Hypervisor Mode Control</a></h2></div><div class="h2c">
+  </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mode" id="mode">User- and Hypervisor Mode Control</a></h2></div><div class="h2c">
      <table>
         <tr><th colspan="5">Mode Control Registers</th></tr>
         <tr><th>Register</th><th>Name</th><th>6502</th><th>65k</th><th>Comment</th></tr>
@@ -365,15 +366,15 @@
 <tr><td>UIM2/UIM1/UIM0</td><td>User mode interrupt mask register</td><td>When the interrupt status bit is set in user mode (e.g. with SEI), 
 	interrupts can be masked with this setting.</td><td>Reset to the lowest priority interrupt ("110" - so that this is blocked).</td></tr>
     </table>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="regmem">Memory Management Register</a></h2></div><div class="h2c"><p>The container management has a number of register sets. Each set contains three full size (W bits)
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="regmem" id="regmem">Memory Management Register</a></h2></div><div class="h2c"><p>The container management has a number of register sets. Each set contains three full size (W bits)
         registers:</p>
     <table border="1">
         <tr><th>Container-Register</th><th>Definition</th><th>Comment</th></tr>
-        <tr><td>Addr/matchcode mask</td><td>0-7: matchcode mask<br>
+        <tr><td>Addr/matchcode mask</td><td>0-7: matchcode mask<br />
                                         8-W: address mask</td><td></td></tr>
-        <tr><td>Addr/matchcode compare value</td><td>0-7: matchcode compare value<br>
+        <tr><td>Addr/matchcode compare value</td><td>0-7: matchcode compare value<br />
                                         8-W: address compare value</td><td></td></tr>
-        <tr><td>Addr offset/container control</td><td>0-7: Container control<br>
+        <tr><td>Addr offset/container control</td><td>0-7: Container control<br />
                                         8-W: address offset value</td><td></td></tr>
     </table><p>
         There can be any number of register sets. The number can be read from a configuration register.
@@ -387,11 +388,11 @@
 	</p><p>
 	For more details see the <a href="af65002mem.html">Memory Management page</a>.
 	</p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms as described
 in <a href="af65002front.html#lic">the license section</a>.
-    </div></div><hr>
+    </div></div><hr />
 Last updated 2012-04-29.
   Last modified: 
 2013-11-17
@@ -402,4 +403,5 @@ Last updated 2012-04-29.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

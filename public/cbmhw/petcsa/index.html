@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="">
-<meta name="keywords" content="Commodore PET CSA65 6502 CPU">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="Commodore PET CSA65 6502 CPU" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>Commodore PET &lt;-&gt; CS/A65 bus adapter</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -188,15 +189,15 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	</ul>
 	</p>
 	
-</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-03-18</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-03-18</small>
 			Added the 1.2B version.
-		</li><li><div>&nbsp;</div><small>2011-01-15</small>
+		</li><li><div> </div><small>2011-01-15</small>
 			Added the 1.2A version.
-		</li><li><div>&nbsp;</div><small>2011-01-13</small>
+		</li><li><div> </div><small>2011-01-13</small>
 			Added the usage section
-		</li><li><div>&nbsp;</div><small>2006-12-20</small>
+		</li><li><div> </div><small>2006-12-20</small>
 			Published the board.
-		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#use">Usage</a></li><li style="list-style-type:none;"><ul><li><a href="#other">Use in other systems</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2b</a> (untested)</li><li><a href="#board2">1.2a</a> (untested)</li><li><a href="#board3">1.1a</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="use">Usage</a></h2></div><div class="h2c">
+		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#use">Usage</a></li><li style="list-style-type:none;"><ul><li><a href="#other">Use in other systems</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2b</a> (untested)</li><li><a href="#board2">1.2a</a> (untested)</li><li><a href="#board3">1.1a</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="use" id="use">Usage</a></h2></div><div class="h2c">
 	<p>The board is installed "under" the 6502 CPU, i.e. the 6502 is taken of the
 	Commodore's board and put onto the board. Then the board is put in place of the
 	6502 CPU on the Commodore board.
@@ -211,7 +212,7 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 	whether the used board decodes A11. If memory is used, then the adapter needs to set
 	the upper address bits A12-A19. This is done by writing these address bits to $e808.
 	</p>
-	<h3><a name="other">Use in other systems</a></h3><p>You should even be able to use the board in other 6502-based systems.
+	<h3><a name="other" id="other">Use in other systems</a></h3><p>You should even be able to use the board in other 6502-based systems.
 		The bus decodes addresses in 4k blocks, but of the control block only 
 		16 addresses are used ($80x), and of the map block only those areas
 		are used that are decoded by the CS/A board.
@@ -219,14 +220,14 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 		Thus if your system has the relevant address areas unmapped, you should be able to use
 		the board also!
 		</p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.2b</a></h3>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.2b</a></h3>
 <div class="revdesc"><p>Status: untested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			This board has not been tested yet.
 			The schematics is basically the same as the 1.1A version.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Compared to the 1.2a version it exchanges the polarity of the
 			power connector, so it is compatible with the other boards I did
@@ -234,63 +235,63 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 			namely GND in the middle now and VCC on the outer pins.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="petcsadesc-v1.1.txt">petcsadesc-v1.1.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.2b.sch">pet_csadapter-v1.2b.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.2b-sch.png">pet_csadapter-v1.2b-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.2b.brd">pet_csadapter-v1.2b.brd</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.2b-brd.png">pet_csadapter-v1.2b-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.2b-layout.png">pet_csadapter-v1.2b-layout.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.2a</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.2a</a></h3>
 <div class="revdesc"><p>Status: untested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			This board has not been tested yet.
 			The schematics is basically the same as the 1.1A version.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board version adds a power plug, 3.3V generation, a second CS/A bus adapter
 			(so you can use it in a 8296 and a 3032), and some more jumper options.
 			Layout such that it should fit into a 8296 and a 3032 (not tested yet though).
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="petcsadesc-v1.1.txt">petcsadesc-v1.1.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.2a.sch">pet_csadapter-v1.2a.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.2a-sch.png">pet_csadapter-v1.2a-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.2a.brd">pet_csadapter-v1.2a.brd</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.2a-brd.png">pet_csadapter-v1.2a-brd.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board3">Version: 1.1a</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.1a</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			This board has been tested with a 8296 only.
 			A later test with a 3032 (i.e. a board without CRTC) shows
 			that the CS/A board would reach out of the case, thus
 			the adapter does not work there.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			It seems that the board requires a separate power 
 			supply. When POKEing data into the BIOS memory, 
@@ -298,7 +299,7 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 			(e.g. a PRINT statement), but misses some writes
 			when not.
 		</td></tr>
-<tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			The layout could be better. In a 8296 it reaches
 			over the main board power connector. I had to use
@@ -306,31 +307,31 @@ underneath the 6502 CPU of the PET. On the other side it provides a socket for a
 			necessary height.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="petcsadesc-v1.1.txt">petcsadesc-v1.1.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.1a.sch">pet_csadapter-v1.1a.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="pet_csadapter-v1.1a-sch.png">pet_csadapter-v1.1a-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.1a.brd">pet_csadapter-v1.1a.brd</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="pet_csadapter-v1.1a-brd.png">pet_csadapter-v1.1a-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="8296board.jpg">8296board.jpg</a>(The original 8296 board)</td>
 </tr>
-<tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="8296board+drvio.jpg">8296board+drvio.jpg</a>(The board with adapter and DRVIO board)</td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="8296board+bios.jpg">8296board+bios.jpg</a>(The board with adapter and BIOS board)</td>
 </tr>
-<tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="../petnet/peteth.jpeg">../petnet/peteth.jpeg</a>(The board with adapter and Ethernet board (and extra 3.3V generation))</td>
 </tr></table>
 All Copyrights are acknowledged.
@@ -345,4 +346,4 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>

@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="CRTC operation">
-<meta name="keywords" content="CRTC 6545 6845 operation">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="CRTC operation" />
+<meta name="keywords" content="CRTC 6545 6845 operation" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>CRTC operation</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -165,7 +166,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>CRTC operation</h1><p class="copyright">(C)
-1998-2010 Andr&eacute;  Fachat</p> 
+1998-2010 André  Fachat</p> 
 <div class="overview">
 <P>The 6545/6845 Cathode Ray Tube Controller (CRTC) is a flexible
 video chip. It has been used in the Commodore PET computers,
@@ -194,12 +195,12 @@ overview over the derived CRTC internals on
 computer page or in the PET schematics on the
 <A HREF="../../petindex/links.html">links page</A> of the PET index.
 </P>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-11-02</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2013-11-02</small>
 	Added the C64 80 column card description, as well as the
 	hires mode description.
-    </li><li><div>&nbsp;</div><small>2010-12-20</small>
+    </li><li><div> </div><small>2010-12-20</small>
 	Separated from the main <a href="crtc.html">CRTC</a> page.
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pet">Example CRTC use in the Commodore PET</a></li><li style="list-style-type:none;"><ul><li><a href="#fat40">PET 4032 'Fat40'</a></li><li><a href="#8032">PET 8032</a></li><li><a href="#8296">PET 8296</a></li><li><a href="#colourpet">Steve Gray's Colour PET</a></li><li><a href="#c64_80col">C64 80 column card</a></li><li><a href="#hires">Hires modes</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="pet">Example CRTC use in the Commodore PET</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#pet">Example CRTC use in the Commodore PET</a></li><li style="list-style-type:none;"><ul><li><a href="#fat40">PET 4032 'Fat40'</a></li><li><a href="#8032">PET 8032</a></li><li><a href="#8296">PET 8296</a></li><li><a href="#colourpet">Steve Gray's Colour PET</a></li><li><a href="#c64_80col">C64 80 column card</a></li><li><a href="#hires">Hires modes</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="pet" id="pet">Example CRTC use in the Commodore PET</a></h2></div><div class="h2c">
 <P>
 There are a few things that might be different from other implementations
 in the PET. The CRTC has been used in 40 columns and 80 columns models.
@@ -230,7 +231,7 @@ blanks the scanlines for the scanlines beyond the 8th.
 Without that and only RA0-2 used for character ROM address the
 same character would be redisplayed from the start.
 </P>
-    <h3><a name="fat40">PET 4032 'Fat40'</a></h3>
+    <h3><a name="fat40" id="fat40">PET 4032 'Fat40'</a></h3>
 <P>The so-called 'Fat40' is a 4032 model that has a 12" screen
 and a "universal board" - a board that can be used for the 8032 or the
 4032. Thus it uses the CRTC as video chip. A separate static memory
@@ -279,7 +280,7 @@ PIA1 CB1 line to
 generate system interrupts with the frame rate. Also the state
 of this line can be checked with VIA PB5.
 </P>
-	<h3><a name="8032">PET 8032</a></h3>
+	<h3><a name="8032" id="8032">PET 8032</a></h3>
 <P>The universal board can also be used in the 8032. As the 8032 also
 runs on 1MHz only, there is a problem with the memory bandwidth.
 The memory used was static RAM with a maximum access frequency of
@@ -340,7 +341,7 @@ It also makes it clear that it is a relatively simple addition to the 4032 to di
 CRTC video chip with 40 columns - as the video RAM bus width is 16bit instead of 8bit,
 each of the CRTC character actually is two characters on the screen.
 </P>
-	<h3><a name="8296">PET 8296</a></h3>
+	<h3><a name="8296" id="8296">PET 8296</a></h3>
 <P>The 8296 is a different beast altogether. Here the separate static video memory is
 completely gone. All the memory of the system (actually 128k, of which 96k can be
 used as main memory and 4k as video memory) is put into two dynamic RAM banks of
@@ -389,7 +390,7 @@ that the memory is accessed faster than 2MHz. In fact it is accessed
 faster, with approx. 4Mhz, as can be seen in the description of the UC2
 PLA logic equations in <a href="local/8296desc.txt">8296desc.txt</a>.
 </P>
-	<h3><a name="colourpet">Steve Gray's Colour PET</a></h3>
+	<h3><a name="colourpet" id="colourpet">Steve Gray's Colour PET</a></h3>
 <P>Steve Gray has come up with an ingenious way of converting a
 green/black 80 column PET into a 40 column colour PET!
 In each cycle the 80 column PET reads two bytes, as described above.
@@ -451,7 +452,7 @@ The delay between reading the data and actually shifting it out must also be tak
 by using some delay latch. Otherwise the shifted data changes colour when the next data byte is 
 being read from the RAM.
 </P>
-	<ul><li><a href="http://www.6502.org/users/sjgray/projects/colourpet/index.html" target="_blank" class="extlink">The Colour PET</a> </li></ul><h3><a name="c64_80col">C64 80 column card</a></h3>
+	<ul><li><a href="http://www.6502.org/users/sjgray/projects/colourpet/index.html" target="_blank" class="extlink">The Colour PET</a> </li></ul><h3><a name="c64_80col" id="c64_80col">C64 80 column card</a></h3>
 <P>Bil Herd has found a set of schematics - for the C64 80 columns card.
 This card also uses a CRTC - but the schematics show an interesting quirk: the
 C64 does not have access to the video RAM! Well, at least not directly.
@@ -514,7 +515,7 @@ select a second character set in the charrom (SETSEL), and a 40/80 column switch
 switches between the 80 column output from above and a through-connected video input (connected
 from the C64's VIC video output via separate cable).
 </P>
-	<ul><li><a href="http://c128.com/commodore-c64-80-column-adapter" target="_blank" class="extlink">C64 80 column card</a> </li></ul><h3><a name="hires">Hires modes</a></h3>
+	<ul><li><a href="http://c128.com/commodore-c64-80-column-adapter" target="_blank" class="extlink">C64 80 column card</a> </li></ul><h3><a name="hires" id="hires">Hires modes</a></h3>
 <P>
 The CRTC is made for character-based display. To use it for hires graphics therefore some
 tricks need to be done. 
@@ -577,11 +578,11 @@ used in the CS/A65 video card.
 Incidentially the IBM PC CGA graphics card uses a similar scheme, with just RA0
 switching between two 8k memory banks.
 </P>
-	<ul><li><a href="http://localhost:8080/8bit/csa/vdc/index.html" target="_blank" class="extlink">CS/A65 video card</a> </li><li><a href="http://www.seasip.info/VintagePC/cga.html" target="_blank" class="extlink">IBM PC CGA graphics card</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+	<ul><li><a href="http://localhost:8080/8bit/csa/vdc/index.html" target="_blank" class="extlink">CS/A65 video card</a> </li><li><a href="http://www.seasip.info/VintagePC/cga.html" target="_blank" class="extlink">IBM PC CGA graphics card</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </div></div><hr>
+  </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 	
   Last modified: 
@@ -593,4 +594,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

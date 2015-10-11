@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Commodore PET 65816 CPU replacement board explained">
-<meta name="keywords" content="Commodore PET 6502 65816 cpu replacement board">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="Commodore PET 65816 CPU replacement board explained" />
+<meta name="keywords" content="Commodore PET 6502 65816 cpu replacement board" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>How does the 65816 board work?</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -117,18 +118,18 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>How does the 65816 board work?</h1><p class="copyright">(C)
-2010-2010 Andr&eacute;  Fachat</p> 
+2010-2010 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes the inner workings of the 65816 board,
 	what external and internal signals are there and how they work together. Also it
 	explains the different parts of the VHDL code.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#gen">General</a></li><li style="list-style-type:none;"><ul><li><a href="#challenge">The challenge...</a></li><li><a href="#sync">Clock Synchronization</a></li><li><a href="#jitter">Jitter</a></li><li><a href="#origbus">Original bus access</a></li><li><a href="#bugus">Bogus cycle elimination</a></li><li><a href="#2mhz">2 mhz operation</a></li><li><a href="#clocks">clock duty cycle</a></li></ul></li><li><a href="#vhdl">vhdl explained...</a></li><li style="list-style-type:none;"><ul><li><a href="#core">pet816.vhd</a></li><li><a href="#core">core.vhd</a></li><li><a href="#map">systemmap.vhd</a></li><li><a href="#div">clockdivider.vhd</a></li><li><a href="#shift">ClockShift.vhd</a></li><li><a href="#sync">ClockSync.vhd</a></li><li><a href="#div">ControlRegister.vhd</a></li><li><a href="#div">BoardMemSel.vhd</a></li></ul></li><li><a href="#tests">VHDL Testing</a></li><li style="list-style-type:none;"><ul><li><a href="#testsetup">Test Setup</a></li><li><a href="#testexec">Test Execution</a></li><li><a href="#testclock">Clock Testing</a></li><li><a href="#testtiming">Test Timing</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="gen">General</a></h2></div><div class="h2c"><p>Here the general design is discussed</p>
-     <h3><a name="challenge">The challenge...</a></h3><p>As there are already 65816-based boards (like my <a href="../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#gen">General</a></li><li style="list-style-type:none;"><ul><li><a href="#challenge">The challenge...</a></li><li><a href="#sync">Clock Synchronization</a></li><li><a href="#jitter">Jitter</a></li><li><a href="#origbus">Original bus access</a></li><li><a href="#bugus">Bogus cycle elimination</a></li><li><a href="#2mhz">2 mhz operation</a></li><li><a href="#clocks">clock duty cycle</a></li></ul></li><li><a href="#vhdl">vhdl explained...</a></li><li style="list-style-type:none;"><ul><li><a href="#core">pet816.vhd</a></li><li><a href="#core">core.vhd</a></li><li><a href="#map">systemmap.vhd</a></li><li><a href="#div">clockdivider.vhd</a></li><li><a href="#shift">ClockShift.vhd</a></li><li><a href="#sync">ClockSync.vhd</a></li><li><a href="#div">ControlRegister.vhd</a></li><li><a href="#div">BoardMemSel.vhd</a></li></ul></li><li><a href="#tests">VHDL Testing</a></li><li style="list-style-type:none;"><ul><li><a href="#testsetup">Test Setup</a></li><li><a href="#testexec">Test Execution</a></li><li><a href="#testclock">Clock Testing</a></li><li><a href="#testtiming">Test Timing</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gen" id="gen">General</a></h2></div><div class="h2c"><p>Here the general design is discussed</p>
+     <h3><a name="challenge" id="challenge">The challenge...</a></h3><p>As there are already 65816-based boards (like my <a href="../csa/cpu816v2/index.html">CS/A65 65816 board</a>) why should it be difficult to build a board to replace a 6502?
 	Well, it's the timing! In my other 65816 board the actual system clock is derived from the
 	65816 fast clock in a synchronous way. But in a 6502 replacement no such synchronous clock is
 	available. There are two clock domains, the system domain that feeds the board with a 
-	slow (1&nbsp;MHz or 2&nbsp;MHz for example) PHI0 clock - and the fast 65816 clock domain.
+	slow (1 MHz or 2 MHz for example) PHI0 clock - and the fast 65816 clock domain.
 	These two need to be synchronized.
 	</p><p>
 	Unfortunately if two different clock domains interact, metastability can occur 
@@ -148,7 +149,7 @@
 	Lacking experience with a PLL, and not being sure how a PLL would react on changing base
 	system frequencies - where the CPU to be replaced can already run on different frequencies -
 	I decided to go for the arbiter approach.
-	</p><ul><li><a href="http://en.wikipedia.org/wiki/Metastability_in_electronics" target="_blank" class="extlink">Wikipedia on metastability in electronics</a> </li><li><a href="http://en.wikipedia.org/wiki/PLL" target="_blank" class="extlink">Wikipedia on phase-locked loop</a> </li></ul><h3><a name="sync">Clock Synchronization</a></h3><p>
+	</p><ul><li><a href="http://en.wikipedia.org/wiki/Metastability_in_electronics" target="_blank" class="extlink">Wikipedia on metastability in electronics</a> </li><li><a href="http://en.wikipedia.org/wiki/PLL" target="_blank" class="extlink">Wikipedia on phase-locked loop</a> </li></ul><h3><a name="sync" id="sync">Clock Synchronization</a></h3><p>
 	The clock synchronization has to happen on two places - from slow to fast and from fast to slow.
 	Let's first look at the fast to slow transition. When the CPU outputs the correct addresses
 	during an (initially) fast cycle, the CPLD logic detects a slow access and asserts the
@@ -158,7 +159,7 @@
 	The rising edge of the CPU clock is used as this is the time when CPU signals are guaranteed
 	to be stable. There has to be some safety margin to account for propagation delays in the 
 	CPLD <code>isslow</code> generation though. Therefore the PHI1 phase cannot be too fast.
-	I found that it should be at least 50&nbsp;ns. 
+	I found that it should be at least 50 ns. 
 	</p><p>
 	Once <code>slowdetected</code> is asserted, the CPU clock is held high to await the actual
 	slow cycle. I.e. I don't use the CPU's RDY pin, but the 65816 feature that it can be stopped
@@ -168,16 +169,16 @@
 	done can be anywhere during the slow clock cycle. It could be during PHI1, PHI2 close to any
 	of the transitions, anywhere. That's where the "arbiter" kicks in.
 	</p><div class="rightimg">
-                <a href="imgs/timing1.png"><img width="250px" src="imgs/timing1_small.png"></a><br>General timing structure
+                <a href="imgs/timing1.png"><img width="250px" src="imgs/timing1_small.png" /></a><br />General timing structure
                 </div>
 	<p>
-	In this diagram you can see that the first slow access is detected at 2300&nbsp;ns, in the
+	In this diagram you can see that the first slow access is detected at 2300 ns, in the
 	middle of a slow cycle (PHI0/PHI2 high). The actual slow access thus has to wait for the next
 	slow PHI1 cycle to actually start.
 	</p><p>
 	In the timing diagram you also see a signal called <code>phidelayed</code>. This plays a key role
 	in the synchronization mechanism. This signal is the slow PHI0 input, but delayed for a certain
-	amount of time (and OR'd with PHI0, see 2&nbsp;MHz operation below). 
+	amount of time (and OR'd with PHI0, see 2 MHz operation below). 
 	The falling edge is important here. <code>phidelayed</code> is delayed such that the falling
 	edge is far enough before the rising edge of PHI2 to allow for address bus setup times. 
 	Therefore when <code>phidelayed</code>
@@ -190,7 +191,7 @@
 	at <code>phidelayed</code> going low), this signal is then used as "single point of thruth"
 	signal to enable the slow bus (only if the slow access actually goes to the slow bus, and not to
 	the board's RAM or ROM). These signals are then latched with <code>phidelayed2</code> going low
-	which comes 20&nbsp;ns after <code>phidelayed</code>. The <code>nslowbusclr</code>,
+	which comes 20 ns after <code>phidelayed</code>. The <code>nslowbusclr</code>,
 	<code>slowaddrlatch</code>, <code>nslowdataen</code> and <code>rnw</code> then determine the
 	state of the slow bus (details see below).
 	</p><p>
@@ -199,24 +200,24 @@
 	counter again (<code>divenable</code>) so that the fast clock starts with a fresh,
 	PHI1 cycle (i.e. PHI2 low). In the diagram you can actually see that the next cycle
 	is also detected as a slow cycle, but it is not detected as going to the original system bus.
-	</p><h3><a name="jitter">Jitter</a></h3><p>
+	</p><h3><a name="jitter" id="jitter">Jitter</a></h3><p>
 	As the two clock domains are not completely in sync, there is some jitter that appears
 	between the slow domain signal (PHI2) and its fast clock domain counterpart 
 	(<code>phidelayed</code>). I.e. the timing interval between PHI2 going low and 
 	<code>phidelayed</code> going low is not constant, but changes in the range of a fast clock
-	cylce, i.e. 20&nbsp;ns. All other timing values must take this into account.
+	cylce, i.e. 20 ns. All other timing values must take this into account.
 	</p><p>
 	Also there is some jitter when the slow cycle ends. A PHI2 going low the <code>slowdone</code>
 	signal is asserted. This signal is used to reset the <code>slowdetected</code> signal, so this
 	goes low directly with PHI2 going low. This pulse must be long enough, so <code>startfast</code>
-	that ends the <code>slowdone</code> pulse must be at least 10&nbsp;ns, better as I use it
-	20&nbsp;ns after PHI2 goes low. <code>startfast</code> has some jitter, though. It is derived
+	that ends the <code>slowdone</code> pulse must be at least 10 ns, better as I use it
+	20 ns after PHI2 goes low. <code>startfast</code> has some jitter, though. It is derived
 	from the <code>phidelayed</code> shift register line, so it is subject to the same jitter
 	as <code>phidelayed</code>.
-	</p><h3><a name="origbus">Original bus access</a></h3><p>The CPLD control interface for the original bus consists of these signals:</p>
+	</p><h3><a name="origbus" id="origbus">Original bus access</a></h3><p>The CPLD control interface for the original bus consists of these signals:</p>
 	<ul>
 		<li><code>nslowbuslcr</code> - if low, set the address lines to zero (as long as CPU does not need the original bus</li>
-		<li><code>slowaddrlatch</code> - on a rising edge of this signal the CPU address bus values are latched and put on the original system bus. Must be at least about 20&nbsp;ns behind <code>nslowbusclr</code> going high, to allow the '273 ICs to recover and latch the correct address.</li>
+		<li><code>slowaddrlatch</code> - on a rising edge of this signal the CPU address bus values are latched and put on the original system bus. Must be at least about 20 ns behind <code>nslowbusclr</code> going high, to allow the '273 ICs to recover and latch the correct address.</li>
 		<li><code>nslowdataen</code> - if low, connect the CPU data bus with the system data bus</li>
 		<li><code>rnw</code> - this is the system bus read/not write line. You cannot connect this directly to the CPU, so in the CPLD a circuit similar to the '273 is emulated for the read/not write line</li>
 	</ul><p>
@@ -230,7 +231,7 @@
 	due to the way I then created the signals to clear and latch the slow address bus.
 	As I have changed that I currently do not see any need to delay read cycles anymore.
 	So there is still room for experimentation.
-	</p><h3><a name="bugus">Bogus cycle elimination</a></h3><p>On quite some opcodes the 6502 CPU does memory accesses that are actually
+	</p><h3><a name="bugus" id="bugus">Bogus cycle elimination</a></h3><p>On quite some opcodes the 6502 CPU does memory accesses that are actually
 	not used, so called bogus cycles. It does them when it needs time to internally compute
 	an address value for example (e.g. when crossing page boundaries etc). The original 
 	6502 has no way of telling the external system whether a cycle is valid or not.
@@ -241,7 +242,7 @@
 	the previous slow access), and wait for <code>phidelayed</code> going low to initiate
 	a real slow cycle.
 	</p><div class="rightimg">
-                <a href="imgs/timing2.png"><img width="250px" src="imgs/timing2_small.png"></a><br>Hiding bogus cycles
+                <a href="imgs/timing2.png"><img width="250px" src="imgs/timing2_small.png" /></a><br />Hiding bogus cycles
                 </div>
 	<p>
 	but when the cpu access is not valid, there is no need to wait for the actual slow cycle.
@@ -255,9 +256,9 @@
 	builds the <code>validaddr</code> signal from <code>VDA</code> and <code>VPA</code>. When
 	this signal goes low, the cycle is not valid, which happens shortly after time 45us in
 	the diagram, where the red marker line is.
-	</p><h3><a name="2mhz">2 mhz operation</a></h3><p>
+	</p><h3><a name="2mhz" id="2mhz">2 mhz operation</a></h3><p>
 	To hide bogus cycles, the time interval between PHI2 going low and <code>phidelayed</code>
-	going low must be long enough. Unfortunately, when the system is running at 2&nbsp;MHz, this
+	going low must be long enough. Unfortunately, when the system is running at 2 MHz, this
 	time interval is too long: there is not enough time between <code>phidelayed</code> going
 	low (starting a slow access) to allow for the address setup times on the slow bus.
 	In fact the falling edge of the <code>phidelayed</code> actually runs into the
@@ -266,35 +267,35 @@
 	</p><p>
 	That is where the <code>FASTMODE</code> clock register bits comes in. It is set by default
 	and reduces the <code>phidelayed</code> delay such that the system actually works with 
-	2&nbsp;MHz. But there is a cost - you cannot hide bogus cycles anymore.
-	</p><h3><a name="clocks">clock duty cycle</a></h3><p>
+	2 MHz. But there is a cost - you cannot hide bogus cycles anymore.
+	</p><h3><a name="clocks" id="clocks">clock duty cycle</a></h3><p>
 	Maybe you have already wondered how I actually get to a CPU clock frequency of
-	10&nbsp;MHz. There actually is a trick involved.
+	10 MHz. There actually is a trick involved.
 	</p><p>
-	Why is this so difficult to achieve with a 50&nbsp;MHz clock signal? Because the clock
+	Why is this so difficult to achieve with a 50 MHz clock signal? Because the clock
 	is divided by an odd value, 5. Going from frequencies to clock cycle lengths, going from
-	50&nbsp;MHz to 10&nbsp;MHz means to go from a 20&nbsp;ns clock cycle to 100&nbsp;ns, i.e.
+	50 MHz to 10 MHz means to go from a 20 ns clock cycle to 100 ns, i.e.
 	5 times as much. But normally clock dividers work on a fixed transition on the input signal.
 	I.e. when using 5 cycles of the input clock I would only be able to have something like
 	2 cycles low and 3 cycles high. I had actually tried this by changing the clock latch value
 	loaded into the clock counter by one depending on the clock state. The CPU would work with
-	faster speeds (it's rated 14&nbsp;MHz) so 40&nbsp;ns low is ok, and the RAM would work
-	with 60&nbsp;ns ok.
+	faster speeds (it's rated 14 MHz) so 40 ns low is ok, and the RAM would work
+	with 60 ns ok.
 	</p><p>
 	However, as I have already written above, this did not leave enough time for the CPU 
 	to put up the addresses <em>and</em> the CPLD to actually use the address for address decoding.
 	What could I do? Here comes the trick. I delayed this asymmetric clock signal by 
-	10&nbsp;ns by using the opposite edge of the fast input clock, then AND'ed the two signals.
-	Alas, a clock signal with 50&nbsp;ns low and 50&nbsp;ns high phase.
+	10 ns by using the opposite edge of the fast input clock, then AND'ed the two signals.
+	Alas, a clock signal with 50 ns low and 50 ns high phase.
 	</p><p>
-	Admittedly this signal is out of specs for the static RAM chip I use, which is rated 55&nbsp;ns
+	Admittedly this signal is out of specs for the static RAM chip I use, which is rated 55 ns
 	access time. Using the burn-in test however, I found it still works. I might get me a faster
 	RAM IC though.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="vhdl">vhdl explained...</a></h2></div><div class="h2c"><p>in this section i will describe the main structure of the vhdl code that implements
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="vhdl" id="vhdl">vhdl explained...</a></h2></div><div class="h2c"><p>in this section i will describe the main structure of the vhdl code that implements
 	the logic in the cpld. i will also go into ways of efficient testing as i experienced
 	while developing the board.</p>
 <div class="rightimg">
-                <a href="imgs/vhdlstruct.svg"><img width="250px" src="imgs/vhdlstruct.png"></a><br>vhdl structure
+                <a href="imgs/vhdlstruct.svg"><img width="250px" src="imgs/vhdlstruct.png" /></a><br />vhdl structure
                 </div>
 	<p>vhdl defines that logic is separated into modules. each module has input and
 		output signals that define the "interface" of the module. in general you can think
@@ -303,7 +304,7 @@
 	</p><p>so i have separated the cpld logic into different modules as well, which i am going
 		to explain here. the different modules and their structure is shown in the side image.
 	</p>
-     <h3><a name="core">pet816.vhd</a></h3><p>
+     <h3><a name="core" id="core">pet816.vhd</a></h3><p>
 	this module is the top level module. its input and output lines are the ones that are
 	used on the cpld pins. it does not actually contain any logic. instead it only passes
 	the signals to the core module. in addition to that it also defines the power-up values
@@ -312,7 +313,7 @@
 	the power-up values for the registers are defined in this module, so that in a debug
 	setting i can define different power-up values for the registers without changing the
 	core module.
-	</p><h3><a name="core">core.vhd</a></h3><p>
+	</p><h3><a name="core" id="core">core.vhd</a></h3><p>
 	the core module is the one that holds all the other parts together. its input and output
 	signals are the ones for the cpld pins, but additionally contains the power-up values for
 	the clock and control registers.
@@ -329,12 +330,12 @@
 	signals - addresses, vpa/vda (in form of the <code>validaddr</code> signal), r/-w - control
 	register bits and more. it is an asynchronous signal that appears when the cpu signals
 	fulfill the appropriate conditions. it is then clocked in the clocksync module.
-	</p><h3><a name="map">systemmap.vhd</a></h3><p>
+	</p><h3><a name="map" id="map">systemmap.vhd</a></h3><p>
 	the systemmap generates signals for the different memory areas. it determines where
 	in the memory map the i/o and the video memory areas are. it also determines where the
 	mirror ram (for the lowest 64k) and the system mirror are. this is the only module
 	that needs to be replaced for a different type of system (at least in theory).
-	</p><h3><a name="div">clockdivider.vhd</a></h3><p>
+	</p><h3><a name="div" id="div">clockdivider.vhd</a></h3><p>
 	this module creates the main clock signals. it gets the 50mhz input clock and divides
 	the clock signal by 2 (<code>divby2</code>), 
 	as well as by the value given from the clock register. 
@@ -342,12 +343,12 @@
 	actual cpu clock. the clock divider has an enable input that resets the clock signal.
 	this is used to restart the fast <code>masterclk</code> with a full phase 1 (phi1 high,
 	phi2 low) after a slow access.
-	</p><h3><a name="shift">ClockShift.vhd</a></h3><p>
+	</p><h3><a name="shift" id="shift">ClockShift.vhd</a></h3><p>
 	The ClockShift module uses the <code>masterclk</code> and <code>divby2</code> signals
 	to to delay the slow system clock by defined delay times. The resulting signals 
 	<code>phidelayed</code>, <code>phidelayed2</code> and <code>fastr/fastw</code> are used
 	to synchronize the CPU with the slow system clock.
-	</p><h3><a name="sync">ClockSync.vhd</a></h3><p>
+	</p><h3><a name="sync" id="sync">ClockSync.vhd</a></h3><p>
 	This module controls when the CPU is doing a slow memory access (be it orignal system bus, or
 	on the board's fast bus - ROM or the SLOWCLK control register bit is set). 
 	The <code>slowdetected</code> signal is the <code>isslow</code> signal clocked by the
@@ -357,21 +358,21 @@
 	input - which is generated in the Core module from the <code>fastr/fastw</code> shift 
 	module outputs. But <code>startfast</code> is only effective when the system's RDY signal
 	allows to end the cycle.
-	</p><h3><a name="div">ControlRegister.vhd</a></h3><p>
+	</p><h3><a name="div" id="div">ControlRegister.vhd</a></h3><p>
 	The control register module not only contains the control register, but also the
 	clock register. Its input signals contain the power-up init register values, as passed
 	from the PET816 module. Its output are the various control register values.
 	Unfortunately the registers are only write-only at the moment
-	</p><h3><a name="div">BoardMemSel.vhd</a></h3><p>
+	</p><h3><a name="div" id="div">BoardMemSel.vhd</a></h3><p>
 	This module creates the select lines for the onboard RAM and ROM ICs, including the 
 	ROM's write-enable (for the programming).
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="tests">VHDL Testing</a></h2></div><div class="h2c"><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="tests" id="tests">VHDL Testing</a></h2></div><div class="h2c"><p>
 	Writing VHDL is one thing, making is work is another thing.	
 <div class="rightimg">
-                <a href="imgs/vhdltest.svg"><img width="250px" src="imgs/vhdltest.png"></a><br>VHDL test setup
+                <a href="imgs/vhdltest.svg"><img width="250px" src="imgs/vhdltest.png" /></a><br />VHDL test setup
                 </div>
 	Here I describe my way of testing the VHDL with VHDL-based simulation.
-     </p><h3><a name="testsetup">Test Setup</a></h3><p>
+     </p><h3><a name="testsetup" id="testsetup">Test Setup</a></h3><p>
 	To be able to test effectively and efficiently you need to take some care and create
 	a good setup. The picture on the right shows my test setup. As you can see the 
 	Core and its contained modules are exactly the same as in the CPLD setup above.
@@ -393,7 +394,7 @@
 	default value. Only the code that is needed for the test is put into the emulated ROM.
 	This way the only module that is specific to a certain test case is the outermost module
 	and is actually implemented as a separate file for each test case.
-	</p><h3><a name="testexec">Test Execution</a></h3><p>
+	</p><h3><a name="testexec" id="testexec">Test Execution</a></h3><p>
 	In my VHDL project setup, which is a Xilinx ISE Webpack project, I have a subdirectory called
 	<code>testsuite</code>. In this directory I have created (in further subdirectories) the
 	test bench and test case codes. The test bench as well as the free6502 CPU VHDL is in the 
@@ -415,14 +416,14 @@
 	</pre>
 	in the testsuite directory, to run the <code>ctrl</code> or <code>hbog</code> test cases 
 	respectively.
-	</p><h3><a name="testclock">Clock Testing</a></h3><p>As described above the synchronization of the two clock domains can lead to
+	</p><h3><a name="testclock" id="testclock">Clock Testing</a></h3><p>As described above the synchronization of the two clock domains can lead to
 	problems, and one common error here is to do testing only with synchronized test clock
 	generators - that are synchronized and do not show real-world clock drift. 
 	</p><p>
-	Therefore I don't use an exact 50&nbsp;MHz clock in the emulation, but drift about 1&nbsp;ns
+	Therefore I don't use an exact 50 MHz clock in the emulation, but drift about 1 ns
 	per clock cycle. This allows me to scroll over some execution cycles and get a picture
 	of whether there are problems in the clock synchronization.
-	</p><h3><a name="testtiming">Test Timing</a></h3><p>
+	</p><h3><a name="testtiming" id="testtiming">Test Timing</a></h3><p>
 	On the <code>ctrl</code> test case I ran into a problem when I started to actually
 	gate the ROM output with the CPU clock. The CPU latches the data bus values
 	at the falling edge of the CPU clock. In the simulation however, the ROM output
@@ -433,7 +434,7 @@
 	<pre>
 	cpuclk_del &lt;= transport cpuclk after 5 ns;
 	</pre>
-	This code takes the <code>cpuclk</code> signal and delays it for 5&nbsp;ns. Using
+	This code takes the <code>cpuclk</code> signal and delays it for 5 ns. Using
 	this delayed clock signal to determine the CPU data input from the ROM output, 
 	the VHDL simulation allows the CPU to latch the ROM data when its clock goes low
 	and before ROM output goes into tri state:
@@ -452,7 +453,7 @@
         end if;
 	</pre>
 	In this code there also is a the <code>reject/inertial/after</code> command.
-	This construct allows to reject spikes in the signal, here a 10&nbsp;ns spike will
+	This construct allows to reject spikes in the signal, here a 10 ns spike will
 	be ignored (the value after the <code>reject</code>). Then the signal is
 	delayed by the time values after the <code>after</code> statement.
 	</p><p>
@@ -466,7 +467,7 @@
 	</p><p>
 	As far as I understand the transport and inertial delays are ignored when doing the actual
 	synthesis, but I haven't tried it so far, though.
-	</p></div></div><hr>
+	</p></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -478,4 +479,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

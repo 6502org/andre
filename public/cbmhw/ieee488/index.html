@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="IEEE488 interfaces for the Commdore 8-bit machines">
-<meta name="keywords" content="Commodore,IEEE488">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
-<title>Andr&eacute; 's CBM IEEE488 interfaces</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<meta name="description" content="IEEE488 interfaces for the Commdore 8-bit machines" />
+<meta name="keywords" content="Commodore,IEEE488" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
+<title>André 's CBM IEEE488 interfaces</title></head>
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -169,66 +170,61 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>Andr&eacute; 's CBM IEEE488 interfaces</h1><p class="copyright">(C)
-- Andr&eacute;  Fachat</p> 
+<h1>André 's CBM IEEE488 interfaces</h1><p class="copyright">(C)
+- André  Fachat</p> 
 <div class="overview">
 On these pages you will find a number of IEEE-488 interfaces for Commodore
 8-bit equipment as well as one for the PC printerport.
 The IEEE-488 interface was used with the old CBM PET
 computers to connect disk drives, printers, modems and more.
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>IEEE 488</h2></div><div class="h2c">The main bus that connects almost all of my CBM computers and devices
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>IEEE 488</h2></div><div class="h2c">The main bus that connects almost all of my CBM computers and devices
 is the parallel IEEE488 bus, at least the version that CBM
 implemented in the PET and CBM-II line of computers.
 Not all of them are by me, but some are.
 There is an <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/IEEE-488.txt">introduction</a> to the IEEE-488 bus by Ruud Baltissen.
-    <ul><li class="subitem"><strong>C64</strong>: 
-  	      The CBM IEEE488 interface for the C64 is used to connect the
+    <ul><li class="subitem"><strong>C64</strong>: The CBM IEEE488 interface for the C64 is used to connect the
 C64 to the IEEE488 bus. I had my own (hand-drawn) schematics
-here, but Wolfgang G&uuml; nther did it with a drawing program, and dumped
+here, but Wolfgang Gü nther did it with a drawing program, and dumped
 the ROM as well. Find the description in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/cartridges/c64/ieee-488/index.html">c64/</a>. A readme can be found in the README file there.
-<br>
+<br />
 The original software uses up some space in the $c*** area and completely
 disabled the serial IEC bus. I wrote a modification to the C64 kernal
 such that both busses can be used and the $c*** area is free. See the
-<a href="../kernal/index.html">kernal pages</a>.</li><li class="subitem"><strong>VIC20</strong>: 
-  	      Although I never owned a VIC20, I list this one here as well for completeness.
-Wolfgang G&uuml; nther made the schematics of the original CBM IEEE488
+<a href="../kernal/index.html">kernal pages</a>.</li><li class="subitem"><strong>VIC20</strong>: Although I never owned a VIC20, I list this one here as well for completeness.
+Wolfgang Gü nther made the schematics of the original CBM IEEE488
 interface for the VIC20 with a drawing program, and dumped
 the ROM as well. Find the description in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/cartridges/vic20/ieee-488/index.html">vic20/</a>.
-</li><li class="subitem"><strong>VC1541</strong>: 
-  	       The now gone 64er magazin published a modification of the VC1541
+</li><li class="subitem"><strong>VC1541</strong>:  The now gone 64er magazin published a modification of the VC1541
 to use an IEEE488 interface. It basically implements the IEEE488
 interface of the 2031 drive, the IEEE488 sister drive to the VC1541.
 Only the ROM code was modified such that only one of the two 8k ROM
 chips had to be replaced by an EPROM.
 Find the description in
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/vc1541-ieee.tar.gz">vc1541-ieee.tar.gz</a>.
-</li><li class="subitem"><strong>PC-LPT</strong>: 
-  	      This interface is listed here because I use my PC as
+</li><li class="subitem"><strong>PC-LPT</strong>: This interface is listed here because I use my PC as
 a disk drive for my CBM equipment. Starting from ideas from
 Ruud Baltissen (see
 <a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/pc-ieee.zip">pc-ieee.zip</a>)
 I developed this interface for the PCs LPT port and wrote
 the software (using some of VICE's disk emulation code).
 Schematics, description and software (for Linux) can be found in
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/lptiec-0.9.2.tar.gz">lptiec-0.9.2.tar.gz</a>.<br>
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/lptiec-0.9.2.tar.gz">lptiec-0.9.2.tar.gz</a>.<br />
 Although the software is for Linux, it is written somewhat portably
 in that no special kernel device or so is used. The program directly
-interfaces the PC LPT hardware and should easily be ported.</li><li class="subitem"><strong>IEEE488-&gt;IEC</strong>: 
-  	       A friend of mine used the serial IEC bus
+interfaces the PC LPT hardware and should easily be ported.</li><li class="subitem"><strong>IEEE488-&gt;IEC</strong>:  A friend of mine used the serial IEC bus
 and not the IEEE488 bus to connect all his stuff. Unfortunately he also
 used a CBM 600 (aka B128). We designed a small device - a 6502
 computer actually - that is put in between the two busses, converting the
 parallel IEEE488 to the serial IEC bus. The schematics has longs since
 been lost, so I reverse-engineered it from the last existing source file
 for the ROM. Find the description in
-<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+<a href="http://www.zimmers.net/anonftp/pub/cbm/documents/projects/ieee-488/par2ser-1.tar.gz">par2ser-1.tar.gz</a>.</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </div></div><hr>
+  </div></div><hr />
 Contents last modified 15 June 2000
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
@@ -241,4 +237,5 @@ Contents last modified 15 June 2000
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

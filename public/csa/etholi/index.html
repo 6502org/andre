@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Commodore PET CBM Ethernet board">
-<meta name="keywords" content="Commodore PET CBM Ethernet CS8900A">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Commodore PET CBM Ethernet board" />
+<meta name="keywords" content="Commodore PET CBM Ethernet CS8900A" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>Ethernet board</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -220,7 +221,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Ethernet board</h1><p class="copyright">(C)
-2010-2011 Andr&eacute;  Fachat</p> 
+2010-2011 André  Fachat</p> 
 <div class="overview"><p>	
 	This board is an Ethernet board for the CS/A computer. It uses the Olimex Ethernet adapter
 	which has a CS8900A chip on it - that chip is often used with 8 bit computers - plus physical layer
@@ -236,15 +237,15 @@
 	</p><p>
 	As a driver I ported the uIP v1.0 TCP/IP stack to the cc65 compiler, and integrated the
 	CS8900A driver from contiki v1 (which also uses uIP). 
-  </p></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-01-11</small>
+  </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-01-11</small>
 	Published the V1.0B version with the /SBHE fix.
-    </li><li><div>&nbsp;</div><small>2011-01-04</small>
+    </li><li><div> </div><small>2011-01-04</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">UIP PET driver</a></h3><div class="driverdesc"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">UIP PET driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">UIP PET driver</a></h3><div class="driverdesc"><p>
 		This is the uIP v1.0 TCP/IP stack ported to the PET, which runs on my CS/A computer using the
 		PET ROMs. </p>
                 <div class="rightimg">
-                        <a href="board.png"><img width="300px" src="board-small.png"></a><br>The Ethernet board in
+                        <a href="board.png"><img width="300px" src="board-small.png" /></a><br />The Ethernet board in
 			the '4245 option.
                         </div>
 		<p>
@@ -259,65 +260,65 @@
 		uIP stack. That however should give you an indication how to implement your own programs. 
 		</p>
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="uip-1.0+pet.tar.gz">uip-1.0+pet.tar.gz</a>(Ported uIP stack for the PET)</td>
 </tr>
-<tr class="R0"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="uip-pet.diff.gz">uip-pet.diff.gz</a>(Diff of the Ported uIP stack to uIP v1.0)</td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0B</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			(2012-01-02) If you have power supply problems, you can place a 47u tantal capacitor underneath
 			the Olimex module.
                 </td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			Silly me, I forgot the pullup on /SBHE. That fixes the initialization problem. Driver stays the same.
                 </td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board has been successfully tested with both implementation options for the level translators.
                 </td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0b.sch">csa_etholi-v1.0b.sch</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0b-sch.png">csa_etholi-v1.0b-sch.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0b.brd">csa_etholi-v1.0b.brd</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0b-brd.png">csa_etholi-v1.0b-brd.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.0A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0A</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
 			There still seems to be some kind of initialization problem. The uIP driver from above only
 			works when system has been reset once after power up (no matter if the driver has been loaded
 			before the reset or not).
                 </td></tr>
-<tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board has been successfully tested with both implementation options for the level translators.
                 </td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0a.sch">csa_etholi-v1.0a.sch</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_etholi-v1.0a-sch.png">csa_etholi-v1.0a-sch.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0a.brd">csa_etholi-v1.0a.brd</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_etholi-v1.0a-brd.png">csa_etholi-v1.0a-brd.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div></div></div><hr>
+</div><div class="revend"></div></div></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -329,4 +330,5 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

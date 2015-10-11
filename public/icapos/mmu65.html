@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Virtual address space for 6502 microprocessors">
-<meta name="keywords" content="6502 virtual-memory virtual-addresses">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="Virtual address space for 6502 microprocessors" />
+<meta name="keywords" content="6502 virtual-memory virtual-addresses" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>Virtual Address space for 6502 Microprocessors</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -116,7 +117,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Virtual Address space for 6502 Microprocessors</h1><p class="copyright">(C)
-1997-2010 Andr&eacute;  Fachat</p> 
+1997-2010 André  Fachat</p> 
 <div class="overview"><p>
 In this article I want to give an overview of virtual memory handling
 for small computers. There also is an example of how to use this
@@ -128,7 +129,7 @@ then I thought that the memory managemet should be better than the
 Commodore stuff. I then stumbled accross the 74LS610, a memory mapper
 and decided to use this chip.
 </p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#virtaddr">Virtual Addresses</a></li><li><a href="#whatfor">What's it for?</a></li><li><a href="#ls610">The 74LS610</a></li><li><a href="#m6502mmu">The MMU in 6502 systems</a></li><li><a href="#schem">The Schematics</a></li><li><a href="#prog">Programming the MMU</a></li><li><a href="#uses">MMU uses</a></li><li><a href="#wprot">Write Protection</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="virtaddr">Virtual Addresses</a></h2></div><div class="h2c"> <p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#virtaddr">Virtual Addresses</a></li><li><a href="#whatfor">What's it for?</a></li><li><a href="#ls610">The 74LS610</a></li><li><a href="#m6502mmu">The MMU in 6502 systems</a></li><li><a href="#schem">The Schematics</a></li><li><a href="#prog">Programming the MMU</a></li><li><a href="#uses">MMU uses</a></li><li><a href="#wprot">Write Protection</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="virtaddr" id="virtaddr">Virtual Addresses</a></h2></div><div class="h2c"> <p>
 Before I go into the depths of the actual design, I want to say more
 about virtual addresses. What is a virtual address actually? Well, when using
 an address in an opcode of an assembly program, we normally consider
@@ -153,7 +154,7 @@ of the 16 entries. When reading the byte at $2345, then the
 second entry in the mapping table is taken. It might contain more
 address bits or even special bits that could indicate write protection.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="whatfor">What's it for?</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="whatfor" id="whatfor">What's it for?</a></h2></div><div class="h2c"> <p>
 For small systems using virtual addresses is a nice way to expand address
 space.  Of course the real, usable address space at any one moment is
 not larger than without virtual memory. Only by changing
@@ -166,7 +167,7 @@ concept, the CPU can be signaled when a 'forbidden' address space is
 accessed, like a read-only block is written to or a user program tries
 to read system memory.
 </p>
-<img src="mmu65/mmu65a.gif" alt="address mapping example">
+<img src="mmu65/mmu65a.gif" alt="address mapping example" />
 <p>
 But the memory mapping is used not only for permissions. A program on
 a Unix system, for example, always runs at a fixed address.  This fixed
@@ -181,7 +182,7 @@ a write to this block occurs. The mapping is then changed such that the
 copied and modified block is only seen in the modifying process, while
 the other process(es) still see the unmodified block.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ls610">The 74LS610</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ls610" id="ls610">The 74LS610</a></h2></div><div class="h2c"> <p>
 The MMU (as I will call this chip throughout this text) is a 16 times
 12 bit register. The MMU internally has only one address decoder. That
 means that only one access (CPU read/write or Memory Mapping) may occur
@@ -204,7 +205,7 @@ lines MO0-7 are set to zero, while MA0-3 are fed through to MO8-11.
 So after power-up reset the default should be to have -MM high, then
 initialize the MMU and only then enable it.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="m6502mmu">The MMU in 6502 systems</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="m6502mmu" id="m6502mmu">The MMU in 6502 systems</a></h2></div><div class="h2c"> <p>
 I have taken an excerpt (diagram 2) from the schematics of my selfbuilt
 computer to show you how to use this chip. I am only using 8 of the 12
 bits in each register, as I can only access 8 bits at once with the 6502.
@@ -221,7 +222,7 @@ Each of the 16 4kByte blocks in a 6502 address space can then be
 independently mapped to any of the 256 4kByte Blocks in 1 MByte
 address space.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schem">The Schematics</a></h2></div><div class="h2c"> <p>Note: this part describes this <a href="mmu65/mmu65b.gif">schematics</a>.</p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="schem" id="schem">The Schematics</a></h2></div><div class="h2c"> <p>Note: this part describes this <a href="mmu65/mmu65b.gif">schematics</a>.</p>
 <p>
 The connector on the left of the diagram 2 is the bus connector.
 The CPU-side interface to read and write the MMU registers is put
@@ -254,7 +255,7 @@ Of course the BD0-7 Bus Data lines and the control lines are connected
 to the CPU as well (via drivers), I have only taken the relevant part
 for the MMU.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="prog">Programming the MMU</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programming the MMU</a></h2></div><div class="h2c"> <p>
 Using this chip now is quite simple, if you take care of a few things.
 To change the address mapping of a certain memory block, you just write
 the appropriate block number into the MMU register. You have to take care
@@ -268,7 +269,7 @@ RESET (MMU disabled) and after the MMU has been enabled by this store.
 The other MMU registers are still undefined and thus need to be filled after
 that first write.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="uses">MMU uses</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="uses" id="uses">MMU uses</a></h2></div><div class="h2c"> <p>
 Of course, just having an MMU in a computer is not really satisfactory
 without real use of it. One possible (but not outstanding) use is to
 map certain memory blocks to allow a single process to access a RAM disk
@@ -315,7 +316,7 @@ the usual addresses, but now in virtual address space. Only the blocks
 where the ROMs are were replaced with RAM blocks from my selfbuilt
 computer and these blocks were loaded with copies of the new ROMs.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="wprot">Write Protection</a></h2></div><div class="h2c"> <p>Note: this part describes the <a href="mmu65/mmu65c.gif">write protect schematics</a>.</p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="wprot" id="wprot">Write Protection</a></h2></div><div class="h2c"> <p>Note: this part describes the <a href="mmu65/mmu65c.gif">write protect schematics</a>.</p>
 <p>
 What do you need for additional features? You need more data bits. But
 the 6502 only has an 8 bit wide data bus and all of the bits are used
@@ -382,7 +383,7 @@ then R/-W is low (write) anyway, and XORing it with COLL makes it high
 on the bus, as well as the CPU. But the CPU bus driver is disabled,
 so noone cares, and the memory is not changed.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="conclusion">Conclusion</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="conclusion" id="conclusion">Conclusion</a></h2></div><div class="h2c"> <p>
 Virtual memory might not be useful for most of the 'DIY' stuff.  In most
 cases a simple bank switching (which also just is a kind of virtual
 memory management) will still be enough when simple address space
@@ -392,7 +393,7 @@ protects processes from disturbing each other, or allows easy debugging.
 The 74LS610 is an easy (albeit not the fastest) way to introduce virtual
 memory to small or DIY systems.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="refs">References</a></h2></div><div class="h2c"> <p>Here are schematics and code</p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="refs" id="refs">References</a></h2></div><div class="h2c"> <p>Here are schematics and code</p>
 <ul>
 <li><a href="mmu65/mmu65.a65">mmu65.a65</a> Source code for the GeckOS/A65
 memory environment switcher.</li>
@@ -406,7 +407,7 @@ MMU with its bus error condition detection.</li>
 <li>The <a href="../osa/index.html">GeckOS/A65</a> operating system</li>
 <li>More <a href="../hwinfo/ls610/index.html">74LS610</a> information.</li>
 </ul>
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -418,4 +419,5 @@ MMU with its bus error condition detection.</li>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

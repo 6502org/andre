@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 16bit 32bit expansion">
-<meta name="keywords" content="6502 16bit 32bit expansion">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="6502 16bit 32bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit expansion" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>65k Design Notes</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -148,7 +149,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>65k Design Notes</h1><p class="copyright">(C)
-2010-2011 Andr&eacute;  Fachat</p> 
+2010-2011 André  Fachat</p> 
 <div class="overview"><p>This page describes some discussion that I went through while
 	doing the programming specification for the 65k. I started this process
 	in 2010, but explicitely decided to leave it there until my hardware
@@ -165,13 +166,13 @@
 	Some of the decisions made here may very well be premature optimizations. I will
 	revisit these and may change them in the further process.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-12-23</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-12-23</small>
 	Addded some discussion about the ZE/EE and LE prefixes
-    </li><li><div>&nbsp;</div><small>2011-05-01</small>
+    </li><li><div> </div><small>2011-05-01</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#irq">Interrupt Compatibility</a></li><li><a href="#extends">Extension Prefixes</a></li><li style="list-style-type:none;"><ul><li><a href="#ZE">The ZE prefix</a></li><li><a href="#EE">The EE prefix</a></li><li><a href="#LE">The LE prefix</a></li></ul></li><li><a href="#placement">Placing opcodes in the opcode map</a></li><li style="list-style-type:none;"><ul><li><a href="#extpage">Placing opcodes on the Extension page</a></li><li><a href="#absy">Absolute y-indexed addressing</a></li></ul></li><li><a href="#redundancy">Elimination of Redundancy</a></li><li style="list-style-type:none;"><ul><li><a href="#ade">(Quick) Add/Substract to E/B</a></li></ul></li><li><a href="#convenience">Convenience Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#inv">2s complement</a></li><li><a href="#shiftxy">Shift X and Y</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="irq">Interrupt Compatibility</a></h2></div><div class="h2c"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#irq">Interrupt Compatibility</a></li><li><a href="#extends">Extension Prefixes</a></li><li style="list-style-type:none;"><ul><li><a href="#ZE">The ZE prefix</a></li><li><a href="#EE">The EE prefix</a></li><li><a href="#LE">The LE prefix</a></li></ul></li><li><a href="#placement">Placing opcodes in the opcode map</a></li><li style="list-style-type:none;"><ul><li><a href="#extpage">Placing opcodes on the Extension page</a></li><li><a href="#absy">Absolute y-indexed addressing</a></li></ul></li><li><a href="#redundancy">Elimination of Redundancy</a></li><li style="list-style-type:none;"><ul><li><a href="#ade">(Quick) Add/Substract to E/B</a></li></ul></li><li><a href="#convenience">Convenience Opcodes</a></li><li style="list-style-type:none;"><ul><li><a href="#inv">2s complement</a></li><li><a href="#shiftxy">Shift X and Y</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="irq" id="irq">Interrupt Compatibility</a></h2></div><div class="h2c"><p>
 	TODO
-     </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="extends">Extension Prefixes</a></h2></div><div class="h2c"><p>
+     </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="extends" id="extends">Extension Prefixes</a></h2></div><div class="h2c"><p>
 	When providing wider registers than before, of course there must be a way to 
 	access those registers in a wide way. This is given with the RS prefix. 
 	However, what is the best way to manage transfers between different register widths?
@@ -181,7 +182,7 @@
 	And how can a value be truncated?
 	What about loading X and Y with short values when they are always used full width in the
 	addressing modes?
-     </p><h3><a name="ZE">The ZE prefix</a></h3><p>
+     </p><h3><a name="ZE" id="ZE">The ZE prefix</a></h3><p>
 	  The first attempt was the ZE prefix. Without the prefix all stores to a register
 	  would be zero-extended. I.e. when, after a load or another operation, the value was
 	  written to a register, the value was zero-extended to full width.
@@ -189,12 +190,12 @@
 	  each operation was sized by RS anyway, zero-extending them was not a problem.
 	  However, to add an 8-bit value to AC with a full width operation, the ADC would
 	  still need to load the full width value, even though the value was only 8 bit.
-	</p><h3><a name="EE">The EE prefix</a></h3><p>
+	</p><h3><a name="EE" id="EE">The EE prefix</a></h3><p>
 	  Therefore the EE prefix - Early Extension means that the value is loaded on RS width,
 	  and the zero-extension is done "early": before the operation, that then happens on full width.
 	  This solves the problem of loading a narrow value for a wide operation.
 	  However ...
-	</p><h3><a name="LE">The LE prefix</a></h3><p>
+	</p><h3><a name="LE" id="LE">The LE prefix</a></h3><p>
 	  ... there is only the ability to extend with zeros. And can a register not be extended after having been
 	  set with a separate opcode?
 	  So now there is an LE prefix, that extends a value when loaded from memory (or another register).
@@ -225,7 +226,7 @@
 	  For the AC it is less important, as every operation on AC is explicitely sized
 	  (using RS) or 8-bit only - so upper bits do not matter on such operations and can be left by default.
 	  Therefore AC is not extended by default.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="placement">Placing opcodes in the opcode map</a></h2></div><div class="h2c"><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="placement" id="placement">Placing opcodes in the opcode map</a></h2></div><div class="h2c"><p>
 	When thinking about the opcode decoding I learned that in the FPGA you can save
 	"chip space" when you can combine opcodes. I.e. if you have a large case switch
 	for opcodes, it pays out to say, select all "LDA" opcodes in a single case, and
@@ -239,7 +240,7 @@
 	and between different opcodes with the same addressing mode.
 	</p><p>
 	The consequences of this decision are described below:
-     </p><h3><a name="extpage">Placing opcodes on the Extension page</a></h3><p>
+     </p><h3><a name="extpage" id="extpage">Placing opcodes on the Extension page</a></h3><p>
 	You might have noticed that the LEA and PEA opcodes are distributed over the extension page.
 	This is done with the above decision in mind. If you look closely you will see that the
 	LEA and PEA addressing modes mirror those of the LDA and STA opcodes in the standard
@@ -247,7 +248,7 @@
 	</p><p>
 	In the original opcode map, column $8 (Low opcode nibble) holds opcodes without
 	operand, i.e. one-byte opcodes like CLC. I have mirrored this in the extension page.
-	</p><h3><a name="absy">Absolute y-indexed addressing</a></h3><p>
+	</p><h3><a name="absy" id="absy">Absolute y-indexed addressing</a></h3><p>
 	Some of the opcodes in the original 6502 show an asymmetry in that compared to 
 	similar opcodes even though they have an absolute x-indexed addressing mode, 
 	they don't have the absolute y-indexed addressing mode. Examples
@@ -255,11 +256,11 @@
 	an absolute y-indexed addressing mode. So I have put them into colum $f,
 	at their "logical" places in the opcode map. I.e. when <code>ASL abs,X</code> is opcode $1E,
 	then <code>ASL abs,Y</code> is opcode $1F.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="redundancy">Elimination of Redundancy</a></h2></div><div class="h2c"><p>
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="redundancy" id="redundancy">Elimination of Redundancy</a></h2></div><div class="h2c"><p>
 	Another point when designing the opcode set is to not introduce redundancy,
 	i.e. two opcodes that basically do the same. Thinking about such redundancy 
 	reduction may even lead to new features...
-     </p><h3><a name="ade">(Quick) Add/Substract to E/B</a></h3><p>
+     </p><h3><a name="ade" id="ade">(Quick) Add/Substract to E/B</a></h3><p>
 	While revisiting the opcode set I found that I had two opcodes that basically do the same,
 	INE (quick increment by 1-8) and ADE immediate, plus similar combinations for substract/decrement
 	and the B register.
@@ -277,9 +278,9 @@
 	so it is not possible to have an 8-bit variable and use it in a wider operation.
 	</p><p>
 	Here another prefix bit would probably be useful to implement the "early" extension.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="convenience">Convenience Opcodes</a></h2></div><div class="h2c"><p>This section describes some convenient opcodes that I found missing during my
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="convenience" id="convenience">Convenience Opcodes</a></h2></div><div class="h2c"><p>This section describes some convenient opcodes that I found missing during my
 	recent 6502 programming.
-     </p><h3><a name="inv">2s complement</a></h3><p>
+     </p><h3><a name="inv" id="inv">2s complement</a></h3><p>
 		When I programmed my USB stack for the 6502 I found that I had to substract two
 		values, but that the one to substract was in the AC, not the one to substract from.
 		So I could not just use SEC/SBC to do the substraction. Instead I found I had
@@ -287,7 +288,7 @@
 		value, to substract the first from the second value.
 		</p><p>
 		To make this process easier, I added the INV opcode.
-	</p><h3><a name="shiftxy">Shift X and Y</a></h3><p>
+	</p><h3><a name="shiftxy" id="shiftxy">Shift X and Y</a></h3><p>
 		When I programmed access to the data structure in the USB driver, I was wondering
 		how to access tabular structure data using the index registers. I had to actually compute
 		an index by multiplying with the structure size. 
@@ -295,7 +296,7 @@
 		To make this process easier, I added the shift left/right x/y register quick opcodes 
 		(SLX/SRX/SLY/SRY). These allow to quickly compute at least power-of-2 offsets
 		for aligned data structures.
-	</p></div></div><hr>
+	</p></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -307,4 +308,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

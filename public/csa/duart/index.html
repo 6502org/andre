@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="">
-<meta name="keywords" content="CSA65 6502 UART">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="CSA65 6502 UART" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>CS/A65 DUART</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -226,9 +227,9 @@
 	know that there are ICs like the 16552(?) with two interfaces in 
 	one chip, but when I needed it, I had the parts at home already...
 	
-</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2006-11-01</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 UART16550A driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li><li><a href="#board2">1.0A</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">OS/A65 UART16550A driver</a></h3><div class="driverdesc">The driver consists of two files. First the
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 UART16550A driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (ok)</li><li><a href="#board2">1.0A</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 UART16550A driver</a></h3><div class="driverdesc">The driver consists of two files. First the
 			<code>uart16550.i65</code> file contains chip
 			register definitions. The file <code>ser_uart.a65</code>
 			is the actual driver. This actually is a driver
@@ -253,44 +254,44 @@
 			Unfortunately the driver code is pretty messy, but
 			works.
 		</div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="ser_uart.a65">ser_uart.a65</a>(Driver code)</td>
 </tr>
-<tr class="R0"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_driver"> </div></td>
 <td><a href="uart16550.i65">uart16550.i65</a>(UART register definitions)</td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 1.0B</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This is the initial version.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_desc"> </div></td>
 <td><a href="csaduartdesc.txt">csaduartdesc.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_parts">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_parts"> </div></td>
 <td><a href="csaduartparts.txt">csaduartparts.txt</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaduart.ps.gz">csaduart.ps.gz</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csaduart.png">csaduart.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaduart.fig">csaduart.fig</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="csaduart.jpg">csaduart.jpg</a>(One of the UARTs is missing)</td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 1.0A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0A</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This is the initial version (scanned schematics).
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csaduart-1.0A-schem.png">csaduart-1.0A-schem.png</a></td>
 </tr></table>
 </div><div class="revend"></div></div></div></div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
@@ -303,4 +304,4 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>

@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 16bit 32bit 64bit expansion">
-<meta name="keywords" content="6502 16bit 32bit 64bit expansion">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css"><link rel="stylesheet" type="text/css" href="optable.css">
+<meta name="description" content="6502 16bit 32bit 64bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit 64bit expansion" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" /><link rel="stylesheet" type="text/css" href="optable.css" />
 <title>The 65k Project - Specifications</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -148,14 +149,14 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>The 65k Project - Specifications</h1><p class="copyright">(C)
-2010-2012 Andr&eacute;  Fachat</p> 
+2010-2012 André  Fachat</p> 
 <div class="overview"><p>
 	This page describes resp. links to the specifications for my 65k line of processors.
 	For a reasoning why a feature is implemented as it is, see the <a href="features.html">Features discussion</a>
 	page.
 	</p><p>
 	The 65k will be available in different "sizes" - mainly in terms of register widths.
-	For example options for 16&nbsp;bit, 32&nbsp;bit, and even 64&nbsp;bit registers are defined.
+	For example options for 16 bit, 32 bit, and even 64 bit registers are defined.
 	The first section will thus describe the options available.
 	</p><p>
 	The second section will then give links to the different models, their specifications and 
@@ -164,9 +165,9 @@
 	Note that these tables are currently preliminary. The 65002 specifications 
 	are generated from the same source that generates the VHDL control tables. Therefore you
 	will find the specifications directly in the af65xxx folders with the reference implementation.
-  </p></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optsmem">Memory interface width</a></li><li><a href="#optsintar">Integer Arithmetic (Future)</a></li><li><a href="#optsfloatar">Floating Point Arithmetic (Future)</a></li><li><a href="#optsmmu">MMU Option (Future)</a></li><li><a href="#optscores">Multicore Option (Future)</a></li><li><a href="#optmbyte">Multbyte operation (Future)</a></li><li><a href="#optquick">QUICK operations (Future)</a></li></ul></li><li><a href="#variants">Processor Variants</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="opts">65k Options</a></h2></div><div class="h2c"><p>This section describes the different versions of the 65k processor
+  </p></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#opts">65k Options</a></li><li style="list-style-type:none;"><ul><li><a href="#optswidth">Register Widths Options</a></li><li><a href="#optsmem">Memory interface width</a></li><li><a href="#optsintar">Integer Arithmetic (Future)</a></li><li><a href="#optsfloatar">Floating Point Arithmetic (Future)</a></li><li><a href="#optsmmu">MMU Option (Future)</a></li><li><a href="#optscores">Multicore Option (Future)</a></li><li><a href="#optmbyte">Multbyte operation (Future)</a></li><li><a href="#optquick">QUICK operations (Future)</a></li></ul></li><li><a href="#variants">Processor Variants</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opts" id="opts">65k Options</a></h2></div><div class="h2c"><p>This section describes the different versions of the 65k processor
 	</p>
-     <h3><a name="optswidth">Register Widths Options</a></h3><p>
+     <h3><a name="optswidth" id="optswidth">Register Widths Options</a></h3><p>
 	The 65k will be available in different "register widths". Register here means all address registers
 	(stack pointer (SP), program counter (PC), base offset register (BR)), but also all data registers (AC, XR, YR).
 	This does not include the status register for example. For details see the register model documentation.
@@ -175,55 +176,55 @@
 	</p><p>
 	The following options are available:</p>
 	<ul>
-	<li>16&nbsp;bit - a small extension to the original 6502 programming model, the PC stays 16&nbsp;bit as 
+	<li>16 bit - a small extension to the original 6502 programming model, the PC stays 16 bit as 
 		it already is in the 6502.</li>
-	<li>32&nbsp;bit - all data and address registers extended to 32&nbsp;bit</li>
-	<li>64&nbsp;bit - all data and address registers extended to 64&nbsp;bit</li>
+	<li>32 bit - all data and address registers extended to 32 bit</li>
+	<li>64 bit - all data and address registers extended to 64 bit</li>
 	</ul><p>
 	The original register width for most of the registers is a byte. To use the registers with more than
-	8&nbsp;bit a prefix opcode to the existing 8&nbsp;bit opcodes is used. 2 bit of the prefix opcode are
-	reserved for operation width, which allows to address registers as 8, 16, 32 or 64&nbsp;bit.
+	8 bit a prefix opcode to the existing 8 bit opcodes is used. 2 bit of the prefix opcode are
+	reserved for operation width, which allows to address registers as 8, 16, 32 or 64 bit.
 	</p><p>
 	The different register or operand widths are noted by a prefix. These prefixes are defined and used
 	here:</p>
 	<table border="1">
 	<tr><th>Prefix</th><th>Width</th><th>Comment</th></tr>
-	<tr><td>&nbsp;</td><td>8</td><td>no prefix gives the 6502 8&nbsp;bit behaviour</td></tr>
+	<tr><td> </td><td>8</td><td>no prefix gives the 6502 8 bit behaviour</td></tr>
 	<tr><td>W</td><td>16</td><td>Word</td></tr>
 	<tr><td>L</td><td>32</td><td>Long</td></tr>
 	<tr><td>Q</td><td>64</td><td>Quadword (alternatively LL, but Q should be used)</td></tr>
 	</table>
-    	<h3><a name="optsmem">Memory interface width</a></h3><p>
+    	<h3><a name="optsmem" id="optsmem">Memory interface width</a></h3><p>
 	 The 65k will be able to use different memory width options. I.e. the external memory interface
-	 of the processor can have different widths, from 8&nbsp;bit over 16&nbsp;bit to 32&nbsp;bit. In 
-	 the future it is possible to do a 64&nbsp;bit memory interface.
+	 of the processor can have different widths, from 8 bit over 16 bit to 32 bit. In 
+	 the future it is possible to do a 64 bit memory interface.
  	</p><p>
 	 Note that even though a processor variant has a wider memory interface, it can still
-	 use smaller width memory as well. I.e. a 32&nbsp;bit wide memory interface can still handle
-	 8 or 16&nbsp;bit memory.
-    	</p><h3><a name="optsintar">Integer Arithmetic (Future)</a></h3><p>
+	 use smaller width memory as well. I.e. a 32 bit wide memory interface can still handle
+	 8 or 16 bit memory.
+    	</p><h3><a name="optsintar" id="optsintar">Integer Arithmetic (Future)</a></h3><p>
 	In the future there will be integer arithmetic in form of multiplication and division
 	operations, possibly with other operations as well.
-    	</p><h3><a name="optsfloatar">Floating Point Arithmetic (Future)</a></h3><p>
+    	</p><h3><a name="optsfloatar" id="optsfloatar">Floating Point Arithmetic (Future)</a></h3><p>
 	In the future there will be floating point arithmetic in form of addition, substruction, 
 	multiplication and division
 	operations, possibly with other operations as well.
-    	</p><h3><a name="optsmmu">MMU Option (Future)</a></h3><p>
+    	</p><h3><a name="optsmmu" id="optsmmu">MMU Option (Future)</a></h3><p>
 	The 65k will optionally provide an MMU to translate virtual addresses (opcode effective addresses) into
 	physical addresses. When the MMU is not included, virtual addresses are directly taken as physical addresses.
-    	</p><h3><a name="optscores">Multicore Option (Future)</a></h3><p>
+    	</p><h3><a name="optscores" id="optscores">Multicore Option (Future)</a></h3><p>
 	The 65k will provide a multicore option where two (or even more) cores are integrated
 	into a single processor.
-    	</p><h3><a name="optmbyte">Multbyte operation (Future)</a></h3><p>
+    	</p><h3><a name="optmbyte" id="optmbyte">Multbyte operation (Future)</a></h3><p>
 	There will be a prefix bit that extends the operations that are not full width
-	to a SIMD operations. For example, if this bit is set, and an 8&nbsp;bit operation is
-	performed on a 64&nbsp;bit processor, the operation is performed simultaneously on
-	all eight bytes of the 64&nbsp;bit accumulator. Similarly for other combinations of
+	to a SIMD operations. For example, if this bit is set, and an 8 bit operation is
+	performed on a 64 bit processor, the operation is performed simultaneously on
+	all eight bytes of the 64 bit accumulator. Similarly for other combinations of
 	register and operation widths.
-    	</p><h3><a name="optquick">QUICK operations (Future)</a></h3><p>
+    	</p><h3><a name="optquick" id="optquick">QUICK operations (Future)</a></h3><p>
 	The QUICK opcodes work with a separate prefix and implement the repeated execution of 
 	an existing opcode, e.g. "eight times INY"
-    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="variants">Processor Variants</a></h2></div><div class="h2c"><p>
+    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="variants" id="variants">Processor Variants</a></h2></div><div class="h2c"><p>
 	The following table describes the different processor variants
     </p>
 	<table>
@@ -240,7 +241,7 @@
 	<tr><td>65002/QW</td><td>64</td><td>16</td></tr> 
 	<tr><td>65002/QL</td><td>64</td><td>32</td></tr>
 	</table> 
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -252,4 +253,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

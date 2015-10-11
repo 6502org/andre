@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="PET index - Drive Architecture">
-<meta name="keywords" content="Commodore PET CBM ROM disk drives">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css">
+<meta name="description" content="PET index - Drive Architecture" />
+<meta name="keywords" content="Commodore PET CBM ROM disk drives" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css" />
 <title>PET index - Drive Architecture</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -207,14 +208,14 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - Drive Architecture</h1><p class="copyright">(C)
-1998-2010 Andr&eacute;  Fachat</p> 
+1998-2010 André  Fachat</p> 
 <div class="overview"><P>The 5.25" disk drives (and possibly the 8" and harddrives as well) share the same architecture.
 In this page you find information about the architecture of these drives.</P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">Architecture Overview</a></li><li><a href="#gcr">GCR Handling</a></li><li><a href="#memmap">Memory map</a></li><li><a href="#schem">Schematics</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="overview">Architecture Overview</a></h2></div><div class="h2c"><P>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">Architecture Overview</a></li><li><a href="#gcr">GCR Handling</a></li><li><a href="#memmap">Memory map</a></li><li><a href="#schem">Schematics</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Architecture Overview</a></h2></div><div class="h2c"><P>
 The architecture is actually a quite elegant solution to wire two CPUs together, as well as
 it has an ingenious method of handling GCR data in hardware.
 The following block diagram shows this (click to enlarge):</P>
-<P><A HREF="arch.png"><IMG WIDTH="50%" SRC="arch.png" ALT="architecture diagram"></A></P>
+<P><A HREF="arch.png"><IMG WIDTH="50%" SRC="arch.png" ALT="architecture diagram"></IMG></A></P>
 <P>
 The two CPUs work on a phase inverted clock, i.e. when the 6502 has
 Phi2 active, the 6504 is has it passive and vice versa. The CPUs only
@@ -234,7 +235,7 @@ The FDC CPU has a 6530 and a 6522 chip for I/O. The I/O is used to
 control the drives. The VIA 6522 is for example used to control the motor and
 the head steppers.
 </P>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="gcr">GCR Handling</a></h2></div><div class="h2c"><P>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gcr" id="gcr">GCR Handling</a></h2></div><div class="h2c"><P>
 Commodore disk drives store the data in GCR (Group Code Recording) format
 on the disks, which is different from the (IMHO inferior), nowadays used MFM
 encoding. I will not go into the difference, only note that
@@ -261,7 +262,7 @@ by a 10 bit shift register. This code is used as input to the same ROM
 as above (but with A10 switched, so different ROM content is selected).
 The output of the ROM is then read by the CPU.
 </P>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memmap">Memory map</a></h2></div><div class="h2c"><P>The following table has been composed by William Levak:</P>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory map</a></h2></div><div class="h2c"><P>The following table has been composed by William Levak:</P>
 <PRE>
                         4040 Memory Map
 composed by William Levak
@@ -290,10 +291,10 @@ composed by William Levak
 9000-CFFF  RAM shadows
 D000-FFFF  ROM                    6530 ROM            1C00-1FFF
 </PRE>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schem">Schematics</a></h2></div><div class="h2c"><P>The schematics can be found on the CBM archive in the
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="schem" id="schem">Schematics</a></h2></div><div class="h2c"><P>The schematics can be found on the CBM archive in the
 <A HREF="http://www.zimmers.net/anonftp/pub/cbm/schematics/drives/old/">old drive schematics page</A>.
 </P>
-     </div></div><hr>
+     </div></div><hr />
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -305,4 +306,5 @@ D000-FFFF  ROM                    6530 ROM            1C00-1FFF
 <p>Interested in electronics design? Look at the <a href="../../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

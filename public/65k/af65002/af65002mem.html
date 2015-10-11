@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="65002 documentation">
-<meta name="keywords" content="8-bit,6502,65002">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>65002 Memory Management</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -195,15 +196,15 @@
 	<p>
 	The 65k always has simple memory management capabilities.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li></ul></li><li><a href="#con">Container Management</a></li><li style="list-style-type:none;"><ul><li><a href="#cont">Container</a></li><li><a href="#regmem">Memory Management Register</a></li><li><a href="#ctrl">Control bits</a></li></ul></li><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="mem">Memory Management</a></h2></div><div class="h2c"><p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#match">Match code</a></li></ul></li><li><a href="#con">Container Management</a></li><li style="list-style-type:none;"><ul><li><a href="#cont">Container</a></li><li><a href="#regmem">Memory Management Register</a></li><li><a href="#ctrl">Control bits</a></li></ul></li><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2></div><div class="h2c"><p>
         This section describes the memory management features of the 65k. Those features are
         optional. They are decoupled from the main core by the means of "match codes".
-    </p><h3><a name="match">Match code</a></h3><p>
-        The match code is an 8&nbsp; bit value set by the core, for every memory access.
+    </p><h3><a name="match" id="match">Match code</a></h3><p>
+        The match code is an 8  bit value set by the core, for every memory access.
         It is used by the MMU to select which translation should be used to translate from
         effective to physical address.
-      </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="con">Container Management</a></h2></div><div class="h2c"><p>This section describes the basic memory management containers</p>
-    <h3><a name="cont">Container</a></h3><p>
+      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="con" id="con">Container Management</a></h2></div><div class="h2c"><p>This section describes the basic memory management containers</p>
+    <h3><a name="cont" id="cont">Container</a></h3><p>
         A container confines the processor into a defined address area. This is done by ANDing the
         effective address of the opcode with a bit mask, then comparing it with an address value.
         When the masked address equals the address value, the container address matches.
@@ -213,8 +214,8 @@
       </p><p>
         The processor has a number of such container definitions. Each definition is matched against
         the current effective address coming from the CPU. As the matchable memory area is
-        at least 256 byte, the lowest 8&nbsp; bit in the mask and address value are used to match the matchcode:
-        the 8&nbsp; bit matchcode is ANDed with the lowest 8 mask bits, then compared to the
+        at least 256 byte, the lowest 8  bit in the mask and address value are used to match the matchcode:
+        the 8  bit matchcode is ANDed with the lowest 8 mask bits, then compared to the
         lowest 8 offset bits. If they are equal, then the container definition matches.
       </p><p>
         If multiple containers are matching the address and match code, then the container
@@ -222,25 +223,25 @@
         If no container matches (e.g. upon reset) then the effective address becomes the confined
         address without any translation.
       </p>
-     <h3><a name="regmem">Memory Management Register</a></h3><p>The container management has a number of register sets. Each set contains three full size (W bits)
+     <h3><a name="regmem" id="regmem">Memory Management Register</a></h3><p>The container management has a number of register sets. Each set contains three full size (W bits)
         registers:</p>
     <table border="1">
         <tr><th>Container-Register</th><th>Definition</th><th>Comment</th></tr>
-        <tr><td>Addr/matchcode mask</td><td>0-7: matchcode mask<br>
+        <tr><td>Addr/matchcode mask</td><td>0-7: matchcode mask<br />
                                         8-W: address mask</td><td></td></tr>
-        <tr><td>Addr/matchcode compare value</td><td>0-7: matchcode compare value<br>
+        <tr><td>Addr/matchcode compare value</td><td>0-7: matchcode compare value<br />
                                         8-W: address compare value</td><td></td></tr>
-        <tr><td>Addr offset/container control</td><td>0-7: Container control<br>
+        <tr><td>Addr offset/container control</td><td>0-7: Container control<br />
                                         8-W: address offset value</td><td></td></tr>
     </table><p>
         There can be any number of register sets. The number can be read from a configuration register.
         If there are register sets, there must be at least four sets.
         For a full explanation see below.
     </p>
-    <h3><a name="ctrl">Control bits</a></h3>
+    <h3><a name="ctrl" id="ctrl">Control bits</a></h3>
  	<p>
         In addition to mask and offset the container definition has an extra byte in the
-        low 8&nbsp; bit of the address offset that determines memory mapping metadata: </p>
+        low 8  bit of the address offset that determines memory mapping metadata: </p>
         <table border="1">
         <tr><th>Bit</th><th>Name</th><th>Function</th></tr>
         <tr><td>0</td><td>VALID</td><td>If set, the address mapping is valid. If the container
@@ -254,14 +255,14 @@
         <tr><td>4</td><td>NOEXECUTE</td><td>If set, a bus error condition occurs when the processor
                                 tries to read an opcode from this mapping</td></tr>
         <tr><td>5</td><td>TRANSIENT</td><td>If set, the memory address cannot be cached</td></tr>
-        <tr><td>6/7</td><td>WIDTH</td><td>Memory access width. 00=8&nbsp; bit, 01=16&nbsp; bit, 10=32&nbsp; bit, 11=64&nbsp; bit.
+        <tr><td>6/7</td><td>WIDTH</td><td>Memory access width. 00=8  bit, 01=16  bit, 10=32  bit, 11=64  bit.
                         If the width selected here is wider than the physical width, the upper bits are ignored on writes
                         and zero on reads.</td></tr>
         </table>
       <p>
-        A memory management setup to emulate a Commodore PET would for example look like (in a 32&nbsp; bit option) the
+        A memory management setup to emulate a Commodore PET would for example look like (in a 32  bit option) the
         table below, where the matchcode $12 is assumed to be the PET's matchcode, the system's I/O is at $E0000000,
-        Video memory at $D0000000 and normal bus is 16&nbsp; bit. The "PET emulator" memory is at $100000000.
+        Video memory at $D0000000 and normal bus is 16  bit. The "PET emulator" memory is at $100000000.
         </p>
       <table border="1">
         <tr><th>Container#</th><th>Addr/Matchcode Mask</th><th>Addr/Matchcode value</th><th>Addr Offset/Container Control</th></tr>
@@ -284,17 +285,17 @@
         Note: this section must be further worked over. There is no way to define a write-through cache (e.g. video memory
         could be written (slowly) to a video board, but mirrored and cached in fast memory. On the other hand is this
         situation very common? Writes to read-only memory could always trap, so TRAPWRITE would not be needed.
-        Are there two WIDTH bits required? Would not one bit be enough to indicate 8&nbsp; bit access. This would
+        Are there two WIDTH bits required? Would not one bit be enough to indicate 8  bit access. This would
         suffice for compatibility. Also it would allow to have the default to "native" width - in the current
         proposal above the processor must know which memory access width it actually uses to write the correct
         width value.
-      </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="mmu">Paged Memory Management Unit (MMU)</a></h2></div><div class="h2c"><p>
+      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mmu" id="mmu">Paged Memory Management Unit (MMU)</a></h2></div><div class="h2c"><p>
 	The 65002 does not have an MMU.
-      </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms as described
 in <a href="af65002front.html#lic">the license section</a>.
-    </div></div><hr>
+    </div></div><hr />
 Last updated 2012-04-29.
   Last modified: 
 2012-04-29
@@ -305,4 +306,5 @@ Last updated 2012-04-29.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

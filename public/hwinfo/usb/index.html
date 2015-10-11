@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Commodore PET and 6502-based USB solutions">
-<meta name="keywords" content="Commodore PET CBM USB">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Commodore PET and 6502-based USB solutions" />
+<meta name="keywords" content="Commodore PET CBM USB" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>6502 USB solutions</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -141,29 +142,29 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>6502 USB solutions</h1><p class="copyright">(C)
-2012-2012 Andr&eacute;  Fachat</p> 
+2012-2012 André  Fachat</p> 
 <div class="overview"><p>	
 	This page lists the known USB solutions for the 6502.
   </p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2012-01-04</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2012-01-04</small>
 	Started this page. It is definitely not complete - please let me know any additions!
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#sw">USB stacks</a></li><li style="list-style-type:none;"><ul><li><a href="#microusb">MicroUSB project</a></li><li><a href="#CS/A65">PET based USB host and device stack</a></li></ul></li><li><a href="#hw">USB hardware solutions</a></li><li style="list-style-type:none;"><ul><li><a href="#CS/A65">PET based USB host and device interface</a></li><li><a href="#atari">Atari USB cartridge</a></li></ul></li><li><a href="#usb2x">USB-to-X</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sw">USB stacks</a></h2></div><div class="h2c">Here is my currently known list of 6502-based USB stacks
-     <h3><a name="microusb">MicroUSB project</a></h3>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#sw">USB stacks</a></li><li style="list-style-type:none;"><ul><li><a href="#microusb">MicroUSB project</a></li><li><a href="#CS/A65">PET based USB host and device stack</a></li></ul></li><li><a href="#hw">USB hardware solutions</a></li><li style="list-style-type:none;"><ul><li><a href="#CS/A65">PET based USB host and device interface</a></li><li><a href="#atari">Atari USB cartridge</a></li></ul></li><li><a href="#usb2x">USB-to-X</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">USB stacks</a></h2></div><div class="h2c">Here is my currently known list of 6502-based USB stacks
+     <h3><a name="microusb" id="microusb">MicroUSB project</a></h3>
 	The MicroUSB project has originally provided a 6502-based USB stack for Atari computers to connect
 	joysticks, keyboards etc. The stack is very simple, so it does not need much code, but it does not
 	handly hubs for example. There are a number of device handlers available though. It only works as host.
 	The stack uses the SL811HS chip.
-	<ul><li><a href="http://www.microusb.org/" target="_blank" class="extlink">MicroUSB web site</a> </li></ul><h3><a name="CS/A65">PET based USB host and device stack</a></h3><p>
+	<ul><li><a href="http://www.microusb.org/" target="_blank" class="extlink">MicroUSB web site</a> </li></ul><h3><a name="CS/A65" id="CS/A65">PET based USB host and device stack</a></h3><p>
 	There exists a Commodore PET (clone) based USB host and device stack, also for the SL811HS chip
 	(which can run in both host and device modes). This stack is more sophisticated and also handles
 	USB hubs. Look for the USB link in the left hand menu.
-	</p><ul><li><a href="../../csa/usb/index.html" target="_blank" class="extlink">CS/A65 host/device USB stack</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="hw">USB hardware solutions</a></h2></div><div class="h2c">This section lists a number of USB hardware solutions. Here the "full" solutions are listed, that implement the
+	</p><ul><li><a href="../../csa/usb/index.html" target="_blank" class="extlink">CS/A65 host/device USB stack</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hw" id="hw">USB hardware solutions</a></h2></div><div class="h2c">This section lists a number of USB hardware solutions. Here the "full" solutions are listed, that implement the
 	complete stack in a 6502.
-     <h3><a name="CS/A65">PET based USB host and device interface</a></h3>
+     <h3><a name="CS/A65" id="CS/A65">PET based USB host and device interface</a></h3>
 	This is the hardware for above's USB stack link. It is based on the SL811HS chip.
-	<ul><li><a href="../../csa/usb/index.html" target="_blank" class="extlink">CS/A65 host/device USB interface</a> </li></ul><h3><a name="atari">Atari USB cartridge</a></h3>This is actually a full cartridge for the Atari 810 (and maybe other?) computers.
+	<ul><li><a href="../../csa/usb/index.html" target="_blank" class="extlink">CS/A65 host/device USB interface</a> </li></ul><h3><a name="atari" id="atari">Atari USB cartridge</a></h3>This is actually a full cartridge for the Atari 810 (and maybe other?) computers.
 		It is based on the SL811HS chip and is the basis for the MicroUSB project above.
-	<ul><li><a href="http://wiki.strotmann.de/wiki/Wiki.jsp?page=USB%20Cartridge" target="_blank" class="extlink">Atari USB cartridge</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="usb2x">USB-to-X</a></h2></div><div class="h2c"><p>This section lists some of the (many) USB-to-Serial solutions. In this solution a
+	<ul><li><a href="http://wiki.strotmann.de/wiki/Wiki.jsp?page=USB%20Cartridge" target="_blank" class="extlink">Atari USB cartridge</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="usb2x" id="usb2x">USB-to-X</a></h2></div><div class="h2c"><p>This section lists some of the (many) USB-to-Serial solutions. In this solution a
 	commercially available USB-to-Serial converter is connected to a 6502. Or an
 	AVR microcontroller that implements the USB stack is used to connect (e.g. parallel or control lines)
 	to a 6502.
@@ -172,7 +173,7 @@
 	and searching the net I did not really find actually implemented solutions for the 6502.
 	Maybe they are just not "spectacular" enough. Anyway, let me know when you know about one.
 	</p>
-     </div></div><hr>
+     </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -184,4 +185,5 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

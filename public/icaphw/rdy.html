@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="RDY-Generation for CMOS 65C02">
-<meta name="keywords" content="6502 RDY">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="RDY-Generation for CMOS 65C02" />
+<meta name="keywords" content="6502 RDY" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>RDY-Generation for CMOS 65C02</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -154,17 +155,17 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>RDY-Generation for CMOS 65C02</h1><p class="copyright">(C)
-2006-2010 Andr&eacute;  Fachat</p> 
+2006-2010 André  Fachat</p> 
 <div class="overview"><p>This article describes a generic schematics for the generation of the RDY
 line used by the 65C02 processor to hold bus accesses when the device is not
 ready.
 </p>
 <p>You think this is not necessary nowadays, where everything is way
 faster than the one or two MHz the 6502 runs at. Well, actually I recently
-found a chip that was too slow for my 2&nbsp;MHz 65C02 system, so I
+found a chip that was too slow for my 2 MHz 65C02 system, so I
 developed this schematics.
 </p><p>Please note that the schematics works for a CMOS 65C02 only - not an
-NMOS&nbsp;6502. This is due to two facts:
+NMOS 6502. This is due to two facts:
 </p><ol>
 <li>The NMOS version requires that the RDY signal is asserted during Phi1,
 i.e. when Phi2 is low. In this phase the CPU sets up the address and control
@@ -184,13 +185,13 @@ extra Phi2 line. So there is a need to deassert the select line when Phi2
 goes low - otherwise the schematics could be much simpler!
 </div><p>This schematics describes how I attached the Philips P8584 I2C controller
 to a 65C02 system. I found that the chip worked well with the system running
-on 1&nbsp;MHz, but not on 2&nbsp;MHz. It only started working when I used
+on 1 MHz, but not on 2 MHz. It only started working when I used
 RDY to halt the CPU for a cycle when accessing the chip.
 </p>
 <p>This schematics creates the RDY signal, but a similar schematics can
 be used to create other clocked signals as well.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#signals">Signals</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#timing">Timing diagrams</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="signals">Signals</a></h2></div><div class="h2c"><p>This section describes the signals as used in the schematics.</p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#signals">Signals</a></li><li><a href="#schematics">Schematics</a></li><li><a href="#timing">Timing diagrams</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="signals" id="signals">Signals</a></h2></div><div class="h2c"><p>This section describes the signals as used in the schematics.</p>
 <ul>
 <li>Phi2: The CPU clock signal. When it is high, the CPU has put valid
 address and data (in case of write) lines on the bus. When Phi2 is low
@@ -218,9 +219,9 @@ is accessed and the RDY line should be asserted for this access.
 timing for the write access.
 </li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="schematics">Schematics</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="schematics" id="schematics">Schematics</a></h2></div><div class="h2c">
 <p>The following diagram shows the schematics</p>
-<img src="rdy/rdy-schematics.png">
+<img src="rdy/rdy-schematics.png" />
 <p>The main IC used for the generation is the shift register 74LS164.
 It is clocked with the Phi2 clock signal, and shifts the /SEL_unclocked
 signal through its output signals.
@@ -235,11 +236,11 @@ You could also use a higher shift register clock and shift the Phi2
 signal through the shift register, and use combinations of the output
 signals e.g. for RAM timing signals.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="timing">Timing diagrams</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="timing" id="timing">Timing diagrams</a></h2></div><div class="h2c">
 <p>This diagram shows the principle timing, but without RDY being pulled
 from XRDY.
 </p>
-<img src="rdy/rdy-timing1.png">
+<img src="rdy/rdy-timing1.png" />
 <p>Phi2 shows the central CPU timing signal. Ax,R/W shows where the address
 lines and R/-W are stable. /SEL_unclocked is the select signal that is
 derived from the CPU address lines. /SEL_clocked is this select signal
@@ -251,7 +252,7 @@ and Q2 being high.
 </p>
 <p>The following diagram shows the signals with the RDY line asserted from
 XRDY.</p>
-<img src="rdy/rdy-timing2.png">
+<img src="rdy/rdy-timing2.png" />
 <p>The /SEL_clocked line now shows two active periods, as it is combined
 with Phi2 that is going inactive during Phi1. Therefore the /NEWSEL line is
 generated using the /SEL_clocked and XRDY line.
@@ -260,7 +261,7 @@ Note: it is important, that the Phi2 going high signals arrives a the
 AND-gate before the shift register and Q1/Q2 logic releases XRDY, so that
 there is no inactive spike on the /NEWSEL line. This is accomplished
 by the gate delay times.</p>
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -272,4 +273,5 @@ by the gate delay times.</p>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

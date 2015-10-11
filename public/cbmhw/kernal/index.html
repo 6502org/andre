@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Modified C64 kernals">
-<meta name="keywords" content="C64,kernal,kernel">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Modified C64 kernals" />
+<meta name="keywords" content="C64,kernal,kernel" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>New C64 Kernals</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -170,10 +171,10 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>New C64 Kernals</h1><p class="copyright">(C)
-- Andr&eacute;  Fachat</p> 
+- André  Fachat</p> 
 <div class="overview"><p>This is Copyright A.Fachat, for distributing use my own
 <a href="MYCOPYING.ASC">License</a></p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#boot">Boot ROM</a></li><li><a href="#roms">Improved ROMs</a></li><li style="list-style-type:none;"><ul><li><a href="#use">How to use</a></li><li><a href="#archives">Archive descriptions</a></li></ul></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boot">Boot ROM</a></h2></div><div class="h2c"><p> This is a small patch to allow the C64 to boot an arbitrary
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#boot">Boot ROM</a></li><li><a href="#roms">Improved ROMs</a></li><li style="list-style-type:none;"><ul><li><a href="#use">How to use</a></li><li><a href="#archives">Archive descriptions</a></li></ul></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boot" id="boot">Boot ROM</a></h2></div><div class="h2c"><p> This is a small patch to allow the C64 to boot an arbitrary
 file (i.e. "B*") from disk 8 when being Reset.
 Well, it also does it when doing "stop/restore", but is that a bug or
 a feature now?
@@ -184,7 +185,7 @@ To assemble, you have to place my <a href="../../misc/index.html">@ASS</a>
 at $7000 in memory (or somewhere else if you correct the SYS statement).
 The you have the modified kernal in the RAM under the kernal ROM.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="roms">Improved ROMs</a></h2></div><div class="h2c"><p> These kernal ROMs do have a lot more new features than the
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="roms" id="roms">Improved ROMs</a></h2></div><div class="h2c"><p> These kernal ROMs do have a lot more new features than the
 standard kernal. The place has been taken from the tape routines
 and the RS232 routines (the latter have been replaced).
 </p>
@@ -195,7 +196,7 @@ They surely contain bugs. You are warned.
 The ROM images contain copyrighted code - i.e. they are patched C64 ROMs,
 copyrighted by CBM (or whatever remains of this company).
 </p>
-    <h3><a name="use">How to use</a></h3><p>The C64 patches have quite some history, so everything looks a bit messy.
+    <h3><a name="use" id="use">How to use</a></h3><p>The C64 patches have quite some history, so everything looks a bit messy.
 The newest version is 1.40 (of Feb 25, 1997) and has the ACIA serial interface
 routines replaced by UART 16550A routines.</p>
 <p>
@@ -226,7 +227,7 @@ routines instead of the UART routines only.</p>
 You can change the mapping of the IEC devices by POKE-ing a new MAP value (as
 described above) to $299.
 	</p>
-	<h3><a name="archives">Archive descriptions</a></h3><p>All files with a ".S??" at the end are source files for my selfwritten
+	<h3><a name="archives" id="archives">Archive descriptions</a></h3><p>All files with a ".S??" at the end are source files for my selfwritten
 6502 Assembler for the C64 (see directory "assembler"). They can be edited
 as a BASIC file and a RUN
 makes them assemble, if you have my assembler in the computer's memory
@@ -282,7 +283,7 @@ browse the <a href="c64bs2">archive</a>-->.</h3><pre>
           A ROM image for 1.31, 1.32 and 1.40 is included. The ROM images have
           the UART/ACIA at $d600 and the TPI at $df00.
 </pre>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="disc">Disclaimer</a></h2></div><div class="h2c"><p> BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disc" id="disc">Disclaimer</a></h2></div><div class="h2c"><p> BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
 FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
 OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
 PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
@@ -302,7 +303,7 @@ OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
 PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 	</p>
-	</div></div><hr>
+	</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -314,4 +315,5 @@ POSSIBILITY OF SUCH DAMAGES.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

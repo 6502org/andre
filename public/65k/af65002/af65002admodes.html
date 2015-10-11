@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="65002 documentation">
-<meta name="keywords" content="8-bit,6502,65002">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css"><link rel="stylesheet" type="text/css" href="optable.css">
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" /><link rel="stylesheet" type="text/css" href="optable.css" />
 <title>65002 Addressing Modes</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -195,26 +196,26 @@
 	<p>
 	This page describes the addressing modes for the 65k line of processors.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#admam">Addressing Modes Introduction</a></li><li><a href="#prefof">Offset prefix</a></li><li><a href="#admlst">Addressing Modes List</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="admam">Addressing Modes Introduction</a></h2></div><div class="h2c"><p>
-	The 65k is a 64&nbsp; bit processor. As such the addressing modes of the 6502 are not
-	sufficient to really use the up to 64&nbsp; bit address space. Adding arbitrary new 
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#admam">Addressing Modes Introduction</a></li><li><a href="#prefof">Offset prefix</a></li><li><a href="#admlst">Addressing Modes List</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="admam" id="admam">Addressing Modes Introduction</a></h2></div><div class="h2c"><p>
+	The 65k is a 64  bit processor. As such the addressing modes of the 6502 are not
+	sufficient to really use the up to 64  bit address space. Adding arbitrary new 
 	addressing modes would clutter the opcode space. So I defined a prefix bit that 
 	converts existing addressing modes into new, extended addressing modes.
 	</p><p>
         Looking at the opcode table for example in <a href="af65002opcodes.html">this page</a> 
 	you will notice that no new addressing modes are shown. Here the AM prefix code comes into play.
         </p>
-        <p>The addressing mode prefix bit AM allows to extend the existing addressing modes from zeropage (8&nbsp; bit) and
-        absolute (16&nbsp; bit) to long (32&nbsp; bit) and longlong (64&nbsp; bit). The following table shows the
+        <p>The addressing mode prefix bit AM allows to extend the existing addressing modes from zeropage (8  bit) and
+        absolute (16  bit) to long (32  bit) and longlong (64  bit). The following table shows the
         modifications when AM is set.</p>
 <table class="optable">
 <tr><th>Original Addressing Mode</th><th>New Addressing Mode</th><th>Comment</th></tr>
-<tr><td>zp</td><td>long</td><td>use a long (32&nbsp; bit) address instead of a zeropage address</td></tr>
-<tr><td>zp,X</td><td>long,X</td><td>use a long (32&nbsp; bit) address instead of a zeropage address</td></tr>
-<tr><td>zp,Y</td><td>long,Y</td><td>use a long (32&nbsp; bit) address instead of a zeropage address</td></tr>
-<tr><td>abs</td><td>longlong</td><td>use a longlong (64&nbsp; bit) address instead of an absolute address</td></tr>
-<tr><td>abs,X</td><td>longlong,X</td><td>use a longlong (64&nbsp; bit) address instead of an absolute address</td></tr>
-<tr><td>abs,Y</td><td>longlong,Y</td><td>use a longlong (64&nbsp; bit) address instead of an absolute address</td></tr>
+<tr><td>zp</td><td>long</td><td>use a long (32  bit) address instead of a zeropage address</td></tr>
+<tr><td>zp,X</td><td>long,X</td><td>use a long (32  bit) address instead of a zeropage address</td></tr>
+<tr><td>zp,Y</td><td>long,Y</td><td>use a long (32  bit) address instead of a zeropage address</td></tr>
+<tr><td>abs</td><td>longlong</td><td>use a longlong (64  bit) address instead of an absolute address</td></tr>
+<tr><td>abs,X</td><td>longlong,X</td><td>use a longlong (64  bit) address instead of an absolute address</td></tr>
+<tr><td>abs,Y</td><td>longlong,Y</td><td>use a longlong (64  bit) address instead of an absolute address</td></tr>
 <tr><td>(zp)</td><td>[zp]</td><td>from the given zeropage location, read a long address instead of an absolute address</td></tr>
 <tr><td>(zp),Y</td><td>[zp],Y</td><td>from the given zeropage location, read a long address instead of an absolute address, then add YR</td></tr>
 <tr><td>(zp,X)</td><td>[zp,X]</td><td>from the given zeropage location (plus XR as given by the addressing mode), read a long address instead of an absolute address</td></tr>
@@ -244,7 +245,7 @@
 	the AM prefix set to 1, and use the quad (longlong) indirect addressing modes.
         </p><p>
         Also note that there a are no indirect addressing modes that take a long or quad (longlong) value as indirect address. This can be overcome with the offset prefix though.
-	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="prefof">Offset prefix</a></h2></div><div class="h2c">
+	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prefof" id="prefof">Offset prefix</a></h2></div><div class="h2c">
         <p>
 	As has been shown in the <a href="af65002prefixes#prefof">Prefixes page</a> two prefix bits
 	can be used to add a register value to an operand. This creates PC-relative, Stack-relative and
@@ -259,7 +260,7 @@
         Note that the size of the address read from the indirect address is defined by the addressing mode
         alone (which is also determined by the AM prefix bit).
         </p>
-       </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="admlst">Addressing Modes List</a></h2></div><div class="h2c"><p>
+       </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="admlst" id="admlst">Addressing Modes List</a></h2></div><div class="h2c"><p>
         This section describes an overview on the addressing modes of the 65k processor. An addressing mode determines
         effective address of an operand (no matter what size the operand is). The addressing modes are
         described in detail below.
@@ -334,11 +335,11 @@
 <tr><td>Relative 64bit (BSR)</td><td>Quad relative</td><td>AM=1</td><td>8</td><td>relquad</td><td>65k</td><td>relative addressing modes, used in BSR; from -2^64 to +2^64-1</td></tr>
 </table>
 
-</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms as described
 in <a href="af65002front.html#lic">the license section</a>.
-    </div></div><hr>
+    </div></div><hr />
 Last updated 2012-04-23.
   Last modified: 
 2012-04-29
@@ -349,4 +350,5 @@ Last updated 2012-04-23.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

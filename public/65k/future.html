@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 16bit 32bit expansion">
-<meta name="keywords" content="6502 16bit 32bit expansion">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css"><link rel="stylesheet" type="text/css" href="optable.css">
+<meta name="description" content="6502 16bit 32bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit expansion" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" /><link rel="stylesheet" type="text/css" href="optable.css" />
 <title>The 65k Project - Future Options</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -148,12 +149,12 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>The 65k Project - Future Options</h1><p class="copyright">(C)
-2010-2012 Andr&eacute;  Fachat</p> 
+2010-2012 André  Fachat</p> 
 <div class="overview"><p>
 	This page describes the future options for my 65k line of processors.
 	The current options can be found in the processor specifications, so here
 	only the future features are discussed.
-  </p></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></li><li><a href="#smp">Multiprocessing</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ovquick">Quick Opcodes</a></h2></div><div class="h2c"><p>These opcodes are defined by the "QUICK prefix" byte, being followed by an additional opcode byte.
+  </p></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#ovquick">Quick Opcodes</a></li><li><a href="#ovsys">SYS opcodes</a></li><li><a href="#ovfp">FP opcodes</a></li><li><a href="#ovmmu">Blitter opcodes</a></li><li><a href="#mem">Memory Management</a></li><li style="list-style-type:none;"><ul><li><a href="#mmu">Paged Memory Management Unit (MMU)</a></li></ul></li><li><a href="#smp">Multiprocessing</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ovquick" id="ovquick">Quick Opcodes</a></h2></div><div class="h2c"><p>These opcodes are defined by the "QUICK prefix" byte, being followed by an additional opcode byte.
 	These opcodes may still even be modified by the prefix1 and prefix2 opcodes though!
 	</p><p>
 	The QUICK opcodes provide a way to "quickly" do repetitive operations which require multiple opcodes on the 
@@ -161,7 +162,7 @@
 	</p><p>
 	The following table describes the opcodes:</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br>MSB\</th><th>0</th>	<th>1</th>		<th>2</th>		<th>3</th>		<th>4</th>		<th>5</th>		<th>6</th>		<th>7</th>		<th>8</th>		<th>9</th>		<th>A</th>		<th>B</th>		<th>C</th>		<th>D</th>		<th>E</th>	<th>F</th></tr>
+<tr><th>LSB-&gt;<br />MSB\</th><th>0</th>	<th>1</th>		<th>2</th>		<th>3</th>		<th>4</th>		<th>5</th>		<th>6</th>		<th>7</th>		<th>8</th>		<th>9</th>		<th>A</th>		<th>B</th>		<th>C</th>		<th>D</th>		<th>E</th>	<th>F</th></tr>
 <tr><th>0</th>		<td>INY #1</td>		<td>INX #1</td>		<td>INC A #1</td>	<td>ROL A #1</td>	<td>ASL A #1</td>	<td>RDL A #1</td>	<td>INC #1, (E)</td>	<td>ROL #1, (E)</td>	<td>RDL #1 (E)</td>	<td>ASL #1, (E)</td>	<td>SLX #1</td>		<td>SLY #1</td>		<td>ASR A #1</td>	<td>INC #1, zp</td>		<td>ROL #1, zp</td>	<td>ASL #1, zp</td></tr>
 <tr><th>1</th>		<td>INY #2</td>		<td>INX #2</td>		<td>INC A #2</td>	<td>ROL A #2</td>	<td>ASL A #2</td>	<td>RDL A #2</td>	<td>INC #2, (E)</td>	<td>ROL #2, (E)</td>	<td>RDL #2 (E)</td>	<td>ASL #2, (E)</td>	<td>SLX #2</td>		<td>SLY #2</td>		<td>ASR A #2</td>	<td>INC #1, zp</td>		<td>ROL #2, zp</td>	<td>ASL #2, zp</td></tr>
 <tr><th>2</th>		<td>INY #3</td>		<td>INX #3</td>		<td>INC A #3</td>	<td>ROL A #3</td>	<td>ASL A #3</td>	<td>RDL A #3</td>	<td>INC #3, (E)</td>	<td>ROL #3, (E)</td>	<td>RDL #3 (E)</td>	<td>ASL #3, (E)</td>	<td>SLX #3</td>		<td>SLY #3</td>		<td>ASR A #3</td>	<td>INC #1, zp</td>		<td>ROL #3, zp</td>	<td>ASL #3, zp</td></tr>
@@ -200,19 +201,19 @@
 	<li>INB - increment B register by values 1 to 8</li>
 	<li>DEB - increment B register by values 1 to 8</li>
 	</ul>
-  	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ovsys">SYS opcodes</a></h2></div><div class="h2c"><p>This section gives an overview over the system opcodes that handle system
+  	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ovsys" id="ovsys">SYS opcodes</a></h2></div><div class="h2c"><p>This section gives an overview over the system opcodes that handle system
 	configuration registers etc. These opcodes are all privileged.
 	</p><p>NOTE: some of these already belong to the 65002!
 	</p>
 <table class="optable">
-<tr><th>LSB-&gt;<br>MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
+<tr><th>LSB-&gt;<br />MSB\</th><th>0</th><th>1</th>	<th>2</th>	<th>3</th>	<th>4</th>			<th>5</th>			<th>6</th>	<th>7</th>	<th>8</th>	<th>9</th>	<th>A</th>	<th>B</th>	<th>C</th>		<th>D</th>	<th>E</th>	<th>F</th></tr>
 <tr><th>0</th>		<td></td>	<td>LCR imm</td><td></td>	<td></td>	<td>SENV zp</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>1</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>SENV zp, (E)</td>		<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>	
 <tr><th>2</th>		<td></td>	<td>SCR imm</td><td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>3</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>4</th>		<td></td>	<td>BCR imm</td><td></td>	<td></td> 	<td>SMMU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br>OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>4</th>		<td></td>	<td>BCR imm</td><td></td>	<td></td> 	<td>SMMU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU abs<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>5</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td>CLEIM</td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
-<tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br>OF,AM</td><td></td>	<td></td>	<td></td></tr>
+<tr><th>6</th>		<td>RTU</td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>JPU (abs)<br />OF,AM</td><td></td>	<td></td>	<td></td></tr>
 <tr><th>7</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>FILU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>8</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
 <tr><th>9</th>		<td></td>	<td></td>	<td></td>	<td></td>	<td>MVNTU</td>			<td></td>			<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>		<td></td>	<td></td>	<td></td></tr>
@@ -263,23 +264,23 @@
 	<li>AND/ORA/EOR/BIT SR - operations on the status register (can do 8, 16, or 24 (zero-extended 32) bit) (no replacement)</li>
 	</ul>
 
-    	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ovfp">FP opcodes</a></h2></div><div class="h2c"><p>
+    	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ovfp" id="ovfp">FP opcodes</a></h2></div><div class="h2c"><p>
 	Note: this section still needs to be worked out.
-    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ovmmu">Blitter opcodes</a></h2></div><div class="h2c"><p>
+    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ovmmu" id="ovmmu">Blitter opcodes</a></h2></div><div class="h2c"><p>
 	Note: this section still needs to be worked out. It is not clear if the blitter opcodes
 	could be a not implemented column in the SYS opcodes table. Blitter opcodes would be 
 	privileged.
-    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="mem">Memory Management</a></h2></div><div class="h2c"><p>
+    	</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2></div><div class="h2c"><p>
 	This section describes the memory management features of the 65k. Those features are
 	optional. They are decoupled from the main core by the means of "match codes".
-    </p><h3><a name="mmu">Paged Memory Management Unit (MMU)</a></h3><p>
+    </p><h3><a name="mmu" id="mmu">Paged Memory Management Unit (MMU)</a></h3><p>
 	TBD
-      </p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="smp">Multiprocessing</a></h2></div><div class="h2c"><p>
+      </p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="smp" id="smp">Multiprocessing</a></h2></div><div class="h2c"><p>
 	The 65k will support multiprocessing. With the LLA and SCA it supports load-linked and store-conditional
 	multiprocessor-safe synchronization primitives. 
 	Note that the usual read-modify write operations (ROR, ROL, LSR, ASL, ASR, RDR, RDL, INC, DEC, TSB, TRB, SLY, SRY, SLX, SRX) 
 	are in general not multiprocessor-safe. They may be multicore-safe (two cores on one processor).
-      </p></div></div><hr>
+      </p></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -291,4 +292,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

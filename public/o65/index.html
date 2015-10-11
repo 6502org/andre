@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="6502 o65 standard fileformat">
-<meta name="keywords" content="6502,standard,fileformat">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="6502 o65 standard fileformat" />
+<meta name="keywords" content="6502,standard,fileformat" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>o65 6502 binary relocation format v1.3</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 <div id="menu1" class="%open%">
 <div id="twist1" class="twisty"></div>
@@ -99,7 +100,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>o65 6502 binary relocation format v1.3</h1><p class="copyright">(C)
-1997-2010 Andr&eacute;  Fachat</p> 
+1997-2010 André  Fachat</p> 
 <div class="overview"><p>The <strong>o65</strong> fileformat provides portable way
 for using relocatable 6502 binaries. It can hold object files
 or executables, and features segments for uninitialized data,
@@ -107,7 +108,7 @@ initialized data and text, as well as (uninitialized) zeropage.
 Block loading can be used and when there is no late-binding
 (which is possible) no side-storage is needed.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#current">Current Version</a></li><li><a href="#example">Example Code</a></li><li><a href="#o65ng">o65 Next Generation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#uses">Current uses</a></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="current">Current Version</a></h2></div><div class="h2c"><p>The current version is version 1.3 in
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#current">Current Version</a></li><li><a href="#example">Example Code</a></li><li><a href="#o65ng">o65 Next Generation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#uses">Current uses</a></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="current" id="current">Current Version</a></h2></div><div class="h2c"><p>The current version is version 1.3 in
 <a href="fileformat.html">fileformat.html</a>
 </p><p>
 The change from <a href="fileformat-1.2.html.gz">version 1.2</a>
@@ -118,7 +119,7 @@ The change from the <a href="fileformat-1.1.html.gz">version 1.1</a>
 is that the undefined reference relocation entry for high-byte
 relocation has changed.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="example">Example Code</a></h2></div><div class="h2c"><p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="example" id="example">Example Code</a></h2></div><div class="h2c"><p>
 In the file <a href="libloader.a65">libloader.a65</a> is a sample loader
 for the o65 file format in 6502 assembler. It is taken from the OS/A65 lib6502 code. It does not use the simple file format (as described by mode.11), but
 computes the relocation differences for each segment separately. What it
@@ -133,23 +134,23 @@ also has a sample C64 binding.
 The code is not cleared from debug statements and lacks comments. Wear your
 hard hat.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="o65ng">o65 Next Generation</a></h2></div><div class="h2c"><p>Due to some requests to support other CPUs and "larger" systems, I have made an attempt to
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="o65ng" id="o65ng">o65 Next Generation</a></h2></div><div class="h2c"><p>Due to some requests to support other CPUs and "larger" systems, I have made an attempt to
 define a new, "v2" version of the o65 file format. It is far from complete, and open for discussion.
 You can find the working draft in <a href="fileformatng.html">fileformatng.html</a>.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="dist">Distribution</a></h2></div><div class="h2c"><p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dist" id="dist">Distribution</a></h2></div><div class="h2c"><p>
 The file format extension <quote>o65</quote> for a 6502 relocatable file format
 is copyrighted by me. It may be used by systems and applications without
 restriction, as long
 as the files named with this extension obey
 the definitions stated in this document.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="uses">Current uses</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="uses" id="uses">Current uses</a></h2></div><div class="h2c">
 <p>
 The <code>o65</code> file format is currently used in the following systems:
 <ul>
 <li><a href="http://www.6502.org/users/andre/osa/index.html">GeckOS/A65</a> operating system: o65 is the main file format for the GeckOS operating
-system for executables.<br>It uses late binding to insert the kernel jumptable address as
+system for executables.<br />It uses late binding to insert the kernel jumptable address as
 well as the lib6502 jumptable address into the executable at load time. Also it searches
 the (optional) "main" label to start the executable. Name lengths can be arbitrary as they
 are not stored, name encoding is ASCII.
@@ -193,7 +194,7 @@ even for such CPUs as Z80 and 80286!</li>
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -205,4 +206,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

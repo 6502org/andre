@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Commodore PET CBM Hardware descriptions">
-<meta name="keywords" content="Commodore PET CBM Hardware">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="Commodore PET CBM Hardware descriptions" />
+<meta name="keywords" content="Commodore PET CBM Hardware" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>Commodore PET Programming Model</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -182,16 +183,16 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Commodore PET Programming Model</h1><p class="copyright">(C)
-- Andr&eacute;  Fachat</p> 
+- André  Fachat</p> 
 <div class="overview"><p>	
 	Here you can find information you need to program the PET computer.
   </p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2014-08-22</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2014-08-22</small>
 	Added the BASIC section.
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#memmap">Hardware Memory Map</a></li><li><a href="#memmap">Hardware Memory Map</a></li><li><a href="#io">I/O Area</a></li><li style="list-style-type:none;"><ul><li><a href="#pia1">$E810-$E81F - PIA&nbsp;1</a></li><li><a href="#pia2">$E820-$E82F - PIA&nbsp;2</a></li><li><a href="#via">$E840-$E84F - VIA</a></li><li><a href="#crtc">$E880-$E88F - CRTC</a></li></ul></li><li><a href="#extended">Extended Models</a></li><li style="list-style-type:none;"><ul><li><a href="#sp">SuperPET Models</a></li><li><a href="#8x96">8x96 Models</a></li><li><a href="#8296">8296 Models</a></li></ul></li><li><a href="#links">Links</a></li><li style="list-style-type:none;"><ul><li><a href="#petio">PET I/O</a></li><li><a href="#chipdata">Chip Data</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memmap">Hardware Memory Map</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#memmap">Hardware Memory Map</a></li><li><a href="#memmap">Hardware Memory Map</a></li><li><a href="#io">I/O Area</a></li><li style="list-style-type:none;"><ul><li><a href="#pia1">$E810-$E81F - PIA 1</a></li><li><a href="#pia2">$E820-$E82F - PIA 2</a></li><li><a href="#via">$E840-$E84F - VIA</a></li><li><a href="#crtc">$E880-$E88F - CRTC</a></li></ul></li><li><a href="#extended">Extended Models</a></li><li style="list-style-type:none;"><ul><li><a href="#sp">SuperPET Models</a></li><li><a href="#8x96">8x96 Models</a></li><li><a href="#8296">8296 Models</a></li></ul></li><li><a href="#links">Links</a></li><li style="list-style-type:none;"><ul><li><a href="#petio">PET I/O</a></li><li><a href="#chipdata">Chip Data</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Hardware Memory Map</a></h2></div><div class="h2c">
 	When you switch the machine on, it greats you with a BASIC prompt.
 	Here's a quick reference guide for the Commodore BASIC
-    <ul><li><a href="http://www.zimmers.net/cbmpics/cbm/PETx/basicref.html" target="_blank" class="extlink">BASIC 4.0 quick reference</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memmap">Hardware Memory Map</a></h2></div><div class="h2c">
+    <ul><li><a href="http://www.zimmers.net/cbmpics/cbm/PETx/basicref.html" target="_blank" class="extlink">BASIC 4.0 quick reference</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Hardware Memory Map</a></h2></div><div class="h2c">
 <P>The memory map of the PET is pretty simple - if you do not consider
 the 8x96 and SuperPET models. We will therefore only discuss the models up
 to 8032 and the other two later.
@@ -226,7 +227,7 @@ open address or the $E*** ROM iff it is 4k.</DD>
 <DT>$F000-$FFFF</DT>
 <DD>Kernel ROM</DD>
 </DL>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="io">I/O Area</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="io" id="io">I/O Area</a></h2></div><div class="h2c">
 <P>The I/O area in general is 2k from $E800 to $EFFF. Used, however, is
 only one page ($E800-$E8FF). In the board #4 the I/O size has been reduced
 to this page, allowing for more ROM space in $E900-$EFFF for nationalized
@@ -234,7 +235,7 @@ keyboard mappings.
 </P><P>
 The decoding has been done with minimal effort: The address lines
 A4-A7 are each directly used to select an I/O chip. Bit A4 must be set
-for the PIA&nbsp;1, A5 must be set for PIA&nbsp;2, A6 must be set for
+for the PIA 1, A5 must be set for PIA 2, A6 must be set for
 the VIA and A7 must be set for the CRCT (if available). This results
 in some addresses where more than one chip is selected. When reading
 them, all selected chips drive the data bus. As these chips have NMOS
@@ -243,7 +244,7 @@ this is not always the case and may depend on other bus loads or whatever.
 Below only the normal mappings are described. For the exact description
 see the <A HREF="links.html#petio">petio</A> file.
 </P>
-<h3><a name="pia1">$E810-$E81F - PIA&nbsp;1</a></h3>
+<h3><a name="pia1" id="pia1">$E810-$E81F - PIA 1</a></h3>
 <p>PIA 1 is used for the keyboard, some tape I/O and the IEEE488
 EOI line. Also CB1 is used to generate the system interrupt - it is
 connected to the screen vertical blank signal and can generate IRQs
@@ -269,7 +270,7 @@ E813    CB2         output to cassette #1 motor: 0=on, 1=off
                     generate the 50 or 60 Hz IRQ. Also connected to
                     VIA PB5.
 </PRE>
-		<h3><a name="pia2">$E820-$E82F - PIA&nbsp;2</a></h3>
+		<h3><a name="pia2" id="pia2">$E820-$E82F - PIA 2</a></h3>
 <p>PIA 2 has the 8 IEEE488 data lines (in and out) and some IEEE488 control lines.</p>
 <pre>
 Use of PIA 2 signals in a PET:
@@ -283,7 +284,7 @@ E822    PORT B      Output buffer for IEEE data lines
 E823    CB2         IEEE DAV out
         CB1         IEEE SRQ in
 </pre>
-		<h3><a name="via">$E840-$E84F - VIA</a></h3>
+		<h3><a name="via" id="via">$E840-$E84F - VIA</a></h3>
 The VIA is used for the Userport, Tape and some IEEE488 control lines. CA2
 switches the character ROM between graphics and text mode.
 The original ROM PET 2001 in the text mode has upper and lower characters
@@ -351,7 +352,7 @@ case and graphics.
 
 </PRE>
 
-		<h3><a name="crtc">$E880-$E88F - CRTC</a></h3><p>
+		<h3><a name="crtc" id="crtc">$E880-$E88F - CRTC</a></h3><p>
 The CRTC is only available in newer PETs, with the boards #3 and #4.
 It has only two registers, one to write the internal register number to
 and one for the internal register value. In the following only the internal
@@ -392,19 +393,19 @@ as character ROM addresses, the 8th bit is used to invert the character
 by hardware!
 </P><P>
 One character normally consists of 8 scanlines and during each of the scan
-lines the CRTC provides the same address, only its RA&nbsp;0-4 count the
+lines the CRTC provides the same address, only its RA 0-4 count the
 scan lines. RA 0-2 are given the the character generator ROM to display
 a different byte for each scan line. On the CRTC PET the upper/lower
 case mode sets the
 number of scan lines to 9 (or 10?) though. But the hardware automatically
 blanks the displayed character for all scan lines above the 8th...
 </P>
-		</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="extended">Extended Models</a></h2></div><div class="h2c"><h3><a name="sp">SuperPET Models</a></h3>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="extended" id="extended">Extended Models</a></h2></div><div class="h2c"><h3><a name="sp" id="sp">SuperPET Models</a></h3>
 <p>The SuperPET also known as <quote>MicroMainFrame 9000</quote>, esp. in Europe, has 
 an extension board with a 6809 CPU, but also with additional I/O. In particular the
 SuperPET has an ACIA to implement a serial (RS232) interface. More details are on the
 SuperPET page here.</p>
-    <ul><li class="subitem"><a href="superpet.html" target="_blank" class="extlink">SuperPET Page</a> </li></ul><h3><a name="8x96">8x96 Models</a></h3>
+    <ul><li class="subitem"><a href="superpet.html" target="_blank" class="extlink">SuperPET Page</a> </li></ul><h3><a name="8x96" id="8x96">8x96 Models</a></h3>
 <P>The 8032 with 64k expansion board - which is the same as the 8096 model
 introduced memory mapping the upper 32k. Therefore a new write-only register
 was created, at $FFF0. By writing certain values into it, two 16k areas
@@ -421,7 +422,7 @@ run the LOS-96 operating system, an improved BASIC version.
 The description of the $FFF0 register is included in the 8096 addendum
 in the <A HREF="links.html#petio">petio</A> text.
 </P>
-    <ul><li class="subitem"><a href="8x96.html" target="_blank" class="extlink">8x96 Page</a> </li></ul><h3><a name="8296">8296 Models</a></h3>
+    <ul><li class="subitem"><a href="8x96.html" target="_blank" class="extlink">8x96 Page</a> </li></ul><h3><a name="8296" id="8296">8296 Models</a></h3>
 <P>
 The 8296 includes the 8096 memory mapping in its own hardware already.
 Its RAM is organized in 2 banks of 64k, where the second bank is used
@@ -431,9 +432,9 @@ memory ($8000-$8FFF) is mapped read/write. By setting certain jumpers
 on the hardware the expansion ROM areas ($9000-$9FFF and $A000-$AFFF)
 can be switched off, mapping the RAM from the first bank there.
 </P><P>
-The CRTC in the 8296 uses the video address lines VA&nbsp;0-11, giving
+The CRTC in the 8296 uses the video address lines VA 0-11, giving
 8k of addressable (they are used as A1-A12 in 80 cols models!) video RAM.
-Only VA&nbsp;12 is still used to switch the character ROM.
+Only VA 12 is still used to switch the character ROM.
 The lower 4k ($8000-$8FFF) are usable anyway, only the upper 4k
 ($9000-$9FFF) can be used write-only without jumper settings or
 read/write with a jumper set (see <A HREF="links.html#petio">petio</A> text.
@@ -441,8 +442,8 @@ read/write with a jumper set (see <A HREF="links.html#petio">petio</A> text.
 <P>
 A full memory map of the CBM8296 is in this <A HREF="imgs/fullmemmap.gif">image</A>.
 </P>
-    <ul><li class="subitem"><a href="8x96.html" target="_blank" class="extlink">8x96 Page</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="links">Links</a></h2></div><div class="h2c">Links to information about the I/O area.<h3><a name="petio">PET I/O</a></h3><ul><li class="subitem"><a href="local/pet-io-2.txt" target="_blank" class="extlink">petio.txt</a> </li></ul><h3><a name="chipdata">Chip Data</a></h3><ul><li class="subitem"><a href="local/64doc.txt" target="_blank" class="extlink">6502 programming info</a>  from the
-		<a class="extlink" target="_blank" href="http://vice-emu.sourceforge.net/">VICE team</a></li><li class="subitem"><a href="local/6522-VIA.txt.gz" target="_blank" class="extlink">6522 documentation</a> </li><li><a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html" target="_blank" class="extlink">Chipdata on the CBM archive</a> </li><li><a href="http://www.6502.org/documents/datasheets/" target="_blank" class="extlink">Chip datasheets on 6502.org</a> </li></ul></div></div><hr>
+    <ul><li class="subitem"><a href="8x96.html" target="_blank" class="extlink">8x96 Page</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="links" id="links">Links</a></h2></div><div class="h2c">Links to information about the I/O area.<h3><a name="petio" id="petio">PET I/O</a></h3><ul><li class="subitem"><a href="local/pet-io-2.txt" target="_blank" class="extlink">petio.txt</a> </li></ul><h3><a name="chipdata" id="chipdata">Chip Data</a></h3><ul><li class="subitem"><a href="local/64doc.txt" target="_blank" class="extlink">6502 programming info</a>  from the
+		<a class="extlink" target="_blank" href="http://vice-emu.sourceforge.net/">VICE team</a></li><li class="subitem"><a href="local/6522-VIA.txt.gz" target="_blank" class="extlink">6522 documentation</a> </li><li><a href="http://www.zimmers.net/anonftp/pub/cbm/documents/chipdata/index.html" target="_blank" class="extlink">Chipdata on the CBM archive</a> </li><li><a href="http://www.6502.org/documents/datasheets/" target="_blank" class="extlink">Chip datasheets on 6502.org</a> </li></ul></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -454,4 +455,5 @@ A full memory map of the CBM8296 is in this <A HREF="imgs/fullmemmap.gif">image<
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

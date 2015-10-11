@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute; Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9; Fachat" />
 
-<meta name="description" content="">
-<meta name="keywords" content="Xilinx programmable-logic CPLD FPGA programmer">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="Xilinx programmable-logic CPLD FPGA programmer" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>Xilinx tools</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -154,7 +155,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Xilinx tools</h1><p class="copyright">(C)
-- Andr&eacute; Fachat</p> 
+- André Fachat</p> 
 <div class="overview"><p>
 		In my newest designs (for example the <a href="../csa/cpu816v2/index.html">CSA 65816 CPU V2</a> I 
 		started to use programmable logic from Xilinx, especially a CPLD - 
@@ -173,7 +174,7 @@
 		</p><p>
 		For a deeper introduction look at <a class="extlink" href="http://hackaday.com/2008/12/11/how-to-programmable-logic-devices-cpld/">Hack-a-day CPLD page</a>.
 		</p>
-	</div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#dev">Development environment</a></li><li><a href="#prog">Programmer</a></li><li><a href="#vhdl">VHDL</a></li><li><a href="#sim">VHDL simulation</a></li><li><a href="#lessons">Lessons learned</a></li><li style="list-style-type:none;"><ul><li><a href="#hwclose">Close to hardware...</a></li><li><a href="#iobus">Not everything works right...</a></li><li><a href="#diag">A diagnostics pin helps...</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="dev">Development environment</a></h2></div><div class="h2c"><p>The Xilinx devices can be programmed with the ISE Webpack. You need to register
+	</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#dev">Development environment</a></li><li><a href="#prog">Programmer</a></li><li><a href="#vhdl">VHDL</a></li><li><a href="#sim">VHDL simulation</a></li><li><a href="#lessons">Lessons learned</a></li><li style="list-style-type:none;"><ul><li><a href="#hwclose">Close to hardware...</a></li><li><a href="#iobus">Not everything works right...</a></li><li><a href="#diag">A diagnostics pin helps...</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dev" id="dev">Development environment</a></h2></div><div class="h2c"><p>The Xilinx devices can be programmed with the ISE Webpack. You need to register
 				with Xilinx though, to be able to download it.
 				The Webpack is available for Windows and Linux.
 				</p><p>
@@ -185,18 +186,18 @@
 				In the meantime, however, I have found the libusbdriver code (link below) for Linux
 				that I compiled and installed, and now I can easily programm the devices on Linux and
 				hope not to need Windows again here!
-		</p><ul><li><a href="http://www.xilinx.com/support/download/index.htm" target="_blank" class="extlink">ISE Webpack download site at xilinx</a> </li><li><a href="http://www.rmdir.de/~michael/xilinx/" target="_blank" class="extlink">libusbdriver Driver for Xilinx JTAG tools</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="prog">Programmer</a></h2></div><div class="h2c"><p>Once you have created the CPLD code, you need to program it into the device. The standard
+		</p><ul><li><a href="http://www.xilinx.com/support/download/index.htm" target="_blank" class="extlink">ISE Webpack download site at xilinx</a> </li><li><a href="http://www.rmdir.de/~michael/xilinx/" target="_blank" class="extlink">libusbdriver Driver for Xilinx JTAG tools</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programmer</a></h2></div><div class="h2c"><p>Once you have created the CPLD code, you need to program it into the device. The standard
 				CPLDs provide an in-system-programming port that you can connect to with a 6-pin cable.
 				But where to connect it on the PC side? As usual, there are solutions for the printer port
 				as well as USB. I built myself a "Parallel cable III" clone.
 				</p><p>With this cable you are restricted to 200kHz clock while transferring the data,
 				but the cable is cheap (2 74HC125 plus some resistors and capacitors).
 			</p>
-		<ul><li><a href="http://www.xilinx.com/itp/3_1i/data/common/hug/chap01/hug01005.htm" target="_blank" class="extlink">Xilinx parallel cable III</a> </li><li><a href="http://www.ulrichradig.de/home/index.php/cpld/basekit_xilinx_cplds" target="_blank" class="extlink">Schematics for my Programmer cable (page is in German)</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="vhdl">VHDL</a></h2></div><div class="h2c"><p>The Xilinx tools allow you to use different methods of programming.
+		<ul><li><a href="http://www.xilinx.com/itp/3_1i/data/common/hug/chap01/hug01005.htm" target="_blank" class="extlink">Xilinx parallel cable III</a> </li><li><a href="http://www.ulrichradig.de/home/index.php/cpld/basekit_xilinx_cplds" target="_blank" class="extlink">Schematics for my Programmer cable (page is in German)</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="vhdl" id="vhdl">VHDL</a></h2></div><div class="h2c"><p>The Xilinx tools allow you to use different methods of programming.
 				One is using a schematics editor, to program the device like you would draw a normal schematics. Other possibilities are VHDL and Verilog.
 				</p><p>I chose VHDL, as it supposedly has a stricter type system. I want my designs to "fail fast", as the later you find a bug, the higher the cost and a strict type system helps to find problems earlier in the design process.
 				</p><p>
-		</p></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sim">VHDL simulation</a></h2></div><div class="h2c"><p>
+		</p></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sim" id="sim">VHDL simulation</a></h2></div><div class="h2c"><p>
 				Once you have your design ready, you want to test it. As VHDL is also designed as a simulation language,
 				with the right tools you can simulate your design. Fortunately there are easy to use, free tools available.
 				I found the GHDL compiler - an extension to the gcc (GNU compiler collection) - together with the
@@ -225,9 +226,9 @@
 				that automatically does a specific sequence of memory accesses. These memory accesses test the
 				various features of the CPLD in the PET816 board, even including a write to the control register!
 			</p>
-		<ul><li><a href="http://ghdl.free.fr/" target="_blank" class="extlink">GHDL homepage</a> </li><li><a href="http://gtkwave.sourceforge.net/" target="_blank" class="extlink">GTKWave homepage</a> </li><li><a href="http://mbmn.net/uer/tutorials/vhdl-with-ghdl/" target="_blank" class="extlink">Simulation tutorial with GHDL</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="lessons">Lessons learned</a></h2></div><div class="h2c"><p>
+		<ul><li><a href="http://ghdl.free.fr/" target="_blank" class="extlink">GHDL homepage</a> </li><li><a href="http://gtkwave.sourceforge.net/" target="_blank" class="extlink">GTKWave homepage</a> </li><li><a href="http://mbmn.net/uer/tutorials/vhdl-with-ghdl/" target="_blank" class="extlink">Simulation tutorial with GHDL</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="lessons" id="lessons">Lessons learned</a></h2></div><div class="h2c"><p>
 					Nevertheless there are some lessons learned which I'll describe in the next sections.
-			</p><h3><a name="hwclose">Close to hardware...</a></h3><p>In the beginning I wrote some simple code that just didn't want to compile.
+			</p><h3><a name="hwclose" id="hwclose">Close to hardware...</a></h3><p>In the beginning I wrote some simple code that just didn't want to compile.
 						What I finally found out is that I tried to modify a signal in two processes.
 						That does not work, as after all, the CPLD is still some hardware design and
 						the code needs to be compiled into the CPLD.
@@ -243,7 +244,7 @@
 						When you keep this in mind, you automatically write design the system 
 						with a much higher chance that it works :-)
 					</p>
-				<h3><a name="iobus">Not everything works right...</a></h3><p>With a new technique there comes a learning curve. I found that out when I 
+				<h3><a name="iobus" id="iobus">Not everything works right...</a></h3><p>With a new technique there comes a learning curve. I found that out when I 
 						tried to implement a data bus interface for the 65816 card's control register.
 						The bus is a bidirectional pin, and I could use it as input as well as 
 						output in VHDL, I could even set it to high impedance all right, all without
@@ -262,10 +263,10 @@
 						I don't know yet what was wrong here, if I used the wrong VHDL data type, 
 						or the CPLD simply can't do this combination of input and output with high
 						impedance on the same pin.
-				</p><h3><a name="diag">A diagnostics pin helps...</a></h3><p>I found that reserving one pin for diagostics and then in VHDL setting this
+				</p><h3><a name="diag" id="diag">A diagnostics pin helps...</a></h3><p>I found that reserving one pin for diagostics and then in VHDL setting this
 						pin in those parts I wanted to debug helped a lot in finding out
 						what was actually happening in the chip.
-				</p></div></div><hr>
+				</p></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 	  
     Last modified: 
@@ -277,4 +278,5 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

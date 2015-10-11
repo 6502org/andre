@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="OS/A65 Version 2.0">
-<meta name="keywords" content="6502,operating system">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="OS/A65 Version 2.0" />
+<meta name="keywords" content="6502,operating system" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>GeckOS/A65 V2.0</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 <div id="menu1" class="%open%">
 <div id="twist1" class="twisty"></div>
@@ -99,7 +100,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>GeckOS/A65 V2.0</h1><p class="copyright">(C)
-1989-1999 Andr&eacute;  Fachat</p> 
+1989-1999 André  Fachat</p> 
 <div class="overview"><p>	This is a completely new version of my 6502 operating system GeckOS/A65.
 From version 2.0.0 on it has a lot of new features:</p>
 <ul>
@@ -109,11 +110,11 @@ From version 2.0.0 on it has a lot of new features:</p>
 <li>lib6502 standard library</li>
 <li>internet support</li>
 </ul>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-10-06</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2013-10-06</small>
 	Updated GeckOS to 2.0.9
-    </li><li><div>&nbsp;</div><small>2010-01-04</small>
+    </li><li><div> </div><small>2010-01-04</small>
 	Started this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#download">Download</a></li><li><a href="#desc">Description</a></li><li><a href="#arch">Architecture</a></li><li><a href="#dev">Development</a></li><li><a href="#docs">More Docs</a></li><li><a href="#old">Old Stuff</a></li><li><a href="#history">History</a></li><li><a href="#ideas">Ideas for later versions</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="download">Download</a></h2></div><div class="h2c">
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#download">Download</a></li><li><a href="#desc">Description</a></li><li><a href="#arch">Architecture</a></li><li><a href="#dev">Development</a></li><li><a href="#docs">More Docs</a></li><li><a href="#old">Old Stuff</a></li><li><a href="#history">History</a></li><li><a href="#ideas">Ideas for later versions</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="download" id="download">Download</a></h2></div><div class="h2c">
 <ul>
 <li><a href="oa-2.0.0.tar.gz">oa-2.0.0.tar.gz</a> Full source archive. To build the binaries you have to have the xa65 package (see below).</li>
 <li><a href="oa-2.0.0.base.tar.gz">oa-2.0.0.base.tar.gz</a> Base archive, without the Gecko and CS/A65 architectures and without the copyrighted BASIC
@@ -142,17 +143,17 @@ the FSIBM filesystem, that handles PC disks. Now it can also handle
 SCSI harddisks (scsi driver added) and also handles 16 bit FATs.
 It uses a PC-type partition table. It is being tested with the CSA
 architecture, so this has changed a bit more.
-<br>
+<br />
 Anyway, there is a TODO file that describes what has to be done for
 2.1 and a LOG-2.0 file that describes what has already be done.
-<br>
+<br />
 Download it as 
 </p>
 <ul>
 <li><a href="oa-2.0.9.tar.gz">oa-2.0.9.tar.gz</a>.</li>
 <li><a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.</li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="desc">Description</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Description</a></h2></div><div class="h2c"> 
 <p>
 OS/A65 is a full-featured Multitasking/Multithreading operating system
 for the 6502. It is preemptive and implements some Unix-like features,
@@ -190,7 +191,7 @@ at the same time without interference, even without virtual memory.
 Also the very same binaries runs on all supported platforms (if they do not
 use architecture specific stuff, but lib6502 calls only).
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="arch">Architecture</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="arch" id="arch">Architecture</a></h2></div><div class="h2c">
 <p>
 Architectures supported are the C64, as well as my
 <a href="../csa/index.html">CS/A65
@@ -204,7 +205,7 @@ any 32k RAM PET (the 3032, 4032 and 8032)
 80 column models 3032, 4032, 8032, 8096 and 8296.</li>
 <li><a href="embedded.html">Embedded systems</a> need not all features. Here is some doc to strip the OS down to the basics (with around 2.5k in the end...)</li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="dev">Development</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dev" id="dev">Development</a></h2></div><div class="h2c">
 <p>
 For the development of OS/A65 programs there are two possibilities:</p>
 <ul>
@@ -226,7 +227,7 @@ line. This address is also resolved when loading. If the file should also
 be used as a ROM file, then it has to have a ROM boot header, see the
 kernel description.</li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="docs">More Docs</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="docs" id="docs">More Docs</a></h2></div><div class="h2c">
 <ul>
 <li>Here is the cross assembler
 <a href="../misc/index.html">xa</a>
@@ -245,7 +246,7 @@ you need to assemble the whole stuff</li>
 <li>There also is a list of <a href="IDEAS">Ideas</a> what to do next...</li>
 <li>An instruction to the lib6502 <a href="README.lsh">lsh</a></li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="old">Old Stuff</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="old" id="old">Old Stuff</a></h2></div><div class="h2c"> 
 <ul>
 <li><a href="oa1.html"><strong>Overview</strong></a> over the Computer System and its Software</li>
 <li>The old <a href="oldlib.html">standard library</a> has been
@@ -259,7 +260,7 @@ by the lib6502 lsh and will no longer be developed.</li>
 <li>The <a href="LOG-1.3">ChangeLog</a> for version 1.3.* and for
 the development of <a href="LOG-pre-2.0">2.0.0</a>.</li>
 </ul>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="history">History</a></h2></div><div class="h2c">
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="history" id="history">History</a></h2></div><div class="h2c">
 <p>
 I didn't dream of this becoming such a nice project when I started
 building <a href="../csa/index.html">this computer</a> in 1989.
@@ -276,20 +277,20 @@ have not brought any success, so I put them here.
 Well, when I did this project, it was just for fun. But now I find it
 quite nice. Well, if you know some magazin that would like to publish
 some of it, I will be glad writing an article or so (if anybody really
-wants it ;-)<br>
+wants it ;-)<br />
 But on the other hand my interests have moved.
 Occasionally I still work on the project - when I have the time (or take
-the time ;-) <br>
+the time ;-) <br />
 But after all, I don't really have time for it.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="ideas">Ideas for later versions</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ideas" id="ideas">Ideas for later versions</a></h2></div><div class="h2c"> 
 <ul>
 <li>vt100 control codes for the console.</li>
 <li>native C128 port</li>
 <li>in this process abstract a kind of block device from fsibm and use
 it for the VC1571 as well</li>
 </ul>
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -301,4 +302,5 @@ it for the VC1571 as well</li>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

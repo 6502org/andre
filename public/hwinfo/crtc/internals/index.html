@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="CRTC (Cathode Ray Tube Controller) 6545 internals">
-<meta name="keywords" content="CRTC Cathode Ray Tube Controller 6545 interals description">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css">
+<meta name="description" content="CRTC (Cathode Ray Tube Controller) 6545 internals" />
+<meta name="keywords" content="CRTC Cathode Ray Tube Controller 6545 interals description" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../../style2-min.css" />
 <title>The CRTC internals</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -165,7 +166,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>The CRTC internals</h1><p class="copyright">(C)
-1999-2010 Andr&eacute;  Fachat</p> 
+1999-2010 André  Fachat</p> 
 <div class="overview">
 <p>
 I have deduced from the timing measurements done with the test
@@ -189,7 +190,7 @@ go of the electron beam from the left to the right border of
 the screen. A <em>characterline</em> consists of a number of
 rasterlines that make up a line of characters.
 </p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#timingoverview">Timing overview</a></li><li><a href="#rasterline">Rasterline timing</a></li><li><a href="#endline">End-of-line pulse</a></li><li><a href="#vertical">Vertical timing</a></li><li><a href="#memcount">Memory counter</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="timingoverview">Timing overview</a></h2></div><div class="h2c"> 
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#timingoverview">Timing overview</a></li><li><a href="#rasterline">Rasterline timing</a></li><li><a href="#endline">End-of-line pulse</a></li><li><a href="#vertical">Vertical timing</a></li><li><a href="#memcount">Memory counter</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="timingoverview" id="timingoverview">Timing overview</a></h2></div><div class="h2c"> 
 <p>
 The CRTC timing is different from, for example, the VIC-II timing
 of the C64. There the underlying timing is fixed and it even needs
@@ -202,12 +203,12 @@ character, not somewhere in the upper left corner of the screens border.
 The end of the CRTC rasterline is thus wrapped around to the left border.
 An overview can be seen in figure 0 (click on the image for a large view).
 </p>
-<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png" width="20%"></a>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="rasterline">Rasterline timing</a></h2></div><div class="h2c"> 
+<a href="crtc0.png"><img src="crtc0.png" alt="crtc0.png" width="20%" /></a>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="rasterline" id="rasterline">Rasterline timing</a></h2></div><div class="h2c"> 
 <p>
 The rasterline timing is done by the circuits in figure 1.
 </p>
-<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png" width="20%"></a>
+<a href="crtc1.png"><img src="crtc1.png" alt="crtc1.png" width="20%" /></a>
 <p>
 The main counter character counter is clocked by the character clock.
 Starting from 0 the counter counts each character. The first comparator
@@ -221,22 +222,22 @@ characters. The output is then used to reset the HDispEnable line,
 i.e. disable the DE line (see below). The DE line is enabled when
 the counter is reset again, enabling the display output.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="endline">End-of-line pulse</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="endline" id="endline">End-of-line pulse</a></h2></div><div class="h2c"> 
 <p>
 The EndLine pulse is used by the counter for rasterlines/char.
 </p>
-<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png" width="20%"></a>
+<a href="crtc2.png"><img src="crtc2.png" alt="crtc2.png" width="20%" /></a>
 <p>
 Here a very similar mechanics is used to determine the height of
 a charline. The second and third are used to enable the hardware
 cursor (that is not used in the PET).
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="vertical">Vertical timing</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="vertical" id="vertical">Vertical timing</a></h2></div><div class="h2c"> 
 <p>
 The next part does the vertical timing by counting character lines
 (and rasterlines for the adjust)
 </p>
-<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="20%"></a>
+<a href="crtc3.png"><img src="crtc3.png" alt="crtc3.png" width="20%" /></a>
 <p>
 Here the very same technique is assumed to be used as for the
 horizontal timing. In addition to that, however, the rasterline
@@ -245,11 +246,11 @@ adjustment for the vertical timing needs another counter.
 is re-used for this purpose. It would mean one counter less, but the
 counter reset needs to be switched between register 9 and register 5).
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memcount">Memory counter</a></h2></div><div class="h2c"> 
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memcount" id="memcount">Memory counter</a></h2></div><div class="h2c"> 
 <p>
 Finally the memory counter needs to be discussed.
 </p>
-<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="20%"></a>
+<a href="crtc4.png"><img src="crtc4.png" alt="crtc4.png" width="20%" /></a>
 <p>
 The main memory counter is clocked by CCLK. It is loaded at the
 beginning of each new rasterline. When in the last rasterline of
@@ -281,8 +282,8 @@ addressing into a straight binary sequence in order to conserve memory".
 The memory access for both schemes during one frame can be seen
 in the next figure
 </p>
-<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png" width="20%"></a>
-    </div></div><hr>
+<a href="crtc5.png"><img src="crtc5.png" alt="crtc5.png" width="20%" /></a>
+    </div></div><hr />
 <p>Return to <a href="../../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -294,4 +295,5 @@ in the next figure
 <p>Interested in electronics design? Look at the <a href="../../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../../";</script><script type="text/javascript" src="../../../scripts2-all.js"></script><script type="text/javascript" src="../../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="CRTC operation">
-<meta name="keywords" content="CRTC 6545 6845 operation">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="CRTC operation" />
+<meta name="keywords" content="CRTC 6545 6845 operation" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>CRTC operation</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -165,7 +166,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>CRTC operation</h1><p class="copyright">(C)
-1998-2010 Andr&eacute;  Fachat</p> 
+1998-2010 André  Fachat</p> 
 <div class="overview">
 <P>The 6545/6845 Cathode Ray Tube Controller (CRTC) is a flexible
 video chip. It has been used in the Commodore PET computers,
@@ -194,7 +195,7 @@ overview over the derived CRTC internals on
 computer page or in the PET schematics on the
 <A HREF="../../petindex/links.html">links page</A> of the PET index.
 </P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#desc">General Description</a></li><li style="list-style-type:none;"><ul><li><a href="#sr">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#horizontal">Horizontal Timing</a></li><li><a href="#charline">Character Line Timing</a></li><li><a href="#vertical">Vertical Timing</a></li><li><a href="#cursor">Cursor Control</a></li></ul></li><li><a href="#opmodes">Different Modes of Operation</a></li><li style="list-style-type:none;"><ul><li><a href="#rowcol">Straight binary vs. row/column addressing</a></li><li><a href="#interlace">Interlace and Video modes (All but Commodore)</a></li><li><a href="#transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></li></ul></li><li><a href="#pettiming">PET timing examples</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="desc">General Description</a></h2></div><div class="h2c">
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#desc">General Description</a></li><li style="list-style-type:none;"><ul><li><a href="#sr">Status Register</a></li><li><a href="#registers">Register File</a></li><li><a href="#horizontal">Horizontal Timing</a></li><li><a href="#charline">Character Line Timing</a></li><li><a href="#vertical">Vertical Timing</a></li><li><a href="#cursor">Cursor Control</a></li></ul></li><li><a href="#opmodes">Different Modes of Operation</a></li><li style="list-style-type:none;"><ul><li><a href="#rowcol">Straight binary vs. row/column addressing</a></li><li><a href="#interlace">Interlace and Video modes (All but Commodore)</a></li><li><a href="#transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></li></ul></li><li><a href="#pettiming">PET timing examples</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">General Description</a></h2></div><div class="h2c">
 <P>
 The CRTC has a bus interface compatible to the 6502 bus system,
 using only two addresses.
@@ -228,7 +229,7 @@ will only go into the most common one, which is also used in the
 PET line of computers, the normal non-interlaced
 sync mode.
 </P>
-    <h3><a name="sr">Status Register</a></h3>
+    <h3><a name="sr" id="sr">Status Register</a></h3>
 	The status register can be read by the CPU at CRTC address 0
 	and is thus not part of the internal CRTC register file
 	but can be read by the CPU at any time.
@@ -252,7 +253,7 @@ Bit     Description
 </PRE>
 Please note that the UR is not available on all models, and VRT bit is handled 
 differently by different models. 
-	<h3><a name="registers">Register File</a></h3><p>
+	<h3><a name="registers" id="registers">Register File</a></h3><p>
 	The registers are written to (only some can be read) by writing the register number
 	to the CRTC address (+0) and write (resp. read) the value to (from) CRTC address plus 1.
 	</p><p>
@@ -291,7 +292,7 @@ R17     Lightpen address low (8 bit)
     model to model (e.g. 6545 vs. 6845.)
         </pre>
         Reading unused bits where possible reads a "0", which is, however, only explicitly stated in the Commodore docs.
-    <h3><a name="horizontal">Horizontal Timing</a></h3>
+    <h3><a name="horizontal" id="horizontal">Horizontal Timing</a></h3>
 <P>
 The word <EM>Line</EM> in a video context can have two meanings: The
 line of characters being displayed as text or a rasterline.
@@ -342,7 +343,7 @@ the memory address of the start of the line is presented, and for
 each following CCLK cycle the MA0-13 address lines are increased
 by one. Memory addresses are only valid, to be displayed addresses
 when the Display Enable signal is active (high).
-</P><h3><a name="charline">Character Line Timing</a></h3>
+</P><h3><a name="charline" id="charline">Character Line Timing</a></h3>
 <P>
 A character line consists of a number of scanlines.
 </P>
@@ -387,7 +388,7 @@ R12  Start Address Reg. H (bit 0-5)  Bits 8-13 of the start of display
 R13  Start Address Reg. L            Bits 0-7 of the start of display
                                      memory address
 </PRE>
-<h3><a name="vertical">Vertical Timing</a></h3>
+<h3><a name="vertical" id="vertical">Vertical Timing</a></h3>
 <P>
 To control the vertical timing there are other registers
 </P>
@@ -416,7 +417,7 @@ After the number of rasterlines (as given by R4 and R5) is displayed
 all counters are reset, the start of line character memory address
 is reset to the value of R12/R13 and the whole thing starts again.
 </P>
-      <h3><a name="cursor">Cursor Control</a></h3>
+      <h3><a name="cursor" id="cursor">Cursor Control</a></h3>
 <P>
 The CRTC can generate a hardware cursor signal
 </P>
@@ -440,10 +441,10 @@ lines MA0-13 match the number set in R14/R15, and the scanline of the
 character is in the range of R10/R11 and a valid active cursor
 mode is selected.
 </P>
-      </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="opmodes">Different Modes of Operation</a></h2></div><div class="h2c">
+      </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="opmodes" id="opmodes">Different Modes of Operation</a></h2></div><div class="h2c">
         The following sections explain the different modes of operation
         of the different models.
-    <ul><li><strong><a name="rowcol">Straight binary vs. row/column addressing</a></strong>
+    <ul><li><strong><a name="rowcol" id="rowcol">Straight binary vs. row/column addressing</a></strong>
         <p>
         The memory address counter can be set to two different modes. In the "straight binary" mode the counter is a normal 14 bit binary counter. The characters displayed on screen are taken from a consecutive area when MA0-MA13 are used as memory address.
         </p><p>
@@ -453,14 +454,14 @@ In row/column mode MA0-MA7 dubs as the column counter CC0-CC7 and presents the v
         a power of two long, in general
         256 bytes (or less, depending on how many address bits are used).
         </p>
-        </li><li><strong><a name="interlace">Interlace and Video modes (All but Commodore)</a></strong>
+        </li><li><strong><a name="interlace" id="interlace">Interlace and Video modes (All but Commodore)</a></strong>
         <p>
 In the interlace mode the vertical sync signal is alternately delayed or not delayed for half of a rasterline time. This results in that every even-numbered frame is slightly shifted up or down as compared to the odd-numbered frame. This allows to fill up the double number of rasterlines, where two rasterlines always have the same content. The total frame time would then be double the "normal" CRTC frame time, as the second CRTC frame is used to fill the rasterlines "in between". So two identical CRTC frames, slightly shifted, make up a full frame on the display.
         </p><p>
 This is different in the "interlace &amp; video" mode. Here the rasterline counter for each char increases by two. Thus in the first of the two interlaced CRTC frames the even rasterlines are drawn and in the second the odd ones. This effectively doubles the vertical resolution of the monitor: One character still is e.g. 8 rasterlines high, but the even 4 rasterlines are drawn in the first frame, and the odd 4 rasterlines in the second.
 There are certain restrictions on the register values for interlace and interlace &amp; video mode, please refer to the Motorola documentation. The most important is that the vertical display register (R6) must hold half the number of displayed characterlines.
         </p>
-        </li><li><strong><a name="transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></strong>
+        </li><li><strong><a name="transparent" id="transparent">Shared and Transparent Addressing (Rockwell 6545 only)</a></strong>
         <p>
 This mode is set with R8 bit 3. Writing a 0 sets the shared adressing mode. In this mode the CRTC assumes that the CPU has an independent means of accessing the video memory - sharing the memory. A very common method is to switch the memory addresses from CRTC during Phi2/E low to CPU during Phi2/E high.
         </p><p>
@@ -480,7 +481,7 @@ After each update access the address in the update register is incremented by 1.
 Interestingly the Commodore 8563 VDC chip used in the C128 computer seems to be a direct descendant of the CRTC. The first 20 registers (with the exception of the mode register, R8) are the same as the Rockwell 6545 registers. Specifically the VDC only allows the transparent addressing. Therefore even R31 is kept - here the data to be transferred to/from the video memory must be written to/read from. Because this access is horribly slow, the VDC can also do copy operations in the video RAM by itself.
         </p><p>
         </p>
-        </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="pettiming">PET timing examples</a></h2></div><div class="h2c">
+        </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="pettiming" id="pettiming">PET timing examples</a></h2></div><div class="h2c">
 <P>
 The following table shows some timing examples for the PET CRTC
 as well as for a selfbuilt 6502 computer (CS/A65) with a 6545 CRTC.
@@ -523,7 +524,7 @@ time/fram [ms]
 framerate [Hz]
  fram/time             50      50      50      50      47       47      50      50
 </PRE>
-<div class="rightimg"><a href="CRTC_on_TFT.jpg"><img src="CRTC_on_TFT_small.jpg"></a><br>A CS/A video output on a modern 
+<div class="rightimg"><a href="CRTC_on_TFT.jpg"><img src="CRTC_on_TFT_small.jpg" /></a><br />A CS/A video output on a modern 
 TFT screen, using composite video using the "PUCOE" circuit.
 </div>
 <P>The PAL TV values I have derived from the PAL timing standard - 64us per rasterline, 
@@ -533,11 +534,11 @@ TFT screen, using composite video using the "PUCOE" circuit.
 	the necessary HORZ DRIVE, VERT DRIVE and VIDEO signals - you'd need the 5V VCC from the
 	tape drive connector though).
 </P>
-      </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+      </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-  </div></div><hr>
+  </div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 	
   Last modified: 
@@ -549,4 +550,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

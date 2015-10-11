@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="8-bit 6502 hardware networking">
-<meta name="keywords" content="8-bit,6502 networking">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="8-bit 6502 hardware networking" />
+<meta name="keywords" content="8-bit,6502 networking" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>6502 Networking</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -133,31 +134,31 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>6502 Networking</h1><p class="copyright">(C)
-- Andr&eacute;  Fachat</p> 
+- André  Fachat</p> 
 <div class="overview">
 	This page links projects about 6502-based networking systems.
 	I don't intend to do a full Ethernet list, but I am more interested
 	in specific networking solutions like the NadaNet.
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2011-06-04</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-06-04</small>
 	Created this page.
-    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="native">Native 6502-based networks</a></h2></div><div class="h2c"><p>This section contains links to various projects of other people that implemented networks based on the 6502</p>
-	<h3><a name="nada">NadaNet</a></h3><p>
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="native" id="native">Native 6502-based networks</a></h2></div><div class="h2c"><p>This section contains links to various projects of other people that implemented networks based on the 6502</p>
+	<h3><a name="nada" id="nada">NadaNet</a></h3><p>
 			NadaNet is a network originally used to link Apple II computers. Physically it is a single-wire network
 			with a custom packet protocol on top of it. The author claims that "It can sustain a data transfer rate of over 10K bytes per second using 256-byte packets, with all synchronization and protocol overhead included", which is impressive. 
 		</p><ul><li><a href="http://home.comcast.net/~mjmahon/NadaNet.html" target="_blank" class="extlink">NadaNet</a> </li><li><a href="http://home.comcast.net/~mjmahon/Applecrate.html" target="_blank" class="extlink">AppleCrate I</a> The AppleCrate I is an 8-processor
 			compute cluster made of Apple II boards, using NadaNet for communication</li><li><a href="http://home.comcast.net/~mjmahon/AppleCrateII.html" target="_blank" class="extlink">AppleCrate II</a> The AppleCrate II is the
-			successor to AppleCrate I and has 17 processors, using NadaNet</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="tcpip">TCP/IP networks</a></h2></div><div class="h2c"><p>There have been a number of ethernet interfaces been implemented, including TCP/IP support.
+			successor to AppleCrate I and has 17 processors, using NadaNet</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="tcpip" id="tcpip">TCP/IP networks</a></h2></div><div class="h2c"><p>There have been a number of ethernet interfaces been implemented, including TCP/IP support.
 	In the beginning there have been some SLIP (Serial Line Internet Protocol) implementations, but later
 	solutions using specific Ethernet ICs appeared. Most used the CS8900A chip for the ethernet communication, but
 	some used the RTL8019 and now SPI-based solutions using the ENC28J60 are appearing.
 	</p><p>
 	TODO: needs to be expanded
 	</p><ul><li><a href="http://www.6502.org/users/andre/osa/index.html" target="_blank" class="extlink">GeckOS with SLIP</a> </li><li><a href="http://ip65.sourceforge.net/" target="_blank" class="extlink">ip65 TCP/IP stack</a> One of the standard TCP/IP solutions for 6502</li><li><a href="http://www.sics.se/contiki/" target="_blank" class="extlink">uIP TCP/IP stack</a> A TCP/IP implementation written in Small C, so it can
-		be compiled by cc65 and has been used on the C64 and other 6502-based machines</li><li><a href="http://sbc.rictor.org/io/eth.html" target="_blank" class="extlink">Daryl Rictor's Ethernet interface</a>  using an ENC28J60 with the uIP stack</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+		be compiled by cc65 and has been used on the C64 and other 6502-based machines</li><li><a href="http://sbc.rictor.org/io/eth.html" target="_blank" class="extlink">Daryl Rictor's Ethernet interface</a>  using an ENC28J60 with the uIP stack</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-    </div></div><hr>
+    </div></div><hr />
   Last modified: 
 2013-11-03
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
@@ -167,4 +168,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

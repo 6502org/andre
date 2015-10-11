@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="PET index - 8x96">
-<meta name="keywords" content="Commodore PET CBM 8096 8296 8x96">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="PET index - 8x96" />
+<meta name="keywords" content="Commodore PET CBM 8096 8296 8x96" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>PET index - 8x96</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -182,7 +183,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - 8x96</h1><p class="copyright">(C)
-1999-2010 Andr&eacute;  Fachat</p> 
+1999-2010 André  Fachat</p> 
 <div class="overview"><P>
 The 8096 basically is an 8032 with a 64k expansion board.
 Later Commodore redesigned the 8032 board to include the 64k
@@ -191,7 +192,7 @@ sold in the slick separate keyboard cases, and the top models
 had a 8250 disk drive builtin.
 In this document you find:
 </P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#memmap">8x96 memory mapping</a></li><li style="list-style-type:none;"><ul><li><a href="#ctrl">Control Register</a></li></ul></li><li><a href="#8296">8296 Information</a></li><li><a href="#8296d">8296D</a></li><li><a href="#docs">Original Docs and LOS-96</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memmap">8x96 memory mapping</a></h2></div><div class="h2c"><P>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#memmap">8x96 memory mapping</a></li><li style="list-style-type:none;"><ul><li><a href="#ctrl">Control Register</a></li></ul></li><li><a href="#8296">8296 Information</a></li><li><a href="#8296d">8296D</a></li><li><a href="#docs">Original Docs and LOS-96</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">8x96 memory mapping</a></h2></div><div class="h2c"><P>
 The 64k RAM of the 8096 can replace the upper 32k address range.
 The mapping is best depicted with this table
 (from the 8296 supplement to the 8032 manual):</P>
@@ -238,7 +239,7 @@ The mapping is best depicted with this table
 </PRE><P>
 In the 8096 the left memory map is exactly the PET 8032 memory map.
 (The 8296 is different, but for this see below).</P>
-	<h3><a name="ctrl">Control Register</a></h3><P>
+	<h3><a name="ctrl" id="ctrl">Control Register</a></h3><P>
 The mapping is controlled by a write-only register at $fff0:</P>
 <PRE>
 
@@ -292,7 +293,7 @@ Control Register Bit 0 - When equal to 1, addresses $8000 through $BFFF
 on the /Expansion Memory Board only/ are write protected.
 The screen is not write protected if screen peek through is enabled.
 When equal to 0, the addresses are not write protected.
-</PRE></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="8296">8296 Information</a></h2></div><div class="h2c"><P>
+</PRE></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="8296" id="8296">8296 Information</a></h2></div><div class="h2c"><P>
 The 8296 is a complete redesign of the PET universal board.
 It fits into the separate keyboard case, and directly holds
 128k RAM, of which 96k can be used as in the 8096. In addition,
@@ -314,18 +315,18 @@ You can find the description in <A HREF="local/8296desc.txt">8296desc.txt</A> an
 <P>The <a href="crtc.html">CRTC page</a> contains a block schematics on
 how the video circuitry works, that also shows how the memory is used.
 </P>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="8296d">8296D</a></h2></div><div class="h2c"><P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="8296d" id="8296d">8296D</a></h2></div><div class="h2c"><P>The 8296-D is a 8296 that also includes a 8250-LP disk drive in
 a single case. The disk drive is attached to the upper part of the
 case, underneath the monitor. Both, the computer and the drive
 share the same power supply. The board is thus not equipped with an
 own voltage regulator etc as is the 8296 (without drive).
 </P>
 <TABLE><TR><TD>
-<img src="gallery/8296d.gif">
+<img src="gallery/8296d.gif" />
 </TD><TD>
-<a href="imgs/8296d-open-small.jpg"><img src="imgs/8296d-open-mini.gif"></a>
+<a href="imgs/8296d-open-small.jpg"><img src="imgs/8296d-open-mini.gif" /></a>
 </TD></TR></TABLE>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="docs">Original Docs and LOS-96</a></h2></div><div class="h2c"><P>There are some original documents available in electronic form
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="docs" id="docs">Original Docs and LOS-96</a></h2></div><div class="h2c"><P>There are some original documents available in electronic form
 (of course always looking for more):
 </P><UL>
 <LI>CBM <A HREF="orig/8296supplement.html">8296 Supplement</A> to the 8032 manuals
@@ -336,12 +337,12 @@ The LOS-96 software can be found in <A HREF="soft/los96-disk.tar.gz">los96-disk.
 which is the same as on the CBM archive, but includes a VICE PET emulator .x64 disk
 image with the stuff.
 </LI></UL>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="refs">References</a></h2></div><div class="h2c"><ul>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="refs" id="refs">References</a></h2></div><div class="h2c"><ul>
 <li><a class="extlink" href="http://www.vic20.de/html/eprom_pla_8296_und_c64.html">PLA replacement</a> with an EPROM (German).</li>
 <li><a class="extlink" href="http://www.vintagecomputer.net/browse_thread.cfm?id=286">Installing a 64k expansion board</a></li>
 <li><a class="extlink" href="http://www.vintagecomputer.net/commodore/pet/64K_expansion/">64k expansion board description</a></li>
 </ul>
-     </div></div><hr>
+     </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -353,4 +354,5 @@ image with the stuff.
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

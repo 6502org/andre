@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Remote control via Infrared">
-<meta name="keywords" content="Commodore 6502 remote_control">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="Remote control via Infrared" />
+<meta name="keywords" content="Commodore 6502 remote_control" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>Remote control via Infrared</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -154,7 +155,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Remote control via Infrared</h1><p class="copyright">(C)
-1997-2010 Andr&eacute;  Fachat</p> 
+1997-2010 André  Fachat</p> 
 <div class="overview"><p>Who doesn't have the problem of a lot of remote controls for the VCR,
 the TV set, the CD player etc lying around on the table?
 Well, in 1990 I thought about that and implemented an infrared
@@ -165,7 +166,7 @@ Note: This article originally is from 1997 or 1998. Today I would look
 into a solution with the NE555 timer chip to generate the actually 38k
 infrared frequency.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#theory">Theory</a></li><li><a href="#hw">Hardware</a></li><li><a href="#sw">Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="theory">Theory</a></h2></div><div class="h2c"><p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#theory">Theory</a></li><li><a href="#hw">Hardware</a></li><li><a href="#sw">Software</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#refs">References</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="theory" id="theory">Theory</a></h2></div><div class="h2c"><p>
 How do these infrared remote controls work? Well, they send signals
 via infrared using Pulse Code Modulation. That means they send data
 bits by different pulse lengths. The infrared light is transmitted by
@@ -187,13 +188,13 @@ with a real start bit. Then there is a fixed-length break before each
 bit. The length of the following pulse determines if it is a "0" or
 "1" data bit.
 </p>
-<img src="remote/signal.gif" alt="infrared signals">
+<img src="remote/signal.gif" alt="infrared signals" />
 <p>Fig. 1 shows the two signals in detail.</p>
 <p>
 It can be seen that the the signals are relatively simple and
 the timing is not very critical.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="hw">Hardware</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hw" id="hw">Hardware</a></h2></div><div class="h2c"> <p>
 The hardware I used is, in general, the 6522 VIA versatile interface adapter
 and its timer. The VIA can produce pulse and toggle outputs on timer underruns
 on pins PB6 and PB7. The timers count the system clock Phi2, which has
@@ -225,7 +226,7 @@ the oscillator. The output is then given to one driver, that outputs it
 to the LED drivers. The LED drivers then pull the anode of the LEDs low,
 and produce a current that makes them send.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="sw">Software</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software</a></h2></div><div class="h2c"> <p>
 The software is pretty simple. In Listing 1. a small menu driven program
 is listed that can send remote commands. The first part is all the menu
 stuff. Only the last part (sendsony) handles the transmission of the
@@ -250,7 +251,7 @@ operating system, such that each bit toggle issued an interrupt to
 reload the latches. But the interrupt latency was too high to allow
 such an operation.
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="conclusion">Conclusion</a></h2></div><div class="h2c"> <p>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="conclusion" id="conclusion">Conclusion</a></h2></div><div class="h2c"> <p>
 Together with a simple keyboard interface this circuitry allows to
 replace remote controls. But it also allows to control TV sets, or VCRs or
 other infrared controlled stuff using a (selfbuilt)
@@ -260,13 +261,13 @@ The same circuitry, together with a modified version of the listed
 program, is implemented in the CS/A65 Gecko computer, a simple
 6502 prototype board. Have a look at it at the <a href="../csa/gecko/index.html">Gecko page</a>
 </p>
-    </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="refs">References</a></h2></div><div class="h2c"> <ul>
+    </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="refs" id="refs">References</a></h2></div><div class="h2c"> <ul>
 <li><a href="remote/irtx.a65">irtx.a65</a> driver source code</li>
 <li><a href="remote/irtx.def">irtx.def</a> remote signal definitions</li>
 <li><a href="remote/diagram.gif">diagram.gif</a> schematics (<a href="remote/diagram.fig">source</a>)</li>
 <li><a href="remote/signal.gif">signal.gif</a> remote signal description (<a href="remote/signal.fig">source</a>)</li>
 </ul>
-    </div></div><hr>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
@@ -278,4 +279,5 @@ program, is implemented in the CS/A65 Gecko computer, a simple
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html> 
+

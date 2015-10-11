@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Commodore PET CBM Ethernet and USB board with SD card">
-<meta name="keywords" content="Commodore PET CBM USB max3420 max3421">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="Commodore PET CBM Ethernet and USB board with SD card" />
+<meta name="keywords" content="Commodore PET CBM USB max3420 max3421" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>Ethernet, USB host+device, and SD-card interface</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -220,7 +221,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Ethernet, USB host+device, and SD-card interface</h1><p class="copyright">(C)
-2013-2013 Andr&eacute;  Fachat</p> 
+2013-2013 André  Fachat</p> 
 <div class="overview"><p>	
 	This board is a small board that nevertheless packs an SD Card, an Ethernet as well
 	as a USB host <em>and</em> USB device interface on it!
@@ -229,9 +230,9 @@
 	SPI interface. SD-Cards do SPI anyway, Ethernet is implemented via an ENC28J60 chip.
 	USB is done with a MAX3420 (device) and MAX3421 (host) chip with the 
 	<a href="../../usb65/index.html">usb65</a> drivers.
-  </p></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2013-01-04</small>
+  </p></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2013-01-04</small>
 	Published this page
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">SD-Card</a></li><li><a href="#driver2">Ethernet</a></li><li><a href="#driver3">USB</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0B</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">SD-Card</a></h3><div class="driverdesc"><p>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">SD-Card</a></li><li><a href="#driver2">Ethernet</a></li><li><a href="#driver3">USB</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">2.0B</a> (prototype)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">SD-Card</a></h3><div class="driverdesc"><p>
                         This is a test driver for the SD-Card access via SPI65B schematics below.
                         </p><p>
                         It initializes the card, reads the operations conditions
@@ -240,51 +241,51 @@
                         </p><p>Please note that it is clutterd with debug code.
                         </p>
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="sdcard-netusb2.tar.gz">sdcard-netusb2.tar.gz</a></td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">Ethernet</a></h3><div class="driverdesc"><p>
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2" id="driver2">Ethernet</a></h3><div class="driverdesc"><p>
                         This is a uIP stack with a builtin driver for the ENC28J60 via
 			SPI65B as on this board.
                         </p>
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="uip-1.0+netusb2.tar.gz">uip-1.0+netusb2.tar.gz</a></td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver3">USB</a></h3><div class="driverdesc"><p>
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver3" id="driver3">USB</a></h3><div class="driverdesc"><p>
 			The USB drivers for host and device are now hosted on github.
                         </p>
-                </div><div class="driverfiles"><table class="files"></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 2.0B</a></h3>
+                </div><div class="driverfiles"><table class="files"></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 2.0B</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board has been successfully tested with SD-Card, Ethernet as well as USB host 
 			and device operations.
                 </td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="netusb2.jpg">netusb2.jpg</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_netusb-v2.0b.sch">csa_netusb-v2.0b.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_netusb-v2.0b-sch-1.png">csa_netusb-v2.0b-sch-1.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_netusb-v2.0b-sch-2.png">csa_netusb-v2.0b-sch-2.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_netusb-v2.0b-sch-3.png">csa_netusb-v2.0b-sch-3.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_netusb-v2.0b.brd">csa_netusb-v2.0b.brd</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_netusb-v2.0b-brd.png">csa_netusb-v2.0b-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_netusb-v2.0b-layout.png">csa_netusb-v2.0b-layout.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div></div></div><hr>
+</div><div class="revend"></div></div></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -296,4 +297,5 @@
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="">
-<meta name="keywords" content="CSA65 6502 self-built computer memory map">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="CSA65 6502 self-built computer memory map" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
 <title>CS/A65 Computer Board Memory Map</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 <div id="menu1" class="mclose">
@@ -225,7 +226,7 @@
 	This page gives a memory map of the currently available boards,
 	so you can plan which boards can be combined in what ways.
 	
-</div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#iomap">I/O Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#io8">I/O $E8**</a></li><li><a href="#ioc">I/O $EB**</a></li><li><a href="#ioc">I/O $EC**</a></li><li><a href="#iod">I/O $ED**</a></li><li><a href="#iof">I/O $EF**</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#mem">Map</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="iomap">I/O Memory Map</a></h2></div><div class="h2c"><p>
+</div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#iomap">I/O Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#io8">I/O $E8**</a></li><li><a href="#ioc">I/O $EB**</a></li><li><a href="#ioc">I/O $EC**</a></li><li><a href="#iod">I/O $ED**</a></li><li><a href="#iof">I/O $EF**</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li style="list-style-type:none;"><ul><li><a href="#mem">Map</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="iomap" id="iomap">I/O Memory Map</a></h2></div><div class="h2c"><p>
 		This section summarizes the I/O memory addresses used by
 		the different boards into one table, so you can try to 
 		find out which boards are compatible.
@@ -234,7 +235,7 @@
 		all possible addresses are documented, with "(default)" for the
 		default setting, and "(opt)" for the other settings.
 		</p>
-	<h3><a name="io8">I/O $E8**</a></h3>
+	<h3><a name="io8" id="io8">I/O $E8**</a></h3>
 <table border="1" class="memmap">
 <caption>Table for $8** I/O addresses</caption>
 <tr> <th></th><th>$80*</th> <th>$81*</th> <th>$82*</th> <th>$83*</th> <th>$84*</th> <th>$85*</th> <th>$86*</th> <th>$87*</th> <th>$88*</th> <th>$89*</th> <th>$8a*</th> <th>$8b*</th> <th>$8c*</th> <th>$8d*</th> <th>$8e*</th> <th>$8f*</th> </tr>
@@ -258,7 +259,7 @@
 <tr> <th>csakey</th><td></td><td>PIA1, ACIA (default)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>PIA1, ACIA (opt)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr> <th>csaiec</th><td></td><td></td><td>PIA</td><td></td><td>VIA</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
-<h3><a name="ioc">I/O $EB**</a></h3>
+<h3><a name="ioc" id="ioc">I/O $EB**</a></h3>
 <table border="1" class="memmap">
 <caption>Table for $b** I/O addresses</caption>
 <tr> <th></th><th>$b0*</th> <th>$b1*</th> <th>$b2*</th> <th>$b3*</th> <th>$b4*</th> <th>$b5*</th> <th>$b6*</th> <th>$b7*</th> <th>$b8*</th> <th>$b9*</th> <th>$ba*</th> <th>$bb*</th> <th>$bc*</th> <th>$bd*</th> <th>$be*</th> <th>$bf*</th> </tr>
@@ -266,20 +267,20 @@
 <tr> <th>CPU816</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>$ebff Control (default)</td></tr>
 </table>
 
-<h3><a name="ioc">I/O $EC**</a></h3>
+<h3><a name="ioc" id="ioc">I/O $EC**</a></h3>
 <table border="1" class="memmap">
 <caption>Table for $c** I/O addresses</caption>
 <tr> <th></th><th>$c0*</th> <th>$c1*</th> <th>$c2*</th> <th>$c3*</th> <th>$c4*</th> <th>$c5*</th> <th>$c6*</th> <th>$c7*</th> <th>$c8*</th> <th>$c9*</th> <th>$ca*</th> <th>$cb*</th> <th>$cc*</th> <th>$cd*</th> <th>$ce*</th> <th>$cf*</th> </tr>
 <tr> <th colspan="17" class="separator">Main boards</th> </tr>
 <tr> <th>Gecko</th><td>UART</td><td>VIA</td><td colspan="14"></td></tr>
 <tr> <th colspan="17" class="separator">Special purpose boards</th> </tr>
-<tr> <th>USB+Ethernet</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>CS8900A</td><td>SL811HS (device 0-7)<br>SL811HS (host 8-f)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr> <th>USB+Ethernet</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>CS8900A</td><td>SL811HS (device 0-7)<br />SL811HS (host 8-f)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr> <th>keyemu</th><td colspan="16">shared RAM keybd1</td></tr>
 <tr> <th colspan="17" class="separator">Deprecated boards</th> </tr>
 <tr> <th>csakey</th><td></td><td>PIA1, ACIA (prototype)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
 
-<h3><a name="iod">I/O $ED**</a></h3>
+<h3><a name="iod" id="iod">I/O $ED**</a></h3>
 
 <table border="1" class="memmap">
 <caption>Table for $d** I/O addresses</caption>
@@ -288,7 +289,7 @@
 <tr> <th>keyemu</th><td colspan="16">shared RAM keybd2</td></tr>
 </table>
 
-<h3><a name="iof">I/O $EF**</a></h3>
+<h3><a name="iof" id="iof">I/O $EF**</a></h3>
 
 <table border="1" class="memmap">
 <caption>Table for $f** I/O addresses</caption>
@@ -310,7 +311,7 @@
 <p>Note: The <a href="shug/index.html">PC floppy</a> schematics actually shows
 	$8e*/8f* only, but for testing I found it incompatible with the PETCPU.
 	So my prototype has a jumper now.</p>
-</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="memmap">Memory Map</a></h2></div><div class="h2c"><p>
+</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory Map</a></h2></div><div class="h2c"><p>
 		This section summarizes the bus (physical) memory addresses used by
 		the different boards into one table, so you can 
 		find out which boards are compatible.
@@ -321,7 +322,7 @@
 		</p><p>
 		The table uses sections of 64k
 		</p>
-	<h3><a name="mem">Map</a></h3>
+	<h3><a name="mem" id="mem">Map</a></h3>
 <table border="1" class="memmap">
 <caption>Table for bus memory addresses</caption>
 <tr> <th></th><th>$0****</th> <th>$1****</th> <th>$2****</th> <th>$3****</th> <th>$4****</th> <th>$5****</th> <th>$6****</th> <th>$7****</th> <th>$8****</th> <th>$9****</th> <th>$a****</th> <th>$b****</th> <th>$c****</th> <th>$d****</th> <th>$e****</th> <th>$f****</th> </tr>
@@ -346,4 +347,4 @@
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html>
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script><script type="text/javascript" src="../jquery.socialshareprivacy.min.js"></script></body></html>

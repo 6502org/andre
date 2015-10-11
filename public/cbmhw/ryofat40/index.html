@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="Andr&eacute;  Fachat">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="A new implementation of the Commodore PET 4032">
-<meta name="keywords" content="Commodore PET 4032">
-<link rev="made" href="mailto:afachat@gmx.de">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="A new implementation of the Commodore PET 4032" />
+<meta name="keywords" content="Commodore PET 4032" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>Roll your own PET4032 (Fat40)</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -189,7 +190,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>Roll your own PET4032 (Fat40)</h1><p class="copyright">(C)
-2006-2006 Andr&eacute;  Fachat</p> 
+2006-2006 André  Fachat</p> 
 <div class="overview">
 	<p>This page describes how you can build your own PET 4032 using
 	the boards of the <a href="../../csa/index.html">CS/A65</a> computer.</p><p>
@@ -205,14 +206,14 @@
 	and there you are. The following sections describe the special settings
 	on the different boards.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2010-05-11</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2010-05-11</small>
 	Added beta version of patched PET BASIC4 ROM to run on CS/A in 2MHz
-    </li><li><div>&nbsp;</div><small>2006-12-22</small>
+    </li><li><div> </div><small>2006-12-22</small>
 	Added the version using the CPU and BIOS boards instead of the PETCPU board ("Caspaer" setup).
-    </li><li><div>&nbsp;</div><small>2006-11-12</small>
+    </li><li><div> </div><small>2006-11-12</small>
 	Added the ROMs.
-    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#">Fat40 Setup</a></li><li style="list-style-type:none;"><ul><li><a href="#">Board Settings</a></li><li><a href="#">ROMs</a></li></ul></li><li><a href="#">Caspaer Setup</a></li><li style="list-style-type:none;"><ul><li><a href="#">Board Settings</a></li><li><a href="#">ROMs</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Fat40 Setup</h2></div><div class="h2c">
-	<a href="fat40.jpg"><img class="rightimg" src="fat40-small.jpg"></a>
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#">Fat40 Setup</a></li><li style="list-style-type:none;"><ul><li><a href="#">Board Settings</a></li><li><a href="#">ROMs</a></li></ul></li><li><a href="#">Caspaer Setup</a></li><li style="list-style-type:none;"><ul><li><a href="#">Board Settings</a></li><li><a href="#">ROMs</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Fat40 Setup</h2></div><div class="h2c">
+	<a href="fat40.jpg"><img class="rightimg" src="fat40-small.jpg" /></a>
 	This section describes a setup using the three PETCPU, PETIO
 	and VDC boards.
     <ul><li><strong>Board Settings</strong><p>
@@ -234,7 +235,7 @@
 	memory address of $9000 - but the video board resets the video
 	to $0000 with the control register and the values set in the
 	CRTC. Also the I/O area must be enabled for $E800 to $EFFF.
-	<br>You can see the jumpers in this <a href="petcpu.jpg">picture</a>.
+	<br />You can see the jumpers in this <a href="petcpu.jpg">picture</a>.
 	Please note that this is jumpered for 2MHz, and the RAM is missing -
 	as the RAM is setup to be used from the video board.
      </li><li class="subitem"><a href="../../csa/petio/index.html" target="_blank" class="extlink">PETIO board</a> 
@@ -256,7 +257,7 @@
 	This is the 1MHz ROM that produces roughly PAL compatible video output.
      </li><li class="subitem"><a href="roms/pet-8032-2mhz-b.bin" target="_blank" class="extlink">8032 business keyboard 2MHz</a> 
 	This 2MHz version is experimental. As the VDC board can only do 80 columns with 2MHz bus frequency, no 8032 with 1MHz is possible.
-     </li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Caspaer Setup</h2></div><div class="h2c">This section contains a description of a setup
+     </li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Caspaer Setup</h2></div><div class="h2c">This section contains a description of a setup
 	using the main CPU (including MMU) and BIOS board instead of the
 	PETCPU board as above.
 	<ul><li><strong>Board Settings</strong><p>
@@ -276,7 +277,6 @@
 	is found at $08000-$0FFFF so that the CPU boots from it.
 	The RAM should be on $00000-$07FFF.
      </li><li class="subitem"><strong>PETIO and VDC boards</strong>: 
-  	      
 	Please use the same settings as described above.
      </li></ul></li><li><strong>ROMs</strong><p>
 	The ROMs are basically the same ROMs as above, i.e. including
@@ -299,8 +299,7 @@
 	This is the same ROM as above, with the patched IEEE488 and video timing to run at 2MHz.
      </li><li class="subitem"><a href="mmu.diff" target="_blank" class="extlink">ROM diff</a> This is the ROM diff as hex dump. The Reset vector is modified to point to the patch that sets up the correct values and jumps to the old reset routine.
      </li><li class="subitem"><a href="initcsa.a65" target="_blank" class="extlink">Patch source</a> This is the source for the ROM patch (excluding the modified reset vector.
-     </li><li class="subitem"><strong>IEEE488 patch</strong>: 
-  	      This is the IEEE488 patch that makes the IEEE488 work at 2Mhz (beta).
+     </li><li class="subitem"><strong>IEEE488 patch</strong>: This is the IEEE488 patch that makes the IEEE488 work at 2Mhz (beta).
 	<pre>
 	*=$f0d8
 	jsr $fe20
@@ -313,11 +312,11 @@ l1      sec
         lda $e840
         rts
 	</pre>
-     </li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+     </li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms of the
 GNU Public License version 2 unless noted otherwise.
-</div></div><hr>
+</div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
@@ -329,4 +328,5 @@ GNU Public License version 2 unless noted otherwise.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="65002 documentation">
-<meta name="keywords" content="8-bit,6502,65002">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="65002 documentation" />
+<meta name="keywords" content="8-bit,6502,65002" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>65002 User- and Hypervisor mode</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -203,10 +204,10 @@
 	a hypervisor mode program, as long as all such ABORTS are trapped and replaced with 
 	emulation code.
 	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="overview">Overview</a></h2></div><div class="h2c">
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Overview</a></h2></div><div class="h2c">
     <p>When the 65k boots it boots into hypervisor mode. The hypervisor mode is 
 	stored in the extended status byte.</p>
-  <h3><a name="jpu">Jump to User Mode</a></h3><p>
+  <h3><a name="jpu" id="jpu">Jump to User Mode</a></h3><p>
         To go to a user space program - as set up by the user mode matchcode and user mode
         stack pointer - the JPU opcode is used. It reads the operand address (from hypervisor mode),
         then clears the hypervisor bit. After that it either jumps to the operand address in
@@ -217,7 +218,7 @@
         <pre>
         JPU ($FFFC)
         </pre>
-      <h3><a name="irq">Interrupts and ABORTs</a></h3>
+      <h3><a name="irq" id="irq">Interrupts and ABORTs</a></h3>
     	<p>When an interrupt occurs the processor jumps into hypervisor mode.
 	I.e. the stack pointer to store the return address and the status values
 	is the hypervisor stack pointer, and hypervisor memory is used.
@@ -232,7 +233,7 @@
 	</p><p>
 	For more information see the <a href="af65002int.html">Interrupts page</a>.
 	</p>
-     <h3><a name="trap">TRAP</a></h3>
+     <h3><a name="trap" id="trap">TRAP</a></h3>
     	<p>When an TRP is executed the processor jumps into hypervisor mode.
 	I.e. the stack pointer to store the return address and the extended status values
 	is the hypervisor stack pointer, and hypervisor memory is used.
@@ -246,30 +247,30 @@
 	</p><p>
 	For more information see the <a href="af65002int.html">Interrupts page</a>.
 	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="mem">Memory Management</a></h2></div><div class="h2c"><p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="mem" id="mem">Memory Management</a></h2></div><div class="h2c"><p>
 	Each of the two modes has its own memory management setting.
 	The memory management is controlled by a so-called matchcode. Each mode
 	has its own matchcode as set in the processor configuration registers.
 	From the matchcode then the memory configuration is derived.
 	For more details on this see the <a href="af65002mem.html">Memory Management page</a>.
 	</p>
-  <h3><a name="uprefix">User Mode Prefix</a></h3><p>	
+  <h3><a name="uprefix" id="uprefix">User Mode Prefix</a></h3><p>	
 	To access the user mode memory from hypervisor mode (e.g. for stack parameters of a TRP
 	execution), a prefix bit is implemented.
 	This user mode prefix bit is used to access user mode memory from hypervisor mode code.
 	When it is set, then the operand address is seen as user mode memory.
 	For more details please see the <a href="af65002prefixes.html#prefum">Prefixes page</a>.
 	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="critins">Critical Instructions</a></h2></div><div class="h2c"><p>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="critins" id="critins">Critical Instructions</a></h2></div><div class="h2c"><p>
 	This section lists the critical instructions that are allowed in hypervisor mode only
 	</p>
-  <h3><a name="critst">Status Register</a></h3>
+  <h3><a name="critst" id="critst">Status Register</a></h3>
     	<p>The Extended Status Register byte contains the hypervisor mode.
 	This extended status byte is not accessible through such an operation like
 	PHP. Thus a program can actually not determine whether it is running
 	in user mode or hypervisor mode.
 	</p>
-     <h3><a name="jpu">Jump to user space and Return to user space</a></h3><p>	
+     <h3><a name="jpu" id="jpu">Jump to user space and Return to user space</a></h3><p>	
 	The JPU operation is protected. I.e. when a user mode program tries to JPU somewhere,
 	the processor goes into an ABORT.</p>
 	<p>Similarly the RTU opcode is protected, as it also allows returning from hypervisor mode
@@ -278,26 +279,26 @@
 	Note: would they not be protected, the processor could not trap them in a virtualized
 	hypervisor mode (i.e. running in user space) and emulate their behaviour appropriately.
 	</p>
-     <h3><a name="rti">Return From Interrupt</a></h3><p>	
+     <h3><a name="rti" id="rti">Return From Interrupt</a></h3><p>	
 	The RTI opcode allows extended stack frames that include the hypervisor mode bit to be restored.
 	In general, when the RTI opcode is executed in user mode it is not protected. Only when the
 	RTI instruction tries to restore a set hypervisor bit (to jump into hypervisor mode), this
 	instruction ABORTs.
 	</p>
-     <h3><a name="uprefix">User Mode Prefix</a></h3><p>	
+     <h3><a name="uprefix" id="uprefix">User Mode Prefix</a></h3><p>	
 	The user mode prefix bit is used to access user mode memory from hypervisor mode code.
 	Any instruction that has this bit set and is executed from user mode traps into 
 	an ABORT.
 	</p>
-     <h3><a name="pcr">Processor Configuration Register</a></h3><p>	
+     <h3><a name="pcr" id="pcr">Processor Configuration Register</a></h3><p>	
 	The opcodes accessing (reading and writing) the processor configuration registers are 
 	protected and trap into an ABORT when executed in user mode.
 	</p>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Disclaimer</h2></div><div class="h2c">
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2>Disclaimer</h2></div><div class="h2c">
 All Copyrights are acknowledged.
 The information here is provided under the terms as described
 in <a href="af65002front.html#lic">the license section</a>.
-    </div></div><hr>
+    </div></div><hr />
 Last updated 2012-04-23.
   Last modified: 
 2012-04-29
@@ -308,4 +309,5 @@ Last updated 2012-04-23.
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html> 
+

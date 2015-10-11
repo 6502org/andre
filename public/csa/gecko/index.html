@@ -1,15 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta name="author" content="">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="" />
 
-<meta name="description" content="">
-<meta name="keywords" content="CSA65 6502 Infrared">
-<link rev="made" href="mailto:">
-<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css">
+<meta name="description" content="" />
+<meta name="keywords" content="CSA65 6502 Infrared" />
+<link rev="made" href="mailto:" />
+<link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
 <title>CS/A65 Gecko</title></head>
-<body><div id="mainbox"><a name="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text"><input class="advbutton" value="Search site" type="submit"><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden"></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+<body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
 
@@ -235,14 +236,14 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>CS/A65 Gecko</h1>
-<h3>(C) 1997 - 2007 Andr&eacute;  Fachat</h3>
+<h3>(C) 1997 - 2007 André  Fachat</h3>
 <div class="overview"><p>In 1997 I started developing an extra CPU board for my
 		<a href="../index.html">CS/A65</a> system, but now without
 		an MMU and with additional I/O on board. This resulted
 		in the <em>Gecko</em> board. Some of its features are:</p>
 		<UL>
-<LI>A&nbsp; fast serial <strong>RS232</strong> interface, using the 16550 UART&nbsp; with
-FIFO, known from the PC&nbsp; world.</LI>
+<LI>A  fast serial <strong>RS232</strong> interface, using the 16550 UART  with
+FIFO, known from the PC  world.</LI>
 
 <LI>A <strong>serial IEC</strong> bus interface to the Commodore C64 and VC1541</LI>
 
@@ -262,14 +263,14 @@ I/O space</LI>
 		<p>An old description up to version 2.1 can be found in
 			<a href="indexold.html">the old page</a></p>.
 	
-</div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div>&nbsp;</div><small>2007-06-27</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2007-06-27</small>
 			Added a new re-design of the Gecko board. See the 
 			board description below.
-                </li><li><div>&nbsp;</div><small>2007-06-27</small>
+                </li><li><div> </div><small>2007-06-27</small>
 			I have relicensed the board to use the same license
 			as the other boards (previously it was non-commercial
 			only)
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">System Overview</a></li><li><a href="#drivers">Driver Setup</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Serial PET</a></li><li><a href="#driver2">Infrared Driver</a></li><li><a href="#driver3">IEC Driver</a></li><li><a href="#driver4">Keyboard driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0D</a> (schematics tested)</li><li><a href="#board2">3.0C</a> (schematics tested)</li><li><a href="#board3">3.0A</a> (tested with bugs)</li><li><a href="#board4">2.1A</a> (ok)</li><li><a href="#board5">2.0A</a> (ok)</li><li><a href="#board6">1.1A</a> (unfinished draft)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="overview">System Overview</a></h2></div><div class="h2c">
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">System Overview</a></li><li><a href="#drivers">Driver Setup</a></li><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">Serial PET</a></li><li><a href="#driver2">Infrared Driver</a></li><li><a href="#driver3">IEC Driver</a></li><li><a href="#driver4">Keyboard driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">3.0D</a> (schematics tested)</li><li><a href="#board2">3.0C</a> (schematics tested)</li><li><a href="#board3">3.0A</a> (tested with bugs)</li><li><a href="#board4">2.1A</a> (ok)</li><li><a href="#board5">2.0A</a> (ok)</li><li><a href="#board6">1.1A</a> (unfinished draft)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">System Overview</a></h2></div><div class="h2c">
 		<p>The System is built from a 6502 with some RAM and ROM.
 		Additionally it contains a UART 16550A for an RS232 interface,
 		as well as a VIA 6522 for some other I/O:</p>
@@ -286,12 +287,12 @@ I/O space</LI>
 		board itself. Here a number of ICs must be removed
 		and some jumpers set specifically.
 		</p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="drivers">Driver Setup</a></h2></div><div class="h2c">
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="drivers" id="drivers">Driver Setup</a></h2></div><div class="h2c">
 		Most of the drivers have been tested using the 
 		board in the slave mode - using the PET setup of the
 		CS/A65 computer (The PET setup uses the IEEE488
 		interface to load the files).
-		</div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1">Serial PET</a></h3><div class="driverdesc"><p>
+		</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">Serial PET</a></h3><div class="driverdesc"><p>
 			This driver implements a normal PET ROM - but
 			using the Serial (RS232) interface as terminal.
 			I.e. it replaces the standard PET Basic4 editor
@@ -308,30 +309,30 @@ I/O space</LI>
 			computer and uses the BIOS card's RS232 interface.
 			</p>
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="gecko-uarted.tar.gz">gecko-uarted.tar.gz</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="serialpet.png">serialpet.png</a>(Output of a PET via RS232)</td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2">Infrared Driver</a></h3><div class="driverdesc">
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver2" id="driver2">Infrared Driver</a></h3><div class="driverdesc">
 			The infrared device is controlled by VIA PB7.
 			This driver implements a small PET program 
 			that allows to send infrared commands to a 
 			TV set and a Sony stereo. Other commands
 			can be implemented as well.
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="geckoir.tar.gz">geckoir.tar.gz</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="geckoir.jpg">geckoir.jpg</a></td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver3">IEC Driver</a></h3><div class="driverdesc">
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver3" id="driver3">IEC Driver</a></h3><div class="driverdesc">
 			This driver (PET program) reads the drive 
 			status of a Commodore IEC disk drive.
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="geckoiec.tar.gz">geckoiec.tar.gz</a></td>
-</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver4">Keyboard driver</a></h3><div class="driverdesc">
+</tr></table></div><div class="driverend"></div></div><div class="driver"><h3><a name="driver4" id="driver4">Keyboard driver</a></h3><div class="driverdesc">
 			This driver (PET program) uses the 4 bit in/4  bit out
 			port to handle a small keyboard. The keyboard
 			uses a 74LS145 4-to-10 open collector decoder
@@ -339,17 +340,17 @@ I/O space</LI>
 			ten keyboard columns, with 4 keyboard rows as 
 			input bits. 
                 </div><div class="driverfiles"><table class="files">
-<tr class="R1"><td><div class="i_driver">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="minikey.tar.gz">minikey.tar.gz</a></td>
 </tr>
-<tr class="R0"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_photo"> </div></td>
 <td><a href="minikey1.jpg">minikey1.jpg</a></td>
 </tr>
-<tr class="R1"><td><div class="i_photo">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="minikey2.jpg">minikey2.jpg</a></td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t">&nbsp;</div><h2><a name="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1">Version: 3.0D</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 3.0D</a></h3>
 <div class="revdesc"><p>Status: schematics tested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td><p>
 			In addition to the 3.0C version this implements the
 			ability to reprogram the ROM in-system - in case it
@@ -359,40 +360,40 @@ I/O space</LI>
 			area and not into the memory area.
 		</p></td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0d-sch.png">csa_gecko_v3.0d-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0d.sch">csa_gecko_v3.0d.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0d-brd.png">csa_gecko_v3.0d-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0d.brd">csa_gecko_v3.0d.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2">Version: 3.0C</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 3.0C</a></h3>
 <div class="revdesc"><p>Status: schematics tested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This board fixes the bugs in the 3.0A version.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0c-sch.png">csa_gecko_v3.0c-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0c.sch">csa_gecko_v3.0c.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0c-brd.png">csa_gecko_v3.0c-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0c.brd">csa_gecko_v3.0c.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board3">Version: 3.0A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 3.0A</a></h3>
 <div class="revdesc"><p>Status: tested with bugs</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
 			This board is the redesign of the original 
 			Gecko board. It misses some important jumpers 
@@ -401,69 +402,69 @@ I/O space</LI>
 			WDC VIA, and Pin2 of IC9A is wrong.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0a-sch.png">csa_gecko_v3.0a-sch.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko_v3.0a.sch">csa_gecko_v3.0a.sch</a></td>
 </tr>
-<tr class="R1"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0a-brd.png">csa_gecko_v3.0a-brd.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_layout">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_gecko_v3.0a.brd">csa_gecko_v3.0a.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board4">Version: 2.1A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board4" id="board4">Version: 2.1A</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This is the Gecko 2.1 version that adds 
 			the ability to use the board as I/O or memory
 			board (slave) in a CS/A65 system.
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="gecko2.fig">gecko2.fig</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="gecko2.ps.gz">gecko2.ps.gz</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="gecko2.png">gecko2.png</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko-2.1A-schem.png">csa_gecko-2.1A-schem.png</a></td>
 </tr>
-<tr class="R1"><td><div class="i_parts">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_parts"> </div></td>
 <td><a href="geckoparts.txt">geckoparts.txt</a></td>
 </tr>
-<tr class="R0"><td><div class="i_desc">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_desc"> </div></td>
 <td><a href="geckodesc.txt">geckodesc.txt</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board5">Version: 2.0A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board5" id="board5">Version: 2.0A</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This is the original Gecko 2.0 version
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="gecko.fig">gecko.fig</a></td>
 </tr>
-<tr class="R0"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R0"><td><div class="i_schem"> </div></td>
 <td><a href="gecko.ps.gz">gecko.ps.gz</a></td>
 </tr>
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="gecko.png">gecko.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board6">Version: 1.1A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board6" id="board6">Version: 1.1A</a></h3>
 <div class="revdesc"><p>Status: unfinished draft</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg">&nbsp;</div></td>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
 			This is the original Gecko 1.x version - draft only!
 		</td></tr>
 </table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem">&nbsp;</div></td>
+<tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csa_gecko-1.1A-schem.png">csa_gecko-1.1A-schem.png</a></td>
 </tr></table>
 </div><div class="revend"></div></div></div></div><div id="contentfooter"><p>Last modified: 2007-06-27.</p>
@@ -476,4 +477,4 @@ I/O space</LI>
 <p>Interested in electronics design? Look at the <a href="../../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../../65k/index.html">65k processor design!</a></p>
 
-		</div></div></div><div id="footer">&nbsp;</div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../../";</script><script type="text/javascript" src="../../scripts2-all.js"></script><script type="text/javascript" src="../../jquery.socialshareprivacy.min.js"></script></body></html>
