@@ -15,6 +15,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2016-04-24">
+	Updated and added 6540 links.
+    </item>
     <item date="2013-01-04">
 	Added the section about the BASIC differences
     </item>
@@ -201,8 +204,10 @@ I assume this is used in nationalized machines with different charsets.
   <section toc="hardware" name="ROM ICs">
 	<desc><p>The ROMs of the early boards came with 6540 ICs from Commodore as ROMs
 	Those are completely deprecated. Matthew D'Asaro has written an article on them
-	and how to replace them with modern chips</p></desc>
-	<extlink name="6540 ROM adapter" link="http://home.comcast.net/~medasaro/6540rom.com/6540romadapter.html"/>
+	and how to replace them with modern chips</p>
+	<p>Others have done similar adapters.</p></desc>
+	<extlink name="6540 ROM adapter by Matthew D'Asaro" link="http://www.dasarodesigns.com/product/6540-rom-adapter/"/>
+	<extlink name="Other 6540 ROM adapters (see links on page as well)" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=4369"/>
   </section>
 
   <section toc="links" name="Links">

@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="mos6502 6502 emulation" />
-<meta name="keywords" content="mos6502 6502 emulation" />
+<meta name="description" content="6502 16bit 32bit expansion" />
+<meta name="keywords" content="6502 16bit 32bit expansion" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
-<title>6502 Emulation</title></head>
+<title>The 65k Project - Testing</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input alt="search" name="q" size="10" maxlength="255" type="text" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
@@ -100,11 +100,47 @@
 </div>
 <div id="menu2" class="mopen">
 <div id="twist2" class="twisty"></div>
-<div class="hdrtxt"><a href="index.html">Emulation&nbsp;&gt;</a></div>
+<div class="hdrtxt"><a href="index.html">The 65k Project&nbsp;&gt;</a></div>
 <ul class="nav1">
 <li>
 <ul class="nav2">
-<li class="navhdr"><a href="index.html">Emulation</a></li>
+<li class="navhdr"><a href="index.html">The 65k Project</a></li>
+<li><a href="features.html">Feature Outline</a></li>
+<li><a href="links.html">Links</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Specification</span></li>
+<li><ul class="nav2" >
+<li><a href="specsprog.html">Programming Model</a></li>
+<li><a href="future.html">Future Extensions</a></li>
+<li><a href="af65002">&gt;65002</a></li>
+<li><a href="designnotes.html">Design Notes</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Tools</span></li>
+<li><ul class="nav2" >
+<li><a href="crossass.html">Cross-Assembler</a></li>
+<li><a href="nativetools.html">Native Tools</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Implementation</span></li>
+<li><ul class="nav2" >
+<li><a href="arch.html">General architecture</a></li>
+<li><a href="af65002/index.html">af65002 </a>
+</li>
+<li><a href="tests.html">Test setup</a></li>
 </ul>
 <div class="nend2"></div>
 </li>
@@ -113,26 +149,26 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>6502 Emulation</h1><p class="copyright">(C)
-2013- André  Fachat</p> 
-<div class="overview"><p>	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#main">Emulating a 6502 in software</a></li><li><a href="#vice">VICE Versatile Commodore Emulator</a></li><li><a href="#xcbm">xcbm Emulator</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="main" id="main">Emulating a 6502 in software</a></h2></div><div class="h2c">
-	In 2013 I took part in the Shift-Restore-Escape lecture series at the Humboldt University in Berlin and gave a lecture
-	on the emulation of computers in general and VICE specifically. You can now find the lectures on the web see the links below.
-	I have also re-done the lecture in English for the international audience :-)
-     <ul><li><a href="http://www.youtube.com/watch?v=84XfgIjFtDU" target="_blank" class="extlink">English presentation</a> (in German)</li><li><a href="http://www.youtube.com/watch?v=DZ6shiQ-MFQ" target="_blank" class="extlink">German presentation</a> (in German)</li><li><a href="http://www.medienwissenschaft.hu-berlin.de/medientheorien/shift-restore-escape" target="_blank" class="extlink">Shift-Restore-Escape web site</a> (in German)</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="vice" id="vice">VICE Versatile Commodore Emulator</a></h2></div><div class="h2c">
-	During my time at university I was part of the VICE emulator team. I have now retired, but I am still proud that 
-	I started the PET and CBM-II emulators and added valuable other code - like the CIA timer emulation.
-     <ul><li><a href="http://vice-emu.sourceforge.net/" target="_blank" class="extlink">VICE homepage</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="xcbm" id="xcbm">xcbm Emulator</a></h2></div><div class="h2c">
-	Before I started the VICE team, I actually started my own emulator. It is still there, only running 
-	in a Linux terminal windows. 
-     <ul><li><a href="http://www.6502.org/users/andre/misc/" target="_blank" class="extlink">xcbm</a> </li></ul></div></div><hr />
+<h1>The 65k Project - Testing</h1><p class="copyright">(C)
+2016-2016 André  Fachat</p> 
+<div class="overview">
+	<p>
+	Links to other implementations and designs of 6502 relatives.
+	</p>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2016-04-24</small>
+	Started this page (although I should have done this collection of my links much earlier)
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#links">Links</a></li><li style="list-style-type:none;"><ul><li><a href="#huc6280">HuC6280</a></li><li><a href="#ce02">65CE02</a></li><li><a href="#ex02">6502 EX</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="links" id="links">Links</a></h2></div><div class="h2c"><h3><a name="huc6280" id="huc6280">HuC6280</a></h3><p>
+    </p><ul><li><a href="https://en.wikipedia.org/wiki/Hudson_Soft_HuC6280" target="_blank" class="extlink">Wikipedia</a> </li><li><a href="http://shu.emuunlim.com/download/pcedocs/pce_cpu.html" target="_blank" class="extlink">Opcodes</a> </li></ul><h3><a name="ce02" id="ce02">65CE02</a></h3><p>
+	The 65CE02 has the interesting feature that the zeropage-indirect addressing mode "(zp)" is modified
+	to use a Z-register that is initialized to zero, thus effectively becoming "(zp),z".
+    </p><ul><li><a href="http://archive.6502.org/datasheets/mos_65ce02_mpu.pdf" target="_blank" class="extlink">Specification document (PDF)</a> </li><li><a href="http://self.gutenberg.org/article/whebn0004567060/mos%20technology%2065ce02" target="_blank" class="extlink">Gutenberg project book</a> </li></ul><h3><a name="ex02" id="ex02">6502 EX</a></h3><p>
+    </p><ul><li><a href="http://www.ex6502.altervista.org/doku.php?id=home" target="_blank" class="extlink">6502 EX Homepage</a> </li></ul></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2014-04-29
+2016-04-24
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div id="socialshareprivacy"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
-		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
+		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>Discuss this page's content on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?p=12180"> this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../pet816/index.html">10&nbsp;MHz 6502 CPU accelerator board</a></p>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>

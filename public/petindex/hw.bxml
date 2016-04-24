@@ -108,6 +108,13 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
         </p></desc>
         <extlink name="Nils Eilers' Character generator RAM" link="http://home.germany.net/nils.eilers/chargen/index.htm"/>
      </subsection>
+
+    <subsection toc="morelines" name="30 screen lines on a 8296">
+	<desc><p>The 8296 has a screen memory larger than the others due to its 128k memory. So Edilbert has
+	created a configuration and ROM to use the extra memory as additional screen lines!
+	</p></desc>
+        <extlink name="30 screen lines on a 8296" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=8485"/>
+     </subsection>
   </section>
 
   <section toc="sound" name="Sound extensions">

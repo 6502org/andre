@@ -1,0 +1,52 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="The 65k Project - Testing">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2016</yearstart>
+    <yearend>2016</yearend>
+  </author>
+  <keywords>6502 16bit 32bit expansion</keywords>
+  <metadesc>6502 16bit 32bit expansion</metadesc>
+  <forum type="6502.org">http://forum.6502.org/viewtopic.php?p=12180</forum>
+  <overview>
+	<p>
+	Links to other implementations and designs of 6502 relatives.
+	</p>
+  </overview>
+  <news>
+    <item date="2016-04-24">
+	Started this page (although I should have done this collection of my links much earlier)
+    </item>
+  </news>
+  <toc/>
+
+  <section toc="links" name="Links">
+  <subsection toc="huc6280" name="HuC6280">
+    <desc><p>
+    </p></desc>
+    <extlink name="Wikipedia" link="https://en.wikipedia.org/wiki/Hudson_Soft_HuC6280"/>
+    <extlink name="Opcodes" link="http://shu.emuunlim.com/download/pcedocs/pce_cpu.html"/>
+  </subsection>
+
+  <subsection toc="ce02" name="65CE02">
+    <desc><p>
+	The 65CE02 has the interesting feature that the zeropage-indirect addressing mode "(zp)" is modified
+	to use a Z-register that is initialized to zero, thus effectively becoming "(zp),z".
+    </p></desc>
+    <extlink name="Specification document (PDF)" link="http://archive.6502.org/datasheets/mos_65ce02_mpu.pdf"/>
+    <extlink name="Gutenberg project book" link="http://self.gutenberg.org/article/whebn0004567060/mos%20technology%2065ce02"/>
+  </subsection>
+
+  <subsection toc="ex02" name="6502 EX">
+    <desc><p>
+    </p></desc>
+    <extlink name="6502 EX Homepage" link="http://www.ex6502.altervista.org/doku.php?id=home"/>
+  </subsection>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
