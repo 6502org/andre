@@ -1,0 +1,130 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="PET index - Diagnostic Clip">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2017</yearstart>
+    <yearend>2017</yearend>
+  </author>
+  <keywords>Commodore PET Diagnostic Clip</keywords>
+  <metadesc>Description of the Diagnostic Clip</metadesc>
+  <overview><p>
+	This page describes the PET diagnostic cartridge. </p><p>
+	Many thanks esp. go to Manuel Amorim who helped work out the schematics of the board
+	and Jett Raymond, who provided me with actually a second, different version
+	of the board!
+   </p>
+  </overview>
+  <!--news>
+    <item date="2017-07-16">
+	Started this page
+    </item>
+  </news-->
+  <toc/>
+
+  <section toc="desc" name="Description">
+    <desc> <p>
+	The diagnostic clip is an add-on that contains a diagnostic ROM 
+	to identify problems with the PET hardware. It consists of 
+	userport and tape plugs with specific wiring, and a processor clip.
+	This processor clip is clipped onto the 6502 before the PET is 
+	powered on. It is connected to a small box that contains the ROMs
+	with a 40pin flat ribbon cable. 
+	</p><p>
+	After powering on, the on-board ROM is disabled or evaded - depending
+	on the version, for details see below.
+	</p><p>
+	A version of the manual is documented on commodore.ca.
+    </p></desc>
+
+	<extlink name="Diagnostic Clip manual" link="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">Scans of the manual</extlink>
+
+    <!--subsection toc="oldpet" name="The old PETs">
+      <desc> <p>      </p></desc>
+    </subsection-->
+  </section>
+
+  <section toc="ma" name="Diagnostic Clip">
+    <desc> <p>
+	Manuel Amorim sent me a number of pictures and also we were able to 
+    </p></desc>
+
+  <gallery>
+        <image>
+                <thumb>IMG_0920_small.jpg</thumb>
+                <full>IMG_0920.JPG</full>
+                <alt>Outside view</alt>
+                <desc>Outside view</desc>
+        </image>
+  </gallery>
+
+  </section>
+
+  <section toc="jr" name="Diagnostic Clip I">
+    <desc> <p>
+	I got a schematics from Jett Raymond that uses /NOROM pin on the 
+	PET CPU socket, to actually disable the on-board ROM selection. This is a special
+	feature of the PET, where an unused 6502 pin is re-used for that purpose.
+	</p><p>
+	Because this disables the original PET ROMs, there is no need to force the
+	address to an unused area - the ROM code can actually run at $Fxxx.
+    </p></desc>
+
+  <gallery>
+        <image>
+                <thumb>IMG_0920_small.jpg</thumb>
+                <full>IMG_0920.JPG</full>
+                <alt>Outside view</alt>
+                <desc>Outside view</desc>
+        </image>
+        <image>
+                <thumb>IMG_0921_small.jpg</thumb>
+                <full>IMG_0921.JPG</full>
+                <alt>Correction table</alt>
+                <desc>Correction table</desc>
+        </image>
+        <image>
+                <thumb>IMG_0922_small.jpg</thumb>
+                <full>IMG_0922.JPG</full>
+                <alt>Inside view</alt>
+                <desc>Inside view</desc>
+        </image>
+        <image>
+                <thumb>IMG_0923_small.jpg</thumb>
+                <full>IMG_0923.JPG</full>
+                <alt>Inside view with cable</alt>
+                <desc>Inside view with cable</desc>
+        </image>
+        <image>
+                <thumb>IMG_0924_small.jpg</thumb>
+                <full>IMG_0924.JPG</full>
+                <alt>Inside view</alt>
+                <desc>Inside view</desc>
+        </image>
+        <image>
+                <thumb>IMG_0925_small.jpg</thumb>
+                <full>IMG_0925.JPG</full>
+                <alt>Back view</alt>
+                <desc>Back view</desc>
+        </image>
+        <image>
+                <thumb>IMG_0926_small.jpg</thumb>
+                <full>IMG_0926.JPG</full>
+                <alt>Top view without ROMs</alt>
+                <desc>Top view without ROMs</desc>
+        </image>
+        <image>
+                <thumb>Diagnostic Clip I schematics.png</thumb>
+                <alt>Schematics</alt>
+                <desc>Schematics</desc>
+        </image>
+  </gallery>
+
+  </section>
+
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

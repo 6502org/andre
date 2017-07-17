@@ -30,6 +30,8 @@ p copro Coprocessor board
 p cpuemu Emulate a 6502
 p keyemu Emulate a keyboard
 p viaproto VIA prototyping
+s Contributions
+p contrib Contributions
 s Deprecated boards
 p cpu816 65816 CPU V1
 p cpu65b 64k CPU

@@ -1,0 +1,54 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="Contributions to Andr&eacute;'s CS/A computer">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2017</yearstart>
+    <yearend>2017</yearend>
+  </author>
+  <keywords>8-bit,6502,Commodore</keywords>
+  <metadesc>Contributions to Andr&eacute;'s CS/A computer</metadesc>
+
+  <overview>
+	<p>Here are contributions from other people to my CS/A computer system.</p>
+  </overview>
+
+        <!--news>
+		<item date="2017-07-16" state="hot">
+			Started this page
+		</item>
+        </news-->
+
+<section toc="disclaimer" name="Disclaimer">
+	<desc>
+	<P class="disclaimer">Before you go on, you should know that all this stuff
+comes with <strong>no warranty at all </strong>. 
+The hardware schematics and software are not created by me and 
+are provided 'as is', without warranty of any kind. The entire risk as
+to the quality and performance of the hard- and software is with you. Should
+the hard- or software prove defective, you assume the cost of all necessary
+servicing, repair or correction.</P>
+	</desc>
+</section>
+
+<section toc="backplane" name="Backplane"><desc><p>
+		Sergio Aguayo has sent me his design for the passive backplane (the one board that I actually bought).
+		Many thanks!
+		</p>
+	</desc>
+
+        <rev>
+                <version>1.1</version>
+                <status>untested</status>
+                <note type="warn">
+                        This board is to my knowledge so far untested
+                </note>
+                <file ltype="schem" ptype="esch">Backplane.sch</file>
+                <file ltype="schem" ptype="png">Backplane-sch.png</file>
+                <file ltype="layout" ptype="ebrd">Backplane.brd</file>
+                <file ltype="layout" ptype="png">Backplane-brd.png</file>
+        </rev>
+ </section>
+
+</webpage>

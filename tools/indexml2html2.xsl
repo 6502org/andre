@@ -169,7 +169,7 @@
 <xsl:template name="bottomtxt">
 	<div id="rightcol">
 		<div class="top" id="share"><div class="tophead">share</div><div>
-			    <div id="socialshareprivacy"/>
+    			<div class="shariff" data-backend-url="/users/andre/shariff/index.php" data-theme="grey" data-orientation="vertical"></div>
 		</div></div>
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            <p>Follow my 8-bit tweets on
@@ -218,7 +218,10 @@
 					</a>
 				</xsl:when>
 				<xsl:otherwise>
-					<img src="{thumb}" alt="{alt}"/>
+					<a href="{thumb}">
+					<img class="full" src="{thumb}" alt="{alt}" />
+					<img class="thumb" src="{thumb}" alt="{alt}"/>
+					</a>
 				</xsl:otherwise>
 			</xsl:choose>
 			<div class="desc"><xsl:apply-templates select="desc"/></div>
@@ -425,6 +428,7 @@
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
       <xsl:apply-templates select="gallery"/>
+      <xsl:apply-templates select="rev"/>
       <xsl:apply-templates select="subsection"/>
       <xsl:apply-templates select="teasers"/>
       <!-- (very) old style pages may still use this -->
@@ -613,6 +617,7 @@
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
 <link rel="stylesheet" title="Default" type="text/css" href="%up%style2-min.css"/>
+<link href="%up%shariff.min.css" rel="stylesheet"/>
 <xsl:if test="style">
   <link rel="stylesheet" type="text/css" href="{style}"/>
 </xsl:if>
@@ -624,22 +629,7 @@
 <xsl:template name="bottom">
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts2-all.js"></script>
-  <script type="text/javascript" src="%up%jquery.socialshareprivacy.min.js"></script>
-  <!--script type="text/javascript">
-          jQuery(document).ready(function($){
-                  if($('#socialshareprivacy').length > 0){
-                            $('#socialshareprivacy').socialSharePrivacy({
-				services : {
-				  facebook : {
-				    'action' : 'recommend'
-				  }
-				},
-				'txt_help' : 'By activating these fields through clicking, you accept that information will be sent to Facebook, Twitter or Google and stored there. More information by clicking on the \'i\' (in German)',
-				'settings_perma' : 'Accept data transfer and activate permanently'
-			    });
-                  }
-          });
-  </script-->
+  <script type="text/javascript" src="%up%shariff.min.js"></script>
 </xsl:template>
 
 </xsl:stylesheet>
