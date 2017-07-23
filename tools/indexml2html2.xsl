@@ -171,6 +171,8 @@
 		<div class="top" id="share"><div class="tophead">share</div><div>
     			<div class="shariff" data-backend-url="/users/andre/shariff/index.php" data-theme="grey" data-orientation="vertical"></div>
 		</div></div>
+<!--
+-->
 		<div class="top" id="twitter"><div class="tophead">follow</div><div>
 		            <p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p>
@@ -618,6 +620,8 @@
 </xsl:text>
 <link rel="stylesheet" title="Default" type="text/css" href="%up%style2-min.css"/>
 <link href="%up%shariff.min.css" rel="stylesheet"/>
+<!--
+-->
 <xsl:if test="style">
   <link rel="stylesheet" type="text/css" href="{style}"/>
 </xsl:if>
@@ -630,6 +634,8 @@
   <script type="text/javascript">myUp="%up%";</script>
   <script type="text/javascript" src="%up%scripts2-all.js"></script>
   <script type="text/javascript" src="%up%shariff.min.js"></script>
+<!--
+-->
 </xsl:template>
 
 </xsl:stylesheet>

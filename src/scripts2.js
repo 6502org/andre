@@ -282,33 +282,6 @@ function setupFilter() {
 
 
 // ----------------------------------------------------------------------------------------------------------
-
-function socialshare() {
-                  if($('#socialshareprivacy').length > 0){
-                            $('#socialshareprivacy').socialSharePrivacy({
-                                services : {
-                                  facebook : {
-					'status':'off'
-                                  },
-				  twitter : {
-					'dummy_img':'/users/andre/socialshareprivacy/images/dummy_twitter.png',
-					'txt_info':'Only by clicking the button is activated and you can send the recommendation. Activating sends data to third parties'
-				  },
-				  gplus : {
-					'dummy_img':'/users/andre/socialshareprivacy/images/dummy_gplus.png',
-					'txt_info':'Only by clicking the button is activated and you can send the recommendation. Activating sends data to third parties'
-				  }
-                                },
-                                'txt_help' : 'By activating these fields through clicking, you accept that information will be sent to Facebook, Twitter or Google and stored there. More information by clicking on the \'i\' (in German)',
-                                'settings_perma' : 'Accept data transfer and activate permanently',
-				'css_path':'/users/andre/socialshareprivacy/socialshareprivacy.css'
-                            });
-
-			$('#share').css({'display':'block'});
-                  }
-}
-
-// ----------------------------------------------------------------------------------------------------------
 // initialization
 
 // do the actual init
@@ -317,7 +290,6 @@ function doInit() {
 	setupTwisties();
 	setupMenu();
 	setupFilter();
-	socialshare();
 }
 
 $(document).ready(function(){
