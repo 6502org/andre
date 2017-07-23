@@ -190,9 +190,10 @@
 	This page describes the PET diagnostic cartridge. </p><p>
 	Many thanks esp. go to Manuel Amorim who helped work out the schematics of the board
 	and Jett Raymond, who provided me with actually a second, different version
-	of the board!
+	of the board! Also many thanks go to Rob Clarke, who provided me with a
+	disassembly of (one version of) the ROM.
    </p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#desc">Description</a></li><li><a href="#ma">Diagnostic Clip</a></li><li><a href="#jr">Diagnostic Clip I</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Description</a></h2></div><div class="h2c"> <p>
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#desc">Description</a></li><li><a href="#ma">Diagnostic Clip</a></li><li><a href="#clip1">Diagnostic Clip I</a></li><li><a href="#rc">Diagnostic Clip I</a></li><li><a href="#rom">ROM descriptions</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="desc" id="desc">Description</a></h2></div><div class="h2c"> <p>
 	The diagnostic clip is an add-on that contains a diagnostic ROM 
 	to identify problems with the PET hardware. It consists of 
 	userport and tape plugs with specific wiring, and a processor clip.
@@ -204,20 +205,74 @@
 	on the version, for details see below.
 	</p><p>
 	A version of the manual is documented on commodore.ca.
-    </p><ul><li><a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm" target="_blank" class="extlink">Diagnostic Clip manual</a> Scans of the manual</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ma" id="ma">Diagnostic Clip</a></h2></div><div class="h2c"> <p>
+	</p><p>
+A comment from William Levak:
+</p><p class="quote">
+Commodore made a diagnostic device for the PET. It consisted of a 40 pin
+clip that attached to the CPU. This was connected by ribbon cable to a
+small circuit board that contained a ROM and a reset switch. When
+pressed, the address bus was forced to $9xxx, causing the computer to
+initialize from the ROM on the diagnostic device. A diagnostic routine
+was then loaded to low memory on the computer and the 40 pin clip removed.
+</p><p class="quote">
+This device is not very complicated. I have never traced out the circuit,
+but it should not be difficult to do. I think the ROM images are in the
+CBM archive. There are two of these devices, one for PET's with the CRTC,
+and one for those without the CRTC. This device was not intended for the
+original PET's (which have their own built in diagnostic routine), but
+with a few changes to the system board, it will run on those too.
+</p><p class="quote">
+There are connectors with jumpers on them that need to be put on the
+keyboard and user ports. These are simple enough to be made by almost
+anyone.
+</p>
+<p>Note: the diagnostic devices and their use are described in the <a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">"Testing the PET Computer" manual</a>, unfortunately the manual assumes you already have them, so it lacks the details.
+I could find the diagnostic connectors on
+<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/diagnostics.txt">the CBM archive</a>.
+For the original PET, these are all
+you need.  The original ROMs have a diagnostic routine in the ROM. You
+install the connectors, and turn on the PET, and runs through a self
+diagnostic.  When it finishes, the red LED on the system board lights up.
+On later models the diagnostic routine has been replaced with the
+machine language monitor.
+</p><p>
+	As it seems the two versions desribed below refer to the
+	two versions mentioned by William. The one that uses the
+	/NOROM pin to disable the ROMs on the main board are used for the
+	CRTC versions of the machine, that actually used an unused pin
+	at the CPU socket, to disable the ROMs
+	</p><p>
+	The other one, that forces the address bus to $9xxx, is used
+	for the older PET, that did not have the /NOROM pin.
+
+    </p><ul><li><a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm" target="_blank" class="extlink">Diagnostic Clip manual</a> Scans of the manual</li><li><a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/diagnostics.txt" target="_blank" class="extlink">Diagnostic Clip connectors diagrams</a> on the CBM archive</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="ma" id="ma">Diagnostic Clip</a></h2></div><div class="h2c"> <p>
 	Manuel Amorim sent me a number of pictures and also we were able to 
-    </p><div class="gallery"><div class="galleryimg"><a href="IMG_0920.JPG"><img class="full" src="IMG_0920.JPG" alt="Outside view" /><img class="thumb" src="IMG_0920_small.jpg" alt="Outside view" /></a><div class="desc">Outside view</div></div><div class="gallend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="jr" id="jr">Diagnostic Clip I</a></h2></div><div class="h2c"> <p>
+	work out the schematics of his diagnostic clip. This one seems to 
+	indeed pull down the address bits A13 and A14 to force the address
+	to a - hopefully unused - $9xxx area to avoid hardware conflicts.
+	</p><p>Also see a link to Manuel's page below the images.
+    </p><div class="gallery"><div class="galleryimg"><a href="IMG_20151209_141721.jpg"><img class="full" src="IMG_20151209_141721.jpg" alt="Outside view" /><img class="thumb" src="IMG_20151209_141721_small.jpg" alt="Outside view" /></a><div class="desc">Outside view</div></div><div class="galleryimg"><a href="IMG_20151209_204258.jpg"><img class="full" src="IMG_20151209_204258.jpg" alt="Inside view" /><img class="thumb" src="IMG_20151209_204258_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="IMG_20170716_204547.jpg"><img class="full" src="IMG_20170716_204547.jpg" alt="Manual page describing how it works" /><img class="thumb" src="IMG_20170716_204547_small.jpg" alt="Manual page describing how it works" /></a><div class="desc">Manual page describing how it works</div></div><div class="galleryimg"><a href="IMG_20170717_224244.jpg"><img class="full" src="IMG_20170717_224244.jpg" alt="View of the userport connector (twice)" /><img class="thumb" src="IMG_20170717_224244_small.jpg" alt="View of the userport connector (twice)" /></a><div class="desc">View of the userport connector (twice)</div></div><div class="galleryimg"><a href="SCHEM_AF.png"><img class="full" src="SCHEM_AF.png" alt="Reverse engineered schematics" /><img class="thumb" src="SCHEM_AF_small.png" alt="Reverse engineered schematics" /></a><div class="desc">Reverse engineered schematics (here is the <a target="_blank" href="SCHEM_AF.sch">Eagle source</a>)</div></div><div class="gallend"></div></div><ul><li><a href="http://thegarage.space/commodore-pet/" target="_blank" class="extlink">Diagnostic Clip page of Manuel Amorim</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="clip1" id="clip1">Diagnostic Clip I</a></h2></div><div class="h2c"> <p>
 	I got a schematics from Jett Raymond that uses /NOROM pin on the 
 	PET CPU socket, to actually disable the on-board ROM selection. This is a special
 	feature of the PET, where an unused 6502 pin is re-used for that purpose.
 	</p><p>
 	Because this disables the original PET ROMs, there is no need to force the
 	address to an unused area - the ROM code can actually run at $Fxxx.
-    </p><div class="gallery"><div class="galleryimg"><a href="IMG_0920.JPG"><img class="full" src="IMG_0920.JPG" alt="Outside view" /><img class="thumb" src="IMG_0920_small.jpg" alt="Outside view" /></a><div class="desc">Outside view</div></div><div class="galleryimg"><a href="IMG_0921.JPG"><img class="full" src="IMG_0921.JPG" alt="Correction table" /><img class="thumb" src="IMG_0921_small.jpg" alt="Correction table" /></a><div class="desc">Correction table</div></div><div class="galleryimg"><a href="IMG_0922.JPG"><img class="full" src="IMG_0922.JPG" alt="Inside view" /><img class="thumb" src="IMG_0922_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="IMG_0923.JPG"><img class="full" src="IMG_0923.JPG" alt="Inside view with cable" /><img class="thumb" src="IMG_0923_small.jpg" alt="Inside view with cable" /></a><div class="desc">Inside view with cable</div></div><div class="galleryimg"><a href="IMG_0924.JPG"><img class="full" src="IMG_0924.JPG" alt="Inside view" /><img class="thumb" src="IMG_0924_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="IMG_0925.JPG"><img class="full" src="IMG_0925.JPG" alt="Back view" /><img class="thumb" src="IMG_0925_small.jpg" alt="Back view" /></a><div class="desc">Back view</div></div><div class="galleryimg"><a href="IMG_0926.JPG"><img class="full" src="IMG_0926.JPG" alt="Top view without ROMs" /><img class="thumb" src="IMG_0926_small.jpg" alt="Top view without ROMs" /></a><div class="desc">Top view without ROMs</div></div><div class="galleryimg"><a href="Diagnostic Clip I schematics.png"><img class="full" src="Diagnostic Clip I schematics.png" alt="Schematics" /><img class="thumb" src="Diagnostic Clip I schematics.png" alt="Schematics" /></a><div class="desc">Schematics</div></div><div class="gallend"></div></div></div></div><hr />
+    </p><div class="gallery"><div class="galleryimg"><a href="IMG_0920.JPG"><img class="full" src="IMG_0920.JPG" alt="Outside view" /><img class="thumb" src="IMG_0920_small.jpg" alt="Outside view" /></a><div class="desc">Outside view</div></div><div class="galleryimg"><a href="IMG_0921.JPG"><img class="full" src="IMG_0921.JPG" alt="Correction table" /><img class="thumb" src="IMG_0921_small.jpg" alt="Correction table" /></a><div class="desc">Correction table</div></div><div class="galleryimg"><a href="IMG_0922.JPG"><img class="full" src="IMG_0922.JPG" alt="Inside view" /><img class="thumb" src="IMG_0922_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="IMG_0923.JPG"><img class="full" src="IMG_0923.JPG" alt="Inside view with cable" /><img class="thumb" src="IMG_0923_small.jpg" alt="Inside view with cable" /></a><div class="desc">Inside view with cable</div></div><div class="galleryimg"><a href="IMG_0924.JPG"><img class="full" src="IMG_0924.JPG" alt="Inside view" /><img class="thumb" src="IMG_0924_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="IMG_0925.JPG"><img class="full" src="IMG_0925.JPG" alt="Back view" /><img class="thumb" src="IMG_0925_small.jpg" alt="Back view" /></a><div class="desc">Back view</div></div><div class="galleryimg"><a href="IMG_0926.JPG"><img class="full" src="IMG_0926.JPG" alt="Top view without ROMs" /><img class="thumb" src="IMG_0926_small.jpg" alt="Top view without ROMs" /></a><div class="desc">Top view without ROMs</div></div><div class="galleryimg"><a href="Diagnostic Clip I schematics.png"><img class="full" src="Diagnostic Clip I schematics.png" alt="Schematics" /><img class="thumb" src="Diagnostic Clip I schematics.png" alt="Schematics" /></a><div class="desc">Schematics</div></div><div class="gallend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="rc" id="rc">Diagnostic Clip I</a></h2></div><div class="h2c"> <p>
+	Rob Clarke also sent me some pictures, and especially ROM images and 
+	a disassembly (for those see below)!
+    </p><div class="gallery"><div class="galleryimg"><a href="Diagnostic_Clip_external.jpg"><img class="full" src="Diagnostic_Clip_external.jpg" alt="Outside view" /><img class="thumb" src="Diagnostic_Clip_external_small.jpg" alt="Outside view" /></a><div class="desc">Outside view</div></div><div class="galleryimg"><a href="Diagnostic_Clip_internal.jpg"><img class="full" src="Diagnostic_Clip_internal.jpg" alt="Inside view" /><img class="thumb" src="Diagnostic_Clip_internal_small.jpg" alt="Inside view" /></a><div class="desc">Inside view</div></div><div class="galleryimg"><a href="ScreenShot.jpg"><img class="full" src="ScreenShot.jpg" alt="Screenshot of a successful test run" /><img class="thumb" src="ScreenShot_small.jpg" alt="Screenshot of a successful test run" /></a><div class="desc">Screenshot of a successful test run</div></div><div class="gallend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="rom" id="rom">ROM descriptions</a></h2></div><div class="h2c"> <p>
+	As there are two versions of the diag clip, with different 
+	features concerning the ROM addressing, there are (at least)
+	two types of ROMs obviously. </p><p>
+	However, it seems there is only the one available for the 
+	$fxxx version. But even so, there are multiple versions, see
+	the links below.
+    </p><ul><li><a href="ROM_Images.zip" target="_blank" class="extlink">$fxxx ROM images from Raymond Jett</a> </li><li><a href="40_80_80_col_diag.bin" target="_blank" class="extlink">ROM image by Rob Clarke</a> </li><li><a href="Diag_Clip_Disassembly.txt" target="_blank" class="extlink">ROM disassembly by Rob Clarke</a> </li></ul></div></div><hr />
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
-2017-07-17
+2017-07-23
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div class="shariff" data-backend-url="/users/andre/shariff/index.php" data-theme="grey" data-orientation="vertical"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

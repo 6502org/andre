@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2016</yearend>
+    <yearend>2017</yearend>
   </author>
   <keywords>Commodore PET CBM ROM</keywords>
   <metadesc>PET index</metadesc>
@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2017-07-23">
+	Added the page for the <a href="diag/index.html">Diagnostic clip</a>.
+    </item>
     <item date="2016-04-24">
 	Updated 6540 ROM adapter links and added link to 30 screen lines mod.
     </item>

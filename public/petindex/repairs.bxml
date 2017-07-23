@@ -94,8 +94,8 @@ had a smart thing with a switch wired to reset, and diag through a
 condensator. If you flicked it quicky it would reset; if you kept the
 switch in the alternate position a few seconds it would decharge the
 condensator, pull down diag, and when switched back you came back in
-the monitor.</p>
-Another comment from William:
+the monitor.</p><p>
+Another comment from William:</p>
 <p class="quote">
 Commodore made a diagnostic device for the PET. It consisted of a 40 pin
 clip that attached to the CPU. This was connected by ribbon cable to a
@@ -103,29 +103,10 @@ small circuit board that contained a ROM and a reset switch. When
 pressed, the address bus was forced to $9xxx, causing the computer to
 initialize from the ROM on the diagnostic device. A diagnostic routine
 was then loaded to low memory on the computer and the 40 pin clip removed.
-</p><p class="quote">
-This device is not very complicated. I have never traced out the circuit,
-but it should not be difficult to do. I think the ROM images are in the
-CBM archive. There are two of these devices, one for PET's with the CRTC,
-and one for those without the CRTC. This device was not intended for the
-original PET's (which have their own built in diagnostic routine), but
-with a few changes to the system board, it will run on those too.
-</p><p class="quote">
-There are connectors with jumpers on them that need to be put on the
-keyboard and user ports. These are simple enough to be made by almost
-anyone.
-</p>
-<p>Note: the diagnostic devices and their use are described in the <a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">"Testing the PET Computer" manual</a>, unfortunately the manual assumes you already have them, so it lacks the details. 
-I could find the diagnostic connectors on
-<a href="http://www.zimmers.net/anonftp/pub/cbm/schematics/computers/pet/diagnostics.txt">the CBM archive</a>.
-For the original PET, these are all
-you need.  The original ROMs have a diagnostic routine in the ROM. You
-install the connectors, and turn on the PET, and runs through a self
-diagnostic.  When it finishes, the red LED on the system board lights up.
-On later models the diagnostic routine has been replaced with the
-machine language monitor.
 </p><p>
-So far I don't have the schematics for the CPU connector, nor the ROMs and test programs, sorry. So if you can provide this info, this would be very helpful!</p>
+For more information see the 
+page on the <a href="diag/index.html">Diagnostic Clip page</a>.
+</p>
       </subitem>
       <subitem name="Test programs"> Test programs that can be used to identify problems
 	with an at least partially working PET:

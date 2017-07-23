@@ -13,7 +13,8 @@
 	This page describes the PET diagnostic cartridge. </p><p>
 	Many thanks esp. go to Manuel Amorim who helped work out the schematics of the board
 	and Jett Raymond, who provided me with actually a second, different version
-	of the board!
+	of the board! Also many thanks go to Rob Clarke, who provided me with a
+	disassembly of (one version of) the ROM.
    </p>
   </overview>
   <!--news>
@@ -36,9 +37,50 @@
 	on the version, for details see below.
 	</p><p>
 	A version of the manual is documented on commodore.ca.
+	</p><p>
+A comment from William Levak:
+</p><p class="quote">
+Commodore made a diagnostic device for the PET. It consisted of a 40 pin
+clip that attached to the CPU. This was connected by ribbon cable to a
+small circuit board that contained a ROM and a reset switch. When
+pressed, the address bus was forced to $9xxx, causing the computer to
+initialize from the ROM on the diagnostic device. A diagnostic routine
+was then loaded to low memory on the computer and the 40 pin clip removed.
+</p><p class="quote">
+This device is not very complicated. I have never traced out the circuit,
+but it should not be difficult to do. I think the ROM images are in the
+CBM archive. There are two of these devices, one for PET's with the CRTC,
+and one for those without the CRTC. This device was not intended for the
+original PET's (which have their own built in diagnostic routine), but
+with a few changes to the system board, it will run on those too.
+</p><p class="quote">
+There are connectors with jumpers on them that need to be put on the
+keyboard and user ports. These are simple enough to be made by almost
+anyone.
+</p>
+<p>Note: the diagnostic devices and their use are described in the <a href="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">"Testing the PET Computer" manual</a>, unfortunately the manual assumes you already have them, so it lacks the details.
+I could find the diagnostic connectors on
+<a href="@CBMARC@/schematics/computers/pet/diagnostics.txt">the CBM archive</a>.
+For the original PET, these are all
+you need.  The original ROMs have a diagnostic routine in the ROM. You
+install the connectors, and turn on the PET, and runs through a self
+diagnostic.  When it finishes, the red LED on the system board lights up.
+On later models the diagnostic routine has been replaced with the
+machine language monitor.
+</p><p>
+	As it seems the two versions desribed below refer to the
+	two versions mentioned by William. The one that uses the
+	/NOROM pin to disable the ROMs on the main board are used for the
+	CRTC versions of the machine, that actually used an unused pin
+	at the CPU socket, to disable the ROMs
+	</p><p>
+	The other one, that forces the address bus to $9xxx, is used
+	for the older PET, that did not have the /NOROM pin.
+
     </p></desc>
 
 	<extlink name="Diagnostic Clip manual" link="http://www.commodore.ca/manuals/Testing_The_PET/testing_the_pet_computer.htm">Scans of the manual</extlink>
+	<extlink name="Diagnostic Clip connectors diagrams" link="@CBMARC@/schematics/computers/pet/diagnostics.txt">on the CBM archive</extlink>
 
     <!--subsection toc="oldpet" name="The old PETs">
       <desc> <p>      </p></desc>
@@ -48,20 +90,50 @@
   <section toc="ma" name="Diagnostic Clip">
     <desc> <p>
 	Manuel Amorim sent me a number of pictures and also we were able to 
+	work out the schematics of his diagnostic clip. This one seems to 
+	indeed pull down the address bits A13 and A14 to force the address
+	to a - hopefully unused - $9xxx area to avoid hardware conflicts.
+	</p><p>Also see a link to Manuel's page below the images.
     </p></desc>
+
+	<extlink name="Diagnostic Clip page of Manuel Amorim" link="http://thegarage.space/commodore-pet/"></extlink>
 
   <gallery>
         <image>
-                <thumb>IMG_0920_small.jpg</thumb>
-                <full>IMG_0920.JPG</full>
+                <thumb>IMG_20151209_141721_small.jpg</thumb>
+                <full>IMG_20151209_141721.jpg</full>
                 <alt>Outside view</alt>
                 <desc>Outside view</desc>
+        </image>
+        <image>
+                <thumb>IMG_20151209_204258_small.jpg</thumb>
+                <full>IMG_20151209_204258.jpg</full>
+                <alt>Inside view</alt>
+                <desc>Inside view</desc>
+        </image>
+        <image>
+                <thumb>IMG_20170716_204547_small.jpg</thumb>
+                <full>IMG_20170716_204547.jpg</full>
+                <alt>Manual page describing how it works</alt>
+                <desc>Manual page describing how it works</desc>
+        </image>
+        <image>
+                <thumb>IMG_20170717_224244_small.jpg</thumb>
+                <full>IMG_20170717_224244.jpg</full>
+                <alt>View of the userport connector (twice)</alt>
+                <desc>View of the userport connector (twice)</desc>
+        </image>
+        <image>
+                <thumb>SCHEM_AF_small.png</thumb>
+                <full>SCHEM_AF.png</full>
+                <alt>Reverse engineered schematics</alt>
+                <desc>Reverse engineered schematics (here is the <a target="_blank" href="SCHEM_AF.sch">Eagle source</a>)</desc>
         </image>
   </gallery>
 
   </section>
 
-  <section toc="jr" name="Diagnostic Clip I">
+  <section toc="clip1" name="Diagnostic Clip I">
     <desc> <p>
 	I got a schematics from Jett Raymond that uses /NOROM pin on the 
 	PET CPU socket, to actually disable the on-board ROM selection. This is a special
@@ -123,6 +195,48 @@
 
   </section>
 
+  <section toc="rc" name="Diagnostic Clip I">
+    <desc> <p>
+	Rob Clarke also sent me some pictures, and especially ROM images and 
+	a disassembly (for those see below)!
+    </p></desc>
+
+  <gallery>
+        <image>
+                <thumb>Diagnostic_Clip_external_small.jpg</thumb>
+                <full>Diagnostic_Clip_external.jpg</full>
+                <alt>Outside view</alt>
+                <desc>Outside view</desc>
+        </image>
+        <image>
+                <thumb>Diagnostic_Clip_internal_small.jpg</thumb>
+                <full>Diagnostic_Clip_internal.jpg</full>
+                <alt>Inside view</alt>
+                <desc>Inside view</desc>
+        </image>
+        <image>
+                <thumb>ScreenShot_small.jpg</thumb>
+                <full>ScreenShot.jpg</full>
+                <alt>Screenshot of a successful test run</alt>
+                <desc>Screenshot of a successful test run</desc>
+        </image>
+  </gallery>
+  </section>
+
+  <section toc="rom" name="ROM descriptions">
+    <desc> <p>
+	As there are two versions of the diag clip, with different 
+	features concerning the ROM addressing, there are (at least)
+	two types of ROMs obviously. </p><p>
+	However, it seems there is only the one available for the 
+	$fxxx version. But even so, there are multiple versions, see
+	the links below.
+    </p></desc>
+
+	<extlink name="$fxxx ROM images from Raymond Jett" link="ROM_Images.zip"></extlink>
+	<extlink name="ROM image by Rob Clarke" link="40_80_80_col_diag.bin"></extlink>
+	<extlink name="ROM disassembly by Rob Clarke" link="Diag_Clip_Disassembly.txt"></extlink>
+  </section>
 
   <closing>
 @FOOTER@
