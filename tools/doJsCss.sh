@@ -74,7 +74,7 @@ jstarget=$root/public/scripts
 
 cat $root/src/scripts-copyright.txt > ${jstarget}.js.in
 
-cat $root/src/scripts.js >> ${jstarget}.js.in
+#cat $root/src/scripts.js >> ${jstarget}.js.in
 cat $root/src/scripts2.js >> ${jstarget}2.js.in
 
 mvmodified ${jstarget}.js.in ${jstarget}.js

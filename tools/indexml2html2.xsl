@@ -151,7 +151,7 @@
 		if return is pressed, search via google -->
 	<div id="topsearch">
 		<form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off">
-			<input alt="search" name="q" size="10" maxlength="255" type="text"/>
+			<input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value=""/>
 			<input class="advbutton" value="Search site" type="submit"/><div id="srchprov">(by Google)</div>
 			<input name="sitesearch" value="www.6502.org/users/andre" type="hidden"/>
 		</form>

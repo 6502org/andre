@@ -219,7 +219,6 @@ function hideFiltered() {
 function changeFilter( val ) {
 
 	var newval = val.trim().toLowerCase();
-
 	if (newval == currentFilter) {
 		return;
 	}
@@ -237,9 +236,9 @@ function changeFilter( val ) {
 }
 
 function checkValue() {
-        var t = $("div#topsearch input");
-
+        var t = $("input#searchinput");
         var val = $(t).attr("value");
+
         if (val.length > 1) {
                 changeFilter(val);
         } else {
@@ -250,6 +249,7 @@ function checkValue() {
 
 var isFilterActive = 0;
 function monitorFilter() {
+
         checkValue();
         if (isFilterActive == 1) {
                 setTimeout(monitorFilter, 40);
@@ -257,7 +257,7 @@ function monitorFilter() {
 }
 
 function setupFilter() {
-        $("div#topsearch input").focusin( function( ) {
+        $("input#searchinput").focusin( function( ) {
                         $(this).css({'background-color':'#fc6'});
                         $(this).attr("value", "");
                         $(this).unbind("focusin");
@@ -273,7 +273,7 @@ function setupFilter() {
                         setTimeout(monitorFilter, 40);
                 });
 
-        $("div#topsearch input").focusout( function( ) {
+        $("input#searchinput").focusout( function( ) {
                         $(this).css({'background-color':'#fff'});
                         setTimeout(hideFiltered, 1000);
                         isFilterActive = 0;
