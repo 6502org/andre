@@ -18,6 +18,9 @@ function dumpArrayToString( a, sep, start ) {
         return rv;
 }
 
+function log( msg ) {
+	console.log(msg);
+}
 
 // ----------------------------------------------------------------------------------------------------------
 // setup twisties
@@ -237,9 +240,9 @@ function changeFilter( val ) {
 
 function checkValue() {
         var t = $("input#searchinput");
-        var val = $(t).attr("value");
+        var val = $(t).val();
 
-        if (val.length > 1) {
+        if (val && val.length > 1) {
                 changeFilter(val);
         } else {
 		currentFilter = "";
@@ -257,18 +260,13 @@ function monitorFilter() {
 }
 
 function setupFilter() {
+
         $("input#searchinput").focusin( function( ) {
                         $(this).css({'background-color':'#fc6'});
                         $(this).attr("value", "");
-                        $(this).unbind("focusin");
-                        $(this).focusin( function() {
-                                $(this).css({'background-color':'#fc6'});
-                                if (currentFilter.length > 1) {
-                                        changeFilter(currentFilter);
-                                }
-                                isFilterActive = 1;
-                                setTimeout(monitorFilter, 40);
-                        });
+                        if (currentFilter.length > 1) {
+                                changeFilter(currentFilter);
+                        }
                         isFilterActive = 1;
                         setTimeout(monitorFilter, 40);
                 });
@@ -286,6 +284,7 @@ function setupFilter() {
 
 // do the actual init
 function doInit() {
+
 	// initialize twisties
 	setupTwisties();
 	setupMenu();

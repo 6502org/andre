@@ -12,6 +12,9 @@
 	and devices for Commodore 8-bit computer.
   </overview>
   <news>
+     <item date="2017-08-13">
+	Added a link to Michael Steil's github repository for my C64 kernal mods.
+     </item>
      <item date="2013-10-13" state="hot">
         Added the <a href="cbmusb/index.html">Commodore USB interface</a>
      </item>

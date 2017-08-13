@@ -2,24 +2,53 @@
 
 namespace Heise\Shariff\Backend;
 
+/**
+ * Class Facebook.
+ */
 class Facebook extends Request implements ServiceInterface
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'facebook';
     }
 
-    public function getRequest($url)
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfig(array $config)
     {
-        $facebookURL = 'https://api.facebook.com/method/fql.query';
-        $facebookURL .= '?format=json';
-        $facebookURL .= '&query=select share_count from link_stat where url="' . $url . '"';
-        return $this->createRequest($facebookURL);
+        if (empty($config['app_id']) || empty($config['secret'])) {
+            throw new \InvalidArgumentException('The Facebook app_id and secret must not be empty.');
+        }
+        parent::setConfig($config);
     }
 
-    public function extractCount($data)
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequest($url)
     {
-        return $data[0]['share_count'];
+        $accessToken = urlencode($this->config['app_id']) .'|'.urlencode($this->config['secret']);
+        $query = 'https://graph.facebook.com/v2.8/?id='.urlencode($url).'&access_token='.$accessToken;
+
+        return new \GuzzleHttp\Psr7\Request('GET', $query);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function extractCount(array $data)
+    {
+        if (isset($data['data']) && isset($data['data'][0]) && isset($data['data'][0]['total_count'])) {
+            return $data['data'][0]['total_count'];
+        }
+        if (isset($data['share']) && isset($data['share']['share_count'])) {
+            return $data['share']['share_count'];
+        }
+
+        return 0;
     }
 }
