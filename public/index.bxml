@@ -23,6 +23,7 @@ subscribe and share!
     <item date="2017-08-13">
         Added the 1st version ROM dump for the <a href="petindex/diag/index.html">PET diagnostic cartridge</a> and a disassembly for it.
 	Added contributed <a href="csa/contrib/index.html">Backplanes</a> to the <a href="csa/index.html">CS/A computer</a>.
+	Added a link to Michael Steil's github repository with my commented <a href="cbmhw/kernal/index.html">C64 kernal mods</a>.
     </item>
     <item date="2017-07-23">
         Added the page for the <a href="petindex/diag/index.html">Commodore PET Diagnostic clip</a>.

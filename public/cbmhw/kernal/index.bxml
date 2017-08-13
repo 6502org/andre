@@ -12,11 +12,12 @@
   <overview><p>This is Copyright A.Fachat, for distributing use my own
 <a href="MYCOPYING.ASC">License</a></p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2017-08-13">
+	Added the links to Michael Steil's version of my C64 kernal mods
+	on github, where I also added comments to the code.
     </item>
-  </news-->
+  </news>
   <toc/>
   <section toc="boot" name="Boot ROM">
     <desc><p> This is a small patch to allow the C64 to boot an arbitrary
@@ -28,7 +29,7 @@ in the file <a href="bs-l.s07">bs-l.s07</a> and a listing in the file
 <a href="bs-l.s07.txt">bs-l.s07.txt</a>.
 To assemble, you have to place my <a href="../../misc/index.html">@ASS</a>
 at $7000 in memory (or somewhere else if you correct the SYS statement).
-The you have the modified kernal in the RAM under the kernal ROM.
+Then you have the modified kernal in the RAM under the kernal ROM.
 </p>
     </desc>
   </section>
@@ -44,8 +45,14 @@ They surely contain bugs. You are warned.
 </p><p>
 The ROM images contain copyrighted code - i.e. they are patched C64 ROMs,
 copyrighted by CBM (or whatever remains of this company).
+</p><p>
+	Note: Michael Steil has taken my kernal modifications and put them
+	up on github, where I have also added comments to them and where
+	they are much more accessible now.
 </p>
     </desc>
+	<extlink name="github repository for the kernal mods" link="https://github.com/mist64/c64bs"/>
+
      <subsection toc="use" name="How to use">
 	<desc><p>The C64 patches have quite some history, so everything looks a bit messy.
 The newest version is 1.40 (of Feb 25, 1997) and has the ACIA serial interface
