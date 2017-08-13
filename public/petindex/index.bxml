@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2017-08-13">
+        Added the 1st version ROM dump for the diagnostic cartridge and a disassembly for it.
+    </item>
     <item date="2017-07-23">
 	Added the page for the <a href="diag/index.html">Diagnostic clip</a>.
     </item>

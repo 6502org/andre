@@ -17,11 +17,14 @@
 	disassembly of (one version of) the ROM.
    </p>
   </overview>
-  <!--news>
+  <news>
+    <item date="2017-08-13">
+	Added the 1st version ROM dump and a disassembly for it. 
+    </item>
     <item date="2017-07-16">
 	Started this page
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="desc" name="Description">
@@ -232,6 +235,9 @@ machine language monitor.
 	$fxxx version. But even so, there are multiple versions, see
 	the links below.
     </p></desc>
+
+	<extlink name="2k ROM Dump by Manuel Amorim for the 1st version using the 9800 address range" link="901447-30.BIN"></extlink>
+	<extlink name="Uncommented disassembly of the 1st version ROM dump" link="901447-30.dis"></extlink>
 
 	<extlink name="$fxxx ROM images from Raymond Jett" link="ROM_Images.zip"></extlink>
 	<extlink name="ROM image by Rob Clarke" link="40_80_80_col_diag.bin"></extlink>

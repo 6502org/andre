@@ -20,6 +20,9 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2017-08-13">
+        Added the 1st version ROM dump for the PET diagnostic cartridge and a disassembly for it.
+    </item>
     <item date="2017-07-23">
         Added the page for the <a href="petindex/diag/index.html">Commodore PET Diagnostic clip</a>.
     </item>
@@ -29,6 +32,8 @@ subscribe and share!
     <item date="2015-09-20">
 	Updated some links on the <a href="petindex/index.html">PETindex</a>.
     </item>
+  </news>
+  <oldnews>
     <item date="2014-08-22">
 	Also added some more links on the <a href="petindex/index.html">PETindex</a>.
     </item>
@@ -58,8 +63,6 @@ subscribe and share!
 	Added a small demo video to my <a href="osa/index.html">GeckOS</a> Operating System page.
         Also added small demo video on the <a href="adv65/pet816/index.html">PET816</a> accelerator card.
      </item>
- </news>
-  <oldnews>
      <item date="2013-05-02">
 	Fix some web design bugs, a few smaller updates
         Added the <a href="petindex/hw.html#colourpet">Colour PET</a> project description.
