@@ -39,6 +39,7 @@ I hope you enjoy this document.<br/>
   <news>
     <item date="2017-08-13">
         Added the 1st version ROM dump for the diagnostic cartridge and a disassembly for it.
+	Also added link to discussion of PET prototypes to the <a href="versions.html">versions page</a>.
     </item>
     <item date="2017-07-23">
 	Added the page for the <a href="diag/index.html">Diagnostic clip</a>.
