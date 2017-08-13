@@ -619,7 +619,7 @@
 <link rev="made" href="mailto:{author/email}"/><xsl:text>
 </xsl:text>
 <link rel="stylesheet" title="Default" type="text/css" href="%up%style2-min.css"/>
-<link href="%up%shariff.min.css" rel="stylesheet"/>
+<link href="%up%shariff.complete.css" rel="stylesheet"/>
 <!--
 -->
 <xsl:if test="style">
