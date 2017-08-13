@@ -14,11 +14,11 @@
 	<p>Here are contributions from other people to my CS/A computer system.</p>
   </overview>
 
-        <!--news>
+        <news>
 		<item date="2017-07-16" state="hot">
-			Started this page
+			Started this page with the contributed Backplane
 		</item>
-        </news-->
+        </news>
 
 <section toc="disclaimer" name="Disclaimer">
 	<desc>
@@ -44,10 +44,17 @@ servicing, repair or correction.</P>
                 <note type="warn">
                         This board is to my knowledge so far untested
                 </note>
+                <note type="info">
+			One version has terminating resistors on one side only, the other on both.
+                </note>
                 <file ltype="schem" ptype="esch">Backplane.sch</file>
                 <file ltype="schem" ptype="png">Backplane-sch.png</file>
                 <file ltype="layout" ptype="ebrd">Backplane.brd</file>
                 <file ltype="layout" ptype="png">Backplane-brd.png</file>
+                <file ltype="schem" ptype="esch">Backplane2.sch</file>
+                <file ltype="schem" ptype="png">Backplane2-sch.png</file>
+                <file ltype="layout" ptype="ebrd">Backplane2.brd</file>
+                <file ltype="layout" ptype="png">Backplane2-brd.png</file>
         </rev>
  </section>
 

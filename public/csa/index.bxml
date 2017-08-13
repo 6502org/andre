@@ -15,6 +15,10 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
 	</desc>
         <news>
+		<item date="2017-08-13">
+			Added a page with <a href="contrib/index.html">contributions</a> by other people!
+			This page starts with a contributed backplane.
+		</item>
 		<item date="2013-01-04" state="hot">
 			Added the new <a href="netusb/index.html">NetUSB board</a> with SD-Card,
 			Ethernet and USB host + device!
