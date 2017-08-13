@@ -21,7 +21,8 @@ subscribe and share!
   </overview>
   <news>
     <item date="2017-08-13">
-        Added the 1st version ROM dump for the PET diagnostic cartridge and a disassembly for it.
+        Added the 1st version ROM dump for the <a href="petindex/diag/index.html">PET diagnostic cartridge</a> and a disassembly for it.
+	Added contributed <a href="csa/contrib/index.html">Backplanes</a> to the <a href="csa/index.html">CS/A computer</a>.
     </item>
     <item date="2017-07-23">
         Added the page for the <a href="petindex/diag/index.html">Commodore PET Diagnostic clip</a>.
