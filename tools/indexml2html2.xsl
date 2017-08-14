@@ -169,7 +169,7 @@
 <xsl:template name="bottomtxt">
 	<div id="rightcol">
 		<div class="top" id="share"><div class="tophead">share</div><div>
-    			<div class="shariff" data-backend-url="/users/andre/shariff/index.php" data-theme="grey" data-orientation="vertical"></div>
+    			<div class="shariff" data-backend-url="https://fachat-shariff-backend.eu-gb.mybluemix.net/" data-theme="grey" data-orientation="vertical"></div>
 		</div></div>
 <!--
 -->
