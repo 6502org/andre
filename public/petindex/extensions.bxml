@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2017-08-29">
+	Added the RS232 section.
+    </item>
     <item date="2015-09-20">
 	Identified the unknown brand Z80 card as Z-RAM.
     </item>
@@ -271,6 +274,31 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
 	<desc>From Mike's web site (see link): The K-1002-2 is an 8-bit audio Digital-to-Analog Converter for the Commodore PET. It connects to the user port and second cassette port.
 	</desc>
 	<extlink name="MTU K1002 sound adapter" link="http://mikenaberezny.com/hardware/peripherals/mtu-k-1002-2-dac/"/>
+     </subsection>
+   </section>
+
+  <section toc="rs232" name="RS232 serial communications">
+    <desc><p>The PET does not have RS232 routines in the kernal as the C64 etc have, but could be made to talk RS232 as well...:</p></desc>
+
+    <subsection toc="portmaker" name="Microtech Portmaker">
+        <desc><p>
+        This was a commercially available RS232 interface for the PET, as it seems.
+        </p><p>
+        This is a dual RS232 interface that plugs into the UD11 EPROM socket and maps the two 6551 ACIAs used at the end of the ROM space.
+        </p></desc>
+        <extlink name="Description from the cbm-hackers mailing list" link="http://www.softwolves.com/arkiv/cbm-hackers/0/0228.html"/>
+        <extlink name="Portmaker ad in the MicroComputer Issue 19 Aug/Sep 1982" link="https://archive.org/stream/Commodore_MicroComputer_Issue_19_1982_Aug_Sep/Commodore_MicroComputer_Issue_19_1982_Aug_Sep_djvu.txt"/>
+    </subsection>
+
+    <subsection toc="wcs232" name="WCS-232">
+        <desc><p>
+        This was a commercially available RS232 interface for the PET, as it seems.
+        </p><p>
+        This is a dual RS232 interface that plugs into the UD12 EPROM socket (but also requires an EPROM on UD11).
+        It seems to be using the Motorola 2661 serial line interface chip.
+        </p></desc>
+        <extlink name="WCS232 pictures and description by Mike Naberezny" link="https://www.flickr.com/photos/mnaberez/11984646426/in/album-72157639837761765/"/>
+        <extlink name="Hint on the Motorola 2661 chip" link="http://planemo.org/retro/serial-port-interfacing-z-100-cpm-2-2/"/>
      </subsection>
    </section>
 

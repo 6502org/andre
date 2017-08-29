@@ -12,14 +12,18 @@
   <overview>
 <p>On these pages you will find quite some information concerning 
 8-bit computers of the 6502 line.
-As a side note, together with Ed S. I am curating the
+From 2012 on I started and was curating, together with Ed S. the 
 <a class="extlink" target="_blank" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
-on Google+. We're posting weekly about anything 6502-related. If you like it,
+on Google+. After three years my priorities shifted and I stepped back from it just due to lack of time. 
+But the page is still active and we're posting weekly about anything 6502-related. If you like it,
 subscribe and share!
 </p>
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2017-08-29">
+	<a href="petindex/index.html">PETindex</a> updates, esp. on RS232 extensions and projects.
+    </item>
     <item date="2017-08-13">
         Added the 1st version ROM dump for the <a href="petindex/diag/index.html">PET diagnostic cartridge</a> and a disassembly for it.
 	Added contributed <a href="csa/contrib/index.html">Backplanes</a> to the <a href="csa/index.html">CS/A computer</a>.

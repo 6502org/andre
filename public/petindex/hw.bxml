@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2017-08-29">
+	Added the RS232 section.
+    </item>
     <item date="2015-09-20">
 	Added the High-Resolution Graphics extension.
     </item>
@@ -127,6 +130,31 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
      </subsection>
   </section>
 
+  <section toc="rs232" name="RS232 serial communications">
+    <desc><p>The PET does not have RS232 routines in the kernal as the C64 etc have, but could be made to talk RS232 as well...:</p></desc>
+
+    <subsection toc="transactor" name="Terminal programs in the Transactor Magazine">
+        <desc><p>
+	Transactor Magazine Volume 3 Issue 06 has two terminal programs to type in, with description of the userport interface.
+        </p></desc>
+        <extlink name="Transactor V3 I06" link="https://archive.org/details/transactor-magazines-v3-i06"/>
+     </subsection>
+
+    <subsection toc="term" name="Term in action">
+        <desc><p>
+	Here is a description of how to connect a PET to a Mac using a simple RS232 userport interface and a terminal program.
+        </p></desc>
+        <extlink name="RS-232 for Commodore PET" link="http://biosrhythm.com/?p=1359"/>
+     </subsection>
+
+    <subsection toc="lemon64" name="Lemon64 forum">
+        <desc><p>
+	This forum thread has a number of links and information about RS232 projects, for example to McTerm.
+        </p></desc>
+        <extlink name="Lemon64 thread" link="http://www.lemon64.com/forum/viewtopic.php?t=57917&amp;sid=341e1ae2426545d31a5fc59034fae415"/>
+     </subsection>
+
+  </section>
 
   <section toc="system" name="System Projects">
      <desc><P>This section contains projects that relate more to the PET itself</P>

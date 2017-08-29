@@ -13,11 +13,32 @@
 	<p>Please also note the tools on the <a href="transfer.html">transfer</a> page.</p>
   </overview>
   <news>
+    <item date="2017-08-29">
+	Added the CBM8010 RS232 coupler.
+    </item>
     <item date="2015-02-01">
 	Started this page
     </item>
   </news>
   <toc/>
+
+  <section toc="rs232" name="RS232 modems">
+     <desc>
+     </desc>
+     <subsection toc="cbm8010" name="CBM8010 acoustic coupler">
+	<desc>
+		<p>
+		The PET did not have built-in RS232 code like its successors the VIC20 and C64 etc, it had to rely on special software (see
+		for example the <a href="hw.html">Hardware projects</a> and <a href="extensions.html">Extensions</a> pages.
+		But Commodore also sold an RS232 peripheral - that was connected via the IEEE488 bus, the CBM 8010.
+		It is an acoustic coupler, where you can press in the speaker of your old-style telephone, and the loudspeaker in the coupler
+		is "talking" to the microphone on the speaker, while the loudspeaker in the speaker talks to the microphone in the coupler.
+		Those were the days when you were not allowed to make electronic contact with the telephone line...
+		</p>
+	</desc>
+	<extlink name="CBM8010" link="http://www.zimmers.net/cbmpics/ouser.html"/>
+     </subsection>
+  </section>
 
   <section toc="noncbmdisks" name="Non-CBM Disk Drives">
      <desc>
