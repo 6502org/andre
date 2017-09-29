@@ -37,6 +37,16 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2017-09-29">
+	Added bombjack to the documentation <a href="links.html">links page</a>. Added the mult-editor ROM board to the
+	<a href="hw.html">hardware extensions</a>. Added D9090 <a href="repairs.html">repair info</a> and 6540/6550 tester info.
+	Added the high speed graphics card <a href="extensions.html">extension</a>.
+	Added info on garbage collection and other differences in the BASIC <a href="roms.html">ROMs</a>.
+	Added a summary of the <a href="drives/writegap.html">Drive write gap</a> discussion and
+	a comment on the <a href="drives/progs/index.html">programs</a> to read the floppy controller ROM.
+	Added drive hardware information on the <a href="drives/index.html">drives page</a>.
+	Added a link to the <a href="superpet.html">SuperPET</a> history.
+    </item>
     <item date="2017-08-29">
 	Added RS232 information to the <a href="hw.html">Hardware projects</a>, <a href="periph.html">Peripheral</a>, and <a href="extensions.html">Extensions</a> pages.
     </item>

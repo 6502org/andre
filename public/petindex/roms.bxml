@@ -15,6 +15,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2019-09-29">
+	Added info about the garbage collection and other differences.
+    </item>
     <item date="2016-04-24">
 	Updated and added 6540 links.
     </item>
@@ -68,7 +71,7 @@
 	In fact it could even be his influence that this technique was later used even in the 
 	Commodore kernal. Here's one example:
 	</p><p>
-	The "BASIC 1" kernal for uses
+	The "BASIC 1" kernal uses
 	<pre>
  F0B6  A9 40     TALK       LDA #$40      
  F0B8  D0 02                BNE ATNOUT    
@@ -160,6 +163,54 @@ boards #3 and #4)...
 	<extlink name="4.0 ROMs memory map" link="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt"/>
      </subsection>
 
+     <subsection toc="gc" name="Garbage Collection">
+	<desc><p>
+		The original BASIC garbage collection was horribly slow. Only with BASIC 4 the garbage collection
+		was optimized. Olaf Seibert writes on the CBM-hackers list:
+	</p>
+<pre>
+The string garbage collection in the "new ROMs" and the 64 is quadratic
+in the number of strings that need to be retained.
+
+Variables are stored in records of 7 or so bytes. 2 for the name and I
+think 5 for the value (the space needed for a floating point variable).
+Strings had the address to where the actual string text was stored,
+between the BASIC program and the top of memory. I think that only in
+string arrays, the wasted space was eliminated.
+
+For garbage collection, it would proceed like thus.
+To start, it would set the top of used memory to the end of the BASIC
+program.
+It would make a pass through all string variables and arrays to check
+which string variable's string was stored the lowest in memory.  If that
+left any room between there and the top of used memory, the space in
+between could be reclaimed, by moving the string down (and adjusting the
+variable record). Then the top of used memory would be set to the end of
+the string, and repeat. If there are N string variables it would need N
+passes through them to check each of them.
+
+The change in BASIC 4.0 is that every stored string would have a pointer
+back to its variable record (probably also a string length). That way
+you can just go once through the stored strings. If the back pointer
+points to a record which in turn points back to the string, it is still
+in use. If not, it is unused and can be reclaimed. Used strings get
+moved down to the top of used memory (if needed) (and the variable
+record gets adjusted) and unused ones just get skipped. This needs just
+one pass through the stored strings (garbage and to keep).
+</pre>
+	</desc>
+     </subsection>
+
+     <subsection toc="history" name="ROM History">
+	<desc><p>The BASIC ROM is subject to evolutionary changes, and
+		finding the steps and the order they occurred in is
+		difficult. Here are some links with more information 
+		on it.</p>
+	</desc>
+	<extlink name="CBM-II BASIC ROM" link="https://www.davidviner.com/cbm9.html">This has source code with version information
+		back to BASIC 1</extlink>
+	<extlink name="Original MS BASIC" link="http://www.pagetable.com/?p=774"/>
+     </subsection>
   </section>
 
   <section toc="editor" name="Editor ROM">

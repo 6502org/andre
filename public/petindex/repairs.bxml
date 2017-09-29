@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2017-09-29">
+	Add D9090 repair info, and 6540 test tool
+    </item>
     <item date="2015-10-11">
 	Add Classic Computing Forum link
     </item>
@@ -284,6 +287,13 @@ version of the video board for the original PET that went bad frequently.</p>
 		</p>
 		</desc>
 	  </subitem>
+	  <subitem name="Harddisk" link="http://www.vintagecomputer.net/commodore/IEEE_drives/D9090_testing.txt">
+		<desc><p>The D9060 and D9090 use a similar disk operating system as the 
+		disk drives, but do not communicate directly to the drive but via 
+		a SASI (predecessor to SCSI) interface that then controlls an MFM drive.</p>
+		<p>See the link for more information on D9090 testing.</p>
+		</desc>
+	  </subitem>
     </items>  
    </itemlist>
    <itemlist toc="memory" name="PET Memory">
@@ -300,6 +310,9 @@ version of the video board for the original PET that went bad frequently.</p>
       <subitem name="6550 RAM sockets" link="http://www.dasarodesigns.com/product/mps-6550-commodore-pet-2001-ram-adapter/">
 	<desc>The original PET came with 6550 RAM chips. These are basically gone now. On the link you
 	find an adapter to replace such a RAM with a 2114 SRAM</desc>.
+      </subitem>
+      <subitem name="6540/6550 tester" link="http://lc64.blogspot.de/2016/10/pet-2001test-for-65406550.html">
+	<desc>Here is a tester for the RAM and ROM chips of an old PET.</desc>.
       </subitem>
 
 	</items>

@@ -17,6 +17,9 @@ the 6809, a 6551 RS232 interface, 64k RAM and some 6809 ROMs.
 </P>
   </overview>
   <news>
+    <item date="2019-09-29">
+	Added SuperPET History link
+    </item>
     <item date="2015-09-20">
 	Added SuperPET links
     </item>
@@ -38,6 +41,12 @@ board is plugged in, containing the 6702 chip (in the photo one can
 only see the back of the small PCB).
 </P>
      </desc>
+  </section>
+
+  <section toc="history" name="How the SuperPET came to be">
+     <desc><p>Here is an interesting piece on how the SuperPET came to be</p>
+     </desc>
+     <extlink name="How the SuperPET came to be" link="http://seefigure1.com/2013/12/07/superpet.html"/>
   </section>
 
   <section toc="desc" name="Description">

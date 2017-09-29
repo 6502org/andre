@@ -4,18 +4,21 @@
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
-    <yearstart>1998</yearstart>
-    <yearend>2010</yearend>
+    <yearstart>2010</yearstart>
+    <yearend>2017</yearend>
   </author>
   <keywords>Commodore PET CBM ROM disk drives</keywords>
   <metadesc>PET index - Drive utilities</metadesc>
   <overview><P>This page contains some small utilities for the Commodore disk drives.</P>
   </overview>
-  <!--news>
+  <news>
+    <item date="2017-09-29">
+	Added comment on readfdc
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="roms" name="Read Disk Drive ROMs">
@@ -29,6 +32,22 @@ CPU with the $E0 opcode. The FDC CPU then copies its ROM into other drive buffer
 <TR><TD>Read DOS ROM</TD><TD><A HREF="readdos">readdos</A></TD><TD><A HREF="readdos.lst">readdos.lst</A></TD><TD>Read the upper 16k of the DOS CPU address space from a dual processor drive. This includes the ROM image and is large enough for all dual CPU DOS versions.</TD></TR>
 </TABLE>
      </desc>
+	<subsection toc="romcomments" name="Comments on programs">
+	<desc><p>In the meantime I have received a comment on the program to read the FDC ROM. I cannot investigate it further,
+		so I just put it here for reference.
+		</p>
+	<pre>
+@André : My "important" changes were at lines 20 to 23, to try to catch the lower 1k, may be did I messed up something ?
+
+20 data 162,0,189,0,248,157,0,12
+ 21 data 189,0,249,157,0,13
+ 22 data 189,0,250,157,0,14
+ 23 data 189,0,251,157,0,15
+
+Herv&eacute;
+	</pre>
+	</desc>
+	</subsection>
   </section>
 
   <section toc="imgs" name="Read Disk Images">

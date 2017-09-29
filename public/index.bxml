@@ -21,6 +21,9 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2017-09-29">
+	A lot of <a href="petindex/index.html">PETindex</a> updates as I cleaned up my TODO list...
+    </item>
     <item date="2017-08-29">
 	<a href="petindex/index.html">PETindex</a> updates, esp. on RS232 extensions and projects.
     </item>

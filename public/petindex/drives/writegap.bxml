@@ -21,6 +21,51 @@ incompatibilities between the different DOS versions.
   </news-->
   <toc/>
 
+  <section toc="short" name="CBM-Hackers summary">
+     <desc><p>In June 2015 Spiro summarized the discussion neatly on the CBM-hackers list,
+	so I put it here as a tl;dr summary ;-)
+	</p>
+	<pre>
+For brevity reasons, I will use the term 1540 for the 2031, 1540 and the
+1541 with -01 and -02 ROM, and I will use the term 1541 for the 1541
+with -03 ROM and later.
+
+The 4040 used 8 bytes. Anyway, it used 8 bytes before conversion to GCR,
+which was done in hardware. Thus, the gap was 8 * 10 bit = 80 bit long.
+
+The 1540 just reused the value 8. Unfortunately, here, it is 8 *real*
+bytes, resulting in a gap of 8 * 8 bit = 64 bit.
+
+This could result in problems: After the last byte of the header, the
+drives start writing a SYNC mark after this gap. On the 1540, the gap is
+64 bit, on the 4040, it is 80 bit.
+
+Now, if the 4040 writes on a 1540 formatted disk, it is already in the
+SYNC when it starts writing the SYNC. It has to change from READ to
+WRITE, which could result in "unclear" bits that could be read as "0".
+If this happens, the reading drive has already read 80 - 64 = 16 bit of "1"
+(resulting in SYNC), then a 0 bit - thus, for the reading drive, the
+SYNC has just ended. Unfortunately, no data follows. Instead, there is a
+SYNC. Thus, the drive has a read error.
+
+The other way around, it is not the problem. If there is the 80 bit GAP
+of the 4040, and the 1540 writes on this disk, it just starts writing
+its SYNC too early - no big deal.
+
+Why did the change from 8 to 9 bytes in the 1541 change the rules?
+Because now, the 1541 GAP is 72 bit long. Thus, the 1541 only writes
+80 - 72 = 8 bit too late on a 4040 disk. As 8 bit do NOT form a SYNC yet
+on reading, there is no risk for an erroneous SYNC mark.
+
+Why didn't Commodore use 10 byte, which would result in a GAP of 80 bit,
+like in the 4040? Most probably, it was for compatibility reasons with
+the 1540. As disks with 8 byte GAP already existed, the same problem
+would result if the 1541 writes on 1540 disk. With the 9 byte GAP, the
+problem does not exist.
+</pre>
+     </desc>
+  </section>
+
   <section toc="cbmdos" name="Inside Commodore DOS">
      <desc>
 <PRE>

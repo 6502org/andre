@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2015</yearend>
+    <yearend>2017</yearend>
   </author>
   <keywords>Commodore PET CBM hardware project</keywords>
   <metadesc>PET index - hardware projects</metadesc>
@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2017-09-29">
+	Added the page for the multi-editor ROM.
+    </item>
     <item date="2017-08-29">
 	Added the RS232 section.
     </item>
@@ -118,6 +121,18 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
 	</p></desc>
         <extlink name="30 screen lines on a 8296" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=8485"/>
      </subsection>
+
+    <subsection toc="multiedit" name="Multi-Editor ROM board">
+        <desc><p>
+		The Editor ROM is one of the few ROMs that actually change between (some) PETs besides the standard BASIC versions,
+		as it has to support keyboard mapping, different screen timings for different screens, and so on.
+		So for example there is a BASIC 4 editor that still supports the 9" screens without CRTC, to provide an upgrade path.
+		And also we have Steve's Colour PET project from above! So the natural next step for Steve was to
+		create a board to switch editor ROMs easily - see the link for more detail!
+        </p></desc>
+        <extlink name="Steve Gray's Multi-Editor ROM board" link="http://www.6502.org/users/sjgray/projects/multieditrom/index.html"/>
+     </subsection>
+
   </section>
 
   <section toc="sound" name="Sound extensions">

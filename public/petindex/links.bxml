@@ -12,6 +12,9 @@
   <!--overview><p></p>
   </overview-->
   <news>
+    <item date="2017-09-29">
+	Added the bombjack link.
+    </item>
     <item date="2014-08-22">
 	Add the section for original documents.
     </item>
@@ -37,6 +40,7 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
 </LI><LI><A NAME="prodlist"></A>Canonical <A HREF="local/cbm-model-list.1.0.txt">list of Commodore products</A>
 </LI><LI><A NAME="prattle1"></A>The <a href="http://www.icpug.org.uk/national/archives/020227ar.htm">PET Prattle 1</a> for a brief historic overview
 </LI><LI><A NAME="prattle"></A><A HREF="http://www.icpug.org.uk/national/archives/contents.htm">The ICPUG collection</A> makes for a nice reading on PET and Commodore history...
+</LI><LI><A NAME="bombjack"></A><A HREF="http://www.bombjack.org/kim-pet/books-kim-pet.htm">The bombjack collection</A> has a lot of scanned books for the PET. Michael Stein writes: 'There's also a pretty good memory/ROM map/cross-reference in Raeto West's 'Programming The PET CBM'; chapter 15, starting at p. 391.'
 </LI></UL>
 
 <UL>

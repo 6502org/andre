@@ -215,7 +215,48 @@
 from a diskussion on the cbm-hackers mailing list in spring 2005 about disk drive
 incompatibilities between the different DOS versions.
 </P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#cbmdos">Inside Commodore DOS</a></li><li><a href="#cbmhackers">CBM-Hackers discussion</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="cbmdos" id="cbmdos">Inside Commodore DOS</a></h2></div><div class="h2c">
+  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#short">CBM-Hackers summary</a></li><li><a href="#cbmdos">Inside Commodore DOS</a></li><li><a href="#cbmhackers">CBM-Hackers discussion</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="short" id="short">CBM-Hackers summary</a></h2></div><div class="h2c"><p>In June 2015 Spiro summarized the discussion neatly on the CBM-hackers list,
+	so I put it here as a tl;dr summary ;-)
+	</p>
+	<pre>
+For brevity reasons, I will use the term 1540 for the 2031, 1540 and the
+1541 with -01 and -02 ROM, and I will use the term 1541 for the 1541
+with -03 ROM and later.
+
+The 4040 used 8 bytes. Anyway, it used 8 bytes before conversion to GCR,
+which was done in hardware. Thus, the gap was 8 * 10 bit = 80 bit long.
+
+The 1540 just reused the value 8. Unfortunately, here, it is 8 *real*
+bytes, resulting in a gap of 8 * 8 bit = 64 bit.
+
+This could result in problems: After the last byte of the header, the
+drives start writing a SYNC mark after this gap. On the 1540, the gap is
+64 bit, on the 4040, it is 80 bit.
+
+Now, if the 4040 writes on a 1540 formatted disk, it is already in the
+SYNC when it starts writing the SYNC. It has to change from READ to
+WRITE, which could result in "unclear" bits that could be read as "0".
+If this happens, the reading drive has already read 80 - 64 = 16 bit of "1"
+(resulting in SYNC), then a 0 bit - thus, for the reading drive, the
+SYNC has just ended. Unfortunately, no data follows. Instead, there is a
+SYNC. Thus, the drive has a read error.
+
+The other way around, it is not the problem. If there is the 80 bit GAP
+of the 4040, and the 1540 writes on this disk, it just starts writing
+its SYNC too early - no big deal.
+
+Why did the change from 8 to 9 bytes in the 1541 change the rules?
+Because now, the 1541 GAP is 72 bit long. Thus, the 1541 only writes
+80 - 72 = 8 bit too late on a 4040 disk. As 8 bit do NOT form a SYNC yet
+on reading, there is no risk for an erroneous SYNC mark.
+
+Why didn't Commodore use 10 byte, which would result in a GAP of 80 bit,
+like in the 4040? Most probably, it was for compatibility reasons with
+the 1540. As disks with 8 byte GAP already existed, the same problem
+would result if the 1541 writes on 1540 disk. With the 9 byte GAP, the
+problem does not exist.
+</pre>
+     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="cbmdos" id="cbmdos">Inside Commodore DOS</a></h2></div><div class="h2c">
 <PRE>
 9.12  Write Incompatibility with 4040
 
@@ -848,7 +889,7 @@ Regards,
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
   Last modified: 
-2011-12-23
+2017-09-29
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div class="shariff" data-backend-url="https://fachat-shariff-backend.eu-gb.mybluemix.net/" data-theme="grey" data-orientation="vertical" data-services="[&quot;twitter&quot;,&quot;googleplus&quot;,&quot;facebook&quot;,&quot;linkedin&quot;,&quot;xing&quot;]"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>

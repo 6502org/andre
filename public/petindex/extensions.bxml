@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2017-09-29">
+	Added the High speed graphics card
+    </item>
     <item date="2017-08-29">
 	Added the RS232 section.
     </item>
@@ -214,6 +217,11 @@ Commodore also made a board specifically for the 8296. There is a PET Prattle ar
      <subsection toc="mtugraph" name="MTU Graphics Board for KIM/PET/CBM">
 	<desc><p>Steve J. Gray has scanned documents about an MTU graphics board, including even schematics. </p></desc>
 	<extlink name="MTU graphics board" link="http://www.6502.org/users/sjgray/computer/mtu/index.html"/>
+     </subsection>
+     <subsection toc="hsggraph" name="Commodore High Speed Graphics (HSG)">
+	<desc><p>Steve J. Gray has documented a high speed graphics card that used a Thomson graphics processor to
+		produce 512x256 or 512x512 bit hires graphics.</p></desc>
+	<extlink name="MTU graphics board" link="http://www.6502.org/users/sjgray/computer/hsg/index.html"/>
      </subsection>
    </section>
 

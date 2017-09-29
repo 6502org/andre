@@ -4,8 +4,8 @@
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
-    <yearstart>1998</yearstart>
-    <yearend>2013</yearend>
+    <yearstart>2010</yearstart>
+    <yearend>2017</yearend>
   </author>
   <keywords>Commodore PET CBM ROM disk drives</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
@@ -22,11 +22,14 @@ units.
 </P><P>In the following you find some more information about these drives:
 </P>
   </overview>
-  <!--news>
+  <news>
+    <item date="2017-09-29">
+	Added hardware information.
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="qf" name="Quickfinder">
@@ -84,6 +87,43 @@ On power up, the three LED's on the drive should blink. The drive LED's go off a
 <P>
 If the LED's come on and stay on, the microprocessor UN1 is probably at fault. </P>
      </desc>
+  </section>
+
+  <section toc="hw" name="Drive hardware information">
+	<desc><p>
+		The disk drives used in the PET drives are now rather old. Some if not most of
+		them are failing. 
+	</p></desc>
+	<subsection toc="d4040" name="170k Drives">
+		<desc><p>The 170k drives actually used a stripped down Shugart SA-400 drive.
+			It was lacking the drive electronics and was thus named SA-390</p>
+		<p>This drive is in fact used in the Apple II disk drives as well</p>
+		</desc>
+	</subsection>
+	<subsection toc="d1001" name="8250/1001 Low Profile Drives">
+		<desc><p>The large double sided 80 track drives used a Panasonic JU-570 mechanism.
+			</p><p>
+			They come in two variants, the JU-570 and JU-570-2 drives. The shorter
+			JU-570-2 drives can be used in all drives, the longer JU-570 only in the SFD-1001, but not in the
+			8250-LP or 8296-D.
+			</p><p>
+			Unfortunately these drives suffer from leaking electrolytic capacitors.
+			Please see the link for a description how to repair them.
+		</p>
+		</desc>
+        	<extlink name="JU-570-2 repair" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=7382">Website is in German though</extlink>
+	</subsection>
+	<subsection toc="rriot" name="ROM differences related to the drive">
+		<desc><p>
+			The disk drives themselves were procured from different providers, so the ROM had to be adapted
+			to the different hardware versions as well. In the PET disk drives this was 
+			stored in the RRIOT chip used by the disk controller CPU (remember, the drives had two processors!).
+			</p><p>
+			Please see the link for a list of disk drive types and matching ROMs.
+			</p>
+		</desc>
+        	<extlink name="Drive types and matching ROMs" link="http://mhv.bplaced.net/rriot-versionen.html">Website is in German though</extlink>
+	</subsection>
   </section>
 
   <section toc="misc" name="Other disk drive information">
