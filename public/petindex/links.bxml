@@ -21,6 +21,30 @@
   </news>
   <toc/>
 
+  <section toc="games" name="Old and New PET Games">
+	<desc><p>
+		Links to old and newly published Games for the PET.
+		</p><p>
+		Please note that links to older software are often redundant and you find the same set
+		of games in different locations
+		</p>
+	</desc>
+     <extlink name="Commodore.ca Games collection" link="http://www.commodore.ca/commodore-gallery/commodore-pet-games/">
+	Unfortunately the link to the actual programs seems to be broken...
+     </extlink>
+     <extlink name="Giant Bomb's games list" link="https://www.giantbomb.com/commodore-petcbm/3045-62/games/">
+	Covers and information, no downloads as far as I can see.
+     </extlink>
+     <extlink name="Revival-Studios" link="http://www.revival-studios.com/commodore.php"/>
+     <extlink name="Vintage Computer Forum (you need to register)" link="http://www.vcfed.org/forum/showthread.php?40942-Commodore-Pet-Disk-Images"/>
+     <extlink name="8bitfiles" link="ftp://8bitfiles.net/cbm8bits/pet/"/>
+     <extlink name="Terry 'Tezza' Stewart's games for the PET" link="http://www.classic-computers.org.nz/blog/2011-02-27-pet-programs-for-download.htm"/>
+     <extlink name="The CBM archive has some too (English games)" link="@CBMARC@/pet/games/english/index.html"/>
+     <extlink name="The CBM archive has some too (German games)" link="@CBMARC@/pet/games/german/index.html"/>
+     <extlink name="TOSEC collection" link="https://archive.org/details/Commodore_PET_TOSEC_2012_04_23"/>
+     <extlink name="Space Chase (2016)" link="http://www.spacechase.de/"/>
+  </section>
+
   <section toc="cbm" name="Original Commodore Documents">
 	<desc>
 		Here are links to original Commodore documents - mostly in scanned and/or OCR'd form.
@@ -92,6 +116,7 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.kim-1.com/">A KIM-1</A> enthusiast page.
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.classiccmp.org/dunfield/pet/index.htm">Daves Old Computers</A>
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.6502.org/users/sjgray/computer.html">Steve's commodore rarities</A>
+</LI><LI><A target="_blank" class="extlink" HREF="http://www.6502.org/users/sjgray/myprojects.html">Steve's commodore projects with many PET-related ones!</A>
 </LI></UL>
 <UL>
 <LI><A target="_blank" class="extlink" HREF="http://www.zock.com/8-Bit/D_PET.HTML">8-Bit Nirvana PET 2001</A> (German)

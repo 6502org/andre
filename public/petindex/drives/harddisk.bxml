@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2017-10-15">
+	Updated links
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
@@ -107,13 +110,16 @@ to set up to work reliably than drives are now.
       <extlink name="Schematics in the CBM archive" link="@CBMARC@/schematics/drives/old/9090/index.html"/>
       <extlink name="DOS images and source code on the CBM archive" link="@CBMARC@/firmware/drives/old/9090/index.html"/>
       <extlink name="Disk System User Reference Guide (pdf)" link="http://www.bombjack.org/commodore/commodore/Disk_System_User_Reference_Guide.pdf"/>
-      <extlink name="Unpublished page on wikipedia..." link="http://en.wikipedia.org/wiki/User:Suenarmy"/>
+      <extlink name="Bo's CBM Hard Drives information" link="http://www.zimmers.net/cbmpics/dlieee3.html"/>
+      <extlink name="Secret Weapons of Commodore on the Hard Drives" link="http://www.floodgap.com/retrobits/ckb/secret/hds.html"/>
+      <extlink name="Commodore's 9060 9090 Hard Drive Technical Service Manual" link="http://www.commodore.ca/manuals/9060_HDrive/9060_9090.htm"/>
+      <extlink name="Wikipedia on Commodore 9090" link="https://en.wikipedia.org/wiki/Commodore_D9060"/>
+      <extlink name="CBM Museum on Commodore 9090 (in German)" link="http://cbmmuseum.kuto.de/floppy_hard9060.html"/>
      </subsection>
      <subsection toc="st506" name="ST506 etc">
       <extlink name="Wikipedia on ST-506" link="http://en.wikipedia.org/wiki/ST506"/>
       <extlink name="Disk interface and encoding information" link="http://webpages.charter.net/dperr/diskguid.txt"/>
       <extlink name="Tandy MFM Hard Disk Drive Reference" link="http://nemesis.lonestar.org/computers/tandy/hardware/storage/mfm.html"/>
-      <extlink name="Disk interface and encoding information" link="http://www.faculty.iu-bremen.de/birk/lectures/PC101-2003/11magmass/MASS%20STORAGE%20MAGNETIC%20MEDIA/Hard%20disk%20controllers%20%26%20interface.htm"/>
      </subsection>
   </section>
   <disclaimer name="Disclaimer">
