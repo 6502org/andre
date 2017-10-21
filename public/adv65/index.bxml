@@ -11,6 +11,9 @@
 	Here I have projects that extend the usual 6502 processor in various bits.
   </overview>
   <news>
+    <item date="2017-10-21">
+	Added the link to Andrew Holme's Verilog 6502 based on the NMOS netlist.
+    </item>
     <item date="2013-11-16">
 	Added some links about AVR-based emulation and the 65el02.
     </item>
@@ -148,7 +151,7 @@
   </section>
 
   <section toc="emul" name="65xx Emulation">
-	<desc><p>This new section gives links and information about hardware- and software-based 6502 emulation projects.
+	<desc><p>This section gives links and information about hardware- and software-based 6502 emulation projects.
 		Most of these (so far) concern original 6502 compatible cores</p></desc>
 	
 	<subsection toc="avr" name="AVR-based emulation">
@@ -160,6 +163,12 @@
 		<extlink name="NES 6502 emulation in an ATMega" link="http://instruct1.cit.cornell.edu/courses/ee476/FinalProjects/s2009/bhp7_teg25/bhp7_teg25/index.html"/>
 		<extlink name="6502 emulation on AVR" link="http://forum.6502.org/viewtopic.php?f=8&amp;t=2312">(on forum.6502.org)</extlink>
 		<extlink name="AVR-based Apple II emulator" link="http://forum.6502.org/viewtopic.php?f=8&amp;t=2766">(on forum.6502.org)</extlink>
+	</subsection>
+
+	<subsection toc="nmos" name="NMOS-based emulation">
+		<desc><p>Andrew Holme has managed to create a Verilog-based core using the 
+			actual NMOS transistor netlist from visual6502.org!</p></desc>
+		<extlink name="Verilog 6502" link="http://www.aholme.co.uk/6502/Main.htm"></extlink>
 	</subsection>
 
 	<exlink name="6502.org emulation links" link="http://www.6502.org/tools/emu/"/>
@@ -183,6 +192,7 @@
     <extlink name="The 6502 decimal flag" link="http://6502.org/tutorials/decimal_mode.html"/>
     <extlink name="... and the errata to the decimal flag explanation" link="http://6502org.wikidot.com/errata-other-decmode"/>
     <extlink name="Experience from writing a 6502 core" link="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784"/>
+    <extlink name="The Steckschwein - a 6502 in a plugboard (in German)" link="https://steckschwein.de/"/>
   </section>
  
   <section toc="other" name="Other CPU links">
