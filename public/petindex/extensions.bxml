@@ -19,6 +19,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2018-04-01">
+	Added a link to Steve Gray's PET graphics cards page.
+    </item>
     <item date="2017-09-29">
 	Added the High speed graphics card
     </item>
@@ -53,9 +56,13 @@
   </oldnews>
   <toc/>
   <section toc="graphics" name="Graphics Adapters">
-    <desc>
+    <desc><p>
 	This section describes some graphics adapter extensions for the PET,
 	even for high resolution graphics!
+	</p>
+        <p>Please note that Steve Gray has compiled an even more extensive list of graphics (and sound)
+        adapter boards at <a href="http://www.6502.org/users/sjgray/computer/petgraphics/index.html">his PET graphics page</a>.
+        </p>
     </desc>
      <subsection toc="petunia" name="Petunia board">
 	<desc><p>
