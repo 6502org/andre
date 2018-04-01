@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> <!ENTITY nbsp "&#160;"> ] >
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+   <xsl:param name="date" select="'unknown'"/>
 
 <xsl:output method="xml" 
 	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
@@ -198,7 +199,8 @@
 
 <xsl:template name="moddate">
 	<xsl:text>Last modified: 
-@MODDATE@
+</xsl:text>
+<xsl:value-of select="$date"/><xsl:text>
 	</xsl:text>
 </xsl:template>
 

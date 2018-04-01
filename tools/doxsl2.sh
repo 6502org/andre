@@ -24,9 +24,12 @@ for i in `find $dir -name \*.bxml`; do
 	to=`dirname $i`/`basename $i .bxml`.inx
 	echo $i " -> " $to;
 	if [ $force = "true" -o $i -nt $to ]; then
+		# last modified date
+		DATE=`git log -1 --format=%cd --date=short $i`
                 if [ -x "/usr/bin/xsltproc" ]; then
-			xsltproc $bin/indexml2html2.xsl $i > $to;
+			xsltproc -stringparam date "$DATE" $bin/indexml2html2.xsl $i > $to;
 		else
+			# NOTE: last modified date not set!
 			xsl-c -xsl $bin/indexml2html2.xsl -in $i -html -out $to;
 		fi;
 	else 
