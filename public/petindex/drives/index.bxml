@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>2010</yearstart>
-    <yearend>2017</yearend>
+    <yearend>2018</yearend>
   </author>
   <keywords>Commodore PET CBM ROM disk drives</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc>
@@ -23,6 +23,9 @@ units.
 </P>
   </overview>
   <news>
+    <item date="2018-12-29">
+	Added link to "REL" files on the 2040
+    </item>
     <item date="2017-10-15">
 	Updated links on the <a href="harddisk.html">Hard Drive page</a>.
     </item>
@@ -137,6 +140,8 @@ If the LED's come on and stay on, the microprocessor UN1 is probably at fault. <
 	<p>More information on other, non-CBM harddisks on the <a class="extlink" target="_new" href="http://members.optusnet.com.au/spacetaxi64/HD-HISTORY/C64HD-HISTORY.html">Commodore Harddisk complete history</a> page, with links to many more details on the CBM 9060 and 9090 drives as well.</p>
 	<p>Further information on drives on <a class="extlink" target="_new" href="http://www.portcommodore.com/dokuwiki/doku.php?id=larry:comp:commodore:pet:pet_faq-peripherals_interfacing">portcommodore</a>.</p>
      </desc>
+        	<extlink name="Using direct files with the 2040 (without REL files)" link="https://www.atarimagazines.com/compute/issue1/3217_1_USING_DIRECT_ACCESS_FILES_WITH_THE_COMMODORE_2040_DUAL_DRIVE_DISK.php">Using a SEQ file as index of records in another data file (from Compute! issue 1)</extlink>
+
   </section>
 
   <closing>

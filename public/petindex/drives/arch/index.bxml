@@ -5,18 +5,21 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2018</yearend>
   </author>
   <keywords>Commodore PET CBM ROM disk drives</keywords>
   <metadesc>PET index - Drive Architecture</metadesc>
   <overview><P>The 5.25" disk drives (and possibly the 8" and harddrives as well) share the same architecture.
 In this page you find information about the architecture of these drives.</P>
   </overview>
-  <!--news>
+  <news>
+    <item date="2018-12-29">
+	Added the link to the GCR page
+    </item>
     <item date="2010-01-04">
 	Started this page
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="overview" name="Architecture Overview">
@@ -75,7 +78,10 @@ by a 10 bit shift register. This code is used as input to the same ROM
 as above (but with A10 switched, so different ROM content is selected).
 The output of the ROM is then read by the CPU.
 </P>
+<P>To see the details of the GCR encoding look at the wikipedia page for GCR.
+</P>
      </desc>
+<extlink name="GCR entry on wikipedia" link="https://en.wikipedia.org/wiki/Group_coded_recording#Commodore">GCR encoding with list of GCR codes</extlink>
   </section>
 
   <section toc="memmap" name="Memory map">

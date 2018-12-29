@@ -21,6 +21,9 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2018-12-29">
+	Updated some links on the <a href="petindex/index.html">Petindex</a> page.
+    </item>
     <item date="2018-04-01">
 	Mike and I have moved the source repository of this web page to github at https://github.com/6502org/andre. 
 	You can now submit merge requests if you think stuff should be updated and can come up with the update :-)

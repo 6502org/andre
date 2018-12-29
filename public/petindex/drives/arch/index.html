@@ -210,10 +210,14 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - Drive Architecture</h1><p class="copyright">(C)
-1998-2010 André  Fachat</p> 
+1998-2018 André  Fachat</p> 
 <div class="overview"><P>The 5.25" disk drives (and possibly the 8" and harddrives as well) share the same architecture.
 In this page you find information about the architecture of these drives.</P>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">Architecture Overview</a></li><li><a href="#gcr">GCR Handling</a></li><li><a href="#memmap">Memory map</a></li><li><a href="#schem">Schematics</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Architecture Overview</a></h2></div><div class="h2c"><P>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2018-12-29</small>
+	Added the link to the GCR page
+    </li><li><div> </div><small>2010-01-04</small>
+	Started this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#overview">Architecture Overview</a></li><li><a href="#gcr">GCR Handling</a></li><li><a href="#memmap">Memory map</a></li><li><a href="#schem">Schematics</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Architecture Overview</a></h2></div><div class="h2c"><P>
 The architecture is actually a quite elegant solution to wire two CPUs together, as well as
 it has an ingenious method of handling GCR data in hardware.
 The following block diagram shows this (click to enlarge):</P>
@@ -264,7 +268,9 @@ by a 10 bit shift register. This code is used as input to the same ROM
 as above (but with A10 switched, so different ROM content is selected).
 The output of the ROM is then read by the CPU.
 </P>
-     </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory map</a></h2></div><div class="h2c"><P>The following table has been composed by William Levak:</P>
+<P>To see the details of the GCR encoding look at the wikipedia page for GCR.
+</P>
+     <ul><li><a href="https://en.wikipedia.org/wiki/Group_coded_recording#Commodore" target="_blank" class="extlink">GCR entry on wikipedia</a> GCR encoding with list of GCR codes</li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="memmap" id="memmap">Memory map</a></h2></div><div class="h2c"><P>The following table has been composed by William Levak:</P>
 <PRE>
                         4040 Memory Map
 composed by William Levak

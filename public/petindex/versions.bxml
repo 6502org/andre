@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2017</yearend>
+    <yearend>2018</yearend>
   </author>
   <keywords>Commodore PET CBM versions</keywords>
   <metadesc>PET index - versions</metadesc>
@@ -23,11 +23,11 @@ with some comments. For more information look at
 </ul>
 <p>Before the finished product, there were even prototypes, as discussed in <a href="https://plus.google.com/+NorbertLandsteiner1/posts/G54JKHTXojC">this post</a>.</p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2018-12-29">
+	Updated link to commodore.ca site.
     </item>
-  </news-->
+  </news>
   <toc/>
 
   <section toc="versions" name="What different machines are there? Version Overview">
@@ -138,7 +138,7 @@ board actually.
   <section toc="refs" name="References">
      <desc><P>More on the PET history can be found on the links below</P>
      </desc>
-	<extlink link="http://www.commodore.ca/products/pet/commodore_pet.htm" name="Commodore.ca web site"/>
+	<extlink link="https://www.commodore.ca/commodore-products/commodore-pet-the-worlds-first-personal-computer/" name="Commodore.ca PET history site"/>
 	<extlink link="http://www.6502.org/users/sjgray/computer/petlabels/index.html" name="PET labels"> as have been collected
 		by Steve J. Gray.</extlink>
   </section>
