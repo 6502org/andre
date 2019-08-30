@@ -414,14 +414,12 @@ div.teasers {
 
 div.teaser {
   background-color: #eee;
-  float: left;
-  display: inline;
   padding: 1em;
 }
 
 div.teaser div.teaserimg {
   text-align: center;
-  height: 120px;
+  height: 200px;
   padding: 0.5em;
   background-color: #fff;
   overflow: hidden;

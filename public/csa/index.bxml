@@ -9,11 +9,18 @@
 		<end>2013</end>
 	</copyright>
 	<forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
-	<desc><p>20th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p><p>The computers presented here are actually a line of PCB boards that can be plugged into a passive motherboard. 
+        <desc><p>30th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p>
+
+        <p>In the last 10 years progress was slow, but still the system got the capability to use USB (<a href="netusb/index.html">NetUSB</a> and <a href="usb/index.html">USB</a>), Ethernet (<a href="netusb/index.html">NetUSB</a>, <a href="usb/index.html">USB (+Ethernet)</a>, and <a href="etholi/index.html">EthOli</a>), SD cards (<a href="netusb/index.html">NetUSB</a>), a RAM disk (<a href="ramdisk/index.html">RAMdisk</a>), a Blitter (<a href="blitter/index.html">Blitter</a>), and many more updates.
+While not much more is planned right now, there will be further updates. Stay tuned!
+        </p>
+        <p>Meanwhile, have a look at the updated <a href="gallery/index.html">Gallery</a>.</p>
+
+        <p>The computer presented here is a line of PCB boards that can be plugged into a passive motherboard.
 The boards can be used in different setups, but the <a href="#caspaer">Caspaer</a> is the standard (extensible) base setup.
 A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
-	</desc>
+        </desc>
         <news>
 		<item date="2017-08-13">
 			Added a page with <a href="contrib/index.html">contributions</a> by other people!
