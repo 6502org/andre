@@ -1,0 +1,222 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="XS1541 Info">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2019</yearstart>
+    <!--yearend>2010</yearend-->
+  </author>
+  <keywords>Commodore IEEE488 IEC</keywords>
+  <metadesc>Commodore IEEE488 IEC interface using an Atmel processor</metadesc>
+  <overview><p>	
+	This page describes the XS1541 interface that provides IEEE488 and IEC connectivity
+	to a Commodore PET and/or C64 (or VIC20 or C128), using the PC as background storage
+	using a Serial-over-USB connection.
+  </p><p>
+	I started this page as taken from Nils Eilers' excellent (German) building instructions as seen on <a href="http://web.archive.org/web/20110829013106/http://home.germany.net/nils.eilers/xs1541/xs1541_rev_d.htm">the wayback machine</a> of archive.org. I got the permission of Nils to do so by mail.
+  </p><p>
+	Please note that this device is basically still orphaned! I document this here only as I have one and use it. I'd rather have a zoomfloppy with more memory instead...
+  </p>
+  </overview>
+  <news>
+    <item date="2019-08-31">
+	Started this page as a copy from Nils Eilers' building instructions</item>
+  </news>
+  <toc/>
+
+  <section toc="basics" name="Basic information on building and soldering">
+     <desc>
+	<p>Please also look at the building thread in the forum64 (see links). If you have registered there you can also ask questions.</p>
+	<p>If you don't have many experiences soldering, it helps practicing. See some links below</p>
+	<p>In general, if you need more than 2 or 3 seconds per soldering joint, you're doing something wrong. And use the right tools - e.g. a small soldering iron for SMD parts.</p>
+     </desc>
+     <extlink name="Building thread in the forum64" link="https://www.forum64.de/index.php?thread/29780-xs-1541-rev-d-aufbau-thread/"/>
+     <extlink name="Reparing the C64 - a few questions (German)" link="https://www.forum64.de/index.php?thread/25970-c64-reparieren-ein-paar-fragen-zum-l%C3%B6ten/#post272473"/>
+     <extlink name="Temperature when soldering parts (German)" link="https://www.forum64.de/index.php?thread/29909-temperaturen-beim-l%C3%B6ten-von-bauteilen/&amp;postID=327552#post327552"/>
+     <extlink name="A little soldering course (German)" link="http://www.elexs.de/loet1.htm"/>
+  </section>
+
+  <section toc="intro" name="Introduction to XS1541">
+     <desc>
+	<p>The XS-1541 is an interface that connects older CBM drives with parallel IEEE
+	bus like the CBM 8050 or CBM 4040, and the newer ones with serial IEC bus like the
+	VC1541. 1571 or 1581 with a PC via a serial or USB interface.</p>
+	<p>A newer firmware allows to use the XS1541 as a disk drive for the Commodore PET
+	or the Commodore computers with serial IEC bus like the C64, using the PC as a
+	backing storage device.</p>
+     </desc>
+     <subsection toc="hint" name="Hint on board connectors">
+	<desc>
+	<a href="pics/xs1541_oben_300x225.jpg"><img class="rightimg" alt="picture of XS1541" src="pics/xs1541_oben_300x225.jpg"/></a>
+	<p>Unfortunately the given libraries for the board edge connectors where buggy,
+	the slow connector is too narrow. If you use plugs without the coding bridges
+	the connector could cause short cuts.
+	</p>
+	<p>
+	A pragmatic solution is to use small pieces of wood that are being cut to size
+	and glued to the size of the card edges.
+	</p>
+	</desc>
+     </subsection>
+     <gallery>
+	<image>
+	    <thumb>pics/xs1541_rev_c_300x225.jpg</thumb>
+	    <alt>A XS1541 with various cables connected</alt>
+	    <desc>The XS1541 Rev C</desc>
+	</image>
+	<image>
+	    <thumb>pics/xs1541_rev_d_first_batch_300x187.jpg</thumb>
+	    <alt>XS1541 boards from both sides</alt>
+	    <desc>The XS1541 Rev D (current)</desc>
+	</image>
+     </gallery>
+  </section>
+
+  <section toc="build" name="Building XS1541">
+     <desc>
+	This section details the building steps.
+     </desc>
+     <subsection toc="ft232rl" name="Soldering the SMD chip FT232RL">
+	<desc>
+	<p class="floatend">1. Put soldering flux on the pads for the FT232 onto the board</p>
+	<a href="pics/ft232_loetpaste_300x225.jpg"><img class="rightimg" alt="SMD layout" src="pics/ft232_loetpaste_300x225.jpg"/></a>
+	<p class="floatend">2. Position the chip: The chip as a circle mark that notes the position of pin 1. This circle must be in the direction of the circle as on the board. </p>
+	<a href="pics/ft232_position_300x225.jpg"><img class="rightimg" alt="SMD layout" src="pics/ft232_position_300x225.jpg"/></a>
+	<p>The chip has to be positioned exactly on the pads! If the legs of the pin overlap two pads a short circuit occurs.</p>
+	<p class="floatend">2. Fix the chip with a finger, and solder a single(!) edge pin - just put the soldering iron on the pin and pad (this works as the pads as well as the pin is already coated in solder, maybe depending on your board manufacturer). Check the position of the chip. If the chip has moved into a bad position, it can easily be moved back by heating up that single soldered pin. Then solder the pin on the diagonally separated edge.</p>
+	<p>Don't solder more than 2-3 seconds in a row!</p>
+	<a href="pics/ft232_gereinigt_300x225.jpg"><img class="rightimg" alt="SMD layout" src="pics/ft232_gereinigt_300x225.jpg"/></a>
+	<p>3. Solder the chip: solder the other pins by moving the soldering iron across all the pins (note: this only works with pads and pins being pre-coated with solder.)</p>
+	<p>4. check the soldering work: check all the connections of the SMD chip against short circuits and connections to the actual signals. Do it now - later the FT232 it is much more difficult.</p>
+	<p>The pins are very close to each other, but can still be checked with a simple multi-meter.</p>
+	<p class="floatend">There are 7 signals at 13 points to be checked.</p>
+	<a href="pics/ft232_detail.png"><img class="rightimg" alt="schematics detail" src="pics/ft232_detail.png"/></a>
+	<table>
+	<tr><th>Name</th><th>Probe point</th><th>Pin on FT232RL</th></tr>
+	<tr><td>VCC</td><td>SER P7 pin 2</td><td>4 and 20</td></tr>
+	<tr><td>GND</td><td>SER P7 pin 6</td><td>7, 18, 21, 25, and 26</td></tr>
+	<tr><td>TXD</td><td>SER P7 pin 4</td><td>5</td></tr>
+	<tr><td>RXD</td><td>SER P7 pin 1</td><td>1</td></tr>
+	<tr><td>USB D+</td><td>J2 USB socket pin 3</td><td>15</td></tr>
+	<tr><td>USB D-</td><td>J2 USB socket pin 2</td><td>16</td></tr>
+	<tr><td>3V3OUT</td><td>C3 pin 1 (top)</td><td>17</td></tr>
+	</table>
+	<p>If something went wrong and short circuits could be removed using soldering wick,
+	the chip can be - carefully(!) - removed using a desoldering hot air fan (not a hair fan 
+	even though it looks like it!) The pads should be cleared from solder using soldering wick,
+	then a new attempt can be started.</p>
+	<p>5. cleaning the board: remove all rests of flux from the board. I usually scrub the board
+	with a toothbrush (only used for this purpose!) under flowing water, then dry it with some
+	kitchen paper.</p>
+	</desc>
+     </subsection>
+
+     <subsection toc="caps" name="Ceramic Capacitors C2, C3 and C4">
+	<desc>
+	</desc>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+     </subsection>
+     <subsection toc="bead" name="Ferrit Bead">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="elko" name="Elko C7">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="usb" name="USB socket">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="shorts" name="Checking for short circuits">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="driver" name="Driver installation">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="conn" name="First connection check">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="discrete" name="Rest of the discrete components">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="atmelsock" name="Atmel socket">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="pinrows" name="Connector pin rows">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="leds" name="LEDs">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="reset" name="Reset switch">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="subd" name="15 pin Sub-D connector">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="ieee" name="24 pin IEEE connector 'Centronics'">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="iecdin" name="IEC Din connector sockets">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="atmel" name="Preparing and installing the Atmel">
+	<desc>
+	</desc>
+     </subsection>
+     <subsection toc="firmware" name="Programming the Atmel">
+	<desc>
+	</desc>
+     </subsection>
+  </section>
+
+<!--
+        <driver>
+                <name>Simple test suite</name>
+                <desc>These tests test the basic functionality of the board, and also do some timing
+                        measurement to actually see if the access is fast or not.
+                        Note that these tests are small as I had to enter them with the hex editor.
+                        Simply assemble them with the <code>xa</code> cross assembler with the <code>-w</code>
+                        switch to allow 65816 code.
+                <div class="rightimg">
+                        <a href="csa_nobogus.png"><img width="200px" src="csa_nobogus.png"/></a><br/><b>Remove bogus accesses</b>: Screenshot of a timing measurement. On the top of the screen you see the result of the original speed, then POKEing to ignore bogus CPU accesses and measuring again. See about 14% speed increase.
+                        </div>
+                </desc>
+                <file ltype="driver" ptype="a65" note="copies all of the lowest 64k but the I/O area onto itself, so it is automatically written to fast RAM ">test1.a65</file>
+        </driver>
+        <rev>
+                <version>2.0B</version>
+                <status>prototype</status>
+                <note type="msg">
+                        Compared to the 2.0A board it fixes the timing bugs.
+                </note>
+                <note type="warn">
+                        The layout has not been tested, I fixed my 2.0A version up to 2.0B.
+                </note>
+                <file ltype="schem" ptype="esch">csa_cpu816-v2.0b.sch</file>
+                <file ltype="schem" ptype="png">csa_cpu816-v2.0b-sch.png</file>
+                <file ltype="layout" ptype="esch">csa_cpu816-v2.0b.brd</file>
+                <file ltype="layout" ptype="png">csa_cpu816-v2.0b-brd.png</file>
+                <file ltype="parts" ptype="txt">csa_cpu816-v2.0b.parts</file>
+                <file ltype="logic" ptype="vhd" note="CPLD VHDL source">csa_cpu816-v2.0b.vhd</file>
+                <file ltype="logic" ptype="ucf" note="CPLD constraints file (pin mapping)">csa_cpu816-v2.0b.ucf</file>
+                <file ltype="logic" ptype="jed" note="CPLD compiled source">csa_cpu816-v2.0b.jed</file>
+        </rev>
+-->
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
