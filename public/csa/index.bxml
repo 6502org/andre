@@ -2,7 +2,7 @@
 <board>
 	<name>CS/A65 computer - Caspaer and Gecko</name>
 	<keywords>CSA65 6502 self-built computer</keywords>
-        <lastmodified>2013-01-04</lastmodified>
+        <!--lastmodified>2013-01-04</lastmodified-->
 	<copyright>
 		<author>Andr&eacute; Fachat</author>
 		<start>1989</start>
