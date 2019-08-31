@@ -7,6 +7,7 @@ d pet816 PET816 Accelerator
 d csa CS/A65
 d cbmhw CBM mods
 p spi65b SPI65B
+p xs1541 XS1541
 d mischw Other hardware
 s Software
 p osa GeckOS

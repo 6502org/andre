@@ -26,6 +26,10 @@ h1, h2, h3, div.tophead
 	font-family: Nobile, Courier, Arial, sans-serif;
 }
 
+h3 {
+	clear: both;
+}
+
 a:visited { color:#000080; text-decoration:none }
 a:link { color:#0000ff; text-decoration:none }
 a:active { color:#8888ff; text-decoration:none }
@@ -273,6 +277,10 @@ font-weight:bold;
 div.nend1, div.nend2 {
 /*clear: left;*/
 clear: both;
+}
+
+.floatend {
+	clear: both;
 }
 
 div.twisty {
@@ -578,6 +586,7 @@ td.revfiles {
 	padding: 5px;
 }
 
+
 DIV.rightbar {
   border-style: solid;
   border-width: 2px;
@@ -845,6 +854,10 @@ div#content p.conclusion {
 	background:url(imgs/sprite.png) no-repeat;
 	width:2em;
 	background-position: -288px -32px;
+}
+
+.h2h {
+	clear: both;
 }
 
 /****************************************

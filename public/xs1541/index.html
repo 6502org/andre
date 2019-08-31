@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-<meta name="author" content="Andr&#xE9;  Fachat" />
+<meta name="author" content="Andr&#xE9;  Fachat, Nils Eilers" />
 
 <meta name="description" content="Commodore IEEE488 IEC interface using an Atmel processor" />
 <meta name="keywords" content="Commodore IEEE488 IEC" />
@@ -102,7 +102,7 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>XS1541 Info</h1><p class="copyright">(C)
-2019- André  Fachat</p> 
+2019- André  Fachat, Nils Eilers</p> 
 <div class="overview"><p>	
 	This page describes the XS1541 interface that provides IEEE488 and IEC connectivity
 	to a Commodore PET and/or C64 (or VIC20 or C128), using the PC as background storage
@@ -110,14 +110,12 @@
   </p><p>
 	I started this page as taken from Nils Eilers' excellent (German) building instructions as seen on <a href="http://web.archive.org/web/20110829013106/http://home.germany.net/nils.eilers/xs1541/xs1541_rev_d.htm">the wayback machine</a> of archive.org. I got the permission of Nils to do so by mail.
   </p><p>
-	Please note that this device is basically still orphaned! I document this here only as I have one and use it. I'd rather have a zoomfloppy with more memory instead...
+	Please note that this device is basically still orphaned! 
+	Even this documentation is scraped together from the wayback machine at archive.org.
+	I document this here only as I have one and use it. 
   </p>
   </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2019-08-31</small>
-	Started this page as a copy from Nils Eilers' building instructions</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#basics">Basic information on building and soldering</a></li><li><a href="#intro">Introduction to XS1541</a></li><li style="list-style-type:none;"><ul><li><a href="#hint">Hint on board connectors</a></li></ul></li><li><a href="#build">Building XS1541</a></li><li style="list-style-type:none;"><ul><li><a href="#ft232rl">Soldering the SMD chip FT232RL</a></li><li><a href="#caps">Ceramic Capacitors C2, C3 and C4</a></li><li><a href="#bead">Ferrit Bead</a></li><li><a href="#elko">Elko C7</a></li><li><a href="#usb">USB socket</a></li><li><a href="#shorts">Checking for short circuits</a></li><li><a href="#driver">Driver installation</a></li><li><a href="#conn">First connection check</a></li><li><a href="#discrete">Rest of the discrete components</a></li><li><a href="#atmelsock">Atmel socket</a></li><li><a href="#pinrows">Connector pin rows</a></li><li><a href="#leds">LEDs</a></li><li><a href="#reset">Reset switch</a></li><li><a href="#subd">15 pin Sub-D connector</a></li><li><a href="#ieee">24 pin IEEE connector 'Centronics'</a></li><li><a href="#iecdin">IEC Din connector sockets</a></li><li><a href="#atmel">Preparing and installing the Atmel</a></li><li><a href="#firmware">Programming the Atmel</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="basics" id="basics">Basic information on building and soldering</a></h2></div><div class="h2c">
-	<p>Please also look at the building thread in the forum64 (see links). If you have registered there you can also ask questions.</p>
-	<p>If you don't have many experiences soldering, it helps practicing. See some links below</p>
-	<p>In general, if you need more than 2 or 3 seconds per soldering joint, you're doing something wrong. And use the right tools - e.g. a small soldering iron for SMD parts.</p>
-     <ul><li><a href="https://www.forum64.de/index.php?thread/29780-xs-1541-rev-d-aufbau-thread/" target="_blank" class="extlink">Building thread in the forum64</a> </li><li><a href="https://www.forum64.de/index.php?thread/25970-c64-reparieren-ein-paar-fragen-zum-l%C3%B6ten/#post272473" target="_blank" class="extlink">Reparing the C64 - a few questions (German)</a> </li><li><a href="https://www.forum64.de/index.php?thread/29909-temperaturen-beim-l%C3%B6ten-von-bauteilen/&amp;postID=327552#post327552" target="_blank" class="extlink">Temperature when soldering parts (German)</a> </li><li><a href="http://www.elexs.de/loet1.htm" target="_blank" class="extlink">A little soldering course (German)</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="intro" id="intro">Introduction to XS1541</a></h2></div><div class="h2c">
+	Started this page as a copy from Nils Eilers' building instructions</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#intro">Introduction to XS1541</a></li><li style="list-style-type:none;"><ul><li><a href="#hint">Hint on board connectors</a></li><li><a href="#orig">Original schematics and firmware</a></li></ul></li><li><a href="#build">Building XS1541</a></li><li style="list-style-type:none;"><ul><li><a href="#basics">Basic information on building and soldering</a></li><li><a href="#ft232rl">Soldering the SMD chip FT232RL</a></li><li><a href="#caps">Ceramic Capacitors C2, C3 and C4</a></li><li><a href="#bead">Ferrit Bead</a></li><li><a href="#elko">Elko C7</a></li><li><a href="#usb">USB socket</a></li><li><a href="#shorts">Checking for short circuits</a></li><li><a href="#driver">Driver installation</a></li><li><a href="#conn">First connection check</a></li><li><a href="#discrete">Rest of the discrete components</a></li><li><a href="#atmelsock">Atmel socket</a></li><li><a href="#pinrows">Connector pin rows</a></li><li><a href="#leds">LEDs</a></li><li><a href="#reset">Reset switch</a></li><li><a href="#subd">Reset Switch</a></li><li><a href="#subd">15 pin Sub-D, 24 pin IEEE connector (AMP), IEC DIN connectors</a></li><li><a href="#atmel">Preparing and installing the Atmel</a></li></ul></li><li><a href="#prog">Programming the XS1541</a></li><li style="list-style-type:none;"><ul><li><a href="#linux">Setup programming the Atmel on Linux</a></li><li><a href="#win">Setup programming the Atmel on Windows</a></li><li><a href="#fuses">Setting the fuses</a></li><li><a href="#openCBM">OpenCBM firmware</a></li><li><a href="#xd2031">XD2031 firmware</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="intro" id="intro">Introduction to XS1541</a></h2></div><div class="h2c">
 	<p>The XS-1541 is an interface that connects older CBM drives with parallel IEEE
 	bus like the CBM 8050 or CBM 4040, and the newer ones with serial IEC bus like the
 	VC1541. 1571 or 1581 with a PC via a serial or USB interface.</p>
@@ -134,9 +132,19 @@
 	A pragmatic solution is to use small pieces of wood that are being cut to size
 	and glued to the size of the card edges.
 	</p>
+	<h3><a name="orig" id="orig">Original schematics and firmware</a></h3><p>In this section I have put some of the original documents and firmware I could
+		find.</p>
+	<ul>
+	<li><a href="XS1541_Schaltplan_REV_D.pdf">XS1541_Schaltplan_REV_D.pdf</a>: the original schematics (unfortunately as PDF only)</li>
+	<li><a href="firmware_xs1541_rev_d.zip">firmware_xs1541_rev_d.zip</a>: the original firmware blobs. Especially important is the bootloader, that allows loading a new firmware via the serial interface, and without an SPI programmer</li>
+	</ul>
 	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="build" id="build">Building XS1541</a></h2></div><div class="h2c">
 	This section details the building steps.
-     <h3><a name="ft232rl" id="ft232rl">Soldering the SMD chip FT232RL</a></h3>
+     <h3><a name="basics" id="basics">Basic information on building and soldering</a></h3>
+	<p>Please also look at the building thread in the forum64 (see links). If you have registered there you can also ask questions.</p>
+	<p>If you don't have many experiences soldering, it helps practicing. See some links below</p>
+	<p>In general, if you need more than 2 or 3 seconds per soldering joint, you're doing something wrong. And use the right tools - e.g. a small soldering iron for SMD parts.</p>
+     <ul><li><a href="https://www.forum64.de/index.php?thread/29780-xs-1541-rev-d-aufbau-thread/" target="_blank" class="extlink">Building thread in the forum64</a> </li><li><a href="https://www.forum64.de/index.php?thread/25970-c64-reparieren-ein-paar-fragen-zum-l%C3%B6ten/#post272473" target="_blank" class="extlink">Reparing the C64 - a few questions (German)</a> </li><li><a href="https://www.forum64.de/index.php?thread/29909-temperaturen-beim-l%C3%B6ten-von-bauteilen/&amp;postID=327552#post327552" target="_blank" class="extlink">Temperature when soldering parts (German)</a> </li><li><a href="http://www.elexs.de/loet1.htm" target="_blank" class="extlink">A little soldering course (German)</a> </li></ul><h3><a name="ft232rl" id="ft232rl">Soldering the SMD chip FT232RL</a></h3>
 	<p class="floatend">1. Put soldering flux on the pads for the FT232 onto the board</p>
 	<a href="pics/ft232_loetpaste_300x225.jpg"><img class="rightimg" alt="SMD layout" src="pics/ft232_loetpaste_300x225.jpg" /></a>
 	<p class="floatend">2. Position the chip: The chip as a circle mark that notes the position of pin 1. This circle must be in the direction of the circle as on the board. </p>
@@ -168,27 +176,190 @@
 	with a toothbrush (only used for this purpose!) under flowing water, then dry it with some
 	kitchen paper.</p>
 	<h3><a name="caps" id="caps">Ceramic Capacitors C2, C3 and C4</a></h3>
-	<ul><li><a href="http://www.zimmers.net/anonftp/pub/cbm/firmware/computers/pet/d/rom-1.html" target="_blank" class="extlink">Original ROMs disassembly</a> </li></ul><h3><a name="bead" id="bead">Ferrit Bead</a></h3>
+	<p>Now the certamic capacitors (and only those) have to be soldered:</p>
+	<ul>
+		<li>C2 100 nF (usually a "104" printed on it)</li>
+		<li>C3 100 nF (usually a "104" printed on it)</li>
+		<li>C4 10 nF (usually a "103" printed on it)</li>
+	</ul>
+	<p>Please note that C4 on the board has three holes, even though a capacitor only has 
+	two connections. This is made such that you can use parts with a 2.5mm or with a 5mm pin 
+	distance. Just put one pin in the one of the three holes that is separated in the 
+	silkscreen print, and use one of the other holes as fits.</p>
+	<p>When soldering the caps, put the leads through the holes, bend them a bit so they 
+	don't fall out, and solder them in place on the bottom. Then cut away the rest of the
+	lead. Don't throw the cut leads away (yet), you will need some of them later</p>
+	<h3><a name="bead" id="bead">Ferrit Bead</a></h3>
+	<a href="pics/bead.jpg"><img class="rightimg" alt="SMD layout" src="pics/bead.jpg" /></a>
+	<p>Take the longest of the leads that you cut from the caps, and put it through
+	the ferrit bead, then solder the two ends to the board.
+	</p>
 	<h3><a name="elko" id="elko">Elko C7</a></h3>
+	<p>The electrolytic capacitor C7 has a white (or lighter colour) stripe on one side 
+	containing a minus sign. The lead on this side must go to the hole that is marked
+	with a minus sign on the layout.
+	The other lead must of course go into the hole marked with '+'. Never do it the
+	other way round!</p>
 	<h3><a name="usb" id="usb">USB socket</a></h3>
-	<h3><a name="shorts" id="shorts">Checking for short circuits</a></h3>
-	<h3><a name="driver" id="driver">Driver installation</a></h3>
-	<h3><a name="conn" id="conn">First connection check</a></h3>
+	<a href="pics/ft232_usb_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/ft232_usb_300x225.jpg" /></a>
+	<p>The USB connector will be soldered to postion J2 USB. The stabilizing pins don't need
+	to be bent, but can be just soldered into their holes. </p>
+	<h3><a name="shorts" id="shorts">Checking for short circuits</a></h3><p>Measure the resistance between the supply voltages VCC and GND at the two 
+	connections of C1 in the middle of the board. It should be larger than zero, i.e. no
+	short circuit. A sample value was 470kOhm. If the resistance is equal or near zero 
+	there is a short circuit that needs to be fixed before the board is connected to the 
+	PC the first time via USB</p>
+	<h3><a name="driver" id="driver">Driver installation</a></h3><p>
+	Install the drivers for your operating system. Linux has it already in the kernel,
+	so there is nothing to do. For Windows, you need to download and install a 
+	driver from the FTDI drivers page.</p>
+	<ul><li><a href="https://www.ftdichip.com/Drivers/VCP.htm" target="_blank" class="extlink">FTDI driver page</a> </li></ul><h3><a name="conn" id="conn">First connection check</a></h3><p>Now the board can be put under a first functional test. 
+	After connecting the board to the PC via USB cable, the PC must identify a new
+	serial interface.</p>
+	<p>Under Windows that is a message like 'new hardware found' and 'hardware can now be used'.
+	</p><p>
+	Under Linux you can open a console and, after connecting the USB cable,
+	 execute the command <code>dmesg</code>. Some
+	lines of messages will be shown, some like those should be included:
+	</p>
+	<pre>
+[ 9133.432067] usb 2-3: new full speed USB device using ohci_hcd and address 3
+[ 9133.702367] usb 2-3: configuration #1 chosen from 1 choice
+[ 9133.778736] USB Serial support registered for FTDI USB Serial Device
+[ 9133.778861] ftdi_sio 2-3:1.0: FTDI USB Serial Device converter detected
+[ 9133.778903] usb 2-3: Detected FT232RL
+[ 9133.778988] usb 2-3: FTDI USB Serial Device converter now attached to ttyUSB0
+[ 9133.779013] usbcore: registered new interface driver ftdi_sio
+[ 9133.779017] ftdi_sio: v1.4.3:USB FTDI Serial Converters Driver
+	</pre>
+	<p>Here you can see that the device is assigned to the Linux device /etc/ttyUSB0.</p>
+	<p>The cable can now be removed and further parts can be installed</p>
 	<h3><a name="discrete" id="discrete">Rest of the discrete components</a></h3>
+	<a href="pics/xs1541_igel_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/xs1541_igel_300x225.jpg" /></a>
+	<p>'Discrete' components are components with a single function, like
+	resistors, capacitors, or crystals:</p>
+	<ul>
+		<li>R1 10 kOhm</li>
+		<li>R2 680 Ohm</li>
+		<li>R3 330 Ohm</li>
+		<li>X1 Crystal 14.7456MHz</li>
+		<li>C1 100nF</li>
+		<li>C5 22pF</li>
+		<li>C6 22pF</li>
+	</ul>
+	<p>Before soldering it looks somewhat like a hedgehog...</p>
+	<a href="pics/xs1541_diskret_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/xs1541_diskret_300x225.jpg" /></a>
 	<h3><a name="atmelsock" id="atmelsock">Atmel socket</a></h3>
-	<h3><a name="pinrows" id="pinrows">Connector pin rows</a></h3>
+	<a href="pics/sockel_mit_steg_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/sockel_mit_steg_300x225.jpg" /></a>
+	<p>The socket needs to be oriented such that the notch matches the notch on the silkscreen
+	print, left above the SMD chip. This notch determines how to insert the Atmel chip later
+	and is thus quite important to get right.</p>
+	<p>If the socket has a connection in the middle, like in the picture here, it may need 
+	to be cut away, so that it does not lay on top of the resistor. </p>
+	<p class="floatend">The socket needs to be put into the holes such that it completely lies on the board
+	with all pins going though the holes.</p>
+	<a href="pics/sockel_ohne_steg_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/sockel_ohne_steg_300x225.jpg" /></a>
+	<p>Then solder pins 1 and 21 of the socket. Check if the socket is fully inserted
+	and plain on the board. If not, heat one of the soldered pins with the soldering iron,
+	and press the socket against the board. Repeat also with the second soldered pin
+	until the socket fits. Then solder the rest of the pins.</p>
+	<p>After soldering all pins, gently bend C1 to the side so that it does not prohibit
+	puting the Atmel chip into the socket properly.</p>
+	<h3><a name="pinrows" id="pinrows">Connector pin rows</a></h3><p>
+	For the connector pin rows, only solder one pin first, and adjust gently if necessary
+	by -resoldering this pin while pressing the pin rows to the board as needed. 
+	Only if the pins look good solder all pins, starting from the other end.
+	</p><p>
+	Another trick is to attach the connector to the pin rows to keep them in place.</p>
 	<h3><a name="leds" id="leds">LEDs</a></h3>
-	<h3><a name="reset" id="reset">Reset switch</a></h3>
-	<h3><a name="subd" id="subd">15 pin Sub-D connector</a></h3>
-	<h3><a name="ieee" id="ieee">24 pin IEEE connector 'Centronics'</a></h3>
-	<h3><a name="iecdin" id="iecdin">IEC Din connector sockets</a></h3>
+	<h3><a name="reset" id="reset">Reset switch</a></h3><p>
+	The green LED signals power, the yellow LED shows the status. The LEDs need to be soldered
+	in the right orientation, or they won't light up. There are three possibilities to
+	find the right orientation:</p>
+	<ol>
+		<li>One lead of the LED is a bit longer (+), the other is shorter (-). One hole in the board is square (+), the other is round (-). The longer lead must go to the square hole.</li>
+		<li>The ring around the LED has a flat part on one side (-). (help: where there is 
+		less material, there is less... -) This flat part (-) is marked on the silkscreen
+		with a notch (-).</li>
+		<li>The inside of the LED consists of a large triangle (-) and a smaller triangle (+). The larger triangle goes into the round hole</li>
+	</ol>
+	<h3><a name="subd" id="subd">Reset Switch</a></h3><p>For the reset switch the stabilizing pins don't need to be bent. Just solder
+	them</p>
+	<h3><a name="subd" id="subd">15 pin Sub-D, 24 pin IEEE connector (AMP), IEC DIN connectors</a></h3><p>Placing those connectors on the board is a bit difficult. 
+	You need to make sure that all pins are getting through the holes and are not bent to 
+	the side.</p>
 	<h3><a name="atmel" id="atmel">Preparing and installing the Atmel</a></h3>
-	<h3><a name="firmware" id="firmware">Programming the Atmel</a></h3>
+	<a href="pics/DIL_biegen_300x225.jpg"><img class="rightimg" alt="partly built board" src="pics/DIL_biegen_300x225.jpg" /></a>
+	<p>The unprogrammed Atmel comes with the pins bent a little bit to the outside.
+	It helps bending the pins to the inside so they have a 90 degree angle to the board, 
+	to better fit into the socket.
+	</p><p>
+	To do this you can gently hold the chip with its pins to a flat surface like a table top,
+	and gently bent the pins.</p>
+	<p>
+	Then the Atmel chip needs be put into its socket. It needs to go into the socket in the
+	right orientation! The chip has a notch on one side that must correspond to the notch
+	on the socket or silkscreen print.
+	</p>
+	<p>First put the chip loosely on top of the socket, and control that all(!) pins are 
+	in the middle of the socket holes. If one pin is not centered, it could be bent when
+	pushing the chip into the socket. In that case the chip needs to be taken out of the
+	socket again, the pin needs to be aligned and another attempt started. </p>
+	<p>If all is good gently push the Atmel into its socket. Check if all pins are going 
+	into their socket holes. Continue until the Atmel is fully seated in the socket.
+	</p>
+	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="prog" id="prog">Programming the XS1541</a></h2></div><div class="h2c">
+	<p>The XS-1541 uses a programmable chip from Atmel - that needs to be programmed with a
+	firmware. </p>
+     <h3><a name="linux" id="linux">Setup programming the Atmel on Linux</a></h3>
+		You can program the Atmel on Linux using avrdude. Unfortunately no further 
+		description available right now.
+	<h3><a name="win" id="win">Setup programming the Atmel on Windows</a></h3>
+		Unfortunately there only exists a German description on the wayback machine.
+	<ul><li><a href="http://web.archive.org/web/20110522033038/http://home.germany.net/nils.eilers/xs1541/avrdudewin.htm" target="_blank" class="extlink">Wayback machine of description in German</a> </li></ul><h3><a name="fuses" id="fuses">Setting the fuses</a></h3>
+<pre>
+Nach dem Aufstecken des ISP-Kabels empfiehlt es sich, erst einmal den Status und die Verbindung zu prüfen:
+
+avrdude -v -c stk200 -P lpt1 -p m644
+
+Anschliessend wird der Bootloader aufgespielt:
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U flash:w:bootloader.hex:i
+
+Jetzt müssen noch die Fuses gesetzt werden.
+
+Entweder alle auf einmal...
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U lfuse:w:0xFF:m -U hfuse:w:0xD4:m -U efuse:w:0xFC:m -U lock:w:0x2F:m
+
+Da ich einmal Schwierigkeiten hatte, alle Fuses auf einmal zu setzen, habe ich mir angewöhnt, die Bytes einzeln zu schreiben:
+
+low fuse:
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U lfuse:w:0xFF:m
+
+high fuse:
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U hfuse:w:0xD4:m
+
+ext'd fuse:
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U efuse:w:0xFC:m
+
+lock fuse:
+
+avrdude -v -c stk200 -P lpt1 -p m644 -U lock:w:0x2F:m
+</pre>
+	<h3><a name="openCBM" id="openCBM">OpenCBM firmware</a></h3>
+		The OpenCBM firmware allows controlling a disk drive from the PC
+		using the XS1541 device.
+	<h3><a name="xd2031" id="xd2031">XD2031 firmware</a></h3>
+		The XD2031 firmware allows using the PC as disk drive for the Commodore.
 	</div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-
+2019-08-31
 	</div></div><div id="rightcol"><div class="top" id="share"><div class="tophead">share</div><div><div class="shariff" data-backend-url="https://fachat-shariff-backend.eu-gb.mybluemix.net/" data-theme="grey" data-orientation="vertical"></div></div></div><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../cbmhw/ryofat40/index.html">Commodore PET replica</a></p>
