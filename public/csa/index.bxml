@@ -22,6 +22,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2019-08-31" state="hot">
+			Celebrate the 30th anniversary of this machine on the overhauled <a href="gallery/index.html">Gallery page</a>.
+		</item>
 		<item date="2017-08-13">
 			Added a page with <a href="contrib/index.html">contributions</a> by other people!
 			This page starts with a contributed backplane.

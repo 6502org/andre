@@ -465,7 +465,7 @@ div.gallery div.galleryimg {
   text-align: center;
   width: 27%;
   min-width: 300px;
-  min-height: 300px;
+  min-height: 22em;
   margin: 1em;
   padding: 1em;
   float: left;
@@ -491,6 +491,7 @@ div.gallery div.galleryimg a:hover img.full {
 div.gallery div.galleryimg img.thumb {
   max-width: 290px;
   max-height: 220px;
+  min-height: 220px;
 }
 
 div.gallery div.gallend {

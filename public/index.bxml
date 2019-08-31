@@ -21,6 +21,9 @@ subscribe and share!
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2019-08-31" state="hot"> 
+        Celebrate the 30th anniversary of the CS/A machine on the overhauled <a href="csa/gallery/index.html">Gallery page</a>. 
+    </item>
     <item date="2018-12-29">
 	Updated some links on the <a href="petindex/index.html">Petindex</a> page.
     </item>

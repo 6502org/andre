@@ -4,39 +4,146 @@
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
-    <!--yearstart>1997</yearstart>
-    <yearend>2010</yearend-->
+    <yearstart>1989</yearstart>
+    <yearend>2019</yearend>
   </author>
   <keywords></keywords>
   <metadesc></metadesc>
-  <overview><p>On this page are a few images of my selfbuilt computer(s), just to give some
+  <overview><p>On this page are a few images of my selfbuilt computer, to give some
 impression of how it looks like and of what kind of technique it is.
 (Remember, I built this thingy aroung 1989-1991, quite some time ago...)
+</p><p>
+So, celebrate the 30th anniversary of this machine with some new images, and of course with an improved web design for the page!
 	</p>
   </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
+  <news>
+    <item date="2019-08-31">
+	Overhauled the page and added more pictures to celebrate the 30th anniversary
+	of the CS/A65 computer!
     </item>
-  </news-->
+  </news>
   <toc/>
 
+  <section toc="current" name="Current state">
+    <desc> <p>This section shows what I currently have, in a way, as the pinnacle of the current design....</p>
+    </desc>
+
+  <gallery>
+        <image>
+                <thumb>current05.jpg</thumb>
+                <alt>A wooden case with a PET keyboard and two PC disk drives</alt>
+                <desc>This is my current case for the CS/A computer</desc>
+        </image>
+        <image>
+                <thumb>current01.jpg</thumb>
+                <alt>A wooden case with a PET keyboard and two PC disk drives, and a CD drive below the keyboard</alt>
+                <desc>Here, more from the front, you can see the SCSI devices built into it, a CD drive and an 80 MB harddisk.</desc>
+        </image>
+        <image>
+                <thumb>current02.jpg</thumb>
+                <alt>A wooden case without keyboard to expose a CD drive and two harddisks</alt>
+                <desc>The keyboard can be taken away - the spiral cable shows it's the same as from 30 years ago - to expose the SCSI &quot;plane&quot; with a SCSI CD drive and two SCSI harddisks</desc>
+        </image>
+        <image>
+                <thumb>current03.jpg</thumb>
+                <alt>A wooden case with the top taken away to expose the two disk drives</alt>
+                <desc>Here you can see the two PC disk drives, 5.25 inch and 3.5 inch. The small boards on the back are a PetSD, and a video mixer to produce composite video.</desc>
+        </image>
+        <image>
+                <thumb>current04.jpg</thumb>
+                <alt>A view inside the wooden case</alt>
+                <desc>Taking away the disk drives exposes the actual CS/A boards and the PC power supply.</desc>
+        </image>
+        <image>
+                <thumb>caspaer-small.jpg</thumb>
+                <full>caspaer.jpg</full>
+                <alt>The uncovered backplane and boards</alt>
+                <desc>This setup emulates a PET 4032 with CRTC, just with an MMU to address 1MB memory, and expandable with further cards...</desc>
+        </image>
+   </gallery>
+  </section>
+
+  <section toc="newtech" name="Transition to new tech">
+    <desc> <p>In the beginning, I made my schematics by hand, and soldered everything on perfboard manually. I actually bought an etching kit for PCBs, and got one CPU board etched by someone, but that in the end was not successful, so I stayed with manual soldering.
+</p><p>
+Then, after university, when I had a bit more money to spend, I 
+invested into an Eagle license and moved over from manual soldering to 
+etched boards manufactured by a service on the internet. There was a learning curve,
+of course. 
+</p><p>
+In the end I was even capable of soldering SMD parts on to such etched boards.
+</p><p>
+Here you see some examples from the transition
+</p>
+    </desc>
+
+  <gallery>
+        <image>
+                <thumb>../netusb/netusb2.jpg</thumb>
+                <alt>A short board with an Ethernet, SD-Card and USB interfaces.</alt>
+                <desc>The <a href="../netusb/index.html">NETUSB card</a> shows that the board space to do voltage conversions and interfacing to the parallel bus has become relatively large compared to the actual functionality.</desc>
+        </image>
+        <image>
+                <thumb>../etholi/board.png</thumb>
+                <full>../etholi/board.png</full>
+                <alt>A short board using a breakout board with an Ethernet interface</alt>
+                <desc>The <a href="../etholi/index.html">Olimex-based Ethernet board</a> was a short board, with two options that only basically did voltage conversion to 3.3V, and used a breakout board with the CS8900 as Ethernet interface.</desc>
+        </image>
+        <image>
+                <thumb>../blitter/blitter-v2.1a-patched2.png</thumb>
+                <alt>A board with a PLCC chip and about thirty SMD chips, and some patch wires</alt>
+                <desc>The <a href="../blitter/index.html">blitter board</a> transfers blocks of data. It is the board with the most components on it (probably by far). The first try with SMD bypass caps.</desc>
+        </image>
+        <image>
+                <thumb>../vdc/vdcold_small.png</thumb>
+                <full>../vdc/vdcold.png</full>
+                <alt>Two <a href="../vdc/index.html">video boards</a>, one on perfboard, one etched, from the component side</alt>
+                <desc>Not really much of a difference on the component side...</desc>
+        </image>
+        <image>
+                <thumb>../vdc/vdcoldback_small.png</thumb>
+                <full>../vdc/vdcoldback.png</full>
+                <alt>Two video boards, one on perfboard, one etched, from the solder side</alt>
+                <desc>... but the solder side definitely looks different. No wires on the etched board!</desc>
+        </image>
+        <image>
+                <thumb>../vdc/csa_vdc_v1.3e.jpg</thumb>
+                <alt>Etched video board with components</alt>
+                <desc>Etched board from an early try - no solder resist mask or even silk screen printing. Also decoupling caps are there - but supply line traces are still laughingly narrow like a signal trace...</desc>
+        </image>
+        <image>
+                <thumb>../vdc/csavdc-1.2B-schem.png</thumb>
+                <alt>Hand-drawn schematics</alt>
+                <desc>Some parts of the schematics have been revised a few times as you can see from the rubber marks...</desc>
+        </image>
+        <image>
+                <thumb>../vdc/csavdcflip.jpg</thumb>
+                <alt>The solder side of the video card on a perf board.</alt>
+                <desc>The solder side with many, manually soldered wires, and extra decoupling caps (that were not in the initial version... - talking of learning curve...</desc>
+        </image>
+  </gallery>
+  </section>
+
+
   <section toc="oldstyle" name="The Beginnings...">
-    <desc> <p><a href="#config">Below</a> there also is an image how my current configuration looks like.
+    <desc> 
+<!--
+<p><a href="#config">Below</a> there also is an image how my current configuration looks like.
 All of it except the SCSI harddisk on my selfbuilt computer is working.
 Ok, the SCSI interface is there, the drivers are there and the filesystem (FAT16)
 is there, I just did not have the time to glue them together so far... :-)
 </p>
-<img src="photo-csa.jpg" alt="[Sorry, no picture!]"/><p>
-This is a view of the computer itself. It consists of a motherboard, that
-is just a bus plane, and several card boards.
+-->
+<p>
+Below is a view of the computer itself. It consists of a passive backplane, and several card boards.
 From right to left you can see the CPU board, the BIOS board, the
 video board and the keyboard board. Then there are the IEC board and
 the shugart bus board to connect PC floppy disk drives.</p>
-<img src="photo-backside.jpg" alt="[Sorry, no picture]"/><p>
-Here you can see how all these boards are built...
-</p><p><img src="photo-emu.jpg" alt="[Sorry, no picture!]"/></p><p>
-This shows the Emulator board (the grey one in the back) that emulates
+<p>I initially built all the boards using perfboard, meticulously soldering wire by wire.</p>
+<p>These pictures must have been taken between around 1990 and 1992 where I lived in that student room where they have been taken. It shows an edge of the Atari ST I was using as mass storage device (using an IEEE488 interface I built and that I connected to the Atari's ROM port) and development platform. On this Atari I first wrote the xa65 cross-assembler for my work on GeckOS.
+</p>
+<p>
+Another picture shows the Emulator board (the grey one in the back) that emulates
 the 6502 CPU of another computer (a CS/A65 CPU board without MMU, in
 the front - this very board later became the
 <a href="../gecko/index.html"><em>Gecko</em></a> prototype board,
@@ -52,27 +159,56 @@ with some RAM area from the CS/A computer with the MMU, loaded
 the new ROM into this RAM (from the CS/A computer) and started the
 VC1541 DOS.
     </p></desc>
+  <gallery>
+        <image>
+                <thumb>photo-csa.jpg</thumb>
+                <alt>A number of computer chips soldered on perfboard, mounted on a backplane</alt>
+                <desc>The oldest picture of my configuration, where I already had CPU, BIOS, Video, Keyboard/RS232, IEEE488, Floppy, and some unidentified board (from right to left)</desc>
+        </image>
+        <image>
+                <thumb>photo-backside.jpg</thumb>
+                <alt>The back side of a perfboard, with all the hand-soldered wires</alt>
+                <desc>Here you can see how I built the boards originally. All sockets were soldered on perfboard, and then wired together using separate wires. Only occasionally I used a 2.54mm spaced parallel cable for busses.</desc>
+        </image>
+        <image>
+                <thumb>photo-emu.jpg</thumb>
+                <alt>Two perfboards connected with a 40 pin parallel cable</alt>
+                <desc>The grey emulator board in the background allows emulating a 6502 CPU in another computer (for example in a Gecko prototype in front)</desc>
+        </image>
+  </gallery>
+
   </section>
 
   <section toc="gecko" name="The Gecko board">
     <desc> <p>After so many people asked me to give some hardware diagrams to the public,
 I decided to design and build a simple non-MMU system especially for
-Web-publishing. So here are the photos of this one:</p>
-<!-- img src="image01.png" -->
-<!-- img src="image02.png" -->
-<!-- img src="image03.png" -->
-<!-- img src="image04.png" -->
-<!-- img src="image05.png" -->
-<!-- img src="image06.png" -->
-<img src="image09.png" alt="[Sorry, no picture!]"/>
-<img src="image07.png" alt="[Sorry, no picture!]"/>
-<!-- img src="image08.png" -->
+Web-publishing. So here are the photos of this one, that is now called Gecko:</p>
     </desc>
+
+  <gallery>
+        <image>
+                <thumb>image09.png</thumb>
+                <alt>A Gecko computer built on a perfboard</alt>
+                <desc>You can see the CPU, RAM, ROM, a VIA and a 16550 RS232 chip, plus some glue around it.</desc>
+        </image>
+        <image>
+                <thumb>image07.png</thumb>
+                <alt>A Gecko computer built on a perfboard</alt>
+                <desc>The same computer from the bus side - as you can use this as CPU board on the CS/A backplane as well!</desc>
+        </image>
+  </gallery>
   </section>
 
-  <section toc="config" name="My configuration">
-    <desc> <img src="mycomps.png" alt="[Sorry, no picture!]"/>
+  <section toc="config" name="My configuration - in the 90s">
+    <desc><p>Between 1996 and 1999 I had a very special &quot;tower&quot; configuration of all my 8bit stuff. Everything was connected, and I used the PC as mass storage device and programming platform.</p>
     </desc>
+  <gallery>
+        <image>
+                <thumb>mycomps.png</thumb>
+                <alt>A diagram how a PET 8296, C64, C128D, three floppy drives and my selfbuilt CS/A are connected</alt>
+                <desc>The PC was used as disk drive on the IEEE488 bus, that all machines (except the 128) could use.</desc>
+        </image>
+  </gallery>
   </section>
   <closing>
 @FOOTER@
