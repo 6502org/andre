@@ -358,6 +358,17 @@ avrdude -v -c stk200 -P lpt1 -p m644 -U lock:w:0x2F:m
 </pre>
 	</desc>
      </subsection>
+     <subsection toc="flash" name="Flashing the firmware">
+	<desc><p>
+With the bootloader in place you can flash the firmware in the first three 
+seconds after each reset. Just paste the following command line into your console,
+press reset on the XS1541, then press return in the console to start the programming.
+</p><p>(Note this is a windows example - rewrite the device on Linux)</p>
+<pre>
+avrdude -v -c avr109 -P COM3 -b 115200 -p m644 -u -U flash:w:XS1541-v0.02.01-644-115200.hex:i
+</pre>
+	</desc>
+     </subsection>
      <subsection toc="openCBM" name="OpenCBM firmware">
 	<desc>
 		The OpenCBM firmware allows controlling a disk drive from the PC
