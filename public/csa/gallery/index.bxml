@@ -30,27 +30,32 @@ So, celebrate the 30th anniversary of this machine with some new images, and of 
 
   <gallery>
         <image>
-                <thumb>current05.jpg</thumb>
+                <thumb>current05_small.jpg</thumb>
+                <full>current05.jpg</full>
                 <alt>A wooden case with a PET keyboard and two PC disk drives</alt>
                 <desc>This is my current case for the CS/A computer</desc>
         </image>
         <image>
-                <thumb>current01.jpg</thumb>
+                <thumb>current01_small.jpg</thumb>
+                <full>current01.jpg</full>
                 <alt>A wooden case with a PET keyboard and two PC disk drives, and a CD drive below the keyboard</alt>
                 <desc>Here, more from the front, you can see the SCSI devices built into it, a CD drive and an 80 MB harddisk.</desc>
         </image>
         <image>
-                <thumb>current02.jpg</thumb>
+                <thumb>current02_small.jpg</thumb>
+                <full>current02.jpg</full>
                 <alt>A wooden case without keyboard to expose a CD drive and two harddisks</alt>
                 <desc>The keyboard can be taken away - the spiral cable shows it's the same as from 30 years ago - to expose the SCSI &quot;plane&quot; with a SCSI CD drive and two SCSI harddisks</desc>
         </image>
         <image>
-                <thumb>current03.jpg</thumb>
+                <thumb>current03_small.jpg</thumb>
+                <full>current03.jpg</full>
                 <alt>A wooden case with the top taken away to expose the two disk drives</alt>
                 <desc>Here you can see the two PC disk drives, 5.25 inch and 3.5 inch. The small boards on the back are a PetSD, and a video mixer to produce composite video.</desc>
         </image>
         <image>
-                <thumb>current04.jpg</thumb>
+                <thumb>current04_small.jpg</thumb>
+                <full>current04.jpg</full>
                 <alt>A view inside the wooden case</alt>
                 <desc>Taking away the disk drives exposes the actual CS/A boards and the PC power supply.</desc>
         </image>
