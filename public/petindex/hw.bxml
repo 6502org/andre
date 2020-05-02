@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2017</yearend>
+    <yearend>2020</yearend>
   </author>
   <keywords>Commodore PET CBM hardware project</keywords>
   <metadesc>PET index - hardware projects</metadesc>
@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2020-05-02">
+	Added links to Tynemouth's PET keyboard projects and the sd2pet drive.
+    </item>
     <item date="2018-04-01">
 	Added a link to Steve's overview on video boards for the PET
     </item>
@@ -58,10 +61,12 @@ This page contains links to some hardware projects around the PET machines.
   <section toc="peripherals" name="Peripherals">
      <desc><P>This section contains projects related to PET peripherals, mostly IEEE488 related.</P>
 <DL>
+<DT><A class="extlink" target="_blank" HREF="https://www.thefuturewas8bit.com/sd2pet-future.html">SD2PET</A></DT>
+<DD>A new SD-card based storage solution for the Commodore PET.</DD>
 <DT><A class="extlink" target="_blank" HREF="http://www.baltissen.org/htm/cbmhd.htm">CBM-HD</A></DT>
 <DD>Ruud Baltissen has made a project to emulate Commodore IEEE488 disk drives
 using a PC and some hardware.</DD>
-<DT><A HREF="http://www.6502.org/users/andre/ieee488/">LPTIEC and other IEEE488 stuff</A></DT>
+<DT><A class="extlink" HREF="http://www.6502.org/users/andre/ieee488/" target="_blank">LPTIEC and other IEEE488 stuff</A></DT>
 <DD>As I have used the IEEE488 bus to connect (almost) all my Commodore
 equipment, even with my Atari ST and later the PC (as harddrive)
 I have created a page for it. It contains an IEEE488 interface for the PC
@@ -91,6 +96,17 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
 <DT><A class="extlink" HREF="http://www.cbmhardware.de/cbmrd2008/">CBM RAM-Drive 2008</A>, a RAM disk extension for the 8296 (in German)</DT><DD>A small hardware RAM disk extension with schematics and a DOS program for it.</DD>
 </DL>
      </desc>
+
+<subsection toc="keybd" name="Keyboards">
+<desc><p>This section describes two PET keyboard projects</p>
+<DL>
+<DT><A class="extlink" target="_blank" HREF="http://blog.tynemouthsoftware.co.uk/2018/07/commodore-pet-replacement-keyboard.html">A PET keyboard replacement</A></DT>
+<DD>Commodore PET replacement keyboard by Tynemouth Software LLP</DD>
+<DT><A class="extlink" target="_blank" HREF="http://blog.tynemouthsoftware.co.uk/2020/02/commodore-pet-usb-keyboard.html">USB adapter</A></DT>
+<DD>An adapter to use the PET keyboards as USB keyboard on a PC.</DD>
+</DL>
+</desc>
+</subsection>
   </section>
 
   <section toc="graphics" name="Graphics">
