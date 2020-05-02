@@ -5,13 +5,13 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1999</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2020</yearend>
   </author>
   <keywords>Commodore PET CBM Killer-poke</keywords>
-  <metadesc>PET index - Killer Poke</metadesc>
+  <metadesc>PET index - Killer Poke busted!</metadesc>
   <overview><p>The so-called <EM>Fast Print</EM> or <EM>Killer Poke</EM> has much
 been talked about.
-<a class="extlink" href="http://en.wikipedia.org/wiki/Killer_poke">Wikipedia</a> states it nicely:
+<a target="_blank" class="extlink" href="http://en.wikipedia.org/wiki/Killer_poke">Wikipedia</a> states it nicely:
 </p><p>
 &quot;The PET-specific killer poke is connected to the architecture of that machine's video rasterizer circuits. In early model PETs, writing a certain value to the memory address of a certain I/O register ( POKE 59458,62 ) made the machine able to display text on the screen much faster. When the PET range was revamped with updated hardware, it was quickly discovered that performing the old trick on the new hardware led to disastrous behavior by the new video chip, causing it to destroy the PET's integrated CRT monitor.&quot;
 </p><p>
@@ -21,27 +21,32 @@ a PET computer. There have been claims that it is not possible to
 destroy a PET by this poke.
 Personally I never tried it on a possibly vulnerable PET
 and I know of no confirmed death.
-However, I know of a confirmed "Screen starts to behave funny so I
-switched it off". If you can confirm that a PET has been killed by such
-a poke (i.e. experienced it yourself, not just by word of mouth), please
-tell me!
+</p><p>
+... so that was the beginning of the first version of this article I wrote a long time ago.
+In April 2020, however, Tech Tangents has, together with Adrian from Adrian's digital basement, and 
+some discussion on the vintage computer forum,
+researched the killer poke even more. You can find the result of that research in 
+<a target="_blank" class="extlink" href="https://www.youtube.com/watch?v=7bMJ0NIuWU0">this youtube video</a>.
+</p><p>
+In this video, Tech Tangent shows the poke on an actually vulnerable PET, including scope
+screen shots of some signals. It is definitely worth a look!
+</p><p>
+In this video we see that the "fast print poke" as it was known, is not the "killer poke" it
+has often been named.
 	</p>
 <p>
-Below I will go into the history, the technical details and why I think
-the poke might be able to kill a certain PET model.
-If you find any inaccuracy in the technical description, please let me
-know.
-   </p>
-  </overview>
-  <!--news>
-    <item date="2010-01-04">
-	Started this page
-    </item>
-  </news-->
+Below I will go into the history, the technical details and the results from the current research.
+   </p><p>
+Note: Copyright for all images here by Tech Tangent / Adrian's digital basement
+</p>
+</overview>
+
   <toc/>
 
   <section toc="history" name="History">
+    <subsection toc="slowram" name="1st gen - slow video RAM">
     <desc> <p>
+<div class="rightimg"><a href="pet_snow.png"><img width="256px" src="pet_snow_small.png"/></a></div>
 The very first PET models (board #1) had very slow video RAM.
 Its access rate was the same as the rate of the main memory, 1&nbsp;MHz.
 Therefore only the CPU or the video logic could access the video
@@ -51,7 +56,10 @@ video circuitry. When the video logic wants to read byte of video data
 when the CPU accesses the video RAM, it reads invalid data. This
 results in "snow" on the screen.
 </p>
-<p>
+</desc>
+</subsection>
+    <subsection toc="blank" name="Screen blank">
+    <desc> <p>
 To overcome the problem, Commdore did two things. First they used a special
 output line (CA2 of PIA1 at $E810 (59408)) that disabled the video
 output. It was also used as EOI output to the IEEE488 bus.
@@ -61,23 +69,33 @@ Blanking the video with this line allowed to update the screen
 quickly, without provoking snow on the display.
 This feature was used by the kernal for scrolling, and by
 a few games to do some explosion effects.
-It has been removed in later models, and has nothing to do with the
+</p><p>
+You can see the blinking when the kernel switches off video during 
+scrolling when Adrian shows a test program running on an old PET
+in the linked video (at around 9:00).
+</p><p>
+This feature has been removed in later models, and has nothing to do with the
 killer poke. In those later models this output only controls the
 IEEE488 EOI line.
-(According to Jim Butterfield's quote
+</p><p>
+According to Jim Butterfield's quote
 `"..screen snow and 'scroll-up flash' has been
-eliminated thanks to dynamic screen RAMs.." (quote from Jim
+eliminated thanks to dynamic screen RAMs.." (quote by Jim
 Russo, The Transactor, May 1979)` it has been removed
 together with the introduction of
 the board#2 models. In those models the screen RAM is faster and
-allows 2&nbsp;MHz access, video at Phi1 and CPU at Phi2.)
-</p><p>
+allows 2&nbsp;MHz access, video at Phi1 and CPU at Phi2.
+</p>
+</desc></subsection>
+    <subsection toc="retrace" name="Wait for retrace">
+    <desc> <p>
 The second feature was the vertical retrace input at VIA Port B ($e840, 59456),
 bit 5. In the kernal's print routine there is a loop that waits for
 this input to become low.
 Thus the video memory is only used by the CPU in the off-screen
 area. Of course it takes a lot of time to wait for the vertical retrace
 when the electron beam is at the beginning of the screen.
+</p><p>
 This is where the fast print poke comes in.
 The poke sets the VIA PB5 to low output. This way the kernal always thinks
 the electron beam is at the retrace (it always reads the output register
@@ -87,14 +105,35 @@ screen. This is faster, but produces snow on the screen on the old PETs.
 The vertical retrace signal is generated by the video logic, that is
 discrete TTL in the old models (without the CRTC chip). It is also
 used as an interrupt input to generate the system interrupt (CB1, PIA1).
+</p><p>
+When the poke is used, it sets two signal outputs to compete with each other:
+the VIA PB5 output, and the 74LS08 that produces the "VIDEO ON" signal
+used to check whether the screen is currently being drawn. Obviously 
+in most cases the 74LS08 chip won - because otherwise there would not be 
+any system interrupt on PIA's CB1 input pin caused by a changing signal.
+</p><p>
+However, as can be seen in the linked video, there may be cases where the
+74LS08 is too "weak" to hold against the 6522. In such a case no video 
+interrupt would happen anymore, and the screen would just keep blank 
+(as VIDEO ON also controls the video output).
+</p>
+</desc></subsection>
+    <subsection toc="crtc" name="CRTC using VSYNC">
+    <desc> <p>
 When the board #3 was released the introduction of the CRTC video
 chip changed the situation radically. Here the
 CRTC produces the VSync signal, that is active only at a part of the
-retrace.
-Also it seems that this change made the PET vulnerable
+retrace. As there was no VIDEO ON signal from the CRTC, VSYNC was
+used to generate the system interrupt. As Commodore probably
+didn't want to break older programs that actually checked
+VIA PB5, they also used VSYNC on this pin. 
+</p><p>
+VSYNC as used on VIA PB5, however, is directly connected to the 
+actual analog video circuitry in the PET monitor.
+It seems that this change made the PET "vulnerable"
 to the Poke. A possible explanation, however, is quite technical and
 given in the next section.
-    </p></desc>
+    </p></desc></subsection>
   </section>
 
   <section toc="details" name="Technical Detail">
@@ -109,8 +148,7 @@ needed.
 What I will describe below has solely been analyzed from the schematics
 of the different PET models. Later I have confirmed the voltage drop
 with an oscilloscope on my CBM 8296.
-But I have no idea whether the analysis of the CRT electronics is correct
-after all. So please take it with a grain of salt.
+Further analysis has been done by Tech Tangent and Adrian as mentioned.
     </p></desc>
 
     <subsection toc="oldpet" name="The old PETs">
@@ -157,7 +195,15 @@ poke.
     </subsection>
 
     <subsection toc="vulnerable" name="Possibly vulnerable PETs">
-      <desc> <p>When the video electronics was changed to use the CRTC chip, there was
+      <desc> 
+<div class="rightimg">
+	<a href="vsync_orig.png"><img width="128px" src="vsync_orig_small.png"/>Original screen with HSync on scope</a><br/>
+	<a href="vsync_poke.png"><img width="128px" src="vsync_poke_small.png"/>Screen and HSync with the poke</a><br/>
+	<a href="screen_poke.png"><img width="128px" src="screen_poke_small.png"/>Screen with the poke</a><br/>
+	<a href="retrace_orig.png"><img width="128px" src="retrace_orig_small.png"/>Original retrace</a><br/>
+	<a href="retrace_poke.png"><img width="128px" src="retrace_poke_small.png"/>Retrace with the poke</a><br/>
+</div>
+<p>When the video electronics was changed to use the CRTC chip, there was
 no more master timing electronics. So another way had to be found to
 generate the signal, esp. for the system interrupt.
 Therefore the CRTC VSync signal is used as a replacement signal.
@@ -193,17 +239,15 @@ The DC voltage at (4) is around 1.93V (so the schematics says).
 Now apply the poke to set Via PB to low output. If
 the ramp goes above the
 voltage of the TTL level (that might be lower than 5V because the VIA
-draws it) the flyback could be triggered earlier, because the diode
-drains C601 much earlier than it should.
+draws it) the ramp just flattens off (which differs from my initial assumption).
 I don't say that the ramp is now steeper. I only say that the
-ramp might be stopped earlier. Probably some other effects also take
-place.
+ramp might be stopped earlier. 
+This effect is seen in Tech Tangent's video on his scope measurements.
 </p><p>
-So in my opinion it could be possible that the observed
-voltage drop does weird things to the video
-circuitry. And feeding weird signals to a monitor can result in
-too high voltages generated by the flyback yokes, that could probably do
-quite some damage.
+The result of this seems to be that the video display shrinks vertically, and
+while about the upper half looks almost normal, the lower half is more and more
+compressed into a single horizontal line - what you would expect if the ramp
+responsible for vertical movement flattens off.
 </p><p>
 The effect did not happen on old PET, because the VIA was not connected
 to the VSync signal, but to the video signal generation, and thus restricted
@@ -222,10 +266,42 @@ In fact I even tried the poke on my 8296 with connected screen.
 As a late model I assumed it has the fix, but kept my finger close
 to the reset button, though.
 As far as I can see from the screen the CRT now simply does not
-get any sync anymore, the screen just moves.
+get any sync anymore, the screen just moves vertically.
       </p></desc>
     </subsection>
+  </section>
 
+  <section toc="summary" name="Summary">
+<desc><p>
+	What do we learn from this?
+</p><p>
+	First, the fast print poke is not the killer poke it is 
+	assumed to be. Of course there still may be long-term effects
+	of two output signals fighting each other, so the poke
+	is not recommended anyway, even at the old machines it
+	was written for.
+</p><p>
+	Secondly, to protect the old hardware, a resistor 
+	from VIA PB5 to the signal, or even to ground could 
+	do the job. Look out for a video from Adrian's digial basement 
+	for that.
+</p><p>
+	Thirdly, still not all is safe yet. Especially with the CRTC
+	timing can be programmed very freely, and could still be
+	put into such a mode that it could fry the screen electronics.
+	For example the space invadors code shown in the last frames
+	of the video jump into the PET's editor ROM, only to set
+	the horizontal total number of characters to zero... it
+	was expecting some part of the interrupt routine instead
+	from the old PET. So keep your finger on the power switch
+	when running unknown software.
+</p></desc>
+
+    <subsection toc="links" name="Links">
+	<extlink name="Tech Tangent's Youtube video" link="https://www.youtube.com/watch?v=7bMJ0NIuWU0"/>
+	<extlink name="Adrian's digital basement" link="https://www.youtube.com/user/craig1black/videos"/>
+	<extlink name="Vintage computer forum discussion" link="http://www.vcfed.org/forum/showthread.php?74567-Is-the-PET-killer-poke-really-a-killer"/>
+    </subsection>
   </section>
 
   <closing>
