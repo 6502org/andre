@@ -159,7 +159,7 @@ ROM still differs from small screen and large screen versions (board #2 and
 boards #3 and #4)...
 	</p>
 	</desc>
-	<extlink name="4.0 ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/petdis"/>
+	<extlink name="4.0 ROMs disassembly" link="@CBMARC@/src/pet/pet_rom4_disassembly.txt"/>
 	<extlink name="4.0 ROMs memory map" link="http://www.zimmers.net/cbmpics/cbm/PETx/petmem.txt"/>
      </subsection>
 
