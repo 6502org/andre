@@ -277,7 +277,7 @@ I assume this is used in nationalized machines with different charsets.
 	The connections that need to be done are listed in this table:
 	</p>
 	<table border="1">
-	<tr><th>Signal</th><th>2532 on the board</th><th>2732 socket</th></tr>
+	<tr><th>Signal</th><th>2332 on the board</th><th>2732 socket</th></tr>
 	<tr><th>/CS</th><td>20</td><td>20, 18</td></tr>
 	<tr><th>A11</th><td>18</td><td>21</td></tr>
 	<tr><th>CS</th><td>21</td><td>No connection</td></tr>

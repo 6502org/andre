@@ -194,6 +194,7 @@
     <extlink name="The 6502 decimal flag" link="http://6502.org/tutorials/decimal_mode.html"/>
     <extlink name="Experience from writing a 6502 core" link="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784"/>
     <extlink name="The Steckschwein - a 6502 in a plugboard (in German)" link="https://steckschwein.de/"/>
+    <extlink name="The L-Star - a software-defined 6502 computer" link="https://www.l-star.org/"/>
   </section>
  
   <section toc="other" name="Other CPU links">
