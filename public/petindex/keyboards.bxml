@@ -27,6 +27,9 @@ countries.
 </p>
   </overview>
   <news>
+    <item date="2020-10-29">
+	Added the links section on how to replace PET keyboards or use them on a PC
+    </item>
     <item date="2015-02-01">
 	Added finish and swedish keyboards (thanks to Ville Muikkula).
     </item>
@@ -302,6 +305,39 @@ Bottom - 225,(Top-24)
      </subsection>
   </section>
 
+  <section toc="links" name="Links">
+    <desc><p>Some links to more information and replacement projects:</p>
+    </desc>
+
+     <subsection toc="replacement" name="Keyboard replacements">
+	<desc><p>Keyboards break down or get lost, so how can we replace a PET keyboard?</p></desc>
+	<extlink name="Using a C64 keyboard" link="http://www.6502.org/users/sjgray/projects/petkeyboard/index.html">
+		Steve Gray's project to replace a PET keyboard with a VIC20 or C64 keyboard
+	</extlink>
+	<extlink name="Petskey" link="https://texelec.com/product/petskey/">
+		A commercial offering from Texelec for a PCB for a new PET graphics keyboard, using modern MX key switches
+	</extlink>
+     </subsection>
+     <subsection toc="pet4others" name="Using a PET keyboard on other machines">
+	<desc><p>You can even use a PET keyboard on other machines, even though I don't recommend it (don't rip apart a PET for that!)</p></desc>
+	<extlink name="Teensy" link="https://www.youtube.com/watch?v=FfIFVg9cpUY">
+		A project by TechTangent to use a Teensy controller to scan the keyboard and use it via USB on a PC
+	</extlink>
+	<extlink name="PET USB keyboard" link="http://blog.tynemouthsoftware.co.uk/2015/06/commodore-pet-usb-keyboard.html">
+		A commercial product to usei the PET keyboard on a PC via a USB and a small microcontroller.
+	</extlink>
+     </subsection>
+     <subsection toc="morekbd" name="More keyboard solutions">
+	<desc><p>Other keyboard-related solutions for PETs</p></desc>
+	<extlink name="usb65" link="http://www.6502.org/users/andre/usb65/index.html">
+		My usb65 project, that enables a 6502 to work as USB device and simulate a keyboard,
+		or to work as a USB host and provide a keyboard for e.g. a PC.
+		I've used it with my PET to use a PC USB keyboard and mouse.
+	</extlink>
+     </subsection>
+	
+  </section>
+	
   <closing>
 @FOOTER@
   </closing>

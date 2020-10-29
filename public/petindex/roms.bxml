@@ -15,6 +15,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2020-10-29">
+	Added link to page with all Commodore ROMs, and info on ROM adapters for 6332/2332 ROMs
+    </item>
     <item date="2019-09-29">
 	Added info about the garbage collection and other differences.
     </item>
@@ -253,17 +256,48 @@ I assume this is used in nationalized machines with different charsets.
   </section>
 
   <section toc="hardware" name="ROM ICs">
+    <subsection toc="6540" name="The early 6540">
 	<desc><p>The ROMs of the early boards came with 6540 ICs from Commodore as ROMs
 	Those are completely deprecated. Matthew D'Asaro has written an article on them
 	and how to replace them with modern chips</p>
 	<p>Others have done similar adapters.</p></desc>
 	<extlink name="6540 ROM adapter by Matthew D'Asaro" link="http://www.dasarodesigns.com/product/6540-rom-adapter/"/>
 	<extlink name="Other 6540 ROM adapters (see links on page as well)" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=4369"/>
+    </subsection>
+    <subsection toc="6332" name="The dynamic PET 6332/2332">
+	<desc><p>Recently I got the question how to replace the ROMs in a dynamic PET with a modern chip.
+	One has to note that the Commodore 2332 come with a programmable CS1 (pin 20) and CS2 (pin 21), that can act either as 
+	high or low. In the later 8032 PET this is actually used to allow for a "/NOROM" signal on the CPU socket
+	(that is otherwise unused by the CPU) to switch off all ROMs using CS2. So the CS1 signal is low and the CS2 signal line is high on all models I checked.
+	</p><p>
+	So it is not just using a simple 2532 adapter - a more modern 2732 has a low active chip select at pin 18, and another
+	on pin 20 (doubling as Vpp). 
+	</p><p>
+	The connections that need to be done are listed in this table:
+	</p>
+	<table border="1">
+	<tr><th>Signal</th><th>2532 on the board</th><th>2732 socket</th></tr>
+	<tr><th>/CS</th><td>20</td><td>20, 18</td></tr>
+	<tr><th>A11</th><td>18</td><td>21</td></tr>
+	<tr><th>CS</th><td>21</td><td>No connection</td></tr>
+	<tr><th>*</th><td>all others</td><td>straight through</td></tr>
+	</table>
+	</desc>
+	<extlink name="2332 datasheet" link="http://archive.6502.org/datasheets/mos_2332_rom_feb_1980.pdf">(PDF)</extlink>
+	<extlink name="2732 datasheet" link="https://www.futurlec.com/Memory/2732.shtml"/>
+	<extlink name="2001 dynamic PET ROM schematics" link="@CBMARC@/schematics/computers/pet/2001N/320349-4.gif">Note: the pin 21 is actually marked as CS3</extlink>
+	<extlink name="8032 PET ROM schematics" link="@CBMARC@/schematics/computers/pet/8032/8032029-04.gif"></extlink>
+    </subsection>
+
   </section>
 
   <section toc="links" name="Links">
   	<desc>This section contains links concerning Commodore (MS) BASIC and kernal ROMs</desc>
 	<extlink name="Commodore BASIC as Unix/Windows scripting language" link="http://www.pagetable.com/?p=48"/>
+	<extlink name="All Commodore ROMs" link="http://mhv.bplaced.net/cbmroms/cbmroms.php"/>
+	<extlink name="SoftROM" link="https://petsd.net/softrom.php">
+		Using a EEPROM, RAM, or battery-buffered RAM as ROM replacement
+	</extlink>
   </section>
 
   <closing>
