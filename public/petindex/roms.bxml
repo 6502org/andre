@@ -266,7 +266,7 @@ I assume this is used in nationalized machines with different charsets.
 	<extlink name="Other 6540 ROM adapters (see links on page as well)" link="http://forum.classic-computing.de/index.php?page=Thread&amp;threadID=4369"/>
     </subsection>
     <subsection toc="6332" name="The dynamic PET 6332/2332">
-	<desc><p>Recently I got the question how to replace the ROMs in a dynamic PET with a modern chip.
+	<desc><p>Recently I got the question how to replace the ROMs in a dynamic PET with a modern chip. In the schematics they are marked as 6332, or later 2332.
 	One has to note that the Commodore 2332 come with a programmable CS1 (pin 20) and CS2 (pin 21), that can act either as 
 	high or low. In the later 8032 PET this is actually used to allow for a "/NOROM" signal on the CPU socket
 	(that is otherwise unused by the CPU) to switch off all ROMs using CS2. So the CS1 signal is low and the CS2 signal line is high on all models I checked.
@@ -277,7 +277,7 @@ I assume this is used in nationalized machines with different charsets.
 	The connections that need to be done are listed in this table:
 	</p>
 	<table border="1">
-	<tr><th>Signal</th><th>2332 on the board</th><th>2732 socket</th></tr>
+	<tr><th>Signal</th><th>2332/6332 on the PET board</th><th>socket for 2732 to use as replacement</th></tr>
 	<tr><th>/CS</th><td>20</td><td>20, 18</td></tr>
 	<tr><th>A11</th><td>18</td><td>21</td></tr>
 	<tr><th>CS</th><td>21</td><td>No connection</td></tr>
