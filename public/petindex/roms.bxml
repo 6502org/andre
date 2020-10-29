@@ -16,7 +16,8 @@
   </overview>
   <news>
     <item date="2020-10-29">
-	Added link to page with all Commodore ROMs, and info on ROM adapters for 6332/2332 ROMs
+	Added link to page with all Commodore ROMs, and info on ROM adapters for 6332/2332 ROMs.
+	Fix some links.
     </item>
     <item date="2019-09-29">
 	Added info about the garbage collection and other differences.
@@ -136,7 +137,7 @@ Note that these ROMs had a kind of copy protection: the BASIC PEEK function coul
 not read out the actual ROM values...
 	</p>
 	</desc>
-	<extlink name="Original ROMs disassembly" link="@CBMARC@/firmware/computers/pet/d/rom-1.html"/>
+	<extlink name="Original ROMs disassembly" link="@CBMARC@/src/pet/rom-1.html"/>
      </subsection>
 
      <subsection toc="upgrade" name="Upgrade ROMs ($C000-$FFFF)">

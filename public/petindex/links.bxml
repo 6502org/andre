@@ -55,7 +55,6 @@
      <extlink name="Commodore manuals on commodore.ca" link="http://www.commodore.ca/commodore-manuals/"/>
      <extlink name="The cbm archive" link="@CBMARC@/pet/index.html"/>
      <extlink name="Dave Dunfield's page" link="http://classiccmp.org/dunfield/pet/index.htm"/>
-     <extlink name="Compirudi's page (R.I.P.)" link="http://www.compirudi.bplaced.net/manualse.htm"/>
   </section>
 
   <section toc="otherpet" name="Other PET Documents">
@@ -67,11 +66,11 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
 </LI><LI><A NAME="prodlist"></A>Canonical <A HREF="local/cbm-model-list.1.0.txt">list of Commodore products</A>
 </LI><LI><A NAME="prattle1"></A>The <a href="http://www.icpug.org.uk/national/archives/020227ar.htm">PET Prattle 1</a> for a brief historic overview
 </LI><LI><A NAME="prattle"></A><A HREF="http://www.icpug.org.uk/national/archives/contents.htm">The ICPUG collection</A> makes for a nice reading on PET and Commodore history...
-</LI><LI><A NAME="bombjack"></A><A HREF="http://www.bombjack.org/kim-pet/books-kim-pet.htm">The bombjack collection</A> has a lot of scanned books for the PET. Michael Stein writes: 'There's also a pretty good memory/ROM map/cross-reference in Raeto West's 'Programming The PET CBM'; chapter 15, starting at p. 391.'
+</LI><LI><A NAME="bombjack"></A><A HREF="https://commodore.bombjack.org/kim-pet/">The bombjack collection</A> has a lot of scanned books for the PET. Michael Steil writes: 'There's also a pretty good memory/ROM map/cross-reference in Raeto West's 'Programming The PET CBM'; chapter 15, starting at p. 391.'
 </LI></UL>
 
 <UL>
-<LI><A targer="_blank" class="extlink" HREF="http://www.bombjack.org/commodore/books.htm#PET">Scanned books for the PET</A></LI>
+<LI><A targer="_blank" class="extlink" HREF="https://commodore.bombjack.org/kim-pet/books-kim-pet.htm">Scanned books for the PET</A></LI>
 <LI>Lots of information about the <A targer="_blank" class="extlink" HREF="http://koti.mbnet.fi/~atjs/mc6809/">MC6809</A> that is being used in the SuperPET.</LI>
 </UL>
     </desc>
@@ -108,13 +107,10 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
 </LI><LI><A target="_blank" class="extlink" HREF="http://vice-emu.sourceforge.net/">VICE</A> emulator, that (due to my here not so humble self :-) also emulates the PET computers!
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.6502.org/users/andre/ieee488/">IEEE488</A> related stuff for Commodore computers.
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.baltissen.org/">Ruud Baltissen</A> has a lot of info on Commodore-related hardware projects, not only for the PET.
-</LI><LI><A target="_blank" class="extlink" HREF="http://www.commodore.ca">Commodore.ca</A> with a lot of historical information, e.g. in <A target="_blank" class="extlink" HREF="http://www.commodore.ca/history/company/pet_preview/pet_preview_oct_1978.htm">PET preview Oct 1978</A> or in <A target="_blank" class="extlink" HREF="http://www.commodore.ca/products/pet/commodore_pet.htm">PET product overview</A>.
-</LI><LI><A target="_blank" class="extlink" HREF="http://cbmmanuals1.de/">Commodore Manuals</A> in "Commodore Heaven". English and Deutsch.
-</LI><LI><A target="_blank" class="extlink" HREF="http://cbmpet.de/">CBM PET information</A> in "Commodore Heaven". Lots of PET info, including hardware hacks and software!
+</LI><LI><A target="_blank" class="extlink" HREF="http://www.commodore.ca">Commodore.ca</A> with a lot of historical information.
 </LI><LI><A target="_blank" class="extlink" HREF="http://dmoz.org/Computers/Systems/Commodore/">Open Directory: Commodore Computer</A>
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.softwolves.pp.se/idoc/">IDOC</A> - International Commodore Documentation (mostly C=64/128)
 </LI><LI><A target="_blank" class="extlink" HREF="http://oldcomputers.net/pet2001.html">olcomputers.net</A> also has a nice page on the PET2001 (including an - untested they claim - composite video circuit for it), and for the <A target="_blank" class="extlink" HREF="http://oldcomputers.net/pet4032.html">4032</A>
-</LI><LI><A target="_blank" class="extlink" HREF="http://www.commodorepet.org/">Commodore PET.org</A>
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.vintage-computer.com/pet2001.shtml">PET 2001 on Vintage-computer.com</A>
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.kim-1.com/">A KIM-1</A> enthusiast page.
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.classiccmp.org/dunfield/pet/index.htm">Daves Old Computers</A>
@@ -125,7 +121,9 @@ Larry's portcommodore pages. Please see the menu there for the FAQ sections. He 
 <LI><A target="_blank" class="extlink" HREF="http://www.zock.com/8-Bit/D_PET.HTML">8-Bit Nirvana PET 2001</A> (German)
 </LI><LI><A target="_blank" class="extlink" HREF="http://www.zock.com/8-Bit/D_CBM.HTML">8-Bit Nirvana several Commodore PET/CBM</A> (German)
 </LI><LI><A target="_blank" class="extlink" HREF="http://cbmmuseum.kuto.de/cbm_pet.html">Commodore Computer Online Museum - PETs</A> (German)
-</LI><LI><A target="_blank" class="extlink" HREF="http://cbmmuseum.kuto.de/floppy.html">Commodore Computer Online Museum - Disk Drives</A> (German)</LI>
+</LI><LI><A target="_blank" class="extlink" HREF="http://cbmmuseum.kuto.de/floppy.html">Commodore Computer Online Museum - Disk Drives</A> (German)
+</LI><LI><A target="_blank" class="extlink" HREF="http://www.cbmhardware.de/show.php?r=14&amp;id=1/CBM-PET">Commodore Info</A> (German).
+</LI>
 </UL>
     </desc>
   </section>
