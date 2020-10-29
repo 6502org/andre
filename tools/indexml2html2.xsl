@@ -278,9 +278,7 @@
   <div class="teaser">
     <div class="teaserimg"><img src="imgs/{@headerimg}" alt="{@headeralt}"/></div>
     <div class="teaserlst">
-      <ul>
 	<xsl:apply-templates select="tsubitem"/>
-      </ul>
     </div>
   </div>
 </xsl:for-each>

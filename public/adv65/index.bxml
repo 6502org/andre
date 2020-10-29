@@ -11,6 +11,9 @@
 	Here I have projects that extend the usual 6502 processor in various bits.
   </overview>
   <news>
+    <item date="2020-10-29">
+	Updated some links.
+    </item>
     <item date="2017-10-21">
 	Added the link to Andrew Holme's Verilog 6502 based on the NMOS netlist.
     </item>
@@ -124,7 +127,6 @@
 	<subsection toc="m02" name="65CE02">
 		<desc><p>The 65CE02 was a modernization of the 6502, developed by Commodore itself back in the days</p></desc>
 		<extlink name="65CE02" link="http://www.commodore.ca/manuals/funet/cbm/documents/chipdata/65ce02.txt"/>
-		<extlink name="Block diagram" link="http://img716.imageshack.us/i/65ce02blockdiagram.jpg/"/>
 	</subsection>
 
 	<subsection toc="ttl6502" name="Ruud's Build your own 6502">
@@ -135,8 +137,9 @@
 	<subsection toc="crate" name="AppleCrate">
 		<desc><p>The AppleCrate I and II are multi-processing machines built from Apple II boards.
 			</p></desc>
-		<extlink name="AppleCrate I" link="http://home.comcast.net/~mjmahon/Applecrate.html"> with 8 processors</extlink>
-		<extlink name="AppleCrate II" link="http://home.comcast.net/~mjmahon/AppleCrateII.html"> with 17 processors</extlink>
+		<extlink name="AppleCrate I" link="http://www.michaeljmahon.com/CratePaper.html"> with 8 processors</extlink>
+		<extlink name="AppleCrate II" link="http://www.michaeljmahon.com/AppleCrateII.html"> with 17 processors</extlink>
+		<extlink name="Micheal J. Mahon's further projects" link="http://www.michaeljmahon.com/"> for example NadaNet</extlink>
 	</subsection>	
 
 	<subsection toc="el02" name="65el02">
@@ -179,7 +182,6 @@
     <extlink name="Digging into Technology's Past - History of the 6502" link="http://archive.archaeology.org/1107/features/mos_technology_6502_computer_chip_cpu.html"/>
     <extlink name="The 6502/65C02/65C816 instruction set decoded" link="http://www.llx.com/~nparker/a2/opcodes.html"/>
     <extlink name="Programming the 65816 (PDF)" link="http://www.westerndesigncenter.com/wdc/documentation/programmanual.pdf"/>
-    <extlink name="Schematics of the original 6502 (reverse engineered)" link="http://www.downloads.reactivemicro.com/Public/Electronics/CPU/"/>
     <extlink name="How the illegal instructions really work" link="http://www.pagetable.com/?p=39."/>
     <extlink name="A reengineered and visually simulated original 6502!" link="http://visual6502.org/"/>
     <extlink name="27C3 presentation on the visual6502 reverse engineering process" link="http://dangerousprototypes.com/2011/01/01/27c3-reverse-engineering-the-mos-6502/"/>
@@ -190,14 +192,13 @@
     <extlink name="6502.org forum: Prefix bytes: an idea for 65Org816..." link="http://forum.6502.org/viewtopic.php?t=1550"/>
     <extlink name="Admired designs..." link="http://www.cs.clemson.edu/~mark/admired_designs.html#wilson"/>
     <extlink name="The 6502 decimal flag" link="http://6502.org/tutorials/decimal_mode.html"/>
-    <extlink name="... and the errata to the decimal flag explanation" link="http://6502org.wikidot.com/errata-other-decmode"/>
     <extlink name="Experience from writing a 6502 core" link="http://tech.groups.yahoo.com/group/fpga-cpu/message/1784"/>
     <extlink name="The Steckschwein - a 6502 in a plugboard (in German)" link="https://steckschwein.de/"/>
   </section>
  
   <section toc="other" name="Other CPU links">
     <desc><p>Some links about other, non-6502 compatible (homebrew) CPUs</p></desc>
-    <extlink name="Big Mess-oWires" link="http://www.stevechamberlin.com/cpu/bmow1/"/>
+    <extlink name="Big Mess-oWires" link="https://www.bigmessowires.com/bmow1/"/>
     <extlink name="The original ARM architecture was inspired by the 6502 (wikipedia)" link="http://en.wikipedia.org/wiki/ARM_architecture"/>
   </section>
 

@@ -34,6 +34,10 @@
 		Bil Herd - yes, the designer of the Commodore 128 - who suggested 
 		some improvements:
 		</p>
+                <div class="rightimg">
+                     <a href="board.png"><img width="300px" src="board-small.png"/></a><br/>
+                     	The new CPLD-based ramdisk board.
+                </div>
 		<ul><li>Use a state machine and a GAL to create a simple DRAM controller
 			and not rely on gate delay times to create signals. 
 			I found the 8296 timing signal generation a good example for such a
@@ -51,10 +55,6 @@
 		</ul>
 		<p>See the <a href="../../icaphw/design.html">this page</a> for the full discussion</p>
 		<p>The CPLD-based design for this board reflects these discussions.</p>
-                <div class="rightimg">
-                     <a href="board.png"><img width="300px" src="board-small.png"/></a><br/>
-                     	The new CPLD-based ramdisk board.
-                </div>
 	</desc>
 	<!--diagram>
 		<file>keyemu.gif</file>

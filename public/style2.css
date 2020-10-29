@@ -27,7 +27,7 @@ h1, h2, h3, div.tophead
 }
 
 h3 {
-	clear: both;
+/*	clear: both;*/
 }
 
 a:visited { color:#000080; text-decoration:none }
@@ -454,7 +454,7 @@ div.teasers div.teaserend {
   		width: 27%;
 	}
 	div.teaser div.teaserlst {
-		padding-left: 28%;
+		padding-left: 30%;
 	}
 }
 
