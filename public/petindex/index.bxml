@@ -41,6 +41,7 @@ I hope you enjoy this document.<br/>
         Added links on the <a href="keyboards.html">keyboards page"</a> on how to replace PET keyboards or use them on a PC,
 	on the <a href="hw.html">hardware page</a> on how to properly add a RESET switch, and on the <a href="roms.html">ROMs page</a>
 	a link to all Commodore ROMs and info on 2332 ROM adapters.
+	Fixed a number of dead links.
     </item>
     <item date="2020-05-02">
 	Updated the <a href="poke/index.html">PET killer poke</a> article with new research by Tech Tangent.
