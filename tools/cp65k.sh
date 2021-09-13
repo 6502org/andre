@@ -4,8 +4,8 @@
 # the web site as .bxml
 # 
 
-SRC="/home/fachat/8bitsvn/Projects/65k/git/doc"
-TRG="/home/fachat/8bitweb/public/65k"
+SRC="/home/fachat/Documents/8bit/65k02/af65/doc"
+TRG="/home/fachat/Documents/8bit/8bitweb/public/65k"
 
 EXTRAS="archcore.svg archcore.png archtop.svg archtop.png optable.css"
 
