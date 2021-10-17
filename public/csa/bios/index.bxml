@@ -2,7 +2,6 @@
 <board>
 	<name>CS/A65 BIOS</name>
 	<keywords>CSA65 6502 BIOS UART</keywords>
-	<lastmodified>2006-10-13</lastmodified>
 	<desc>This board implements basic memory and I/O functionality
 		for the CS/A65 computer. 
 The BIOS board complements the MMU CPU board in that it provides
@@ -14,10 +13,35 @@ The I/O mapping can be changed from the BIOS port as well.
 The older version 1 used a 6551 ACIA for the RS232 interface, but now I
 use a 16550 UART (with FIFO).
 	</desc>
+	<news>
+               <item date="2021-10-17">
+                       	After actually several weeks of debugging and burn-in-testing
+			I found an issue in the /CS line of the SRAM, which is now fixed
+			in version 3.0G
+               </item>
+	</news>
 	<diagram>
 		<file>bios.gif</file>
 		<desc>This diagram shows an overview on the board architecture</desc>
 	</diagram>
+	<rev>
+		<version>3.0G</version>
+		<status>ok</status>
+		<note type="msg">
+			I found that an SRAM chip from BSI was creating enough noise 
+			on the address lines it seems to become unreliable when its /CS line
+			was gated with Phi2. So here now /OE and /WE are gated with Phi2,
+			but /CS isn't anymore. This fixes the stability problem with this RAM chip.
+		</note>
+		<note type="warn">
+			I have not fully tested this board yet, esp. the power and RS232 problems mentioned below.
+		</note>
+		<file ltype="desc" ptype="esch">csa_bios_v3.0b-desc.txt</file>
+		<file ltype="schem" ptype="esch">csa_bios_v3.0g.sch</file>
+		<file ltype="schem" ptype="png">csa-bios-v3.0g-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_bios_v3.0g.brd</file>
+		<file ltype="layout" ptype="png">csa-bios-v3.0g-brd.png</file>
+	</rev>
 	<rev>
 		<version>3.0F</version>
 		<status>ok</status>

@@ -2,7 +2,6 @@
 <board>
 	<name>CS/A65 Video board</name>
 	<keywords>CSA65 VDC video CRTC 6545 6845</keywords>	
-	<lastmodified>2006-11-01</lastmodified>
 	<desc>This board implements the a video board for the CS/A65 bus.
 		The board uses 64k dynamic RAM that is accessed in a
 		time-shared way, by the CPU at Phi2 high, and by the
@@ -19,6 +18,10 @@
 		You can find some on the <a href="../../hwinfo/crtc/composite.html">composite video page</a>
 	</desc>
         <news>
+                <item date="2021-10-17">
+			With a better screen you could see that display enable was about
+			half a pixel off ... Updated to version 1.4D
+                </item>
                 <item date="2011-05-04">
                 	It's amazing how quickly you can find problems with a good scope. 
                 	Updated to version 1.4C.
@@ -73,51 +76,33 @@
 			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
 		</desc>
 	</diagram>
-	<!-- rev>
-		<version>Composite Video (pet revealed) 1.0C</version>
-		<status>ok</status>
-		<note type="msg">
-			To use the vdc board with a standard TV set for
-			example, a so-called "composite video" signal
-			must be generated, that includes all three
-			video, horizontal sync and vertical sync signals.
-			This board is derived from the "Composite Video Circuit"
-			from the book "The PET revealed".
-		</note>
-		<note type="msg">
-			This circuit produces a not so bright picture
-			on my TV set, and I did not investigate how improve
-			brightness (might even be my TV).
-		</note>
-		<file ltype="schem" ptype="png">comp_pet_revealed_v1.0c-sch.png</file>
-		<file ltype="schem" ptype="esch">comp_pet_revealed_v1.0c.sch</file>
-		<file ltype="layout" ptype="png">comp_pet_revealed_v1.0c-brd.png</file>
-		<file ltype="layout" ptype="ebrd">comp_pet_revealed_v1.0c.brd</file>
-		<file ltype="photo" ptype="jpg">composite2.jpg</file>
-	</rev>
 	<rev>
-		<version>Composite Video (pucoe) 1.0C</version>
+		<version>1.4D</version>
 		<status>ok</status>
 		<note type="msg">
-			To use the vdc board with a standard TV set for
-			example, a so-called "composite video" signal
-			must be generated, that includes all three
-			video, horizontal sync and vertical sync signals.
-			This board is derived from the "PET Video Mixer"
-			by the PET users club of England.
+			With a new monitor I noticed that the display enable was about
+			half a pixel off, giving ghost artifacts on the right side of the 
+			screen from characters displayed on the left side of the screen.
+			So I had to fix the timing for the DE latch.
+		</note>
+		<note type="warn">
+			This layout is mostly tested (as a patched 1.4C)
 		</note>
 		<note type="msg">
-			The original board did not have R2 and R5, and 
-			produces a very bright picture on my TV set.
-			Therefore I introduced R2 and R5 to adjust brightness
-			This modification is untested, though.
+			In my current setup I have reused my 20 year old original video board
+			(which wasn't working anymore). So all timing relevant ICs are 'LS technology
+			('LS04, 'LS00, 'LS74, 'LS257, 'LS32, 'LS138, 'LS86, 'LS175, 'LS166). The
+			only exceptions are a 'HCT688 and a 'HCT245.
+			Maybe I've finally defeated the dRAM timing hell here....
 		</note>
-		<file ltype="schem" ptype="png">comp_pucoe_v1.0c-sch.png</file>
-		<file ltype="schem" ptype="esch">comp_pucoe-v1.0c.sch</file>
-		<file ltype="layout" ptype="png">comp_pucoe_v1.0c-brd.png</file>
-		<file ltype="layout" ptype="ebrd">comp_pucoe-v1.0c.brd</file>
-		<file ltype="photo" ptype="jpg" note="This picture shows an older version without R2/R5">composite1.jpg</file>
-	</rev -->
+		<file ltype="desc" ptype="txt">csa_vdc_v1.4a-desc.txt</file>
+		<file ltype="parts" ptype="txt">csa_vdc_v1.4a-parts.txt</file>
+		<file ltype="schem" ptype="png">csa_vdc_v1.4d-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_vdc_v1.4d.sch</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4d-brd.png</file>
+		<file ltype="layout" ptype="png">csa_vdc_v1.4d-layout.png</file>
+		<file ltype="layout" ptype="ebrd">csa_vdc_v1.4d.brd</file>
+	</rev>
 	<rev>
 		<version>1.4C</version>
 		<status>ok</status>

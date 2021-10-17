@@ -251,7 +251,10 @@
 		Please note that to get a composite video signal, you need an extra circuit on the video connector.
 		You can find some on the <a href="../../hwinfo/crtc/composite.html">composite video page</a>
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2011-05-04</small>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2021-10-17</small>
+			With a better screen you could see that display enable was about
+			half a pixel off ... Updated to version 1.4D
+                </li><li><div> </div><small>2011-05-04</small>
                 	It's amazing how quickly you can find problems with a good scope. 
                 	Updated to version 1.4C.
                 </li><li><div> </div><small>2010-12-20</small>
@@ -262,7 +265,7 @@
 			to composite video.
                 </li><li><div class="i_oldnews"> </div><small>2006-11-01</small>
                         Added driver code.
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4C</a> (ok)</li><li><a href="#board2">1.4B</a> (untested)</li><li><a href="#board3">1.4A</a> (untested)</li><li><a href="#board4">1.3E</a> (prototype)</li><li><a href="#board5">1.3C</a> (prototype with bugs)</li><li><a href="#board6">1.3A</a> (prototype)</li><li><a href="#board7">1.2A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3><div class="driverdesc">This is the video-specific hardware part of the 
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">OS/A65 VDC hardware driver</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.4D</a> (ok)</li><li><a href="#board2">1.4C</a> (ok)</li><li><a href="#board3">1.4B</a> (untested)</li><li><a href="#board4">1.4A</a> (untested)</li><li><a href="#board5">1.3E</a> (prototype)</li><li><a href="#board6">1.3C</a> (prototype with bugs)</li><li><a href="#board7">1.3A</a> (prototype)</li><li><a href="#board8">1.2A</a> (prototype)</li></ul></li><li><a href="#blkdiag">Block diagram</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">OS/A65 VDC hardware driver</a></h3><div class="driverdesc">This is the video-specific hardware part of the 
 			CS/A65 console driver. It provides the following
 			methods:
 			<ul>
@@ -279,7 +282,50 @@
 		</div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="con_csa.a65">con_csa.a65</a>(VDC driver excerpt)</td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.4C</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.4D</a></h3>
+<div class="revdesc"><p>Status: ok</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			With a new monitor I noticed that the display enable was about
+			half a pixel off, giving ghost artifacts on the right side of the 
+			screen from characters displayed on the left side of the screen.
+			So I had to fix the timing for the DE latch.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			This layout is mostly tested (as a patched 1.4C)
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			In my current setup I have reused my 20 year old original video board
+			(which wasn't working anymore). So all timing relevant ICs are 'LS technology
+			('LS04, 'LS00, 'LS74, 'LS257, 'LS32, 'LS138, 'LS86, 'LS175, 'LS166). The
+			only exceptions are a 'HCT688 and a 'HCT245.
+			Maybe I've finally defeated the dRAM timing hell here....
+		</td></tr>
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_desc"> </div></td>
+<td><a href="csa_vdc_v1.4a-desc.txt">csa_vdc_v1.4a-desc.txt</a></td>
+</tr>
+<tr class="R0"><td><div class="i_parts"> </div></td>
+<td><a href="csa_vdc_v1.4a-parts.txt">csa_vdc_v1.4a-parts.txt</a></td>
+</tr>
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_vdc_v1.4d-sch.png">csa_vdc_v1.4d-sch.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_vdc_v1.4d.sch">csa_vdc_v1.4d.sch</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4d-brd.png">csa_vdc_v1.4d-brd.png</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4d-layout.png">csa_vdc_v1.4d-layout.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_vdc_v1.4d.brd">csa_vdc_v1.4d.brd</a></td>
+</tr></table>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.4C</a></h3>
 <div class="revdesc"><p>Status: ok</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -325,7 +371,7 @@
 <tr class="R1"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4c.brd">csa_vdc_v1.4c.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.4B</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.4B</a></h3>
 <div class="revdesc"><p>Status: untested</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -370,7 +416,7 @@
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4b.brd">csa_vdc_v1.4b.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.4A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.4A</a></h3>
 <div class="revdesc"><p>Status: untested</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>
@@ -416,7 +462,7 @@
 <tr class="R0"><td><div class="i_layout"> </div></td>
 <td><a href="csa_vdc_v1.4a.brd">csa_vdc_v1.4a.brd</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.3E</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board5" id="board5">Version: 1.3E</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This board version is a redo of the
@@ -446,7 +492,7 @@
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="csa_vdc_v1.3e.jpg">csa_vdc_v1.3e.jpg</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board5" id="board5">Version: 1.3C</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board6" id="board6">Version: 1.3C</a></h3>
 <div class="revdesc"><p>Status: prototype with bugs</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>This schematics has a bug in the
@@ -470,7 +516,7 @@
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csavdc.ps.gz">csavdc.ps.gz</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board6" id="board6">Version: 1.3A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board7" id="board7">Version: 1.3A</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
@@ -480,7 +526,7 @@
 <tr class="R1"><td><div class="i_schem"> </div></td>
 <td><a href="csavdc-1.3A-schem.png">csavdc-1.3A-schem.png</a></td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board7" id="board7">Version: 1.2A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board8" id="board8">Version: 1.2A</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
 <td>This is the original video board. 
@@ -513,7 +559,9 @@
 			is then shifted out to the video output.
 			More on how the CRTC works can be found on the
 			<a href="../../hwinfo/crtc/index.html">CRTC page</a>.
-		</div></div></div><div id="contentfooter"><p>Last modified: 2006-11-01.</p>
+		</div></div></div><div id="contentfooter">Last modified: 
+2015-09-20
+	
 <p>Return to <a href="../../index.html">Homepage</a></p>
 
 </div></div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
