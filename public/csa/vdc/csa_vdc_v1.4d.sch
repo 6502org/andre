@@ -11908,6 +11908,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <part name="V14" library="supply2" deviceset="VCC" device=""/>
 <part name="JP10" library="jumper" deviceset="JP2E" device=""/>
 <part name="V13" library="supply2" deviceset="VCC" device=""/>
+<part name="GND15" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11917,7 +11918,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <wire x1="388.62" y1="-137.16" x2="-93.98" y2="-137.16" width="0.4064" layer="94"/>
 <wire x1="-93.98" y1="-137.16" x2="-93.98" y2="215.9" width="0.4064" layer="94"/>
 <text x="294.64" y="-106.68" size="3.81" layer="92">40/80 column Video Display Controller</text>
-<text x="294.64" y="-129.54" size="2.54" layer="92">CSA-VDC40/80-V1.4D-20210403</text>
+<text x="294.64" y="-129.54" size="2.54" layer="92">CSA-VDC40/80-V1.4D-20211018</text>
 <text x="294.64" y="-111.76" size="2.54" layer="92">(C) A. Fachat</text>
 <text x="55.88" y="-68.58" size="1.778" layer="91">Phi2 high, but not selected</text>
 <text x="27.94" y="38.1" size="1.778" layer="91">$E88x/E89x</text>
@@ -11933,9 +11934,11 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <text x="322.58" y="-33.02" size="2.54" layer="91">IC14 pins 3 and 11,</text>
 <text x="322.58" y="-43.18" size="2.54" layer="91">IC23B Pin 5 connection to GND was </text>
 <text x="322.58" y="-48.26" size="2.54" layer="91">missing in layout</text>
-<text x="320.04" y="-53.34" size="2.54" layer="91">1.4D: use IC14B.Q for delaying DE/CE</text>
+<text x="320.04" y="-53.34" size="2.54" layer="91">1.4D: use IC14B./Q for delaying DE/CE</text>
 <text x="322.58" y="-58.42" size="2.54" layer="91">via IC12.9, to sync left/right screen</text>
 <text x="322.58" y="-63.5" size="2.54" layer="91">borders with pixel output</text>
+<text x="322.58" y="-71.12" size="2.54" layer="91">Make JP10 more reasonable,
+freeing ctrl port bit 7</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="-33.02" y="27.94" rot="R180"/>
@@ -12061,6 +12064,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <instance part="V14" gate="G$1" x="152.4" y="129.54" rot="R90"/>
 <instance part="JP10" gate="1" x="20.32" y="114.3"/>
 <instance part="V13" gate="G$1" x="-15.24" y="-104.14" rot="R90"/>
+<instance part="GND15" gate="1" x="22.86" y="101.6"/>
 </instances>
 <busses>
 <bus name="BA[16..19]">
@@ -12379,6 +12383,11 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <wire x1="208.28" y1="68.58" x2="205.74" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="IC24" gate="G$1" pin="GND"/>
 <pinref part="GND12" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND15" gate="1" pin="GND"/>
+<pinref part="JP10" gate="1" pin="3"/>
+<wire x1="22.86" y1="104.14" x2="22.86" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -13914,9 +13923,9 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <wire x1="-5.08" y1="96.52" x2="-78.74" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="-78.74" y1="96.52" x2="-78.74" y2="-99.06" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="119.38" x2="63.5" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="119.38" x2="63.5" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="109.22" x2="119.38" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="119.38" y1="109.22" x2="119.38" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="119.38" x2="63.5" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="111.76" x2="119.38" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="111.76" x2="119.38" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="93.98" x2="109.22" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="172.72" x2="-48.26" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="-48.26" y1="172.72" x2="-48.26" y2="165.1" width="0.1524" layer="91"/>
@@ -13936,6 +13945,8 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <pinref part="IC9" gate="A" pin="DIR"/>
 <pinref part="IC17" gate="D" pin="I0"/>
 <pinref part="IC23" gate="B" pin="I0"/>
+<label x="88.9" y="111.76" size="1.778" layer="95"/>
+<label x="20.32" y="119.38" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="/RES" class="0">
@@ -14010,7 +14021,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <junction x="241.3" y="-71.12"/>
 <label x="223.52" y="35.56" size="1.778" layer="95"/>
 <label x="223.52" y="-5.08" size="1.778" layer="95"/>
-<label x="134.62" y="53.34" size="1.778" layer="95" rot="R180"/>
+<label x="129.54" y="50.8" size="1.778" layer="95"/>
 <label x="17.78" y="-71.12" size="1.778" layer="95"/>
 <label x="33.02" y="-83.82" size="1.778" layer="95"/>
 <label x="175.26" y="-71.12" size="1.778" layer="95"/>
@@ -14158,32 +14169,39 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <label x="60.96" y="63.5" size="1.778" layer="95" rot="R90"/>
 <pinref part="IC8" gate="A" pin="!A!/B"/>
 <pinref part="IC11" gate="G$1" pin="Q2"/>
+<label x="101.6" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CA12" class="0">
 <segment>
-<wire x1="63.5" y1="106.68" x2="180.34" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="106.68" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="104.14" x2="180.34" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="104.14" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="76.2" x2="208.28" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="86.36" x2="63.5" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="86.36" x2="63.5" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="86.36" x2="63.5" y2="104.14" width="0.1524" layer="91"/>
 <label x="200.66" y="76.2" size="1.778" layer="95"/>
 <label x="63.5" y="91.44" size="1.778" layer="95" rot="R90"/>
 <label x="53.34" y="86.36" size="1.778" layer="95"/>
 <pinref part="IC11" gate="G$1" pin="Q3"/>
 <pinref part="IC24" gate="G$1" pin="A12"/>
+<label x="134.62" y="104.14" size="1.778" layer="95"/>
+<label x="180.34" y="83.82" size="1.778" layer="95" rot="R90"/>
+<label x="88.9" y="104.14" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CA11" class="0">
 <segment>
-<wire x1="182.88" y1="104.14" x2="182.88" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="106.68" x2="182.88" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="182.88" y1="78.74" x2="208.28" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="109.22" x2="58.42" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="104.14" x2="182.88" y2="104.14" width="0.1524" layer="91"/>
-<label x="55.88" y="101.6" size="1.778" layer="95"/>
+<wire x1="58.42" y1="109.22" x2="58.42" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="106.68" x2="182.88" y2="106.68" width="0.1524" layer="91"/>
+<label x="60.96" y="106.68" size="1.778" layer="95"/>
 <label x="200.66" y="78.74" size="1.778" layer="95"/>
 <pinref part="IC13" gate="D" pin="O"/>
 <pinref part="IC24" gate="G$1" pin="A11"/>
+<label x="134.62" y="106.68" size="1.778" layer="95"/>
+<label x="182.88" y="83.82" size="1.778" layer="95" rot="R90"/>
+<label x="88.9" y="106.68" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="HSINV" class="0">
@@ -14226,6 +14244,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <label x="66.04" y="63.5" size="1.778" layer="95" rot="R90"/>
 <pinref part="IC7" gate="A" pin="4B"/>
 <pinref part="IC11" gate="G$1" pin="Q7"/>
+<label x="101.6" y="58.42" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="VA14" class="0">
@@ -14242,9 +14261,10 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <label x="63.5" y="63.5" size="1.778" layer="95" rot="R90"/>
 <pinref part="IC7" gate="A" pin="3B"/>
 <pinref part="IC11" gate="G$1" pin="Q8"/>
+<label x="101.6" y="60.96" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$24" class="0">
+<net name="REGCLK" class="0">
 <segment>
 <wire x1="10.16" y1="68.58" x2="10.16" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="121.92" x2="63.5" y2="121.92" width="0.1524" layer="91"/>
@@ -14253,6 +14273,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <wire x1="25.4" y1="68.58" x2="10.16" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="IC17" gate="C" pin="O"/>
 <pinref part="IC11" gate="G$1" pin="CLK"/>
+<label x="20.32" y="121.92" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$52" class="0">
@@ -14366,6 +14387,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <label x="76.2" y="-53.34" size="1.778" layer="95"/>
 <pinref part="IC9" gate="A" pin="G"/>
 <pinref part="IC16" gate="C" pin="O"/>
+<label x="106.68" y="53.34" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="/VDCMEMSEL" class="0">
@@ -14413,19 +14435,17 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <pinref part="IC10" gate="A" pin="SH/!LD"/>
 </segment>
 </net>
-<net name="N$23" class="0">
+<net name="DECLK" class="0">
 <segment>
-<wire x1="292.1" y1="-25.4" x2="302.26" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="302.26" y1="-25.4" x2="302.26" y2="-22.86" width="0.1524" layer="91"/>
-<pinref part="IC14" gate="B" pin="Q"/>
-<pinref part="IC23" gate="A" pin="I0"/>
 <pinref part="IC12" gate="A" pin="CLK"/>
 <wire x1="157.48" y1="152.4" x2="152.4" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="152.4" x2="152.4" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="134.62" x2="312.42" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="312.42" y1="134.62" x2="312.42" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="312.42" y1="-25.4" x2="302.26" y2="-25.4" width="0.1524" layer="91"/>
-<junction x="302.26" y="-25.4"/>
+<wire x1="312.42" y1="134.62" x2="312.42" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="IC14" gate="B" pin="!Q"/>
+<wire x1="292.1" y1="-35.56" x2="312.42" y2="-35.56" width="0.1524" layer="91"/>
+<label x="312.42" y="2.54" size="1.778" layer="95" rot="R90"/>
+<label x="269.24" y="134.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CURSOR_DELAYED" class="0">
@@ -14495,7 +14515,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <wire x1="281.94" y1="137.16" x2="233.68" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="137.16" x2="233.68" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="147.32" x2="236.22" y2="147.32" width="0.1524" layer="91"/>
-<label x="271.78" y="137.16" size="1.778" layer="95"/>
+<label x="269.24" y="137.16" size="1.778" layer="95"/>
 <pinref part="IC10" gate="A" pin="QH"/>
 <pinref part="IC13" gate="A" pin="I1"/>
 </segment>
@@ -14529,10 +14549,10 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 </net>
 <net name="GRPH" class="0">
 <segment>
-<wire x1="33.02" y1="106.68" x2="33.02" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="101.6" x2="66.04" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="106.68" x2="33.02" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="99.06" x2="66.04" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="83.82" x2="66.04" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="83.82" x2="66.04" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="83.82" x2="66.04" y2="99.06" width="0.1524" layer="91"/>
 <label x="66.04" y="91.44" size="1.778" layer="95" rot="R90"/>
 <label x="53.34" y="83.82" size="1.778" layer="95"/>
 <pinref part="IC13" gate="D" pin="I1"/>
@@ -14619,7 +14639,7 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <pinref part="IC15" gate="F" pin="I"/>
 </segment>
 </net>
-<net name="N$46" class="0">
+<net name="CA13" class="0">
 <segment>
 <wire x1="172.72" y1="129.54" x2="175.26" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="129.54" x2="175.26" y2="127" width="0.1524" layer="91"/>
@@ -14635,18 +14655,9 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <pinref part="JP9" gate="B" pin="1"/>
 <pinref part="JP9" gate="B" pin="3"/>
 <pinref part="IC24" gate="G$1" pin="A13"/>
-</segment>
-</net>
-<net name="N$49" class="0">
-<segment>
-<wire x1="50.8" y1="91.44" x2="55.88" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="91.44" x2="55.88" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="99.06" x2="25.4" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="99.06" x2="25.4" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="101.6" x2="22.86" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="101.6" x2="22.86" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="IC11" gate="G$1" pin="Q1"/>
-<pinref part="JP10" gate="1" pin="3"/>
+<label x="180.34" y="124.46" size="1.778" layer="95"/>
+<label x="185.42" y="83.82" size="1.778" layer="95" rot="R90"/>
+<label x="200.66" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$50" class="0">
@@ -14702,9 +14713,23 @@ Source: www.farnell.com/datasheets/247.pdf</description>
 <pinref part="IC14" gate="B" pin="CLK"/>
 </segment>
 </net>
+<net name="N$47" class="0">
+<segment>
+<pinref part="IC23" gate="A" pin="I0"/>
+<wire x1="302.26" y1="-25.4" x2="302.26" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="292.1" y1="-25.4" x2="302.26" y2="-25.4" width="0.1524" layer="91"/>
+<pinref part="IC14" gate="B" pin="Q"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
