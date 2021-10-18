@@ -20,8 +20,11 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
-    <item date="2021-10-17" >
-        Updated the CS/A <a href="csa/vdc/index.html">VDC Video board</a> and <a href="csa/bios/index.html">BIOS board</a>.
+    <item date="2021-10-18" >
+        Added the link to the github source code repo of <a href="osa/index.html">GeckOS</a>.
+    </item>
+    <item date="2021-10-18" >
+        Updated the CS/A <a href="csa/vdc/index.html">VDC Video board</a>, <a href="csa/petio/index.html">PETIO</a>, and <a href="csa/bios/index.html">BIOS</a> boards.
     </item>
     <item date="2021-09-13" state="hot"> 
 	Added the <a href="upet/index.html">Micro-PET page</a>.
@@ -39,6 +42,8 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 	Started working on the documentation of the <a href="xs1541/index.html">XS1541 device</a> to connect Commodore computer
 	and devices to the PC.
     </item>
+  </news>
+  <oldnews>
     <item date="2018-12-29">
 	Updated some links on the <a href="petindex/index.html">Petindex</a> page.
     </item>
@@ -70,8 +75,6 @@ on Google+. After three years my priorities shifted and I stepped back from it j
     <item date="2015-09-20">
 	Updated some links on the <a href="petindex/index.html">PETindex</a>.
     </item>
-  </news>
-  <oldnews>
     <item date="2014-08-22">
 	Also added some more links on the <a href="petindex/index.html">PETindex</a>.
     </item>

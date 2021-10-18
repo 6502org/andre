@@ -236,10 +236,9 @@
 
 <h1>CS/A65 computer - Caspaer and Gecko</h1>
 <h3>(C) 1989 - 2013 André  Fachat</h3>
-<div class="overview"><p>30th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p>
-
+<div class="overview">
         <p>In the last 10 years progress was slow, but still the system got the capability to use USB (<a href="netusb/index.html">NetUSB</a> and <a href="usb/index.html">USB</a>), Ethernet (<a href="netusb/index.html">NetUSB</a>, <a href="usb/index.html">USB (+Ethernet)</a>, and <a href="etholi/index.html">EthOli</a>), SD cards (<a href="netusb/index.html">NetUSB</a>), a RAM disk (<a href="ramdisk/index.html">RAMdisk</a>), a Blitter (<a href="blitter/index.html">Blitter</a>), and many more updates.
-While not much more is planned right now, there will be further updates. Stay tuned!
+While not much more is planned right now, there will be further updates.
         </p>
         <p>Meanwhile, have a look at the updated <a href="gallery/index.html">Gallery</a>.</p>
 
@@ -253,21 +252,17 @@ that in itself is a complete, single-board computer.</p>
 		</li><li><div class="i_hotnews"> </div><small>2013-01-04</small>
 			Added the new <a href="netusb/index.html">NetUSB board</a> with SD-Card,
 			Ethernet and USB host + device!
-		</li><li><div class="i_hotnews"> </div><small>2011-05-04</small>
-			Updated the <a href="vdc/index.html">video board</a>, hopefully fixing the last bug
-		</li><li><div class="i_hotnews"> </div><small>2011-04-29</small>
-			Added a completely new <a href="blitter/index.html">Block Transfer engine</a> board!
-		</li><li><div class="i_hotnews"> </div><small>2011-04-22</small>
-			Added a completely new <a href="usb/index.html">USB board</a>!
-		</li><li><div> </div><small>2021-10-17</small>
+		</li><li><div> </div><small>2021-10-18</small>
+			I created a burn-in-test for the CS/A computer (based on a PET burn-in program),
+			and also created a git repository for code to build the ROM for the BIOS board.
+		</li><li><div> </div><small>2021-10-18</small>
 			Updated the <a href="vdc/index.html">VDC Video board</a> for a small display fix.
+			Also updated the <a href="bios/index.html">BIOS board</a> for a fix to work with certain types of SRAMs.
+			<a href="petio/index.html">PETIO</a> got a better layout also.
 		</li><li><div> </div><small>2017-08-13</small>
 			Added a page with <a href="contrib/index.html">contributions</a> by other people!
 			This page starts with a contributed backplane.
-		</li><li><div> </div><small>2011-06-04</small>
-			Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
-			Updated and added a new version of the <a href="pwr/index.html">Power supply board</a>.
-		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#overview">Introduction</a></li><li><a href="#general">General considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#othercpu">Other CPUs</a></li><li><a href="#bus">Bus</a></li><li><a href="#tech">Technology</a></li><li><a href="#schem">Schematics</a></li><li><a href="#age">Age</a></li></ul></li><li><a href="#setups">Setups</a></li><li style="list-style-type:none;"><ul><li><a href="#caspaer">Caspaer</a></li><li><a href="#legacy">CS/A65 legacy</a></li><li><a href="#gecko">Gecko</a></li><li><a href="#fat40">Fat40</a></li><li><a href="#vc1581">VC1581</a></li></ul></li><li><a href="#sw">Software</a></li><li><a href="#boards">Boards</a></li><li style="list-style-type:none;"><ul><li><a href="#mainboards">Main Boards</a></li><li><a href="#ioboards">I/O boards</a></li><li><a href="#specialboards">Special purpose boards</a></li><li><a href="#deprecatedboards">Deprecated boards</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li><a href="#numbering">Board numbering scheme</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disclaimer" id="disclaimer">Disclaimer</a></h2></div><div class="h2c">
+		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#motivation">Motivation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#overview">Introduction</a></li><li><a href="#general">General considerations</a></li><li style="list-style-type:none;"><ul><li><a href="#othercpu">Other CPUs</a></li><li><a href="#bus">Bus</a></li><li><a href="#tech">Technology</a></li><li><a href="#schem">Schematics</a></li><li><a href="#age">Age</a></li></ul></li><li><a href="#setups">Setups</a></li><li style="list-style-type:none;"><ul><li><a href="#caspaer">Caspaer</a></li><li><a href="#legacy">CS/A65 legacy</a></li><li><a href="#gecko">Gecko</a></li><li><a href="#fat40">Fat40</a></li><li><a href="#vc1581">VC1581</a></li></ul></li><li><a href="#sw">Software</a></li><li style="list-style-type:none;"><ul><li><a href="#os">Operating System</a></li><li><a href="#emu">Emulator</a></li><li><a href="#roms">ROMs</a></li><li><a href="#burnin">Burn-in tests</a></li></ul></li><li><a href="#boards">Boards</a></li><li style="list-style-type:none;"><ul><li><a href="#mainboards">Main Boards</a></li><li><a href="#ioboards">I/O boards</a></li><li><a href="#specialboards">Special purpose boards</a></li><li><a href="#deprecatedboards">Deprecated boards</a></li></ul></li><li><a href="#memmap">Memory Map</a></li><li><a href="#numbering">Board numbering scheme</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="disclaimer" id="disclaimer">Disclaimer</a></h2></div><div class="h2c">
 	<P class="disclaimer">Before you go on, you should know that all this stuff
 comes with <strong>no warranty at all </strong>. Of course this hardware is <strong>not</strong>
 to be used in any important or even life-critical systems.
@@ -427,19 +422,52 @@ tested the board and found no problem.
 		<a href="drvio/index.html">DRVIO board</a> to emulate a Commodore VC1581 disk drive.
 		The VC1581 setup has its own <a href="../cbmhw/ryo1581/index.html">VC1581 page</a>.
 	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software</a></h2></div><div class="h2c">
-<p>
-The software used is the <a href="../osa/index.html">GeckOS/A65</a>
-operating system. It features the handling of the MMU, serial devices,
-video output, floppy disk drives, and the newest versions even feature
-TCP/SLIP (beta) and SCSI (alpha) support.
-</p>
-<p>
-Some of the software development took place on a modified
-VICE emulator, that now emulates a subset of the CS/A65 hardware.
-Please check it out at its <a href="emu/index.html">site</a>.
-</p>
-<p>The board pages contain driver code where appropriate and available.</p>
-	</div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Boards</a></h2></div><div class="h2c">
+	<p>As the system is a PET clone, with the right ROM values the machine
+		can run (almost) all PET software.
+		Here, however, you find software specific to the CS/A.
+	</p>
+	<p>Also, the board pages contain driver code where appropriate and available.</p>
+	<h3><a name="os" id="os">Operating System</a></h3><p>
+		The software used is the <a href="../osa/index.html">GeckOS/A65</a>
+		operating system. It features the handling of the MMU, serial devices,
+		video output, floppy disk drives, and the newest versions even feature
+		TCP/SLIP (beta) and SCSI (alpha) support.
+		</p>
+	<h3><a name="emu" id="emu">Emulator</a></h3> <p>
+		Some of the software development took place on a modified
+		VICE emulator, that now emulates a subset of the CS/A65 hardware.
+		Please check it out at its <a href="emu/index.html">site</a>.
+	</p><p>
+		However, note that this VICE version is rather old and does not
+		even work on my up-to-date Linux system anymore.
+		I did not yet have time to update this emulator to a current
+		VICE version unfortunately.
+	</p><h3><a name="roms" id="roms">ROMs</a></h3><p>
+			You cannot directly use Commodore ROMs in the PET, at least
+			the Editor ROM and the Kernal have to be modified:
+			</p>
+			<ul>
+			<li>The Editor ROM needs modified CRTC timer values to produce
+				a standard PAL timing video signal.
+				Also, the 2MHz system needs the CRTC to be programmed
+				with 80 columns - the 80 column PET had special hardware
+				so the CRTC was still programmed to 40 columns even if
+				80 columns were displayed.
+			</li>
+			<li>The Kernal ROM needs to initialize the MMU, so that the 
+				CPU has the right memory mapping, and also access to the video memory.
+				The modified kernal also detects if the system is running
+				on 1MHz (40 columns display) or 2MHz (80 column display),
+				and selects the right Editor ROM by setting the correct mapping
+				in the CPU.
+			</li>
+			</ul>
+		<ul><li><a href="https://github.com/fachat/csa-roms" target="_blank" class="extlink">CS/A ROM build on github</a> </li></ul><h3><a name="burnin" id="burnin">Burn-in tests</a></h3>
+			Based on the original <code>8296 burnin</code> test suite, I created 
+			a versatile test suite for PET-like board. 
+			This starts as BASIC program for the PET, then takes over and tests 
+			a lot of the hardware, like VIA timers, userport, RAM, ROMs etc.
+		<ul><li><a href="https://github.com/fachat/cbm-burnin-tests" target="_blank" class="extlink">pet burnin on github</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Boards</a></h2></div><div class="h2c">
 	This section describes the different boards and links to the schematics and more detailled descriptions.<h3><a name="mainboards" id="mainboards">Main Boards</a></h3>Those boards are the heart of the CS/A65 and Gecko computers.<ul><li class="subitem"><a href="cpu/index.html" target="_blank" class="extlink">CS/A65 CPU</a> 
 		The main CPU board features an MMU, and newer versions also
 		sport bus error condition detection. It is a CPU-only board
@@ -623,7 +651,7 @@ like these, why I moved some of the lines around those days...)
 		human ;-)
 		</p>
 	</div></div><div id="contentfooter">Last modified: 
-2019-08-31
+2021-10-17
 	
 <p>Return to <a href="../index.html">Homepage</a></p>
 
@@ -634,7 +662,16 @@ like these, why I moved some of the lines around those days...)
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div><div class="top" id="oldnews"><div class="tophead">history</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews"> </div><small>2011-01-09</small>
+		</div></div><div class="top" id="oldnews"><div class="tophead">history</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews"> </div><small>2011-06-04</small>
+			Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
+			Updated and added a new version of the <a href="pwr/index.html">Power supply board</a>.
+		</li><li><div class="i_oldnews"> </div><small>2011-05-04</small>
+			Updated the <a href="vdc/index.html">video board</a>, hopefully fixing the last bug
+		</li><li><div class="i_oldnews"> </div><small>2011-04-29</small>
+			Added a completely new <a href="blitter/index.html">Block Transfer engine</a> board!
+		</li><li><div class="i_oldnews"> </div><small>2011-04-22</small>
+			Added a completely new <a href="usb/index.html">USB board</a>!
+		</li><li><div class="i_oldnews"> </div><small>2011-01-09</small>
 			Added a completely new <a href="term/index.html">Bus terminator board</a>!
 		</li><li><div class="i_oldnews"> </div><small>2011-01-04</small>
 			Added a completely new <a href="etholi/index.html">Ethernet board</a>!

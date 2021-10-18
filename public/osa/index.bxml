@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>1999</yearend>
+    <yearend>2021</yearend>
   </author>
   <keywords>6502,operating system</keywords>
   <metadesc>OS/A65 Version 2.0</metadesc>
@@ -20,6 +20,9 @@ From version 2.0.0 on it has a lot of new features:</p>
 </ul>
   </overview>
   <news>
+    <item date="2021-10-18">
+	Updated this page to finally include a link to GeckOS' github page :-)
+    </item>
     <item date="2013-10-06">
 	Updated GeckOS to 2.0.9
     </item>
@@ -30,14 +33,12 @@ From version 2.0.0 on it has a lot of new features:</p>
   <toc/>
   <section toc="download" name="Download">
     <desc>
-<ul>
-<li><a href="oa-2.0.0.tar.gz">oa-2.0.0.tar.gz</a> Full source archive. To build the binaries you have to have the xa65 package (see below).</li>
-<li><a href="oa-2.0.0.base.tar.gz">oa-2.0.0.base.tar.gz</a> Base archive, without the Gecko and CS/A65 architectures and without the copyrighted BASIC
-interpreter.</li>
-<li><a href="oa-2.0.0.lib.tar.gz">oa-2.0.0.lib.tar.gz</a> Source for the
-supplied lib6502 programs.</li>
-</ul><p>
-For some architecture some disk images are provided:</p>
+	<p>
+	The current development is done on github: <a class="extlink" target="_blank" href="https://github.com/fachat/GeckOS-V2">https://github.com/fachat/GeckOS-V2</a>.
+	There you also find the older versions 2.0.0 and 2.0.8 as source tree (check the git tags)
+	</p>
+<p>
+For some architecture some disk images for older versions are provided:</p>
 <ul>
 <li><a href="c64.d64.gz">c64.d64.gz</a> D64 file for C64 emulators.
 Start with "x64 -8 c64.d64 -1541".</li>
@@ -67,6 +68,11 @@ Download it as
 <ul>
 <li><a href="oa-2.0.9.tar.gz">oa-2.0.9.tar.gz</a>.</li>
 <li><a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.</li>
+<li><a href="oa-2.0.0.tar.gz">oa-2.0.0.tar.gz</a> Full source archive. To build the binaries you have to have the xa65 package (see below).</li>
+<li><a href="oa-2.0.0.base.tar.gz">oa-2.0.0.base.tar.gz</a> Base archive, without the Gecko and CS/A65 architectures and without the copyrighted BASIC
+interpreter.</li>
+<li><a href="oa-2.0.0.lib.tar.gz">oa-2.0.0.lib.tar.gz</a> Source for the
+supplied lib6502 programs.</li>
 </ul>
     </desc>
   </section>

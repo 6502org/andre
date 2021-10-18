@@ -9,10 +9,9 @@
 		<end>2013</end>
 	</copyright>
 	<forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
-        <desc><p>30th anniversary! In october 1989 I had the first boards of this computer system up and running - and it is still running, although in modernized form. Watch out for more things to come (although in slow sequence as time permits)</p>
-
+        <desc>
         <p>In the last 10 years progress was slow, but still the system got the capability to use USB (<a href="netusb/index.html">NetUSB</a> and <a href="usb/index.html">USB</a>), Ethernet (<a href="netusb/index.html">NetUSB</a>, <a href="usb/index.html">USB (+Ethernet)</a>, and <a href="etholi/index.html">EthOli</a>), SD cards (<a href="netusb/index.html">NetUSB</a>), a RAM disk (<a href="ramdisk/index.html">RAMdisk</a>), a Blitter (<a href="blitter/index.html">Blitter</a>), and many more updates.
-While not much more is planned right now, there will be further updates. Stay tuned!
+While not much more is planned right now, there will be further updates.
         </p>
         <p>Meanwhile, have a look at the updated <a href="gallery/index.html">Gallery</a>.</p>
 
@@ -22,8 +21,14 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
-		<item date="2021-10-17" >
+		<item date="2021-10-18" >
+			I created a burn-in-test for the CS/A computer (based on a PET burn-in program),
+			and also created a git repository for code to build the ROM for the BIOS board.
+		</item>
+		<item date="2021-10-18" >
 			Updated the <a href="vdc/index.html">VDC Video board</a> for a small display fix.
+			Also updated the <a href="bios/index.html">BIOS board</a> for a fix to work with certain types of SRAMs.
+			<a href="petio/index.html">PETIO</a> got a better layout also.
 		</item>
 		<item date="2019-08-31" state="hot">
 			Celebrate the 30th anniversary of this machine on the overhauled <a href="gallery/index.html">Gallery page</a>.
@@ -36,6 +41,8 @@ that in itself is a complete, single-board computer.</p>
 			Added the new <a href="netusb/index.html">NetUSB board</a> with SD-Card,
 			Ethernet and USB host + device!
 		</item>
+        </news>
+	<oldnews>
 		<item date="2011-06-04">
 			Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
 			Updated and added a new version of the <a href="pwr/index.html">Power supply board</a>.
@@ -49,8 +56,6 @@ that in itself is a complete, single-board computer.</p>
 		<item date="2011-04-22" state="hot">
 			Added a completely new <a href="usb/index.html">USB board</a>!
 		</item>
-        </news>
-	<oldnews>
 		<item date="2011-01-09">
 			Added a completely new <a href="term/index.html">Bus terminator board</a>!
 		</item>
@@ -326,20 +331,71 @@ tested the board and found no problem.
 	</desc>
 	</subsection>
 	</section>
-	<section toc="sw" name="Software"><desc>
-<p>
-The software used is the <a href="../osa/index.html">GeckOS/A65</a>
-operating system. It features the handling of the MMU, serial devices,
-video output, floppy disk drives, and the newest versions even feature
-TCP/SLIP (beta) and SCSI (alpha) support.
-</p>
-<p>
-Some of the software development took place on a modified
-VICE emulator, that now emulates a subset of the CS/A65 hardware.
-Please check it out at its <a href="emu/index.html">site</a>.
-</p>
-<p>The board pages contain driver code where appropriate and available.</p>
-	</desc></section>
+
+	<section toc="sw" name="Software">
+	<desc>
+	<p>As the system is a PET clone, with the right ROM values the machine
+		can run (almost) all PET software.
+		Here, however, you find software specific to the CS/A.
+	</p>
+	<p>Also, the board pages contain driver code where appropriate and available.</p>
+	</desc>
+	<subsection toc="os" name="Operating System">
+	<desc><p>
+		The software used is the <a href="../osa/index.html">GeckOS/A65</a>
+		operating system. It features the handling of the MMU, serial devices,
+		video output, floppy disk drives, and the newest versions even feature
+		TCP/SLIP (beta) and SCSI (alpha) support.
+		</p>
+	</desc>
+	</subsection>
+	<subsection toc="emu" name="Emulator">
+	<desc> <p>
+		Some of the software development took place on a modified
+		VICE emulator, that now emulates a subset of the CS/A65 hardware.
+		Please check it out at its <a href="emu/index.html">site</a>.
+	</p><p>
+		However, note that this VICE version is rather old and does not
+		even work on my up-to-date Linux system anymore.
+		I did not yet have time to update this emulator to a current
+		VICE version unfortunately.
+	</p></desc>
+	</subsection>
+	<subsection toc="roms" name="ROMs">
+		<desc><p>
+			You cannot directly use Commodore ROMs in the PET, at least
+			the Editor ROM and the Kernal have to be modified:
+			</p>
+			<ul>
+			<li>The Editor ROM needs modified CRTC timer values to produce
+				a standard PAL timing video signal.
+				Also, the 2MHz system needs the CRTC to be programmed
+				with 80 columns - the 80 column PET had special hardware
+				so the CRTC was still programmed to 40 columns even if
+				80 columns were displayed.
+			</li>
+			<li>The Kernal ROM needs to initialize the MMU, so that the 
+				CPU has the right memory mapping, and also access to the video memory.
+				The modified kernal also detects if the system is running
+				on 1MHz (40 columns display) or 2MHz (80 column display),
+				and selects the right Editor ROM by setting the correct mapping
+				in the CPU.
+			</li>
+			</ul>
+		</desc>
+		<extlink name="CS/A ROM build on github" link="https://github.com/fachat/csa-roms"/>
+	</subsection>
+	<subsection toc="burnin" name="Burn-in tests">
+		<desc>
+			Based on the original <code>8296 burnin</code> test suite, I created 
+			a versatile test suite for PET-like board. 
+			This starts as BASIC program for the PET, then takes over and tests 
+			a lot of the hardware, like VIA timers, userport, RAM, ROMs etc.
+		</desc>
+		<extlink name="pet burnin on github" link="https://github.com/fachat/cbm-burnin-tests"/>
+	</subsection>
+	</section>
+
 	<section toc="boards" name="Boards"><desc>
 	This section describes the different boards and links to the schematics and more detailled descriptions.</desc>
 	<subsection toc="mainboards" name="Main Boards">

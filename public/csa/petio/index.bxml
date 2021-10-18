@@ -8,6 +8,23 @@
 		userport (mostly) and tape ports. It adds the functionality
 		that the IEEE488 bus can also be used as a device.
 	</desc>
+	<news>
+		<item date="20211018">
+			Added version 1.1E
+		</item>
+	</news>
+	<rev>
+		<version>1.1E</version>
+		<status>untested</status>
+		<note type="msg">
+		The layout has been overhauled to include better power 
+		supply and ground networks.
+		</note>
+		<file ltype="schem" ptype="esch">csa_petio_v1.1e.sch</file>
+		<file ltype="schem" ptype="png">csa_petio_v1.1e-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.1e.brd</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.1e-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.1D</version>
 		<status>untested</status>
