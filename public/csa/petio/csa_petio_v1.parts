@@ -1,0 +1,58 @@
+Partlist
+
+Exported from csa_petio_v1.sch at 23.07.2006 13:46:45 
+
+EAGLE Version 4.15 Copyright (c) 1988-2005 CadSoft
+
+Part     Value            Device           Package      Library      Sheet
+
+BEEP1    PIEZOBEEPERPIEZO PIEZOBEEPERPIEZO PIEZOBEEPER  csa          1
+C1                        C-EU025-025X050  C025-025X050 rcl          1
+C2                        C-EU025-025X050  C025-025X050 rcl          1
+C3                        C-EU025-025X050  C025-025X050 rcl          1
+C4                        C-EU025-025X050  C025-025X050 rcl          1
+C5                        C-EU025-025X050  C025-025X050 rcl          1
+C6                        C-EU025-025X050  C025-025X050 rcl          1
+C7                        C-EU025-025X050  C025-025X050 rcl          1
+C8                        C-EU025-025X050  C025-025X050 rcl          1
+C9                        C-EU025-025X050  C025-025X050 rcl          1
+C10                       C-EU025-025X050  C025-025X050 rcl          1
+C11                       C-EU025-025X050  C025-025X050 rcl          1
+C12                       CPOL-EUE2.5-6    E2,5-6       rcl          1
+C13                       C-EU025-025X050  C025-025X050 rcl          1
+IC1      74HCT138N        74HCT138N        DIL16        74xx-eu      1
+IC2      74HCT138N        74HCT138N        DIL16        74xx-eu      1
+IC3      74HCT00N         74HCT00N         DIL14        74xx-eu      1
+IC4      74LS86N          74LS86N          DIL14        74xx-us      1
+IC5      74LS145N         74LS145N         DIL16        74xx-eu      1
+IC6      MC3446           MC3446           DIL16        csa          1
+IC7      MC3446           MC3446           DIL16        csa          1
+IC8      MC3446           MC3446           DIL16        csa          1
+IC9      VIA              VIA              DIL40        csa          1
+IC10     PIA              PIA              DIL40        csa          1
+IC11     PIA              PIA              DIL40        csa          1
+IC12     7417N            7417N            DIL14        74xx-eu      1
+JP1                       JP2E             JP2          jumper       1
+JP2                       JP1E             JP1          jumper       1
+JP3                       JP1E             JP1          jumper       1
+JP4                       JP1E             JP1          jumper       1
+JP5                       JP1E             JP1          jumper       1
+JP6                       JP2E             JP2          jumper       1
+JP7                       JP3Q             JP3Q         jumper       1
+P1       C64KEYB          C64KEYB          C64KEYB      csa          1
+P2       IEEE488FLATCABLE IEEE488FLATCABLE FLAT24       csa          1
+P3       PETUSERPORT      PETUSERPORT      FLAT24       csa          1
+P4       CSABUS           CSABUS           CSABUS       csa          1
+P5       CBMTAPE          CBMTAPE          JP6          csa          1
+P6       CBMTAPE          CBMTAPE          JP6          csa          1
+R1       2k4              R-EU_0207/10     0207/10      rcl          1
+R2       5k1              R-EU_0207/10     0207/10      rcl          1
+R3       2k4              R-EU_0207/10     0207/10      rcl          1
+R4       2k4              R-EU_0207/10     0207/10      rcl          1
+R5       5k1              R-EU_0207/10     0207/10      rcl          1
+R6       10               R-EU_0207/10     0207/10      rcl          1
+R7       10k              R-EU_0207/10     0207/10      rcl          1
+RN1      10k              RN08             RN-9         resistor-net 1
+U$1      PETKEYBD         PETKEYBD         C64KEYB      csa          1
+U$2      TASTER           TASTER           TASTER       csa          1
+U$3      PETKEYBDSUBD     PETKEYBDSUBD     SUBD25F      csa          1
