@@ -2,17 +2,31 @@
 <board>
 	<name>CS/A65 PETIO</name>
 	<keywords>CSA65 6502 PET IO</keywords>
-        <lastmodified>2006-10-14</lastmodified>
 	<desc>This board implements Commodore PET compatible
 		I/O interfaces. This includes the keyboard, IEEE488,
 		userport (mostly) and tape ports. It adds the functionality
 		that the IEEE488 bus can also be used as a device.
 	</desc>
 	<news>
+		<item date="20211121">
+			Added version 1.2B that can finally work as a drive for other PETs again.
+		</item>
 		<item date="20211018">
 			Added version 1.1E
 		</item>
 	</news>
+	<rev>
+		<version>1.2B</version>
+		<status>untested</status>
+		<note type="msg">
+		The schematics has been tested, now the board can work as a drive
+		for other PETs.
+		</note>
+		<file ltype="schem" ptype="esch">csa_petio_v1.2b.sch</file>
+		<file ltype="schem" ptype="png">csa_petio_v1.2b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.2b.brd</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.2b-brd.png</file>
+	</rev>
 	<rev>
 		<version>1.1E</version>
 		<status>untested</status>
