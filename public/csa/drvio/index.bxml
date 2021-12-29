@@ -39,6 +39,76 @@
                 <file ltype="driver" ptype="tgz">test2.tar.gz</file>
         </driver>
 	<rev>
+		<version>1.1A</version>
+		<status>ok</status>
+		<note type="msg">
+			These are the differences:
+			<ul>
+			<li>The infrared sender is removed</li>
+			<li>Fix pull-ups in the floppy interface</li>
+			<li>Add databus driver and own 16MHz oscillator</li>
+			<li>Re-org the control port, fix polarity of MTR and SEL signals, so all drives are off on reset</li>
+			<li>New layout</li>
+			</ul>
+		</note>
+		<note type="warn">
+			This version is (slightly) incompatible with the previous one
+			due to changes in the SEL and MTR lines.
+		</note>
+		<note type="msg">
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 3.5&quot; PC disk drives with DD (double density
+			disks)
+		</note>
+		<note type="warn">
+			Using this board with HD-drives (i.e. 1.44M 3.5&quot;
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</note>
+		<note type="msg">
+			Here is a summary of the jumper settings:
+			<table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>standard setting</th></tr>
+
+	<tr><td rowspan="2">JP1</td><td rowspan="2">I/O address selection</td><td>1-2</td><td>$E8A*/$E8B*</td><td rowspan="2">don't care</td><td>*</td></tr>
+	<tr><td>2-3</td><td>$E8E*/$E8F*</td></tr>
+
+	<tr><td rowspan="2">JP2</td><td rowspan="2">16MHz source</td><td>1-2</td><td>Take 16MHz from Bus</td></tr>
+		<tr><td>2-3</td><td>Use on-board oscillator</td></tr>
+
+	<tr><td rowspan="3">JP3</td><td rowspan="3">VC1581 disk unit selection: 8 when no jumper set.</td><td>1-2</td><td>10</td><td rowspan="3">As fits your setup. I have 3-4 for device number 9</td><td rowspan="3">n/a</td></tr>
+	<tr><td>3-4</td><td>9</td></tr>
+	<tr><td>1-2,3-4</td><td>11</td></tr>
+
+	<tr><td>JP4</td><td>IEC bus reset</td><td>1-2</td><td>when set, reset IEC bus with bus reset.</td></tr>
+
+	<tr><td rowspan="3">JP5</td><td rowspan="3">TOD input selection</td><td>1-2</td><td>50Hz bus signal</td><td/><td rowspan="3">n/a</td></tr>
+	<tr><td>2-3</td><td>Phi2 input (VC1581 setting for WD1770)</td></tr>
+	<tr><td>not equiped</td><td>No input (VC1581 setting for WD1772)</td><td>*</td></tr>
+
+	<tr><td rowspan="2">JP6</td><td rowspan="2">DD/HD selection</td><td>1-2</td><td>Double density disks (DD) only</td><td>*</td></tr>
+	<tr><td>2-3</td><td>Double/High density (DD/HD) selection via control port</td><td/><td>*</td></tr>
+
+	<tr><td>JP7</td><td>n/a</td></tr>
+
+	<tr><td rowspan="2">JP8</td><td rowspan="2">4k/8k Memory selection</td><td>1-2</td><td>$4***/$6***</td><td/><td rowspan="2">n/a</td></tr>
+	<tr><td>2-3</td><td>$4***+$5***/$6***+$7***</td><td>*</td></tr>
+
+	<tr><td rowspan="4">JP9</td><td rowspan="4">Memory mapped address selection</td><td>1-2</td><td>$54***/$56***</td></tr>
+	<tr><td>3-4</td><td>$34***/$36***</td><td>*</td></tr>
+	<tr><td>5-6</td><td>$04***/$06***</td></tr>
+	<tr><td>7-8</td><td>no memory mapping</td><td/><td>*</td></tr>
+
+			</table>
+		</note>
+                <file ltype="schem" ptype="esch">csa_drvio_v1.1a.sch</file>
+                <file ltype="schem" ptype="png">csa_drvio_v1.1a-sch.png</file>
+                <file ltype="layout" ptype="ebrd">csa_drvio_v1.1a.brd</file>
+                <file ltype="layout" ptype="png">csa_drvio_v1.1a-brd.png</file>
+                <file ltype="photo" ptype="png" note="Picture of setup with PETCPU system. Boards from left to right: DRVIO, PETCPU, PETIO, VDC">petcpudrv.jpg</file>
+                <file ltype="photo" ptype="png" note="Picture of setup as VC1581 together with PETCPU board.">vc1581drv.jpg</file>
+	</rev>	
+	<rev>
 		<version>1.0B</version>
 		<status>prototype</status>
 		<note type="warn">
