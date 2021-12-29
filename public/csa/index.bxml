@@ -21,6 +21,14 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2021-12-29" >
+			Added an updated version of the <a href="drvio/index.html">DRVIO</a> board that 
+			has its own 16MHz oscillator, and other improvements.
+		</item>
+		<item date="2021-11-21" >
+			Added a version of the <a href="petio/index.html">PETIO</a> board that can finally work
+			as a device for other PETs.
+		</item>
 		<item date="2021-10-18" >
 			I created a burn-in-test for the CS/A computer (based on a PET burn-in program),
 			and also created a git repository for code to build the ROM for the BIOS board.

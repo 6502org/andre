@@ -254,7 +254,7 @@
 	
 </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2006-11-26</small>
                         Published the board
-                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0B</a> (prototype)</li><li><a href="#board2">1.0A</a> (prototype with bugs)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><div class="driverdesc"><p>
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#driver">Driver</a></li><li style="list-style-type:none;"><ul><li><a href="#driver1">PETCPU test</a></li></ul></li><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.1A</a> (ok)</li><li><a href="#board2">1.0B</a> (prototype)</li><li><a href="#board3">1.0A</a> (prototype with bugs)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="driver" id="driver">Driver</a></h2></div><div class="h2c"><div class="driver"><h3><a name="driver1" id="driver1">PETCPU test</a></h3><div class="driverdesc"><p>
 			This file includes a small test program that
 			does a "readaddress" command on the WDC and either
 			prints the sector header (in reverse) or the 
@@ -266,7 +266,93 @@
                 </div><div class="driverfiles"><table class="files">
 <tr class="R1"><td><div class="i_driver"> </div></td>
 <td><a href="test2.tar.gz">test2.tar.gz</a></td>
-</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0B</a></h3>
+</tr></table></div><div class="driverend"></div></div></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.1A</a></h3>
+<div class="revdesc"><p>Status: ok</p>
+</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			These are the differences:
+			<ul>
+			<li>The infrared sender is removed</li>
+			<li>Fix pull-ups in the floppy interface</li>
+			<li>Add databus driver and own 16MHz oscillator</li>
+			<li>Re-org the control port, fix polarity of MTR and SEL signals, so all drives are off on reset</li>
+			<li>New layout</li>
+			</ul>
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			This version is (slightly) incompatible with the previous one
+			due to changes in the SEL and MTR lines.
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			This board implements a (shugart-type i.e PC-type) 
+			floppy disk controller. The board has been tested
+			with 3.5" PC disk drives with DD (double density
+			disks)
+		</td></tr>
+<tr><td class="noteicon"><div class="i_warn"> </div></td>
+<td>
+			Using this board with HD-drives (i.e. 1.44M 3.5"
+			floppies overclocks the WDC1772 chip used in this
+			board, as it is only specified for DD-disks (720k).
+		</td></tr>
+<tr><td class="noteicon"><div class="i_msg"> </div></td>
+<td>
+			Here is a summary of the jumper settings:
+			<table border="1" class="jumpers"><tr><th>Jumper</th><th>Description</th><th>Setting</th><th>Meaning</th><th>VC1581 setting</th><th>standard setting</th></tr>
+
+	<tr><td rowspan="2">JP1</td><td rowspan="2">I/O address selection</td><td>1-2</td><td>$E8A*/$E8B*</td><td rowspan="2">don't care</td><td>*</td></tr>
+	<tr><td>2-3</td><td>$E8E*/$E8F*</td></tr>
+
+	<tr><td rowspan="2">JP2</td><td rowspan="2">16MHz source</td><td>1-2</td><td>Take 16MHz from Bus</td></tr>
+		<tr><td>2-3</td><td>Use on-board oscillator</td></tr>
+
+	<tr><td rowspan="3">JP3</td><td rowspan="3">VC1581 disk unit selection: 8 when no jumper set.</td><td>1-2</td><td>10</td><td rowspan="3">As fits your setup. I have 3-4 for device number 9</td><td rowspan="3">n/a</td></tr>
+	<tr><td>3-4</td><td>9</td></tr>
+	<tr><td>1-2,3-4</td><td>11</td></tr>
+
+	<tr><td>JP4</td><td>IEC bus reset</td><td>1-2</td><td>when set, reset IEC bus with bus reset.</td></tr>
+
+	<tr><td rowspan="3">JP5</td><td rowspan="3">TOD input selection</td><td>1-2</td><td>50Hz bus signal</td><td></td><td rowspan="3">n/a</td></tr>
+	<tr><td>2-3</td><td>Phi2 input (VC1581 setting for WD1770)</td></tr>
+	<tr><td>not equiped</td><td>No input (VC1581 setting for WD1772)</td><td>*</td></tr>
+
+	<tr><td rowspan="2">JP6</td><td rowspan="2">DD/HD selection</td><td>1-2</td><td>Double density disks (DD) only</td><td>*</td></tr>
+	<tr><td>2-3</td><td>Double/High density (DD/HD) selection via control port</td><td></td><td>*</td></tr>
+
+	<tr><td>JP7</td><td>n/a</td></tr>
+
+	<tr><td rowspan="2">JP8</td><td rowspan="2">4k/8k Memory selection</td><td>1-2</td><td>$4***/$6***</td><td></td><td rowspan="2">n/a</td></tr>
+	<tr><td>2-3</td><td>$4***+$5***/$6***+$7***</td><td>*</td></tr>
+
+	<tr><td rowspan="4">JP9</td><td rowspan="4">Memory mapped address selection</td><td>1-2</td><td>$54***/$56***</td></tr>
+	<tr><td>3-4</td><td>$34***/$36***</td><td>*</td></tr>
+	<tr><td>5-6</td><td>$04***/$06***</td></tr>
+	<tr><td>7-8</td><td>no memory mapping</td><td></td><td>*</td></tr>
+
+			</table>
+		</td></tr>
+</table></div><div class="revfiles"><h4>Files</h4><table class="files">
+<tr class="R1"><td><div class="i_schem"> </div></td>
+<td><a href="csa_drvio_v1.1a.sch">csa_drvio_v1.1a.sch</a></td>
+</tr>
+<tr class="R0"><td><div class="i_schem"> </div></td>
+<td><a href="csa_drvio_v1.1a-sch.png">csa_drvio_v1.1a-sch.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_layout"> </div></td>
+<td><a href="csa_drvio_v1.1a.brd">csa_drvio_v1.1a.brd</a></td>
+</tr>
+<tr class="R0"><td><div class="i_layout"> </div></td>
+<td><a href="csa_drvio_v1.1a-brd.png">csa_drvio_v1.1a-brd.png</a></td>
+</tr>
+<tr class="R1"><td><div class="i_photo"> </div></td>
+<td><a href="petcpudrv.jpg">petcpudrv.jpg</a>(Picture of setup with PETCPU system. Boards from left to right: DRVIO, PETCPU, PETIO, VDC)</td>
+</tr>
+<tr class="R0"><td><div class="i_photo"> </div></td>
+<td><a href="vc1581drv.jpg">vc1581drv.jpg</a>(Picture of setup as VC1581 together with PETCPU board.)</td>
+</tr></table>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0B</a></h3>
 <div class="revdesc"><p>Status: prototype</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
 <td>
@@ -360,7 +446,7 @@
 <tr class="R1"><td><div class="i_photo"> </div></td>
 <td><a href="vc1581drv.jpg">vc1581drv.jpg</a>(Picture of setup as VC1581 together with PETCPU board.)</td>
 </tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.0A</a></h3>
+</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.0A</a></h3>
 <div class="revdesc"><p>Status: prototype with bugs</p>
 </div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_stop"> </div></td>
 <td>
