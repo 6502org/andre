@@ -6,10 +6,10 @@
 <meta name="author" content="" />
 
 <meta name="description" content="" />
-<meta name="keywords" content="CSA65 6502 PET IO" />
+<meta name="keywords" content="CSA65 bus extender" />
 <link rev="made" href="mailto:" />
 <link rel="stylesheet" title="Default" type="text/css" href="../../style2-min.css" />
-<title>CS/A65 PETIO</title></head>
+<title>CS/A65 Extender board</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value="" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
@@ -236,150 +236,31 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>CS/A65 PETIO</h1>
+<h1>CS/A65 Extender board</h1>
 
-<div class="overview">This board implements Commodore PET compatible
-		I/O interfaces. This includes the keyboard, IEEE488,
-		userport (mostly) and tape ports. It adds the functionality
-		that the IEEE488 bus can also be used as a device.
+<div class="overview">This board plugs into the backplane, and extends the bus to the outer end of the
+		Euroboard, where you can plug in another board under test.
+		This helps in getting to more signals for debugging.
 	
-</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>20211121</small>
-			Added version 1.2B that can finally work as a drive for other PETs again.
-		</li><li><div> </div><small>20211018</small>
-			Added version 1.1E
-		</li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.2B</a> (untested)</li><li><a href="#board2">1.1E</a> (untested)</li><li><a href="#board3">1.1D</a> (untested)</li><li><a href="#board4">1.1C</a> (ok)</li><li><a href="#board5">1.1B</a> (prototype with bug)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.2B</a></h3>
-<div class="revdesc"><p>Status: untested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-		The schematics has been tested, now the board can work as a drive
-		for other PETs.
-		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.2b.sch">csa_petio_v1.2b.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.2b-sch.png">csa_petio_v1.2b-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.2b.brd">csa_petio_v1.2b.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.2b-brd.png">csa_petio_v1.2b-brd.png</a></td>
-</tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board2" id="board2">Version: 1.1E</a></h3>
-<div class="revdesc"><p>Status: untested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-		The layout has been overhauled to include better power 
-		supply and ground networks.
-		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1e.sch">csa_petio_v1.1e.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1e-sch.png">csa_petio_v1.1e-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1e.brd">csa_petio_v1.1e.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1e-brd.png">csa_petio_v1.1e-brd.png</a></td>
-</tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board3" id="board3">Version: 1.1D</a></h3>
-<div class="revdesc"><p>Status: untested</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-		This board has an additional diode (e.g. 1N4148) to 
-		accomodate for the 
-		WDC65SC22's totem-pole /IRQ output, as opposed to the orginal's
-		open-collector output. Additionally it clears the board
-		area under the piezo beeper.
-		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1d.sch">csa_petio_v1.1d.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1d-sch.png">csa_petio_v1.1d-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1d.brd">csa_petio_v1.1d.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1d-brd.png">csa_petio_v1.1d-brd.png</a></td>
-</tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board4" id="board4">Version: 1.1C</a></h3>
+</div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2021-12-29</small>
+			Published the board
+                </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#boards">Board Revisions</a></li><li style="list-style-type:none;"><ul><li><a href="#board1">1.0A</a> (ok)</li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="boards" id="boards">Board revisions</a></h2></div><div class="h2c"><div class="rev"><h3><a name="board1" id="board1">Version: 1.0A</a></h3>
 <div class="revdesc"><p>Status: ok</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			This board has the keyboard connector bug from revision
-			1.1B fixed.
-		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_desc"> </div></td>
-<td><a href="csa_petio_v1.1c-desc.txt">csa_petio_v1.1c-desc.txt</a></td>
-</tr>
-<tr class="R0"><td><div class="i_parts"> </div></td>
-<td><a href="csa_petio_v1.1c-parts.txt">csa_petio_v1.1c-parts.txt</a></td>
-</tr>
+</div><div class="revnotes"></div><div class="revfiles"><h4>Files</h4><table class="files">
 <tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1c.sch">csa_petio_v1.1c.sch</a></td>
+<td><a href="csa_extender_v1.0a-sch.png">csa_extender_v1.0a-sch.png</a></td>
 </tr>
 <tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1c-sch.png">csa_petio_v1.1c-sch.png</a></td>
+<td><a href="csa_extender_v1.0a.sch">csa_extender_v1.0a.sch</a></td>
 </tr>
 <tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1c.brd">csa_petio_v1.1c.brd</a></td>
+<td><a href="csa_extender_v1.0a-brd.png">csa_extender_v1.0a-brd.png</a></td>
 </tr>
 <tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1c-lay.png">csa_petio_v1.1c-lay.png</a></td>
-</tr></table>
-</div><div class="revend"></div></div><div class="rev"><h3><a name="board5" id="board5">Version: 1.1B</a></h3>
-<div class="revdesc"><p>Status: prototype with bug</p>
-</div><div class="revnotes"><h4>Notes</h4><table class="notes"><tr><td class="noteicon"><div class="i_msg"> </div></td>
-<td>
-			This board has been tested with a Commodore PET
-			ROM.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			The 25-pin D-Sub keyboard connector has the wrong
-			keyboard layout. Silly me, relying on the Commodore
-			documentation, in this case the 8296 addendum to
-			the 8032 manual - it has the wrong pinout listed.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			The use of the IEEE488 interface as device, not 
-			controller has not been tested yet.
-		</td></tr>
-<tr><td class="noteicon"><div class="i_warn"> </div></td>
-<td>
-			I did not really find a fitting piezo beeper
-			device in the Eagle(tm) libraries, so please
-			make sure you do not make short circuits. Best
-			is to isolate the beeper from the board.
-		</td></tr>
-</table></div><div class="revfiles"><h4>Files</h4><table class="files">
-<tr class="R1"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1b.sch">csa_petio_v1.1b.sch</a></td>
-</tr>
-<tr class="R0"><td><div class="i_schem"> </div></td>
-<td><a href="csa_petio_v1.1b-sch.png">csa_petio_v1.1b-sch.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1b.brd">csa_petio_v1.1b.brd</a></td>
-</tr>
-<tr class="R0"><td><div class="i_layout"> </div></td>
-<td><a href="csa_petio_v1.1b-lay.png">csa_petio_v1.1b-lay.png</a></td>
-</tr>
-<tr class="R1"><td><div class="i_photo"> </div></td>
-<td><a href="csa_petio_v1.1b.jpg">csa_petio_v1.1b.jpg</a></td>
+<td><a href="csa_extender_v1.0a.brd">csa_extender_v1.0a.brd</a></td>
 </tr></table>
 </div><div class="revend"></div></div></div></div><div id="contentfooter">Last modified: 
-2021-11-21
+
 	
 <p>Return to <a href="../../index.html">Homepage</a></p>
 

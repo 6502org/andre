@@ -30,6 +30,7 @@ p copro Coprocessor board
 p cpuemu Emulate a 6502
 p keyemu Emulate a keyboard
 p viaproto VIA prototyping
+p ext Bus extender
 s Contributions
 p contrib Contributions
 s Deprecated boards

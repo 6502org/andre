@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 Extender board</name>
+	<keywords>CSA65 bus extender</keywords>	
+	<desc>This board plugs into the backplane, and extends the bus to the outer end of the
+		Euroboard, where you can plug in another board under test.
+		This helps in getting to more signals for debugging.
+	</desc>
+        <news>
+                <item date="2021-12-29">
+			Published the board
+                </item>
+        </news>
+	<rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<file ltype="schem" ptype="png">csa_extender_v1.0a-sch.png</file>
+		<file ltype="schem" ptype="esch">csa_extender_v1.0a.sch</file>
+		<file ltype="layout" ptype="png">csa_extender_v1.0a-brd.png</file>
+		<file ltype="layout" ptype="ebrd">csa_extender_v1.0a.brd</file>
+	</rev>
+</board>

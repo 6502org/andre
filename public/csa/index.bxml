@@ -22,6 +22,10 @@ that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
 		<item date="2021-12-29" >
+			Added a <a href="ext/index.html">Bus extender</a> board that 
+			allows easier access to boards under test.
+		</item>
+		<item date="2021-12-29" >
 			Added an updated version of the <a href="drvio/index.html">DRVIO</a> board that 
 			has its own 16MHz oscillator, and other improvements.
 		</item>
