@@ -8,6 +8,9 @@
 		that the IEEE488 bus can also be used as a device.
 	</desc>
 	<news>
+		<item date="20220313">
+			Added version 1.3A that uses 74LS641-1 instead of MC3446 (untested)
+		</item>
 		<item date="20211121">
 			Added version 1.2B that can finally work as a drive for other PETs again.
 		</item>
@@ -15,6 +18,18 @@
 			Added version 1.1E
 		</item>
 	</news>
+	<rev>
+		<version>1.3A</version>
+		<status>untested</status>
+		<note type="msg">
+			This board is as of now untested
+		</note>
+		<file ltype="schem" ptype="esch">csa_petio_v1.3a.sch</file>
+		<file ltype="schem" ptype="png">csa_petio_v1.3a-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.3a.brd</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.3a-brd.png</file>
+		<file ltype="layout" ptype="png">csa_petio_v1.3a-layout.png</file>
+	</rev>
 	<rev>
 		<version>1.2B</version>
 		<status>untested</status>
