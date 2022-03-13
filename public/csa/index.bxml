@@ -6,7 +6,7 @@
 	<copyright>
 		<author>Andr&eacute; Fachat</author>
 		<start>1989</start>
-		<end>2013</end>
+		<end>2022</end>
 	</copyright>
 	<forum type="6502.org">http://forum.6502.org/viewtopic.php?t=956</forum>
         <desc>
@@ -21,6 +21,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2022-03-13" >
+			Added a <a href="petio/index.html">PETIO board</a> has been updated
+		</item>
 		<item date="2021-12-29" >
 			Added a <a href="ext/index.html">Bus extender</a> board that 
 			allows easier access to boards under test.
