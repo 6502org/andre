@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <meta name="author" content="Andr&#xE9;  Fachat" />
 
-<meta name="description" content="Micro-PET Commodore PET extended clone" />
-<meta name="keywords" content="Commodore PET CBM MicroPET" />
+<meta name="description" content="Ultimate-PET Commodore PET extended clone" />
+<meta name="keywords" content="Commodore PET CBM Ultimate-PET" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
-<title>Micro-PET</title></head>
+<title> The Ultimate PET</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value="" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
 
 
@@ -120,30 +120,33 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>Micro-PET</h1><p class="copyright">(C)
-2020-2021 André  Fachat</p> 
+<h1> The Ultimate PET</h1><p class="copyright">(C)
+2022-2023 André  Fachat</p> 
 <div class="overview"><p>	
-	The Micro-PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is build on a single Eurocard board and has only parts that can still be obtained new in 2021.
+	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
+	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021.
+	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
+	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
+	Currently it is a work-in-progress.
  	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2021-08-08</small>
-	Micro-PET R2 released
-    </li><li><div> </div><small>2020-12-25</small>
-	Micro-PET R1 released
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2023-01-08</small>
+	The Ultimate PET introduced
     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Overview</a></h2></div><div class="h2c"><p>
-	Building a small Commodore PET clone, with advanced features has been long on my TODO list. 
-	So, when the Mini-PET came out this gave me the kick to finally start working on it.
-	I used a CPLD as "glue"-logic and video display controller. In R1 I started out
-	with a simple PET clone with PAL video output, and worked my way to higher frequency and
-	more features, like VGA video output and the boot-from-SPI. This then resulted in the R2 board
-	that is available now.
+	After building the Micro-PET I noticed, that for further features, I would have to get larger than 
+	a Euro-card. The challenge - for me at least - is that I use an older, private-use restricted
+	version of Eagle that can only do Euro-card PCBs, but not larger.
+	</p><p>
+	So, the current version is based on multiple Euro-PCBs, but will eventually be combined into a
+	single PCB.
 	</p><p>
 	The main development is happening on github (see link left in the menu).
 	</p>
      <h3><a name="features" id="features">Features</a></h3>
-The board is built with a number of potential features, not all of them have been implemented at this time.
+A number of features are planned, not all of them have been implemented at this time.
 
 <ul>
+  <li>Micro-PET as base</li>
+  <ul>
     <li>Commodore 3032 / 4032 / 8032 / 8296 with options menu to select at boot</li>
     <ul>
         <li>Boot-menu to select different PET versions to run</li>
@@ -171,16 +174,35 @@ The board is built with a number of potential features, not all of them have bee
         <li>25/50 rows display switch</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
     </ul>
+  </ul>
+  <li>Extra features on top</li>
+  <ul>
+    <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
+    <li>Potentially Colour hires modes</li>
+    <li>Simpler and more versatile system bus:</li>
+    <ul>
+      <li>CS/A bus (my standard)</li>
+      <li>Some Apple-II bus compatibility</li>
+      <li>RC2014 bus connectors</li>
+    </ul>
+    <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
+    <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
+  </ul>
 </ul>
-	<ul><li><a href="https://github.com/fachat/MicroPET" target="_blank" class="extlink">The Micro-PET at github</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2></div><div class="h2c"> <p>Some pictures of the Micro-PET</p>
-    <div class="gallery"><div class="galleryimg"><a href="imgs/cover.jpg"><img class="full" src="imgs/cover.jpg" alt="A Micro-PET board in a crystal C64-II case, with keyboard with printed PET-alike keycaps" /><img class="thumb" src="imgs/cover.jpg" alt="A Micro-PET board in a crystal C64-II case, with keyboard with printed PET-alike keycaps" /></a><div class="desc">The Micro-PET in a crystal C64-II case, built from all-new, still available parts in 2021.</div></div><div class="galleryimg"><a href="imgs/upet.png"><img class="full" src="imgs/upet.png" alt="The Micro-PET Euro-PCB board" /><img class="thumb" src="imgs/upet.png" alt="The Micro-PET Euro-PCB board" /></a><div class="desc">The Micro-PET PCB, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
-			with 512kB each, one for main operation, one for the video output; Ethernet and USB connections
-			alongside the traditional IEEE488 and Tape card edge connectors.</div></div><div class="galleryimg"><a href="imgs/upet-system-architecture.png"><img class="full" src="imgs/upet-system-architecture.png" alt="The Micro-PET system architecture with CPLD as main glue and video output control." /><img class="thumb" src="imgs/upet-system-architecture.png" alt="The Micro-PET system architecture with CPLD as main glue and video output control." /></a><div class="desc">The Micro-PET is a rather simple 65816 machine, with the CPLD being the glue for 
-			address decoding and video generation</div></div><div class="gallend"></div></div></div></div><hr />
+	<p>
+	As mentioned, the current design uses multiple PCBs, esp. the Ultra-CPU and the
+	Ultra-Bus. The Ultra-CPU, Ultra-Bus and the existing CS/A PETIO board already
+	make up a Colour-PET clone.
+	</p>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+
+	<ul><li><a href="https://github.com/fachat/csa_ultracpu" target="_blank" class="extlink">The Ultra-CPU at github</a> </li><li><a href="https://github.com/fachat/csa_ultrabus" target="_blank" class="extlink">The Ultra-Bus at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2021-09-13
+
 	</div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../upet/index.html">Micro-PET</a> or a Multi-board <a href="../cbmhw/ryofat40/index.html">Commodore 4032</a> replica</p>

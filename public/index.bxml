@@ -20,6 +20,9 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2023-01-08" >
+        Introduced <a href="ultipet/index.html">The Ultimate PET</a>.
+    </item>
     <item date="2022-03-13" >
         Updated PETIO board on the <a href="csa/index.html">CS/A65 machine</a>.
     </item>

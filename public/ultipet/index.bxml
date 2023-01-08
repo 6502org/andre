@@ -1,0 +1,142 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name=" The Ultimate PET">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2022</yearstart>
+    <yearend>2023</yearend>
+  </author>
+  <keywords>Commodore PET CBM Ultimate-PET</keywords>
+  <metadesc>Ultimate-PET Commodore PET extended clone</metadesc>
+  <overview><p>	
+	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
+	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021.
+	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
+	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
+	Currently it is a work-in-progress.
+ 	</p>
+  </overview>
+  <news>
+    <item date="2023-01-08">
+	The Ultimate PET introduced
+    </item>
+  </news>
+<!--
+  <toc/>
+-->
+
+  <section toc="overview" name="Overview">
+     <desc><p>
+	After building the Micro-PET I noticed, that for further features, I would have to get larger than 
+	a Euro-card. The challenge - for me at least - is that I use an older, private-use restricted
+	version of Eagle that can only do Euro-card PCBs, but not larger.
+	</p><p>
+	So, the current version is based on multiple Euro-PCBs, but will eventually be combined into a
+	single PCB.
+	</p><p>
+	The main development is happening on github (see link left in the menu).
+	</p>
+     </desc>
+     <subsection toc="features" name="Features">
+	<desc>
+A number of features are planned, not all of them have been implemented at this time.
+
+<ul>
+  <li>Micro-PET as base</li>
+  <ul>
+    <li>Commodore 3032 / 4032 / 8032 / 8296 with options menu to select at boot</li>
+    <ul>
+        <li>Boot-menu to select different PET versions to run</li>
+        <li>40 col character display</li>
+        <li>80 col character display</li>
+        <li>8296 memory map emulation</li>
+        <li>IEEE488 interface (card edge)</li>
+        <li>Tape connector (card edge)</li>
+        <li>PET graphics keyboard, or alternatively a C64 keyboard</li>
+    </ul>
+    <li>Improved system design:</li>
+    <ul>
+        <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
+        <li>boot from an SPI Flash ROM</li>
+        <li>up to 12.5 MHz mode (via configuration register)</li>
+        <li>VGA b/w video output</li>
+        <li>Write protection for the PET ROMs once copied to RAM</li>
+        <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
+    </ul>
+    <li>Improved Video output:</li>
+    <ul>
+        <li>Hires graphics mode (using a configuration register)</li>
+        <li>modifyable character set</li>
+        <li>40/80 column display switchable</li>
+        <li>25/50 rows display switch</li>
+        <li>multiple video pages mappable to $8000 video mem address</li>
+    </ul>
+  </ul>
+  <li>Extra features on top</li>
+  <ul>
+    <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
+    <li>Potentially Colour hires modes</li>
+    <li>Simpler and more versatile system bus:</li>
+    <ul>
+      <li>CS/A bus (my standard)</li>
+      <li>Some Apple-II bus compatibility</li>
+      <li>RC2014 bus connectors</li>
+    </ul>
+    <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
+    <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
+  </ul>
+</ul>
+	<p>
+	As mentioned, the current design uses multiple PCBs, esp. the Ultra-CPU and the
+	Ultra-Bus. The Ultra-CPU, Ultra-Bus and the existing CS/A PETIO board already
+	make up a Colour-PET clone.
+	</p>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+
+	</desc>
+	<extlink name="The Ultra-CPU at github" link="https://github.com/fachat/csa_ultracpu"/>
+	<extlink name="The Ultra-Bus at github" link="https://github.com/fachat/csa_ultrabus"/>
+	<extlink name="The PETIO board" link="../csa/petio/index.html"/>
+	<extlink name="A Youtube video on the Ultra-CPU" link="https://youtu.be/iMmVOPfir1c"/>
+	<extlink name="A Youtube video on the Ultra-Bus" link="https://youtu.be/KxuPgibIdj4"/>
+     </subsection>
+  </section>
+
+<!--
+  <section toc="gallery" name="Gallery">
+    <desc> <p>Some pictures of the Micro-PET</p>
+    </desc>
+
+  <gallery>
+        <image>
+                <thumb>imgs/cover.jpg</thumb>
+                <full>imgs/cover.jpg</full>
+                <alt>A Micro-PET board in a crystal C64-II case, with keyboard with printed PET-alike keycaps</alt>
+                <desc>The Micro-PET in a crystal C64-II case, built from all-new, still available parts in 2021.</desc>
+        </image>
+        <image>
+                <thumb>imgs/upet.png</thumb>
+                <full>imgs/upet.png</full>
+                <alt>The Micro-PET Euro-PCB board</alt>
+                <desc>The Micro-PET PCB, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
+			with 512kB each, one for main operation, one for the video output; Ethernet and USB connections
+			alongside the traditional IEEE488 and Tape card edge connectors.</desc>
+        </image>
+        <image>
+                <thumb>imgs/upet-system-architecture.png</thumb>
+                <full>imgs/upet-system-architecture.png</full>
+                <alt>The Micro-PET system architecture with CPLD as main glue and video output control.</alt>
+                <desc>The Micro-PET is a rather simple 65816 machine, with the CPLD being the glue for 
+			address decoding and video generation</desc>
+        </image>
+  </gallery>
+  </section>
+-->
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>
