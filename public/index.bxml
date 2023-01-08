@@ -5,18 +5,18 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2022</yearend>
+    <yearend>2023</yearend>
   </author>
   <keywords>8-bit,6502,Commodore</keywords>
   <metadesc>Commodore 8-bit 6502 information</metadesc>
   <overview>
 <p>On these pages you will find quite some information concerning 
 8-bit computers of the 6502 line.
-</p><p>
+</p><!-- p>
 From 2012 on I started and was curating, together with Ed S. the 
 mos6502 fan page
 on Google+. After three years my priorities shifted and I stepped back from it just due to lack of time. Ed has kept it alive since then (many thanks!) However, due to the end of Google+, this site has gone for now, but we hope to provide at least the content in some form or the other.
-</p>
+</p -->
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
