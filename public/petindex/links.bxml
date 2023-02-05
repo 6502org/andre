@@ -5,13 +5,16 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1998</yearstart>
-    <yearend>2017</yearend>
+    <yearend>2023</yearend>
   </author>
   <!--keywords>Commodore PET CBM ROM</keywords>
   <metadesc>Commodore PET CBM ROM descriptions</metadesc-->
   <!--overview><p></p>
   </overview-->
   <news>
+    <item date="2023-02-05">
+	Added a link to commodoregames.net
+    </item>
     <item date="2017-10-15">
 	Added the Games section
     </item>
@@ -34,6 +37,9 @@
 	</desc>
      <extlink name="Commodore.ca Games collection" link="http://www.commodore.ca/commodore-gallery/commodore-pet-games/">
 	Unfortunately the link to the actual programs seems to be broken...
+     </extlink>
+     <extlink name="commodoregames.net" link="https://www.commodoregames.net/">
+	A new page (January 2023) with seemingly a lot of PET games
      </extlink>
      <extlink name="Giant Bomb's games list" link="https://www.giantbomb.com/commodore-petcbm/3045-62/games/">
 	Covers and information, no downloads as far as I can see.
