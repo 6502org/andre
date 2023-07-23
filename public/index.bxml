@@ -20,6 +20,9 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2023-07-23" >
+        Added some links on the <a href="petindex/index.html">PET index</a> pages
+    </item>
     <item date="2023-01-08" >
         Introduced <a href="ultipet/index.html">The Ultimate PET</a>.
     </item>
@@ -481,12 +484,6 @@ to the 6502. Features cross assembler, C64 basic extension, etc.</tsubitem>
       <tsubitem name="Blog" link="http://blog.extrapages.de/categories/8bit">
 Further information can be found on my blog <a class="extlink" target="_blank" href="http://blog.extrapages.de">extrapages</a> in the <a class="extlink" href="http://blog.extrapages.de/categories/8bit">8bit category</a>.
 	<br/>
-	<br/>
-	Together with Ed S. I used to be curating the
-<a class="extlink" target="_blank" href="https://plus.google.com/108984290462000253857/posts">mos6502</a> fan page
-on Google+. I started it in July 2012, but after three years my priorities shifted and I stepped back from it. 
-Nevertheless, the page is still active, and we're still posting weekly about anything 6502-related. If you like it,
-subscribe and share!
       </tsubitem>
      </item>
     </teasers>

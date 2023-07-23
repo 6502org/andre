@@ -15,6 +15,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2023-07-23">
+	Added a link to an updated ROM 1 patch.
+    </item>
     <item date="2020-10-29">
 	Added link to page with all Commodore ROMs, and info on ROM adapters for 6332/2332 ROMs.
 	Fix some links.
@@ -138,6 +141,7 @@ not read out the actual ROM values...
 	</p>
 	</desc>
 	<extlink name="Original ROMs disassembly" link="@CBMARC@/src/pet/rom-1.html"/>
+	<extlink name="A slightly fixed version of the ROM patch I did for VICE is available here for use in a real PET (to be loaded from tape...)" link="https://hub.inktada.com/channel/rom1diskmagic"/>
      </subsection>
 
      <subsection toc="upgrade" name="Upgrade ROMs ($C000-$FFFF)">

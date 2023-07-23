@@ -14,6 +14,9 @@ This page contains links to some hardware projects around the PET machines.
 </P>
   </overview>
   <news>
+    <item date="2023-07-23">
+	Added links to the Micro-PET and Ultimate PET projects.
+    </item>
     <item date="2020-10-29">
 	Added links to Adrian's RESET button project
     </item>
@@ -208,6 +211,12 @@ Herv&eacute; from the cbm-hackers list tells how to get video output on a VGA ad
   <section toc="system" name="System Projects">
      <desc><P>This section contains projects that relate more to the PET itself</P>
 <DL>
+
+<DT><A target="_blank" class="extlink" HREF="http://www.6502.org/users/andre/ultipet/index.html">Ultimate-PET</A></DT>
+<DD>The beginning of a new series of PET re-creations, based on Micro-PET technology, but with added color capabilities, and expansion slots. </DD>
+
+<DT><A target="_blank" class="extlink" HREF="http://www.6502.org/users/andre/upet/index.html">Micro-PET</A></DT>
+<DD>A Commodore PET re-creation on a single Euro-PCB, with a real 6502-type processor (the WDC 65816), up to 12MHz speed, VGA graphics, and USB, Ethernet and SD-Card interfaces</DD>
 
 <DT><A target="_blank" class="extlink" HREF="http://blog.tynemouthsoftware.co.uk/2014/08/commodore-pet-repair-part-6-8032-to.html">40 column conversion of a 8032 universal board</A></DT>
 <DD>This blog post describes the conversion of an 8032 universal board to a 40 column system. Some connections need to be changed, and even some chips removed - but the board is prepared for it.</DD>
