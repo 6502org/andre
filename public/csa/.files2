@@ -1,8 +1,10 @@
 h index.html CS/A Computer
 f memmap.html Memory Map
 s Specifications
-f bus.html Bus V1.0
-f bus-1.1.html Bus V1.1
+f bus.html Bus 
+f bus-1.2.html Current V1.2
+f bus-1.1.html V1.1
+f bus-1.0.html V1.0
 S Main boards
 p cpu CS/A65 CPU
 p bios CS/A65 BIOS 
