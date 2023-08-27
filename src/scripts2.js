@@ -117,7 +117,7 @@ function loadMenu( topfind, process ) {
 
         var ul = $(target).find("ul");
 
-        if ($(ul).size() == 0) {
+        if ($(ul).length == 0) {
 
 		progressShow(topfind);
 
@@ -177,7 +177,7 @@ function processMenu( target, data, loaded ) {
 
 		progressHide(target);
 
-                if( $(target).children("ul").size() == 0) {
+                if( $(target).children("ul").length == 0) {
                         // it was not already loaded in the meantime
                         // append data (as string) to target
                         $(target).append(data);
@@ -194,7 +194,7 @@ function doFilter(topfind) {
 
 	var lis = $(topfind).find("li");
 
-	if (lis.size() > 0) {
+	if (lis.length > 0) {
 	    progressHide(topfind);
 
        	    $(lis).each( function ( i, e ) {

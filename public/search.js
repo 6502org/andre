@@ -50,7 +50,7 @@ function processMenu( target, data, loaded ) {
 		}
 		data = dumpArrayToString(spl, "", 0);
 
-		if( $(target).children("ul").size() == 0) {
+		if( $(target).children("ul").length == 0) {
 			// it was not already loaded in the meantime
 			// append data (as string) to target
 			$(target).append(data);
@@ -71,7 +71,7 @@ function loadMenu( r, process ) {
 
 
 	var ul = $(target).children("ul");
-	if ($(ul).size() == 0) {
+	if ($(ul).length == 0) {
 		// TODO: $(r).children("img").attr("src", myUp + "imgs/dirload.gif");
 		// load as html, i.e. text. jquery/javascript cannot insert an xml document (i.e. as 
 		// XML DOM tree) directly into the html document
@@ -142,7 +142,7 @@ function bindMinus( el ) {
 function bindMenu( el ) {
 
    	$(el).find("li.dir").each( function(index, el) {
-	   if ( $(el).children("ul").size() != 0) {
+	   if ( $(el).children("ul").length != 0) {
 	   	bindMinus(el);
 	   } else {
 	   	bindPlus(el);
