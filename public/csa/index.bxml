@@ -21,6 +21,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2023-08-27" >
+        		Added an alternative definition of the <a href="bus.html">CS/A bus</a> with a shorter connector and only 48 signals.
+    		</item>
 		<item date="2022-03-13" >
 			Added a <a href="petio/index.html">PETIO board</a> has been updated
 		</item>

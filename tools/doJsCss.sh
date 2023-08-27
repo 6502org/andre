@@ -63,7 +63,7 @@ mvmodified ${csstarget}2-min.css.in ${csstarget}2-min.css
 
 libtarget=$root/public/jquery
 
-cat $root/src/jquery-1.11.2.min.js > ${libtarget}-min.js.in
+cat $root/src/jquery-3.7.0.min.js > ${libtarget}-min.js.in
 
 mvmodified ${libtarget}-min.js.in ${libtarget}-min.js
 
