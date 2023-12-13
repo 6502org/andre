@@ -865,8 +865,8 @@ div#content p.conclusion {
  */
 
 #minmax {
-	display: none;
-	float: right;
+/*	display: none; 
+	float: right;*/
 }
 /*
 div#share {

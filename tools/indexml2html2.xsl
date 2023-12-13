@@ -3,9 +3,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
    <xsl:param name="date" select="'unknown'"/>
 
-<xsl:output method="xml" 
-	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-	doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" />
+<xsl:output method="xml" encoding="utf-8" omit-xml-declaration="yes" 
+	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+<!--
+	doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" 
+-->
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
@@ -85,6 +87,12 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="board">
+<!--xsl:text disable-output-escaping="yes">&lt;!doctype html&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;-->
+<!--/xsl:text-->
 <html><head>
 	<xsl:call-template name="head"/>
 	<title><xsl:value-of select="name"/></title>
@@ -392,6 +400,12 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 <xsl:template match="webpage">
+<!--xsl:text disable-output-escaping="yes">&lt;!doctype html&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"&gt;-->
+<!--xsl:text disable-output-escaping="yes">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;-->
+<!--/xsl:text-->
 <html><head> 
 	<xsl:call-template name="head"/>
 	<title><xsl:value-of select="@name"/></title>
