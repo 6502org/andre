@@ -101,3 +101,5 @@ mvmodified ${jstarget}2-all.js.in ${jstarget}2-all.js
 
 cpmodified $root/imgsrc/pointr.png $root/public/imgs/pointr.png
 
+echo "created JS file ${jstarget}2-all.js"
+

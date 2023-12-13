@@ -21,6 +21,10 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2023-12-13" >
+			Added <a href="../ultipet/index.html">Ultra-CPU board</a> and <a href="dualsid/index.html">DUAL SID</a> sound output board. 
+			Also, add the <a href="ultibus/index.html">Ultra-Bus board</a>.
+    		</item>
 		<item date="2023-08-27" >
         		Added an alternative definition of the <a href="bus.html">CS/A bus</a> with a shorter connector and only 48 signals.
     		</item>
@@ -48,6 +52,8 @@ that in itself is a complete, single-board computer.</p>
 			Also updated the <a href="bios/index.html">BIOS board</a> for a fix to work with certain types of SRAMs.
 			<a href="petio/index.html">PETIO</a> got a better layout also.
 		</item>
+        </news>
+	<oldnews>
 		<item date="2019-08-31" state="hot">
 			Celebrate the 30th anniversary of this machine on the overhauled <a href="gallery/index.html">Gallery page</a>.
 		</item>
@@ -59,8 +65,6 @@ that in itself is a complete, single-board computer.</p>
 			Added the new <a href="netusb/index.html">NetUSB board</a> with SD-Card,
 			Ethernet and USB host + device!
 		</item>
-        </news>
-	<oldnews>
 		<item date="2011-06-04">
 			Updated the <a href="bios/index.html">BIOS board</a> with a new layout.
 			Updated and added a new version of the <a href="pwr/index.html">Power supply board</a>.

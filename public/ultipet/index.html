@@ -124,12 +124,15 @@
 2022-2023 André  Fachat</p> 
 <div class="overview"><p>	
 	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021.
+	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	Currently it is a work-in-progress.
  	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2023-01-08</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2023-12-13</small>
+	Update to 1.3C that is using an FPGA and has many more features, like graphics features,
+	or DAC output via DMA.
+    </li><li><div> </div><small>2023-01-08</small>
 	The Ultimate PET introduced
     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="overview" id="overview">Overview</a></h2></div><div class="h2c"><p>
 	After building the Micro-PET I noticed, that for further features, I would have to get larger than 
@@ -145,7 +148,7 @@
 A number of features are planned, not all of them have been implemented at this time.
 
 <ul>
-  <li>Micro-PET as base</li>
+  <li>Ultimate-PET features</li>
   <ul>
     <li>Commodore 3032 / 4032 / 8032 / 8296 with options menu to select at boot</li>
     <ul>
@@ -153,8 +156,8 @@ A number of features are planned, not all of them have been implemented at this 
         <li>40 col character display</li>
         <li>80 col character display</li>
         <li>8296 memory map emulation</li>
-        <li>IEEE488 interface (card edge)</li>
-        <li>Tape connector (card edge)</li>
+        <li>IEEE488 interface (via <a href="../csa/petio/index.html">PETIO</a> board)</li>
+        <li>Tape connector (pin, via <a href="../csa/petio/index.html">PETIO</a> board)</li>
         <li>PET graphics keyboard, or alternatively a C64 keyboard</li>
     </ul>
     <li>Improved system design:</li>
@@ -162,29 +165,36 @@ A number of features are planned, not all of them have been implemented at this 
         <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
         <li>boot from an SPI Flash ROM</li>
         <li>up to 12.5 MHz mode (via configuration register)</li>
-        <li>VGA b/w video output</li>
+        <li>VGA Colour video output (RGBI in 640x480)</li>
         <li>Write protection for the PET ROMs once copied to RAM</li>
         <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
     </ul>
     <li>Improved Video output:</li>
     <ul>
-        <li>Hires graphics mode (using a configuration register)</li>
-        <li>modifyable character set</li>
+	<li>Multiple colour modes (Colour-PET, C128-VDC-compatible, Multicolour)</li>
+        <li>Colour Hires graphics mode</li>
+	<li>Modifyable character set</li>
         <li>40/80 column display switchable</li>
         <li>25/50 rows display switch</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
+    </ul>
+    <li>DAC audio output:</li>
+    <ul>
+	<li>DMA engine to play audio samples on stereo sound output</li>
     </ul>
   </ul>
   <li>Extra features on top</li>
   <ul>
     <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
-    <li>Potentially Colour hires modes</li>
-    <li>Simpler and more versatile system bus:</li>
+    <li>Simpler and more versatile system bus (using the <a href="../csa/ultrabus/index.html">Ultra-BUS</a> backplane:</li>
     <ul>
       <li>CS/A bus (my standard)</li>
       <li>Some Apple-II bus compatibility</li>
       <li>RC2014 bus connectors</li>
     </ul>
+  </ul>
+  <li>Future extensions on combined board:</li>
+  <ul>
     <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
     <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
   </ul>
@@ -198,7 +208,9 @@ A number of features are planned, not all of them have been implemented at this 
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 
-	<ul><li><a href="https://github.com/fachat/csa_ultracpu" target="_blank" class="extlink">The Ultra-CPU at github</a> </li><li><a href="https://github.com/fachat/csa_ultrabus" target="_blank" class="extlink">The Ultra-Bus at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><hr />
+	<ul><li><a href="https://github.com/fachat/csa_ultracpu" target="_blank" class="extlink">The Ultra-CPU at github</a> </li><li><a href="https://github.com/fachat/csa_ultrabus" target="_blank" class="extlink">The Ultra-Bus at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2></div><div class="h2c"> <p>Some pictures of the current state of the Ultra-PET</p>
+    <div class="gallery"><div class="galleryimg"><a href="imgs/newboard.jpg"><img class="full" src="imgs/newboard.jpg" alt="An Ultra-CPU Euro-PCB board" /><img class="thumb" src="imgs/newboard.jpg" alt="An Ultra-CPU Euro-PCB board" /></a><div class="desc">An Ultra-CPU Euro-PCB board, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
+			with 512kB each, one for main operation, one for the video output; </div></div><div class="galleryimg"><a href="imgs/ultra2.jpg"><img class="full" src="imgs/ultra2.jpg" alt="The Ultra-CPU and PETIO boards on an Ultra-Bus backplane" /><img class="thumb" src="imgs/ultra2.jpg" alt="The Ultra-CPU and PETIO boards on an Ultra-Bus backplane" /></a><div class="desc">The Ultra-CPU and PETIO boards on an Ultra-Bus backplane</div></div><div class="galleryimg"><a href="imgs/graphics.jpg"><img class="full" src="imgs/graphics.jpg" alt="A screenshot demonstrating graphics features" /><img class="thumb" src="imgs/graphics.jpg" alt="A screenshot demonstrating graphics features" /></a><div class="desc">A screenshot demonstrating graphics features</div></div><div class="gallend"></div></div></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 

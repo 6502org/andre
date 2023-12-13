@@ -1,0 +1,41 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> ]>
+<webpage name="CS/A Ultra-Bus">
+ 	<author>
+		<name> Andr&eacute; Fachat</name>
+        	<email>@EMAIL@</email>
+        	<homepage>@WEBROOT@</homepage>
+	</author>
+	<keywords>CSA65 6502 backplane bus apple rc2014</keywords>	
+	<overview><p>
+	This is a new backplane for CS/A, that also allows 
+	using Apple-II and RC2014 boards as extensions.</p>
+	<p>Please note that actual development is tracked on the
+		github page linked below</p>
+	</overview>
+	<extlink name="CS/A UltraBus github page" link="https://github.com/fachat/csa_ultrabus"/>
+	<!--diagram>
+		<file>csa-sid-diagram.gif</file>
+		<desc>
+		</desc>
+	</diagram-->
+	<news>
+		<item date="2023-12-13">
+			Initial publish on this page
+		</item>
+	</news>
+	<rev>
+		<version>1.0A</version>
+		<status>ok</status>
+		<note type="warn">
+		This board works for CS/A cards. Apple II cards (as far as they are supported) 
+		should work, this has been tested with a super serial card.
+		RC2014 still needs to be tested.
+		</note>
+		<file ltype="schem" ptype="esch">csa-ultrabus-1.0a.sch</file>
+		<file ltype="schem" ptype="png">csa-ultrabus-1.0a-sch-1.png</file>
+		<file ltype="schem" ptype="png">csa-ultrabus-1.0a-sch-2.png</file>
+		<file ltype="schem" ptype="png">csa-ultrabus-1.0a-sch-3.png</file>
+		<file ltype="layout" ptype="ebrd">csa-ultrabus-1.0a.brd</file>
+		<file ltype="layout" ptype="png">csa-ultrabus-1.0a-brd.png</file>
+	</rev>
+</webpage>

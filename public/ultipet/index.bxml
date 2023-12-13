@@ -11,13 +11,17 @@
   <metadesc>Ultimate-PET Commodore PET extended clone</metadesc>
   <overview><p>	
 	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021.
+	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	Currently it is a work-in-progress.
  	</p>
   </overview>
   <news>
+    <item date="2023-12-13">
+	Update to 1.3C that is using an FPGA and has many more features, like graphics features,
+	or DAC output via DMA.
+    </item>
     <item date="2023-01-08">
 	The Ultimate PET introduced
     </item>
@@ -43,7 +47,7 @@
 A number of features are planned, not all of them have been implemented at this time.
 
 <ul>
-  <li>Micro-PET as base</li>
+  <li>Ultimate-PET features</li>
   <ul>
     <li>Commodore 3032 / 4032 / 8032 / 8296 with options menu to select at boot</li>
     <ul>
@@ -51,8 +55,8 @@ A number of features are planned, not all of them have been implemented at this 
         <li>40 col character display</li>
         <li>80 col character display</li>
         <li>8296 memory map emulation</li>
-        <li>IEEE488 interface (card edge)</li>
-        <li>Tape connector (card edge)</li>
+        <li>IEEE488 interface (via <a href="../csa/petio/index.html">PETIO</a> board)</li>
+        <li>Tape connector (pin, via <a href="../csa/petio/index.html">PETIO</a> board)</li>
         <li>PET graphics keyboard, or alternatively a C64 keyboard</li>
     </ul>
     <li>Improved system design:</li>
@@ -60,29 +64,36 @@ A number of features are planned, not all of them have been implemented at this 
         <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
         <li>boot from an SPI Flash ROM</li>
         <li>up to 12.5 MHz mode (via configuration register)</li>
-        <li>VGA b/w video output</li>
+        <li>VGA Colour video output (RGBI in 640x480)</li>
         <li>Write protection for the PET ROMs once copied to RAM</li>
         <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
     </ul>
     <li>Improved Video output:</li>
     <ul>
-        <li>Hires graphics mode (using a configuration register)</li>
-        <li>modifyable character set</li>
+	<li>Multiple colour modes (Colour-PET, C128-VDC-compatible, Multicolour)</li>
+        <li>Colour Hires graphics mode</li>
+	<li>Modifyable character set</li>
         <li>40/80 column display switchable</li>
         <li>25/50 rows display switch</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
+    </ul>
+    <li>DAC audio output:</li>
+    <ul>
+	<li>DMA engine to play audio samples on stereo sound output</li>
     </ul>
   </ul>
   <li>Extra features on top</li>
   <ul>
     <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
-    <li>Potentially Colour hires modes</li>
-    <li>Simpler and more versatile system bus:</li>
+    <li>Simpler and more versatile system bus (using the <a href="../csa/ultrabus/index.html">Ultra-BUS</a> backplane:</li>
     <ul>
       <li>CS/A bus (my standard)</li>
       <li>Some Apple-II bus compatibility</li>
       <li>RC2014 bus connectors</li>
     </ul>
+  </ul>
+  <li>Future extensions on combined board:</li>
+  <ul>
     <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
     <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
   </ul>
@@ -105,36 +116,33 @@ A number of features are planned, not all of them have been implemented at this 
      </subsection>
   </section>
 
-<!--
+
   <section toc="gallery" name="Gallery">
-    <desc> <p>Some pictures of the Micro-PET</p>
+    <desc> <p>Some pictures of the current state of the Ultra-PET</p>
     </desc>
 
   <gallery>
         <image>
-                <thumb>imgs/cover.jpg</thumb>
-                <full>imgs/cover.jpg</full>
-                <alt>A Micro-PET board in a crystal C64-II case, with keyboard with printed PET-alike keycaps</alt>
-                <desc>The Micro-PET in a crystal C64-II case, built from all-new, still available parts in 2021.</desc>
+                <thumb>imgs/newboard.jpg</thumb>
+                <full>imgs/newboard.jpg</full>
+                <alt>An Ultra-CPU Euro-PCB board</alt>
+                <desc>An Ultra-CPU Euro-PCB board, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
+			with 512kB each, one for main operation, one for the video output; </desc>
         </image>
         <image>
-                <thumb>imgs/upet.png</thumb>
-                <full>imgs/upet.png</full>
-                <alt>The Micro-PET Euro-PCB board</alt>
-                <desc>The Micro-PET PCB, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
-			with 512kB each, one for main operation, one for the video output; Ethernet and USB connections
-			alongside the traditional IEEE488 and Tape card edge connectors.</desc>
+                <thumb>imgs/ultra2.jpg</thumb>
+                <full>imgs/ultra2.jpg</full>
+                <alt>The Ultra-CPU and PETIO boards on an Ultra-Bus backplane</alt>
+                <desc>The Ultra-CPU and PETIO boards on an Ultra-Bus backplane</desc>
         </image>
         <image>
-                <thumb>imgs/upet-system-architecture.png</thumb>
-                <full>imgs/upet-system-architecture.png</full>
-                <alt>The Micro-PET system architecture with CPLD as main glue and video output control.</alt>
-                <desc>The Micro-PET is a rather simple 65816 machine, with the CPLD being the glue for 
-			address decoding and video generation</desc>
+                <thumb>imgs/graphics.jpg</thumb>
+                <full>imgs/graphics.jpg</full>
+                <alt>A screenshot demonstrating graphics features</alt>
+                <desc>A screenshot demonstrating graphics features</desc>
         </image>
   </gallery>
   </section>
--->
 
   <closing>
 @FOOTER@

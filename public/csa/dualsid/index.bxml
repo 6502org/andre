@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A DUAL SID</name>
+	<keywords>CSA65 6502 SID</keywords>	
+	<desc><p>
+	This board implements a DUAL SID board with additional mixer circuits and output stage</p>
+	</desc>
+	<diagram>
+		<file>csa-sid-diagram.gif</file>
+		<desc>
+		This diagram shows an overview on the board, with the two SIDs, the mixer and the output stages.
+		Connectors for the SID EXTIN and Paddle (ADC) inputs are provided as well.
+		Note, that not all SID replacements support EXTIN, so an external mixer is included.
+		</desc>
+	</diagram>
+	<rev>
+		<version>1.0B</version>
+		<status>ok</status>
+		<note type="msg">
+		This board includes a 5V to 9/12V DC-DC converter, to support original SIDs.
+		Some SID replacements may not need this. Also, resistor and capacitor values
+		are given for 6581 and 8580 variants where applicable, taken from the C64 schematics.
+		</note>
+		<note type="msg">
+		This version has been created by modifying an 1.0A board, and passes all ERC/DRC tests, 
+		but in itself is not tested (yet).
+		</note>
+		<file ltype="schem" ptype="esch">csa_sid_v1.0b.sch</file>
+		<file ltype="schem" ptype="png">csa_sid_v1.0b_sch-1.png</file>
+		<file ltype="schem" ptype="png">csa_sid_v1.0b_sch-2.png</file>
+		<file ltype="schem" ptype="png">csa_sid_v1.0b_sch-3.png</file>
+		<file ltype="layout" ptype="ebrd">csa_sid_v1.0b.brd</file>
+		<file ltype="layout" ptype="png">csa_sid_v1.0b_brd.png</file>
+	</rev>
+</board>

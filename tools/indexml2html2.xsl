@@ -116,7 +116,7 @@
       <xsl:with-param name="a">blkdiag</xsl:with-param>
     </xsl:call-template>
     <div class="h2c">
-      <img src="{diagram/file}" alt="block diagram"/>
+      <img width="100%" src="{diagram/file}" alt="block diagram"/>
       <div class="diagcaption">
         <xsl:apply-templates select="diagram/desc"/>
       </div>
@@ -389,6 +389,8 @@
 <h3>(C) <xsl:value-of select="start"/><xsl:text> - </xsl:text><xsl:value-of select="end"/><xsl:text> </xsl:text><xsl:value-of select="author"/></h3>
 </xsl:template>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 <xsl:template match="webpage">
 <html><head> 
 	<xsl:call-template name="head"/>
@@ -418,6 +420,11 @@
 <div class="overview">
 <xsl:copy-of select="overview/*|overview/text()"/>
 </div> <!-- overview -->
+<xsl:if test="extlink">
+<ul>
+<xsl:apply-templates select="extlink"/>
+</ul>
+</xsl:if>
 <xsl:apply-templates select="news"/>
 <xsl:apply-templates select="gallery"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>

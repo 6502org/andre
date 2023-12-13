@@ -14,6 +14,8 @@ d gecko Gecko
 p auxcpu Auxiliary CPU
 p pwr Power Supply
 p term Bus terminators
+p ultrabus Ultra-BUS backplane
+l ../ultipet/index.html Ultra-CPU
 s I/O boards
 p vdc Video board
 p petio CBM PET I/O
@@ -25,6 +27,7 @@ p drvio DRVIO floppy and IEC
 p duart Double UART (RS232)
 p scsi SCSI/I2C board
 p spi MMC/SD-Card
+p dualsid DUAL SID sound
 s Special purpose
 d blitter Block transfer
 p ramdisk SIMM RAMDisk
@@ -45,4 +48,6 @@ p gallery Gallery
 p emu VICE emu of CS/A65
 l ../cbmhw/c64csa/index.html C64 CS/A adapter
 l ../cbmhw/petcsa/index.html PET CS/A adapter
+l ../cbmhw/ryofat40/index.html 4032 clone with CS/A
+l ../cbmhw/ryo1581/index.html A 1581 clone with CS/A
 
