@@ -1,5 +1,5 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name=" The Ultimate PET">
+<webpage name=" The Ulti-PET">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
@@ -54,7 +54,7 @@
 	<desc>
 Here is a list of the features. Most of them have been implemented in the Eurocard version already, and only need to be combined into the single PCB:
 <ul>
-  <li>Ultimate-PET features</li>
+  <li>Ulti-PET features</li>
   <ul>
     <li>Commodore 3032 / 4032 / 8032 / 8296 with options menu to select at boot</li>
     <ul>
