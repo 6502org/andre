@@ -5,19 +5,25 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>2022</yearstart>
-    <yearend>2023</yearend>
+    <yearend>2024</yearend>
   </author>
   <keywords>Commodore PET CBM Ultimate-PET</keywords>
   <metadesc>Ultimate-PET Commodore PET extended clone</metadesc>
   <overview><p>	
 	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
+	It is currently build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	Currently it is a work-in-progress.
+	</p><p>
+	The goal is to combine multiple of these boards into a single PCB that fits a (slightly modified) C64 case. 
+	This board is currently in the design phase.
  	</p>
   </overview>
   <news>
+    <item date="2024-02-03">
+	Clarification on the goal of integrating into a single PCB and the components.
+    </item>
     <item date="2023-12-13">
 	Update to 1.3C that is using an FPGA and has many more features, like graphics features,
 	or DAC output via DMA.
@@ -44,8 +50,7 @@
      </desc>
      <subsection toc="features" name="Features">
 	<desc>
-A number of features are planned, not all of them have been implemented at this time.
-
+Here is a list of the features. Most of them have been implemented in the Eurocard version already, and only need to be combined into the single PCB:
 <ul>
   <li>Ultimate-PET features</li>
   <ul>
@@ -77,14 +82,19 @@ A number of features are planned, not all of them have been implemented at this 
         <li>25/50 rows display switch</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
     </ul>
-    <li>DAC audio output:</li>
+    <li>Audio output:</li>
     <ul>
-	<li>DMA engine to play audio samples on stereo sound output</li>
+	<li>DMA engine to play audio samples on stereo DAC sound output</li>
+	<li>Dual-SID</li>
     </ul>
   </ul>
-  <li>Extra features on top</li>
+  <li>Extra I/O features on top</li>
   <ul>
     <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
+    <li>RS232 interface</li>
+    <li>Fast serial IEC bus (like in the C128)</li>
+    <li>Both IEEE488 and IEC bus are capable of being used as device for another computer (ATNA capability)</li>
+    <li>An extra 8-bit I/O port in addition to the Userport</li>
     <li>Simpler and more versatile system bus (using the <a href="../csa/ultrabus/index.html">Ultra-BUS</a> backplane:</li>
     <ul>
       <li>CS/A bus (my standard)</li>
@@ -92,10 +102,10 @@ A number of features are planned, not all of them have been implemented at this 
       <li>RC2014 bus connectors</li>
     </ul>
   </ul>
-  <li>Future extensions on combined board:</li>
+  <li>Extensions planned on the combined board:</li>
   <ul>
-    <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
-    <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
+    <li>(Built-in disk drive simulator (e.g. nano488 or pico488) - Cancelled due to space restrictions</li>
+    <li>Built-in Userport extensions, like Joystick ports</li>
   </ul>
 </ul>
 	<p>
@@ -111,6 +121,7 @@ A number of features are planned, not all of them have been implemented at this 
 	<extlink name="The Ultra-CPU at github" link="https://github.com/fachat/csa_ultracpu"/>
 	<extlink name="The Ultra-Bus at github" link="https://github.com/fachat/csa_ultrabus"/>
 	<extlink name="The PETIO board" link="../csa/petio/index.html"/>
+	<extlink name="The DUALSID board" link="../csa/dualsid/index.html"/>
 	<extlink name="A Youtube video on the Ultra-CPU" link="https://youtu.be/iMmVOPfir1c"/>
 	<extlink name="A Youtube video on the Ultra-Bus" link="https://youtu.be/KxuPgibIdj4"/>
      </subsection>

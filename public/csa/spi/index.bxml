@@ -18,7 +18,7 @@
 	access the SD card.
       </item>
       <item date="2011-03-06">
-           Moved the SPI description from here to the <a href="../../hwinfo/spi.html">SPI page</a>.
+           Moved the SPI description from here to the <a href="../../hwinfo/spi/spi.html">SPI page</a>.
       </item>
   </news>
         <!--section toc="modes" name="SPI"><desc>
