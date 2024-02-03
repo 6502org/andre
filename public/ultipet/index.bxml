@@ -7,10 +7,10 @@
     <yearstart>2022</yearstart>
     <yearend>2024</yearend>
   </author>
-  <keywords>Commodore PET CBM Ultimate-PET</keywords>
-  <metadesc>Ultimate-PET Commodore PET extended clone</metadesc>
+  <keywords>Commodore PET CBM Ulti-PET</keywords>
+  <metadesc>Ulti-PET Commodore PET extended clone</metadesc>
   <overview><p>	
-	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
+	The Ulti-PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
 	It is currently build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
@@ -18,6 +18,8 @@
 	</p><p>
 	The goal is to combine multiple of these boards into a single PCB that fits a (slightly modified) C64 case. 
 	This board is currently in the design phase.
+	</p><p>
+	Note that I now call it "Ulti-PET" to avoid confusion with Gideon's Ultimate projects.
  	</p>
   </overview>
   <news>
@@ -137,7 +139,7 @@ Here is a list of the features. Most of them have been implemented in the Euroca
                 <thumb>imgs/newboard.jpg</thumb>
                 <full>imgs/newboard.jpg</full>
                 <alt>An Ultra-CPU Euro-PCB board</alt>
-                <desc>An Ultra-CPU Euro-PCB board, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
+                <desc>An Ultra-CPU Euro-PCB board, with visible 65816 and the large SMD CPLD. Two memory chips 
 			with 512kB each, one for main operation, one for the video output; </desc>
         </image>
         <image>
