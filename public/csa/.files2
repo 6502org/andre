@@ -28,6 +28,7 @@ p duart Double UART (RS232)
 p scsi SCSI/I2C board
 p spi MMC/SD-Card
 p dualsid DUAL SID sound
+p iecuart IEC and UART
 s Special purpose
 d blitter Block transfer
 p ramdisk SIMM RAMDisk

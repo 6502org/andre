@@ -120,15 +120,20 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1> The Ultimate PET</h1><p class="copyright">(C)
-2022-2023 André  Fachat</p> 
+2022-2024 André  Fachat</p> 
 <div class="overview"><p>	
 	The Ultimate PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
+	It is currently build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	Currently it is a work-in-progress.
+	</p><p>
+	The goal is to combine multiple of these boards into a single PCB that fits a (slightly modified) C64 case. 
+	This board is currently in the design phase.
  	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2023-12-13</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2024-02-03</small>
+	Clarification on the goal of integrating into a single PCB and the components.
+    </li><li><div> </div><small>2023-12-13</small>
 	Update to 1.3C that is using an FPGA and has many more features, like graphics features,
 	or DAC output via DMA.
     </li><li><div> </div><small>2023-01-08</small>
@@ -144,8 +149,7 @@
 	The main development is happening on github (see link left in the menu).
 	</p>
      <h3><a name="features" id="features">Features</a></h3>
-A number of features are planned, not all of them have been implemented at this time.
-
+Here is a list of the features. Most of them have been implemented in the Eurocard version already, and only need to be combined into the single PCB:
 <ul>
   <li>Ultimate-PET features</li>
   <ul>
@@ -177,14 +181,19 @@ A number of features are planned, not all of them have been implemented at this 
         <li>25/50 rows display switch</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
     </ul>
-    <li>DAC audio output:</li>
+    <li>Audio output:</li>
     <ul>
-	<li>DMA engine to play audio samples on stereo sound output</li>
+	<li>DMA engine to play audio samples on stereo DAC sound output</li>
+	<li>Dual-SID</li>
     </ul>
   </ul>
-  <li>Extra features on top</li>
+  <li>Extra I/O features on top</li>
   <ul>
     <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
+    <li>RS232 interface</li>
+    <li>Fast serial IEC bus (like in the C128)</li>
+    <li>Both IEEE488 and IEC bus are capable of being used as device for another computer (ATNA capability)</li>
+    <li>An extra 8-bit I/O port in addition to the Userport</li>
     <li>Simpler and more versatile system bus (using the <a href="../csa/ultrabus/index.html">Ultra-BUS</a> backplane:</li>
     <ul>
       <li>CS/A bus (my standard)</li>
@@ -192,10 +201,10 @@ A number of features are planned, not all of them have been implemented at this 
       <li>RC2014 bus connectors</li>
     </ul>
   </ul>
-  <li>Future extensions on combined board:</li>
+  <li>Extensions planned on the combined board:</li>
   <ul>
-    <li>Built-in disk drive simulator (e.g. nano488 or pico488)</li>
-    <li>Built-in Userport extensions, like Joystick ports, or even WLAN modem support</li>
+    <li>(Built-in disk drive simulator (e.g. nano488 or pico488) - Cancelled due to space restrictions</li>
+    <li>Built-in Userport extensions, like Joystick ports</li>
   </ul>
 </ul>
 	<p>
@@ -207,13 +216,13 @@ A number of features are planned, not all of them have been implemented at this 
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 
-	<ul><li><a href="https://github.com/fachat/csa_ultracpu" target="_blank" class="extlink">The Ultra-CPU at github</a> </li><li><a href="https://github.com/fachat/csa_ultrabus" target="_blank" class="extlink">The Ultra-Bus at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2></div><div class="h2c"> <p>Some pictures of the current state of the Ultra-PET</p>
+	<ul><li><a href="https://github.com/fachat/csa_ultracpu" target="_blank" class="extlink">The Ultra-CPU at github</a> </li><li><a href="https://github.com/fachat/csa_ultrabus" target="_blank" class="extlink">The Ultra-Bus at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="../csa/dualsid/index.html" target="_blank" class="extlink">The DUALSID board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2></div><div class="h2c"> <p>Some pictures of the current state of the Ultra-PET</p>
     <div class="gallery"><div class="galleryimg"><a href="imgs/newboard.jpg"><img class="full" src="imgs/newboard.jpg" alt="An Ultra-CPU Euro-PCB board" /><img class="thumb" src="imgs/newboard.jpg" alt="An Ultra-CPU Euro-PCB board" /></a><div class="desc">An Ultra-CPU Euro-PCB board, with visible 65816, VIA, PIAs, and the large SMD CPLD. Two memory chips 
 			with 512kB each, one for main operation, one for the video output; </div></div><div class="galleryimg"><a href="imgs/ultra2.jpg"><img class="full" src="imgs/ultra2.jpg" alt="The Ultra-CPU and PETIO boards on an Ultra-Bus backplane" /><img class="thumb" src="imgs/ultra2.jpg" alt="The Ultra-CPU and PETIO boards on an Ultra-Bus backplane" /></a><div class="desc">The Ultra-CPU and PETIO boards on an Ultra-Bus backplane</div></div><div class="galleryimg"><a href="imgs/graphics.jpg"><img class="full" src="imgs/graphics.jpg" alt="A screenshot demonstrating graphics features" /><img class="thumb" src="imgs/graphics.jpg" alt="A screenshot demonstrating graphics features" /></a><div class="desc">A screenshot demonstrating graphics features</div></div><div class="gallend"></div></div></div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2023-12-13
+2024-02-03
 	</div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://twitter.com/#!/search/realtime/afachat%20%238bit">Twitter</a> (In new window)</p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
 <p>Dive into the retro feeling and build yourself a <a href="../upet/index.html">Micro-PET</a> or a Multi-board <a href="../cbmhw/ryofat40/index.html">Commodore 4032</a> replica</p>

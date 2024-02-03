@@ -21,6 +21,9 @@ A special place has the <a href="gecko/index.html">Gecko</a>
 that in itself is a complete, single-board computer.</p>
         </desc>
         <news>
+		<item date="2024-02-03" >
+			Added the <a href="iecuart/index.html">IEC and UART</a> I/O output board. 
+    		</item>
 		<item date="2023-12-13" >
 			Added <a href="../ultipet/index.html">Ultra-CPU board</a> and <a href="dualsid/index.html">DUAL SID</a> sound output board. 
 			Also, add the <a href="ultibus/index.html">Ultra-Bus board</a>.

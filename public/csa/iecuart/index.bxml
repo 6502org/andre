@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<board>
+	<name>CS/A65 IECUART</name>
+	<keywords>CSA65 6502 IEEE488 IEC</keywords>
+	<desc>This board implements a Commodore serial IEC interface that is also capable doing fast serial like on the
+	C128, and can be used as device (i.e. has ATNA capabilities). In addition there is a UART-based RS232 interface 
+	on the board.
+	</desc>
+	<news>
+    		<item date="2024-02-03">
+			Published the board
+    		</item>
+  	</news>
+        <!--driver>
+                <name>OS/A65 V2 IEEE488 driver</name>
+                <desc>
+                </desc>
+                <file ltype="driver" ptype="a65" note="excerpt from console driver">con_csa.a65</file>
+        </driver-->
+	<rev>
+		<version>1.1A</version>
+		<status>untested</status>
+		<note type="warn">
+			This board has only been tested using a patched version of V1.0A.
+		</note>
+		<file ltype="schem" ptype="esch">csa_iecuart_v1.1a.sch</file>
+		<file ltype="layout" ptype="ebrd">csa_iecuart_v1.1a.brd</file>
+		<file ltype="schem" ptype="png">csa_iecuart_v1.1a-sch-1.png</file>
+		<file ltype="schem" ptype="png">csa_iecuart_v1.1a-sch-2.png</file>
+		<file ltype="schem" ptype="png">csa_iecuart_v1.1a-sch-3.png</file>
+		<file ltype="layout" ptype="png">csa_iecuart_v1.1a-brd.png</file>
+	</rev>
+</board>
