@@ -1,16 +1,34 @@
 <!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
-<webpage name="GeckOS/A65 V2.0">
+<webpage name="GeckOS/A65 V2.1">
   <author>
     <name>Andr&eacute; Fachat</name> 
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1989</yearstart>
-    <yearend>2021</yearend>
+    <yearend>2024</yearend>
   </author>
   <keywords>6502,operating system</keywords>
-  <metadesc>OS/A65 Version 2.0</metadesc>
-  <overview><p>	This is a completely new version of my 6502 operating system GeckOS/A65.
-From version 2.0.0 on it has a lot of new features:</p>
+  <metadesc>OS/A65 Version 2.1.1</metadesc>
+  <overview><p>	This is my 6502 multitasking operating system GeckOS/A65.
+</p>
+<img src="../imgs/GeckOS-logo2.png"/>
+<p>
+News in version 2.1.1 are:</p>
+<ul>
+<li>Adaption to and requirement for xa 2.4.1</li>
+</ul>
+<p>
+News in version 2.1 are:</p>
+<ul>
+<li>An official Logo!</li>
+<li>All documentation is updated and re-written in asciidoc</li>
+<li>Usability updates on various commands and APIs like <code>ps(1)</code>, <code>setinfo(2)</code>, <code>ls(1)</code>, and pipe filters like <code>hexdump</code>, <code>wc</code>, or <code>more</code>.</li>
+<li>Added first contributed code - <code>kill(1)</code> by Glenn Holmer!</li>
+<li>Grand shell unification. <code>lsh(1)</code> is now the one and official shell; the old monitor from <code>sh</code> now becomes <code>lmon(1)</code>.</li>
+<li>Various improvements in the different ports</li>
+</ul>
+<p>
+Since version 2.0 on it has a lot of new features over 1.x:</p>
 <ul>
 <li>multithreading</li>
 <li>dynamic memory management</li>
@@ -20,6 +38,9 @@ From version 2.0.0 on it has a lot of new features:</p>
 </ul>
   </overview>
   <news>
+    <item date="2024-02-06">
+	Updated this page to version 2.1.1 
+    </item>
     <item date="2021-10-18">
 	Updated this page to finally include a link to GeckOS' github page :-)
     </item>
@@ -35,45 +56,27 @@ From version 2.0.0 on it has a lot of new features:</p>
     <desc>
 	<p>
 	The current development is done on github: <a class="extlink" target="_blank" href="https://github.com/fachat/GeckOS-V2">https://github.com/fachat/GeckOS-V2</a>.
-	There you also find the older versions 2.0.0 and 2.0.8 as source tree (check the git tags)
+	There you also find the older versions as source tree (check the git tags)
 	</p>
 <p>
-For some architecture some disk images for older versions are provided:</p>
+The git repo now contains, for the supported architectures, d64 disk images that are ready to boot (not all architectures support all options, e.g. tcp/ip) in the arch/*/boot subdirectory.
+</p>
 <ul>
-<li><a href="c64.d64.gz">c64.d64.gz</a> D64 file for C64 emulators.
-Start with "x64 -8 c64.d64 -1541".</li>
-<li><a href="cbm8x96.d64.gz">cbm8x96.d64.gz</a> D64 file for the VICE xpet emulator. Start with "xpet -8 cbm8x96.d64 -model 8296"</li>
-<li><a href="pet32k.d64.gz">pet32k.d64.gz</a> D64 file for the VICE xpet emulator.
-Start with "xpet -8 pet32k.d64 -model 8032"</li>
+<li><a href="https://github.com/fachat/GeckOS-V2/raw/master/arch/c64/boot/osa.d64">C64 osa.d64</a> D64 file for C64 emulators.
+Start with "x64 -8 osa.d64". Documentation is in the <a href="https://github.com/fachat/GeckOS-V2/blob/master/doc/c64.p.adoc">C64 port adoc</a>.</li>
+<li><a href="https://github.com/fachat/GeckOS-V2/raw/master/arch/cbm8x96/boot/osa.d64">cbm8x96 osa.d64</a> D64 file for the VICE xpet emulator. 
+Start with "xpet -8 cbm8x96.d64 -model 8296". Documentation is in the <a href="https://github.com/fachat/GeckOS-V2/blob/master/doc/cbm8x96.p.adoc">8x96 port adoc</a>.</li>
+<li><a href="https://github.com/fachat/GeckOS-V2/raw/master/arch/pet32k/boot/osa.d64">8032 PET osa.d64</a> D64 file for the VICE xpet emulator.
+Start with "xpet -8 pet32k.d64 -model 8032". Documentation in the <a href="https://github.com/fachat/GeckOS-V2/blob/master/doc/pet32k.p.adoc">PET 32k adoc</a>.</li>
+<li>CS/A65 osa.d64 for the <a href="https://github.com/fachat/xcbm">XCBM emulator</a> for my <a href="../csa/index.html">CS/A65</a> PET clone - is not yet available as xcbm does not yet support disk images. You have to start xcsa in the boot folder of the git repo (after checkout and building). Documentation is in the <a href="https://github.com/fachat/GeckOS-V2/blob/master/doc/csa65.p.adoc">CS/A port adoc</a>.</li>
 </ul><p>
 After starting the emulators do a `LOAD"LOADER",8' and then `RUN'. This
 should do it. On the C64 and the 8x96 PET you have a libshell (lsh) and an old-style shell/monitor
 coming up on two different virtual consoles. The standard 32k PET only runs a libshell.
-You can switch between consoles with the TAB (pet32k), the ESC/@ (VICE/real 8x96), or the F1 (C64) key.
+You can switch between consoles with different key combinations, pls see the ports file (or if in doubt the PET 32k file) for specific keys for each platform.
 </p>
 <p>Watch a small demo video here</p>
-<iframe width="420" height="315" src="https://www.youtube-nocookie.com/embed/R0uLi5icnoE" frameborder="0" allowfullscreen="1"></iframe><p>
-Due to heavy time constraints I am currently not able to do more development.
-So there is a not-so-well tested version here. Most improvements are in
-the FSIBM filesystem, that handles PC disks. Now it can also handle
-SCSI harddisks (scsi driver added) and also handles 16 bit FATs.
-It uses a PC-type partition table. It is being tested with the CSA
-architecture, so this has changed a bit more.
-<br/>
-Anyway, there is a TODO file that describes what has to be done for
-2.1 and a LOG-2.0 file that describes what has already be done.
-<br/>
-Download it as 
-</p>
-<ul>
-<li><a href="oa-2.0.9.tar.gz">oa-2.0.9.tar.gz</a>.</li>
-<li><a href="oa-2.0.8.tar.gz">oa-2.0.8.tar.gz</a>.</li>
-<li><a href="oa-2.0.0.tar.gz">oa-2.0.0.tar.gz</a> Full source archive. To build the binaries you have to have the xa65 package (see below).</li>
-<li><a href="oa-2.0.0.base.tar.gz">oa-2.0.0.base.tar.gz</a> Base archive, without the Gecko and CS/A65 architectures and without the copyrighted BASIC
-interpreter.</li>
-<li><a href="oa-2.0.0.lib.tar.gz">oa-2.0.0.lib.tar.gz</a> Source for the
-supplied lib6502 programs.</li>
-</ul>
+<iframe width="420" height="315" src="https://www.youtube-nocookie.com/embed/R0uLi5icnoE" frameborder="0" allowfullscreen="1"></iframe>
     </desc>
   </section>
 
@@ -170,16 +173,12 @@ kernel description.</li>
 <a href="../misc/index.html">xa</a>
 you need to assemble the whole stuff</li>
 <li>How to <a href="build.html">build</a> the binaries</li>
-<li>A description of the <a href="files.txt">files</a> in the archive</li>
-<li><a href="kernel.html">kernel</a> interface</li>
-<li><a href="../lib6502/index.html">lib6502</a> description</li>
+<li><a href="https://github.com/fachat/GeckOS-V2/blob/master/doc/kernel.7.adoc">kernel</a> interface (linked from github)</li>
+<li><a href="../lib6502/index.html">lib6502</a> description, and <a href="https://github.com/fachat/GeckOS-V2/tree/master/doc/lib6502">lib6502 call docs on github</a>.</li>
 <li>Operation <a href="nommu.html">without an MMU</a></li>
 <li>introduction to the <a href="devices.html">devices</a></li>
 <li><a href="filesystems.html">filesystem</a> interface</li>
-<li>The  <a href="README">README</a> that comes with the binary.</li>
-<li>The <a href="README.c64">README.c64</a> with instructions how to run it on the C64</li>
 <li>The <a href="README.slip">README.slip</a> with instructions how to run the TCP/SLIP software</li>
-<li>There also is a list of <a href="BUGS">Known Bugs</a></li>
 <li>There also is a list of <a href="IDEAS">Ideas</a> what to do next...</li>
 <li>An instruction to the lib6502 <a href="README.lsh">lsh</a></li>
 </ul>
@@ -188,8 +187,10 @@ you need to assemble the whole stuff</li>
 
   <section toc="old" name="Old Stuff">
     <desc> 
+<p>This will probably go away or be replaced with more up-to-date documentation.</p>
 <ul>
 <li><a href="oa1.html"><strong>Overview</strong></a> over the Computer System and its Software</li>
+<li><a href="kernel.html">kernel</a> interface</li>
 <li>The old <a href="oldlib.html">standard library</a> has been
 replace with the lib6502 and is not longer supported.</li>
 
@@ -200,6 +201,10 @@ by the lib6502 lsh and will no longer be developed.</li>
 <a href="basic.html">BASIC</a> interpreter <strong>(c) Commodore</strong></li>
 <li>The <a href="LOG-1.3">ChangeLog</a> for version 1.3.* and for
 the development of <a href="LOG-pre-2.0">2.0.0</a>.</li>
+<li>The <a href="README.c64">README.c64</a> with instructions how to run it on the C64</li>
+<li>The  <a href="README">README</a> that comes with the binary.</li>
+<li>There also is a list of <a href="BUGS">Known Bugs</a></li>
+<li>A description of the <a href="files.txt">files</a> in the archive</li>
 </ul>
     </desc>
   </section>
