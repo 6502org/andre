@@ -8,6 +8,9 @@
 		that the IEEE488 bus can also be used as a device.
 	</desc>
 	<news>
+		<item date="20240215">
+			Added version 1.3B that corrects IEEE488 term resistors, opts to block only 8 addresses for each PIA instead of 16.
+		</item>
 		<item date="20220313">
 			Added version 1.3A that uses 74LS641-1 instead of MC3446 (untested)
 		</item>
@@ -19,10 +22,26 @@
 		</item>
 	</news>
 	<rev>
-		<version>1.3A</version>
-		<status>untested</status>
+		<version>1.3B</version>
+		<status>ok</status>
 		<note type="msg">
-			This board is as of now untested
+			This board has been tested as patched 1.3A only so far
+		</note>
+		<file ltype="schem" ptype="esch">csa_petio_v1.3b.sch</file>
+		<file ltype="bom" ptype="xls">csa_petio_v1.3b-BOM.xlsx</file>
+		<file ltype="schem" ptype="png">csa_petio-v1.3b-sch.png</file>
+		<file ltype="layout" ptype="ebrd">csa_petio_v1.3b.brd</file>
+		<file ltype="layout" ptype="gerbers">csa_petio-v1.3b-gerbers.zip</file>
+		<file ltype="layout" ptype="png">csa_petio-v1.3b-brd.png</file>
+		<file ltype="layout" ptype="png">csa_petio-v1.3b-layout.png</file>
+	</rev>
+	<rev>
+		<version>1.3A</version>
+		<status>ok (with IEEE488 pullups only)</status>
+		<note type="msg">
+			This board works, only the IEEE488 termination resistors should be
+			populated as pullup only (the 2.4k pulldown is wrong).
+			This is fixed in V1.3B.
 		</note>
 		<file ltype="schem" ptype="esch">csa_petio_v1.3a.sch</file>
 		<file ltype="schem" ptype="png">csa_petio_v1.3a-sch.png</file>

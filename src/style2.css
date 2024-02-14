@@ -632,6 +632,7 @@ table.files div.i_layout { background-position: -64px 0px; }
 table.files div.i_logic { background-position: -96px 0px; }
 table.files div.i_memmap { background-position: -128px 0px; }
 table.files div.i_parts { background-position: -160px 0px; }
+table.files div.i_bom { background-position: -160px 0px; }
 table.files div.i_photo { background-position: -192px 0px; }
 table.files div.i_schem { background-position: -224px 0px; }
 table.files div.i_driver { background-position: -256px 0px; }
