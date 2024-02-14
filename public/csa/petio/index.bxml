@@ -27,6 +27,9 @@
 		<note type="msg">
 			This board has been tested as patched 1.3A only so far
 		</note>
+		<note type="msg">
+			The PDF layout file contains the description of the jumper settings.
+		</note>
 		<file ltype="schem" ptype="esch">csa_petio_v1.3b.sch</file>
 		<file ltype="bom" ptype="xls">csa_petio_v1.3b-BOM.xlsx</file>
 		<file ltype="schem" ptype="png">csa_petio-v1.3b-sch.png</file>
@@ -34,6 +37,7 @@
 		<file ltype="layout" ptype="gerbers">csa_petio-v1.3b-gerbers.zip</file>
 		<file ltype="layout" ptype="png">csa_petio-v1.3b-brd.png</file>
 		<file ltype="layout" ptype="png">csa_petio-v1.3b-layout.png</file>
+		<file ltype="layout" ptype="pdf">csa_petio-v1.3b-layout.pdf</file>
 	</rev>
 	<rev>
 		<version>1.3A</version>
