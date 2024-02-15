@@ -29,7 +29,11 @@
 		<note type="warn">
 		This board works for CS/A cards. Apple II cards (as far as they are supported) 
 		should work, this has been tested with a super serial card.
-		RC2014 still needs to be tested.
+		</note>
+		<note type="warn">
+		RC2014 also works but mostly in Slot 6.1 with /MREQ and /IOREQ qualified with Phi2.
+		It seems more RC2014 than anticipated need this.
+		The next revision will have all slots with qualified /MREQ and /IOREQ.
 		</note>
 		<file ltype="schem" ptype="esch">csa-ultrabus-1.0a.sch</file>
 		<file ltype="schem" ptype="png">csa-ultrabus-1.0a-sch-1.png</file>
