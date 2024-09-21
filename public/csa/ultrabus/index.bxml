@@ -19,10 +19,24 @@
 		</desc>
 	</diagram-->
 	<news>
+		<item date="2024-09-21" state="hot">
+			Please track version 2.0 and later on the <a href="https://github.com/fachat/csa_ultrabus">ultrabus github page</a>.
+		</item>
 		<item date="2023-12-13">
 			Initial publish on this page
 		</item>
 	</news>
+	<rev>
+		<version>2.0A</version>
+		<status>ok</status>
+		<note type="info">
+		Please track this and later revisions on the <a href="https://github.com/fachat/csa_ultrabus">ultrabus github page</a>.
+		</note>
+		<note type="warn">
+		This board works for CS/A cards. Apple II cards (as far as they are supported) 
+		should work, this has been tested with a super serial card.
+		</note>
+	</rev>
 	<rev>
 		<version>1.0A</version>
 		<status>ok</status>
