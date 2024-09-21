@@ -20,7 +20,7 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
-    <item date="2024-09-21" >
+    <item date="2024-09-21" state="hot">
 	Updated the <a href="ultipet/index.html">ultipet/index.html</a> page to the current state - the prototype Ulti-PET machine!
 	Updated the <a href="osa/index.html">GeckOS</a> page to its current version 2.2.
     </item>
@@ -55,7 +55,7 @@ on Google+. After three years my priorities shifted and I stepped back from it j
     <item date="2021-10-18" >
         Updated the CS/A <a href="csa/vdc/index.html">VDC Video board</a>, <a href="csa/petio/index.html">PETIO</a>, and <a href="csa/bios/index.html">BIOS</a> boards.
     </item>
-    <item date="2021-09-13" state="hot"> 
+    <item date="2021-09-13"> 
 	Added the <a href="upet/index.html">Micro-PET page</a>.
     </item>
   </news>
