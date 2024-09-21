@@ -20,6 +20,10 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2024-09-21" >
+	Updated the <a href="ultipet/index.html">ultipet/index.html</a> page to the current state - the prototype Ulti-PET machine!
+	Updated the <a href="osa/index.html">GeckOS</a> page to its current version 2.2.
+    </item>
     <item date="2024-02-06" >
 	Updated the <a href="osa/index.html">GeckOS</a> page to its current version 2.1.1.
     </item>

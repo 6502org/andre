@@ -8,21 +8,19 @@
     <yearend>2024</yearend>
   </author>
   <keywords>Commodore PET CBM Ulti-PET</keywords>
-  <metadesc>Ulti-PET Commodore PET extended clone</metadesc>
+  <metadesc>Micro-PET Commodore PET extended clone</metadesc>
   <overview><p>	
-	The Ulti-PET is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
-	It is currently build on a multiple Eurocard board and has only parts that can still be obtained new in 2021-2023.
+	The Micro-PET family is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
-	Currently it is a work-in-progress.
 	</p><p>
-	The goal is to combine multiple of these boards into a single PCB that fits a (slightly modified) C64 case. 
-	This board is currently in the design phase.
-	</p><p>
-	Note that I now call it "Ulti-PET" to avoid confusion with Gideon's Ultimate projects.
+	
  	</p>
   </overview>
   <news>
+    <item date="2024-09-21" state="hot">
+	Update on the development status, presenting Ulti-PET prototypes.
+    </item>
     <item date="2024-02-03">
 	Clarification on the goal of integrating into a single PCB and the components.
     </item>
@@ -41,18 +39,24 @@
   <section toc="overview" name="Overview">
      <desc><p>
 	After building the Micro-PET I noticed, that for further features, I would have to get larger than 
-	a Euro-card. The challenge - for me at least - is that I use an older, private-use restricted
-	version of Eagle that can only do Euro-card PCBs, but not larger.
+	a Euro-card. I started working with KiCAD, migrating some of my boards there and continued working
+	on a larger version of the Micro-PET: The Ulti-PET.
 	</p><p>
-	So, the current version is based on multiple Euro-PCBs, but will eventually be combined into a
-	single PCB.
-	</p><p>
+	Finally, I reached a point where I was confident enough with the technology that I can now present three
+	boards based on that tech:
+	</p>
+	<ul>
+		<li>The <em>Micro-PET</em>: a PCB that clones a Commodore PET, and adds modern features like SD-Card, USB, DAC audio, Network support, and colour VGA video output</li>
+		<li>The <em>Micro-CPU</em>: The CPU and modern tech part of the Micro-PET (SD-Card, USB, DAC audio, Network, VGA video) as CPU for the CS/A bus.</li>
+		<li>The <em>Ulti-PET</em>: a Micro-PET-based PCB with many many new features like Dual-SID, I2C, RS232 / TTL UARTs, fast serial IEC, Joysticks,, ...</li>
+	</ul>
+	<p>
 	The main development is happening on github (see link left in the menu).
 	</p>
      </desc>
      <subsection toc="features" name="Features">
 	<desc>
-Here is a list of the features. Most of them have been implemented in the Eurocard version already, and only need to be combined into the single PCB:
+Here is a list of the features:
 <ul>
   <li>Ulti-PET features</li>
   <ul>
@@ -70,8 +74,8 @@ Here is a list of the features. Most of them have been implemented in the Euroca
     <ul>
         <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
         <li>boot from an SPI Flash ROM</li>
-        <li>up to 12.5 MHz mode (via configuration register)</li>
-        <li>VGA Colour video output (RGBI in 640x480)</li>
+        <li>up to 17.5 MHz mode (via configuration register)</li>
+        <li>VGA Colour video output (RGBI in 768x576)</li>
         <li>Write protection for the PET ROMs once copied to RAM</li>
         <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
     </ul>
@@ -79,18 +83,21 @@ Here is a list of the features. Most of them have been implemented in the Euroca
     <ul>
 	<li>Multiple colour modes (Colour-PET, C128-VDC-compatible, Multicolour)</li>
         <li>Colour Hires graphics mode</li>
+        <li>Sprites</li>
 	<li>Modifyable character set</li>
-        <li>40/80 column display switchable</li>
-        <li>25/50 rows display switch</li>
+        <li>40/80 column switchable character width</li>
+        <li>Flexible timing, with up to 72 lines and 96 characters per line</li>
         <li>multiple video pages mappable to $8000 video mem address</li>
     </ul>
     <li>Audio output:</li>
     <ul>
+	<li>PET beeper :-)</li>
 	<li>DMA engine to play audio samples on stereo DAC sound output</li>
 	<li>Dual-SID</li>
+	<li>Audio mixer and small audio amp (Ulti-PET only)</li>
     </ul>
   </ul>
-  <li>Extra I/O features on top</li>
+  <li>Extra I/O features on top (mostly Ulti-PET only)</li>
   <ul>
     <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
     <li>RS232 interface</li>
@@ -103,25 +110,14 @@ Here is a list of the features. Most of them have been implemented in the Euroca
       <li>Some Apple-II bus compatibility</li>
       <li>RC2014 bus connectors</li>
     </ul>
-  </ul>
-  <li>Extensions planned on the combined board:</li>
-  <ul>
-    <li>(Built-in disk drive simulator (e.g. nano488 or pico488) - Cancelled due to space restrictions</li>
     <li>Built-in Userport extensions, like Joystick ports</li>
   </ul>
 </ul>
-	<p>
-	As mentioned, the current design uses multiple PCBs, esp. the Ultra-CPU and the
-	Ultra-Bus. The Ultra-CPU, Ultra-Bus and the existing CS/A PETIO board already
-	make up a Colour-PET clone.
-	</p>
-
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 
 	</desc>
-	<extlink name="The Ultra-CPU at github" link="https://github.com/fachat/csa_ultracpu"/>
-	<extlink name="The Ultra-Bus at github" link="https://github.com/fachat/csa_ultrabus"/>
+	<extlink name="The Micro-PET family at github" link="https://github.com/fachat/upet_family"/>
 	<extlink name="The PETIO board" link="../csa/petio/index.html"/>
 	<extlink name="The DUALSID board" link="../csa/dualsid/index.html"/>
 	<extlink name="A Youtube video on the Ultra-CPU" link="https://youtu.be/iMmVOPfir1c"/>
@@ -135,6 +131,16 @@ Here is a list of the features. Most of them have been implemented in the Euroca
     </desc>
 
   <gallery>
+        <image>
+                <thumb>imgs/family.jpg</thumb>
+                <full>imgs/family.jpg</full>
+                <alt>The different Micro-PET family boards</alt>
+                <desc>
+			The large board is the Ulti-PET, which fits into a C64 case (some case cutting required). 
+			There are the Micro-PET and the CS/A Ultra-CPU boards as well.
+			A keyboard with 3D-printable PET keycaps is available too.
+		</desc>
+        </image>
         <image>
                 <thumb>imgs/newboard.jpg</thumb>
                 <full>imgs/newboard.jpg</full>
