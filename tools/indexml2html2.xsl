@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#38;eacute; "> <!ENTITY nbsp "&#160;"> ] >
+<!DOCTYPE xsl:stylesheet [ <!ENTITY eac "&#233;"> <!ENTITY nbsp "&#160;"> ] >
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
    <xsl:param name="date" select="'unknown'"/>
 
@@ -158,6 +158,10 @@
 <xsl:template name="commoncol">
 	<!-- topsearch is an input field to filter the content of the menu, plus
 		if return is pressed, search via google -->
+	<div class="pagetitle">Andr&eac;&#39;s 8-bit pages</div>
+	<div id="thanks">
+		Thankfully hosted by <a href="http://www.6502.org">6502.org</a>.
+	</div> <!-- thanks -->
 	<div id="topsearch">
 		<form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off">
 			<input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value=""/>

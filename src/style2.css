@@ -36,6 +36,24 @@ a:active { color:#8888ff; text-decoration:none }
 a:focus { color:#888888; text-decoration:none }
 a:hover { color:#ff0000; text-decoration:none }
 
+#thanks {
+	float:right;
+        padding: 2px 2px;
+        color: #eee;
+	a:visited { color:#8888ff; text-decoration:none }
+	a:link { color:#8888ff; text-decoration:none }
+}
+
+.pagetitle {
+        font-size: 36px;
+        background: #111;
+        color: #eee;
+        position: relative;
+        padding: 10px 10px;
+        /*margin-left: 0%;*/
+   	box-shadow: 3px 3px 3px #444;
+}
+
 /* top level style */
 DIV.top {
    background-color: #fff;
