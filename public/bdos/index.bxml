@@ -1,0 +1,45 @@
+<!DOCTYPE webpage [ <!ENTITY eacute "&#233; "> <!ENTITY nbsp "&#160;"> ]>
+<webpage name="BDOS - Copy files to and from PC floppies">
+  <author>
+    <name>Andr&eacute; Fachat</name> 
+    <email>@EMAIL@</email>
+    <homepage>@WEBROOT@</homepage>
+    <yearstart>2026</yearstart>
+    <yearend>2026</yearend>
+  </author>
+  <keywords>6502,C128,Commodore,Commodore128</keywords>
+  <metadesc>BDOS</metadesc>
+  <overview><p>	
+	  BDOS is a solution I built in 1989, to read and write files from and to PC floppy disks
+	  using a Commodore 128 and a 1571 floppy disk. I even made a version for a C64 with hardware modification, and the 1571.
+	  </p>
+	  <p>
+		  In a recent interview (see here <a href="https://www.golem.de/news/podcast-besser-wissen-unix-auf-dem-6502-2512-202997.html">Golem podcast</a>, in German) I got the chance to talk about BDOS.
+		So, I tried to resurrect it from the ... sleep ;-) ... 
+		The result is in the video linked below.
+		Also, the sources are now on github, for anyone to reuse.
+	</p>
+  </overview>
+  <news>
+    <item date="2025-01-05">
+	Started this page
+    </item>
+  </news>
+  <toc/>
+  <section toc="download" name="Download">
+    <desc>
+	<p>
+	The current state of the code is on github: <a class="extlink" target="_blank" href="https://github.com/fachat/c128_bdos">https://github.com/fachat/c128_bdos</a>.
+	There you also find the original source (as far as I was able to find back, which is the BDOS+ I published in binary quite some years ago),
+	and you can also see the tools and intermediary steps when re-formatting the source for a modern assembler.
+	</p>
+	<p>Watch a small demo video here</p>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/CBpuW4_aiEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+    </desc>
+  </section>
+
+  <closing>
+@FOOTER@
+  </closing>
+</webpage>

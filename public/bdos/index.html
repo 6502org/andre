@@ -4,11 +4,11 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <meta name="author" content="André  Fachat" />
 
-<meta name="description" content="" />
-<meta name="keywords" content="" />
+<meta name="description" content="BDOS" />
+<meta name="keywords" content="6502,C128,Commodore,Commodore128" />
 <link rev="made" href="mailto:afachat@gmx.de" />
 <link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
-<title>XD2031 - AtMega(tm) firmware for virtual CBM drives</title></head>
+<title>BDOS - Copy files to and from PC floppies</title></head>
 <body><div id="mainbox"><a name="top" id="top"></a><div class="pagetitle">André's 8-bit pages</div><div id="thanks">
 		Thankfully hosted by <a href="http://www.6502.org">6502.org</a>.
 	</div><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value="" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
@@ -106,49 +106,34 @@
 </div>
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
-<h1>XD2031 - AtMega(tm) firmware for virtual CBM drives</h1><p class="copyright">(C)
-2012-2013 André  Fachat</p> 
-<div class="overview"><p>
-	The <em>XD2031</em> project is an AtMega(tm) firmware for devices like the
-	petSD or xs1541, to connect Commodore devices to the PC, and use the PC as
-	disk drive via an USB connection.
-	</p><p>
-This software enables to program an AVR AtMega device to play
-the role of a disk drive to a Commodore PET computer with IEEE488 
-interface.
-</p><p>
-XD-2031 consists of two main parts, an AtMega firmware, and a PC server.
-Both communicate via a serial line. 
-</p><p>
-Currently this hardware is supported:
-</p><ul>
-	<li>XS-1541 	Communication via serial line over USB</li>
-	<li>petSD   	Communication via serial line over USB</li>
-</ul><p>
-For more information see the README files in the repository.
-</p><p>
-Copyright
-</p><p>
-The code is under GPL V2. Please note that the PC server part is
-also available on V2 or later versions of the GPL, the AtMega firmware is
-ONLY(!) available under GPL V2 (due to some older files from sd2iec still in use).
-</p><p>
-(C) 2012,2014 Andre Fachat
-	 Ingo Korb, Thomas Winkler, Nils Eilers and others!
-</p><p>
-Please see the individual files for specific copyright notices.
-</p>
+<h1>BDOS - Copy files to and from PC floppies</h1><p class="copyright">(C)
+2026-2026 André  Fachat</p> 
+<div class="overview"><p>	
+	  BDOS is a solution I built in 1989, to read and write files from and to PC floppy disks
+	  using a Commodore 128 and a 1571 floppy disk. I even made a version for a C64 with hardware modification, and the 1571.
+	  </p>
+	  <p>
+		  In a recent interview (see here <a href="https://www.golem.de/news/podcast-besser-wissen-unix-auf-dem-6502-2512-202997.html">Golem podcast</a>, in German) I got the chance to talk about BDOS.
+		So, I tried to resurrect it from the ... sleep ;-) ... 
+		The result is in the video linked below.
+		Also, the sources are now on github, for anyone to reuse.
+	</p>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2025-01-05</small>
+	Started this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#download">Download</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="download" id="download">Download</a></h2></div><div class="h2c">
+	<p>
+	The current state of the code is on github: <a class="extlink" target="_blank" href="https://github.com/fachat/c128_bdos">https://github.com/fachat/c128_bdos</a>.
+	There you also find the original source (as far as I was able to find back, which is the BDOS+ I published in binary quite some years ago),
+	and you can also see the tools and intermediary steps when re-formatting the source for a modern assembler.
+	</p>
+	<p>Watch a small demo video here</p>
 
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2013-01-07</small>
-	Published the page
-    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="dl" id="dl">Download</a></h2></div><div class="h2c"><p>
-	Currently there is only a small homepage for it.
-	See there and on the github repository for more details.
-    </p><ul><li><a href="https://github.com/fachat/XD2031" target="_blank" class="extlink">XD2031 github repository</a> </li><li><a href="http://xd2031.petsd.net" target="_blank" class="extlink">XD2031 homepage</a> </li></ul></div></div><hr />
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/CBpuW4_aiEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
+    </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
 
   Last modified: 
-2014-08-11
+
 	</div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://mastodon.online/@afachat">Mastodon</a> (In new window)
 				or <a class="extlink" target="_blank" href="https://bsky.app/profile/afachat.bsky.social">Bluesky</a></p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>

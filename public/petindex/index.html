@@ -67,6 +67,8 @@
 </li>
 <li><a href="../xd2031/index.html">XD2031</a>
 </li>
+<li><a href="../bdos/index.html">BDOS</a>
+</li>
 <li><a href="../misc/index.html">Misc</a>
 </li>
 <div class="nend2"></div>
@@ -78,8 +80,6 @@
 <li><span>Library</span></li>
 <li><ul class="nav2" >
 <li><a href="../petindex/index.html">PETindex</a>
-</li>
-<li><a href="../petindex/drives/index.html">PET drives</a>
 </li>
 <li><a href="../adv65/index.html">Advanced 6502</a>
 </li>
@@ -180,7 +180,7 @@
 <li><ul class="nav2" >
 <li><a href="hw.html">Hardware projects</a></li>
 <li><a href="sw.html">Software projects</a></li>
-<li><a href="emus.html">PET emulators</a></li>
+<li><a href="emus.html">PET emulators/rebuilds</a></li>
 <li><a href="transfer.html">File transfers</a></li>
 <li><a href="links.html">Links</a></li>
 </ul>
@@ -217,7 +217,9 @@ I hope you enjoy this document.<br />
 <a href="http://www.6502.org/users/andre/">A. Fachat</a>
 (<a href="mailto:afachat@gmx.de?subject=PETindex:">afachat@gmx.de</a>)
 </p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2023-07-23</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2026-01-05</small>
+	Greatly updated the links on <a href="petindex/emus.html">PET replicas and emulators</a>.		 
+    </li><li><div> </div><small>2023-07-23</small>
 	Added a link to a new ROM 1 IEEE488 patch on the <a href="roms.html">ROMs</a> page.
     </li><li><div> </div><small>2023-02-05</small>
 	Added a link to commodoregames.net on the <a href="links.html">Links</a> page.
@@ -232,38 +234,6 @@ I hope you enjoy this document.<br />
 	Added some links on the <a href="drives/index.html">drives</a> and <a href="gallery/index.html">gallery</a> pages.
     </li><li><div> </div><small>2018-04-01</small>
 	Add links to Steve's PET graphics page (on the <a href="extensions.html">extensions</a> and <a href="hw.html">hardware</a> pages). Add link to more harddrive information on the <a href="drives/index.html">drives</a> page.
-    </li><li><div> </div><small>2017-10-15</small>
-	Added bombjack to the documentation <a href="links.html">links page</a>. Added the mult-editor ROM board to the
-	<a href="hw.html">hardware extensions</a>. Added D9090 <a href="repairs.html">repair info</a> and 6540/6550 tester info.
-	Added the high speed graphics card <a href="extensions.html">extension</a>.
-	Added info on garbage collection and other differences in the BASIC <a href="roms.html">ROMs</a>.
-	Added a summary of the <a href="drives/writegap.html">Drive write gap</a> discussion and
-	a comment on the <a href="drives/progs/index.html">programs</a> to read the floppy controller ROM.
-	Added drive hardware information on the <a href="drives/index.html">drives page</a>.
-	Added a link to the <a href="superpet.html">SuperPET</a> history.
-	Updated links on the <a href="drives/harddisk.html">Hard Drive page</a>.
-	Added a games section on the <a href="links.html">Links page</a>.
-    </li><li><div> </div><small>2017-08-29</small>
-	Added RS232 information to the <a href="hw.html">Hardware projects</a>, <a href="periph.html">Peripheral</a>, and <a href="extensions.html">Extensions</a> pages.
-    </li><li><div> </div><small>2017-08-13</small>
-        Added the 1st version ROM dump for the diagnostic cartridge and a disassembly for it.
-	Also added link to discussion of PET prototypes to the <a href="versions.html">versions page</a>.
-    </li><li><div> </div><small>2017-07-23</small>
-	Added the page for the <a href="diag/index.html">Diagnostic clip</a>.
-    </li><li><div> </div><small>2016-04-24</small>
-	Updated 6540 ROM adapter links and added link to 30 screen lines mod.
-    </li><li><div> </div><small>2015-02-01</small>
-        Added the swedish/finnish keyboard mapping and the computhink disk drive.
-    </li><li><div> </div><small>2014-08-22</small>
-        Added some links.
-    </li><li><div> </div><small>2014-08-11</small>
-	Add some bits here and there, mainly some repair info, as well as DOS ROM information.
-    </li><li><div> </div><small>2013-12-30</small>
-	Added the ZoomFloppy and the Internet Flyer Modem to the <a href="transfer.html">transfer</a> page.
-    </li><li><div> </div><small>2013-12-27</small>
-        Added link to Z-RAM and PEDISK-II to the <a href="extensions.html">Extensions page</a>.
-	Also added the link to the SuperPET OS/9 project on the <a href="hw.html">Hardware Projects</a> page, and some
-	links on the <a href="superpet.html">SuperPET</a> page.
     </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="coverage" id="coverage">What is covered and what not?</a></h2></div><div class="h2c"><p>Coverage is the whole line of Commodore PET computers, ranging
 from the PET 2001 to the CBM 8296, as well as the SuperPET (aka MicroMainFrame 9000 in Europe).
 Not covered are the so-called "CBM-II" machines, the business machines CBM 610-620, 710-720 (also known as B128 and B256)
@@ -305,7 +275,39 @@ Ruud Baltissen and all the others that provided this information.
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
 
-		</div></div><div class="top" id="oldnews"><div class="tophead">history</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews"> </div><small>2013-05-02</small>
+		</div></div><div class="top" id="oldnews"><div class="tophead">history</div><div id="oldnewscontent"><ul class="news"><li><div class="i_oldnews"> </div><small>2017-10-15</small>
+	Added bombjack to the documentation <a href="links.html">links page</a>. Added the mult-editor ROM board to the
+	<a href="hw.html">hardware extensions</a>. Added D9090 <a href="repairs.html">repair info</a> and 6540/6550 tester info.
+	Added the high speed graphics card <a href="extensions.html">extension</a>.
+	Added info on garbage collection and other differences in the BASIC <a href="roms.html">ROMs</a>.
+	Added a summary of the <a href="drives/writegap.html">Drive write gap</a> discussion and
+	a comment on the <a href="drives/progs/index.html">programs</a> to read the floppy controller ROM.
+	Added drive hardware information on the <a href="drives/index.html">drives page</a>.
+	Added a link to the <a href="superpet.html">SuperPET</a> history.
+	Updated links on the <a href="drives/harddisk.html">Hard Drive page</a>.
+	Added a games section on the <a href="links.html">Links page</a>.
+    </li><li><div class="i_oldnews"> </div><small>2017-08-29</small>
+	Added RS232 information to the <a href="hw.html">Hardware projects</a>, <a href="periph.html">Peripheral</a>, and <a href="extensions.html">Extensions</a> pages.
+    </li><li><div class="i_oldnews"> </div><small>2017-08-13</small>
+        Added the 1st version ROM dump for the diagnostic cartridge and a disassembly for it.
+	Also added link to discussion of PET prototypes to the <a href="versions.html">versions page</a>.
+    </li><li><div class="i_oldnews"> </div><small>2017-07-23</small>
+	Added the page for the <a href="diag/index.html">Diagnostic clip</a>.
+    </li><li><div class="i_oldnews"> </div><small>2016-04-24</small>
+	Updated 6540 ROM adapter links and added link to 30 screen lines mod.
+    </li><li><div class="i_oldnews"> </div><small>2015-02-01</small>
+        Added the swedish/finnish keyboard mapping and the computhink disk drive.
+    </li><li><div class="i_oldnews"> </div><small>2014-08-22</small>
+        Added some links.
+    </li><li><div class="i_oldnews"> </div><small>2014-08-11</small>
+	Add some bits here and there, mainly some repair info, as well as DOS ROM information.
+    </li><li><div class="i_oldnews"> </div><small>2013-12-30</small>
+	Added the ZoomFloppy and the Internet Flyer Modem to the <a href="transfer.html">transfer</a> page.
+    </li><li><div class="i_oldnews"> </div><small>2013-12-27</small>
+        Added link to Z-RAM and PEDISK-II to the <a href="extensions.html">Extensions page</a>.
+	Also added the link to the SuperPET OS/9 project on the <a href="hw.html">Hardware Projects</a> page, and some
+	links on the <a href="superpet.html">SuperPET</a> page.
+    </li><li><div class="i_oldnews"> </div><small>2013-05-02</small>
         Added the <a href="hw.html#colourpet">Colour PET</a> project description.
     </li><li><div class="i_oldnews"> </div><small>2013-04-14</small>
 	Added a RAM drive for the 8296 to the <a href="hw.html">Hardware</a> page,

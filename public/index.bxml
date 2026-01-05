@@ -20,6 +20,12 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
+    <item date="2026-01-05">
+	Created a separate <a href="bdos/index.html">page for BDOS</a>, my solution to copy files to and from PC disks with a C128 and a 1571 disk drive.
+    </item>
+    <item date="2026-01-05">
+        Greatly updated the links on <a href="petindex/emus.html">PET replicas and emulators</a>.
+    </item>
     <item date="2024-10-30">
 	Update on the <a href="ultipet/index.html">Ulti-PET</a> page.
     </item>
@@ -46,6 +52,8 @@ on Google+. After three years my priorities shifted and I stepped back from it j
     <item date="2023-01-08" >
         Introduced <a href="ultipet/index.html">The Ultimate PET</a>.
     </item>
+  </news>
+  <oldnews>
     <item date="2022-03-13" >
         Updated PETIO board on the <a href="csa/index.html">CS/A65 machine</a>.
     </item>
@@ -61,8 +69,6 @@ on Google+. After three years my priorities shifted and I stepped back from it j
     <item date="2021-09-13"> 
 	Added the <a href="upet/index.html">Micro-PET page</a>.
     </item>
-  </news>
-  <oldnews>
     <item date="2020-10-29"> 
 	Updated a number of links on the <a href="petindex/index.html">PET index</a> and elsewhere.
     </item>

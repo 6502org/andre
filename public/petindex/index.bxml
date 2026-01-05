@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item date="2026-01-05">
+	Greatly updated the links on <a href="petindex/emus.html">PET replicas and emulators</a>.		 
+    </item>
     <item date="2023-07-23">
 	Added a link to a new ROM 1 IEEE488 patch on the <a href="roms.html">ROMs</a> page.
     </item>
@@ -58,6 +61,8 @@ I hope you enjoy this document.<br/>
     <item date="2018-04-01">
 	Add links to Steve's PET graphics page (on the <a href="extensions.html">extensions</a> and <a href="hw.html">hardware</a> pages). Add link to more harddrive information on the <a href="drives/index.html">drives</a> page.
     </item>
+  </news>
+  <oldnews>
     <item date="2017-10-15">
 	Added bombjack to the documentation <a href="links.html">links page</a>. Added the mult-editor ROM board to the
 	<a href="hw.html">hardware extensions</a>. Added D9090 <a href="repairs.html">repair info</a> and 6540/6550 tester info.
@@ -100,8 +105,6 @@ I hope you enjoy this document.<br/>
 	Also added the link to the SuperPET OS/9 project on the <a href="hw.html">Hardware Projects</a> page, and some
 	links on the <a href="superpet.html">SuperPET</a> page.
     </item>
-  </news>
-  <oldnews>
     <item date="2013-05-02">
         Added the <a href="hw.html#colourpet">Colour PET</a> project description.
     </item>

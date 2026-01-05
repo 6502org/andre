@@ -67,6 +67,8 @@
 </li>
 <li><a href="../xd2031/index.html">XD2031</a>
 </li>
+<li><a href="../bdos/index.html">BDOS</a>
+</li>
 <li><a href="../misc/index.html">Misc</a>
 </li>
 <div class="nend2"></div>
@@ -78,8 +80,6 @@
 <li><span>Library</span></li>
 <li><ul class="nav2" >
 <li><a href="../petindex/index.html">PETindex</a>
-</li>
-<li><a href="../petindex/drives/index.html">PET drives</a>
 </li>
 <li><a href="../adv65/index.html">Advanced 6502</a>
 </li>
@@ -180,7 +180,7 @@
 <li><ul class="nav2" >
 <li><a href="hw.html">Hardware projects</a></li>
 <li><a href="sw.html">Software projects</a></li>
-<li><a href="emus.html">PET emulators</a></li>
+<li><a href="emus.html">PET emulators/rebuilds</a></li>
 <li><a href="transfer.html">File transfers</a></li>
 <li><a href="links.html">Links</a></li>
 </ul>
@@ -192,14 +192,24 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1>PET index - PET emulators</h1><p class="copyright">(C)
-1998-2010 André  Fachat</p> 
-<div class="overview"><P>
-PET computers are increasingly hard to get. So there are emulators
-that allow to run PET prgrams on other hardware. This page describes
-the different emulators available.
-</P>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software Emulators</a></h2></div><div class="h2c"><p>This section describes emulators implemented in software</p>
-<DL>
+1998-2026 André  Fachat</p> 
+<div class="overview"><p>
+	PET computers are increasingly hard to get. So, on one side, there are emulators
+	that allow to run PET programs on other hardware. 
+	</p><p>
+	Also, in the recent couple of years (relative to 2026 where I write this), some new hardware rebuilds, and even
+	mixups with a new hardware just running a PET emulator have come up.
+	</p><p>
+	This page tries to describe the different emulators available.
+	</p>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2026-01-05</small>
+	Updated with more links
+    </li><li><div> </div><small>2010-01-04</small>
+	Started this page
+    </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="sw" id="sw">Software Emulators</a></h2></div><div class="h2c"><p>This section describes emulators implemented in software</p>
+
+  <DL>
+
 <DT><A HREF="http://vice-emu.sourceforge.net/">VICE</A></DT>
 <DD>This is the VICE emulator, that not only emulates the
 PET, but also most other Commodore 8-bit machines (C64, VIC20, C128, CBM-II).
@@ -208,10 +218,17 @@ The VICE emulator runs on different platforms, notably the
 Windows and Linux/Unix platforms are supprted, but others as well.
 </DD>
 
-<DT><A HREF="http://mess.redump.net/">MESS</A></DT>
-<DD>MESS emulates a very large number of (even non-Commodore) computers,
+<DT><A HREF="https://www.masswerk.at/pet/">Masswerk PET online emulator</A></DT>
+<DD>This lets you emulate a Commodore PET in your browser!
+(Note: they also have a nice <a href="https://www.masswerk.at/nowgobang/2024/guide-to-pets">guide on the PETs</a> in general).
+</DD>
+
+<DT><A HREF="https://www.mamedev.org/">MESS/MAME</A></DT>
+<DD>MESS emulated a very large number of (even non-Commodore) computers,
 amongst them also the PET computers. It even says to emulate the SuperPET.
-I have not tried it yet though.</DD>
+The MAME project is said to have inherited it, but the documentation of MAME
+does not seem to include the PET :-(
+.</DD>
 
 <DT><A HREF="http://www.zimmers.net/anonftp/pub/cbm/c64/utilities/">PET Emulator</A> for the C64 by Bob Fairbairn</DT>
 <DD>This is a different type of emulator - it runs on the C64, and
@@ -222,17 +239,56 @@ using BASIC POKE and PEEK commands.</DD>
 
   </div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="hw" id="hw">Hardware Emulators</a></h2></div><div class="h2c"><p>This section describes emulators implemented in hardware</p>
 <DL>
-<DT><A HREF="http://www.stepinfusion.com/projects/pet2001fpga/">A Commodore PET in an FPGA</A></DT>
-<DD>This is an amazing emulation - it emulates the complete PET in an FPGA! 
-The emulation is based on a Diligent Nexys3 FPGA evaluation board, implemented in verilog with Xilinx' ISE 13.2. 
-Source code is available! The CPU is not cycle-exact, but it runs Space Invaders and other games just fine.
-</DD>
-<DT><A HREF="http://www.6502.org/users/andre/csa/">CS/A65</A></DT>
-<DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
-It provides a very highly compatible system. In fact it runs a patched
-3032 ROM just fine. Only a few IEEE488 lines have been moved around,
-and the CRTC still needs to be set to 80 columns and not 40 to display
-80 columns.</DD>
+	<DT>The <a href="../upet/index.html">Micro-PET</a> and <A HREF="../ultipet/index.html">Ulti-PET</A></DT>
+	<DD>
+		The Micro- and Ulti-PET are complete PET re-builds on a single board. They use all modern components
+		and can be built today without having to scavenge something from an old machine.
+		They use FPGA as video generator, a 65816 CPU for more available memory, and can run
+		up to 13.5 MHz, and have colour video, DAC audio, USB keyboard support.
+		The Ulti-PET adds Dual-SID sound output, joystick ports (compatible with userport Joysticks from the
+		original, Fast-IEC bus support, serial (RS232) interfaces, I2C, SPI interfaces, and even a proper expansion port.
+		More detail on their <a href="https://github.com/fachat/upet_family">github page</a>.
+	</DD>
+
+	<DT><A HREF="https://github.com/Rhialto/MegaPET">MegaPET</A></DT>
+	<DD>
+		A PET core for the Mega65 FPGA retro machine (which started out as a C65 re-build but now runs a lot more different cores, 
+		the PET being one of them).
+	</DD>
+
+	<DT><A HREF="https://github.com/skibo/Pet2001_Arty">Pet2001-Arty</A></DT>
+	<DD>
+		A recreation of the 2001 on a Xilinux Artix7 FPGA.
+	</DD>
+
+	<DT><A HREF="https://github.com/MiSTer-devel/PET2001_MiSTer">MiSTer PET2001 core</A></DT>
+	<DD>
+		A recreation of the 2001 on MiSTer machine, that allows to run a number of different retro machines, the PET being one of them.
+	</DD>
+
+	<DT><A HREF="https://www.tfw8b.com/product/minipet-40-80-standalone-computer-kit/">MiniPET 40/80</A></DT>
+	<DD>
+		A real PET re-build by Tynemouth software and sold by TFW8b.com (look at their page for kits and other variants)
+	</DD>
+
+	<DT><A HREF="https://commodorepetmini.com/">Commodore PET Mini</A></DT>
+	<DD>
+		This is a PET emulator running on a raspberry pi board, inside a mini PET-like case.
+	</DD>
+
+	<DT><A HREF="../csa/index.html">CS/A65</A></DT>
+	<DD>The CS/A65 computer is not a software emulator, but a hardware emulator.
+	It provides a very highly compatible system. In fact it runs a patched
+	3032 ROM just fine. Only a few IEEE488 lines have been moved around,
+	and the CRTC still needs to be set to 80 columns and not 40 to display
+	80 columns.</DD>
+
+	<DT>A Commodore PET in an FPGA - Dead project?</DT>
+	<DD>This is an amazing emulation - it emulates the complete PET in an FPGA! 
+	The emulation is based on a Diligent Nexys3 FPGA evaluation board, implemented in verilog with Xilinx' ISE 13.2. 
+	Source code is available! The CPU is not cycle-exact, but it runs Space Invaders and other games just fine.
+	Unfortunately, as of 2026, this project does not seem to be available anymore.
+	</DD>
 </DL>
   </div></div><hr />
 <p>Return to <a href="../index.html">Homepage</a></p>
