@@ -1,0 +1,332 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="author" content="André Fachat" />
+
+<meta name="description" content="PET video output architecture" />
+<meta name="keywords" content="Commodore PET Video" />
+<link rev="made" href="mailto:afachat@gmx.de" />
+<link rel="stylesheet" title="Default" type="text/css" href="../style2-min.css" />
+<title>PET video architecture</title></head>
+<body><div id="mainbox"><a name="top" id="top"></a><div class="pagetitle">André's 8-bit pages</div><div id="thanks">
+		Thankfully hosted by <a href="http://www.6502.org">6502.org</a>.
+	</div><div id="topsearch"><form method="get" action="http://www.google.com/search" target="_blank" autocomplete="off"><input id="searchinput" alt="search" name="q" size="10" maxlength="255" type="text" value="" /><input class="advbutton" value="Search site" type="submit" /><div id="srchprov">(by Google)</div><input name="sitesearch" value="www.6502.org/users/andre" type="hidden" /></form><div id="topfind"><div id="topprogress"></div></div></div><div id="menubox">
+
+
+<div id="menu1" class="mclose">
+<div id="twist1" class="twisty"></div>
+<div class="hdrtxt"><a href="../index.html">Home&nbsp;&gt;</a></div>
+<ul class="nav1">
+<li>
+<ul class="nav2">
+<li class="navhdr"><a href="../index.html">Home</a></li>
+<li><a href="../contact.html">Contact</a></li>
+<li><a href="../design.html">Web design</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Hardware</span></li>
+<li><ul class="nav2" >
+<li><a href="../ultipet/index.html">The Ulti-PET</a>
+</li>
+<li><a href="../upet/index.html">The Micro-PET</a>
+</li>
+<li><a href="../65k/index.html">The 65k Project</a>
+</li>
+<li><a href="../pet816/index.html">PET816 Accelerator</a>
+</li>
+<li><a href="../csa/index.html">CS/A65</a>
+</li>
+<li><a href="../cbmhw/index.html">CBM mods</a>
+</li>
+<li><a href="../spi65b/index.html">SPI65B</a>
+</li>
+<li><a href="../xs1541/index.html">XS1541</a>
+</li>
+<li><a href="../mischw/index.html">Other hardware</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Software</span></li>
+<li><ul class="nav2" >
+<li><a href="../osa/index.html">GeckOS</a>
+</li>
+<li><a href="../lib6502/index.html">lib6502 </a>
+</li>
+<li><a href="../o65/index.html">o65</a>
+</li>
+<li><a href="../usb65/index.html">usb65</a>
+</li>
+<li><a href="../xd2031/index.html">XD2031</a>
+</li>
+<li><a href="../bdos/index.html">BDOS</a>
+</li>
+<li><a href="../misc/index.html">Misc</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Library</span></li>
+<li><ul class="nav2" >
+<li><a href="../petindex/index.html">PETindex</a>
+</li>
+<li><a href="../adv65/index.html">Advanced 6502</a>
+</li>
+<li><a href="../hwinfo/index.html">ICs and Standards</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Knowledge Bits</span></li>
+<li><ul class="nav2" >
+<li><a href="../icapos/index.html">Computer/OS Architecture</a>
+</li>
+<li><a href="../icaphw/index.html">6502 Hardware Bits</a>
+</li>
+<li><a href="../emulation/index.html">Emulation</a>
+</li>
+</ul>
+<div class="nend2"></div>
+</li>
+<div class="nend1"></div>
+</ul>
+</div>
+<div id="menu2" class="mopen">
+<div id="twist2" class="twisty"></div>
+<div class="hdrtxt"><a href="index.html">PETindex&nbsp;&gt;</a></div>
+<ul class="nav1">
+<li>
+<ul class="nav2">
+<li class="navhdr"><a href="index.html">PETindex</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>General Info</span></li>
+<li><ul class="nav2" >
+<li><a href="gallery/index.html">PET gallery</a>
+</li>
+<li><a href="versions.html">PET versions</a></li>
+<li><a href="boards.html">Boards and schematics</a></li>
+<li><a href="pinouts.html">Connectors</a></li>
+<li><a href="keyboards.html">Keyboards</a></li>
+<li><a href="video.html">How the video works</a></li>
+<li><a href="extensions.html">Hardware Extensions</a></li>
+<li><a href="lang.html">Programming Languages</a></li>
+<li><a href="open.html">Open questions</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Specials</span></li>
+<li><ul class="nav2" >
+<li><a href="superpet.html">SuperPET MMF9000</a></li>
+<li><a href="8x96.html">The 8096 and 8296 models</a></li>
+<li><a href="8032sk.html">The 8032-SK</a></li>
+<li><a href="internat.html">Internationalization</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<li><span>Peripherals</span></li>
+<li><ul class="nav2" >
+<li><a href="drives/index.html">Disk drives</a>
+</li>
+<li><a href="periph.html">Others</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Programming</span></li>
+<li><ul class="nav2" >
+<li><a href="progmod.html">Hardware programming</a></li>
+<li><a href="roms.html">ROM descriptions</a></li>
+<li><a href="crtc.html">CRTC operation</a></li>
+<div class="nend2"></div>
+</ul>
+</li>
+<li><span>Quirks</span></li>
+<li><ul class="nav2" >
+<li><a href="poke/index.html">Killer poke</a>
+</li>
+<li><a href="repairs.html">Repairing the PET</a></li>
+<li><a href="diag/index.html">Diagnostic Clip</a>
+</li>
+<div class="nend2"></div>
+</ul>
+</li>
+<div class="nend1"></div>
+</ul>
+<ul class="nav1" >
+<li><span>Links</span></li>
+<li><ul class="nav2" >
+<li><a href="hw.html">Hardware projects</a></li>
+<li><a href="sw.html">Software projects</a></li>
+<li><a href="emus.html">PET emulators/rebuilds</a></li>
+<li><a href="transfer.html">File transfers</a></li>
+<li><a href="links.html">Links</a></li>
+</ul>
+<div class="nend2"></div>
+</li>
+<div class="nend1"></div>
+</ul>
+</div>
+	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
+
+<h1>PET video architecture</h1><p class="copyright">(C)
+2025-2026 André Fachat</p> 
+<div class="overview">
+	<p>The PET looks like a simple machine with almost the same features from the first machine to the last. 
+	  But that is not the case. The main difference is in the video and memory section of the machine. 
+	  So, in principle, there are three different architectures that need to be considered:
+	</p>
+	<ul>
+	<li>The original with TTL-based, static timing video output. That includes the 2001 with static RAM, but goes up to all the 9" models with dynamic
+	  (main) memory.</li>
+	<li>The 12" models with the CRTC, basically the Fat40 and the 8032 models</li>
+	<li>The 8296 model that has 128kB of main RAM that is shared as video RAM as well</li>
+	</ul>
+	<p>
+	I have made a video series on all three types of models, explaining the system architecture and video output architecture.
+	On this page I put the main info, and link to the videos.
+	</p>
+   </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2026-01-05</small>
+	Started this page
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#part1">The static timing models</a></li><li style="list-style-type:none;"><ul><li><a href="#p1-explain">Explaining the Original Video Architecture</a></li><li><a href="#p1-video">Video on the Original Video Architecture</a></li></ul></li><li><a href="#part2">The CRTC models</a></li><li style="list-style-type:none;"><ul><li><a href="#p2-explain">Explaining the CRTC Video Architecture</a></li><li><a href="#p2-video">Video on the CRTC Video Architecture</a></li></ul></li><li><a href="#part3">The 8296</a></li><li style="list-style-type:none;"><ul><li><a href="#p3-explain">Explaining the 8296 Architecture</a></li><li><a href="#p2-video">Video on the CRTC Video Architecture</a></li></ul></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="part1" id="part1">The static timing models</a></h2></div><div class="h2c"><p>
+	This section covers two sub-types of models:
+	</p>
+	<ul>
+	<li>The original 2001 model with 1 MHz video RAM, prone to the famous "snow" appearing on the screen while the CPU accesses video memory</li>
+	<li>The later 2001 or 30xx models in Europe that have 2 MHz video RAM, that allows time-sharing the video RAM with the CPU</li>
+	</ul>
+	<p>
+	The main difference in the system architecture for those two is a buffer in the later models, that holds the video data while the CPU is accessing
+	the video RAM, so I'll describe them here.
+	</p>
+     <h3><a name="p1-explain" id="p1-explain">Explaining the Original Video Architecture</a></h3><p>
+	The original architecture created a static signal timing using TTL logic chips, derived from the 16 MHz system clock.
+	The timing is divided into four modes, which relate to 
+	</p>
+	<ul>
+		<li>00 - Vertical Drive: VSync</li>
+		<li>01 - Top Blank: between vertical sync and start of display</li>
+		<li>10 - VIDEO ON: display the video data</li>
+		<li>11 - Bottom Blank: between Video data and VSync</li>
+	</ul><p>
+	The address counter is used in all modes - it is loaded at the start of each line (not just when displaying data, but also
+	in the other modes), and reloaded after the line ended (except when a new line starts). 
+	Conveniently, the length of the line is 64 cycles, which is a power of two. So, address bits above the first six bits can be used
+	to determine the actual raster row. The NEXT condition then checks the address counter upper bits - the raster row - 
+	if the next mode should start. It does this depending on the mode, so each mode can have different lengths.
+	In the PET, all modes have the same length of 20 raster lines except the active video output, which has 200 raster lines
+	(which you would expect from 25 character lines of 8 bits).
+	</p>
+	<p>The address counter goes to video RAM by means of a selector that switches between the CPU and video addresses.
+	The video RAM output goes to the character ROM - here a buffer is included in the 3032 models without snow.
+	From the character ROM the data goes to the shift register, and from there to the video inverter.
+	</p><p>
+		For more information see the linked presentation from the video below.
+	</p><div class="gallery"><div class="galleryimg"><a href="imgs/vid-p1-arch.png"><img class="full" src="imgs/vid-p1-arch.png" alt="The video architecture block diagram" /><img class="thumb" src="imgs/vid-p1-arch.png" alt="The video architecture block diagram" /></a><div class="desc">The video architecture block diagram</div></div><div class="galleryimg"><a href="imgs/vid-p1-schem-blocks.png"><img class="full" src="imgs/vid-p1-schem-blocks.png" alt="The video architecture blocks overlayed on the schematics" /><img class="thumb" src="imgs/vid-p1-schem-blocks.png" alt="The video architecture blocks overlayed on the schematics" /></a><div class="desc">The video architecture blocks overlayed on the schematics</div></div><div class="galleryimg"><a href="imgs/vid-p1-board.png"><img class="full" src="imgs/vid-p1-board.png" alt="The video circuit on the PCB" /><img class="thumb" src="imgs/vid-p1-board.png" alt="The video circuit on the PCB" /></a><div class="desc">The video circuit on the PCB</div></div><div class="galleryimg"><a href="imgs/vid-p1-board-crtc.png"><img class="full" src="imgs/vid-p1-board-crtc.png" alt="The video circuit that will be replaced by the CRTC in later models" /><img class="thumb" src="imgs/vid-p1-board-crtc.png" alt="The video circuit that will be replaced by the CRTC in later models" /></a><div class="desc">The video circuit that will be replaced by the CRTC in later models</div></div><div class="gallend"></div></div><h3><a name="p1-video" id="p1-video">Video on the Original Video Architecture</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pwb5GvmoAFE?si=npbtHu0UmUxPtJNE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<ul><li><a href="https://github.com/fachat/8bittimes/blob/main/Ep30-PET-video-part-1/petvideo1.pdf" target="_blank" class="extlink">Presentation from the video</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="part2" id="part2">The CRTC models</a></h2></div><div class="h2c"><p>
+	This section covers the standard (up to 32k RAM) models with the CRTC for video timing:
+	</p>
+	<ul>
+	<li>The 4032 so-called "Fat40", i.e. the 4032 models with the 12" screen</li>
+	<li>The 8032 with the 12" screen, both fixed and swivel</li>
+	</ul>
+     <h3><a name="p2-explain" id="p2-explain">Explaining the CRTC Video Architecture</a></h3><p>
+		The CRTC models replace basically the whole static timing calculation by the CRTC chip.
+		It creates the sync signals, the video memory addresses, as well as row addresses.
+	</p><p>
+		The rest of the video pipeline more or less stays the same: the address selector
+		so the RAM can be accessed by the CPU and the video, video data latch(es), character ROM, shift register, and inverter.
+	</p><p>
+		One interesting thing on the 8032 is that is uses a 16 bit video data bus ... yes, the video circuit
+		reads two bytes at the same time from two set of video RAM chips. This allows using the same speed of RAM in
+		the 40 column as in the 80 column models. A second latch stores the second byte until it is needed.
+		You can see the parts marked in green in the diagram below.
+	</p><p>
+		This architecture is also the reason the CRTC is programmed to display 40 character even in 80 column machines - 
+		each character slot for the CRTC reads two characters from memory, to get to the 80 displayed characters in total.
+	</p><p>
+		Also note that the CRTC allows to set the timing and character height, number of displayed characters per line or displayed
+		lines rather freely. This can and has been used for new demos. The issue with the 4032/8032 here is the restricted
+		amount of video memory available, which is 1k resp. 2k. So, this has been more exploited in the 8296 models (see below).
+		A glimpse of what can be done I have shown in <a href="../hwinfo/crtc/pet/index.html">the PET CRTC page</a>
+	</p><p>
+		For more information see the linked presentation from the video below.
+	</p><div class="gallery"><div class="galleryimg"><a href="imgs/vid-p2-arch.png"><img class="full" src="imgs/vid-p2-arch.png" alt="The video architecture block diagram" /><img class="thumb" src="imgs/vid-p2-arch.png" alt="The video architecture block diagram" /></a><div class="desc">The video architecture block diagram</div></div><div class="galleryimg"><a href="imgs/vid-p2-replaced-by-crtc.png"><img class="full" src="imgs/vid-p2-replaced-by-crtc.png" alt="The original video architecture block diagram with blocks marked that are replaced by the CRTC" /><img class="thumb" src="imgs/vid-p2-replaced-by-crtc.png" alt="The original video architecture block diagram with blocks marked that are replaced by the CRTC" /></a><div class="desc">The video architecture block diagram of the original video with blocks marked in yellow that are replaced by the CRTC</div></div><div class="galleryimg"><a href="imgs/vid-p2-4032.png"><img class="full" src="imgs/vid-p2-4032.png" alt="The 4032 video architecture" /><img class="thumb" src="imgs/vid-p2-4032.png" alt="The 4032 video architecture" /></a><div class="desc">The 4032 video architecture</div></div><div class="galleryimg"><a href="imgs/vid-p2-8032.png"><img class="full" src="imgs/vid-p2-8032.png" alt="The 8032 video architecture" /><img class="thumb" src="imgs/vid-p2-8032.png" alt="The 8032 video architecture" /></a><div class="desc">The 8032 video architecture</div></div><div class="gallend"></div></div><h3><a name="p2-video" id="p2-video">Video on the CRTC Video Architecture</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2echgDsLhR0?si=Ls0vT0uMGQruLbh7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<ul><li><a href="https://github.com/fachat/8bittimes/blob/main/Ep31-PET-video-part-2/petvideo2.pdf" target="_blank" class="extlink">Presentation from the video</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="part3" id="part3">The 8296</a></h2></div><div class="h2c"><p>
+		The 8296 was a re-design of the PET, using 2 banks of 64kB of dynamic RAM, for a max total of 
+		128k RAM (of which 96k were easily usable, and some of the rest were used for the video).
+		The PCB was made configurable, so it could be used as 4032, 8032, or even as a 4096 model, but
+		I don't know of any such model besides the 8296.
+	</p>
+     <h3><a name="p3-explain" id="p3-explain">Explaining the 8296 Architecture</a></h3><p>
+		The main architecture changed significantly, as the main memory was now also
+		used for the video. Basically what Commodore did was, they replaced the 
+		main memory of the older machines with a greatly extended video RAM.
+	</p><p>
+		One other change is they used a single 8 bit video data bus instead of the 
+		two byte (16 bit) data access path of the 8032. This way they were able
+		to further reduce the chip count, but it required faster RAM.
+	</p><p>
+		One could have speculated that adding a second bank is required to get to 80 columns,
+		similar to the 8032 CRTC models. However, the video RAM is completely in the first
+		memory bank. This allows to leave out the 2nd bank altogether to use the board
+		as a 4032 option. This is probably also a reason for using faster RAM and
+		allowing only a single 8bit video data path.
+	</p><p>
+		As Commodore was using a PLA to generate the timing, they were easily able to
+		use page mode read cycles from the single video bank to speed up the 
+		RAM access. Dynamic RAM gets the address in two chunks, first the page
+		then the byte in the page (page here meaning a memory block that requires 
+		just half the number of address bits, so is 256 bytes for a 64k chip here,
+		but could be 128 bytes for a 16k chip here).
+		Page mode read allows sending the page once, then sending different byte 
+		addresses without page address to access differenty bytes in the same page.
+	</p><p>
+		The 8296 has the flexible timing of the CRTC, but also the CRTC is able
+		to address 8k of video memory in total (where 4k can be read and written
+		by the CPU, the second 4k can only be written to). This, together with the flexible timing, allows to create
+		interesting demo effects as can be seen in the video linked below.
+	</p><p>
+		For more information see the linked presentation from the video below.
+	</p><div class="gallery"><div class="galleryimg"><a href="imgs/vid-p3-original.png"><img class="full" src="imgs/vid-p3-original.png" alt="The original PET system architecture" /><img class="thumb" src="imgs/vid-p3-original.png" alt="The original PET system architecture" /></a><div class="desc">The original PET system architecture</div></div><div class="galleryimg"><a href="imgs/vid-p3-whatif.png"><img class="full" src="imgs/vid-p3-whatif.png" alt="What if the main memory section could be replaced?" /><img class="thumb" src="imgs/vid-p3-whatif.png" alt="What if the main memory section could be replaced?" /></a><div class="desc">What if the main memory section could be replaced?</div></div><div class="galleryimg"><a href="imgs/vid-p3-extvideo.png"><img class="full" src="imgs/vid-p3-extvideo.png" alt="Use extended video RAM as main memory" /><img class="thumb" src="imgs/vid-p3-extvideo.png" alt="Use extended video RAM as main memory" /></a><div class="desc">Use extended video RAM as main memory</div></div><div class="galleryimg"><a href="imgs/vid-p3-8296.png"><img class="full" src="imgs/vid-p3-8296.png" alt="Add 2nd bank to get the 8296" /><img class="thumb" src="imgs/vid-p3-8296.png" alt="Add 2nd bank to get the 8296" /></a><div class="desc">Add 2nd bank to get the 8296</div></div><div class="galleryimg"><a href="imgs/vid-p3-arch-orig.png"><img class="full" src="imgs/vid-p3-arch-orig.png" alt="The original architecture diagram by Commodore" /><img class="thumb" src="imgs/vid-p3-arch-orig.png" alt="The original architecture diagram by Commodore" /></a><div class="desc">The original architecture diagram by Commodore</div></div><div class="gallend"></div></div><h3><a name="p2-video" id="p2-video">Video on the CRTC Video Architecture</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Woa-UbqozD8?si=9wBj0whn12j1xHM9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<ul><li><a href="https://github.com/fachat/8bittimes/blob/main/Ep32-PET-video-part-3/petvideo3.pdf" target="_blank" class="extlink">Presentation from the video</a> </li><li><a href="https://media.ccc.de/v/vcfb2023_-_186_-_de_-_202310141630_-_making_of_-_bodo_hinueber#t=0" target="_blank" class="extlink">Explaning a 8296 demo (in German)</a> </li></ul></div></div><hr />
+<p>Return to <a href="../index.html">Homepage</a></p>
+
+  Last modified: 
+
+	</div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
+		            <a class="extlink" target="_blank" href="https://mastodon.online/@afachat">Mastodon</a> (In new window)
+				or <a class="extlink" target="_blank" href="https://bsky.app/profile/afachat.bsky.social">Bluesky</a></p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
+<p>Dive into the retro feeling and build yourself a <a href="../upet/index.html">Micro-PET</a> or a Multi-board <a href="../cbmhw/ryofat40/index.html">Commodore 4032</a> replica</p>
+<p>Need more speed? Speed up your 6502 computer with this <a href="../pet816/index.html">10&nbsp;MHz 6502 CPU accelerator board</a></p>
+<p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
+<p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>
+
+		</div></div></div><div id="footer"> </div></div><script type="text/javascript">myUp="../";</script><script type="text/javascript" src="../scripts2-all.js"></script></body></html> 
+

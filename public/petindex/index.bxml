@@ -37,6 +37,9 @@ I hope you enjoy this document.<br/>
 </p>
   </overview>
   <news>
+    <item state="hot" date="2026-01-05">
+    	Added a whole section explaining the <a href="video.html">video output architecture</a>
+    </item>
     <item date="2026-01-05">
 	Greatly updated the links on <a href="petindex/emus.html">PET replicas and emulators</a>.		 
     </item>
@@ -154,6 +157,7 @@ and the 510-520 (also known as P500)</p>
 </subitem><subitem link="pinouts.html" name="Pinouts"> of various PET connectors
 </subitem><subitem link="keyboards.html" name="Keyboard"> layouts and Screen control codes <!--(<img src="../imgs/news.gif"/>)-->
 </subitem><subitem link="extensions.html" name="Extensions"> extensions of the PET <!--(<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010: RAM expansions, CPU speeders)-->
+</subitem><subitem link="video.html" name="Video architecture"> Explaining the video output (and system) architecture of the different PET models
 </subitem><subitem link="lang.html" name="Programming Languages"> for the PET, i.e. including BASIC extensions
 </subitem><subitem link="progmod.html" name="Hardware Programming"> information <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
 </subitem><subitem link="roms.html" name="ROM"> descriptions <!--(<img src="../imgs/news.gif" alt="NEW"/> JAN 2010 updates layout and included links)-->
@@ -164,7 +168,7 @@ and the 510-520 (also known as P500)</p>
 </subitem><subitem link="8032sk.html" name="8032-SK"> - a cool case for the 8032
 </subitem><subitem link="hw.html" name="Hardware"> projects around the PET
 </subitem><subitem link="sw.html" name="Software"> projects and archives
-</subitem><subitem link="emus.html" name="PET emulators"> run PET programs on other hardware
+</subitem><subitem link="emus.html" name="PET emulators and rebuilds"> run PET programs on other hardware, or modern hardware rebuilds
 </subitem><subitem link="transfer.html" name="Transfer"> projects to transfer files from the PET to the PC and back.
 </subitem><subitem link="repairs.html" name="Repair"> information for the PET
 </subitem><subitem link="links.html" name="Links"> to some other docs (faq, pictures, schematics) <!--(<img src="../imgs/news.gif" alt="UPDATED"/> MAY 2010)-->

@@ -258,8 +258,8 @@
     </xsl:call-template>
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
-      <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="subsection"/>
+      <xsl:apply-templates select="gallery"/>
       <xsl:if test="subitem|extlink|file">
         <ul>
           <xsl:apply-templates select="subitem"/>
@@ -285,6 +285,7 @@
 <xsl:apply-templates select="file"/>
 </table>
 </xsl:if>
+<xsl:apply-templates select="gallery"/>
 </xsl:template>
 
 <xsl:template match="teasers">
@@ -447,7 +448,6 @@
 </ul>
 </xsl:if>
 <xsl:apply-templates select="news"/>
-<xsl:apply-templates select="gallery"/>
 <xsl:if test="toc"><xsl:call-template name="toc"/></xsl:if>
 <xsl:for-each select="itemlist|section">
   <div class="h2">
@@ -457,9 +457,9 @@
     </xsl:call-template>
     <div class="h2c">
       <xsl:apply-templates select="desc"/>
-      <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="rev"/>
       <xsl:apply-templates select="subsection"/>
+      <xsl:apply-templates select="gallery"/>
       <xsl:apply-templates select="teasers"/>
       <!-- (very) old style pages may still use this -->
       <xsl:for-each select="items[item|subitem|file]">
@@ -495,6 +495,7 @@
     </div><!-- h2c -->
   </div><!-- h2 -->
 </xsl:for-each>
+<xsl:apply-templates select="gallery"/>
 <!-- board drivers and revisions -->
 <xsl:call-template name="alldriver"/>
 <xsl:call-template name="allrev"/>

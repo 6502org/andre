@@ -20,7 +20,10 @@ on Google+. After three years my priorities shifted and I stepped back from it j
 <!--p>For my further plans around the 6502 please see my new <a href="sneak.html">Sneak Preview</a> page!</p-->
   </overview>
   <news>
-    <item date="2026-01-05">
+    <item state="hot" date="2026-01-06">
+	Added a whole new page on the <a href="petindex/video.html">PET video output architecture</a> on the <a href="petindex/index.html">petindex</a> pages.
+    </item>
+    <item state="hot" date="2026-01-05">
 	Created a separate <a href="bdos/index.html">page for BDOS</a>, my solution to copy files to and from PC disks with a C128 and a 1571 disk drive.
     </item>
     <item date="2026-01-05">
@@ -453,13 +456,16 @@ information and links to the old CBM PET machines</tsubitem>
       </tsubitem>
      </item>
      <item name="General 6502 hardware stuff" icon="i_hw" headerimg="web_hardware.jpg">
+      <tsubitem name="Ulti-PET" link="ultipet/index.html">and
+      <a href="upet/index.html">Micro-PET</a> are my new
+      PET replicas, with an FPGA for colour VGA video output, up to 13.5MHz speed, USB and SD-card support and much more!
+</tsubitem>
       <tsubitem name="CS/A65" link="csa/index.html">and
 <a href="csa/gecko/index.html">Gecko</a> are my selfdesigned and selfbuilt
 multi- resp. singleboard 6502 computers.
 The CS/A65 features virtual memory, video card, a SCSI interface
-and many more stuff
-I have now linked my CS/A65 emulator, based on the VICE emulator,
-to this page.</tsubitem>
+and many more stuff.
+</tsubitem>
       <tsubitem name="The Advanced 6502 page" link="adv65/index.html">
 	is there for projects that go beyond the original 6502 design. 
 	It currently contains the <a href="adv65/pet816/index.html">PET816</a> board
