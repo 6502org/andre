@@ -13,6 +13,9 @@
 	</p><p>Note: this is a work in progress!</p>
   </overview>
   <news>
+    <item date="2026-01-06">
+	Add link to Hugo Holden's repair manual for 9&quot; PETs
+    </item>
     <item date="2017-09-29">
 	Add D9090 repair info, and 6540 test tool
     </item>
@@ -346,7 +349,7 @@ version of the video board for the original PET that went bad frequently.</p>
 	  <subitem name="Power connector">
 		<desc>William Levak on the cbm-hackers mailing list reported intermittend
 		power problems with the SuperPET. He fixed it temporarily by pressing on the
-		connectors of the power cable that foes from the 6809 board to the main system
+		connectors of the power cable that goes from the 6809 board to the main system
 		board. When it went out completely, he found that the cable had been pulled out
 		and he had to re-crimp it (stripping off a bit more insulation to get more
 		bare wire to crimp).
@@ -367,6 +370,8 @@ version of the video board for the original PET that went bad frequently.</p>
 	<desc>Very(!) helpful people in this forum.</desc>
       </subitem>
       <subitem name="Diagnostic Manuals" link="http://www.commodore.ca/manuals/default.htm">commodore.ca has a number of diagnostic manuals. 
+      </subitem>
+      <subitem name="Test and repair 9&quot; monitor PETs" link="https://worldphaco.com/uploads/PETREPAIR1.pdf">A description how to repair 9&quot; monitor PETs by Hugo Holden
       </subitem>
       <subitem name="PET memory test program" link="http://www.commodore.ca/manuals/PET_RAM_test.htm">commodore.ca has memory test program for an 8k PET, which could probably be adapted for larger memory sizes.
       </subitem>
