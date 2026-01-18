@@ -20,6 +20,9 @@
 	</p>
   </overview>
   <news>
+    <item date="2026-01-18">
+	Added the EconoPET
+    </item>
     <item date="2026-01-05">
 	Updated with more links
     </item>
@@ -74,6 +77,12 @@ using BASIC POKE and PEEK commands.</DD>
 		The Ulti-PET adds Dual-SID sound output, joystick ports (compatible with userport Joysticks from the
 		original, Fast-IEC bus support, serial (RS232) interfaces, I2C, SPI interfaces, and even a proper expansion port.
 		More detail on their <a href="https://github.com/fachat/upet_family">github page</a>.
+	</DD>
+
+	<DT><A HREF="https://dlehenbauer.github.io/econopet/40-8096-A.html">EconoPET</A></DT>
+	<DD>
+		The EconoPET allows to repair or upgrade a Commodore PET 2001-8096, but also provides an HDMI display and USB keyboard, so it 
+		can be used as a standalone computer without PET case or keyboard.
 	</DD>
 
 	<DT><A HREF="https://github.com/Rhialto/MegaPET">MegaPET</A></DT>
