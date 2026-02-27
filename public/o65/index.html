@@ -115,14 +115,24 @@ initialized data and text, as well as (uninitialized) zeropage.
 Block loading can be used and when there is no late-binding
 (which is possible) no side-storage is needed.
 	</p>
-  </div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#current">Current Version</a></li><li><a href="#example">Example Code</a></li><li><a href="#o65ng">o65 Next Generation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#uses">Current uses</a></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="current" id="current">Current Version</a></h2></div><div class="h2c"><p>The current version is version 1.3 in
-<a href="fileformat.html">fileformat.html</a>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div> </div><small>2026-02-27</small>
+	Updated to file format version 1.3.1, and linked to the <a href="https://github.com/fachat/o65">new maintenance page on github</a>.
+    </li><li><div> </div><small>1997</small>
+	Started the file format definition (about)
+    </li></ul></div></div><div id="toc" class="h2"><div class="h2h"><div class="h2t"> </div><h2>Table of content</h2></div><div class="h2c"><ul><li><a href="#current">Current Version</a></li><li><a href="#example">Example Code</a></li><li><a href="#o65ng">o65 Next Generation</a></li><li><a href="#dist">Distribution</a></li><li><a href="#uses">Current uses</a></li><li><a href="#disc">Disclaimer</a></li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="current" id="current">Current Version</a></h2></div><div class="h2c"><p>The current version is version 1.3.1 in
+<a href="https://github.com/fachat/o65">its github repository</a>
 </p><p>
-The change from <a href="fileformat-1.2.html.gz">version 1.2</a>
+The change from version 1.3 is only some small explanatory changes, no changes in the file format proper.
+Note that this version is the last version that will have an HTML format version. All future versions
+will be published in Asciidoc only.
+</p><p>
+Also note, that on github there are <a href="https://github.com/fachat/o65/issues">proposed changes for a 1.4 version</a>.
+</p><p>
+The change from <a href="fileformat-1.2.html.gz">version 1.2</a> to version 1.3
 are an upward compatible change in the mode bits, more os types,
 and better explanations.
 </p><p>
-The change from the <a href="fileformat-1.1.html.gz">version 1.1</a>
+The change from the <a href="fileformat-1.1.html.gz">version 1.1</a> to version 1.2
 is that the undefined reference relocation entry for high-byte
 relocation has changed.
 </p>
@@ -133,10 +143,6 @@ computes the relocation differences for each segment separately. What it
 does, however, is late binding of the <code>OSA2KERNEL</code> and
 <code>lib6502</code> variables, as well as looking for the <code>main</code>
 exported label to start the program.
-</p><p>
-A simpler version (without undefined references and without late binding) comes with the
-<code>xa</code> assembler and you can find it in <a href="loader.a65">loader.a65</a>. It
-also has a sample C64 binding.
 </p><p>
 The code is not cleared from debug statements and lacks comments. Wear your
 hard hat.
