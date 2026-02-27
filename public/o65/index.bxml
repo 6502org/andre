@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>1997</yearstart>
-    <yearend>2010</yearend>
+    <yearend>2026</yearend>
   </author>
   <keywords>6502,standard,fileformat</keywords>
   <metadesc>6502 o65 standard fileformat</metadesc>
