@@ -124,15 +124,18 @@
 	</div><div id="midcol"><div class="top" id="content"><div id="minmax"></div>
 
 <h1> The Ulti-PET</h1><p class="copyright">(C)
-2022-2024 André  Fachat</p> 
+2022-2026 André  Fachat</p> 
 <div class="overview"><p>	
 	The Micro-PET family is a re-incarnation of the Commodore PET computer(s) from the later 1970s.
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	</p><p>
-	
+	Current state of development can be found on 
+	<a target="_blank" href="https://github.com/fachat/upet_family">the UltiPET family github page</a>
  	</p>
-  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2024-10-30</small>
+  </div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="news" id="news">News:</a></h2></div><div class="h2c"><ul class="news"><li><div class="i_hotnews"> </div><small>2026-05-12</small>
+	Update on the development status, add link to the video on the new keyboard
+    </li><li><div class="i_hotnews"> </div><small>2024-10-30</small>
 	Update on the development status, add link to new video
     </li><li><div class="i_hotnews"> </div><small>2024-09-21</small>
 	Update on the development status, presenting Ulti-PET prototypes.
@@ -152,23 +155,33 @@
 	boards based on that tech:
 	</p>
 	<ul>
+		<li>The <em>Ulti-PET</em>: a Micro-PET-core-based PCB with many many new features like Dual-SID, I2C, RS232 / TTL UARTs, fast serial IEC, Joysticks,, ...</li>
 		<li>The <em>Micro-PET</em>: a PCB that clones a Commodore PET, and adds modern features like SD-Card, USB, DAC audio, Network support, and colour VGA video output</li>
 		<li>The <em>Micro-CPU</em>: The CPU and modern tech part of the Micro-PET (SD-Card, USB, DAC audio, Network, VGA video) as CPU for the CS/A bus.</li>
-		<li>The <em>Ulti-PET</em>: a Micro-PET-based PCB with many many new features like Dual-SID, I2C, RS232 / TTL UARTs, fast serial IEC, Joysticks,, ...</li>
 	</ul>
 	<p>
 	The main development is happening on github (see link left in the menu).
 	</p>
+	<div class="rightimg">
+                <a href="imgs/whitecase.jpg"><img src="imgs/whitecase-small.jpg" /></a><br />An UltiPET in the new case
+        </div>
      <h3><a name="status" id="status">Status</a></h3><p>
-		All three boards have been tested. The Micro-PET and Ultra-CPU boards work. The Ulti-PET board needs some minor adjustments - the 2nd SID was not adressable, Joystick fire buttons did not work, some parts placement issues).
-		</p><p>
-		I am currently working on a new revision of the Ulti-PET board, which will be revision 1.2.
 		</p>
-		<p>Further plans for firmware updates are:</p>
+		<p>Recent updates are:</p>
 		<ul>
 		<li>Store configuration in RTC EEPROM, allow to modify it on the boot screen</li>
+		<li>Full configurability from the boot menu using an own setup screen</li>
 		<li>Allow using the (fast) serial IEC bus instead of the parallel bus</li>
+		<li>Dual RS232, as well as I2C integrated into the BASIC as own devices</li>
+		<li>Optional 65816 monitor</li>
+		<li>Boot / Run over RS232, even over the USB-C Power input from a PC where it appears as serial interface</li>
+		<li>Hardware burnin test included in boot menu</li>
+		</ul>
+		<p>Further plans include</p>
+		<ul>
 		<li>Support USB keyboard and SD-Card in BASIC 2 and maybe BASIC 1 also, and optionally in the unmodified ROMs too</li>
+		<li>Meatloaf-based module for internet access (using IEEE488)</li>
+		<li>New keyboard connector with power, interrupt, reset, and I2C</li>
 		</ul>
 	<h3><a name="features" id="features">Features</a></h3>
 Here is a list of the features:
@@ -183,14 +196,14 @@ Here is a list of the features:
         <li>8296 memory map emulation</li>
         <li>IEEE488 interface (via <a href="../csa/petio/index.html">PETIO</a> board)</li>
         <li>Tape connector (pin, via <a href="../csa/petio/index.html">PETIO</a> board)</li>
-        <li>PET graphics keyboard, or alternatively a C64 keyboard</li>
+        <li>PET graphics or business keyboard, or alternatively a C64 keyboard, a USB keyboard can be used as well</li>
     </ul>
     <li>Improved system design:</li>
     <ul>
         <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
         <li>boot from an SPI Flash ROM</li>
-        <li>up to 17.5 MHz mode (via configuration register)</li>
-        <li>VGA Colour video output (RGBI in 768x576)</li>
+        <li>up to 13.5 MHz mode (via configuration register)</li>
+        <li>VGA Colour video output (RGBI in 720x576 in 50Hz or 720x480 in 60Hz)</li>
         <li>Write protection for the PET ROMs once copied to RAM</li>
         <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
     </ul>
@@ -214,8 +227,7 @@ Here is a list of the features:
   </ul>
   <li>Extra I/O features on top (mostly Ulti-PET only)</li>
   <ul>
-    <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
-    <li>RS232 interface</li>
+    <li>Dual RS232 interface</li>
     <li>Fast serial IEC bus (like in the C128)</li>
     <li>Both IEEE488 and IEC bus are capable of being used as device for another computer (ATNA capability)</li>
     <li>An extra 8-bit I/O port in addition to the Userport</li>
@@ -231,9 +243,12 @@ Here is a list of the features:
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/lE_l2G_fu_0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
-
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZhVOTDI492A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<ul><li><a href="https://github.com/fachat/upet_family" target="_blank" class="extlink">The Micro-PET family at github</a> </li><li><a href="../csa/petio/index.html" target="_blank" class="extlink">The PETIO board</a> </li><li><a href="../csa/dualsid/index.html" target="_blank" class="extlink">The DUALSID board</a> </li><li><a href="https://youtu.be/iMmVOPfir1c" target="_blank" class="extlink">A Youtube video on the Ultra-CPU</a> </li><li><a href="https://youtu.be/KxuPgibIdj4" target="_blank" class="extlink">A Youtube video on the Ultra-Bus</a> </li></ul></div></div><div class="h2"><div class="h2h"><div class="h2t"> </div><h2><a name="gallery" id="gallery">Gallery</a></h2></div><div class="h2c"> <p>Some pictures of the current state of the Ultra-PET</p>
-    <div class="gallery"><div class="galleryimg"><a href="imgs/family.jpg"><img class="full" src="imgs/family.jpg" alt="The different Micro-PET family boards" /><img class="thumb" src="imgs/family.jpg" alt="The different Micro-PET family boards" /></a><div class="desc">
+    <div class="gallery"><div class="galleryimg"><a href="imgs/ultiwhite.jpg"><img class="full" src="imgs/ultiwhite.jpg" alt="A new UltiPET in the white case with an LCD screen showing the setup menu" /><img class="thumb" src="imgs/ultiwhite.jpg" alt="A new UltiPET in the white case with an LCD screen showing the setup menu" /></a><div class="desc">
+			The new UltiPET case in white, with a black keyboard. 
+			The screen shows the new setup menu.
+		</div></div><div class="galleryimg"><a href="imgs/family.jpg"><img class="full" src="imgs/family.jpg" alt="The different Micro-PET family boards" /><img class="thumb" src="imgs/family.jpg" alt="The different Micro-PET family boards" /></a><div class="desc">
 			The large board is the Ulti-PET, which fits into a C64 case (some case cutting required). 
 			There are the Micro-PET and the CS/A Ultra-CPU boards as well.
 			A keyboard with 3D-printable PET keycaps is available too.
@@ -246,7 +261,7 @@ Here is a list of the features:
 	</div></div><div id="rightcol"><div class="top" id="twitter"><div class="tophead">follow</div><div><p>Follow my 8-bit tweets on
 		            <a class="extlink" target="_blank" href="https://mastodon.online/@afachat">Mastodon</a> (In new window)
 				or <a class="extlink" target="_blank" href="https://bsky.app/profile/afachat.bsky.social">Bluesky</a></p></div></div><div class="top" id="forum"><div class="tophead">discuss</div><div><p>Discuss my site on <a class="extlink" target="_blank" href="http://forum.6502.org/viewtopic.php?t=956">this 6502.org forum thread</a></p><p>(Forum registration required to post)</p></div></div><div class="top" id="hot"><div class="tophead">hot!</div><div>
-<p>Dive into the retro feeling and build yourself a <a href="../upet/index.html">Micro-PET</a> or a Multi-board <a href="../cbmhw/ryofat40/index.html">Commodore 4032</a> replica</p>
+<p>Dive into the retro feeling and build yourself an <a href="../ultipet/index.html">UltiPET</a>, a <a href="../upet/index.html">Micro-PET</a>, or a Multi-board <a href="../cbmhw/ryofat40/index.html">Commodore 4032</a> replica</p>
 <p>Need more speed? Speed up your 6502 computer with this <a href="../pet816/index.html">10&nbsp;MHz 6502 CPU accelerator board</a></p>
 <p>Interested in electronics design? Look at the <a href="../icaphw/design.html">design lesson</a> I got from Bil Herd, the hardware designer of the C128</p>
 <p>Want 64bit? - pimp the 6502 with the <a href="../65k/index.html">65k processor design!</a></p>

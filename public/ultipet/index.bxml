@@ -5,7 +5,7 @@
     <email>@EMAIL@</email>
     <homepage>@WEBROOT@</homepage>
     <yearstart>2022</yearstart>
-    <yearend>2024</yearend>
+    <yearend>2026</yearend>
   </author>
   <keywords>Commodore PET CBM Ulti-PET</keywords>
   <metadesc>Micro-PET Commodore PET extended clone</metadesc>
@@ -14,10 +14,14 @@
 	It is re-using various technologies from the <a target="_blank" href="../upet/index.html">Micro-PET</a>,
 	the <a target="_blank" href="../csa/index.html">CS/A computer</a>, and others. 
 	</p><p>
-	
+	Current state of development can be found on 
+	<a target="_blank"  href="https://github.com/fachat/upet_family">the UltiPET family github page</a>
  	</p>
   </overview>
   <news>
+    <item date="2026-05-12" state="hot">
+	Update on the development status, add link to the video on the new keyboard
+    </item>
     <item date="2024-10-30" state="hot">
 	Update on the development status, add link to new video
     </item>
@@ -49,25 +53,35 @@
 	boards based on that tech:
 	</p>
 	<ul>
+		<li>The <em>Ulti-PET</em>: a Micro-PET-core-based PCB with many many new features like Dual-SID, I2C, RS232 / TTL UARTs, fast serial IEC, Joysticks,, ...</li>
 		<li>The <em>Micro-PET</em>: a PCB that clones a Commodore PET, and adds modern features like SD-Card, USB, DAC audio, Network support, and colour VGA video output</li>
 		<li>The <em>Micro-CPU</em>: The CPU and modern tech part of the Micro-PET (SD-Card, USB, DAC audio, Network, VGA video) as CPU for the CS/A bus.</li>
-		<li>The <em>Ulti-PET</em>: a Micro-PET-based PCB with many many new features like Dual-SID, I2C, RS232 / TTL UARTs, fast serial IEC, Joysticks,, ...</li>
 	</ul>
 	<p>
 	The main development is happening on github (see link left in the menu).
 	</p>
+	<div class="rightimg">
+                <a href="imgs/whitecase.jpg"><img src="imgs/whitecase-small.jpg"/></a><br/>An UltiPET in the new case
+        </div>
      </desc>
      <subsection toc="status" name="Status">
 	<desc><p>
-		All three boards have been tested. The Micro-PET and Ultra-CPU boards work. The Ulti-PET board needs some minor adjustments - the 2nd SID was not adressable, Joystick fire buttons did not work, some parts placement issues).
-		</p><p>
-		I am currently working on a new revision of the Ulti-PET board, which will be revision 1.2.
 		</p>
-		<p>Further plans for firmware updates are:</p>
+		<p>Recent updates are:</p>
 		<ul>
 		<li>Store configuration in RTC EEPROM, allow to modify it on the boot screen</li>
+		<li>Full configurability from the boot menu using an own setup screen</li>
 		<li>Allow using the (fast) serial IEC bus instead of the parallel bus</li>
+		<li>Dual RS232, as well as I2C integrated into the BASIC as own devices</li>
+		<li>Optional 65816 monitor</li>
+		<li>Boot / Run over RS232, even over the USB-C Power input from a PC where it appears as serial interface</li>
+		<li>Hardware burnin test included in boot menu</li>
+		</ul>
+		<p>Further plans include</p>
+		<ul>
 		<li>Support USB keyboard and SD-Card in BASIC 2 and maybe BASIC 1 also, and optionally in the unmodified ROMs too</li>
+		<li>Meatloaf-based module for internet access (using IEEE488)</li>
+		<li>New keyboard connector with power, interrupt, reset, and I2C</li>
 		</ul>
 	</desc>
      </subsection>
@@ -85,14 +99,14 @@ Here is a list of the features:
         <li>8296 memory map emulation</li>
         <li>IEEE488 interface (via <a href="../csa/petio/index.html">PETIO</a> board)</li>
         <li>Tape connector (pin, via <a href="../csa/petio/index.html">PETIO</a> board)</li>
-        <li>PET graphics keyboard, or alternatively a C64 keyboard</li>
+        <li>PET graphics or business keyboard, or alternatively a C64 keyboard, a USB keyboard can be used as well</li>
     </ul>
     <li>Improved system design:</li>
     <ul>
         <li>512k video RAM, 512k fast RAM accessible using banks on the W65816 CPU</li>
         <li>boot from an SPI Flash ROM</li>
-        <li>up to 17.5 MHz mode (via configuration register)</li>
-        <li>VGA Colour video output (RGBI in 768x576)</li>
+        <li>up to 13.5 MHz mode (via configuration register)</li>
+        <li>VGA Colour video output (RGBI in 720x576 in 50Hz or 720x480 in 60Hz)</li>
         <li>Write protection for the PET ROMs once copied to RAM</li>
         <li>lower 32k RAM mappable from all of the 512k fast RAM</li>
     </ul>
@@ -116,8 +130,7 @@ Here is a list of the features:
   </ul>
   <li>Extra I/O features on top (mostly Ulti-PET only)</li>
   <ul>
-    <li>Colour-PET compatibility (as defined by Steve Gray's colour-PET project)</li>
-    <li>RS232 interface</li>
+    <li>Dual RS232 interface</li>
     <li>Fast serial IEC bus (like in the C128)</li>
     <li>Both IEEE488 and IEC bus are capable of being used as device for another computer (ATNA capability)</li>
     <li>An extra 8-bit I/O port in addition to the Userport</li>
@@ -133,7 +146,7 @@ Here is a list of the features:
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/lE_l2G_fu_0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/iMmVOPfir1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/KxuPgibIdj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
-
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZhVOTDI492A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="1"></iframe>
 	</desc>
 	<extlink name="The Micro-PET family at github" link="https://github.com/fachat/upet_family"/>
 	<extlink name="The PETIO board" link="../csa/petio/index.html"/>
@@ -149,6 +162,15 @@ Here is a list of the features:
     </desc>
 
   <gallery>
+        <image>
+                <thumb>imgs/ultiwhite.jpg</thumb>
+                <full>imgs/ultiwhite.jpg</full>
+                <alt>A new UltiPET in the white case with an LCD screen showing the setup menu</alt>
+		<desc>
+			The new UltiPET case in white, with a black keyboard. 
+			The screen shows the new setup menu.
+		</desc>
+        </image>
         <image>
                 <thumb>imgs/family.jpg</thumb>
                 <full>imgs/family.jpg</full>
